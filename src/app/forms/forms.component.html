@@ -1,0 +1,148 @@
+<ng-template #content let-c="close" let-d="dismiss">
+<div class="modal-header">
+  <h4 class="modal-title">Success</h4>
+  <button type="button" class="close" aria-label="Close" (click)="d()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>The record has been successfully added{{name}}!</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="c();d()">Close</button>
+</div>
+</ng-template>
+<div class="form-div" >
+    <form  class="forms" [formGroup]="editVendorForm" (ngSubmit)="createVendor(editVendorForm.value)">
+        <div class="page-description">
+            <h3>Vendors</h3>
+            <hr class="after-heading" />
+        </div>
+        <div class="tip">
+            <p class="tip-text">
+                <fa class="light-bulb" [name]="'lightbulb-o'"></fa>Tip:</p>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <label for="vendorName"><b>Vendor Name</b></label>
+                <div class="asterisk">*</div>
+                <input type="text" class="form-control" id="vendorName" placeholder="Vendor Name" formControlName="name">
+            </div>
+        </div>
+        <hr />
+        <!-- <h3>Contact Information</h3> -->
+        <div formGroupName="vendorContact">
+            <p><b>Contact Person</b></p>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">First Name</label>
+                    <div class="asterisk">*</div>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name" formControlName="firstName">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastName">Last Name</label>
+                    <div class="asterisk">*</div>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" formControlName="lastName">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">Email ID</label>
+                    <div class="asterisk">*</div>
+                    <input type="email" class="form-control"  id="email"  title='Email Id (Format: @example.com)' placeholder="Email ID" formControlName="emailId">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone">Phone Number</label>
+                    <div class="asterisk">*</div>
+                    <input type="text" class="form-control" id="phone" placeholder="Phone Number" pattern="^\d{3}-\d{3}-\d{4}$" required title='Phone Number (Format: 999-999-9999)' formControlName="phoneNumber">
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div formGroupName="vendorAddress" >
+            <p><b>Address</b></p>
+            <div class="form-group">
+                <label for="inputAddress">Street Name</label>
+                <div class="asterisk">*</div>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Street Name" formControlName="streetName">
+                <label for="city">City</label>
+                <div class="asterisk">*</div>
+                <input type="text" class="form-control" id="city" placeholder="City" formControlName="city">
+            </div>
+             <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputState">State</label>
+                    <div class="asterisk">*</div>
+                   <select id="inputState" class="form-control" formControlName="state">
+            <option selected>Choose...</option>
+           <option value="AL">Alabama (AL)</option>
+	<option value="AK">Alaska (AK)</option>
+	<option value="AZ">Arizona (AZ)</option>
+	<option value="AR">Arkansas (AR)</option>
+	<option value="CA">California (CA)</option>
+	<option value="CO">Colorado (CO)</option>
+	<option value="CT">Connecticut (CT)</option>
+	<option value="DE">Delaware (DE)</option>
+	<option value="DC">District Of Columbia (DC)</option>
+	<option value="FL">Florida (FL)</option>
+	<option value="GA">Georgia (GA)</option>
+	<option value="HI">Hawaii (HI)</option>
+	<option value="ID">Idaho (ID)</option>
+	<option value="IL">Illinois (IL)</option>
+	<option value="IN">Indiana (IN)</option>
+	<option value="IA">Iowa (IA)</option>
+	<option value="KS">Kansas (KS)</option>
+	<option value="KY">Kentucky (KY)</option>
+	<option value="LA">Louisiana (LA)</option>
+	<option value="ME">Maine (ME)</option>
+	<option value="MD">Maryland (MD)</option>
+	<option value="MA">Massachusetts (MA)</option>
+	<option value="MI">Michigan (MI)</option>
+	<option value="MN">Minnesota (MN)</option>
+	<option value="MS">Mississippi (MS)</option>
+	<option value="MO">Missouri (MO)</option>
+	<option value="MT">Montana (MT)</option>
+	<option value="NE">Nebraska (NE)</option>
+	<option value="NV">Nevada (NV)</option>
+	<option value="NH">New Hampshire (NH)</option>
+	<option value="NJ">New Jersey (NJ)</option>
+	<option value="NM">New Mexico (NM)</option>
+	<option value="NY">New York (NY)</option>
+	<option value="NC">North Carolina (NC)</option>
+	<option value="ND">North Dakota (ND)</option>
+	<option value="OH">Ohio (OH)</option>
+	<option value="OK">Oklahoma (OK)</option>
+	<option value="OR">Oregon (OR)</option>
+	<option value="PA">Pennsylvania (PA)</option>
+	<option value="RI">Rhode Island (RI)</option>
+	<option value="SC">South Carolina (SC)</option>
+	<option value="SD">South Dakota (SD)</option>
+	<option value="TN">Tennessee (TN)</option>
+	<option value="TX">Texas (TX)</option>
+	<option value="UT">Utah (UT)</option>
+	<option value="VT">Vermont</option>
+	<option value="VA">Virginia</option>
+	<option value="WA">Washington</option>
+	<option value="WV">West Virginia</option>
+	<option value="WI">Wisconsin</option>
+	<option value="WY">Wyoming</option>
+            
+            <option>...</option>
+          </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputZip">Zip Code</label>
+                    <div class="asterisk">*</div>
+                    <input type="text" class="form-control" pattern="[0-9]{5}" title='Zip Code (Format: 00000)' id="inputZip" formControlName="zipcode">
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+           <button   type="submit" class="btn btn-primary" (click)="open(content)" [disabled]="editVendorForm.invalid">Submit</button>
+            <button type="cancel" class="btn btn-primary"(click)="cancelButton()">Cancel</button>
+         
+
+        </div>
+    </form>
+</div>

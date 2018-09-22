@@ -1,0 +1,15 @@
+.form-control:disabled, .form-control[readonly] {
+    background-color: #ffffff;
+   
+}
+.disabled>a,
+.disabled>a:focus, 
+.disabled>a:hover, 
+.disabled>span, 
+.disabled>span:focus, 
+.disabled>span:hover{
+color: #777;
+cursor: not-allowed;
+/* background-color: #fff;
+border-color: #ddd; */
+}

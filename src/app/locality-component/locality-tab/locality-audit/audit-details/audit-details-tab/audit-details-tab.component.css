@@ -1,0 +1,33 @@
+.form-control:disabled, .form-control[readonly] {
+    background-color: #ffffff;
+   
+}
+.icons{
+	color:#3A539B;
+   vertical-align: middle;
+   font-size: 20px;
+   margin-bottom: 20px;
+   padding: 2px;
+   margin-right: 20px;
+}
+
+.plus{
+	float:right;
+	 vertical-align: middle;
+    font-size: 20px;
+    margin-top: -15px;
+    padding: 10px;
+    margin-left: 50px;
+    color: #3A539B;
+}
+.disabled>a,
+.disabled>a:focus, 
+.disabled>a:hover, 
+.disabled>span, 
+.disabled>span:focus, 
+.disabled>span:hover{
+color: #777;
+cursor: not-allowed;
+/* background-color: #fff;
+border-color: #ddd; */
+}

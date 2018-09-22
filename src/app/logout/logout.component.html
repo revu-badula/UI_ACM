@@ -1,0 +1,36 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div class="pos-f-t">
+  <nav class="navbar">
+    <img src="assets/img/logo.png">
+    <h2 class="heading">Application and Audit Manager</h2>
+    <!-- <div class="login"><p class="user">Sunny Singh<fa class="down-icon" [name]="'chevron-down'"></fa></p></div> -->
+  </nav>
+</div>
+<div class="jumbotron">
+
+  <div class="container">
+
+    <div class="row">
+
+      <i class="fa fa-thumbs-up fa-5x regSuccessIconColor"></i> 
+        <p>
+          Successfully logged out. Click <a (click)="goToLogin()" style="cursor: pointer;color: blue;">here</a>
+          to go Home Page. <br />
+        </p>
+     
+
+      <!-- <div class="panel-body text-center" id="timeOut" style = "display: none;" >
+                          <i class="fa fa-thumbs-up fa-5x regSuccessIconColor"></i> <i>
+                            <p class="text-muted">
+                              Your session has timed out. Click <a href="signIn.html">here</a>
+                              to go Home Page. <br />
+                            </p>
+                          </i>
+                        </div> -->
+    </div>
+  </div>
+
+
+</div>

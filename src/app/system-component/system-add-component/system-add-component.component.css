@@ -1,0 +1,75 @@
+.forms{
+
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  margin: 20px;
+  background-color: #EEEEEE;
+}
+
+.asterisk{
+  display: inline;
+  color: red;
+  margin-left: 2px;
+}
+
+.btn {
+  float:right;
+  margin-top: 25px;
+  background-color: #3A539B;
+  border-color: #3A539B;
+  color: white;
+  padding: 10px 10px;
+  width: auto;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 3px;
+}
+
+.anchor{
+  color:blue !important;
+  cursor:pointer; 
+}
+
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}
+
+.clear-right {
+	clear:right;
+	overflow: hidden;
+}
+
+table{
+	background-color: #ffffff;
+	text-align: center;
+	border: 1px solid black;
+}
+
+.table-bordered tbody tr:nth-of-type(odd){
+	background-color: #EEEEEE !important;
+	border: 1px solid black;
+}
+
+tbody tr:nth-of-type(odd){
+	background-color: #EEEEEE !important;
+}
+
+table thead tr th{
+	font-weight: 500;
+	color: black;
+	border: 1px solid black;
+	background-color: #cecfd5;
+}
+
+table thead tr td{
+	color: black;
+}
+
+
+
