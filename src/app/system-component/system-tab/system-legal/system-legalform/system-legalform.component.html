@@ -9,12 +9,15 @@
       </button>
     </div>
     <div class="modal-body">
-      <p>Legal document has been updated{{name}}!</p>
+      <p>{{info}}</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+      <button  *ngIf="!showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Ok</button>
+      <button  *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
     </div>
   </ng-template>
+
+  
   
   
   
@@ -60,8 +63,8 @@
     class="former">
     <div class="panel-heading">
 
-      <span class=" title elipsis pull-right"> <a
-        (click)="saveMOU()" *ngIf="!showLegalBox" title="Save MOU"
+      <span *ngIf="!showLegalBox" class=" title elipsis pull-right"> <a
+        (click)="saveMOU()" *ngIf="myForm.valid" title="Save MOU"
         class="ng-hide"> <i class="fa fa-floppy-o" aria-hidden="true"
           style="font-size: 24px;"></i></a>
       </span> <span class=" title elipsis pull-right"> <a (click)="goBack()" title="Go back to audit section.">

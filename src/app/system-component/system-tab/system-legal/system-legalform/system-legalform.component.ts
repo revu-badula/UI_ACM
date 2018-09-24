@@ -1,14 +1,14 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { MOUDocDTO, Mou } from '../../../../data_model_legal';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { APP_CONFIG } from '../../../../app.config';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../../../../util.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import {FormsModule, NgForm, FormGroup } from '@angular/forms';
-
+import { FormsModule, NgForm, FormGroup } from '@angular/forms';
+declare var swal: any; ''
 @Component({
   selector: 'app-legalform',
   templateUrl: './system-legalform.component.html',
@@ -17,6 +17,7 @@ import {FormsModule, NgForm, FormGroup } from '@angular/forms';
 export class SystemLegalformComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('myForm') myForm: FormGroup;
+  @ViewChild('content') content:TemplateRef<any>;
 
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'mm/dd/yyyy'
@@ -26,11 +27,12 @@ export class SystemLegalformComponent implements OnInit {
   mouDocDTO: MOUDocDTO;
   appMOUs: Mou;
   public files = [] as File[];
-
+  public info:any;
   public moureceiptdt: any;
   public mrcdt: any;
   public mrdt: any;
   public mouId: any;
+  public showButton:boolean = false;
   public mourecertdt: any;
   public acronym: any;
   public updatedTime: any;
@@ -38,9 +40,9 @@ export class SystemLegalformComponent implements OnInit {
   public showSigned: boolean = false;
   public certify: any;
   public recipt: any;
-  public loading:boolean=false;
+  public loading: boolean = false;
   public showLegalBox: boolean = true;
-  public moudtos:any;
+  public moudtos: any;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -53,12 +55,12 @@ export class SystemLegalformComponent implements OnInit {
 
 
   getAppId() {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.viewApplication(localStorage.getItem('systemName'))
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
-        this.moudtos=data.applicationViewDTO.moudtos;
+        this.moudtos = data.applicationViewDTO.moudtos;
         let d = new Date(data.applicationViewDTO.updatedTime);
         let day = d.getDate();
         let month = d.getMonth() + 1;
@@ -67,14 +69,13 @@ export class SystemLegalformComponent implements OnInit {
         this.appId = data.applicationViewDTO.applicationId;
         this.mou.applicationID = data.applicationViewDTO.applicationId;
         this.showPageOnLoad();
-      }, error =>{
-        this.loading=false;
-       console.log(error);
+      }, error => {
+        this.loading = false;
+        console.log(error);
       });
   }
 
-  showPageOnLoad()
-  {
+  showPageOnLoad() {
     if (localStorage.getItem('systemMouId') === null) {
       this.showLegalBox = false;
     }
@@ -86,14 +87,19 @@ export class SystemLegalformComponent implements OnInit {
       for (let i = 0; i < moudata.length; i++) {
         this.getAppMOU(moudata[i]);
       }
+      this.showButton=true;
     }
   }
 
   saveMOU() {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop : 'static',
+      keyboard : false
+      };
     let inputEl: HTMLInputElement = this.inputEl.nativeElement;
     var formData = new FormData();
     this.mou.applicationID = this.appId;
-    this.loading=true;
+    this.loading = true;
     if (this.mou.mouId === undefined) {
       //formData.append('attachments', inputEl.files.item(0));
       for (let i = 0; i < this.files.length; i++) {
@@ -103,11 +109,13 @@ export class SystemLegalformComponent implements OnInit {
       formData.append('mou', JSON.stringify(this.mou));
       let url_update = APP_CONFIG.saveMOU;
       this.http.post(url_update, formData).subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
+        this.info="Legal has been Created";
+        this.modalService.open(this.content,ngbModalOptions);
 
 
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
 
@@ -121,9 +129,11 @@ export class SystemLegalformComponent implements OnInit {
       formData.append('mou', JSON.stringify(this.mou));
       let url_update = APP_CONFIG.updateMOU;
       this.http.post(url_update, formData).subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
+        this.info="Legal has been updated";
+        this.modalService.open(this.content,ngbModalOptions);
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
     }
@@ -213,27 +223,33 @@ export class SystemLegalformComponent implements OnInit {
     window.open(APP_CONFIG.getMOUFile + '?' + 'mouDocId' + '=' + id)
   }
   deleteFile(id, index) {
+    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+      .then((result: any) => {
+        if (result.value !== undefined && result.value) {
+          if (id === undefined) {
+            let length = this.mou.mouDocDTOs.length;
+            if (length === 1) {
+              this.mou.mouDocDTOs = [];
+            }
+            else {
+              for (let i = index; i < length; i++) {
+                this.mou.mouDocDTOs[i] = this.mou.mouDocDTOs[i + 1];
+              }
+              this.mou.mouDocDTOs.splice(length - 1, 1);
+            }
 
-    if (id === undefined) {
-      let length = this.mou.mouDocDTOs.length;
-      if (length === 1) {
-        this.mou.mouDocDTOs = [];
-      }
-      else {
-        for (let i = index; i < length; i++) {
-          this.mou.mouDocDTOs[i] = this.mou.mouDocDTOs[i + 1];
+          }
+          else {
+            for (let i = 0; i < this.mou.mouDocDTOs.length; i++) {
+              if (this.mou.mouDocDTOs[i].mouDocId === id) {
+                this.mou.mouDocDTOs[i].status = false;
+              }
+            }
+          }
         }
-        this.mou.mouDocDTOs.splice(length - 1, 1);
-      }
-
-    }
-    else {
-      for (let i = 0; i < this.mou.mouDocDTOs.length; i++) {
-        if (this.mou.mouDocDTOs[i].mouDocId === id) {
-          this.mou.mouDocDTOs[i].status = false;
-        }
-      }
-    }
+      }, error => {
+        console.log(error);
+      });
 
   }
 
@@ -244,6 +260,29 @@ export class SystemLegalformComponent implements OnInit {
   goBack() {
     this.router.navigate(['/system/tab2/legal']);
   }
+
+  confirm(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
+    return new Promise((resolve, reject) => {
+      swal({
+        title: title,
+        text: text,
+        type: 'warning',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      }).then((result) => {
+        resolve(result);
+      }, error => reject(error));
+    });
+  }
+
+  redirect()
+ {
+  this.router.navigate(['/system/tab2/legal']);
+ }
+
 
 
 

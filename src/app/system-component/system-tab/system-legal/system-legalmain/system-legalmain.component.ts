@@ -18,6 +18,7 @@ export class SystemLegalmainComponent implements OnInit {
   public showSigned: boolean = false;
   public loading: boolean = false;
   public moudtos: any;
+  public p:number=1;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
