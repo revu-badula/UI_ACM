@@ -20,21 +20,18 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class SystemAuditDetailsComponent implements OnInit {
   public showPlusButton: boolean = false;
   public selectDate: IMyDate = null;
-  public myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd'
-  };
-
   public mainData: any;
   public loading: boolean = false;
   public updatedTime: any;
   public appAuditDTOs: any;
+  public p:number=1;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
     private router: Router, private route: ActivatedRoute) {
 
     this.getAppId();
-    UtilService.appAuditId = '';
-    UtilService.auditActive = false;
+    // UtilService.appAuditId = '';
+    // UtilService.auditActive = false;
     UtilService.disabled = true;
     localStorage.removeItem('systemAppAuditId');
     localStorage.removeItem('systemAuditActive');

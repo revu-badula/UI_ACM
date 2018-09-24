@@ -61,6 +61,7 @@ export class SystemDetailsComponent implements OnInit {
 
   editClick(event): void {
     this.editableForm = false;
+    this.showEditButton =false;
 
   }
 
@@ -76,6 +77,7 @@ export class SystemDetailsComponent implements OnInit {
       .subscribe((data:any) => {
         this.showSource=false;
         this.loading=false;
+        this.showEditButton=true;
         this.system=data.applicationViewDTO;
         this.appId = data.applicationViewDTO.applicationId;
         let d = new Date(this.system.updatedTime);
@@ -193,6 +195,7 @@ export class SystemDetailsComponent implements OnInit {
   getOpacity() {
     return this.color === 'online' ? 0.8 : 1;
   }
+  
 
 
 }

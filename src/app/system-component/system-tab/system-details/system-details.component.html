@@ -16,11 +16,11 @@
 		(click)="c();">Ok</button>
 </div>
 </ng-template>
-<!-- <div class="save-edit" style="float: right;" *ngIf ="showEditButton"  >
+<div class="save-edit" style="float: right;" *ngIf ="showEditButton">
 	<fa class="edit-icon icons" data-toggle="tooltip"
 		data-placement="right" title="Save" data-animation="true"
 		data-delay="0" [name]="'edit'" (click)="editClick()"></fa>
-</div>  -->
+</div> 
 
 <form #formName="ngForm" class="former clear-right"
 	(ngSubmit)="createSystem()" enctype="multipart/form-data">
@@ -105,7 +105,7 @@
 	</fieldset>
 	<div class="buttons">
 
-			<button type="submit" class="submit btn btn-primary"
+			<button *ngIf ="!showEditButton" type="submit" class="submit btn btn-primary"
 				[disabled]="!formName.valid">Submit</button>
 			<button type="cancel" class="cancel btn btn-primary">Cancel</button>
 		</div>
