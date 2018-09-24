@@ -38,7 +38,7 @@ export class LocalityDetailsComponent implements OnInit {
   workHours: WorkHours;
   public loading: boolean = false;
   public showBtn: boolean = false;
-public isShow:boolean = false;
+  public isShow: boolean = false;
 
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
     , private http: Http, private _location: Location, private modalService: NgbModal, private router: Router, private utilservice: UtilService) {
@@ -67,7 +67,7 @@ public isShow:boolean = false;
   editClick(event): void {
     this.editableForm = false;
     this.showBtn = true;
-       this.isShow=true;
+    this.isShow = true;
 
   }
 
@@ -78,12 +78,6 @@ public isShow:boolean = false;
 
 
   createLocality() {
-
-   
-
-
-   
-
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
       keyboard: false
@@ -91,13 +85,16 @@ public isShow:boolean = false;
     this.loading = true;
     if (this.appId === undefined) {
       var formData = new FormData();
-      this.locality.activeLocality=1;
+      this.locality.activeLocality = 1;
       let url_update = APP_CONFIG.addLocality;
       formData.append('createApp', JSON.stringify(this.locality));
       console.log(JSON.stringify(this.locality));
-      this.http.post(url_update, formData).subscribe((data: any) => {
+      this.http.post(url_update, formData)
+      .map(res => res.json())
+      .subscribe((data: any) => {
         this.loading = false;
         this.contentData = "locality has been created.";
+        this.appId = data.applicationViewDTO.applicationId;
         localStorage.setItem('active', 'true');
 
         this.modalService.open(this.content, ngbModalOptions);
@@ -108,7 +105,7 @@ public isShow:boolean = false;
 
     }
     else {
- var formData = new FormData();
+      var formData = new FormData();
       this.locality.applicationId = this.appId;
       formData.append('application', JSON.stringify(this.locality));
       this.http.post(APP_CONFIG.updateLocality, formData).subscribe((data: any) => {
@@ -222,11 +219,11 @@ public isShow:boolean = false;
     this.locality.workHoursDTOs.push(this.workHours);
     //console.log(this.locality.workHoursDTOs);
   }
-  d(){
+  d() {
     this.router.navigate(['/locality/map']);
-    }
-  
-  
+  }
+
+
 
 
 }

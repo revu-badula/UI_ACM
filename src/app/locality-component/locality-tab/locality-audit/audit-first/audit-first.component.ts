@@ -264,6 +264,7 @@ export class AuditFirstComponent implements OnInit {
  else {
  this.show3=true;
  this.err1 = "";
+ this.err = "";
  let d = value.formatted;
  this.audate = Date.parse(d);
  let latest_date =this.datepipe.transform(d, 'yyyy-MM-dd');

@@ -94,12 +94,6 @@ export class SystemDetailsComponent implements OnInit {
   }
 
 
-  
-
-
-
-
-
   createSystem() {
 
     let url_update = APP_CONFIG.addSystem;
@@ -111,8 +105,11 @@ export class SystemDetailsComponent implements OnInit {
     if (this.appId === undefined) {
       this.loading=true;
       formData.append('createApp', JSON.stringify(this.system));
-      this.http.post(url_update, formData).subscribe((data: any) => {
+      this.http.post(url_update, formData)
+      .map(res => res.json())
+      .subscribe((data: any) => {
         this.loading=false;
+        this.appId=data.applicationViewDTO.applicationId;
         this.contentData = "system has been created.";
         localStorage.setItem('systemActive','true');        
         this.modalService.open(this.content, ngbModalOptions);
@@ -139,7 +136,6 @@ export class SystemDetailsComponent implements OnInit {
   }
 
   selectDefinitive(val){
-    console.log("selectDefinitive", val);
   
   }
 
