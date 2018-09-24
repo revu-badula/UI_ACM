@@ -70,8 +70,10 @@
         <thead>
           <tr>
   
-            <th scope="col">Name</th>
-            <th scope="col">Signed</th>
+            <th scope="col" (click)="handleSort('name')">Name<i class="fa fa-arrow-down" *ngIf="!desc"></i>
+              <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+            <th scope="col" (click)="handleSort('signed')">Signed<i class="fa fa-arrow-down" *ngIf="!desc"></i>
+              <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
             <th scope="col">Recertification Date</th>
             <th scope="col">Notify</th>
           </tr>

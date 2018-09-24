@@ -110,8 +110,9 @@ export class SystemDetailsComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading=false;
         this.appId=data.applicationViewDTO.applicationId;
-        this.contentData = "system has been created.";
-        localStorage.setItem('systemActive','true');        
+        this.contentData = "system has been created.";  
+        localStorage.setItem('systemName',data.applicationViewDTO.acronym);   
+        localStorage.setItem('systemActive','true');   
         this.modalService.open(this.content, ngbModalOptions);
       }, error => {
         this.loading=false;

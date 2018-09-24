@@ -95,6 +95,7 @@ export class LocalityDetailsComponent implements OnInit {
         this.loading = false;
         this.contentData = "locality has been created.";
         this.appId = data.applicationViewDTO.applicationId;
+        localStorage.setItem('localityName',data.applicationViewDTO.acronym);
         localStorage.setItem('active', 'true');
 
         this.modalService.open(this.content, ngbModalOptions);

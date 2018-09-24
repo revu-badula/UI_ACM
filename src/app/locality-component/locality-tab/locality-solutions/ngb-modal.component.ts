@@ -16,7 +16,7 @@ declare var swal: any; ''
     template: `
     <div class="modal-header">
 	<h4 class="modal-title">Enter Device Information</h4>
-	<button type="button" class="close" aria-label="Close" (click)="d()">
+	<button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
 		<span aria-hidden="true" style="color: white">&times;</span>
 	</button>
 </div>
@@ -230,6 +230,7 @@ declare var swal: any; ''
 </div>
 
    `,
+   styleUrls: ['./locality-solutions.component.css'],
     providers: [ApiserviceService]
 })
 

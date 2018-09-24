@@ -15,10 +15,11 @@ export class SystemLegalmainComponent implements OnInit {
   public acronym: any;
   public updatedTime: any;
   public appMOUs: any;
+  public desc: boolean = false;
   public showSigned: boolean = false;
   public loading: boolean = false;
   public moudtos: any;
-  public p:number=1;
+  public p: number = 1;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -72,5 +73,42 @@ export class SystemLegalmainComponent implements OnInit {
     localStorage.setItem('systemMouId', id);
     this.router.navigate(['/system/tab2/legal/legalform']);
   }
+
+  handleSort(value) {
+
+    if (!this.desc) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.moudtos.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = true;
+    }
+    else {
+      let orderByValue = value;
+      this.moudtos.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc = false;
+    }
+
+
+  }
+
+
+
 
 }

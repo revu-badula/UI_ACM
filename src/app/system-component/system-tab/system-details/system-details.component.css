@@ -192,3 +192,8 @@ margin-left: 10px;
 	background-color: #3A539B;
 	border-color: #3A539B;
 }
+
+.modal-header{
+	background-color: #3A539B;
+	color: #ffffff;
+}
