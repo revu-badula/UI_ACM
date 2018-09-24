@@ -62,6 +62,7 @@ export class SystemDetailsComponent implements OnInit {
   editClick(event): void {
     this.editableForm = false;
     this.showEditButton =false;
+    this.showSource=true;
 
   }
 

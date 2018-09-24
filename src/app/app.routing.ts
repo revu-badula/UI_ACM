@@ -125,6 +125,7 @@ import { SystemAssessSecurityComponent } from './system-component/system-tab/sys
 import { SystemAssessBudgetComponent } from './system-component/system-tab/system-assessment/system-assess-budget/system-assess-budget.component';
 import { SystemAssessAttachmentsComponent } from './system-component/system-tab/system-assessment/system-assess-attachments/system-assess-attachments.component';
 import { SystemAssessLessonsComponent } from './system-component/system-tab/system-assessment/system-assess-lessons/system-assess-lessons.component';
+import { SystemGuardAssess } from './system-assess-guard';
 const appRoutes: Routes = [
 
 
@@ -398,63 +399,63 @@ const appRoutes: Routes = [
             
             children: [{
               path: '',
-              component: SystemAssessTabComponent,
+              component: SystemAssessTabComponent, canActivate: [AuthGuard]
               // canActivate: [AuthGuard]
             },
             {
               path: 'Tabs2',
-              component: SystemAssessDowntabsComponent,
+              component: SystemAssessDowntabsComponent, canActivate: [AuthGuard],
               // canActivate: [AuthGuard],
 
               children: [{
 
                 path: 'first2',
-                component: SystemAssessDetailsComponent,
+                component: SystemAssessDetailsComponent, canActivate:[AuthGuard], canDeactivate:[CanDeactivateGuard]
                 // canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'find2',
-                component: SystemAssessFindComponent,
+                component: SystemAssessFindComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'recomendation2',
-                component: SystemAssessRecomendComponent, 
+                component: SystemAssessRecomendComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 //canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
-                path: 'management2',
-                component: SystemAssessManagementComponent,
+                path: 'management2', 
+                component: SystemAssessManagementComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'action2',
-                component: SystemAssessActionComponent, 
+                component: SystemAssessActionComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 //canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'brisk2',
-                component: SystemAssessBusinessComponent,
+                component: SystemAssessBusinessComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'srisk2',
-                component: SystemAssessSecurityComponent,
+                component: SystemAssessSecurityComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'budget2',
-                component: SystemAssessBudgetComponent,
+                component: SystemAssessBudgetComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard],
               },
               {
                 path: 'attachment2',
-                component: SystemAssessAttachmentsComponent,
+                component: SystemAssessAttachmentsComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'lessons2',
-                component: SystemAssessLessonsComponent, 
+                component: SystemAssessLessonsComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
                 //canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               }
               ]
@@ -545,7 +546,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
   exports: [RouterModule],
-  providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard, WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard]
+  providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard, WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard, SystemGuardAssess]
 
 })
 //export class SystemComponentRoutingModule {}
