@@ -115,12 +115,26 @@
     <div>
       <div class="col-sm-5 col-md-5 col-lg-5">
         <input type="file" #fileInput (change)="createMOUDTO($event)">
-          <p *ngFor="let file of mou.mouDocDTOs let i=index">
+        <table border="1">
+          <tr>
+            <th>Filename</th>
+            <th *ngIf="!showLegalBox">Action</th>
+          </tr>
+          <tr *ngFor="let file of mou.mouDocDTOs let i=index">
+            <td *ngIf="file.status" (click)="getFile(file.mouDocId)" style="cursor: pointer;color:blue;">
+              {{file.fileName}}
+            </td>
+            <td *ngIf="file.status && !showLegalBox" (click)="deleteFile(file.mouDocId,i)" style="cursor:pointer;">
+              <i class="fa fa-trash" aria-hidden="true" style="font-size: 24px;"></i>
+            </td>
+          </tr>
+          </table>
+          <!-- <p *ngFor="let file of mou.mouDocDTOs let i=index">
     <span *ngIf="file.status"><a (click)="getFile(file.mouDocId)" style="color:blue;cursor:pointer;">{{file.fileName}}</a>
     <i (click)="deleteFile(file.mouDocId,i)" class="fa fa-trash" aria-hidden="true"
           style="font-size: 24px;"></i>
     </span>
-    </p>
+    </p> -->
       </div>
 
     </div>

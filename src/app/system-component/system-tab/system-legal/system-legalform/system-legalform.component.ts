@@ -93,6 +93,7 @@ export class SystemLegalformComponent implements OnInit {
     let inputEl: HTMLInputElement = this.inputEl.nativeElement;
     var formData = new FormData();
     this.mou.applicationID = this.appId;
+    this.loading=true;
     if (this.mou.mouId === undefined) {
       //formData.append('attachments', inputEl.files.item(0));
       for (let i = 0; i < this.files.length; i++) {
@@ -102,10 +103,13 @@ export class SystemLegalformComponent implements OnInit {
       formData.append('mou', JSON.stringify(this.mou));
       let url_update = APP_CONFIG.saveMOU;
       this.http.post(url_update, formData).subscribe((data: any) => {
+        this.loading=false;
 
 
-
-      }, error => console.log(error));
+      }, error => {
+        this.loading=false;
+        console.log(error);
+      });
 
     }
     else {
@@ -117,8 +121,11 @@ export class SystemLegalformComponent implements OnInit {
       formData.append('mou', JSON.stringify(this.mou));
       let url_update = APP_CONFIG.updateMOU;
       this.http.post(url_update, formData).subscribe((data: any) => {
-
-      }, error => console.log(error));
+        this.loading=false;
+      }, error => {
+        this.loading=false;
+        console.log(error);
+      });
     }
   }
 
@@ -235,7 +242,7 @@ export class SystemLegalformComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/system/tab/legal']);
+    this.router.navigate(['/system/tab2/legal']);
   }
 
 
