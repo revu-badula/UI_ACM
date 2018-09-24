@@ -105,7 +105,7 @@ export class SystemAuditRecomendationsComponent implements OnInit {
       
     }
    showAudit(){
- this.router.navigate(['/system/tab/Audit']);
+ this.router.navigate(['/system/tab2/Audit']);
  }
 
 

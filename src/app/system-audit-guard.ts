@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { Cookie } from 'ng2-cookies';
 
 import {
     CanActivate, Router,
@@ -17,19 +18,24 @@ export class SystemGuardAudit implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         //let path: string = route.routeConfig.path;
+        if (Cookie.get('access_token')) {
 
-        if(localStorage.getItem('systemAuditActive'))
-        {
-            return true;
+            if (localStorage.getItem('systemAuditActive')) {
+                return true;
+            }
+            else {
+                return false;
+
+
+            }
         }
-        else{
-            return false;
-          
-          
+        else {
+            this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+
         }
 
-    
+
     }
 
-    
+
 }

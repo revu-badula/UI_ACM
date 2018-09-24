@@ -196,7 +196,7 @@ export class SystemAuditFirstComponent implements OnInit {
 
 
  showAudit(){
- this.router.navigate(['/system/tab/Audit/']);
+ this.router.navigate(['/system/tab2/Audit/']);
  }
 
  showHist(){
@@ -367,7 +367,7 @@ this.appAudit.createdBy=Cookie.get('userName');
  //console.log(data);
  //UtilService.auditActive = true;
  this.loading = false;
- this.info="Audit has been created.";
+ this.info="System has been created.";
  this.modalService.open(this.content,ngbModalOptions);
 
  }, error => {
@@ -389,7 +389,7 @@ this.appAudit.createdBy=Cookie.get('userName');
  this.loading = false;
  this.showButton = true;
  this.changeOverallStatus = false;
- this.info="Audit has been updated.";
+ this.info="System has been updated.";
  this.modalService.open(this.content,ngbModalOptions);
  }, error => {
    this.loading = false;

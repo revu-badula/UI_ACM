@@ -347,48 +347,48 @@ const appRoutes: Routes = [
 
 
   {
-    path: "system", component: SystemComponentComponent, 
+    path: "system", component: SystemComponentComponent, canActivate:[AuthGuard],
     //canActivate: [AuthGuard],
     children: [
       {
         path: 'map',
-        component: SystemAddComponentComponent,
+        component: SystemAddComponentComponent, canActivate:[AuthGuard]
         // canActivate: [AuthGuard]
       },
       {
         path: 'tab2',
-        component: SystemTabComponent, 
+        component: SystemTabComponent, canActivate:[AuthGuard],
         //canActivate: [AuthGuard],
         children: [
           {
             path: 'info',
-            component: SystemDetailsComponent,
+            component: SystemDetailsComponent, canActivate:[SystemGuard]
             // canActivate: [AuthGuard]
           }, 
           {
             path: 'technical',
-            component: SystemTechnicalComponent,
+            component: SystemTechnicalComponent, canActivate:[SystemGuard]
             // canActivate: [SystemGuard]
           },
           {
             path: 'legal',
-            component: SystemLegalComponent,
+            component: SystemLegalComponent, canActivate:[SystemGuard],
             // canActivate: [SystemGuard],
             children: [
               {
                 path: '',
-                component: SystemLegalmainComponent
+                component: SystemLegalmainComponent, canActivate:[AuthGuard],
               },
               {
                 path: 'legalform',
-                component: SystemLegalformComponent
+                component: SystemLegalformComponent, canActivate:[AuthGuard],
               }
             ]
           },
           
           {
             path: 'security',
-            component: SystemSecurityComponent,
+            component: SystemSecurityComponent, canActivate:[SystemGuard]
             // canActivate: [SystemGuard]
           },
           {
@@ -466,23 +466,23 @@ const appRoutes: Routes = [
           
           {
             path: 'link',
-            component: LocalitySolutionstablelinkComponent,
+            component: SystemSolutionstablelinkComponent, canActivate:[SystemGuard]
             // canActivate: [WorkflowGuard]
           },
           {
             path: 'business',
-            component: LocalityBusinessComponent,
+            component: SystemBusinessComponent, canActivate:[SystemGuard]
             // canActivate: [WorkflowGuard]
           },
           {
 
             path: 'Audit',
-            component: SystemAuditComponent,
+            component: SystemAuditComponent, canActivate:[SystemGuard],
             // canActivate: [WorkflowGuard],
             children: [
               {
                 path: '',
-                component: SystemAuditDetailsComponent,
+                component: SystemAuditDetailsComponent, canActivate: [AuthGuard]
                 // canActivate: [AuthGuard]
               },
               {
@@ -495,39 +495,39 @@ const appRoutes: Routes = [
                 },
                 {
                   path: 'find',
-                  component: SystemAuditFindingsComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditFindingsComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
                 {
                   path: 'recomendation',
-                  component: SystemAuditRecomendationsComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditRecomendationsComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
                 {
                   path: 'management',
-                  component: SystemAuditManagementComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditManagementComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
                 {
                   path: 'action',
-                  component: SystemAuditActionComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditActionComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
                 {
                   path: 'brisk',
-                  component: SystemAuditBusinessriskComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditBusinessriskComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
                 {
                   path: 'srisk',
-                  component: SystemAuditSecurityriskComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditSecurityriskComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
                 {
                   path: 'budget',
-                  component: SystemAuditBudgetComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditBudgetComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
                 {
                   path: 'attachment',
-                  component: SystemAuditAttachmentsComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditAttachmentsComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
                 {
                   path: 'lessons',
-                  component: SystemAuditLessonsComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                  component: SystemAuditLessonsComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
                   //    }
                   //  ]
                 }

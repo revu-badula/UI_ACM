@@ -108,7 +108,7 @@ export class SystemAuditFindingsComponent implements OnInit {
   }
 
   showAudit(){
-    this.router.navigate(['/system/tab/Audit/']);
+    this.router.navigate(['/system/tab2/Audit/']);
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
