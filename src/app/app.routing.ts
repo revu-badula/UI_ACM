@@ -362,7 +362,7 @@ const appRoutes: Routes = [
         children: [
           {
             path: 'info',
-            component: SystemDetailsComponent, canActivate:[SystemGuard]
+            component: SystemDetailsComponent, canActivate:[AuthGuard]
             // canActivate: [AuthGuard]
           }, 
           {
@@ -393,7 +393,7 @@ const appRoutes: Routes = [
           },
           {
             path: 'assessment',
-            component: SystemAssessmentComponent, 
+            component: SystemAssessmentComponent, canActivate:[SystemGuard],
             //canActivate: [WorkflowGuard],
             
             children: [{

@@ -25,6 +25,8 @@ export class SystemLegalformComponent implements OnInit {
   mou: Mou;
   mouDocDTO: MOUDocDTO;
   appMOUs: Mou;
+  public files = [] as File[];
+
   public moureceiptdt: any;
   public mrcdt: any;
   public mrdt: any;
@@ -92,7 +94,11 @@ export class SystemLegalformComponent implements OnInit {
     var formData = new FormData();
     this.mou.applicationID = this.appId;
     if (this.mou.mouId === undefined) {
-      formData.append('attachments', inputEl.files.item(0));
+      //formData.append('attachments', inputEl.files.item(0));
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append('attachments', this.files[i]);
+
+      }
       formData.append('mou', JSON.stringify(this.mou));
       let url_update = APP_CONFIG.saveMOU;
       this.http.post(url_update, formData).subscribe((data: any) => {
@@ -103,7 +109,11 @@ export class SystemLegalformComponent implements OnInit {
 
     }
     else {
-      formData.append('attachments', inputEl.files.item(0));
+      //formData.append('attachments', inputEl.files.item(0));
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append('attachments', this.files[i]);
+
+      }
       formData.append('mou', JSON.stringify(this.mou));
       let url_update = APP_CONFIG.updateMOU;
       this.http.post(url_update, formData).subscribe((data: any) => {
@@ -137,6 +147,7 @@ export class SystemLegalformComponent implements OnInit {
         this.mouDocDTO.fileName = fileInput.target.files[0].name;
         this.mouDocDTO.status = true;
         this.mouDocDTO.newFile = true;
+        this.files.push(fileInput.target.files[0]);
         this.mou.mouDocDTOs.push(this.mouDocDTO);
       }
       else {
@@ -144,6 +155,7 @@ export class SystemLegalformComponent implements OnInit {
         this.mouDocDTO.fileName = fileInput.target.files[0].name;
         this.mouDocDTO.status = true;
         this.mouDocDTO.newFile = true;
+        this.files.push(fileInput.target.files[0]);
         this.mou.mouDocDTOs.push(this.mouDocDTO);
 
 

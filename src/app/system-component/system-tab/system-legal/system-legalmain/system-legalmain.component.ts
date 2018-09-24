@@ -64,12 +64,12 @@ export class SystemLegalmainComponent implements OnInit {
   }
 
   createMOU() {
-    this.router.navigate(['/system/tab/legal/legalform']);
+    this.router.navigate(['/system/tab2/legal/legalform']);
   }
 
   getAppMOU(id) {
     localStorage.setItem('systemMouId', id);
-    this.router.navigate(['/system/tab/legal/legalform']);
+    this.router.navigate(['/system/tab2/legal/legalform']);
   }
 
 }
