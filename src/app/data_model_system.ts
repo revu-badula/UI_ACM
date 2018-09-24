@@ -1,7 +1,4 @@
 export class System {
-
- 
-
   updatedTime: any;
   acronym: string;
   name:any;
@@ -10,10 +7,6 @@ export class System {
   systemSensitivity: number;
   applicationId: number;
   systemSensitivityName: string;
-
- 
-
- 
 }
 export class WorkHours{
   workHoursId:number = 0;

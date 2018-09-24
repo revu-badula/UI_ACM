@@ -25,6 +25,8 @@ export class SystemAuditDetailsComponent implements OnInit {
   public updatedTime: any;
   public appAuditDTOs: any;
   public p:number=1;
+  public desc:boolean=false;
+  public auditType:boolean=false;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
     private router: Router, private route: ActivatedRoute) {
@@ -77,6 +79,74 @@ export class SystemAuditDetailsComponent implements OnInit {
     UtilService.disabled = false;
     this.router.navigate(['/system/tab2/Audit/Tab/first']);
   }
+
+  handleSort(value) {
+    if (!this.desc) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc = false;
+    }
+
+
+  }
+
+  handleSort1(value) {
+    if (!this.auditType) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.auditType = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.auditType = false;
+    }
+
+
+  }
+
+
 
 
 }
