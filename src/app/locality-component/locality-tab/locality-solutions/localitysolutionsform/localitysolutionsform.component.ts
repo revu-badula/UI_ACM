@@ -65,6 +65,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   public boxVisible = false;
   public selectDate: any;
   public selDate: any;
+  public editForm:any;
   public acronym: any;
   public updatedTime: any;
   public applicationDeviceObj: any;
