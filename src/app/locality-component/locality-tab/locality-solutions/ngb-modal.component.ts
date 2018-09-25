@@ -10,6 +10,8 @@ import { ApplicationSolution, Solutions, Vendor, Device, DeviceDocDTO } from '..
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { UtilService } from '../../../util.service';
+import { Cookie } from 'ng2-cookies';
+
 declare var swal: any; ''
 @Component({
     selector: 'ngbd-modal-content',
@@ -324,6 +326,7 @@ export class NgbdModalContent implements OnInit {
         if (this.isEdit) {
             this.device.appSolutionDevice = this.deviceData.appSolutionDevice;
             let url_update = APP_CONFIG.updateAppSolutionDevice;
+            this.device.updatedBy = Cookie.get('userName');
             for (let i = 0; i < this.files.length; i++) {
                 formData.append('appSolutionDeviceDocs', this.files[i]);
 
@@ -346,6 +349,7 @@ export class NgbdModalContent implements OnInit {
                 formData.append('appSolutionDocs', this.files[i]);
 
             }
+            this.device.createdBy = Cookie.get('userName');
             formData.append('appSolutionDeviceString', JSON.stringify(this.device));
             this.http.post(url_update, formData).subscribe((data: any) => {
                 UtilService.popModal = true;

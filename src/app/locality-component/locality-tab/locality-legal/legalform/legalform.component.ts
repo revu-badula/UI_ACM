@@ -35,6 +35,7 @@ export class LegalformComponent implements OnInit {
   public mourecertdt: any;
   public acronym: any;
   public updatedTime: any;
+  public showButton:boolean = false;
   public showLegal: boolean = false;
   public showSigned: boolean = false;
   public certify: any;
@@ -85,15 +86,6 @@ export class LegalformComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
   saveMOU() {
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -103,7 +95,7 @@ export class LegalformComponent implements OnInit {
     var formData = new FormData();
     this.mou.applicationID = this.appId;
     if (this.mou.mouId === undefined) {
-      //this.locality.createdBy=Cookie.get('userName');
+      this.mou.createdBy=Cookie.get('userName');
       //formData.append('attachments', inputEl.files.item(0));
       for (let i = 0; i < this.files.length; i++) {
         formData.append('attachments', this.files[i]);
@@ -125,7 +117,7 @@ export class LegalformComponent implements OnInit {
 
     }
     else {
-      //this.locality.updatedBy=Cookie.get('userName');
+      this.mou.updatedBy=Cookie.get('userName');
       //formData.append('attachments', inputEl.files.item(0));
       for (let i = 0; i < this.files.length; i++) {
         formData.append('attachments', this.files[i]);
@@ -157,6 +149,7 @@ export class LegalformComponent implements OnInit {
         for (let i = 0; i < moudata.length; i++) {
           this.getAppMOU(moudata[i]);
         }
+        this.showButton=true;
       }, error => {
         this.loading = false;
         console.log(error);

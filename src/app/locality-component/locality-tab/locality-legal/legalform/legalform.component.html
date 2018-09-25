@@ -13,13 +13,14 @@
       <p>{{contentData}}!</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark confbtn" (click)="c();f()">Close</button>
+      <button  *ngIf="!showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();f()">Close</button>
+      <button  *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
     </div>
   </ng-template>
   
   
   
-  <div class="plus">
+  <div class="plus" *ngIf="showLegalBox">
     <div class="save-edit" style="float: right">
   
       <fa class="edit-icon icons" [name]="'edit'" (click)="editClick()"></fa>
@@ -57,12 +58,12 @@
   
   
     </div>
-    <form (ngSubmit)="saveMOU()" enctype="multipart/form-data"
+    <form #myForm="ngForm" (ngSubmit)="saveMOU()" enctype="multipart/form-data"
     class="former">
     <div class="panel-heading">
 
-      <span class=" title elipsis pull-right"> <a
-        (click)="saveMOU()" *ngIf="!showLegalBox" title="Save MOU"
+      <span *ngIf="!showLegalBox" class=" title elipsis pull-right"> <a
+        (click)="saveMOU()"  *ngIf="myForm.valid" title="Save MOU"
         class="ng-hide"> <i class="fa fa-floppy-o" aria-hidden="true"
           style="font-size: 24px;"></i></a>
       </span> <span class=" title elipsis pull-right"> <a (click)="goBack()" title="Go back to audit section.">
@@ -80,13 +81,13 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputState">Name</label> <input type="text"
-          class="form-control" name="name" [(ngModel)]="mou.name">
+          class="form-control" name="name" [(ngModel)]="mou.name" required>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputState">Signed</label> <select id="modelSolution"
-          class="form-control" name="signed" [(ngModel)]="mou.signed">
+          class="form-control" name="signed" [(ngModel)]="mou.signed" required>
           <option selected>Choose...</option>
           <option [value]="true">Yes</option>
           <option [value]="false">No</option>
@@ -97,7 +98,7 @@
       <div class="form-group col-md-6">
         <label for="inputState">Date of Receipt</label>
         <my-date-picker name="mydate" [options]="myDatePickerOptions"
-        (dateChanged) = "getDate($event)" [(ngModel)]="moureceiptdt"></my-date-picker>
+        (dateChanged) = "getDate($event)" [(ngModel)]="moureceiptdt" required></my-date-picker>
       </div>
     </div>
     <div class="form-row">
@@ -105,7 +106,7 @@
         <label for="inputState">Recertification Date</label>
 
         <my-date-picker name="myname" [options]="myDatePickerOptions"
-          (dateChanged) = "getNextDate($event)"	[(ngModel)]="mourecertdt"></my-date-picker>
+          (dateChanged) = "getNextDate($event)"	[(ngModel)]="mourecertdt" required></my-date-picker>
       </div>
     </div>	
     <hr class="former" />
