@@ -60,8 +60,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { DummyComponent } from './policy-view-component/policy-view-forms-component/dummy/dummy.component';
 import {DialogService} from './dialog.service';
  import {HttpClientModule} from '@angular/common/http';
+<<<<<<< HEAD
  import { UserIdleModule } from 'angular-user-idle';
 
+=======
+ import {ReportsComponent} from './reports/reports.component';
+>>>>>>> 1e24467d4782aa2ca1f91cbb93b99e79da324a73
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +103,8 @@ import {DialogService} from './dialog.service';
     LoginPageComponent,
     LogoutComponent,
     AlertComponent,
-    DummyComponent
+    DummyComponent,
+    ReportsComponent
 
 
 

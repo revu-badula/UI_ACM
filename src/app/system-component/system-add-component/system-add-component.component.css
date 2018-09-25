@@ -51,12 +51,12 @@ table{
 	border: 1px solid black;
 }
 
-.table-bordered tbody tr:nth-of-type(odd){
-	background-color: #EEEEEE !important;
-	border: 1px solid black;
-}
+/* .table-bordered tbody tr:nth-of-type(odd){ */
+/* 	background-color: #EEEEEE !important; */
+/* 	border: 1px solid black; */
+/* } */
 
-tbody tr:nth-of-type(odd){
+tbody td tr:nth-of-type(odd) {
 	background-color: #EEEEEE !important;
 }
 
@@ -67,9 +67,9 @@ table thead tr th{
 	background-color: #cecfd5;
 }
 
-table thead tr td{
-	color: black;
-}
+/* table thead tr td{ */
+/* 	color: black; */
+/* } */
 
 
 

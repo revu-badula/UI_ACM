@@ -186,7 +186,7 @@ export class SystemAssessDetailsComponent implements OnInit {
     }
     else {
       this.loading=true;
-      localStorage.setItem('sysassessActive', 'true');
+      localStorage.setItem('systemAssessActive', 'true');
       this.showOriginal = false;
       this.showButton=true;
       this.showInitial = true;
