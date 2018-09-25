@@ -60,6 +60,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { DummyComponent } from './policy-view-component/policy-view-forms-component/dummy/dummy.component';
 import {DialogService} from './dialog.service';
  import {HttpClientModule} from '@angular/common/http';
+ import { UserIdleModule } from 'angular-user-idle';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,7 +131,8 @@ import {DialogService} from './dialog.service';
       secondaryColour: '#fff', 
       tertiaryColour: '#fff',
       fullScreenBackdrop:true
-  })
+  }),
+ // UserIdleModule.forRoot({idle: 60, timeout: 60, ping: 120})
   ],
   entryComponents: [
     DialogBoxComponent

@@ -10,6 +10,11 @@ cursor: not-allowed;
 border-color: #ddd; */
 }
 
+.modal-header{
+	background-color: #3A539B;
+	color: #ffffff;
+}
+
 
 
 

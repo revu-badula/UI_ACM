@@ -18,6 +18,9 @@ export class AssessTabComponent implements OnInit {
   public updatedTime: any;
   public p: number = 1;
   public desc: boolean = false;
+  public name:boolean=false;
+  public assessmentDt:boolean=false;
+  public nextAssessmentDt:boolean=false;
 
   public showPagination:boolean=true;
 
@@ -73,37 +76,135 @@ export class AssessTabComponent implements OnInit {
     this.router.navigate(['/locality/tab/assessment/Tabs/first1']);
   }
 
-  handleSort() {
+  handleSort(value) {
     if (!this.desc) {
-      this.assessmentDTOs.sort(this.doAsc);
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.desc = true;
     }
     else {
-      this.assessmentDTOs.sort(this.doDsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
       this.desc = false;
     }
 
+
   }
-  doAsc(a, b) {
-    if (a.auditTypeName > b.auditTypeName) {
-      return -1;
-    } else if (a.auditTypeName < b.auditTypeName) {
-      return 1;
+
+  handleSort1(value) {
+    if (!this.name) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.name = true;
     }
-    return 0;
-  }
-
-  doDsc(a, b) {
-
-    if (a.auditTypeName < b.auditTypeName) {
-      return -1;
-    } else if (a.auditTypeName > b.auditTypeName) {
-      return 1;
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.name = false;
     }
-    return 0;
+
+
   }
 
+  handleSort2(value) {
+    if (!this.assessmentDt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.assessmentDt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.assessmentDt = false;
+    }
 
 
+  }
+  handleSort3(value) {
+    if (!this.nextAssessmentDt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.nextAssessmentDt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.nextAssessmentDt = false;
+    }
+
+
+  }
 
 }

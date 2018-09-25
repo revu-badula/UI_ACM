@@ -50,10 +50,13 @@
                 <thead>
                     <tr>
     
-                        <th scope="col" (click)="handleSort()">Audit Name  <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-                        <th scope="col">Audit Type</th>
-                        <th scope="col">Audit Date</th>
-                        <th scope="col">Next Audit Date</th>
+                        <th scope="col" (click)="handleSort('auditName')">Audit Name  <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+                        <th scope="col" (click)="handleSort1('auditType')">Audit Type <i class="fa fa-arrow-down" *ngIf="!auditType"></i>
+                            <i class="fa fa-arrow-up" *ngIf="auditType"></i></th>
+                        <th scope="col" (click)="handleSort2('auditDate')">Audit Date<i class="fa fa-arrow-down" *ngIf="!auditDate"></i>
+                            <i class="fa fa-arrow-up" *ngIf="auditDate"></i></th>
+                        <th scope="col" (click)="handleSort3('nextAuditDate')">Next Audit Date<i class="fa fa-arrow-down" *ngIf="!nextAuditDate"></i>
+                            <i class="fa fa-arrow-up" *ngIf="nextAuditDate"></i></th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>

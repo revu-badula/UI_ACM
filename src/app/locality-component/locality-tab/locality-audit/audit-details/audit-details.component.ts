@@ -29,6 +29,9 @@ export class AuditDetailsComponent implements OnInit {
   public showEdit: boolean = true;
   public desc: boolean = false;
   public sortType: any;
+  public auditType: boolean = false;
+  public auditDate:boolean=false;
+  public nextAuditDate:boolean=false;
   public showPagination: boolean = true;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
@@ -59,17 +62,17 @@ export class AuditDetailsComponent implements OnInit {
         if (data.applicationViewDTO.appAuditDTOs === undefined) {
           this.showPagination = false;
         }
-        else{
-        this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
+        else {
+          this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
         }
         let day = d.getDate();
         let month = d.getMonth() + 1;
         let year = d.getFullYear();
         this.updatedTime = month + "/" + day + "/" + year;
       }, error => {
-          this.loading = false;
-          console.log(error);
-        });
+        this.loading = false;
+        console.log(error);
+      });
 
   }
 
@@ -89,35 +92,143 @@ export class AuditDetailsComponent implements OnInit {
     UtilService.disabled = false;
     this.router.navigate(['/locality/tab/Audit/Tab/first']);
   }
-  handleSort() {
+  handleSort1(value) {
+    if (!this.auditType) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.auditType = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.auditType = false;
+    }
+  }
+
+  handleSort(value) {
     if (!this.desc) {
-      this.appAuditDTOs.sort(this.doAsc);
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.desc = true;
     }
     else {
-      this.appAuditDTOs.sort(this.doDsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
       this.desc = false;
     }
 
-  }
-  doAsc(a, b) {
-    if (a.auditTypeName > b.auditTypeName) {
-      return -1;
-    } else if (a.auditTypeName < b.auditTypeName) {
-      return 1;
-    }
-    return 0;
+
   }
 
-  doDsc(a, b) {
 
-    if (a.auditTypeName < b.auditTypeName) {
-      return -1;
-    } else if (a.auditTypeName > b.auditTypeName) {
-      return 1;
+  handleSort2(value) {
+    if (!this.auditDate) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.auditDate = true;
     }
-    return 0;
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.auditDate = false;
+    }
+
+
   }
+
+  handleSort3(value) {
+    if (!this.nextAuditDate) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.nextAuditDate = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.nextAuditDate = false;
+    }
+
+
+  }
+
+
+
+
+
+
+
 
 }
 
