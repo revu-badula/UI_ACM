@@ -11,6 +11,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../../../util.service';
 import { FilterPipeDate } from '../../locality-date-filter';
+import { Cookie } from 'ng2-cookies';
 
 @Component({
   selector: 'app-locality-details',
@@ -87,6 +88,7 @@ export class LocalityDetailsComponent implements OnInit {
       var formData = new FormData();
       this.locality.activeLocality = 1;
       let url_update = APP_CONFIG.addLocality;
+      this.locality.createdByName = Cookie.get('userName');
       formData.append('createApp', JSON.stringify(this.locality));
       console.log(JSON.stringify(this.locality));
       this.http.post(url_update, formData)
@@ -108,6 +110,7 @@ export class LocalityDetailsComponent implements OnInit {
     else {
       var formData = new FormData();
       this.locality.applicationId = this.appId;
+      this.locality.updatedByName = Cookie.get('userName');
       formData.append('application', JSON.stringify(this.locality));
       this.http.post(APP_CONFIG.updateLocality, formData).subscribe((data: any) => {
         this.loading = false;
@@ -131,6 +134,7 @@ export class LocalityDetailsComponent implements OnInit {
           this.isShow = true;
           this.editableForm = false;
           this.locality.acronym = local;
+          this.locality.fipsCd=localStorage.getItem('fipscode');
           this.locality.workHoursDTOs = []
           for (let day in this.daysArray) {
             this.workHours = new WorkHours();
