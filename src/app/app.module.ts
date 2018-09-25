@@ -56,16 +56,12 @@ import { AlertService } from './alert.service';
 import { AlertComponent } from './alert/alert.component';
 import { AuthenticationService } from './authentication.service';
 import { CanDeactivateGuard } from './deactive-guard-service';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { DummyComponent } from './policy-view-component/policy-view-forms-component/dummy/dummy.component';
-import {DialogService} from './dialog.service';
- import {HttpClientModule} from '@angular/common/http';
-<<<<<<< HEAD
- import { UserIdleModule } from 'angular-user-idle';
-
-=======
- import {ReportsComponent} from './reports/reports.component';
->>>>>>> 1e24467d4782aa2ca1f91cbb93b99e79da324a73
+import { DialogService } from './dialog.service';
+import { HttpClientModule } from '@angular/common/http';
+import { UserIdleModule } from 'angular-user-idle';
+import { ReportsComponent } from './reports/reports.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -130,14 +126,14 @@ import {DialogService} from './dialog.service';
     NgbModule.forRoot(),
     LoadingModule.forRoot({
       animationType: ANIMATION_TYPES.rotatingPlane,
-      backdropBackgroundColour: 'rgba(0,0,0,0.5)', 
+      backdropBackgroundColour: 'rgba(0,0,0,0.5)',
       backdropBorderRadius: '4px',
-      primaryColour: '#fff', 
-      secondaryColour: '#fff', 
+      primaryColour: '#fff',
+      secondaryColour: '#fff',
       tertiaryColour: '#fff',
-      fullScreenBackdrop:true
-  }),
- // UserIdleModule.forRoot({idle: 60, timeout: 60, ping: 120})
+      fullScreenBackdrop: true
+    }),
+    // UserIdleModule.forRoot({idle: 60, timeout: 60, ping: 120})
   ],
   entryComponents: [
     DialogBoxComponent
@@ -145,7 +141,7 @@ import {DialogService} from './dialog.service';
 
 
 
-  providers: [RegisterService, UtilService, ApiserviceService, AlertService,AuthenticationService,CanDeactivateGuard,DialogService],
+  providers: [RegisterService, UtilService, ApiserviceService, AlertService, AuthenticationService, CanDeactivateGuard, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
