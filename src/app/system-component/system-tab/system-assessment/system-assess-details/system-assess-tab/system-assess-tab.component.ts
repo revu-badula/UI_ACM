@@ -27,7 +27,7 @@ export class SystemAssessTabComponent implements OnInit {
     private utilService: UtilService, private route: ActivatedRoute, private router: Router) {
     this.getAppId();
     localStorage.removeItem('sysassessId');
-    localStorage.removeItem('sysassessActive');
+    localStorage.removeItem('systemAssessActive');
     UtilService.disabled=true;
   }
   ngOnInit() {

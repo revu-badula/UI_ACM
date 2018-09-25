@@ -60,6 +60,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { DummyComponent } from './policy-view-component/policy-view-forms-component/dummy/dummy.component';
 import {DialogService} from './dialog.service';
  import {HttpClientModule} from '@angular/common/http';
+ import {ReportsComponent} from './reports/reports.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +98,8 @@ import {DialogService} from './dialog.service';
     LoginPageComponent,
     LogoutComponent,
     AlertComponent,
-    DummyComponent
+    DummyComponent,
+    ReportsComponent
 
 
 

@@ -67,7 +67,7 @@
     <tbody>
 
       <td>
-        <tr *ngFor="let acronym of acronyms| keys" (click)="viewApplication(acronym.value)">
+        <tr   *ngFor="let acronym of acronyms| keys" (click)="viewApplication(acronym.value)">
           <a class="anchor">{{acronym.value}}</a></tr>
       </td>
       <td>
