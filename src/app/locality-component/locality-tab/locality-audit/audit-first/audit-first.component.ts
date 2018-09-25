@@ -80,6 +80,8 @@ export class AuditFirstComponent implements OnInit {
  public vauditDate:any;
  public comparePolicyDTO:any;
  public loading:boolean = false;
+ public policyName:boolean=false;
+ public priority:boolean=false;
  constructor(private modalService: NgbModal, private http: Http, 
  private _apiservice: ApiserviceService, private utilService: UtilService,
  private router: Router, private route: ActivatedRoute,public datepipe: DatePipe) {
@@ -524,6 +526,73 @@ this.appAudit.createdBy=Cookie.get('userName');
           return 1;
         }
         return 0;
+      }
+
+      handleSort1(value) {
+        if (!this.policyName) {
+          //this.policies.sort(this.doAsc);
+          let orderByValue = value;
+          this.policies.sort((a: any, b: any) => {
+            if (a[orderByValue] > b[orderByValue]) {
+              return -1;
+            } else if (a[orderByValue] < b[orderByValue]) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          this.policyName = true;
+        }
+        else {
+          let orderByValue = value;
+          this.policies.sort((a: any, b: any) => {
+            if (a[orderByValue] < b[orderByValue]) {
+              return -1;
+            } else if (a[orderByValue] > b[orderByValue]) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          //this.policies.sort(this.doDsc);
+          this.policyName = false;
+        }
+    
+    
+      }
+
+
+      handleSort2(value) {
+        if (!this.priority) {
+          //this.policies.sort(this.doAsc);
+          let orderByValue = value;
+          this.policies.sort((a: any, b: any) => {
+            if (a[orderByValue] > b[orderByValue]) {
+              return -1;
+            } else if (a[orderByValue] < b[orderByValue]) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          this.priority = true;
+        }
+        else {
+          let orderByValue = value;
+          this.policies.sort((a: any, b: any) => {
+            if (a[orderByValue] < b[orderByValue]) {
+              return -1;
+            } else if (a[orderByValue] > b[orderByValue]) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          //this.policies.sort(this.doDsc);
+          this.priority = false;
+        }
+    
+    
       }
 
 
