@@ -146,6 +146,7 @@ const appRoutes: Routes = [
   { path: 'updateDevice/:id', component: UpdateDeviceComponent, canActivate: [AuthGuard] },
   { path: 'systemView', component: SystemViewComponentComponent },
   { path:'reports', component:ReportsComponent},
+  
   {
     path: "locality", component: LocalityComponentComponent, canActivate: [AuthGuard],
     children: [
