@@ -16,6 +16,9 @@ declare var swal: any; ''
 @Component({
     selector: 'ngbd-modal-content',
     template: `
+    <div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
     <div class="modal-header">
 	<h4 class="modal-title">Enter Device Information</h4>
 	<button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
@@ -227,7 +230,7 @@ declare var swal: any; ''
 </div>
 
    `,
-   styleUrls: ['./locality-solutions.component.css'],
+    styleUrls: ['./locality-solutions.component.css'],
     providers: [ApiserviceService]
 })
 
@@ -246,11 +249,11 @@ export class NgbdModalContent implements OnInit {
     @Input() deviceData;
     @Input() isEdit;
     // @Input() screenID;
-
+    public loading:boolean=false;
     public isRequired: boolean = true;
     public showButton: boolean = false;
     device: Device;
-    public err:any;
+    public err: any;
 
     constructor(public activeModal: NgbActiveModal,
         private _fb: FormBuilder, private _apiservice: ApiserviceService,
@@ -332,14 +335,16 @@ export class NgbdModalContent implements OnInit {
 
             }
             formData.append('appSolutionDeviceString', JSON.stringify(this.device));
+            this.loading=true;
             this.http.post(url_update, formData).subscribe((data: any) => {
+                this.loading=false;
                 UtilService.popModal = true;
                 this.alert('Success', 'Device has been updated.').then(success => {
                     this.activeModal.close();
-                  });
+                });
 
             }, error => {
-
+                this.loading=false;
                 console.log(error);
             });
         }
@@ -351,14 +356,16 @@ export class NgbdModalContent implements OnInit {
             }
             this.device.createdBy = Cookie.get('userName');
             formData.append('appSolutionDeviceString', JSON.stringify(this.device));
+            this.loading=true;
             this.http.post(url_update, formData).subscribe((data: any) => {
                 UtilService.popModal = true;
+                this.loading=false;
                 this.alert('Success', 'Device has been created.').then(success => {
                     this.activeModal.close();
-                  });
+                });
 
             }, error => {
-
+                this.loading=false;
                 console.log(error);
             });
         }
@@ -449,18 +456,18 @@ export class NgbdModalContent implements OnInit {
 
     }
 
-    
-alert(title = 'Oops...', text = 'Something went wrong') {
-    return new Promise((resolve, reject) => {
-        swal({
-            title: title,
-            text: text,
-            type: 'info',
-            allowOutsideClick: false
-        }).then((result) => {
-    
-            resolve(result);
-        },error => reject(error));
-    });
-}
+
+    alert(title = 'Oops...', text = 'Something went wrong') {
+        return new Promise((resolve, reject) => {
+            swal({
+                title: title,
+                text: text,
+                type: 'info',
+                allowOutsideClick: false
+            }).then((result) => {
+
+                resolve(result);
+            }, error => reject(error));
+        });
+    }
 }
