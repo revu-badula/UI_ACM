@@ -126,6 +126,7 @@ import { SystemAssessBudgetComponent } from './system-component/system-tab/syste
 import { SystemAssessAttachmentsComponent } from './system-component/system-tab/system-assessment/system-assess-attachments/system-assess-attachments.component';
 import { SystemAssessLessonsComponent } from './system-component/system-tab/system-assessment/system-assess-lessons/system-assess-lessons.component';
 import { SystemGuardAssess } from './system-assess-guard';
+import { ReportsComponent } from './reports/reports.component';
 const appRoutes: Routes = [
 
 
@@ -144,6 +145,7 @@ const appRoutes: Routes = [
   { path: 'deviceInventory', component: DeviceComponent, canActivate: [AuthGuard] },
   { path: 'updateDevice/:id', component: UpdateDeviceComponent, canActivate: [AuthGuard] },
   { path: 'systemView', component: SystemViewComponentComponent },
+  { path:'reports', component:ReportsComponent},
   {
     path: "locality", component: LocalityComponentComponent, canActivate: [AuthGuard],
     children: [
