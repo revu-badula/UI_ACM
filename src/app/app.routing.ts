@@ -127,6 +127,7 @@ import { SystemAssessAttachmentsComponent } from './system-component/system-tab/
 import { SystemAssessLessonsComponent } from './system-component/system-tab/system-assessment/system-assess-lessons/system-assess-lessons.component';
 import { SystemGuardAssess } from './system-assess-guard';
 import { ReportsComponent } from './reports/reports.component';
+
 const appRoutes: Routes = [
 
 
