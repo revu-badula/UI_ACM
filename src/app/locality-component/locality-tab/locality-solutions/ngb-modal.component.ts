@@ -21,12 +21,7 @@ declare var swal: any; ''
 	</button>
 </div>
 <div class="modal-body">
-	<div class="save-edit" style="float: right">
-		<fa *ngIf="boxVisible" (click)="showClick()" class="edit-icon icons" data-toggle="tooltip"
-			data-pla cement="right" title="Save" data-animation="true"
-			data-delay="0" [name]="'edit'"></fa>
-		<!-- 			(click)="editClick()" -->
-	</div>
+	
 	<form class=form [formGroup]="modalForm"
 		(ngSubmit)="addDevice(modalForm.value)">
 		<div class="form-row">
@@ -253,6 +248,7 @@ export class NgbdModalContent implements OnInit {
     public isRequired: boolean = true;
     public showButton: boolean = false;
     device: Device;
+    public err:any;
 
     constructor(public activeModal: NgbActiveModal,
         private _fb: FormBuilder, private _apiservice: ApiserviceService,
