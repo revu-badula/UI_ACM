@@ -8,7 +8,9 @@ import { UtilService } from '../../../../util.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
-declare var swal: any; ''
+declare var swal: any; '';
+import { Cookie } from 'ng2-cookies';
+
 @Component({
   selector: 'app-legalform',
   templateUrl: './system-legalform.component.html',
@@ -102,6 +104,7 @@ export class SystemLegalformComponent implements OnInit {
     this.loading = true;
     if (this.mou.mouId === undefined) {
       //formData.append('attachments', inputEl.files.item(0));
+      this.mou.createdBy=Cookie.get('userName');
       for (let i = 0; i < this.files.length; i++) {
         formData.append('attachments', this.files[i]);
 
@@ -122,6 +125,7 @@ export class SystemLegalformComponent implements OnInit {
     }
     else {
       //formData.append('attachments', inputEl.files.item(0));
+      this.mou.updatedBy=Cookie.get('userName');
       for (let i = 0; i < this.files.length; i++) {
         formData.append('attachments', this.files[i]);
 

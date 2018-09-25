@@ -77,7 +77,6 @@ export class SystemLegalmainComponent implements OnInit {
   }
 
   handleSort(value) {
-
     if (!this.desc) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
