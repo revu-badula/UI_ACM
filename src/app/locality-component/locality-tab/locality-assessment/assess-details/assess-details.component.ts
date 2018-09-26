@@ -182,7 +182,7 @@ export class AssessDetailsComponent implements OnInit {
 
   showOnPageLoad() {
     if (localStorage.getItem('assesId') === null) {
-      console.log('Not edit mode');
+      
     }
     else {
       this.loading=true;

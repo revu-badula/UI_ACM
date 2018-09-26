@@ -10,11 +10,6 @@ import { Location } from '@angular/common';
 })
 export class SolutionViewComponentComponent implements OnInit {
   
-  
-  /*public vendors:any;
-  public vendorsContact:any;*/
-  
-
   constructor(private _location: Location,private _apiservice: ApiserviceService) { }
 
   ngOnInit() {

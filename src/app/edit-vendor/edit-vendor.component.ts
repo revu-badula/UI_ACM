@@ -1,8 +1,8 @@
 import { ApiserviceService } from '../apiservice.service';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormBuilder, FormGroup, Validators,FormsModule,ReactiveFormsModule} from '@angular/forms';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-vendor',
@@ -25,7 +25,7 @@ export class EditVendorComponent implements OnInit {
   public city: string;
   public state: string;
   public zipCode: string;
-  public loading:boolean = false;
+  public loading: boolean = false;
   //public vendorDetails: VendorDetails;
 
 
@@ -34,18 +34,17 @@ export class EditVendorComponent implements OnInit {
 
 
 
-  constructor( private router: Router,private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder,private modalService: NgbModal) {
+  constructor(private router: Router, private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder, private modalService: NgbModal) {
   }
 
- 
+
   editClicked(event): void {
-    console.log(this.editVendorForm.disabled);
-	  if(this.editVendorForm.disabled){
-	 	 this.editVendorForm.enable();
-	  }
-	  else{
-	 	 this.editVendorForm.disable();
-	  }
+    if (this.editVendorForm.disabled) {
+      this.editVendorForm.enable();
+    }
+    else {
+      this.editVendorForm.disable();
+    }
   }
 
 
@@ -53,19 +52,18 @@ export class EditVendorComponent implements OnInit {
     /*let  vendorDetails: VendorDetails;
       this.getEditVendors(this.userId);
     console.log(this.vendorDetails);*/
-     this.createForm();
+    this.createForm();
 
     this.route.params.subscribe(params => {
       this.userId = params['id'];
       this.editVendorForm.disable();
     });
     this.onDisplayVendors();
-    this.loading = true;
 
   }
 
   open(content) {
-   this.modalService.open(content);
+    this.modalService.open(content);
 
   }
 
@@ -98,43 +96,46 @@ export class EditVendorComponent implements OnInit {
 
 
 
- createVendor(value):void{
- console.log("form value",value);
- value['vendorId']= this.userId;
- 
- this._apiservice.postVendorData(value)
-      .subscribe((data: any) => {
-        console.log(data);
-        open(data.responseString);
-      }, error => console.log(error));
+  createVendor(value): void {
+    this.loading=true;
+    value['vendorId'] = this.userId;
 
-}
-cancelButton(){
-  //this.editVendorForm.disable();
-this.router.navigate(['/vendorsView']);
+    this._apiservice.postVendorData(value)
+      .subscribe((data: any) => {
+        this.loading=false;
+        open(data.responseString);
+      }, error => {
+        this.loading=false;
+        console.log(error);
+      });
+
+  }
+  cancelButton() {
+    //this.editVendorForm.disable();
+    this.router.navigate(['/vendorsView']);
 
 
   }
-  
+
 
 
 
 
   onDisplayVendors() {
-
-
-
+    this.loading=true;
     this._apiservice.getVendorExtra(this.userId)
       .subscribe((data: any) => {
         this.loading = false;
-        console.log(data);
         (<FormGroup>this.editVendorForm)
-            .patchValue(data, { onlySelf: true });
-      }, error => console.log(error));
+          .patchValue(data, { onlySelf: true });
+      }, error => {
+        this.loading=false;
+        console.log(error);
+      });
 
 
   }
-  
+
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -142,10 +143,8 @@ this.router.navigate(['/vendorsView']);
     const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     if (number > 100) {
       this.color = 'online';
-      console.log('You are 100px from the top to bottom');
     } else {
       this.color = 'offline';
-      console.log('You are 500px from the top to bottom');
     }
 
   }

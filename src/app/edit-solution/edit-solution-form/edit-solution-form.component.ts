@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   providers: [ ApiserviceService ]
 })
 export class EditSolutionFormComponent implements OnInit {
-  /*public solutionInput:any;*/
+
 
   constructor(private _apiservice: ApiserviceService) { }
 

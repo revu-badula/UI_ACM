@@ -57,7 +57,7 @@ export class AssessActionComponent implements OnInit {
   {
     if(localStorage.getItem('assesId') === null)
     {
-      console.log('Not edit mode');
+    
     }
     else{
       let id =localStorage.getItem('assesId');

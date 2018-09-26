@@ -146,7 +146,7 @@ const appRoutes: Routes = [
   { path: 'policyAdd', component: PolicyAddComponent, canActivate: [AuthGuard] },
   { path: 'deviceInventory', component: DeviceComponent, canActivate: [AuthGuard] },
   { path: 'updateDevice/:id', component: UpdateDeviceComponent, canActivate: [AuthGuard] },
-  { path: 'systemView', component: SystemViewComponentComponent },
+  { path: 'systemView', component: SystemViewComponentComponent, canActivate: [AuthGuard] },
   { path:'reports', component:ReportsComponent, canActivate: [AuthGuard]},
   
   {

@@ -82,6 +82,11 @@ p {
     margin-bottom: 1rem;
 }
 
+.row {
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
 /*.second-row{
     margin-top: 20px;
 }
