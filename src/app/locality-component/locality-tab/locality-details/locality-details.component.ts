@@ -74,10 +74,6 @@ export class LocalityDetailsComponent implements OnInit {
 
 
 
-
-
-
-
   createLocality() {
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -110,7 +106,7 @@ export class LocalityDetailsComponent implements OnInit {
     else {
       var formData = new FormData();
       this.locality.applicationId = this.appId;
-      this.locality.updatedByName = Cookie.get('userName');
+      this.locality.updatedBy = Cookie.get('userName');
       formData.append('application', JSON.stringify(this.locality));
       this.http.post(APP_CONFIG.updateLocality, formData).subscribe((data: any) => {
         this.loading = false;
@@ -155,7 +151,7 @@ export class LocalityDetailsComponent implements OnInit {
           let day = d.getDate();
           let month = d.getMonth() + 1;
           let year = d.getFullYear();
-          this.updatedTime = day + "/" + month + "/" + year;
+          this.updatedTime = month + "/" + day + "/" + year;
 
           this.locality.workHoursDTOs = data.applicationViewDTO.workHoursDTOs;
           let dummy_array = [];

@@ -20,7 +20,7 @@
   
   
   <div class="plus">
-    <div class="save-edit" style="float: right">
+    <div class="save-edit" style="float: right" *ngIf="!showSigned">
   
       <fa class="edit-icon icons" [name]="'edit'" (click)="editClick()"></fa>
     </div>
@@ -70,12 +70,14 @@
       <table class="table table-striped table-hover table-bordere">
         <thead>
           <tr>
-  <th scope="col" (click)="handleSort()">Name <i
+  <th scope="col" (click)="handleSort('name')">Name <i
 					class="fa fa-arrow-down" *ngIf="!desc"></i> <i
 					class="fa fa-arrow-up" *ngIf="desc"></i></th>
-            <th scope="col">Signed</th>
+            <th scope="col" (click)="handleSort1('signed')">Signed<i class="fa fa-arrow-down" *ngIf="!signed"></i>
+              <i class="fa fa-arrow-up" *ngIf="signed"></i></th>
             
-            <th scope="col">Recertification Date</th>
+            <th scope="col" (click)="handleSort2('recertificationDt')">Recertification Date<i class="fa fa-arrow-down" *ngIf="!recertificationDt"></i>
+              <i class="fa fa-arrow-up" *ngIf="recertificationDt"></i></th>
             <th scope="col">Notify</th>
           </tr>
   

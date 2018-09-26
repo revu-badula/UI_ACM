@@ -1,5 +1,5 @@
 import { ApiserviceService } from '../apiservice.service';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +30,7 @@ export class EditVendorComponent implements OnInit {
 
 
   public editVendorForm: FormGroup;
+  @ViewChild('content') content:TemplateRef<any>;
 
 
 
@@ -49,9 +50,7 @@ export class EditVendorComponent implements OnInit {
 
 
   ngOnInit() {
-    /*let  vendorDetails: VendorDetails;
-      this.getEditVendors(this.userId);
-    console.log(this.vendorDetails);*/
+
     this.createForm();
 
     this.route.params.subscribe(params => {
@@ -97,15 +96,15 @@ export class EditVendorComponent implements OnInit {
 
 
   createVendor(value): void {
-    this.loading=true;
+    this.loading = true;
     value['vendorId'] = this.userId;
 
     this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         open(data.responseString);
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
 
@@ -122,14 +121,14 @@ export class EditVendorComponent implements OnInit {
 
 
   onDisplayVendors() {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getVendorExtra(this.userId)
       .subscribe((data: any) => {
         this.loading = false;
         (<FormGroup>this.editVendorForm)
           .patchValue(data, { onlySelf: true });
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
 

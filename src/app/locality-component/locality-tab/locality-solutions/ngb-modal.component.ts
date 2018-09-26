@@ -26,7 +26,11 @@ declare var swal: any; ''
 	</button>
 </div>
 <div class="modal-body">
-	
+<div class="save-edit" style="float: right">
+<fa *ngIf="isEdit && !showUpbtn" (click)="editClick()" class="edit-icon icons" data-toggle="tooltip"
+    data-pla cement="right" title="Save" data-animation="true"
+    data-delay="0" [name]="'edit'"></fa>
+</div>
 	<form class=form [formGroup]="modalForm"
 		(ngSubmit)="addDevice(modalForm.value)">
 		<div class="form-row">
@@ -198,13 +202,13 @@ declare var swal: any; ''
 						<table border="1">
 							<tr>
 								<th>FileName</th>
-								<th>Action</th>
+								<th *ngIf="showUpbtn">Action</th>
 							</tr>
 							<tr *ngFor="let file of device.deviceDocDTO let i=index">
 								<td *ngIf="file.status"
 									(click)="getFile(file.deviceDocId)"
 									style="cursor: pointer; color: blue;">{{file.fileName}}</td>
-								<td *ngIf="file.status"
+								<td *ngIf="file.status && showUpbtn"
 									(click)="deleteFile(file.deviceDocId,i)"
 									style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
 
@@ -218,7 +222,7 @@ declare var swal: any; ''
 			<button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
 			<button *ngIf="!showButton"  type="submit" class="submit btn btn-primary"
                 [disabled]="modalForm.invalid">Save</button>
-                <button *ngIf="showButton" type="submit" class="submit btn btn-primary"
+                <button *ngIf="showButton && showUpbtn" type="submit" class="submit btn btn-primary"
 				[disabled]="modalForm.invalid">Update</button>
 					
 
@@ -254,6 +258,7 @@ export class NgbdModalContent implements OnInit {
     public showButton: boolean = false;
     device: Device;
     public err: any;
+    public showUpbtn:boolean=false;
 
     constructor(public activeModal: NgbActiveModal,
         private _fb: FormBuilder, private _apiservice: ApiserviceService,
@@ -286,9 +291,11 @@ export class NgbdModalContent implements OnInit {
             this.device.deviceDocDTO = this.deviceData.deviceDocDTO;
             this.modalForm.controls['nextScanningDt'].setValue(this.selectDate);
             this.modalForm.controls['notes'].setValue(this.deviceData.notes);
+            this.modalForm.disable();
         }
         else {
             this.createForm();
+            this.showUpbtn=true;
         }
     }
 
@@ -469,5 +476,11 @@ export class NgbdModalContent implements OnInit {
                 resolve(result);
             }, error => reject(error));
         });
+    }
+
+    editClick()
+    {
+        this.modalForm.enable();
+        this.showUpbtn=true;
     }
 }

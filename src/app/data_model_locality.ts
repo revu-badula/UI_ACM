@@ -9,8 +9,9 @@ export class Locality {
 	lastName: string;
 	emailId: string;
 	phoneNumber: string;
+	createdBy: string;
+	updatedBy: string;
 	createdByName: string;
-	updatedByName: string;
 	website: string;
 	verisId: string;
 	capInd: boolean = false;

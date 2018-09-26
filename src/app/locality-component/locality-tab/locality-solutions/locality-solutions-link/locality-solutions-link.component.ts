@@ -10,13 +10,13 @@ import { UtilService } from '../../../../util.service';
 })
 export class LocalitySolutionsLinkComponent implements OnInit {
 
-  public appSolutions:any;
-  public loading:boolean=false;
-    public  desc = false;
-  public  des = false;
-  public  dec = false;
-   public p: number = 1;
-  constructor(private _apiservice: ApiserviceService,private router:Router, private utilService: UtilService) {
+  public appSolutions: any;
+  public loading: boolean = false;
+  public desc = false;
+  public des = false;
+  public dec = false;
+  public p: number = 1;
+  constructor(private _apiservice: ApiserviceService, private router: Router, private utilService: UtilService) {
     this.viewApplication(localStorage.getItem('localityName'));
     localStorage.removeItem('appSolId');
   }
@@ -26,34 +26,32 @@ export class LocalitySolutionsLinkComponent implements OnInit {
 
 
   viewApplication(local) {
-    this.loading= true;
+    this.loading = true;
     this._apiservice.viewApplication(local)
       .subscribe((data: any) => {
-        this.loading= false;
-       this.appSolutions = data.applicationViewDTO.applicationSolutionDTOs;
+        this.loading = false;
+        this.appSolutions = data.applicationViewDTO.applicationSolutionDTOs;
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
   }
-  
-  handleSort(){
 
-    console.log("headerClick");
-    if(!this.desc) {
+  handleSort() {
+
+    if (!this.desc) {
       this.appSolutions.sort(this.doAsc);
       this.desc = true;
     }
     else {
-       this.appSolutions.sort(this.doDsc);
-       this.desc = false;
+      this.appSolutions.sort(this.doDsc);
+      this.desc = false;
     }
 
   }
 
   doAsc(a, b) {
-    console.log(a.solutionsDTO.name, b.solutionsDTO.name);
-  
+
     if (a.solutionsDTO.name > b.solutionsDTO.name) {
       return -1;
     } else if (a.solutionsDTO.name < b.solutionsDTO.name) {
@@ -63,7 +61,6 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   }
 
   doDsc(a, b) {
-     console.log(a.solutionsDTO.name, b.solutionsDTO.name);
     if (a.solutionsDTO.name < b.solutionsDTO.name) {
       return -1;
     } else if (a.solutionsDTO.name > b.solutionsDTO.name) {
@@ -71,25 +68,24 @@ export class LocalitySolutionsLinkComponent implements OnInit {
     }
     return 0;
   }
-  
-  
-  handleSorted(){
 
-    console.log("headerClick");
-    if(!this.des) {
+
+  handleSorted() {
+
+    if (!this.des) {
       this.appSolutions.sort(this.doAs);
       this.des = true;
     }
     else {
-       this.appSolutions.sort(this.doDs);
-       this.des = false;
+      this.appSolutions.sort(this.doDs);
+      this.des = false;
     }
 
   }
 
   doAs(a, b) {
-    console.log(a.solutionsDTO.vendor.name, b.solutionsDTO.vendor.name);
-  
+
+
     if (a.solutionsDTO.vendor.name > b.solutionsDTO.vendor.name) {
       return -1;
     } else if (a.solutionsDTO.vendor.name < b.solutionsDTO.vendor.name) {
@@ -99,7 +95,6 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   }
 
   doDs(a, b) {
-     console.log(a.solutionsDTO.vendor.name, b.solutionsDTO.vendor.name);
     if (a.solutionsDTO.vendor.name < b.solutionsDTO.vendor.name) {
       return -1;
     } else if (a.solutionsDTO.vendor.name > b.solutionsDTO.vendor.name) {
@@ -107,24 +102,23 @@ export class LocalitySolutionsLinkComponent implements OnInit {
     }
     return 0;
   }
-  
-  handleSorting(){
 
-    console.log("headerClick");
-    if(!this.dec) {
+  handleSorting() {
+
+    if (!this.dec) {
       this.appSolutions.sort(this.doAc);
-      this.desc = true;
+      this.dec = true;
     }
     else {
-       this.appSolutions.sort(this.doDc);
-       this.dec = false;
+      this.appSolutions.sort(this.doDc);
+      this.dec = false;
     }
 
   }
 
   doAc(a, b) {
-    console.log(a.solutionsDTO.solutionTypeName, b.solutionsDTO.solutionTypeName);
-  
+
+
     if (a.solutionsDTO.solutionTypeName > b.solutionsDTO.solutionTypeName) {
       return -1;
     } else if (a.solutionsDTO.solutionTypeName < b.solutionsDTO.solutionTypeName) {
@@ -134,7 +128,6 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   }
 
   doDc(a, b) {
-     console.log(a.solutionsDTO.solutionTypeName, b.solutionsDTO.solutionTypeName);
     if (a.solutionsDTO.solutionTypeName < b.solutionsDTO.solutionTypeName) {
       return -1;
     } else if (a.solutionsDTO.solutionTypeName > b.solutionsDTO.solutionTypeName) {
@@ -142,33 +135,121 @@ export class LocalitySolutionsLinkComponent implements OnInit {
     }
     return 0;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  showSolutionsPage(appSolutionId)
-  {
-    this.utilService.isLocalitySolutionAdd = false; 
-    localStorage.setItem('appSolId',appSolutionId);
+
+
+
+  showSolutionsPage(appSolutionId) {
+    this.utilService.isLocalitySolutionAdd = false;
+    localStorage.setItem('appSolId', appSolutionId);
     this.router.navigate(['/locality/tab/solutions/solutionForm']);
   }
 
   selectLocality() {
-  this.utilService.isLocalitySolutionAdd = true; 
-  this.router.navigate(['/locality/tab/solutions/solutionForm']);
-    }
+    this.utilService.isLocalitySolutionAdd = true;
+    this.router.navigate(['/locality/tab/solutions/solutionForm']);
+  }
+
+  // handleSort(value) {
+  //   if (!this.desc) {
+  //     //this.policies.sort(this.doAsc);
+  //     let orderByValue = value;
+  //     this.appSolutions.sort((a: any, b: any) => {
+  //       if (a[orderByValue] > b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] < b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     this.desc = true;
+  //   }
+  //   else {
+  //     let orderByValue = value;
+  //     this.appSolutions.sort((a: any, b: any) => {
+  //       if (a[orderByValue] < b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] > b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     //this.policies.sort(this.doDsc);
+  //     this.desc = false;
+  //   }
+
+
+  // }
+
+  // handleSort1(value) {
+
+  //   if (!this.signed) {
+  //     //this.policies.sort(this.doAsc);
+  //     let orderByValue = value;
+  //     this.appSolutions.sort((a: any, b: any) => {
+  //       if (a[orderByValue] > b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] < b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     this.signed = true;
+  //   }
+  //   else {
+  //     let orderByValue = value;
+  //     this.appSolutions.sort((a: any, b: any) => {
+  //       if (a[orderByValue] < b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] > b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     //this.policies.sort(this.doDsc);
+  //     this.signed = false;
+  //   }
+
+
+  // }
+
+
+  // handleSort2(value) {
+
+  //   if (!this.recertificationDt) {
+  //     //this.policies.sort(this.doAsc);
+  //     let orderByValue = value;
+  //     this.appSolutions.sort((a: any, b: any) => {
+  //       if (a[orderByValue] > b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] < b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     this.recertificationDt = true;
+  //   }
+  //   else {
+  //     let orderByValue = value;
+  //     this.appSolutions.sort((a: any, b: any) => {
+  //       if (a[orderByValue] < b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] > b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     //this.policies.sort(this.doDsc);
+  //     this.recertificationDt = false;
+  //   }
+
+
+  // }
+
 
 }

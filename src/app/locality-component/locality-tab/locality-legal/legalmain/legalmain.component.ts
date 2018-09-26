@@ -19,6 +19,8 @@ export class LegalmainComponent implements OnInit {
   public loading:boolean = false;
   public  desc = false;
    public p: number = 1;
+   public signed:boolean=false;
+  public recertificationDt:boolean=false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -68,40 +70,6 @@ export class LegalmainComponent implements OnInit {
   }
   
   
-  handleSort(){
-
-    console.log("headerClick");
-    if(!this.desc) {
-      this.appMOUs.sort(this.doAsc);
-      this.desc = true;
-    }
-    else {
-       this.appMOUs.sort(this.doDsc);
-       this.desc = false;
-    }
-
-  }
-
-  doAsc(a, b) {
-    console.log(a.name, b.name);
-  
-    if (a.name > b.name) {
-      return -1;
-    } else if (a.name < b.name) {
-      return 1;
-    }
-    return 0;
-  }
-
-  doDsc(a, b) {
-     console.log(a.name, b.name);
-    if (a.name < b.name) {
-      return -1;
-    } else if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  }
   
   
 
@@ -121,5 +89,110 @@ export class LegalmainComponent implements OnInit {
       localStorage.setItem('appMouId',id);
       this.router.navigate(['/locality/tab/legal/legalform']);
     }
+
+
+    handleSort(value) {
+      if (!this.desc) {
+        //this.policies.sort(this.doAsc);
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] > b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] < b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        this.desc = true;
+      }
+      else {
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] < b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] > b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        //this.policies.sort(this.doDsc);
+        this.desc = false;
+      }
+  
+  
+    }
+  
+    handleSort1(value) {
+  
+      if (!this.signed) {
+        //this.policies.sort(this.doAsc);
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] > b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] < b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        this.signed = true;
+      }
+      else {
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] < b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] > b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        //this.policies.sort(this.doDsc);
+        this.signed = false;
+      }
+  
+  
+    }
+  
+  
+    handleSort2(value) {
+  
+      if (!this.recertificationDt) {
+        //this.policies.sort(this.doAsc);
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] > b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] < b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        this.recertificationDt = true;
+      }
+      else {
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] < b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] > b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        //this.policies.sort(this.doDsc);
+        this.recertificationDt = false;
+      }
+  
+  
+    }
+  
+  
 
 }

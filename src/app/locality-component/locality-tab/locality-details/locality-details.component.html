@@ -17,7 +17,7 @@
 		(click)="c()">Ok</button>
 </div>
 </ng-template>
-<div class="save-edit" style="float: right" *ngIf="showEditButton">
+<div class="save-edit" style="float: right" *ngIf="showEditButton && !isShow">
 	<fa class="edit-icon icons" data-toggle="tooltip"
 		data-placement="right" title="Save" data-animation="true"
 		data-delay="0" [name]="'edit'" (click)="editClick()"></fa>
@@ -35,7 +35,7 @@
 			</p>
 		</div>
 		<h5>General Information</h5>
-		<div class="form-row">
+		<div class="form-row" *ngIf="showEditButton">
 			<div class="form-group col-md-6">
 
 				<label for="inputState">Last Updated by</label>
@@ -46,7 +46,7 @@
 				<label for="lastName">Updated at</label>
 				<div class="asterisk">*</div>
 				<input type="text" class="form-control" name="updatedTime"
-					[(ngModel)]="updatedTime">
+					[(ngModel)]="updatedTime" readonly>
 			</div>
 		</div>
 		<div class="form-row">
@@ -64,10 +64,6 @@
 				<input type="text" class="form-control" ngModel name="localityCd"
 					[(ngModel)]="locality.localityCd" required>
 			</div> -->
-
-		</div>
-		<div class="form-row">
-
 			<div class="form-group col-md-6">
 				<label for="lastName">FIPS Code</label>
 				<div class="asterisk">*</div>
@@ -75,7 +71,12 @@
 					[(ngModel)]="locality.fipsCd" readonly>
 
 			</div>
+
 		</div>
+		<!-- <div class="form-row">
+
+			
+		</div> -->
 		<hr />
 		<h5>Contact Information</h5>
 		<div class="form-row">
