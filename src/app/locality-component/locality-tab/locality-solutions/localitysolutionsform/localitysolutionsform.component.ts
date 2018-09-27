@@ -4,7 +4,7 @@ import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ApplicationSolution, Solutions, Vendor, Device, HostingType } from '../../../../data_model_lsolutions';
+import { ApplicationSolution, SolutionsDTO, Vendor, Device, HostingType } from '../../../../data_model_lsolutions';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { UtilService } from '../../../../util.service';
 import * as moment from 'moment';
@@ -27,7 +27,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   public vendor: Vendor;
   precinctTypes: any;
   systemTypes: any;
-  solutions: Solutions;
+  solutions: SolutionsDTO;
   applicationSolution: ApplicationSolution;
   device: Device;
   editableForm: boolean = true;
@@ -65,43 +65,31 @@ export class LocalitysolutionsformComponent implements OnInit {
   public boxVisible = false;
   public selectDate: any;
   public selDate: any;
-  public editForm: any;
+  public editForm: boolean=true;
   public acronym: any;
   public updatedTime: any;
-  public applicationDeviceObj: any;
   public loading: boolean = false;
-  public compareDueDate: any;
-  public currentDt: any;
+  public sysName: any;
   public isClick: boolean = true;
   public showBuck: boolean = true;
-  public err: string;
+ 
 
 
   constructor(private _fb: FormBuilder, private router: Router, private modalService: NgbModal,
     private _apiservice: ApiserviceService, private http: Http,
     private utilservice: UtilService, private datepipe: DatePipe) {
-    this.getAppId();
-
     this.applicationSolution = new ApplicationSolution();
-    this.applicationSolution.solutionsDTO = new Solutions();
+    this.applicationSolution.solutionsDTO = new SolutionsDTO();
     this.applicationSolution.solutionsDTO.vendor = new Vendor();
     this.applicationSolution.solutionsDTO.hostingTypeDTO = new HostingType();
     this.device = new Device();
-    this.viewApplication(localStorage.getItem('localityName'));
-    if (localStorage.getItem('appSolId') === null) {
+    this.getAppId();
+    //this.viewApplication(localStorage.getItem('localityName'));
 
-    }
-    else {
-
-      let id = localStorage.getItem('appSolId');
-      let aSolId = +id;
-      this.showSolutionsPage(aSolId);
-    }
 
   }
 
   ngOnInit() {
-    this.createForm();
     this.showPrecinctType();
     if (this.utilservice.isLocalitySolutionAdd) {
       this.isAddNewSolution = true;
@@ -111,44 +99,12 @@ export class LocalitysolutionsformComponent implements OnInit {
   }
 
 
-
-
-
-  getDate(value) {
-    this.compareDueDate = value.formatted;
-    let today = new Date();
-    this.currentDt = formatDate(today, 'yyyy-MM-dd', 'en-US');
-
-
-    if ((this.compareDueDate.split('-')[0]) < (this.currentDt.split('-')[0])) {
-      this.err = "Due Date should be greater than Current Date";
-    }
-    else if ((this.compareDueDate.split('-')[1]) < (this.currentDt.split('-')[1])) {
-      this.err = "Due Date should be greater than Current Date";
-
-    }
-    else if ((this.compareDueDate.split('-')[2]) < (this.currentDt.split('-')[2])) {
-      this.err = "Due Date should be greater than Current Date";
-
-    }
-    else {
-      this.err = "";
-      console.log("Correct");
-    }
-  }
-
-
-
-
-
-
   getAppId() {
     this.loading = true;
     this._apiservice.viewApplication(localStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
-
         let d = new Date(data.applicationViewDTO.updatedTime);
         let day = d.getDate();
         let month = d.getMonth() + 1;
@@ -156,15 +112,19 @@ export class LocalitysolutionsformComponent implements OnInit {
         this.updatedTime = month + "/" + day + "/" + year;
         this.appId = data.applicationViewDTO.applicationId;
         this.applicationSolution.applicationID = data.applicationViewDTO.applicationId;
-        if (localStorage.getItem('appSolutionId') === null) {
-          //this.showLegalBox = false;
+       
+        if (localStorage.getItem('appSolId') === null) {
+          this.editForm=false;
         }
         else {
-          this.showSolutionsPage(data.applicationViewDTO.applicationId);
+
+          let id = localStorage.getItem('appSolId');
+          let aSolId = +id;
+          this.showSolutionsPage(aSolId);
         }
 
       }, error => {
-        //this.loading = false;
+        this.loading = false;
         console.log(error);
       });
   }
@@ -185,87 +145,30 @@ export class LocalitysolutionsformComponent implements OnInit {
 
   }
 
-  createForm() {
-
-
-    this.modalForm = this._fb.group({
-      modelNumber: ['', Validators.required],
-      serialNumber: ['', Validators.required],
-      street1: ['', Validators.required],
-      street2: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      zipCode: ['', Validators.required],
-      overallStatus: ['', Validators.required],
-      nextScanningDt: ['', Validators.required],
-      notes: ['']
-
-    });
-  }
-  viewApplication(local) {
-    this.isClick = true;
-    this.loading=true;
-    this._apiservice.viewApplication(local)
-      .subscribe((data: any) => {
-        this.loading=false;
-        this.appId = data.applicationViewDTO.applicationId;
-        this.appSolutions = data.applicationViewDTO.applicationSolutionDTOs;
-      }, error =>{
-        this.loading=false;
-      console.log(error);
-    });
-  }
-
   showSolutionsPage(appSolutionId) {
     this.isClick = false;
     this.isVisible = true;
     this.showLegal = true;
     this.notVisible = true;
     this.boxVisible = true;
-
     this.showInnerForm = true;
-
     this.appSolutionId = appSolutionId;
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getAppSolution(appSolutionId)
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.applicationSolution = data;
         this.applicationSolution.solutionsDTO = data.solutionsDTO;
         this.applicationSolution.solutionsDTO.vendor = data.solutionsDTO.vendor;
         this.devices = data.appSolutionDevices;
-        //this.applicationSolution.solutionsDTO.hostingTypeDTO = data.solutionsDTO.hostingTypeDTO;
-
-        if (this.applicationSolution.solutionsDTO.hostingTypeDTO == null) {
-
-          this.applicationSolution.solutionsDTO['hostingTypeDTO'] = {
-            name: "0",
-            hostingTypeId: null
-          };
-
-
-        }
-        else {
-          //this.applicationSolution.solutionsDTO.hostingTypeDTO = data.solutionsDTO.hostingTypeDTO;
-          this.applicationSolution.solutionsDTO.hostingTypeDTO = data.solutionsDTO.hostingTypeDTO;
-
-        }
-
-        //this.applicationSolution.solutionsDTO.solutionTypeName = data.solutionsDTO.solutionTypeName;
+        this.sysName=data.solutionsDTO.systemTypeDTO.name
         this.applicationSolution.appSolutionDevices = data.appSolutionDevices;
-
-
-
-
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
 
   }
-
-
-
 
 
   saveAppSolution() {
@@ -299,14 +202,11 @@ export class LocalitysolutionsformComponent implements OnInit {
 
     }
     else {
-
-
       this.applicationSolution.updatedBy = Cookie.get('userName');
       //this.applicationSolution.appSolutionId = this.appSolutionId;
       this.applicationSolution.solutionId = this.applicationSolution.solutionsDTO.solutionId;
       //this.applicationSolution.solutionsDTO.solutionId = this.solutionId;
       //this.applicationSolution.applicationID = this.appId;
-
       var formData = new FormData();
       formData.append('appSolutionString', JSON.stringify(this.applicationSolution));
       let url_update = APP_CONFIG.updateAppSolution;
@@ -314,7 +214,6 @@ export class LocalitysolutionsformComponent implements OnInit {
       this.http.post(url_update, formData).subscribe((data: any) => {
         this.loading = false;
         this.contentData = "Solution has been updated.";
-
         this.modalService.open(this.insta, ngbModalOptions);
       }, error => {
         this.loading = false;
@@ -329,14 +228,14 @@ export class LocalitysolutionsformComponent implements OnInit {
 
 
   showPrecinctType() {
-    this.loading = true;
+    //this.loading = true;
     this._apiservice.getSolutionsOnload()
       .subscribe((data: any) => {
-        this.loading = false;
+        //this.loading = false;
         this.precinctTypes = data.precinctTypeDTOs;
         this.systemTypes = data.systemTypeDTOs;
       }, error => {
-        this.loading = false;
+        //this.loading = false;
         console.log(error);
       });
 
@@ -350,6 +249,7 @@ export class LocalitysolutionsformComponent implements OnInit {
     else {
       this.showPrecinct = true;
       this.precinctTypeId = id;
+      this.applicationSolution.solutionsDTO.precinctTypeId=id;
     }
 
 
@@ -357,26 +257,27 @@ export class LocalitysolutionsformComponent implements OnInit {
 
   selectModSolution(solutionId) {
     this.solutionId = solutionId;
-    this.loading = true;
+    // this.loading = true;
     this._apiservice.getSolutionExtra(solutionId)
       .subscribe((data: any) => {
-        this.loading = false;
+        //this.loading = false;
         this.showInnerForm = true;
         this.applicationSolution.solutionsDTO.versionNumber = data.versionNumber;
         this.applicationSolution.solutionsDTO.vendor = data.vendor;
+        //this.applicationSolution.solutionsDTO.hostingTypeDTO = data.hostingTypeDTO;
+        // if (this.applicationSolution.solutionsDTO.hostingTypeDTO.name === "Both") {
         this.applicationSolution.solutionsDTO.hostingTypeDTO = data.hostingTypeDTO;
-        if (this.applicationSolution.solutionsDTO.hostingTypeDTO.name === "Both") {
-          this.applicationSolution.solutionsDTO.hostingTypeDTO = data.hostingTypeDTO;
-          this.showText = false;
-        }
-        else {
-          this.showText = true;
-        }
+        //this.applicationSolution.hostingTypeId=data.hostingTypeDTO.hostingTypeId;
+        //   this.showText = false;
+        // }
+        // else {
+        //   this.showText = true;
+        // }
         this.applicationSolution.solutionsDTO.solutionTypeName = data.solutionTypeName;
 
 
       }, error => {
-        this.loading = false;
+        //this.loading = false;
         console.log(error);
       });
 
@@ -384,7 +285,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   open(content) {
     this.showButton = true;
     this.boxVisible = false;
-    this.createForm();
+    //this.createForm();
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
       keyboard: false
@@ -402,34 +303,6 @@ export class LocalitysolutionsformComponent implements OnInit {
       backdrop: 'static',
       keyboard: false
     };
-    // this.deviceId=table.appSolutionDevice;
-    // this.modalService.open(content, ngbModalOptions);
-    // this.modalForm.controls['modelNumber'].setValue(table.modelNumber);
-    // this.modalForm.controls['serialNumber'].setValue(table.serialNumber);
-    // this.modalForm.controls['street1'].setValue(table.street1);
-    //  this.modalForm.controls['street2'].setValue(table.street2);
-    // this.modalForm.controls['city'].setValue(table.city);
-    // this.modalForm.controls['state'].setValue(table.state);
-    // this.modalForm.controls['zipCode'].setValue(table.zipCode);
-    // this.modalForm.controls['overallStatus'].setValue(table.overallStatus);
-
-
-
-    //  let d = new Date(table.nextScanningDt);
-    //      this.selectDate = { date:{
-    //          year: d.getFullYear(),
-    //          month : d.getMonth() + 1,
-    //         day :d.getDate()
-    //         }}
-    // console.log(this.selectDate)
-    //       //   this.selectDate = {date:{month:month,day:day,year:year}};
-
-
-
-    //  this.modalForm.controls['nextScanningDt'].setValue(this.selectDate);
-    //   this.modalForm.controls['notes'].setValue(table.notes);
-
-    //this.modalForm.disable();
     const modalRef = this.modalService.open(NgbdModalContent, ngbModalOptions);
     modalRef.componentInstance.appSolutionId = this.appSolutionId;
     modalRef.result.then(result => {
@@ -470,6 +343,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   editClicked() {
     this.isAddNewSolution = true;
     this.isClick = true;
+    this.editForm=false;
   }
 
 
@@ -507,12 +381,12 @@ export class LocalitysolutionsformComponent implements OnInit {
 
     }
     else {
-      this.loading = true;
+      //this.loading = true;
       this._apiservice.getSolution(solutionId)
         .subscribe((data: any) => {
-          this.loading = false;
+          //this.loading = false;
         }, error => {
-          this.loading = false;
+          //this.loading = false;
           console.log(error);
         });
 
@@ -520,103 +394,6 @@ export class LocalitysolutionsformComponent implements OnInit {
     }
 
   }
-
-
-
-
-
-
-
-  addDevice(value) {
-
-    let ngbModalOptions: NgbModalOptions = {
-      backdrop: 'static',
-      keyboard: false
-    };
-
-
-    this.device.modelNumber = value.modelNumber;
-    this.device.serialNumber = value.serialNumber;
-    this.device.street1 = value.street1;
-    this.device.street2 = value.street2;
-    this.device.city = value.city;
-    this.device.state = value.state;
-    this.device.zipCode = value.zipCode;
-
-    let latest_date = this.datepipe.transform(value.nextScanningDt.formatted, 'yyyy-MM-dd');
-    this.device.nextScanningDt = moment(latest_date).format();;
-
-    this.device.overallStatus = value.overallStatus;
-    this.device.notes = value.notes;
-    this.device.appSolutionId = this.appSolutionId;
-
-
-
-    var formData = new FormData();
-    if (this.showButton) {
-      let url_update = APP_CONFIG.saveAppSolutionDevices;
-      formData.append('appSolutionDeviceString', JSON.stringify(this.device));
-
-      this.http.post(url_update, formData).subscribe((data: any) => {
-        this.contentData = "Device Information has been created.";
-        this.modalService.open(this.box, ngbModalOptions);
-
-
-        this.getDevices(this.appSolutionId);
-
-      }, error => {
-
-        console.log(error);
-      });
-    }
-    else {
-      this.device.appSolutionDevice = this.deviceId;
-      let url_update = APP_CONFIG.updateAppSolutionDevice;
-      var formData = new FormData();
-      formData.append('appSolutionDeviceString', JSON.stringify(this.device));
-
-      this.http.post(url_update, formData).subscribe((data: any) => {
-        this.contentData = "Device Information has been updated.";
-        this.showButton = true;
-        this.modalService.open(this.box, ngbModalOptions);
-        this.getDevices(this.appSolutionId);
-
-      }, error => {
-
-        console.log(error);
-      });
-
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   selectBox(systemType, precinctTypeId) {
@@ -655,6 +432,18 @@ export class LocalitysolutionsformComponent implements OnInit {
 
   close() {
     this.router.navigate(['/locality/tab/solutions']);
+  }
+
+  getHostingType(value)
+  {
+    if(value === 'Choose...')
+    {
+
+    }
+    else{
+      this.applicationSolution.solutionsDTO.hostingTypeDTO.name=value;
+    }
+
   }
 
 

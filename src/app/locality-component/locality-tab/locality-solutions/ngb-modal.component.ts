@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, FormBuilder, 
 //import { FileValidator } from '../file-input.validator';
 import { ApiserviceService } from '../../../apiservice.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApplicationSolution, Solutions, Vendor, Device, DeviceDocDTO } from '../../../data_model_lsolutions';
+import { ApplicationSolution, Vendor, Device, DeviceDocDTO } from '../../../data_model_lsolutions';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { UtilService } from '../../../util.service';

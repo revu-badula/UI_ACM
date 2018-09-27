@@ -53,6 +53,7 @@ import { AssessLessonsComponent } from './locality-tab/locality-assessment/asses
 import { LocalitysolutionsformComponent } from './locality-tab/locality-solutions/localitysolutionsform/localitysolutionsform.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgbdModalContent } from './locality-tab/locality-solutions/ngb-modal.component';
+import { PhonePipe } from './phone-pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -82,7 +83,7 @@ import { NgbdModalContent } from './locality-tab/locality-solutions/ngb-modal.co
   AssessTabComponent, AssessDowntabsComponent,AssessFindComponent,
   AssessRecomendComponent,ManagementComponent,AssessActionComponent,
   AssessBusinessComponent,AssessSecurityComponent,AssessBudgetComponent,
-  AssessAttachmentsComponent,AssessLessonsComponent, LocalitysolutionsformComponent, NgbdModalContent],
+  AssessAttachmentsComponent,AssessLessonsComponent, LocalitysolutionsformComponent, NgbdModalContent, PhonePipe],
   entryComponents: [NgbdModalContent]
 })
 export class LocalityComponentModule { }

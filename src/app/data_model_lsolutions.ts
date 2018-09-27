@@ -9,13 +9,12 @@ export class ApplicationSolution {
 	applicationID: number;
 	solutionId: number;
 	notes: string;
-
-
-	solutionsDTO: Solutions;
+	solutionsDTO: SolutionsDTO;
 	noOfUnits: number;
+	hostingTypeId: number;
 
 }
-export class Solutions {
+export class SolutionsDTO {
 
 	solutionId: number;
 	certDt: any;
@@ -33,10 +32,12 @@ export class Solutions {
 	updatedTs: any;
 	vendor: Vendor;
 	hostingTypeDTO: HostingType;
+	systemTypeDTO: SystemType;
 	solutionTypeName: string;
 	labVendorId: number;
 	hostingTypeNotes: string;
-
+	precinctTypeId: number;
+	precinctTypeName: string;
 
 }
 export class Device {
@@ -91,4 +92,9 @@ export class Vendor {
 export class HostingType {
 	name: string;
 	hostingTypeId: number;
+}
+export class SystemType {
+	 systemTypeId: number;
+	 name: string;
+	 description: string;
 }

@@ -45,12 +45,11 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
   postVendorData(body) {
-    console.log("body", body);
     let url = APP_CONFIG.postVendor;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
-    return this._httpService.post(url, body, options).map((res: Response) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    return this._httpService.post(url, body, options).map((res: Response) => res.json());
+    
   }
 
   updateSolution(body) {

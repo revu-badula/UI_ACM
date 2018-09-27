@@ -4,7 +4,7 @@ import {Http, HttpModule, Headers, RequestOptions} from '@angular/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import {NgbModal,NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
-import {ApplicationSolution, Solutions, Vendor, Device, HostingType} from '../../../data_model_lsolutions';
+import {ApplicationSolution, SolutionsDTO, Vendor, Device, HostingType} from '../../../data_model_lsolutions';
 import {ApiserviceService} from '../../../apiservice.service';
 import {UtilService} from '../../../util.service';
 @Component({
@@ -17,7 +17,7 @@ export class SystemSolutionsComponent implements OnInit {
  public vendor: Vendor;
   precinctTypes:any;
   systemTypes:any;
- solutions: Solutions;
+ solutions: SolutionsDTO;
  applicationSolution:ApplicationSolution;
    device: Device;
     editableForm:boolean=true;
@@ -58,7 +58,7 @@ export class SystemSolutionsComponent implements OnInit {
  
   constructor(private _fb: FormBuilder,private modalService: NgbModal, private _apiservice: ApiserviceService, private  http: Http, private utilservice: UtilService) {
   this.applicationSolution = new ApplicationSolution();
-  this.applicationSolution.solutionsDTO = new Solutions();
+  this.applicationSolution.solutionsDTO = new SolutionsDTO();
    //this.applicationSolution.appSolutionDevices = new Device();
    this.applicationSolution.solutionsDTO.vendor= new Vendor();
    this.applicationSolution.solutionsDTO.hostingTypeDTO= new HostingType();
