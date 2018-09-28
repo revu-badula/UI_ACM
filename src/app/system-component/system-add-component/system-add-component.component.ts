@@ -19,6 +19,8 @@ export class SystemAddComponentComponent implements OnInit {
   public systemOwners: any;
   public loading: boolean = false;
   public desc:boolean=false;
+  public businessOwner:boolean=false;
+  public systemOwner:boolean=false;
   @ViewChild('content') content: TemplateRef<any>;
   constructor(private router: Router, private _apiservice: ApiserviceService, private modalService: NgbModal, private utilService: UtilService) {
     localStorage.removeItem('systemName');
@@ -143,34 +145,108 @@ export class SystemAddComponentComponent implements OnInit {
     this.router.navigate(['/system/tab2/info']);
   }
 
-  handleSort() {
+
+  handleSort(value) {
     if (!this.desc) {
-      this.acronyms.sort(this.doAsc);
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.acronyms.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.desc = true;
     }
     else {
-      this.acronyms.sort(this.doDsc);
+      let orderByValue = value;
+      this.acronyms.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
       this.desc = false;
     }
 
+
   }
-  doAsc(a, b) {
-    if (a.auditTypeName > b.auditTypeName) {
-      return -1;
-    } else if (a.auditTypeName < b.auditTypeName) {
-      return 1;
+
+  handleSort1(value) {
+    if (!this.businessOwner) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.businessOwners.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.businessOwner = true;
     }
-    return 0;
-  }
-
-  doDsc(a, b) {
-
-    if (a.auditTypeName < b.auditTypeName) {
-      return -1;
-    } else if (a.auditTypeName > b.auditTypeName) {
-      return 1;
+    else {
+      let orderByValue = value;
+      this.businessOwners.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.businessOwner = false;
     }
-    return 0;
+
+
   }
 
+
+
+  handleSort2(value) {
+    if (!this.systemOwner) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.systemOwners.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.systemOwner = true;
+    }
+    else {
+      let orderByValue = value;
+      this.systemOwners.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.systemOwner = false;
+    }
+
+
+  }
+
+
+  
 }

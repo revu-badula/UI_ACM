@@ -274,6 +274,7 @@ export class LocalitysolutionsformComponent implements OnInit {
         this.applicationSolution.solutionsDTO.versionNumber = this.solution.versionNumber;
         this.applicationSolution.solutionsDTO.vendor = this.solution.vendor;
         this.applicationSolution.solutionsDTO.hostingTypeDTO = this.solution.hostingTypeDTO;
+        this.applicationSolution.hostingType=this.solution.hostingTypeDTO;
         this.hostType = this.solution.hostingTypeDTO.name;
 
 
