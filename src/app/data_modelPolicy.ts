@@ -73,7 +73,7 @@ export class Policy{
 
 export class PolicyDocumentsDTO{
 	
-	policyDocumentsTblId: number;
+	policyDocId: number;
 	documentName: string;
 	documentPath: string;
 	activeFlag: boolean;

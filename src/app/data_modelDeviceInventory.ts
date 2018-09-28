@@ -12,9 +12,13 @@ export class Device{
   localDiskSpace: string;
   cpuCount: number;
   physicalCpuCount: number;
+ 
+  
   logicalCpuCount: number;
   ipAddress: string;
   dbServer: string;
+  createdTs:any;
+  updatedTs:any;
   serverName: string;
   archiveLogMode: string;
   sizeGb: string;
@@ -32,4 +36,21 @@ export class Device{
   licenseRenewDt: any;
   vendorName: string;
   productName: string;
+  serverContactDTOs: any = [];
+}
+
+export class Server{
+serverContactId:number;
+	//serverEntity:ServerEntity;
+	firstName:string;
+	lastName:string;
+	emailId:string;
+	phoneNumber:string;
+	isPrimary:string;
+	divisionName:string;
+	cost:string;
+	createdBy:string;
+	createdTs:any;
+	updatedBy:string;
+	updatedTs:any;
 }

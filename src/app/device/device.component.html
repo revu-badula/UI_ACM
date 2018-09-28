@@ -28,14 +28,14 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-<!-- 		    <tr *ngFor="let appDevice of device"> -->
-		    <tr>
-		     <td><a class="box" (click)="getDBServer(appDevice.databaseId)" style="cursor: pointer;">{{ appDevice.hostName}}</a></td>
-<!-- 		      <td></td> -->
-<!-- 		      <td></td> -->
-<!-- 		      <td>7/21/20</td> -->
-<!-- 		      <td>9/20/2018</td> -->
-<!-- 		      <td>8/2/2018</td> -->
+		    <tr *ngFor="let appDevice of displayDevices"> 
+		    
+		     <td><a class="box" routerLink="/updateDevice/{{appDevice.databaseId}}" (click)="getDatabases(appDevice.databaseId)" style="cursor: pointer;">{{ appDevice.hostName}}</a></td>
+ <td>{{appDevice.productName}}</td> 
+<!--      <td>{{appDevice}}</td> -->
+      <td>{{appDevice.createdTs}}</td>
+		      <td>{{appDevice.updatedTs}}</td>
+	      <td>{{appDevice.licenseRenewDt|filter}}</td>
 		    </tr> 
 		  </tbody>
 			</table>
@@ -47,11 +47,11 @@
 		<div class=" form-row">
 		<div class="form-group col-md-6">
             <label for="hostName">Host Name</label><div class="asterisk">*</div>
-              <input type="text" class="form-control" id="hostName" [(ngModel)] = "device.hostName" [name] = "'host_name'" required>
+              <input type="text" class="form-control"  [(ngModel)] = "device.hostName" name = "host">
             	</div>
         <div class="form-group col-md-6">
             <label for="systemTag">System Tag</label><div class="asterisk">*</div>
-              <input type="text" class="form-control" id="systemTag" [(ngModel)] = "device.systemTag" [name] = "'system_tag'" required>
+              <input type="text" class="form-control"  [(ngModel)] = "device.systemTag" name = "system">
             	</div>
 	</div>
 	<hr />
@@ -61,59 +61,59 @@
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="firstName">
+                    <input type="text" class="form-control" [(ngModel)] = "serverContact.firstName" name = "firstname">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastName">Last Name</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="lastName">
+                    <input type="text" class="form-control" [(ngModel)] = "serverContact.lastName" name = "lastname">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">Email ID</label>
                     <div class="asterisk">*</div>
-                    <input type="email" class="form-control"  id="email"  title='Email Id (Format: @example.com)'>
+                    <input type="email" class="form-control"  [(ngModel)] = "serverContact.emailId" name = "emaild">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="phone" placeholder="Phone Number" pattern="^\d{3}-\d{3}-\d{4}$" required title='Phone Number (Format: 999-999-9999)'>
+                    <input type="text" class="form-control"  placeholder="Phone Number"   [(ngModel)] = "serverContact.phoneNumber" name = "phoneNumber">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="responsibleDivision/unitName">Responsible Division/Unit Name</label>
                     <div class="asterisk">*</div>
-                    <input type="email" class="form-control"  id="responsibleDivision/unitName">
+                    <input type="email" class="form-control"   [(ngModel)] = "serverContact.divisionName" name="division">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="costField">Cost Field</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="costField" placeholder="Phone Number">
+                    <input type="text" class="form-control" placeholder="Phone Number" [(ngModel)] = "serverContact.cost" name="cost">
                 </div>
             </div>
-    <h5>Secondary Contact</h5>
+<!-- <!--     <h5>Secondary Contact</h5> -->
     <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="firstName">
+                    <input type="text" class="form-control" id="firstName"  [(ngModel)] = "serverContact.firstName" name = "fnum" [ngModelOptions]="{standalone: true}" >
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastName">Last Name</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="lastName">
+                    <input type="text" class="form-control" id="lastName" [(ngModel)] = "serverContact.lastName" name = "lnum" [ngModelOptions]="{standalone: true}">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">Email ID</label>
                     <div class="asterisk">*</div>
-                    <input type="email" class="form-control"  id="email"  title='Email Id (Format: @example.com)'>
+                    <input type="email" class="form-control"  id="email"  title='Email Id (Format: @example.com)' [(ngModel)] = "serverContact.emailId" name = "emailx"  >
                 </div>
                 <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="phone" placeholder="Phone Number" pattern="^\d{3}-\d{3}-\d{4}$" required title='Phone Number (Format: 999-999-9999)'>
+                    <input type="text" class="form-control" id="phone" placeholder="Phone Number" pattern="^\d{3}-\d{3}-\d{4}$" required title='Phone Number (Format: 999-999-9999)' [(ngModel)] = "serverContact.phoneNumber" name = "'p_Number'" >
                 </div>
             </div>
 	<hr />
@@ -121,34 +121,36 @@
                 <div class="form-group col-md-6">
                     <label for="licenceStartDate">License Start Date</label>
                     <div class="asterisk">*</div>
-                    <input type="email" class="form-control"  id="licenseStartDate">
+             
+                     <my-date-picker name="mydate" [options]="myDatePickerOptions"
+        (dateChanged) = "getDate($event)" [(ngModel)] = "device.licenseStartDt" ></my-date-picker>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="licenseEndDate">License End Date</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="licenseEndDate">
+                    <input type="text" class="form-control" id="licenseEndDate" [(ngModel)]="device.licenseEndDt" name="lend">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="licenceRenewalDate">License Renewal Date</label>
                     <div class="asterisk">*</div>
-                    <input type="email" class="form-control"  id="licenseRenewalDate">
+                    <input type="email" class="form-control"  id="licenseRenewalDate" [(ngModel)]="device.licenseRenewDt" name="lrenew">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="vendorName">Vendor Name</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="vendorName" [(ngModel)] = "device.vendorName" [name]="'vendor_name'">
+                    <input type="text" class="form-control" id="vendorName" [(ngModel)] = "device.vendorName" name="'vname'">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="productName">Product Name</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="productName" [(ngModel)] = "product_name" [name]="'product_name'">
+                    <input type="text" class="form-control" id="productName" >
                 </div>
             </div>
 	<h4>Configuration</h4>
 		<div class=" form-row">
 		<div class="form-group col-md-6">
             <label for="hardware">Hardware</label>
-              <input type="text" class="form-control" id="hardware" [(ngModel)] = "device.hardware" [name] = "'device_hardware'">
+              <input type="text" class="form-control" id="hardware" [(ngModel)] = "device.hardware" name = "hardware">
             	</div>
          <div class="form-group col-md-6">
             <label for="updateLevel">Control Name</label>
@@ -156,32 +158,32 @@
             	</div>
 		<div class="form-group col-md-6">
             <label for="clockFrequency">Clock Frequency</label>
-              <input type="text" class="form-control" id="clockFrequency" [(ngModel)] = "device.clockFrequency" [name] = "'clock_frequency'">
+              <input type="text" class="form-control" id="clockFrequency" [(ngModel)] = "device.clockFrequency" name = "clock">
             	</div>
          <div class="form-group col-md-6">
             <label for="memory">Memory</label>
-              <input type="text" class="form-control" id="memory" [(ngModel)] = "device.memorySize" [name] = "'memory_size'">
+              <input type="text" class="form-control" id="memory" [(ngModel)] = "device.memorySize" name = "memory">
             	</div>
 		<div class="form-group col-md-6">
             <label for="diskSpace">Disk Space</label>
-              <input type="text" class="form-control" id="diskSpace" [(ngModel)] = "device.localDiskSpace" [name] = "'disk_space'">
+              <input type="text" class="form-control" id="diskSpace" [(ngModel)] = "device.localDiskSpace" name = "space">
             	</div>
          <div class="form-group col-md-6">
             <label for="cpuCount">CPU Count</label>
-              <input type="text" class="form-control" id="cpuCount" [(ngModel)] = "device.cpuCount" [name] = "'cpu_count'">
+              <input type="text" class="form-control" id="cpuCount" [(ngModel)] = "device.cpuCount" name = "cpu">
             	</div>
 		<div class="form-group col-md-6">
             <label for="physicalCpuCount">Physical CPU Count</label>
-              <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)] = "device.physicalCpuCount" [name] = "'physical_cpucount'">
+              <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)] = "device.physicalCpuCount" name = "physical">
             	</div>
          <div class="form-group col-md-6">
             <label for="logicalCpuCount">Logical CPU Count</label>
-              <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)] = "device.logicalCpuCount" [name] = "'logical_cpucount'">
+              <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)] = "device.logicalCpuCount" name = "logical">
             	</div>
-         <div class="form-group col-md-6">
-            <label for="ipAddress">IP Address</label>
-              <input type="text" class="form-control" id="ipAddress" [(ngModel)] = "device.ipAddress" [name] = "'ip_address'">
-            	</div>
+         <div class="form-group col-md-6"> 
+             <label for="ipAddress">IP Address</label> 
+               <input type="text" class="form-control" id="ipAddress" [(ngModel)] = "device.ipAddress" name = "ipaddress"> 
+           	</div> 
 	</div>
 	<hr />
 	<h4>Operating System</h4>
@@ -192,39 +194,38 @@
             	</div>
          <div class="form-group col-md-6">
             <label for="version">Version</label>
-              <input type="text" class="form-control" id="version" [(ngModel)] = "device.osVersion" [name] = "'os_version'">
+              <input type="text" class="form-control" id="version" [(ngModel)] = "device.osVersion" name = "osversion">
             	</div>
 	</div>
-	<hr />
-	<h4>Database Server</h4>
-	<div class="form-row">
-		<div class="form-group col-md-6">
-            <label for="db/AppServerName">DB/APP Server Name</label>
-              <input type="text" class="form-control" id="db/AppServerName" [(ngModel)] = "device.dbServer" [name] = "'db_server'">
+	<hr /> 
+ 	<h4>Database Server</h4> 
+ 	<div class="form-row"> 
+ 		<div class="form-group col-md-6"> 
+             <label for="db/AppServerName">DB/APP Server Name</label> 
+               <input type="text" class="form-control" id="db/AppServerName" [(ngModel)] = "device.dbServer" name = "dbserver"> 
+             	</div> -->
+      </div> 
+         <div class="form-row"> 
+          	<div class="form-group col-md-6"> 
+             <label for="serverName">Server Name</label> 
+               <input type="text" class="form-control" id="serverName" [(ngModel)] = "device.serverName" name = "servername"> 
+             	</div> 
+              <div class="form-group col-md-6"> 
+             <label for="version">Version</label> 
+               <input type="text" class="form-control" id="version" [(ngModel)] = "device.dbVersion" name = "dbversion"> 
             	</div>
-     </div>
-         <div class="form-row">
-         	<div class="form-group col-md-6">
-            <label for="serverName">Server Name</label>
-              <input type="text" class="form-control" id="serverName" [(ngModel)] = "device.serverName" [name] = "'server_name'">
-            	</div>
-             <div class="form-group col-md-6">
-            <label for="version">Version</label>
-              <input type="text" class="form-control" id="version" [(ngModel)] = "device.dbVersion" [name] = "'db_version'">
-            	</div>
-            <div class="form-group col-md-6">
-            <label for="sizeGb">Size GB</label>
-              <input type="text" class="form-control" id="sizeGb" [(ngModel)] = "device.sizeGb" [name] = "'size_gb'">
-            	</div>
-            <div class="form-group col-md-6">
-            <label for="archiveLogMode">Archive Log Mode</label>
-              <input type="text" class="form-control" id="archiveLogMode" [(ngModel)] = "device.archiveLogMode" [name] = "'db_version'">
-            	</div>
-	</div>
-	<hr />
-	<h4>Purpose</h4>
-	<textarea cols="156" rows="7" id="patches"></textarea>
-	<hr />
+             <div class="form-group col-md-6"> 
+             <label for="sizeGb">Size GB</label> 
+            <input type="text" class="form-control" id="sizeGb" [(ngModel)] = "device.sizeGb" name = "sizegb"> 
+             	</div> 
+             <div class="form-group col-md-6"> 
+             <label for="archiveLogMode">Archive Log Mode</label> 
+              <input type="text" class="form-control" id="archiveLogMode" [(ngModel)] = "device.archiveLogMode" name = "db_version"> 
+             	</div> 
+ 	</div> 
+	<hr /> 
+ 	<h4>Purpose</h4> 
+ 	<textarea cols="156" rows="7" id="patches"></textarea> 	<hr /> 
 	<button (click)="changeForm()" type="button" class="showList btn btn-outline-dark">Show List</button>
 	<button type="submit" (click)="open(content)" class="submit btn btn-primary">Submit</button>
 	<button type="cancel" class="cancel btn btn-primary">Cancel</button>

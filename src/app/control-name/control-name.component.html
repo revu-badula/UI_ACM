@@ -1,6 +1,3 @@
-<div class="my-container">
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-</div>
 <app-navigation-component></app-navigation-component>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
             <!-- <div class="home">
@@ -150,7 +147,18 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
             <label for="internalPolicyLinks">Internal Policy Links</label>
-             <div class="display-file">
+            <div *ngIf = "showForm">
+            	<table>
+            		<tbody>
+            			<tr *ngFor="let getLinkedPolicy of getLinkedPolicies">
+            			
+            				<td style="cursor:pointer;color:blue;">{{ getLinkedPolicy.controlNumber }}</td>
+            				
+            			</tr>
+            		</tbody>
+            	</table>
+            </div>
+             <div *ngIf = "!showForm" class="display-file">
             	<table>
             		<tbody>
             			<tr *ngFor="let link of links">
@@ -181,11 +189,11 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
             <label for="assignTo">Assign To</label>
-              <input type="text" class="form-control" id="assignTo" [(ngModel)] = "policyAccess.assignedTo" [name] = "'assi_to'">
+              <input type="text" class="form-control" id="assignTo">
             	</div>
          <div class="form-group col-md-6">
             <label for="endDate">End Date</label>
-              <my-date-picker name="myname" [(ngModel)] = "endDate" [selDate] = "displayEndDate"></my-date-picker>
+              <my-date-picker name="myname"></my-date-picker>
             	</div>
          <div class="form-group col-md-6">
          	<label for="status">Status</label>
@@ -203,36 +211,29 @@
 		<div class="col-md-6">
 			<h4>Documents</h4>
 	<input type = "file" #fileInput (change)="createPolicyDocumentDTO($event)">
-	<div class="display-file">
-            	<br>
-							
-							<table border="1">
-							<tr>
-								<th>FileName</th>
-								<th>Action</th>
-							</tr>
-							<tr *ngFor=" let policyDocument of displayPolicyDocuments">
-								<td style="cursor: pointer; color: blue;">{{policyDocument.documentName}}</td>
-								<td style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
-
-							
-							</tr>
-						</table>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-            </div>
-	<!-- <input type = "file" #fileInput> -->
-	<!-- <button class="documents btn btn-primary">Add Documents</button> -->
+	
 		</div>
 	</div>
+	
+	<div class="display-file">
+	
+	        	<ul *ngFor="let file of displayPolicyDocuments">  								
+								<li *ngIf="file.activeFlag" (click)="getPolicyDocumentAttch(file.policyDocId)"  style="cursor: pointer; color: blue;">
+									{{file.documentName}}</li>
+							</ul>
+	
+	
+	
+	
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
 	</fieldset>
 	<hr />
 	<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
@@ -269,17 +270,17 @@
 		</div>
 	<div *ngIf = "definitive == true && policy== true ">
 		<h5>CONTROLS</h5>
-		<table class="table table-bordered">
+		<table class="table table-bordered table-dark">
 		  <thead>
 		    <tr>
 		      <th scope="col">Control Number</th>
 		      <th scope="col">Policy Name</th>
 		      <th scope="col">Priority</th>
 		      <th scope="col">Policy Value</th>
-		      <!-- <th scope="col">Assigned To</th>
+		      <th scope="col">Assigned To</th>
 		      <th scope="col">Assigned By</th>
 		      <th scope="col">Assigned On</th>
-		      <th scope="col">Target Date</th> -->
+		      <th scope="col">Target Date</th>
 		      <th scope="col">Status</th>
 		    </tr>
 		  </thead>
@@ -291,10 +292,10 @@
 		      <td>{{ policy.policyName }}</td>
 		      <td>{{ policy.priority }}</td>
 		      <td>{{ policy.policyVal }}</td>
-		     <!--  <td></td>
 		      <td></td>
 		      <td></td>
-		      <td></td> -->
+		      <td></td>
+		      <td></td>
 		      <td>{{ policy.status }}</td>
 		    </tr>
 		  </tbody>

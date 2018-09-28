@@ -10,7 +10,7 @@
 						<!-- <fa *ngIf="!plus" [name]="'plus'" class="plus-icon icons"></fa> -->
 						<a routerLink = "/policyAdd"><fa *ngIf="!plus" [name]="'plus'" class="plus-icon icons"></fa></a>
 						<!-- <button type="submit"><fa *ngIf="!plus" class="save-icon icons" [name]="'save'"></fa></button> -->
-						<fa *ngIf="!plus" class="save-icon icons" [name]="'save'"></fa>
+						<fa *ngIf="!plus" (click)="updatePolicyGrp()"class="save-icon icons" [name]="'save'"></fa>
 						<fa (click)="close()" *ngIf="!plus" class="close-icon icons" [name]="'times-circle'"></fa>
 					</div>
 			<hr />
@@ -145,7 +145,7 @@
             </div>
 		</fieldset>
 		<hr />
-		<button type="submit" class="cancel btn btn-primary">Submit</button>
+		
 		</form>
 		
 		<!-- <div *ngIf = "showDocument" class="display-file">

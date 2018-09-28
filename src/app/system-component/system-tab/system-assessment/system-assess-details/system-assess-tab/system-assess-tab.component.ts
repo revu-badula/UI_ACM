@@ -19,7 +19,9 @@ export class SystemAssessTabComponent implements OnInit {
   public updatedTime: any;
   public p: number = 1;
   public desc: boolean = false;
-
+  public name:boolean=false;
+  public assessmentDt:boolean=false;
+  public nextAssessmentDt:boolean=false;
   public showPagination:boolean=true;
 
   public showPlusButton: boolean = false;
@@ -72,6 +74,137 @@ export class SystemAssessTabComponent implements OnInit {
     localStorage.setItem('sysassesId', id);
     UtilService.disabled=false;
     this.router.navigate(['/system/tab2/assessment/Tabs2/first2']);
+  }
+
+ handleSort(value) {
+    if (!this.desc) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc = false;
+    }
+
+
+  }
+
+  handleSort1(value) {
+    if (!this.name) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.name = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.name = false;
+    }
+
+
+  }
+
+  handleSort2(value) {
+    if (!this.assessmentDt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.assessmentDt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.assessmentDt = false;
+    }
+
+
+  }
+  handleSort3(value) {
+    if (!this.nextAssessmentDt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.nextAssessmentDt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.nextAssessmentDt = false;
+    }
+
+
   }
 
  

@@ -11,6 +11,9 @@
 .policy-edit{
 	float: right;
 }
+table{
+	width:100%;
+}
 
 .icons{
     vertical-align: middle;

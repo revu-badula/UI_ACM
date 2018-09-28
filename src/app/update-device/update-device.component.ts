@@ -2,10 +2,11 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import {APP_CONFIG} from '../app.config';
 import {ApiserviceService} from '../apiservice.service';
 import {Http, HttpModule, Headers, RequestOptions} from '@angular/http';
-import { Device } from '../data_modelDeviceInventory';
+import { Device ,Server} from '../data_modelDeviceInventory';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {Location} from '@angular/common';
 import { UtilService } from '../util.service';
+import {ActivatedRoute, Params } from  '@angular/router';
 
 @Component({
   selector: 'app-update-device',
@@ -16,17 +17,29 @@ import { UtilService } from '../util.service';
 export class UpdateDeviceComponent implements OnInit {
   device: Device;
   public deviceData: any;
+appId:number;
   public getDeviceData: any;
   public hostName: any;
   showForm:boolean = true;
   color: String;
+  serverContact:Server;
+
+  deviceId:number;
   
-  constructor(private _apiservice: ApiserviceService, private  http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) { 
+  constructor(private _apiservice: ApiserviceService,private activatedRoute:ActivatedRoute, private  http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) { 
     this.device = new Device();
+    this.serverContact = new Server();
+     this.device.serverContactDTOs = [] as Server[];
+    
+  
+    
   }
 
   ngOnInit() {
-    this.getDBServer(1);
+  this.activatedRoute.params.subscribe(params => {
+  this.deviceId = params ['id'];
+  });
+    this.getDBServer(this.deviceId);
   }
   
    open(content){
@@ -38,7 +51,11 @@ export class UpdateDeviceComponent implements OnInit {
     .subscribe((data:any) => {
       console.log(data);
      this.device = data;
-      //console.log(this.getDeviceData);   
+     for(let i=0;i<data.serverContactDTOs.length;i++)
+     {
+     this.serverContact=data.serverContactDTOs[i];
+     }
+      console.log(this.device);   
     },error => console.log(error));
   }
   
@@ -51,27 +68,19 @@ export class UpdateDeviceComponent implements OnInit {
   }
   
   updateDevice(){
+     this.device.databaseId = this.deviceId;
     let url = APP_CONFIG.updateDBServerInfo;
-    /*let d = new Date(this.solution.certDt);
-        this.selectDate = {
-           year: d.getFullYear(),
-          month: d.getMonth() + 1,
-          day: d.getDate()
-        }*/
+     	
     console.log(this.device);
-    //formData.append('device', JSON.stringify(this.device));
-    /*for (let i = 0; i < this.files.length; i++) {
-     formData.append('files', this.files[i]);
-
-    }*/
-    //console.log(formData.get('device'));
-    this.deviceData = JSON.stringify(this.device);
-    console.log(this.deviceData);
+    
+  
+     this.device.serverContactDTOs.push(this.serverContact);
+    console.log(this.device);
      this.http.post(url, this.device).subscribe((data: any) => {
               console.log("inside http");
               console.log(data);
             }, error => console.log(error));
-    //this._apiservice.saveDBServerInfo(formData);
+  
   }
   
   @HostListener('window:scroll', [])

@@ -9,7 +9,7 @@ import { Policy, PolicyDocumentsDTO, PolicyGrp } from '../data_modelPolicy';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {APP_CONFIG} from '../app.config';
 import { IMyDate } from 'mydatepicker';
-
+declare var swal: any; ''
 @Component({
   selector: 'app-control-name',
   templateUrl: './control-name.component.html',
@@ -45,7 +45,7 @@ export class ControlNameComponent implements OnInit {
   public displayPolicyDocuments: any;
   public endDate: any;
   public displayEndDate: IMyDate = null;
-  
+    public showFrm: boolean = true;
 
   constructor(private _location: Location, private activatedRoute: ActivatedRoute,  private _apiservice: ApiserviceService, 
   private  http: Http, private modalService: NgbModal) {
@@ -87,6 +87,7 @@ export class ControlNameComponent implements OnInit {
   
    editorGroup(): void {
     this.showForm = false; 
+    this.showFrm = false;
   }
   
   open(content){
@@ -296,6 +297,83 @@ viewEvent(addPolicies: any,event){
   getOpacity() {
     return this.color === 'online' ? 0.8 : 1;
   }
+  
+  
+  getPolicyDocumentAttch(id){
+   window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
+  }
+  
+  
+  
+  
+  deleteFile(id, index) {
+    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+      .then((result: any) => {
+        if (result.value !== undefined && result.value) {
+          if (id === undefined) {
+            let length = this.policyAccess.policyDocumentsDTOs.length;
+            if (length === 1) {
+             this.policyAccess.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
+            }
+            else {
+              for (let i = index; i < length; i++) {
+               this.policyAccess.policyDocumentsDTOs[i] = this.policyAccess.policyDocumentsDTOs[i + 1];
+              }
+           this.policyAccess.policyDocumentsDTOs.splice(length - 1, 1);
+            }
+
+          }
+          else {
+            for (let i = 0; i < this.policyAccess.policyDocumentsDTOs.length; i++) {
+              if (this.policyAccess.policyDocumentsDTOs[i].policyDocId === id) {
+                this.policyAccess.policyDocumentsDTOs[i].activeFlag = false;
+              }
+            }
+          }
+
+        }
+      }, error => {
+        console.log(error);
+      });
+  }
+
+
+
+  confirm(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
+    return new Promise((resolve, reject) => {
+      swal({
+        title: title,
+        text: text,
+        type: 'warning',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      }).then((result) => {
+        resolve(result);
+      }, error => reject(error));
+    });
+
+
+
+
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   radioValue(event: any){
   	//console.log(event);

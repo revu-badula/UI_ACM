@@ -25,6 +25,12 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
+getDatabases(){
+  let url = APP_CONFIG.getDatabases;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+}
+
 
   getSolutionExtra(id) {
     const url = APP_CONFIG.getSolution;
@@ -45,11 +51,12 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
   postVendorData(body) {
+    console.log("body", body);
     let url = APP_CONFIG.postVendor;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
-    return this._httpService.post(url, body, options).map((res: Response) => res.json());
-    
+    return this._httpService.post(url, body, options).map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   updateSolution(body) {

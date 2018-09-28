@@ -69,7 +69,9 @@ saveAppSolutionDevices:apiBaseUrl + 'saveAppSolutionDevices' ,
 getDevices:apiBaseUrl + 'getAppSolution',
 getBusinessOwner: apiBaseUrl + 'getBusinessOwnerNameDoe',
 getSystemAdministrator: apiBaseUrl + 'getSystemOwnerNameDoe',
-getDeviceFile: apiBaseUrl + 'getDeviceFile'
+getDeviceFile: apiBaseUrl + 'getDeviceFile',
+getPolicyDocumentAttch:apiBaseUrl + 'getPolicyDocumentAttch',
+getDatabases:apiBaseUrl +'getDatabases'
 
 }
 

@@ -1,18 +1,14 @@
-
-
-
 <div class="my-container">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-     </div>
-
+  </div>
 <div class="plus">
 
-<fa class="edit-icon icons" [name]="'edit'" style="float:right" (click)="showPlus()"></fa>
-
-</div>
+        <fa *ngIf="showEdit" class="edit-icon icons" [name]="'edit'" style="float:right" (click)="showPlus()"></fa>
     
-<div class="form-div">
-<form class="former">
+    </div>
+    
+    <div class="form-div">
+            <form class="former">
         
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -52,15 +48,14 @@
                 <thead>
                     <tr>
     
-                        <th scope="col">Assessment Name</th>
-                        <th scope="col">Application Acronym</th>
-                   
-                        <th scope="col">Assessment Date</th>
-                         <th scope="col">Next assessment Date</th>
-                         <th scope="col">Status</th>
+                        <th scope="col" (click)="handleSort('auditName')">Audit Type <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+                        <th scope="col" (click)="handleSort1('name')">Assessment Name <i class="fa fa-arrow-down" *ngIf="!name"></i> <i class="fa fa-arrow-up" *ngIf="name"></i></th>
+                        <th scope="col" (click)="handleSort2('assessmentDt')">Assessment Date<i class="fa fa-arrow-down" *ngIf="!assessmentDt"></i> <i class="fa fa-arrow-up" *ngIf="assessmentDt"></i></th>
+                        <th scope="col" (click)="handleSort3('nextAssessmentDt')">Next Assessment Date<i class="fa fa-arrow-down" *ngIf="!nextAssessmentDt"></i> <i class="fa fa-arrow-up" *ngIf="nextAssessmentDt"></i></th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
- <tbody>
+                <tbody>
                     <tr *ngFor="let  assess of assessmentDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
                          <td>
                             <a (click)="getAudit(assess.assessmentId)" style="cursor:pointer;color:blue;">{{ assess.auditName}}</a>
@@ -72,9 +67,8 @@
                     </tr>
                 </tbody>
             </table>
-                
+            <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
         </form>
     </div>
     <router-outlet></router-outlet>
         
-          
