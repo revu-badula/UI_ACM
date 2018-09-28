@@ -243,7 +243,7 @@
 
 		<button type="submit" class="submit btn btn-primary"
 			[disabled]="!formName.valid"  *ngIf="isShow">Submit</button>
-		<button type="cancel" (click)="d()" class="cancel btn btn-primary">Cancel</button>
+		<button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
 	</div>
 
 </form>

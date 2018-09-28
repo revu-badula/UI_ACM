@@ -220,7 +220,8 @@ export class LocalityDetailsComponent implements OnInit {
     this.locality.workHoursDTOs.push(this.workHours);
     //console.log(this.locality.workHoursDTOs);
   }
-  d() {
+  d(event) {
+    event.preventDefault();
     this.router.navigate(['/locality/map']);
   }
 

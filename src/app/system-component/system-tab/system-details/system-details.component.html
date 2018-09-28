@@ -103,7 +103,7 @@
 	<div class="buttons">
 
 		<button *ngIf="!showEditButton" type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
-		<button type="cancel" class="cancel btn btn-primary">Cancel</button>
+		<button type="cancel" class="cancel btn btn-primary" (click)="goBack($event)">Cancel</button>
 	</div>
 
 </form>

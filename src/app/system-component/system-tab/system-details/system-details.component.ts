@@ -193,6 +193,12 @@ export class SystemDetailsComponent implements OnInit {
   getOpacity() {
     return this.color === 'online' ? 0.8 : 1;
   }
+
+  goBack(event)
+  {
+    event.preventDefault();
+    this.router.navigate(['/system/map']);
+  }
   
 
 
