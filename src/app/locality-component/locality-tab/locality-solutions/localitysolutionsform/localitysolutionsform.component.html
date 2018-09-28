@@ -80,7 +80,7 @@
 
 
 <form #formName="ngForm" class="former  clear-right" (ngSubmit)="saveAppSolution()">
-	<fieldset [disabled]="editForm">
+	<fieldset>
 		<p>
 			<b>APPLICATION SOLUTIONS</b>
 		</p>
@@ -127,8 +127,9 @@
 					<label for="lastName">Model/Solution</label>
 					<div class="asterisk">*</div>
 					<input type="text" class="form-control" *ngIf="!isAddNewSolution" ngModel name="modelSname" [(ngModel)]="applicationSolution.solutionsDTO.name"
-					 required readonly> <select *ngIf="isAddNewSolution" id="inputState" class="form-control" [(ngModel)]="applicationSolution.solutionsDTO.name"
-					 (change)="selectModSolution($event.target.value)" ngModel name="modelSname" required>
+					 required readonly> 
+					 <select *ngIf="isAddNewSolution" id="inputState" class="form-control"
+					 (change)="selectModSolution($event.target.value)"  name="modelSname" required>
 
 						<option selected>Choose...</option>
 						<option *ngFor="let name of names" value="{{name.solutionId}}">{{name.name}}</option>
@@ -161,8 +162,10 @@
 					<div class="form-group col-md-6">
 						<label for="lastName">Hosting Type</label>
 						<div class="asterisk">*</div>
-						<input type="text" class="form-control" ngModel name="hostingTypeId" required
-						 [(ngModel)]="applicationSolution.solutionsDTO.hostingTypeDTO.name" readonly>
+						<!-- <input type="text"  class="form-control" ngModel name="hostingTypeId" required
+						 [(ngModel)]="applicationSolution.solutionsDTO.hostingTypeDTO.name" readonly> -->
+						 <input type="text"  class="form-control"  name="hostingTypeId" required
+						 [(ngModel)]="hostType" readonly>
 						<!-- <select id="inputState" *ngIf="isAddNewSolution" class="form-control" ngModel name="modelHname" required
 						 (change)="getHostingType($event.target.value)" required>
 							<option>Choose...</option>

@@ -33,11 +33,11 @@ export class Solution {
 
 export class SystemType {
   name: string;
-  systemTypeId: string
+  systemTypeId: any;
 }
 export class HostingType {
   name: string;
-  hostingTypeId: string
+  hostingTypeId: any;
 }
 
 export class LabVendors {

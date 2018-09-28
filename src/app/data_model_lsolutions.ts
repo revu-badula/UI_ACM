@@ -12,6 +12,7 @@ export class ApplicationSolution {
 	solutionsDTO: SolutionsDTO;
 	noOfUnits: number;
 	hostingTypeId: number;
+	hostingType: HostingType;
 
 }
 export class SolutionsDTO {
@@ -82,9 +83,9 @@ export class Vendor {
 	vendorId: number;
 	name: string;
 	createdBy: string;
-	createdTs: any;
-	updatedBy: string;
-	updatedTs: any;
+	//createdTs: any;
+	//updatedBy: string;
+	//updatedTs: any;
 	vendorAddress: any;
 	vendorContact: any;
 }
@@ -96,5 +97,5 @@ export class HostingType {
 export class SystemType {
 	 systemTypeId: number;
 	 name: string;
-	 description: string;
+	 //description: string;
 }

@@ -127,7 +127,7 @@ export class LoginPageComponent implements OnInit {
 
     //var expireDate = new Date().getTime() + (token.expires_in);
     //console.log(expireDate)
-    let minutes = token.expires_in / 600;
+    let minutes = token.expires_in / 60;
     var now = new Date();
     now.setTime(now.getTime() + (minutes * 60 * 1000))
     Cookie.set("access_token", token.access_token, now);
