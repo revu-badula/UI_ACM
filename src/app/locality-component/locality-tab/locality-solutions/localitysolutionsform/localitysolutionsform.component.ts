@@ -40,12 +40,10 @@ export class LocalitysolutionsformComponent implements OnInit {
   public modelSname: string;
   public solutionId: number;
   public appId: any;
-  public invoiceForm: FormGroup;
   public showSType: boolean = true;
   public showPType: boolean = true;
   public modalForm: FormGroup;
   public appSolutions: any;
-  public modalsForm: FormGroup;
   public deviceTable: any;
   public serialNumber: number;
   public appSolutionId: any;
@@ -436,7 +434,8 @@ export class LocalitysolutionsformComponent implements OnInit {
       });
   }
 
-  close() {
+  close(event) {
+    event.preventDefault();
     this.router.navigate(['/locality/tab/solutions']);
   }
 

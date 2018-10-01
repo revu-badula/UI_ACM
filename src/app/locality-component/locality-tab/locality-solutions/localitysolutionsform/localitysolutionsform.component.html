@@ -80,7 +80,7 @@
 
 
 <form #formName="ngForm" class="former  clear-right" (ngSubmit)="saveAppSolution()">
-	<fieldset>
+	<fieldset [disabled]="editableForm">
 		<p>
 			<b>APPLICATION SOLUTIONS</b>
 		</p>
@@ -129,8 +129,7 @@
 					<input type="text" class="form-control" *ngIf="!isAddNewSolution" ngModel name="modelSname" [(ngModel)]="applicationSolution.solutionsDTO.name"
 					 required readonly> 
 					 <select *ngIf="isAddNewSolution" id="inputState" class="form-control"
-					 (change)="selectModSolution($event.target.value)"  name="modelSname" required>
-
+					 (change)="selectModSolution($event.target.value)"  name="modelSname"  ngModel required>
 						<option selected>Choose...</option>
 						<option *ngFor="let name of names" value="{{name.solutionId}}">{{name.name}}</option>
 
@@ -185,6 +184,7 @@
 					<div class="form-group col-md-6">
 						<label for="units">Add Unit</label>
 						<div class="plus">
+						
 
 							<!-- 							 [ngClass]="{disabled: editableForm}" -->
 							<i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="open1()"></i>
@@ -222,7 +222,7 @@
 			</div>
 		
 			<button type="submit" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick">Submit</button>
-			<button type="submit" class="btn btn-primary" (click)="close()">Close</button>
+			<button type="submit" class="btn btn-primary" (click)="close($event)">Cancel</button>
 
 
 		</div>

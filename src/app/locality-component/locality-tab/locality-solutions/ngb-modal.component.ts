@@ -11,7 +11,7 @@ import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { UtilService } from '../../../util.service';
 import { Cookie } from 'ng2-cookies';
-
+import {IMyDpOptions, IMyDateModel} from 'mydatepicker';
 declare var swal: any; ''
 @Component({
     selector: 'ngbd-modal-content',
@@ -39,7 +39,7 @@ declare var swal: any; ''
 
 				<div class="asterisk">*</div>
 				<input type="email" class="form-control" id="modelNumber"
-					placeholder="Equipment Model Number" formControlName="modelNumber">
+					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="5" maxlength="10">
 
 			</div>
 			<div class="form-group col-md-6">
@@ -47,7 +47,7 @@ declare var swal: any; ''
 				<div class="asterisk">*</div>
 				<input type="text" class="form-control" id="serialNumber"
 					placeholder="Equipment Serial Number"
-					formControlName="serialNumber">
+					formControlName="serialNumber" minlength="5" maxlength="10">
 			</div>
 		</div>
 		<p>
@@ -66,11 +66,18 @@ declare var swal: any; ''
 				<input type="text" class="form-control" id="street2"
 					placeholder="enter here" formControlName="street2">
 			</div>
+           
 
 
-
-		</div>
-		<div class="form-row">
+        </div>
+        
+        <div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" id="city"
+            placeholder="enter here" formControlName="city">
+         </div>
 			<div class="form-group col-md-6">
 				<label for="state">State</label>
 				<div class="asterisk">*</div>
@@ -129,15 +136,9 @@ declare var swal: any; ''
 	<option value="WI">Wisconsin</option>
 	<option value="WY">Wyoming</option>
 
-					<option>...</option>
 				</select>
 			</div>
-			<div class="form-group col-md-6">
-				<label for="city">City</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" id="city"
-					placeholder="enter here" formControlName="city">
-			</div>
+			
 
 
 		</div>
@@ -168,12 +169,20 @@ declare var swal: any; ''
 		<hr />
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="dueDate">Next Scanning Date</label>
+				<label for="dueDate">Current Scanning Date</label>
 				<div class="asterisk">*</div>
 						 
 				<my-date-picker name="myname" [selDate]="selectDate"
-					formControlName=nextScanningDt ></my-date-picker>
-					<p style ="color:red;font-weight:bold;">{{err}}</p>
+					formControlName=nextScanningDt (dateChanged)="onDateChanged($event)"></my-date-picker>
+					
+            </div>
+            <div class="form-group col-md-6">
+				<label for="dueDate">Next Scanning Date</label>
+				<div class="asterisk">*</div>
+						 
+				<my-date-picker name="mname" [selDate]="nextSelectDate" [options]="myDatePickerOptions"
+					formControlName=nextScanningDt1 ></my-date-picker>
+					
 			</div>
 		</div>
 		<hr />
@@ -246,6 +255,7 @@ export class NgbdModalContent implements OnInit {
     fileToUpload: File = null;
     deviceDocDTO: DeviceDocDTO;
     public selectDate: any;
+    public nextSelectDate:any;
     public myFiles: any;
     public files = [] as File[];
     @ViewChild("fileInput") inputEl: ElementRef;
@@ -253,12 +263,17 @@ export class NgbdModalContent implements OnInit {
     @Input() deviceData;
     @Input() isEdit;
     // @Input() screenID;
-    public loading:boolean=false;
+    public loading: boolean = false;
     public isRequired: boolean = true;
     public showButton: boolean = false;
     device: Device;
     public err: any;
-    public showUpbtn:boolean=false;
+    public showUpbtn: boolean = false;
+    myDatePickerOptions: IMyDpOptions = {
+        disableUntil: {year: 0, month: 0, day: 0},
+        showTodayBtn: false
+        
+    };
 
     constructor(public activeModal: NgbActiveModal,
         private _fb: FormBuilder, private _apiservice: ApiserviceService,
@@ -295,7 +310,8 @@ export class NgbdModalContent implements OnInit {
         }
         else {
             this.createForm();
-            this.showUpbtn=true;
+            this.showUpbtn = true;
+            this.modalForm.controls['nextScanningDt1'].disable();
         }
     }
 
@@ -313,6 +329,7 @@ export class NgbdModalContent implements OnInit {
             zipCode: ['', Validators.required],
             overallStatus: ['', Validators.required],
             nextScanningDt: ['', Validators.required],
+            nextScanningDt1: ['', Validators.required],
             notes: ['']
 
         });
@@ -342,16 +359,16 @@ export class NgbdModalContent implements OnInit {
 
             }
             formData.append('appSolutionDeviceString', JSON.stringify(this.device));
-            this.loading=true;
+            this.loading = true;
             this.http.post(url_update, formData).subscribe((data: any) => {
-                this.loading=false;
+                this.loading = false;
                 UtilService.popModal = true;
                 this.alert('Success', 'Device has been updated.').then(success => {
                     this.activeModal.close();
                 });
 
             }, error => {
-                this.loading=false;
+                this.loading = false;
                 console.log(error);
             });
         }
@@ -363,16 +380,16 @@ export class NgbdModalContent implements OnInit {
             }
             this.device.createdBy = Cookie.get('userName');
             formData.append('appSolutionDeviceString', JSON.stringify(this.device));
-            this.loading=true;
+            this.loading = true;
             this.http.post(url_update, formData).subscribe((data: any) => {
                 UtilService.popModal = true;
-                this.loading=false;
+                this.loading = false;
                 this.alert('Success', 'Device has been created.').then(success => {
                     this.activeModal.close();
                 });
 
             }, error => {
-                this.loading=false;
+                this.loading = false;
                 console.log(error);
             });
         }
@@ -478,9 +495,32 @@ export class NgbdModalContent implements OnInit {
         });
     }
 
-    editClick()
-    {
+    editClick() {
         this.modalForm.enable();
-        this.showUpbtn=true;
+        this.showUpbtn = true;
+    }
+
+
+    onDateChanged(event)
+    {
+        this.modalForm.controls['nextScanningDt1'].disable();
+        //this.nextSelectDate = {date:null};
+        //this.modalForm.controls['nextScanningDt1'].setValue(this.nextSelectDate);
+        if(event.formatted === "")
+        {
+            this.modalForm.controls['nextScanningDt1'].setValue(null);
+        }
+        else{
+        let d=new Date(event.formatted);
+        let year=d.getFullYear();
+        let month=d.getMonth()+1;
+        let day=d.getDate();
+
+        this.myDatePickerOptions.disableUntil.day=day;
+        this.myDatePickerOptions.disableUntil.month=month;
+        this.myDatePickerOptions.disableUntil.year=year;
+        this.myDatePickerOptions.showTodayBtn=false;
+        this.modalForm.controls['nextScanningDt1'].enable();
+        }
     }
 }

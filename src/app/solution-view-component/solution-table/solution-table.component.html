@@ -31,7 +31,7 @@
                          <td>{{ solution.systemTypeDTO.name }}</td>
                          <!-- <td>{{ solution.certDt }}</td> -->
                          <td>{{ solution.certDt | filter  }}</td> 
-                         <td>{{ solution.certRenewalDueDt }}</td>
+                         <td>{{ solution.certRenewalDueDt | date:'shortDate' }}</td>
                     </tr>
     </tbody>
   </table>
