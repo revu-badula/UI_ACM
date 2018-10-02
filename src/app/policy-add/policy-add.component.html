@@ -15,7 +15,12 @@
   </div>
 </ng-template>
 <div *ngIf="!showDiv">
-	<form class="form" (ngSubmit) = "addPolicy()">
+	
+	
+	<form class="form" (ngSubmit) = "addPolicy()" enctype="multipart/form-data"
+	#editForm="ngForm">
+	
+	
 	<h4>POLICY DETAILS</h4>
 	<div class=" form-row">
 		<div class="form-group col-md-6">
@@ -179,7 +184,10 @@
 		</div>
 	</div>
 	<hr />
+	<button type="submit" class="submit btn btn-primary" [disabled]="!editForm.valid" (click)="open(content)">Submit</button>
 	
+	
+		<button type="cancel" class="cancel btn btn-primary" routerLink="/policyView/policyDetails">Cancel</button>
 </form>
 </div>
 <div *ngIf="showDiv">
@@ -210,7 +218,7 @@
 		</div>
 	<div *ngIf = "definitive == true && policy== true ">
 		<h5>CONTROLS</h5>
-		<table class="table table-bordered table-dark">
+		<table class="table table-bordered">
 		  <thead>
 		    <tr>
 		      <th scope="col">Control Number</th>
