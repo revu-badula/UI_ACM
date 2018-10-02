@@ -330,6 +330,8 @@ export class SystemAuditFirstComponent implements OnInit {
           //console.log(data);
           //UtilService.auditActive = true;
           this.loading = false;
+          const { myForm: { value: formValueSnap } } = this;
+          this.myForm.reset(formValueSnap);
           this.info = "System has been created.";
           this.modalService.open(this.content, ngbModalOptions);
 
@@ -352,6 +354,8 @@ export class SystemAuditFirstComponent implements OnInit {
           this.loading = false;
           this.showButton = true;
           this.changeOverallStatus = false;
+          const { myForm: { value: formValueSnap } } = this;
+          this.myForm.reset(formValueSnap);
           this.info = "System has been updated.";
           this.modalService.open(this.content, ngbModalOptions);
         }, error => {
