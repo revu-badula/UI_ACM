@@ -64,12 +64,6 @@ export class SystemAssessManagementComponent implements OnInit {
       let auid = +id;
       this.showEdit = true;
       this.loading = true;
-      // this.editData = this.appAuditDTOs.filter(item => item.appAuditId === auid);
-
-      // for(let i=0;i<this.editData.length;i++)
-      // {
-      //   this.appAudit = this.editData[i];
-      // }
       this._apiservice.getAssessData(auid)
         .subscribe((data: any) => {
           this.loading = false;
@@ -140,17 +134,11 @@ export class SystemAssessManagementComponent implements OnInit {
   }
 
   showLeft() {
-    this.router.navigate(['locality/tab/assessment']);
+    this.router.navigate(['system/tab2/assessment']);
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // console.log(this.myForm);
-    // console.log(this.myForm.dirty);
-    //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
-    if (this.myForm.dirty) {
-      //return this.dialogService.confirm('Discard changes for Budget?');
-      //const modal=this.modalService.open(this.content1, ngbModalOptions);
-
-      return this.confirm1('Do you want to save changes?', 'for management response', 'YES', 'NO');
+     if (this.myForm.dirty) {
+    return this.confirm1('Do you want to save changes?', 'for management response', 'YES', 'NO');
 
 
     }

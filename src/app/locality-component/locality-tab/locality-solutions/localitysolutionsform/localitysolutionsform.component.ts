@@ -40,12 +40,10 @@ export class LocalitysolutionsformComponent implements OnInit {
   public modelSname: string;
   public solutionId: number;
   public appId: any;
-  public showSType: boolean = true;
-  public showPType: boolean = true;
   public modalForm: FormGroup;
   public appSolutions: any;
   public deviceTable: any;
-  public serialNumber: number;
+
   public appSolutionId: any;
   public appSolutionDevice: any;
   public hostingTypeId: any;
@@ -73,6 +71,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   public isClick: boolean = true;
   public showBuck: boolean = true;
   public hostType: any;
+  public showPlus: boolean=true;
 
 
   constructor(private _fb: FormBuilder, private router: Router, private modalService: NgbModal,
@@ -115,7 +114,7 @@ export class LocalitysolutionsformComponent implements OnInit {
         this.applicationSolution.applicationID = data.applicationViewDTO.applicationId;
 
         if (localStorage.getItem('appSolId') === null) {
-          this.editForm = false;
+          this.editableForm=false;
         }
         else {
 
@@ -132,15 +131,7 @@ export class LocalitysolutionsformComponent implements OnInit {
 
 
 
-  ngOnChanges() {
-    if (this.utilservice.isLocalitySolutionAdd) {
-      this.isAddNewSolution = true;
-    }
-    else {
-      this.isAddNewSolution = false;
-    }
 
-  }
   backClicked() {
     this.router.navigate(['/locality/tab/solutions']);
 
@@ -153,7 +144,8 @@ export class LocalitysolutionsformComponent implements OnInit {
     this.notVisible = true;
     this.boxVisible = true;
     this.showInnerForm = true;
-    this.editableForm = false;
+    this.editableForm = true;
+    this.showPlus=false;
     this.appSolutionId = appSolutionId;
     this.loading = true;
     this._apiservice.getAppSolution(appSolutionId)
@@ -347,7 +339,8 @@ export class LocalitysolutionsformComponent implements OnInit {
     this.isAddNewSolution = true;
     this.isClick = true;
     this.editForm = false;
-    this.editableForm = true;
+    this.editableForm = false;
+    this.showPlus=true;
   }
 
 

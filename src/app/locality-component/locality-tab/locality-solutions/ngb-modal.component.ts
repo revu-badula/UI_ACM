@@ -11,7 +11,7 @@ import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { UtilService } from '../../../util.service';
 import { Cookie } from 'ng2-cookies';
-import {IMyDpOptions, IMyDateModel} from 'mydatepicker';
+import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 declare var swal: any; ''
 @Component({
     selector: 'ngbd-modal-content',
@@ -255,7 +255,7 @@ export class NgbdModalContent implements OnInit {
     fileToUpload: File = null;
     deviceDocDTO: DeviceDocDTO;
     public selectDate: any;
-    public nextSelectDate:any;
+    public nextSelectDate: any;
     public myFiles: any;
     public files = [] as File[];
     @ViewChild("fileInput") inputEl: ElementRef;
@@ -270,9 +270,9 @@ export class NgbdModalContent implements OnInit {
     public err: any;
     public showUpbtn: boolean = false;
     myDatePickerOptions: IMyDpOptions = {
-        disableUntil: {year: 0, month: 0, day: 0},
+        disableUntil: { year: 0, month: 0, day: 0 },
         showTodayBtn: false
-        
+
     };
 
     constructor(public activeModal: NgbActiveModal,
@@ -303,9 +303,16 @@ export class NgbdModalContent implements OnInit {
                     day: d.getDate()
                 }
             }
+            let month = d.getMonth() + 1;
+            let year = d.getFullYear();
+            let day = d.getDate();
+
             this.device.deviceDocDTO = this.deviceData.deviceDocDTO;
             this.modalForm.controls['nextScanningDt'].setValue(this.selectDate);
             this.modalForm.controls['notes'].setValue(this.deviceData.notes);
+            this.myDatePickerOptions.disableUntil.day = day;
+            this.myDatePickerOptions.disableUntil.month = month;
+            this.myDatePickerOptions.disableUntil.year = year;
             this.modalForm.disable();
         }
         else {
@@ -501,26 +508,24 @@ export class NgbdModalContent implements OnInit {
     }
 
 
-    onDateChanged(event)
-    {
+    onDateChanged(event) {
         this.modalForm.controls['nextScanningDt1'].disable();
         //this.nextSelectDate = {date:null};
         //this.modalForm.controls['nextScanningDt1'].setValue(this.nextSelectDate);
-        if(event.formatted === "")
-        {
+        if (event.formatted === "") {
             this.modalForm.controls['nextScanningDt1'].setValue(null);
         }
-        else{
-        let d=new Date(event.formatted);
-        let year=d.getFullYear();
-        let month=d.getMonth()+1;
-        let day=d.getDate();
+        else {
+            let d = new Date(event.formatted);
+            let year = d.getFullYear();
+            let month = d.getMonth() + 1;
+            let day = d.getDate();
 
-        this.myDatePickerOptions.disableUntil.day=day;
-        this.myDatePickerOptions.disableUntil.month=month;
-        this.myDatePickerOptions.disableUntil.year=year;
-        this.myDatePickerOptions.showTodayBtn=false;
-        this.modalForm.controls['nextScanningDt1'].enable();
+            this.myDatePickerOptions.disableUntil.day = day;
+            this.myDatePickerOptions.disableUntil.month = month;
+            this.myDatePickerOptions.disableUntil.year = year;
+            this.myDatePickerOptions.showTodayBtn = false;
+            this.modalForm.controls['nextScanningDt1'].enable();
         }
     }
 }

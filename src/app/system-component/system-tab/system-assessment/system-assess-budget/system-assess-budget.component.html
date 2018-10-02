@@ -50,7 +50,7 @@
 
         <span class=" title elipsis pull-right">
 
-          <a data-ng-click="close()" title="Change to view mode. This reverts the changes">
+          <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
             <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
           </a>
           <a title="Go back to audit section." (click)="showLeft()">

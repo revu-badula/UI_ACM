@@ -24,19 +24,19 @@ export class SystemAssessActionComponent implements OnInit {
   @ViewChild('myForm') myForm: FormGroup;
   appAssess: AppAssess;
   public loading: boolean = false;
-  public appAssessmentDTOs:any;
-  public info:any;
-  public showSave:boolean=false;
-  public editData:any;
-  public showEdit:boolean=false;
-  public showForm:boolean=true;
-  public endDate:any;
-  public startDate:any;
+  public appAssessmentDTOs: any;
+  public info: any;
+  public showSave: boolean = false;
+  public editData: any;
+  public showEdit: boolean = false;
+  public showForm: boolean = true;
+  public endDate: any;
+  public startDate: any;
   constructor(private _apiservice: ApiserviceService, private utilService: UtilService,
     private http: Http, private router: Router, private modalService: NgbModal, private datepipe: DatePipe) {
-      this.appAssess = new AppAssess();
+    this.appAssess = new AppAssess();
     this.getAppId();
-     }
+  }
 
   ngOnInit() {
   }
@@ -49,169 +49,159 @@ export class SystemAssessActionComponent implements OnInit {
         this.appAssess.applicationID = data.applicationViewDTO.applicationId;
         this.showOnPageLoad();
       }, error => {
-        this.loading=false;
-        console.log(error);});
-    }
+        this.loading = false;
+        console.log(error);
+      });
+  }
 
 
-  showOnPageLoad()
-  {
-    if(localStorage.getItem('sysassesId') === null)
-    {
+  showOnPageLoad() {
+    if (localStorage.getItem('sysassesId') === null) {
       console.log('Not edit mode');
     }
-    else{
-      let id =localStorage.getItem('sysassesId');
+    else {
+      let id = localStorage.getItem('sysassesId');
       let auid = +id;
-      this.loading=true;
-      this.showEdit=true;
+      this.loading = true;
+      this.showEdit = true;
       this._apiservice.getAssessData(auid)
-      .subscribe((data: any) => {
-        this.loading=false;
-        this.appAssess=data
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.appAssess = data
 
-    if(this.appAssess.actionPlanStartDt === null)
-    {
-      this.startDate = {date:null};
+          if (this.appAssess.actionPlanStartDt === null) {
+            this.startDate = { date: null };
+          }
+          else {
+            let d = new Date(this.appAssess.actionPlanStartDt);
+            let day = d.getDate();
+            let month = d.getMonth() + 1;
+            let year = d.getFullYear();
+            this.startDate = { date: { year: year, month: month, day: day } };
+          }
+
+          if (this.appAssess.actionPlanEndDt === null) {
+            this.endDate = { date: null };
+          } else {
+            let dt = new Date(this.appAssess.actionPlanEndDt);
+            let day1 = dt.getDate();
+            let month1 = dt.getMonth() + 1;
+            let year1 = dt.getFullYear();
+            this.endDate = { date: { year: year1, month: month1, day: day1 } };
+          }
+        }, error => {
+          this.loading = false;
+          console.log(error);
+        });
+
+
+
     }
-    else{
-    let d = new Date(this.appAssess.actionPlanStartDt);
-    let day = d.getDate();
-    let month = d.getMonth()+1;
-    let year = d.getFullYear();
-    this.startDate = {date:{year: year, month: month, day: day}};
-    }
-
-    if(this.appAssess.actionPlanEndDt === null)
-    {
-      this.endDate = {date:null};
-    }else{
-    let dt = new Date(this.appAssess.actionPlanEndDt);
-    let day1 = dt.getDate();
-    let month1 = dt.getMonth()+1;
-    let year1 = dt.getFullYear();
-    this.endDate = {date:{year: year1, month: month1, day: day1}};
-    }},error=> {
-      this.loading=false;
-      console.log(error);});
-
-    
 
   }
-  
-}
 
-saveActionPlan()
-{
-  let ngbModalOptions: NgbModalOptions = {
-    backdrop : 'static',
-    keyboard : false
+  saveActionPlan() {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
     };
-  this.loading = true;
-  const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
-  let options = new RequestOptions({ headers: headers });
-  let url_update = APP_CONFIG.updateAppAssessment;
-  this.appAssess.updatedBy=Cookie.get('userName');
-  let data = JSON.stringify(this.appAssess);
-  this.http.post(url_update,data,options)
+    this.loading = true;
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    let url_update = APP_CONFIG.updateAppAssessment;
+    this.appAssess.updatedBy = Cookie.get('userName');
+    let data = JSON.stringify(this.appAssess);
+    this.http.post(url_update, data, options)
       .subscribe((data: any) => {
-      this.loading=false;
-      const { myForm: { value: formValueSnap } } = this;
+        this.loading = false;
+        const { myForm: { value: formValueSnap } } = this;
         this.myForm.reset(formValueSnap);
-      this.info="Action Plan has been updated.";
-      this.modalService.open(this.content,ngbModalOptions);
+        this.info = "Action Plan has been updated.";
+        this.modalService.open(this.content, ngbModalOptions);
       }, error => {
         this.loading = false;
         console.log(error);
       });
-}
+  }
 
 
-  getStartDate(value)
-    {
-      if (value.formatted === "") {
-        this.appAssess.actionPlanStartDt=null;
-      }
-      else {
-        let d = value.formatted;
-        //this.audate = Date.parse(d);
-        let latest_date =this.datepipe.transform(d, 'yyyy-MM-dd');
-        this.appAssess.actionPlanStartDt = moment(latest_date).format();
-      }
-      
-    }
-
-     
-  getEndDate(value)
-  {
+  getStartDate(value) {
     if (value.formatted === "") {
-      this.appAssess.actionPlanEndDt=null;
+      this.appAssess.actionPlanStartDt = null;
     }
     else {
       let d = value.formatted;
-      //this.audate = Date.parse(d);
-      let latest_date =this.datepipe.transform(d, 'yyyy-MM-dd');
-      this.appAssess.actionPlanEndDt = moment(latest_date).format();
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.appAssess.actionPlanStartDt = moment(latest_date).format();
     }
-    
-  }
-  valueChanged()
-  {
-    this.showForm=false;
-    this.showSave=true;
-    this.showEdit=false;
+
   }
 
-  showLeft(){
-    this.router.navigate(['locality/tab/assessment']);
+
+  getEndDate(value) {
+    if (value.formatted === "") {
+      this.appAssess.actionPlanEndDt = null;
     }
-    canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-      // console.log(this.myForm);
-      // console.log(this.myForm.dirty);
-      //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
-      if (this.myForm.dirty) {
-        //return this.dialogService.confirm('Discard changes for Budget?');
-        //const modal=this.modalService.open(this.content1, ngbModalOptions);
-  
-        return this.confirm1('Do you want to save changes?', 'for action plan', 'YES', 'NO');
-  
-  
-      }
-  
-      return true;
-  
+    else {
+      let d = value.formatted;
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.appAssess.actionPlanEndDt = moment(latest_date).format();
     }
-  
-  
-  
-  
-    confirm1(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
-      return new Promise<boolean>((resolve, reject) => {
-        swal({
-          title: title,
-          text: text,
-          type: 'warning',
-          showCancelButton: showCancelButton,
-          confirmButtonText: confirmButtonText,
-          cancelButtonText: cancelButtonText,
-          allowOutsideClick: false
-        }).then((result) => {
-          if (result.value !== undefined && result.value) {
-            this.saveActionPlan();
-            resolve(false);
-          }
-          else {
-            resolve(true);
-          }
-        }, error => reject(error));
-      });
-  
-  
-  
-  
+
+  }
+  valueChanged() {
+    this.showForm = false;
+    this.showSave = true;
+    this.showEdit = false;
+  }
+
+  showLeft() {
+    this.router.navigate(['system/tab2/assessment']);
+  }
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+
+    if (this.myForm.dirty) {
+
+
+      return this.confirm1('Do you want to save changes?', 'for action plan', 'YES', 'NO');
+
+
     }
-  
+
+    return true;
+
+  }
+
+
+
+
+  confirm1(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
+    return new Promise<boolean>((resolve, reject) => {
+      swal({
+        title: title,
+        text: text,
+        type: 'warning',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.value !== undefined && result.value) {
+          this.saveActionPlan();
+          resolve(false);
+        }
+        else {
+          resolve(true);
+        }
+      }, error => reject(error));
+    });
+
+
+
+
+  }
+
 
 
 }

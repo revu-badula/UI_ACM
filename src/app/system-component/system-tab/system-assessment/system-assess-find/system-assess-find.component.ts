@@ -67,11 +67,6 @@ export class SystemAssessFindComponent implements OnInit {
       let auid = +id;
       this.showEdit=true;
       this.loading=true;
-      // this.editData = this.appAssessmentDTOs.filter(item => item.assessmentId === auid);
-
-      // for (let i = 0; i < this.editData.length; i++) {
-      //   this.appAssess = this.editData[i];
-      // }
       this._apiservice.getAssessData(auid)
       .subscribe((data: any) => {
         this.loading = false;
@@ -119,14 +114,8 @@ export class SystemAssessFindComponent implements OnInit {
     this.showEdit=false;
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // console.log(this.myForm);
-    // console.log(this.myForm.dirty);
-    
-    //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
       if(this.myForm.dirty){
-      //return this.dialogService.confirm('Discard changes for Budget?');
-      //const modal=this.modalService.open(this.content1, ngbModalOptions);
-
+     
     return  this.confirm1('Do you want to save changes?', 'for findings', 'YES', 'NO');
        
 

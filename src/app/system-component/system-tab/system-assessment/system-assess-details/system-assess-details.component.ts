@@ -29,6 +29,11 @@ export class SystemAssessDetailsComponent implements OnInit {
   public loading: boolean = false;;
   appAssess: AppAssess;
   policies: Policy[];
+  myDatePickerOptions: IMyDpOptions = {
+    disableUntil: { year: 0, month: 0, day: 0 },
+    showTodayBtn: false
+
+  };
   public yesfile: boolean = false;
   policyDTO: Policy;
   public descpolname: boolean = false;
@@ -41,9 +46,7 @@ export class SystemAssessDetailsComponent implements OnInit {
   public auditTypes: any;
   public policyTypes: any;
   public policy: boolean;
-  public naudt: any;
   public info: any
-  public show2: boolean;
   public errorfile: string = "";
   public policyData: any;
   public p: number = 1;
@@ -51,7 +54,7 @@ export class SystemAssessDetailsComponent implements OnInit {
   public showStatus: boolean = false;
   public showStatus1: boolean = true;
   public showTable: boolean = false;
-  public showLegalBox: boolean = false;
+  public showLegalBox: boolean = true;
   public showOriginal: boolean = true;
   public showEdit: boolean = false;
   public policyNameArray: any;
@@ -61,24 +64,15 @@ export class SystemAssessDetailsComponent implements OnInit {
   policyDisplay: Policy;
   public editData: any;
   appId: any;
-  public show1: boolean;
-  public myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd'
-  };
-  public show3: boolean;
   public show4: boolean;
   public show5: boolean;
-  public audate: any;
   public mainData: any;
   public updatedTime: any;
   showForm: boolean = true;
   public assessmentDTOs: any;
   showInitial: boolean = false;
   public comparePolicyDTO: any;
-  public err: string;
-  public err1: string;
   public changeOverallStatus: boolean = false;
-
   public assessmentPolicyDto: AssessmentPolicyDTO;
   constructor(private router: Router, private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private datepipe: DatePipe, private modalService: NgbModal) {
@@ -121,6 +115,7 @@ export class SystemAssessDetailsComponent implements OnInit {
     this.showOriginal = false;
     this.showStatus = true;
     this.showStatus1 = false;
+    this.showLegalBox=true;
 
   }
   saveAudit() {
@@ -138,7 +133,7 @@ export class SystemAssessDetailsComponent implements OnInit {
         this.appAssess.assessmentPolicyDTOs.push(this.policies[i]);
 
       }
-      this.appAssess.createdBy=Cookie.get('userName');
+      this.appAssess.createdBy = Cookie.get('userName');
       let data = JSON.stringify(this.appAssess);
       this.http.post(url_save, data, options)
         .subscribe((data: any) => {
@@ -160,7 +155,7 @@ export class SystemAssessDetailsComponent implements OnInit {
         this.appAssess.assessmentPolicyDTOs.push(this.policies[i]);
       }
       let data = JSON.stringify(this.appAssess);
-      this.appAssess.updatedBy=Cookie.get('userName');
+      this.appAssess.updatedBy = Cookie.get('userName');
       this.http.post(url_update, data, options)
         .subscribe((data: any) => {
           this.loading = false;
@@ -182,48 +177,45 @@ export class SystemAssessDetailsComponent implements OnInit {
 
   showOnPageLoad() {
     if (localStorage.getItem('sysassesId') === null) {
-      console.log('Not edit mode');
+      this.myForm.controls['nextDate'].disable();
     }
     else {
-      this.loading=true;
+      this.loading = true;
       localStorage.setItem('systemAssessActive', 'true');
       this.showOriginal = false;
-      this.showButton=true;
+      this.showButton = true;
       this.showInitial = true;
       this.showEdit = true;
-      this.show1 = true;
-      this.show2 = true;
-      this.show3 = true;
+      this.showLegalBox=false;
       let id = localStorage.getItem('sysassesId');
       let assesid = +id;
-      //this.editData = this.assessmentDTOs.filter(item => item.assessmentId === assesid);
-      // for (let i = 0; i < this.editData.length; i++) {
-      //   this.appAssess = this.editData[i];
-      // }
       this._apiservice.getAssessData(assesid)
         .subscribe((data: any) => {
           this.loading = false;
           this.appAssess = data;
           this.showTable = true;
           this.getPolicyName(this.appAssess.auditId);
-          //this.getPolicyDTOs(assesid);
+        
           this.showRow = false;
           this.policies = data.assessmentPolicyDTOs;
           let d = new Date(this.appAssess.assessmentDt);
-          this.audate = this.appAssess.assessmentDt;
+         
           let day = d.getDate();
           let month = d.getMonth() + 1;
           let year = d.getFullYear();
           this.vassessDate = month + "/" + day + "/" + year;
           this.assessmentDt = { date: { year: year, month: month, day: day } };
           let d1 = new Date(this.appAssess.nextAssessmentDt);
-          this.naudt = this.appAssess.nextAssessmentDt;
           let day1 = d1.getDate();
           let month1 = d1.getMonth() + 1;
           let year1 = d1.getFullYear();
           this.nextAssessmentDt = { date: { year: year1, month: month1, day: day1 } };
-          //this.show3 = true;
+          
           this.show4 = true;
+          this.myDatePickerOptions.disableUntil.day = day;
+          this.myDatePickerOptions.disableUntil.month = month;
+          this.myDatePickerOptions.disableUntil.year = year;
+          this.myDatePickerOptions.showTodayBtn = false;
         }, error => {
           this.loading = false;
           console.log(error);
@@ -250,16 +242,16 @@ export class SystemAssessDetailsComponent implements OnInit {
 
 
   getPolicyName(auditId) {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getPolicyGroup(auditId)
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.policyNameArray = data.filter(item => item.policyGrpId === this.appAssess.policyGrpId);
         for (let i = 0; i < this.policyNameArray.length; i++) {
           this.polName = this.policyNameArray[i].policyGrpName;
         }
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error)
       });
 
@@ -278,28 +270,26 @@ export class SystemAssessDetailsComponent implements OnInit {
   }
 
   getAuditDate(value) {
+    this.myForm.controls['nextDate'].disable();
+    this.nextAssessmentDt = null;
     if (value.formatted === "") {
-      this.err1 = "Enter the AuditDate";
-      this.show3 = false;
+    
     }
     else {
-      this.show3 = true;
-      this.err1 = "";
-      let d = value.formatted;
-      this.audate = Date.parse(d);
-      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+    
+      let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAssess.assessmentDt = moment(latest_date).format();
-      if (this.naudt != undefined) {
-        if (this.compareDate(this.audate, this.naudt)) {
-          this.err = "";
-          this.appAssess.assessmentDt = moment(latest_date).format();
-          this.show4 = true;
-        }
-        else {
-          this.err = "nextDueDate should be after the auditDate";
-          this.show4 = false;
-        }
-      }
+      let d = new Date(value.formatted);
+      let year = d.getFullYear();
+      let month = d.getMonth() + 1;
+      let day = d.getDate();
+      this.myDatePickerOptions.disableUntil.day = day;
+      this.myDatePickerOptions.disableUntil.month = month;
+      this.myDatePickerOptions.disableUntil.year = year;
+      this.myDatePickerOptions.showTodayBtn = false;
+
+      this.myForm.controls['nextDate'].enable();
+ 
 
     }
   }
@@ -311,22 +301,14 @@ export class SystemAssessDetailsComponent implements OnInit {
   getDate(value) {
 
     if (value.formatted === "") {
-      this.err = "Enter the DueDate";
-      this.show4 = false;
+
     }
     else {
-      this.show4 = true;
-      this.err = "";
-      let ddt = value.formatted;
-      this.naudt = Date.parse(ddt);
-      let latest_date = this.datepipe.transform(ddt, 'yyyy-MM-dd');
-      if (this.compareDate(this.audate, this.naudt)) {
-        this.appAssess.nextAssessmentDt = moment(latest_date).format();
-      }
-      else {
-        this.err = "nextDueDate should be after the auditDate";
-        this.show4 = false;
-      }
+
+      let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
+
+      this.appAssess.nextAssessmentDt = moment(latest_date).format();
+
     }
 
   }
@@ -335,13 +317,13 @@ export class SystemAssessDetailsComponent implements OnInit {
 
   getNextDate(value) {
 
-    if (value === 'Choose...') {
-      this.showLegalBox = false;
+    if (value === 'Choose...' || value === "") {
+      
     }
     else {
       this.appAssess.status = value;
       this.changeOverallStatus = true;
-      this.showLegalBox = true;
+     
 
 
 
@@ -369,14 +351,12 @@ export class SystemAssessDetailsComponent implements OnInit {
 
 
   selectDefinitive(auditID) {
-    if (auditID === 'Choose...') {
+    if (auditID === 'Choose...' || auditID === "") {
       this.definitive = false
       this.showTable = false;
-      this.show1 = false;
       this.policyTypes = [];
     }
     else {
-      this.show1 = true;
       this.definitive = true;
       this.auditTypeId = auditID;
       this.appAssess.auditName = auditID;
@@ -391,13 +371,11 @@ export class SystemAssessDetailsComponent implements OnInit {
 
 
   selectType(policy) {
-    if (policy === 'Choose...') {
-      this.show2 = false;
+    if (policy === 'Choose...' || policy === "") {
       this.showTable = false;
       this.policies = [];
     }
     else {
-      this.show2 = true;
       this.appAssess.policyGrpId = policy;
       this._apiservice.fetchPolicies(policy)
         .subscribe((data: any) => {
@@ -636,12 +614,7 @@ export class SystemAssessDetailsComponent implements OnInit {
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // console.log(this.myForm);
-    // console.log(this.myForm.dirty);
-    //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
-    if (this.changeOverallStatus && this.showButton) {
-      //return this.dialogService.confirm('Discard changes for Budget?');
-      //const modal=this.modalService.open(this.content1, ngbModalOptions);
+    if (this.myForm.dirty && this.myForm.valid) {
 
       return this.confirm1('Do you want to save changes?', 'for details', 'YES', 'NO');
 

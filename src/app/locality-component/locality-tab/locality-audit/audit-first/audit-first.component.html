@@ -62,7 +62,7 @@
               <a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
             </span>
 
-            <span class=" title elipsis pull-right">
+            <span *ngIf="showLegalBox" class=" title elipsis pull-right">
               <a (click)="saveAudit()" *ngIf="myForm.valid">
                 <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
               </a>
@@ -76,7 +76,7 @@
 
             <span class=" title elipsis pull-right">
 
-              <a data-ng-click="close()" title="Change to view mode. This reverts the changes">
+              <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
                 <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
               </a>
               <a (click)="showAudit()" title="Go back to audit section.">
@@ -94,40 +94,14 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="form-row">
           <div class="form-group col-md-6">
 
             <label for="inputState">Definitive Source</label>
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="auditName" [(ngModel)]="appAudit.auditTypeName" readonly>
-            <select *ngIf="showOriginal" class="form-control" id="definitiveSource" required name="auditName" (change)="selectDefinitive($event.target.value)" required>
-              <option selected>Choose...</option>
+            <select *ngIf="showOriginal" class="form-control" id="definitiveSource" ngModel required name="auditName" (change)="selectDefinitive($event.target.value)" required>
+              <option value="">Choose...</option>
               <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName
                 }}</option>
             </select>
@@ -136,8 +110,8 @@
             <label for="lastName">Type/Policy</label>
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="policyId" [(ngModel)]="polName" readonly>
-            <select *ngIf="showOriginal" class="form-control" id="typePolicy" name="policyId" required (change)="selectType($event.target.value)" required>
-              <option selected>Choose...</option>
+            <select *ngIf="showOriginal" ngModel class="form-control" id="typePolicy" name="policyId" required (change)="selectType($event.target.value)" required>
+              <option value="">Choose...</option>
               <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{ policyType.policyGrpName
                 }}</option>
             </select>
@@ -174,7 +148,7 @@
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus" [(ngModel)]="appAudit.status">
             <select *ngIf="showOriginal || showStatus" id="modelSolution" ngModel class="form-control" name="overallStatus" (change)="getNextDate($event.target.value)" required>
-              <option selected>Choose...</option>
+              <option value="">Choose...</option>
               <option value="Open">Open</option>
               <option value="Suspended">Suspended</option>
               <option value="Close">Close</option>

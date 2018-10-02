@@ -96,11 +96,6 @@ export class SystemAssessAttachmentsComponent implements OnInit {
 
   saveAttachments() {
     this.loading = true;
-    //  let inputEl: HTMLInputElement = this.inputEl.nativeElement;
-    //  var formData = new FormData();
-
-    //   //formData.append('',inputEl.files.item(0));
-    //   this.appAudit.appAuditFileDTOs.file
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
       keyboard: false
@@ -297,21 +292,15 @@ export class SystemAssessAttachmentsComponent implements OnInit {
   }
 
   showLeft() {
-    this.router.navigate(['locality/tab/assessment']);
+    this.router.navigate(['system/tab2/assessment']);
   }
 
 
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    //console.log(this.myForm);
-    // console.log(this.myForm.dirty);
-    //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
+   
     if (this.givenfile) {
-      //return this.dialogService.confirm('Discard changes for Budget?');
-      //const modal=this.modalService.open(this.content1, ngbModalOptions);
-
       return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
-
 
     }
 

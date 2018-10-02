@@ -62,8 +62,8 @@
               <a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
             </span>
 
-            <span class=" title elipsis pull-right">
-              <a (click)="saveAudit()" *ngIf="showLegalBox&&show1&&show2&&show3&&show4">
+            <span *ngIf="showLegalBox" class=" title elipsis pull-right">
+              <a (click)="saveAudit()" *ngIf="myForm.valid">
                 <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
               </a>
             </span>
@@ -76,7 +76,7 @@
 
             <span class=" title elipsis pull-right">
 
-              <a data-ng-click="close()" title="Change to view mode. This reverts the changes">
+              <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
                 <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
               </a>
               <a (click)="showAudit()" title="Go back to audit section.">
@@ -99,8 +99,8 @@
             <label for="inputState">Definitive Source</label>
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="auditName" [(ngModel)]="appAssess.auditName" readonly>
-            <select *ngIf="showOriginal" class="form-control" id="definitiveSource" required name="assessName" (change)="selectDefinitive($event.target.value)">
-              <option selected>Choose...</option>
+            <select *ngIf="showOriginal" ngModel class="form-control" id="definitiveSource" required name="assessName" (change)="selectDefinitive($event.target.value)">
+              <option value="">Choose...</option>
               <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName
                 }}
               </option>
@@ -110,8 +110,8 @@
             <label for="lastName">Type/Policy</label>
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="policyId" [(ngModel)]="polName" readonly>
-            <select *ngIf="showOriginal" class="form-control" id="typePolicy" name="policyId" required (change)="selectType($event.target.value)">
-              <option selected>Choose...</option>
+            <select *ngIf="showOriginal" ngModel class="form-control" id="typePolicy" name="policyId" required (change)="selectType($event.target.value)">
+              <option value="">Choose...</option>
               <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{ policyType.policyGrpName
                 }}
               </option>
@@ -122,13 +122,14 @@
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal" type="text" class="form-control" id="lastName" name="auditType" value="" [(ngModel)]="appAssess.name"
               readonly>
-            <input *ngIf="showOriginal" type="text" class="form-control" id="lastName" name="auditType" value="" [(ngModel)]="appAssess.name">
+            <input *ngIf="showOriginal" type="text" class="form-control" id="lastName" name="auditType" value="" [(ngModel)]="appAssess.name" required>
           </div>
 
           <div class="form-group col-md-6">
             <label for="lastName">Assessment Date</label>
+            <div class="asterisk">*</div>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="vauditDate" [(ngModel)]="vassessDate" readonly>
-            <my-date-picker *ngIf="showOriginal" name="assessmentDate" (dateChanged)="getAuditDate($event)" [(ngModel)]="assessmentDt"></my-date-picker>
+            <my-date-picker *ngIf="showOriginal" ngModel name="assessmentDate" (dateChanged)="getAuditDate($event)" [(ngModel)]="assessmentDt" required></my-date-picker>
             <p style="color: red;font-weight: bold;"></p>
 
           </div>
@@ -138,7 +139,8 @@
 
           <div class="form-group col-md-6">
             <label for="dueDate">Next Assessment Date</label>
-            <my-date-picker name="nextDate" (dateChanged)="getDate($event)" [(ngModel)]="nextAssessmentDt"></my-date-picker>
+            <div class="asterisk">*</div>
+            <my-date-picker name="nextDate" ngModel [options]="myDatePickerOptions" (dateChanged)="getDate($event)" [(ngModel)]="nextAssessmentDt" required></my-date-picker>
             <p style="color: red;font-weight: bold;">{{err}}</p>
           </div>
           <div class="form-group col-md-6">
@@ -146,8 +148,8 @@
             <label for="inputState">Overall Status</label>
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus" [(ngModel)]="appAssess.status">
-            <select *ngIf="showOriginal || showStatus" id="modelSolution" class="form-control" name="overallStatus" (change)="getNextDate($event.target.value)">
-              <option selected>Choose...</option>
+            <select *ngIf="showOriginal || showStatus" ngModel id="modelSolution" class="form-control" name="overallStatus" (change)="getNextDate($event.target.value)" required>
+              <option value="">Choose...</option>
               <option value="Open">Open</option>
               <option value="Suspended">Suspended</option>
               <option value="Close">Close</option>

@@ -28,7 +28,7 @@ export class SystemAssessTabComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private route: ActivatedRoute, private router: Router) {
     this.getAppId();
-    localStorage.removeItem('sysassessId');
+    localStorage.removeItem('sysassesId');
     localStorage.removeItem('systemAssessActive');
     UtilService.disabled=true;
   }

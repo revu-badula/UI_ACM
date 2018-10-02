@@ -59,7 +59,7 @@ export class SystemAssessLessonsComponent implements OnInit {
 
   showOnPageLoad() {
     if (localStorage.getItem('sysassesId') === null) {
-      console.log('Not edit mode');
+      
     }
     else {
       let id = localStorage.getItem('sysassesId');
@@ -115,15 +115,13 @@ export class SystemAssessLessonsComponent implements OnInit {
   }
 
   getEnteredBy(value) {
-    console.log(value);
     if (value.formatted === "") {
 
     }
     else {
       let d = value.formatted;
       let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
-      //this.audate = Date.parse(d);
-      //this.appAssess.actionPlanStartDt = moment(latest_date).format();;
+      
     }
 
   }
@@ -149,20 +147,13 @@ export class SystemAssessLessonsComponent implements OnInit {
   }
 
   showLeft() {
-    this.router.navigate(['locality/tab/assessment']);
+    this.router.navigate(['system/tab2/assessment']);
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // console.log(this.myForm);
-    // console.log(this.myForm.dirty);
-    //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
+    
     if (this.myForm.dirty) {
-      //return this.dialogService.confirm('Discard changes for Budget?');
-      //const modal=this.modalService.open(this.content1, ngbModalOptions);
-
       return this.confirm1('Do you want to save changes?', 'for lessons learned', 'YES', 'NO');
-
-
     }
 
     return true;

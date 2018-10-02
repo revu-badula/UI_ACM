@@ -59,16 +59,11 @@ export class AuditFirstComponent implements OnInit {
   public err1: string;
   public errorfile: string = "";
   public naudt: any;
-  public show1: boolean;
-  public show2: boolean;
-  public show3: boolean;
-  public show4: boolean;
-  public show5: boolean;
   public showStatus: boolean = false;
   public showStatus1: boolean = true;
   public polName: any;
   public hideTable: boolean = true;
-  public showLegalBox: boolean = false;
+  public showLegalBox: boolean = true;
   public showHistory: boolean = false;
   public mainData: any;
   public showButton: boolean = false;
@@ -133,9 +128,7 @@ export class AuditFirstComponent implements OnInit {
       this.showOriginal = false;
       this.showButton = true;
       this.showInitial = true;
-      this.show1 = true;
-      this.show2 = true;
-      this.show3 = true;
+      this.showLegalBox=false;
       this.showEdit = true;
       let id = localStorage.getItem('appAuditId');
       let appauid: number = +id;
@@ -148,8 +141,7 @@ export class AuditFirstComponent implements OnInit {
       this.showTable = true;
       this.getPolicyName(this.appAudit.auditName)
       let d = new Date(this.appAudit.auditDate);
-      this.audate = this.appAudit.auditDate;
-      //this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
+      
       let day = d.getDate();
       let month = d.getMonth() + 1;
       let year = d.getFullYear();
@@ -157,19 +149,12 @@ export class AuditFirstComponent implements OnInit {
       this.auditDate = { date: { year: year, month: month, day: day } };
 
       let d1 = new Date(this.appAudit.nextAuditDate);
-      this.naudt = this.appAudit.nextAuditDate;
-      //this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
+     
       let day1 = d1.getDate();
       let month1 = d1.getMonth() + 1;
       let year1 = d1.getFullYear();
       this.nextDate = { date: { year: year1, month: month1, day: day1 } };
-      //this.show3 = true;
-      this.show4 = true;
-      //let ad = year + "-" + month + "-" +day;
-      //let nad = year1 + "-" + month1 + "-" +day1;
-      // this.appAudit.auditDate = ad;
-      // this.appAudit.nextAuditDate = nad;
-      // this.appAudit.auditPolicyDTOs = [];
+     
 
       this.myDatePickerOptions.disableUntil.day = day;
       this.myDatePickerOptions.disableUntil.month = month;
@@ -222,14 +207,14 @@ export class AuditFirstComponent implements OnInit {
 
   selectDefinitive(auditID) {
 
-    if (auditID === 'Choose...') {
+    if (auditID === 'Choose...' || auditID === "") {
       this.definitive = false
       this.showTable = false;
-      this.show1 = false;
+   
       this.policyTypes = [];
     }
     else {
-      this.show1 = true;
+      
       this.definitive = true;
       this.auditTypeId = auditID;
       this.appAudit.auditName = auditID;
@@ -242,14 +227,14 @@ export class AuditFirstComponent implements OnInit {
 
 
   selectType(policy) {
-    if (policy === 'Choose...') {
+    if (policy === 'Choose...' || policy === "") {
       this.showTable = false;
-      this.show2 = false;
+      
       this.policies = [];
 
     }
     else {
-      this.show2 = true;
+     
       //this.appAudit.policyDTOs.policyGrpId = policy;
       this.appAudit.policyGrpId = policy;
       this._apiservice.fetchPolicies(policy)
@@ -268,15 +253,10 @@ export class AuditFirstComponent implements OnInit {
     this.myForm.controls['nextDate'].disable();
     this.nextDate = null;
     if (value.formatted === "") {
-      //  this.err1 = "Enter the AuditDate";
-      //  this.show3 = false;
+    
     }
     else {
-      //  this.show3=true;
-      //  this.err1 = "";
-      //  this.err = "";
-      //  let d = value.formatted;
-      // this.audate = Date.parse(value.formatted);
+ 
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAudit.auditDate = moment(latest_date).format();
       let d=new Date(value.formatted);
@@ -289,18 +269,7 @@ export class AuditFirstComponent implements OnInit {
       this.myDatePickerOptions.showTodayBtn = false;
      
       this.myForm.controls['nextDate'].enable();
-      //  if (this.naudt != undefined) {
-      //  if(this.compareDate(this.audate, this.naudt))
-      //  {
-      //  //this.err ="";
-      //  this.appAudit.auditDate = moment(latest_date).format();
-      //  this.show4=true;
-      //  }
-      //  else {
-      //  this.err = "nextDueDate should be after the auditDate";
-      //  this.show4 = false;
-      //  }
-      //}
+     
 
     }
   }
@@ -308,22 +277,14 @@ export class AuditFirstComponent implements OnInit {
   getDate(value) {
 
     if (value.formatted === "") {
-      // this.err = "Enter the DueDate";
-      // this.show4 = false;
+      
     }
     else {
-      // this.show4 = true;
-      // this.err = "";
-      // let ddt = value.formatted;
+      
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
-      //this.naudt = Date.parse(ddt);
-      // if (this.compareDate(this.audate, this.naudt)) {
+      
       this.appAudit.nextAuditDate = moment(latest_date).format();
-      // }
-      // else {
-      //   this.err = "nextDueDate should be after the auditDate";
-      //   this.show4 = false;
-      // }
+      
     }
 
   }
@@ -331,7 +292,7 @@ export class AuditFirstComponent implements OnInit {
 
   getNextDate(value) {
 
-    if (value === 'Choose...') {
+    if (value === 'Choose...' || value === "") {
       this.showLegalBox = false;
     }
     else {
@@ -340,17 +301,7 @@ export class AuditFirstComponent implements OnInit {
       this.showLegalBox = true;
 
 
-      // let t =this.compareDate(audate,naudt);
-      // if(t)
-      // {
-      // this.appAudit.auditDate=audate;
-      // this.appAudit.nextAuditDate=naudt;
-      // 
-      // console.log(this.appAudit);
-      // }
-      // else{
-      // this.err = "nextDueDate should be after the auditDate";
-      // this.appAudit = null;
+     
 
     }
 
@@ -438,6 +389,7 @@ export class AuditFirstComponent implements OnInit {
     this.showOriginal = false;
     this.showStatus = true;
     this.showStatus1 = false;
+    this.showLegalBox=true;
 
   }
 

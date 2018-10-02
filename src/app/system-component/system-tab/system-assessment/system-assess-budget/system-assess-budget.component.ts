@@ -10,7 +10,7 @@ import { Cookie } from 'ng2-cookies';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
 import * as moment from 'moment';
-import {FormsModule, NgForm, FormGroup } from '@angular/forms';
+import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { AppAssess, AssessmentPolicyDTO, Policy } from '../../../../data.model.assessmentDTO';
@@ -25,11 +25,11 @@ declare var swal: any; ''
   selector: 'app-system-assess-budget',
   templateUrl: './system-assess-budget.component.html',
   styleUrls: ['./system-assess-budget.component.css'],
-   providers: [AlertService, DialogService]
+  providers: [AlertService, DialogService]
 })
 export class SystemAssessBudgetComponent implements OnInit {
 
- @ViewChild('content') content: TemplateRef<any>;
+  @ViewChild('content') content: TemplateRef<any>;
   @ViewChild('content1') content1: TemplateRef<any>;
   // @ViewChild('myForm', { read: ElementRef }) myForm: ElementRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
@@ -48,7 +48,7 @@ export class SystemAssessBudgetComponent implements OnInit {
     private utilService: UtilService, private http: Http, private route: ActivatedRoute,
     private router: Router, private modalService: NgbModal, private datepipe: DatePipe,
     private alertservice: AlertService, private dialogService: DialogService) {
-      
+
     this.appAssess = new AppAssess();
     this.getAppId();
   }
@@ -72,7 +72,6 @@ export class SystemAssessBudgetComponent implements OnInit {
 
   showOnPageLoad() {
     if (localStorage.getItem('assesId') === null) {
-      console.log('Not edit mode');
     }
     else {
       let id = localStorage.getItem('assesId');
@@ -105,14 +104,14 @@ export class SystemAssessBudgetComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
     let url_update = APP_CONFIG.updateAppAssessment;
-    this.appAssess.updatedBy=Cookie.get('userName');
+    this.appAssess.updatedBy = Cookie.get('userName');
     let data = JSON.stringify(this.appAssess);
     this.http.post(url_update, data, options)
       .subscribe((data: any) => {
         this.loading = false;
         //this.myForm.nativeElement.reset({description: this.appAssess.budgetDescription, overallEstimates: this.appAssess.budget});
-         const { myForm: { value: formValueSnap } } = this;
-         this.myForm.reset(formValueSnap);
+        const { myForm: { value: formValueSnap } } = this;
+        this.myForm.reset(formValueSnap);
         this.info = "Budget has been updated.";
         this.modalService.open(this.content, ngbModalOptions);
       }, error => {
@@ -128,25 +127,19 @@ export class SystemAssessBudgetComponent implements OnInit {
   }
 
   showLeft() {
-    this.router.navigate(['locality/tab/assessment']);
+    this.router.navigate(['system/tab2/assessment']);
   }
 
 
   //@HostListener('window:beforeunload', ['$event'])
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // console.log(this.myForm);
-    // console.log(this.myForm.dirty);
-    
-    //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
-      if(this.myForm.dirty){
-      //return this.dialogService.confirm('Discard changes for Budget?');
-      //const modal=this.modalService.open(this.content1, ngbModalOptions);
+    if (this.myForm.dirty) {
 
-    return  this.confirm1('Do you want to save changes?', 'for budget', 'YES', 'NO');
-       
+      return this.confirm1('Do you want to save changes?', 'for budget', 'YES', 'NO');
+
 
     }
-    
+
     return true;
 
   }
@@ -179,11 +172,10 @@ export class SystemAssessBudgetComponent implements OnInit {
 
 
   }
-  goTo()
-  {
+  goTo() {
     //let url=this.state.url;
     let snapshot: RouterStateSnapshot = this.router.routerState.snapshot;
-    let url=snapshot.url
+    let url = snapshot.url
     console.log(url);
     this.router.navigateByUrl(url);
   }
