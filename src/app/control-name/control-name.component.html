@@ -30,7 +30,8 @@
   </div>
 </ng-template>
 <div *ngIf="!showDiv">
-	<form class="form" (ngSubmit) = "addPolicy()">
+	<form class="form" (ngSubmit) = "addPolicy()" enctype="multipart/form-data"
+	#editForm="ngForm">
 <fieldset [disabled]='showForm'>
 	<h4>POLICY DETAILS</h4>
 	<div class=" form-row">
@@ -64,7 +65,7 @@
          	<div class="form-group col-md-6">
             <label for="procedures">Procedures</label><div class="asterisk">*</div>
             <p *ngIf="showForm">{{ policyAccess.procedures }}</p>
-            <textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)] = "policyAccess.procedures" [name] = "'policy_procedures'"></textarea>
+            <textarea *ngIf="!showForm" cols="156" rows="7" id="patches" ngModel name ="policyProcedures" [(ngModel)] = "policyAccess.procedures" [name] = "'policy_procedures'" required></textarea>
             	</div>
          </div>
      <div class="form-row">
@@ -207,37 +208,45 @@
          </div>
 	</div>
 	<hr />
-	<div class="form-row">
+	
+     	<div class="form-row">
 		<div class="col-md-6">
 			<h4>Documents</h4>
 	<input type = "file" #fileInput (change)="createPolicyDocumentDTO($event)">
-	
-		</div>
-	</div>
-	
 	<div class="display-file">
-	
-	        	<ul *ngFor="let file of displayPolicyDocuments">  								
-								<li *ngIf="file.activeFlag" (click)="getPolicyDocumentAttch(file.policyDocId)"  style="cursor: pointer; color: blue;">
-									{{file.documentName}}</li>
-							</ul>
-	
-	
-	
-	
-	
-	</div>
-	
-	
-	
-	
+            	<br>
+							
+							<table border="1">
+							<tr>
+								<th>FileName</th>
+								<th *ngIf="!showFrm">Action</th>
+							</tr>
+							<tr *ngFor=" let policyDocument of displayPolicyDocuments">
+								<td  style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+								<td  *ngIf="!showForm" (click)="deleteFile(policyDocument.policyDocId,i)"style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+
+							
+							</tr>
+						</table>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+            </div>
+            </div></div>
 	
 	
 	
 	</fieldset>
 	<hr />
 	<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
-	<button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
+	<button type="submit" (click)="open(content)"  [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
 	<button type="cancel" class="cancel btn btn-primary">Cancel</button>
 	<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
 </form>
@@ -286,13 +295,12 @@
 		  </thead>
 		  <tbody>
 		    <tr *ngFor = "let policy of policies">
-		      <!-- <td><input type = "checkbox" [checked] = "check" (change) = "viewEvent($event, check)"></td> -->
+		      
 		      <td><input type = "checkbox"  (change) = "viewEvent(policy,$event.target.checked)"></td>
 		      <td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{ policy.controlNumber }}</a></td>
 		      <td>{{ policy.policyName }}</td>
 		      <td>{{ policy.priority }}</td>
 		      <td>{{ policy.policyVal }}</td>
-		      <td></td>
 		      <td></td>
 		      <td></td>
 		      <td></td>

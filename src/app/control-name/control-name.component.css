@@ -16,10 +16,8 @@
 	border-color: #3A539B;
 }
 
-table{
-	width:100%;
-	
-}
+
+
 
 th{
 	background-color:#cecfd5;
@@ -98,11 +96,11 @@ a{
 	 color: #3A539B;
 }
 
-table{
-	background-color: #ffffff;
-	text-align: center;
-	border: 1px solid black;
-}
+/* table{ */
+/* 	background-color: #ffffff; */
+/* 	text-align: center; */
+/* 	border: 1px solid black; */
+/* } */
 
 .table-bordered tbody tr:nth-of-type(odd){
 	background-color: #EEEEEE !important;
@@ -134,10 +132,10 @@ table thead tr td{
 
 
 
-table{ 
-	background-color: #ffffff;
-	text-align: center;
-}
+/* table{  */
+/* 	background-color: #ffffff; */
+/* 	text-align: center; */
+/* } */
 
 table thead tr th{
 	font-weight: 500;
@@ -217,7 +215,7 @@ i.fa {
 
 
 
-
+s
 
 
 
@@ -248,10 +246,6 @@ input[readonly] {
 	background-color: #ffffff;
 	}
 
-table{
-	background-color: #ffffff;
-	text-align: center;
-}
 
 table thead tr th{
 	font-weight: 500;
@@ -268,10 +262,6 @@ table thead tr th{
 }
 
 
-table{
-    background-color: #ffffff;
-    text-align: center;
-    }
     
     table thead tr th{
     font-weight: 500;
@@ -370,11 +360,7 @@ input[readonly] {
 	background-color: #ffffff;
 	}
 
-table{
-	background-color: #ffffff;
-	text-align: center;
-	border: 1px solid black;
-}
+
 
 .table-bordered tbody tr:nth-of-type(odd){
 	background-color: #EEEEEE !important;

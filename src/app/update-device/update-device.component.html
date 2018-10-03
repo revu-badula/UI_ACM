@@ -126,14 +126,14 @@
                 <div class="form-group col-md-6">
                     <label for="productName">Product Name</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="productName" >
+                    <input type="text" class="form-control" id="productName"  name = "product" [(ngModel)]="device.productName">
                 </div>
             </div>
 	<h4>Configuration</h4>
 		<div class=" form-row">
 		<div class="form-group col-md-6">
             <label for="hardware">Hardware</label>
-              <input type="text" class="form-control" id="hardware" [(ngModel)] = "device.hardware" ngModel name = "hardware" required>
+              <input type="text" class="form-control" id="hardware" [(ngModel)] = "device.hardware"  name = "hardware">
             	</div>
          <div class="form-group col-md-6">
             <label for="updateLevel">Control Name</label>
@@ -141,31 +141,31 @@
             	</div>
 		<div class="form-group col-md-6">
             <label for="clockFrequency">Clock Frequency</label>
-              <input type="text" class="form-control" id="clockFrequency" [(ngModel)] = "device.clockFrequency" ngModel name = "clock" required>
+              <input type="text" class="form-control" id="clockFrequency" [(ngModel)] = "device.clockFrequency"  name = "clock">
             	</div>
          <div class="form-group col-md-6">
             <label for="memory">Memory</label>
-              <input type="text" class="form-control" id="memory" [(ngModel)] = "device.memorySize" ngModel name = "memory" required>
+              <input type="text" class="form-control" id="memory" [(ngModel)] = "device.memorySize"  name = "memory">
             	</div>
 		<div class="form-group col-md-6">
             <label for="diskSpace">Disk Space</label>
-              <input type="text" class="form-control" id="diskSpace" [(ngModel)] = "device.localDiskSpace" ngModel name = "space" required>
+              <input type="text" class="form-control" id="diskSpace" [(ngModel)] = "device.localDiskSpace"  name = "space">
             	</div>
          <div class="form-group col-md-6">
             <label for="cpuCount">CPU Count</label>
-              <input type="text" class="form-control" id="cpuCount" [(ngModel)] = "device.cpuCount" ngModel name = "cpu" required>
+              <input type="text" class="form-control" id="cpuCount" [(ngModel)] = "device.cpuCount"  name = "cpu" >
             	</div>
 		<div class="form-group col-md-6">
             <label for="physicalCpuCount">Physical CPU Count</label>
-              <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)] = "device.physicalCpuCount" ngModel name = "physical" required>
+              <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)] = "device.physicalCpuCount"  name = "physical">
             	</div>
          <div class="form-group col-md-6">
             <label for="logicalCpuCount">Logical CPU Count</label>
-              <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)] = "device.logicalCpuCount" ngModel name = "logical" required>
+              <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)] = "device.logicalCpuCount"  name = "logical">
             	</div>
          <div class="form-group col-md-6"> 
              <label for="ipAddress">IP Address</label> 
-               <input type="text" class="form-control" id="ipAddress" [(ngModel)] = "device.ipAddress" ngModel name = "ipaddress" required> 
+               <input type="text" class="form-control" id="ipAddress" [(ngModel)] = "device.ipAddress"  name = "ipaddress"> 
            	</div> 
 	</div>
 	<hr />
@@ -177,7 +177,7 @@
             	</div>
          <div class="form-group col-md-6">
             <label for="version">Version</label>
-              <input type="text" class="form-control" id="version" [(ngModel)] = "device.osVersion" ngModel name = "osversion" required>
+              <input type="text" class="form-control" id="version" [(ngModel)] = "device.osVersion"  name = "osversion" >
             	</div>
 	</div>
 	<hr /> 
@@ -185,25 +185,25 @@
  	<div class="form-row"> 
  		<div class="form-group col-md-6"> 
              <label for="db/AppServerName">DB/APP Server Name</label> 
-               <input type="text" class="form-control" id="db/AppServerName" [(ngModel)] = "device.dbServer" ngModel name = "dbserver" required> 
+               <input type="text" class="form-control" id="db/AppServerName" [(ngModel)] = "device.dbServer"  name = "dbserver" required> 
              	</div> -->
       </div> 
          <div class="form-row"> 
           	<div class="form-group col-md-6"> 
              <label for="serverName">Server Name</label> 
-               <input type="text" class="form-control" id="serverName" [(ngModel)] = "device.serverName" ngModel name = "servername" required> 
+               <input type="text" class="form-control" id="serverName" [(ngModel)] = "device.serverName"  name = "servername"> 
              	</div> 
               <div class="form-group col-md-6"> 
              <label for="version">Version</label> 
-               <input type="text" class="form-control" id="version" [(ngModel)] = "device.dbVersion" ngModel name = "dbversion" required> 
+               <input type="text" class="form-control" id="version" [(ngModel)] = "device.dbVersion"  name = "dbversion"> 
             	</div>
              <div class="form-group col-md-6"> 
              <label for="sizeGb">Size GB</label> 
-            <input type="text" class="form-control" id="sizeGb" [(ngModel)] = "device.sizeGb" ngModel name = "sizegb" required> 
+            <input type="text" class="form-control" id="sizeGb" [(ngModel)] = "device.sizeGb" name = "sizegb"> 
              	</div> 
              <div class="form-group col-md-6"> 
              <label for="archiveLogMode">Archive Log Mode</label> 
-              <input type="text" class="form-control" id="archiveLogMode" [(ngModel)] = "device.archiveLogMode" ngModel name = "db_version" required> 
+              <input type="text" class="form-control" id="archiveLogMode" [(ngModel)] = "device.archiveLogMode"  name = "db_version"> 
              	</div> 
  	</div> 
  	</fieldset>

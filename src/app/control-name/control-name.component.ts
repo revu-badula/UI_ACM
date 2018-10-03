@@ -109,6 +109,38 @@ export class ControlNameComponent implements OnInit {
     console.log(this.policyAccess.policyDocumentsDTOs);
   }
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   dateSubmit(){
     let date = this.endDate.formatted;
     this.policyAccess.endDate = Date.parse(date);
@@ -194,7 +226,8 @@ fetchPolicies(id){
 }
 
 viewEvent(addPolicies: any,event){
- 
+ this.definitive= false;
+ this.policy= false;
  
   	
   	if(this.policyAccess.linkedPolicies == null)

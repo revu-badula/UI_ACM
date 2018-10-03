@@ -51,7 +51,7 @@
 	<div class="form-row">
          	<div class="form-group col-md-6">
             <label for="procedures">Procedures</label><div class="asterisk">*</div>
-            <textarea cols="156" rows="7" id="patches" [(ngModel)] = "policyPost.procedures" [name] = "'policy_procedures'"></textarea>
+            <textarea cols="156" rows="7" id="patches"  ngModel name ="policyProcedures" [(ngModel)] = "policyPost.procedures" [name] = "'policy_procedures'" required></textarea>
             	</div>
          </div>
      <div class="form-row">

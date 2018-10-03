@@ -12,6 +12,15 @@
 	float: right;
 }
 
+  .primary {
+  color: green !important;
+}
+.secondary {
+  color: red !important;
+}
+   
+
+
 .sorting{
 	margin-left: 5px;
 }
