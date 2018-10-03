@@ -4,7 +4,7 @@ import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ApplicationSolution, SolutionsDTO, Vendor, Device, HostingType } from '../../../../data_model_lsolutions';
+import { ApplicationSolution, SolutionsDTO, Vendor, Device, HostingType, SystemType } from '../../../../data_model_lsolutions';
 import { Solution } from '../../../../data_model';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { UtilService } from '../../../../util.service';
@@ -42,8 +42,6 @@ export class LocalitysolutionsformComponent implements OnInit {
   public appId: any;
   public modalForm: FormGroup;
   public appSolutions: any;
-  public deviceTable: any;
-
   public appSolutionId: any;
   public appSolutionDevice: any;
   public hostingTypeId: any;
@@ -61,8 +59,6 @@ export class LocalitysolutionsformComponent implements OnInit {
   public isAddNewSolution = false;
   public notVisible = false;
   public boxVisible = false;
-  public selectDate: any;
-  public selDate: any;
   public editForm: boolean = true;
   public acronym: any;
   public updatedTime: any;
@@ -82,6 +78,7 @@ export class LocalitysolutionsformComponent implements OnInit {
     this.applicationSolution.solutionsDTO = new SolutionsDTO();
     this.applicationSolution.solutionsDTO.vendor = new Vendor();
     this.applicationSolution.solutionsDTO.hostingTypeDTO = new HostingType();
+    this.applicationSolution.solutionsDTO.systemTypeDTO = new SystemType();
     this.device = new Device();
     this.getAppId();
     //this.viewApplication(localStorage.getItem('localityName'));
@@ -140,7 +137,6 @@ export class LocalitysolutionsformComponent implements OnInit {
   showSolutionsPage(appSolutionId) {
     this.isClick = false;
     this.isVisible = true;
-    this.showLegal = true;
     this.notVisible = true;
     this.boxVisible = true;
     this.showInnerForm = true;
@@ -155,9 +151,10 @@ export class LocalitysolutionsformComponent implements OnInit {
         this.applicationSolution.solutionsDTO = data.solutionsDTO;
         this.applicationSolution.solutionsDTO.vendor = data.solutionsDTO.vendor;
         this.devices = data.appSolutionDevices;
-        this.sysName = data.solutionsDTO.systemTypeDTO.name
+        this.applicationSolution.solutionsDTO.systemTypeDTO = data.solutionsDTO.systemTypeDTO;
         this.applicationSolution.appSolutionDevices = data.appSolutionDevices;
         this.hostType = data.hostingType.name;
+        this.selectBox(data.solutionsDTO.systemTypeDTO.systemTypeId,data.solutionsDTO.precinctTypeId);
       }, error => {
         this.loading = false;
         console.log(error);
@@ -237,7 +234,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   }
 
   selectPrecinct(id) {
-    if (id === 'Choose...') {
+    if (id === 'Choose...' || id === "") {
       this.showPrecinct = false;
 
     }
@@ -251,6 +248,11 @@ export class LocalitysolutionsformComponent implements OnInit {
   }
 
   selectModSolution(solutionId) {
+    if(solutionId === "")
+    {
+
+    }
+    else{
     this.solutionId = solutionId;
     this.loading = true;
     this._apiservice.getSolutionExtra(solutionId)
@@ -275,6 +277,7 @@ export class LocalitysolutionsformComponent implements OnInit {
         this.loading = false;
         console.log(error);
       });
+    }
 
   }
   open(content) {
@@ -341,6 +344,7 @@ export class LocalitysolutionsformComponent implements OnInit {
     this.editForm = false;
     this.editableForm = false;
     this.showPlus=true;
+    this.showLegal=true;
   }
 
 
@@ -364,10 +368,10 @@ export class LocalitysolutionsformComponent implements OnInit {
   }
   selectSystemType(id) {
 
-    if (id === 'Choose...') {
+    if (id === 'Choose...' || id === "") {
       this.names = [];
     } else {
-      this.selectBox(id, this.precinctTypeId);
+      this.selectBox(id, this.applicationSolution.solutionsDTO.precinctTypeId);
     }
 
   }

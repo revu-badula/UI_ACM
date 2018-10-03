@@ -56,6 +56,8 @@
                             <i class="fa fa-arrow-up" *ngIf="auditType"></i></th>
                         <th scope="col" (click)="handleSort2('auditDate')">Audit Date<i class="fa fa-arrow-down" *ngIf="!auditDate"></i>
                             <i class="fa fa-arrow-up" *ngIf="auditDate"></i></th>
+                            <th scope="col" (click)="handleSort3('nextAuditDate')">Next Audit Date<i class="fa fa-arrow-down" *ngIf="!nextAuditDate"></i>
+                                <i class="fa fa-arrow-up" *ngIf="nextAuditDate"></i></th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
@@ -66,6 +68,7 @@
                         </td>
                         <td>{{ audit.auditType }}</td>
                         <td>{{ audit.auditDate | filterDate }}</td>
+                        <td>{{ audit.nextAuditDate | filterDate }}</td>
                         <td>{{ audit.status }}</td>
                     </tr>
                 </tbody>

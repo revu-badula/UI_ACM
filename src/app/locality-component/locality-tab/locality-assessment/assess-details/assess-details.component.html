@@ -148,7 +148,7 @@
             <label for="inputState">Overall Status</label>
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus" [(ngModel)]="appAssess.status">
-            <select *ngIf="showOriginal || showStatus" ngModel id="modelSolution" class="form-control" name="overallStatus" (change)="getNextDate($event.target.value)" required>
+            <select *ngIf="showOriginal || showStatus" [(ngModel)]="appAssess.status" ngModel id="modelSolution" class="form-control" name="overallStatus" (change)="getNextDate($event.target.value)" required>
               <option value="">Choose...</option>
               <option value="Open">Open</option>
               <option value="Suspended">Suspended</option>

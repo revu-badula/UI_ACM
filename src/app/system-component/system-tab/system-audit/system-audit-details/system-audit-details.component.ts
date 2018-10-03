@@ -28,6 +28,7 @@ export class SystemAuditDetailsComponent implements OnInit {
   public desc:boolean=false;
   public auditType:boolean=false;
   public auditDate:boolean=false;
+  public nextAuditDate:boolean=false;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
     private router: Router, private route: ActivatedRoute) {
@@ -181,6 +182,40 @@ export class SystemAuditDetailsComponent implements OnInit {
 
 
   }
+
+  handleSort3(value) {
+    if (!this.nextAuditDate) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.nextAuditDate = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.nextAuditDate = false;
+    }
+
+
+  }
+
 
 
 

@@ -89,10 +89,10 @@
 				<label for="modelSolution">Precinct Type</label>
 				<div class="asterisk">*</div>
 				<input type="text" [(ngModel)]="applicationSolution.solutionsDTO.precinctTypeName" class="form-control" *ngIf="!isAddNewSolution"
-				 ngModel name="name" required readonly> 
-				 <select id="modelSolution" *ngIf="isAddNewSolution" class="form-control" (change)="selectPrecinct($event.target.value)"
+				  name="name" required readonly>
+				<select id="modelSolution" [(ngModel)]="applicationSolution.solutionsDTO.precinctTypeId" *ngIf="isAddNewSolution" class="form-control"
+				 (change)="applicationSolution.solutionsDTO.precinctTypeId = $event.target.value"
 				 ngModel name="name" required>
-					<option selected>Choose...</option>
 					<option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{precinct.typeName}}</option>
 
 				</select>
@@ -104,11 +104,10 @@
 			<div class="form-group col-md-6">
 				<label for="modelSolution">System Type</label>
 				<div class="asterisk">*</div>
-				<input type="text" class="form-control" name="system" *ngIf="!isAddNewSolution" [(ngModel)]="sysName"
-				 name="system" required readonly>
-				<select id="modelSolution" *ngIf="isAddNewSolution" class="form-control" (change)="selectSystemType($event.target.value)"
+				<input type="text" class="form-control" name="system" *ngIf="!isAddNewSolution" [(ngModel)]="applicationSolution.solutionsDTO.systemTypeDTO.name" name="system"
+				 required readonly>
+				<select id="modelSolution" [(ngModel)]="applicationSolution.solutionsDTO.systemTypeDTO.systemTypeId" *ngIf="isAddNewSolution" class="form-control" (change)="selectSystemType($event.target.value);applicationSolution.solutionsDTO.systemTypeDTO.systemTypeId = $event.target.value"
 				 ngModel name="system" required>
-					<option selected>Choose...</option>
 					<option *ngFor="let systemType of systemTypes" value="{{ systemType.systemTypeId }}">{{systemType.name}}</option>
 
 				</select>
@@ -127,10 +126,10 @@
 					<label for="lastName">Model/Solution</label>
 					<div class="asterisk">*</div>
 					<input type="text" class="form-control" *ngIf="!isAddNewSolution" ngModel name="modelSname" [(ngModel)]="applicationSolution.solutionsDTO.name"
-					 required readonly> 
-					 <select *ngIf="isAddNewSolution" id="inputState" class="form-control"
-					 (change)="selectModSolution($event.target.value)"  name="modelSname"  ngModel required>
-						<option selected>Choose...</option>
+					 required readonly>
+					<select *ngIf="isAddNewSolution" [(ngModel)]="applicationSolution.solutionsDTO.solutionId" id="inputState" class="form-control" (change)="selectModSolution($event.target.value);applicationSolution.solutionsDTO.solutionId = $event.target.value"
+					 name="modelSname" ngModel required>
+						
 						<option *ngFor="let name of names" value="{{name.solutionId}}">{{name.name}}</option>
 
 					</select>
@@ -142,7 +141,8 @@
 					<div class="form-group col-md-6">
 						<label for="lastName">Version</label>
 						<div class="asterisk">*</div>
-						<input type="text" class="form-control" ngModel name="versionNumber" required [(ngModel)]="applicationSolution.solutionsDTO.versionNumber" readonly>
+						<input type="text" class="form-control" ngModel name="versionNumber" required [(ngModel)]="applicationSolution.solutionsDTO.versionNumber"
+						 readonly>
 					</div>
 
 					<div class="form-group col-md-6">
@@ -154,7 +154,8 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="lastName">Vendor</label>
-						<div class="asterisk">*</div> <input type="text" class="form-control" ngModel name="vendors" required [(ngModel)]="applicationSolution.solutionsDTO.vendor.name" readonly>
+						<div class="asterisk">*</div> <input type="text" class="form-control" ngModel name="vendors" required [(ngModel)]="applicationSolution.solutionsDTO.vendor.name"
+						 readonly>
 					</div>
 				</div>
 				<div class="form-row">
@@ -163,8 +164,7 @@
 						<div class="asterisk">*</div>
 						<!-- <input type="text"  class="form-control" ngModel name="hostingTypeId" required
 						 [(ngModel)]="applicationSolution.solutionsDTO.hostingTypeDTO.name" readonly> -->
-						 <input type="text"  class="form-control"  name="hostingTypeId" required
-						 [(ngModel)]="hostType" readonly>
+						<input type="text" class="form-control" name="hostingTypeId" required [(ngModel)]="hostType" readonly>
 						<!-- <select id="inputState" *ngIf="isAddNewSolution" class="form-control" ngModel name="modelHname" required
 						 (change)="getHostingType($event.target.value)" required>
 							<option>Choose...</option>
@@ -184,7 +184,7 @@
 					<div class="form-group col-md-6">
 						<label for="units">Add Unit</label>
 						<div class="plus" *ngIf="showPlus">
-						
+
 
 							<!-- 							 [ngClass]="{disabled: editableForm}" -->
 							<i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="open1()"></i>
@@ -203,8 +203,9 @@
 							<tbody>
 
 								<tr *ngFor="let table of devices">
-									<td><a class="box" (click)="open2(table)">{{
+									<td *ngIf="showPlus"><a class="box" (click)="open2(table)">{{
 											table.modelNumber }}</a></td>
+									<td *ngIf="!showPlus">{{table.modelNumber }}</td>
 									<td>{{ table.serialNumber }}</td>
 									<td>{{ table.nextScanningDt | filterDate }}</td>
 									<td>{{ table.overallStatus }}</td>
@@ -220,12 +221,12 @@
 
 
 			</div>
-		
+
 			<button type="submit" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick">Submit</button>
 			<button type="submit" class="btn btn-primary" (click)="close($event)">Cancel</button>
 
 
 		</div>
 	</fieldset>
-	
+
 </form>
