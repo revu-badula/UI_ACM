@@ -128,11 +128,7 @@ import { SystemAssessLessonsComponent } from './system-component/system-tab/syst
 import { SystemGuardAssess } from './system-assess-guard';
 import { ReportsComponent } from './reports/reports.component';
 
-
 const appRoutes: Routes = [
-
-
-
 
   { path: '', component: LoginPageComponent },
   { path: 'login', component: LoginPageComponent },

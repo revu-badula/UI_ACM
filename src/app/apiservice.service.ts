@@ -335,4 +335,23 @@ getDatabases(){
   }
 
 
+  getLocalityTotal() {
+    let url = APP_CONFIG.getLocalityTotal;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+
+  getLocalityAcronyms() {
+    let url = APP_CONFIG.getLocalityAcronyms;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+
+  getPendingApplications() {
+    let url = APP_CONFIG.getPendingApplications;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+
+
 }

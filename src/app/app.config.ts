@@ -71,7 +71,10 @@ getBusinessOwner: apiBaseUrl + 'getBusinessOwnerNameDoe',
 getSystemAdministrator: apiBaseUrl + 'getSystemOwnerNameDoe',
 getDeviceFile: apiBaseUrl + 'getDeviceFile',
 getPolicyDocumentAttch:apiBaseUrl + 'getPolicyDocumentAttch',
-getDatabases:apiBaseUrl +'getDatabases'
+getDatabases:apiBaseUrl +'getDatabases',
+getLocalityAcronyms:apiBaseUrl+'getLocalityAcrnonyms',
+getLocalityTotal: apiBaseUrl+'getLocalityTotal',
+getPendingApplications: apiBaseUrl+'getPendingApplications'
 
 }
 

@@ -1,5 +1,4 @@
 <app-navigation-component></app-navigation-component>
-<app-option-list></app-option-list>
 
 <section>
 <div class="dashboard">
@@ -16,10 +15,10 @@
 </div>
 <div class="card" style="width: 18rem;">
 <div class="card-body">
-<div class="card-heading"><h5 class="card-title">Total Applications</h5>
+<div class="card-heading"><h5 class="card-title">System Security Plan For Locality</h5>
  </div>
  <hr>
- <div class="center"><a href="#"><h1 style="color: black">135</h1></a></div>
+ <div class="center"><a href="#"><h2 style="color: black">{{displayData}}</h2></a></div>
 
 </div>
 </div>
@@ -60,109 +59,37 @@
    </div>  
    </div>
    </section>
-<hr>
- <h2> Below graph shows audit status for each application </h2><br>
-* The green bar indicates the number of completed audits for a given application.<br>
-* The yellow bar indicates the number of in-progress audits for a given application.<br>
-* The bar has hyper links that will navigate directly to the application screen.<br>
-
-<br><br><br>
-
-    <div class="skills">
-        
-        
-        <div class="charts">
-          <div class="chart chart--dev">
-           
-            <ul class="chart--horiz">
-              <li class="chart__bar" style="width: 98%;">
-                <span class="chart__label">
-                  VEC
-                </span>
-              </li>
-              <li class="chart__bar" style="width: 98%;">
-                <span class="chart__label">
-                  LMS
-                </span>
-              </li>
-              <li class="chart__bar" style="width: 70%;">
-                <span class="chart__label">
-                 CMS
-                </span>
-              </li>
-              <li class="chart__bar" style="width: 40%;">
-                <span class="chart__label">
-                VLDS
-                </span>
-              </li>
-              <li class="chart__bar" style="width: 40%;">
-                <span class="chart__label">
-                 TN8
-                </span>
-              </li>
-              <li class="chart__bar" style="width: 60%;">
-                <span class="chart__label">
-               SOLS
-                </span>
-              </li>
-              <li class="chart__bar" style="width: 55%;">
-                <span class="chart__label">
-                 VCC
-                </span>
-              </li>
-              <li class="chart__bar" style="width: 50%;">
-                <span class="chart__label">
-                  Veris
-                </span>
-              </li>
-              
-            </ul>
-          </div>
+<section>
+  <div class="former clear-right">
+    <table class="table table-striped table-hover table-bordere">
+      <thead>
+        <tr>
+<th scope="col" (click)="handleSort()">Localities <i
+        class="fa fa-arrow-down" *ngIf="!desc"></i> <i
+        class="fa fa-arrow-up" *ngIf="desc"></i></th>
+          <th scope="col">Signed</th>
           
-          
-    
-        </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br><br>
-    <br>
-    <br>
-<br>
-<br>
-<hr>
-   <section>
-     
-      <div id="container">
-        
-          <div class="form-row">
-              <div class="form-group col-12">
-                
-      <div id="first">
-          <div class="pie" data-start="0" data-value="30"></div>  
-          <div class="pie highlight" data-start="30" data-value="30"></div>
-          <div class="pie" data-start="60" data-value="40"></div>
-          <div class="pie big" data-start="100" data-value="260"></div>
-      </div>
-      </div>
-      <div class="form-row">
-          <div class="form-group col-12">
-      
-      <div id="second">
-          <div class="pie" data-start="0" data-value="30"></div>
-          <div class="pie highlight" data-start="30" data-value="30"></div>
-          <div class="pie" data-start="60" data-value="40"></div>
-          <div class="pie big" data-start="100" data-value="260"></div>
-    </div>
-    </div>
-      </div>
-      </div>
-        <div id="clear"></div>
-        </div>
-    </section>
+          <th scope="col">Recertification Date</th>
+          <th scope="col">Notify</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr *ngFor="let locality of Localities |  paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>
+            <a class="box" (click)="viewApplication(locality.value)" style="cursor: pointer;">{{locality.value}}</a>
+          </td>
+         
+          <td>09/29/2018</td>
+          <td>
+            <a>
+              <i class="fa fa-envelope" style="color:#3A539B !important"></i>
+            </a>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</section>

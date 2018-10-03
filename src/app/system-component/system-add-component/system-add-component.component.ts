@@ -16,7 +16,7 @@ export class SystemAddComponentComponent implements OnInit {
   public system: any;
   public acronyms: any;
   public businessOwners: any;
-  public systemOwners: any;
+  public pendingApplications: any;
   public loading: boolean = false;
   public desc:boolean=false;
   public businessOwner:boolean=false;
@@ -30,108 +30,63 @@ export class SystemAddComponentComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getAppAcronyms();
-    this.getBusinessOwners();
-    this.getSystemOwners();
+    // this.getAppAcronyms();
+    // this.getBusinessOwners();
+    // this.getSystemOwners();
+    this.getPendingApplications();
   }
 
-  //   selectLocal(system){
-  //   if(system === 'Choose...'){
+  
 
-  //   }
-  //   else{
-  //   this.system = system;
-  //   let ngbModalOptions: NgbModalOptions = {
-  // 	      backdrop : 'static',
-  // 	      keyboard : false
-  // 	      };
-  //     this._apiservice.viewApplication(system)
-  //       .subscribe((data: any) => {
-  //       console.log(data);
-  //       if(data.applicationViewDTO === null){
-  //         this.modalService.open(this.content, ngbModalOptions);
-  //       }
-  //       else{
-  //       this.router.navigate(['/system/tab/info/' + system]);
-
-  //       }},error => {console.log(error);});
-  //       }
-
-
-  // }
-
-
-
-  // redirect(condition) {
-
-  //   if (condition === 'yes') {
-  //     this.router.navigate(['/system/tab2/info/' + this.system]);
-  //   }
-
-  //   else {
-
-  //     this.router.navigate(['/system/map']);
-
-  //   }
-
-  // }
-
-  // fetchSystem(system) {
-  //   this.system = system;
-  //   let ngbModalOptions: NgbModalOptions = {
-  //     backdrop: 'static',
-  //     keyboard: false
-  //   };
-  //   this._apiservice.viewApplication(system)
+  // getAppAcronyms() {
+  //   this.loading=true;
+  //   this._apiservice.getAppAcronyms()
   //     .subscribe((data: any) => {
-  //       console.log(data);
-  //       if (data.applicationViewDTO === null) {
-  //         this.modalService.open(this.content, ngbModalOptions);
-  //       }
-  //       else {
-  //         this.router.navigate(['/system/tab2/info/' + system]);
+  //       this.acronyms = data;
+  //       this.loading=false;
+  //     }, error => {
+  //       this.loading=false;
+  //       console.log(error); });
 
-  //       }
-  //     }, error => { console.log(error); });
+  // }
+
+  // getBusinessOwners() {
+  //   this.loading=true;
+  //   this._apiservice.getBusinessOwner()
+  //     .subscribe((data: any) => {
+  //       this.loading=false;
+  //       this.businessOwners = data;
+
+  //     }, error => { 
+  //       this.loading=false;
+  //       console.log(error); });
+
   // }
 
 
-  getAppAcronyms() {
+  // getSystemOwners() {
+  //   this.loading=true;
+  //   this._apiservice.getSystemAdministrator()
+  //     .subscribe((data: any) => {
+  //       this.loading=false;
+  //       this.systemOwners = data;
+
+  //     }, error => { 
+  //       this.loading=false;
+  //       console.log(error); });
+
+  // }
+
+  getPendingApplications(){
     this.loading=true;
-    this._apiservice.getAppAcronyms()
-      .subscribe((data: any) => {
-        this.acronyms = data;
+      this._apiservice.getPendingApplications()
+        .subscribe((data: any) => {
         this.loading=false;
-      }, error => {
-        this.loading=false;
-        console.log(error); });
-
-  }
-
-  getBusinessOwners() {
-    this.loading=true;
-    this._apiservice.getBusinessOwner()
-      .subscribe((data: any) => {
-        this.loading=false;
-        this.businessOwners = data;
-
+        this.pendingApplications = data;
+        console.log(this.pendingApplications);
       }, error => { 
-        this.loading=false;
-        console.log(error); });
-
-  }
-
-
-  getSystemOwners() {
-    this.loading=true;
-    this._apiservice.getSystemAdministrator()
-      .subscribe((data: any) => {
-        this.loading=false;
-        this.systemOwners = data;
-
-      }, error => { 
-        this.loading=false;
-        console.log(error); });
+         this.loading=false;
+         console.log(error); });
 
   }
 
@@ -179,73 +134,73 @@ export class SystemAddComponentComponent implements OnInit {
 
   }
 
-  handleSort1(value) {
-    if (!this.businessOwner) {
-      //this.policies.sort(this.doAsc);
-      let orderByValue = value;
-      this.businessOwners.sort((a: any, b: any) => {
-        if (a[orderByValue] > b[orderByValue]) {
-          return -1;
-        } else if (a[orderByValue] < b[orderByValue]) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      this.businessOwner = true;
-    }
-    else {
-      let orderByValue = value;
-      this.businessOwners.sort((a: any, b: any) => {
-        if (a[orderByValue] < b[orderByValue]) {
-          return -1;
-        } else if (a[orderByValue] > b[orderByValue]) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      //this.policies.sort(this.doDsc);
-      this.businessOwner = false;
-    }
+  // handleSort1(value) {
+  //   if (!this.businessOwner) {
+  //     //this.policies.sort(this.doAsc);
+  //     let orderByValue = value;
+  //     this.businessOwners.sort((a: any, b: any) => {
+  //       if (a[orderByValue] > b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] < b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     this.businessOwner = true;
+  //   }
+  //   else {
+  //     let orderByValue = value;
+  //     this.businessOwners.sort((a: any, b: any) => {
+  //       if (a[orderByValue] < b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] > b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     //this.policies.sort(this.doDsc);
+  //     this.businessOwner = false;
+  //   }
 
 
-  }
+  // }
 
 
 
-  handleSort2(value) {
-    if (!this.systemOwner) {
-      //this.policies.sort(this.doAsc);
-      let orderByValue = value;
-      this.systemOwners.sort((a: any, b: any) => {
-        if (a[orderByValue] > b[orderByValue]) {
-          return -1;
-        } else if (a[orderByValue] < b[orderByValue]) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      this.systemOwner = true;
-    }
-    else {
-      let orderByValue = value;
-      this.systemOwners.sort((a: any, b: any) => {
-        if (a[orderByValue] < b[orderByValue]) {
-          return -1;
-        } else if (a[orderByValue] > b[orderByValue]) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      //this.policies.sort(this.doDsc);
-      this.systemOwner = false;
-    }
+  // handleSort2(value) {
+  //   if (!this.systemOwner) {
+  //     //this.policies.sort(this.doAsc);
+  //     let orderByValue = value;
+  //     this.systemOwners.sort((a: any, b: any) => {
+  //       if (a[orderByValue] > b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] < b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     this.systemOwner = true;
+  //   }
+  //   else {
+  //     let orderByValue = value;
+  //     this.systemOwners.sort((a: any, b: any) => {
+  //       if (a[orderByValue] < b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] > b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     //this.policies.sort(this.doDsc);
+  //     this.systemOwner = false;
+  //   }
 
 
-  }
+  // }
 
 
   

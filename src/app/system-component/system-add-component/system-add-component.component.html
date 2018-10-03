@@ -66,21 +66,18 @@
     </thead>
     <tbody>
 
-      <td>
-        <tr   *ngFor="let acronym of acronyms| keys" (click)="viewApplication(acronym.value)">
-          <a class="anchor">{{acronym.value}}</a></tr>
+      <tr *ngFor="let pendingApplication of pendingApplications">
+        <td>
+          <a class="anchor" (click)>{{pendingApplication.acronym}}</a>
       </td>
-      <td>
-        <tr *ngFor="let businessOwner of businessOwners| keys">
-          {{businessOwner.value}}</tr>
+      <td >
+          {{pendingApplication.businessOwnerNameDoe}}
       </td>
 
-      <td>
-
-        <tr *ngFor="let systemOwner of systemOwners| keys">
-          {{systemOwner.value}}
-        </tr>
-      </td>
+        <td >
+          {{pendingApplication.systemOwnerNameDoe}}
+        </td>
+      </tr>
 
 
     </tbody>
