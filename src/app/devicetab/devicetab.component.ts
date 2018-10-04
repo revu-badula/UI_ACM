@@ -20,6 +20,7 @@ export class DevicetabComponent implements OnInit {
   displayDevices:any;
     device: Device;
       public p: number = 1;
+  public loading: boolean = false;
   public desc = false;
  constructor(private _apiservice: ApiserviceService, private  http: Http, private modalService: NgbModal, private utilservice: UtilService,private datepipe: DatePipe) {
   this.device = new Device();
@@ -33,12 +34,14 @@ export class DevicetabComponent implements OnInit {
  
   
     getDatabases() {
+       this.loading = true;
 this._apiservice.getDatabases()
       .subscribe((data: any) => {
+           this.loading = false;
        this.displayDevices = data;
        console.log(this.displayDevices);
       }, error => {
-     
+        this.loading = false;
         console.log(error);}
       );
   }

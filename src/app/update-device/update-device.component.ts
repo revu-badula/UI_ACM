@@ -25,7 +25,7 @@ appId:number;
   public hostName: any;
   showForm:boolean = true;
   isLol:boolean = false;
-  
+  public loading: boolean = false;
   color: String;
   serverContact:Server;
   serverContact1:Server;
@@ -75,10 +75,11 @@ appId:number;
   }
   
   getDBServer(id){
- 
+ this.loading = true;
     this._apiservice.getDBServer(id)
     .subscribe((data:any) => {
      this.device = data;
+     this.loading = false;
      
       data.serverContactDTOs.filter(item => {
       
@@ -139,7 +140,8 @@ appId:number;
       
       
       
-      console.log(this.device);   
+      //console.log(this.device);
+         this.loading = false;
     },error => console.log(error));
   }
   

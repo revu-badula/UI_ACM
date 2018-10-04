@@ -1,3 +1,7 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
 <app-navigation-component></app-navigation-component>
 <div class="navigate sticky-top">
             <!--<div class="home">
@@ -29,7 +33,7 @@
 		        <i            class="fa fa-arrow-down" *ngIf="!desc"></i> <i
 					class="fa fa-arrow-up" *ngIf="desc"></i></th>
 		       <th scope="col">Product Name</th>
-<!-- 		        <th scope="col">Primary Contact</th> -->
+
 		      <th scope="col">Create Date</th>
 		      <th scope="col">Last modified date</th>
 		       <th scope="col">Renewal date</th>

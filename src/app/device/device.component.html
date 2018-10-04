@@ -223,6 +223,6 @@
  	<textarea cols="156" rows="7" id="patches"></textarea> 	<hr /> 
 	<button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark">Show List</button>
 	<button type="submit" (click)="open(content)" class="submit btn btn-primary" [disabled]="!editForm.valid" >Submit</button>
-	<button type="cancel" class="cancel btn btn-primary">Cancel</button>
+	<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
 	</form>
 </div>
