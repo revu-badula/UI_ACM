@@ -1,0 +1,54 @@
+<app-navigation-component></app-navigation-component>
+<div class="navigate sticky-top">
+            <!--<div class="home">
+                <i class="fas fa-home home-icon icons"></i>
+                < class="fas fa-arrow-left left-icon icons"></i>
+            </div>-->
+            <div class="form-options">
+                <div class="home-back">
+                	<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
+                	<a href="javascript:void(0)" routerLink="/dashboard"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
+                </div>
+               
+               <!--  <fa class="edit-icon icons" [name]="'edit'"></fa> -->
+            </div>
+        </div>
+
+
+
+
+
+
+
+<div>
+<form class="form">
+	<table class="table table-bordered" style="text-align: center">
+		  <thead>
+		    <tr>
+		      <th scope="col" (click)="handleSort()">Host Name
+		        <i            class="fa fa-arrow-down" *ngIf="!desc"></i> <i
+					class="fa fa-arrow-up" *ngIf="desc"></i></th>
+		       <th scope="col">Product Name</th>
+<!-- 		        <th scope="col">Primary Contact</th> -->
+		      <th scope="col">Create Date</th>
+		      <th scope="col">Last modified date</th>
+		       <th scope="col">Renewal date</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr *ngFor="let appDevice of displayDevices|paginate: { itemsPerPage: 10, currentPage: p }"> 
+		    
+		     <td><a class="box" routerLink="/updateDevice/{{appDevice.databaseId}}" (click)="getDatabases(appDevice.databaseId)" style="cursor: pointer;">{{ appDevice.hostName}}</a></td>
+ <td>{{appDevice.productName}}</td> 
+<!--      <td>{{appDevice}}</td> -->
+      <td>{{appDevice.createdTs|filter}}</td>
+		      <td>{{appDevice.updatedTs|filter}}</td>
+
+	      <td>{{appDevice.licenseRenewDt|filter}}</td>
+		    </tr> 
+		  </tbody>
+			</table>
+			  <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+ <button type="button" class="btn btn-outline-dark" routerLink="/deviceInventory">Add Server</button>
+</form>
+</div>
