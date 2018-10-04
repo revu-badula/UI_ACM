@@ -17,7 +17,8 @@
 		(click)="c()">Ok</button>
 </div>
 </ng-template>
-<div class="save-edit" style="float: right" *ngIf="showEditButton && !isShow">
+<div class="save-edit" style="float: right"
+	*ngIf="showEditButton && !isShow">
 	<fa class="edit-icon icons" data-toggle="tooltip"
 		data-placement="right" title="Save" data-animation="true"
 		data-delay="0" [name]="'edit'" (click)="editClick()"></fa>
@@ -129,20 +130,24 @@
 		</div>
 		<hr />
 		<h5>Other Information</h5>
+		<label for="lastName">Central Absentee Perceived(CAP)</label>
+		<div class="asterisk">*</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="lastName">Central Absentee Perceived(CAP)</label>
-				<div class="asterisk">*</div>
+				
+				
 				<input type="radio" required [value]="true" ngModel name="capInd"
-					[(ngModel)]="locality.capInd" [checked]="locality.capInd">Yes<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					[(ngModel)]="locality.capInd" [checked]="locality.capInd">Yes<br>
 				<input type="radio" [value]="false" ngModel name="capInd"
 					[(ngModel)]="locality.capInd" [checked]="locality.capInd">No
 			</div>
+			</div>
+			<label for="email">Bail out</label>
+			<div class="asterisk">*</div>
+			<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="email">Bail out</label>
-				<div class="asterisk">*</div>
 				<input type="radio" [value]="true" ngModel name="bailoutInd"
-					[(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">Yes<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					[(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">Yes<br>
 				<input type="radio" [value]="false" ngModel name="bailoutInd"
 					[(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">No
 
@@ -205,26 +210,29 @@
 
 		</div>
 		<hr />
-		<p>
-			<b>PollBook</b>
-		</p>
+		
+			<h5>PollBook</h5>
+		
+			<label for="lastName">Paper PollBook</label>
+				<div class="asterisk">*</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="lastName">Paper PollBook</label>
-				<div class="asterisk">*</div>
+			
 				<input type="radio" ngModel name="paperPollbook" [value]="true"
 					[(ngModel)]="locality.paperPollbook"
-					[checked]="locality.paperPollbook">Yes<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					[checked]="locality.paperPollbook">Yes<br>
 				<input type="radio" ngModel name="paperPollbook" [value]="false"
 					[(ngModel)]="locality.paperPollbook"
 					[checked]="locality.paperPollbook"> No
 			</div>
-			<div class="form-group col-md-6">
+			</div>
 				<label for="email">Electronic PollBook</label>
 				<div class="asterisk">*</div>
-				<input type="radio" ngModel name="electronicPollbook" [value]="true"
+			<div class="form-row">
+			<div class="form-group col-md-6">
+			<input type="radio" ngModel name="electronicPollbook" [value]="true"
 					[(ngModel)]="locality.electronicPollbook"
-					[checked]="locality.electronicPollbook">Yes<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					[checked]="locality.electronicPollbook">Yes<br>
 				<input type="radio" ngModel name="electronicPollbook"
 					[value]="false" [(ngModel)]="locality.electronicPollbook"
 					[checked]="locality.electronicPollbook"> No
@@ -242,8 +250,9 @@
 	<div class="buttons">
 
 		<button type="submit" class="submit btn btn-primary"
-			[disabled]="!formName.valid"  *ngIf="isShow">Submit</button>
-		<button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
+			[disabled]="!formName.valid" *ngIf="isShow">Submit</button>
+		<button type="cancel" (click)="d($event)"
+			class="cancel btn btn-primary">Cancel</button>
 	</div>
 
 </form>
