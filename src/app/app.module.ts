@@ -62,6 +62,7 @@ import { DialogService } from './dialog.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserIdleModule } from 'angular-user-idle';
 import { ReportsComponent } from './reports/reports.component';
+import { SignedPipe } from './signed-pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +101,8 @@ import { ReportsComponent } from './reports/reports.component';
     LogoutComponent,
     AlertComponent,
     DummyComponent,
-    ReportsComponent
+    ReportsComponent,
+    SignedPipe
 
 
 
@@ -141,7 +143,8 @@ import { ReportsComponent } from './reports/reports.component';
 
 
 
-  providers: [RegisterService, UtilService, ApiserviceService, AlertService, AuthenticationService, CanDeactivateGuard, DialogService],
+  providers: [RegisterService, UtilService, ApiserviceService, AlertService,
+     AuthenticationService, CanDeactivateGuard, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

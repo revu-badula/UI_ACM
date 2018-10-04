@@ -611,3 +611,92 @@ transform:rotate(attr(data-value,deg,0);
   .center{
       text-align: center;
   }
+
+  table{
+    background-color: #ffffff;
+    text-align: center;
+    border: 1px solid black;
+  }
+  
+  .table-bordered tbody tr:nth-of-type(odd){
+    background-color: #EEEEEE !important;
+    border: 1px solid black;
+  }
+  
+  tbody tr:nth-of-type(odd){
+    background-color: #EEEEEE !important;
+  }
+  
+  table thead tr th{
+    font-weight: 500;
+    color: black;
+    border: 1px solid black;
+    background-color: #cecfd5;
+  }
+  
+  table thead tr td{
+    color: black;
+  }
+  
+  .table-bordered td, .table-bordered th {
+      border: 1px solid black;
+  }
+  
+  .forms{
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    margin: 20px;
+    background-color: #EEEEEE;
+  }
+  
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    /* padding: 0;*/
+  }
+  
+  .navigate{
+    margin: 15px;
+    padding: 5px;
+  }
+  
+  .form-options{
+    float: left;
+    margin-right: 15px;
+    margin-top: -15px;
+    padding: 5px;
+  }
+  
+  .icons{
+    vertical-align: middle;
+    font-size: 20px;
+    margin-top: -20px;
+    padding: 2px;
+    margin-left: 5px;
+  }
+  
+  .home-icon{
+    color: #3A539B;
+  }
+  
+  .edit-icon{
+    /*margin-left: 10px;*/
+    color: #3A539B;
+  }
+  
+  .left-icon{
+    /*margin-left: 10px;*/
+    color: #3A539B;
+  }
+  
+  .save-icon{
+    color: #3A539B;
+  }
+
+  .center{
+    margin: auto;
+
+
+  }
+  

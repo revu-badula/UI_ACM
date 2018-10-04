@@ -2,7 +2,7 @@ import { ApiserviceService } from '../apiservice.service';
 import { Component, OnInit, HostListener, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-vendor',
@@ -96,13 +96,17 @@ export class EditVendorComponent implements OnInit {
 
 
   createVendor(value): void {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop : 'static',
+      keyboard : false
+      };
     this.loading = true;
     value['vendorId'] = this.userId;
 
     this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
         this.loading = false;
-        open(data.responseString);
+        this.modalService.open(this.content, ngbModalOptions);
       }, error => {
         this.loading = false;
         console.log(error);

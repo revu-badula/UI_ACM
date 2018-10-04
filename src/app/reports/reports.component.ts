@@ -6,6 +6,7 @@ import { IMyDate, IMyDpOptions } from 'mydatepicker';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -25,7 +26,7 @@ export class ReportsComponent implements OnInit {
   ngOnInit() {
 
     this.getLocalityTotal();
-    this.getLocalityAcronyms();
+    this.getAllMOUs();
   }
 
   getLocalityTotal(){
@@ -43,8 +44,8 @@ export class ReportsComponent implements OnInit {
   }
 
 
-  getLocalityAcronyms(){
-    this._apiservice.getLocalityAcronyms().
+  getAllMOUs(){
+    this._apiservice.getAllMOUs().
     subscribe((data:any) =>{
       this.Localities = data;
       console.log(this.Localities);

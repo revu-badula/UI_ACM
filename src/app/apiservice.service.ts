@@ -353,5 +353,18 @@ getDatabases(){
       .map(res => <Response>res.json());
   }
 
+  
+  getLocalityForView() {
+    let url = APP_CONFIG.getLocalityForView;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+
+  getAllMOUs() {
+    let url = APP_CONFIG.getAllMOUs;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+
 
 }

@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   @ViewChild('content') content: TemplateRef<any>;
   @ViewChild('content1') content1: TemplateRef<any>;
 
-  constructor(private modalService: NgbModal, private router: Router, private userIdle: UserIdleService) {
+  constructor(private modalService: NgbModal, private router: Router) {
     localStorage.removeItem('localityName');
     localStorage.removeItem('appAuditId');
     localStorage.removeItem('appMouId');

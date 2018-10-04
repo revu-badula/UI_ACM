@@ -10,13 +10,13 @@
   </button>
 </div>
 <div class="modal-body">
-  <p>The record has been successfully updated{{name}}!</p>
+  <p>The record has been successfully updated</p>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
 </div>
 </ng-template>
-<app-edit-navigation (editClick)="editClicked($event)" (cancelClick)="cancelButton()" (submitClick)="createVendor(editVendorForm.value)"></app-edit-navigation>
+<app-edit-navigation (editClick)="editClicked($event)" (cancelClick)="cancelButton()"></app-edit-navigation>
 <div class="form-div" >
     <form  class="forms" [formGroup]="editVendorForm" (ngSubmit)="createVendor(editVendorForm.value)">
         <div class="page-description">

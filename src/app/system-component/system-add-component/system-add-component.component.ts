@@ -83,7 +83,6 @@ export class SystemAddComponentComponent implements OnInit {
         .subscribe((data: any) => {
         this.loading=false;
         this.pendingApplications = data;
-        console.log(this.pendingApplications);
       }, error => { 
          this.loading=false;
          console.log(error); });
