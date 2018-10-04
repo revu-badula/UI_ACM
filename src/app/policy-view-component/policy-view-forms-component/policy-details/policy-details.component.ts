@@ -118,7 +118,7 @@ transferDocument(){
   
   createPolicyFile(fileInput: any){
     //this.certDocDTO.section = section;
-    console.log(fileInput.target.files[0]);
+    //console.log(fileInput.target.files[0]);
     this.files.push(fileInput.target.files[0]);
     //console.log(this.policyDocumentDTO);
     
@@ -177,10 +177,10 @@ transferDocument(){
   dateSubmit(){
     let date = this.lastReviewDate.formatted;
     this.policyDisplay.lastReviewDate = Date.parse(date);
-    console.log(this.policyDisplay.lastReviewDate);
+    //console.log(this.policyDisplay.lastReviewDate);
     let reviewDate = this.nextReviewDate.formatted;
         this.policyDisplay.policyReviewDate = Date.parse(reviewDate);
-        console.log(this.policyDisplay.policyReviewDate);
+       //console.log(this.policyDisplay.policyReviewDate);
   }
   
   updatePolicyGrp(){
@@ -188,7 +188,7 @@ transferDocument(){
     if((this.lastReviewDate && this.nextReviewDate)!=null){
         this.dateSubmit();
     }
-    console.log(this.policyDisplay);
+    //console.log(this.policyDisplay);
     this.policyObj = JSON.stringify(this.policyDisplay);
     let url = APP_CONFIG.updatePolicyGrp;
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -213,8 +213,8 @@ transferDocument(){
     this.policyDocumentsSubmit.createdBy = "testing";
     this.policyDocumentsSubmit.updatedBy = "testing";
     policyDocumentsData.append('policy', JSON.stringify(this.policyDocumentsSubmit));
-  	console.log(policyDocumentsData.get('policy'));
-  	console.log(policyDocumentsData.get('file'));
+  	//console.log(policyDocumentsData.get('policy'));
+  	//console.log(policyDocumentsData.get('file'));
   	 this.http.post(url, policyDocumentsData).subscribe((data: any) => {
               console.log(data);
             }, error => console.log(error));

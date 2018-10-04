@@ -84,9 +84,10 @@
 								<th>FileName</th>
 								<th>Action</th>
 							</tr>
-							<tr *ngFor=" let policyDocument of fetchPolicyDocuments">
-								<td style="cursor: pointer; color: blue;">{{policyDocument.documentName}}</td>
-								<td style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+							<tr *ngFor=" let policyDocument of fetchPolicyDocuments let i = index">
+	
+									<td  style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+								<td (click)="deleteFile(policyDocument.policyDocId,i)" style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
 
 							
 							</tr>

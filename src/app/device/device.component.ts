@@ -25,6 +25,7 @@ export class DeviceComponent implements OnInit {
       public p: number = 1;
   renewalDate: any;
   serverContact:Server;
+  serverContact1:Server;
   public startDate:any;
     public endDate:any;
     isLol:boolean = false;
@@ -35,8 +36,9 @@ export class DeviceComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService, private  http: Http, private modalService: NgbModal, private utilservice: UtilService,private datepipe: DatePipe) { 
     this.device = new Device();
     this.getDevice = new Device();
-      this.device.serverContactDTOs = [] as Server[];
+      this.device.serverContactDTOs = [];
        	this.serverContact = new Server();
+       	this.serverContact1 = new Server();
   }
 
   ngOnInit() {
@@ -172,10 +174,10 @@ this._apiservice.getDatabases()
   submitDevice(){
     console.log("inside submit");
     let url = APP_CONFIG.saveDBServerInfo;
-   
-console.log(this.serverContact);
-   	console.log(this.device.serverContactDTOs);
+	this.serverContact1.isPrimary=false
+	this.serverContact.isPrimary=true
     this.device.serverContactDTOs.push(this.serverContact);
+    this.device.serverContactDTOs.push(this.serverContact1);
       console.log(JSON.stringify(this.device));
    this.http.post(url, this.device).subscribe((data: any) => {
      console.log(JSON.stringify(this.device));

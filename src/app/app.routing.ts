@@ -127,6 +127,7 @@ import { SystemAssessAttachmentsComponent } from './system-component/system-tab/
 import { SystemAssessLessonsComponent } from './system-component/system-tab/system-assessment/system-assess-lessons/system-assess-lessons.component';
 import { SystemGuardAssess } from './system-assess-guard';
 import { ReportsComponent } from './reports/reports.component';
+import { DevicetabComponent } from './devicetab/devicetab.component';
 
 const appRoutes: Routes = [
 
@@ -134,6 +135,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent },
+  { path:'devicetab', component:DevicetabComponent,canActivate: [AuthGuard]},
   { path: 'vendors', component: VendorsComponentComponent, canActivate: [AuthGuard] },
   { path: 'solutions', component: SolutionsComponent, canActivate: [AuthGuard] },
   { path: 'vendorsView', component: VendorsViewComponent, canActivate: [AuthGuard] },

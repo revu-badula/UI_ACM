@@ -6,7 +6,7 @@
             </div> -->
             <div class="form-options">
                 <div class="home-back">
-                	<a routerLink="/"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
+                	<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
                 	<a href="javascript:void(0)" (click)="backClicked()"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
                 </div>
                 <div class="save-edit">
@@ -153,14 +153,18 @@
             		<tbody>
             			<tr *ngFor="let getLinkedPolicy of getLinkedPolicies">
             			
-            				<td style="cursor:pointer;color:blue;">{{ getLinkedPolicy.controlNumber }}</td>
+            				
+            				
+								     <td><a routerLink="/accessControl/{{ getLinkedPolicy.policyId }}" style="cursor:pointer;color:blue;">{{ getLinkedpolicy.controlNumber }}</a><i class="fa fa-minus-circle" style="color: red"></i></td>						
+													
+            			
             				
             			</tr>
             		</tbody>
             	</table>
             </div>
              <div *ngIf = "!showForm" class="display-file">
-            	<table>
+            	<table class="table table-bordered">
             		<tbody>
             			<tr *ngFor="let link of links">
             			
@@ -214,32 +218,41 @@
 			<h4>Documents</h4>
 	<input type = "file" #fileInput (change)="createPolicyDocumentDTO($event)">
 	<div class="display-file">
-            	<br>
-							
-							<table border="1">
+            	<table border="1">
 							<tr>
 								<th>FileName</th>
 								<th *ngIf="!showFrm">Action</th>
 							</tr>
-							<tr *ngFor=" let policyDocument of displayPolicyDocuments">
-								<td  style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
-								<td  *ngIf="!showForm" (click)="deleteFile(policyDocument.policyDocId,i)"style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
-
+							<tr *ngFor=" let policyDocument of displayPolicyDocuments let i = index">
+								<td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+								<td  *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+								</tr>
+								
+								
+								
+								
 							
-							</tr>
+								
+								
+								
+								
+								
+								
+								
+								
+								
 						</table>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-            </div>
+							</div>
             </div></div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
 	
 	
 	
@@ -247,7 +260,7 @@
 	<hr />
 	<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
 	<button type="submit" (click)="open(content)"  [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
-	<button type="cancel" class="cancel btn btn-primary">Cancel</button>
+	<button type="cancel" class="cancel btn btn-primary" routerLink="/policyView/policyDetails">Cancel</button>
 	<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
 </form>
 </div>
@@ -277,7 +290,7 @@
 			<h4>Artifacts</h4>
 	<textarea cols="156" rows="7" id="patches"></textarea>
 		</div>
-	<div *ngIf = "definitive == true && policy== true ">
+	<div>
 		<h5>CONTROLS</h5>
 		<table class="table table-bordered">
 		  <thead>
@@ -294,7 +307,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr *ngFor = "let policy of policies">
+		    <tr *ngFor = "let policy of policies |paginate: { itemsPerPage: 10, currentPage: p }">
 		      
 		      <td><input type = "checkbox"  (change) = "viewEvent(policy,$event.target.checked)"></td>
 		      <td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{ policy.controlNumber }}</a></td>
@@ -310,6 +323,7 @@
 			</table>
 	</div>
 	<hr />
+	 <pagination-controls (pageChange)="p = $event"></pagination-controls>
 	<button class="btn btn-primary" (click) = "saveLink()">Link</button>
 </form>
 </div>

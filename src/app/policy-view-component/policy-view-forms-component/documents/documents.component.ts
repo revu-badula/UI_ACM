@@ -6,7 +6,7 @@ import {Http, HttpModule, Headers, RequestOptions} from '@angular/http';
 import {APP_CONFIG} from '../../../app.config';
 import { UtilService } from '../../../util.service';
 import { ApiserviceService } from '../../../apiservice.service';
-
+declare var swal: any; ''
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -63,8 +63,12 @@ export class DocumentsComponent implements OnInit {
 }
   
   createPolicyDocumentDTO(fileInput: any){
+  
   	this.policyDocumentDTOobj = new PolicyDocumentsDTO();
+  	
     this.policyDocumentDTOobj.documentName = fileInput.target.files[0].name;
+
+    
     //this.certDocDTO.section = section;
     console.log(fileInput.target.files[0]);
     this.files.push(fileInput.target.files[0]);
@@ -78,11 +82,91 @@ export class DocumentsComponent implements OnInit {
     console.log(this.policyDocumentDTO);
   }
   
+  
+  
+   confirm(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
+    return new Promise((resolve, reject) => {
+      swal({
+        title: title,
+        text: text,
+        type: 'warning',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      }).then((result) => {
+        resolve(result);
+      }, error => reject(error));
+    });
+
+
+
+
+  }
+  
+  
+  
+  
+  
+  
+  deleteFile(id, index) {
+    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+      .then((result: any) => {
+        if (result.value !== undefined && result.value) {
+          if (id === undefined) {
+            let length = this.policyDocumentDTO.length;
+            if (length === 1) {
+             this.policyDocumentDTO = []; //a,b,c,d,f = [2] =[3]
+            }
+            else {
+              for (let i = index; i < length; i++) {
+               this.policyDocumentDTO[i] = this.policyDocumentDTO[i + 1];
+              }
+           this.policyDocumentDTO.splice(length - 1, 1);
+            }
+
+          }
+          else {
+            for (let i = 0; i < this.policyDocumentDTO.length; i++) {
+              if (this.policyDocumentDTO[i].policyDocId === id) {
+                this.policyDocumentDTO[i].activeFlag = false;
+              }
+            }
+          }
+
+        }
+      }, error => {
+        console.log(error);
+      });
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   getPolicyDocumentAttch(id){
+   window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
+  }
+  
+  
+  
+  
   transferDocument(){
   	console.log("inside transfer document");
   	this.showDocument = true;
     //c('Save click');
   }
+  
+  
+  
+  
+  
+  
   
   submitDocument(){
   	console.log("inside submit function");

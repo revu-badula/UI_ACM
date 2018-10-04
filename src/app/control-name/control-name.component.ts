@@ -40,6 +40,7 @@ export class ControlNameComponent implements OnInit {
   public links:any;
   public accountnum: any[] =[];
   public list: any;
+    public p: number = 1;
   public other = [];
   public loading:boolean = false;
   public displayPolicyDocuments: any;
@@ -95,20 +96,53 @@ export class ControlNameComponent implements OnInit {
   }
   
   createPolicyDocumentDTO(fileInput: any){
+  //this.policyDocumentDTO.activeFlag = true;
   	this.policyDocumentDTO = new PolicyDocumentsDTO();
     this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
-    //this.certDocDTO.section = section;
+    this.policyDocumentDTO.activeFlag = true;
+   
     console.log(fileInput.target.files[0]);
     this.files.push(fileInput.target.files[0]);
     console.log(this.policyAccess.policyDocumentsDTOs);
     if(this.policyAccess.policyDocumentsDTOs == null)
           {
+          
           this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
         }
     this.policyAccess.policyDocumentsDTOs.push(this.policyDocumentDTO);
     console.log(this.policyAccess.policyDocumentsDTOs);
   }
   
+  deleteFile(id, index) {
+    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+      .then((result: any) => {
+        if (result.value !== undefined && result.value) {
+          if (id === undefined) {
+            let length = this.policyAccess.policyDocumentsDTOs.length;
+            if (length === 1) {
+             this.policyAccess.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
+            }
+            else {
+              for (let i = index; i < length; i++) {
+               this.policyAccess.policyDocumentsDTOs[i] = this.policyAccess.policyDocumentsDTOs[i + 1];
+              }
+           this.policyAccess.policyDocumentsDTOs.splice(length - 1, 1);
+            }
+
+          }
+          else {
+            for (let i = 0; i < this.policyAccess.policyDocumentsDTOs.length; i++) {
+              if (this.policyAccess.policyDocumentsDTOs[i].policyDocId === id) {
+                this.policyAccess.policyDocumentsDTOs[i].activeFlag = false;
+              }
+            }
+          }
+
+        }
+      }, error => {
+        console.log(error);
+      });
+  }
   
   
   
@@ -339,37 +373,7 @@ viewEvent(addPolicies: any,event){
   
   
   
-  deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
-      .then((result: any) => {
-        if (result.value !== undefined && result.value) {
-          if (id === undefined) {
-            let length = this.policyAccess.policyDocumentsDTOs.length;
-            if (length === 1) {
-             this.policyAccess.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
-            }
-            else {
-              for (let i = index; i < length; i++) {
-               this.policyAccess.policyDocumentsDTOs[i] = this.policyAccess.policyDocumentsDTOs[i + 1];
-              }
-           this.policyAccess.policyDocumentsDTOs.splice(length - 1, 1);
-            }
-
-          }
-          else {
-            for (let i = 0; i < this.policyAccess.policyDocumentsDTOs.length; i++) {
-              if (this.policyAccess.policyDocumentsDTOs[i].policyDocId === id) {
-                this.policyAccess.policyDocumentsDTOs[i].activeFlag = false;
-              }
-            }
-          }
-
-        }
-      }, error => {
-        console.log(error);
-      });
-  }
-
+  
 
 
   confirm(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {

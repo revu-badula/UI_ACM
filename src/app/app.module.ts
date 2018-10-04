@@ -63,6 +63,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserIdleModule } from 'angular-user-idle';
 import { ReportsComponent } from './reports/reports.component';
 import { SignedPipe } from './signed-pipe';
+import { DevicetabComponent } from './devicetab/devicetab.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +79,7 @@ import { SignedPipe } from './signed-pipe';
     PolicyViewComponentComponent,
     ContactComponentComponent,
     PolicyViewFormsComponentComponent,
+    DevicetabComponent,
     ViewTableComponent,
     SolutionViewComponentComponent,
     PolicyFormsComponent,

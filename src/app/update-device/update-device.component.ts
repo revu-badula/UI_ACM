@@ -28,6 +28,7 @@ appId:number;
   
   color: String;
   serverContact:Server;
+  serverContact1:Server;
    
    public startDate:any;
    renDate:any;
@@ -46,6 +47,7 @@ appId:number;
   constructor(private _apiservice: ApiserviceService,private activatedRoute:ActivatedRoute,private datepipe: DatePipe, private  http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) { 
     this.device = new Device();
     this.serverContact = new Server();
+    this.serverContact1 = new Server(); 
      this.device.serverContactDTOs = [] as Server[];
     
   
@@ -76,13 +78,26 @@ appId:number;
  
     this._apiservice.getDBServer(id)
     .subscribe((data:any) => {
-      console.log(data);
      this.device = data;
-     for(let i=0;i<data.serverContactDTOs.length;i++)
-     {
-     this.serverContact=data.serverContactDTOs[i];
-     }
+     
+      data.serverContactDTOs.filter(item => {
       
+      if(item.isPrimary === true)
+      {
+      this.serverContact=item;
+      }
+      
+      
+      });
+      data.serverContactDTOs.filter(item => {
+      
+      if(item.isPrimary === false)
+      {
+      this.serverContact1=item;
+      }
+      
+      
+      });
    
     if(this.device.licenseStartDt === null)
       {
@@ -189,14 +204,10 @@ appId:number;
   updateDevice(){
      this.device.databaseId = this.deviceId;
     let url = APP_CONFIG.updateDBServerInfo;
-     	
-    console.log(this.device);
-       
-          
-    this.device.serverContactDTOs.push(this.serverContact);
     console.log(this.device);
      this.http.post(url, this.device).subscribe((data: any) => {
-              console.log("inside http");
+     
+             
               console.log(data);
             }, error => console.log(error));
   

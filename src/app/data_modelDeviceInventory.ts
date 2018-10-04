@@ -46,7 +46,7 @@ serverContactId:number;
 	lastName:string;
 	emailId:string;
 	phoneNumber:string;
-	isPrimary:string;
+	isPrimary:boolean;
 	divisionName:string;
 	cost:string;
 	createdBy:string;
