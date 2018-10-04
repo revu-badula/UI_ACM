@@ -54,6 +54,7 @@ import { LocalitysolutionsformComponent } from './locality-tab/locality-solution
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgbdModalContent } from './locality-tab/locality-solutions/ngb-modal.component';
 import { PhonePipe } from './phone-pipe';
+import { DialogComponent} from '../dialog.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -84,6 +85,6 @@ import { PhonePipe } from './phone-pipe';
   AssessRecomendComponent,ManagementComponent,AssessActionComponent,
   AssessBusinessComponent,AssessSecurityComponent,AssessBudgetComponent,
   AssessAttachmentsComponent,AssessLessonsComponent, LocalitysolutionsformComponent, NgbdModalContent, PhonePipe],
-  entryComponents: [NgbdModalContent]
+  entryComponents: [NgbdModalContent, DialogComponent]
 })
 export class LocalityComponentModule { }

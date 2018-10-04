@@ -64,6 +64,8 @@ import { UserIdleModule } from 'angular-user-idle';
 import { ReportsComponent } from './reports/reports.component';
 import { SignedPipe } from './signed-pipe';
 import { DevicetabComponent } from './devicetab/devicetab.component';
+import { IdleTimeoutService } from './idleTimeOutService';
+import { DialogComponent } from './dialog.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +106,8 @@ import { DevicetabComponent } from './devicetab/devicetab.component';
     AlertComponent,
     DummyComponent,
     ReportsComponent,
-    SignedPipe
+    SignedPipe,
+    DialogComponent
 
 
 
@@ -140,13 +143,10 @@ import { DevicetabComponent } from './devicetab/devicetab.component';
     // UserIdleModule.forRoot({idle: 60, timeout: 60, ping: 120})
   ],
   entryComponents: [
-    DialogBoxComponent
+    DialogBoxComponent, DialogComponent
   ],
-
-
-
   providers: [RegisterService, UtilService, ApiserviceService, AlertService,
-     AuthenticationService, CanDeactivateGuard, DialogService],
+     AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

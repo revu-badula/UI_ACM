@@ -10,7 +10,7 @@ import { Cookie } from 'ng2-cookies';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
 import * as moment from 'moment';
-import {FormsModule, NgForm, FormGroup } from '@angular/forms';
+import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { AppAssess, AssessmentPolicyDTO, Policy } from '../../../../data.model.assessmentDTO';
@@ -46,7 +46,7 @@ export class AssessBudgetComponent implements OnInit {
     private utilService: UtilService, private http: Http, private route: ActivatedRoute,
     private router: Router, private modalService: NgbModal, private datepipe: DatePipe,
     private alertservice: AlertService, private dialogService: DialogService) {
-      
+
     this.appAssess = new AppAssess();
     this.getAppId();
   }
@@ -103,14 +103,14 @@ export class AssessBudgetComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
     let url_update = APP_CONFIG.updateAppAssessment;
-    this.appAssess.updatedBy=Cookie.get('userName');
+    this.appAssess.updatedBy = Cookie.get('userName');
     let data = JSON.stringify(this.appAssess);
     this.http.post(url_update, data, options)
       .subscribe((data: any) => {
         this.loading = false;
         //this.myForm.nativeElement.reset({description: this.appAssess.budgetDescription, overallEstimates: this.appAssess.budget});
-         const { myForm: { value: formValueSnap } } = this;
-         this.myForm.reset(formValueSnap);
+        const { myForm: { value: formValueSnap } } = this;
+        this.myForm.reset(formValueSnap);
         this.info = "Budget has been updated.";
         this.modalService.open(this.content, ngbModalOptions);
       }, error => {
@@ -130,23 +130,30 @@ export class AssessBudgetComponent implements OnInit {
   }
 
 
-  //@HostListener('window:beforeunload', ['$event'])
+
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // console.log(this.myForm);
-    // console.log(this.myForm.dirty);
-    
-    //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
-      if(this.myForm.dirty){
-      //return this.dialogService.confirm('Discard changes for Budget?');
-      //const modal=this.modalService.open(this.content1, ngbModalOptions);
+    //return  this.confirm1('Do you want to save changes?', 'for budget', 'YES', 'NO');
 
-    return  this.confirm1('Do you want to save changes?', 'for budget', 'YES', 'NO');
-       
+    if (this.myForm.dirty) {
 
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for budget?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveBudget();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
     }
-    
-    return true;
-
+    else {
+      return true;
+    }
   }
 
 
@@ -177,11 +184,10 @@ export class AssessBudgetComponent implements OnInit {
 
 
   }
-  goTo()
-  {
+  goTo() {
     //let url=this.state.url;
     let snapshot: RouterStateSnapshot = this.router.routerState.snapshot;
-    let url=snapshot.url
+    let url = snapshot.url
     console.log(url);
     this.router.navigateByUrl(url);
   }
