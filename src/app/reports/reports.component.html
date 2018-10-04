@@ -1,103 +1,118 @@
 <app-navigation-component></app-navigation-component>
 <div class="center">
-<section>
-<div class="dashboard">
-    <div class="first-row">
-   <div class="card" style="width: 18rem;">
-<div class="card-body">
-<div class="card-heading"><h5 class="card-title"> Search an Application</h5>
- </div>
-<hr />
-<!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-<div class="center"><a href="#"><i class="fa fa-search fa-1x"></i></a></div>
+  <section>
+    <div class="dashboard">
+      <div class="first-row">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-heading">
+              <h5 class="card-title"> Search an Application</h5>
+            </div>
+            <hr />
+            <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+            <div class="center"><a href="#"><i class="fa fa-search fa-1x"></i></a></div>
 
-</div>
-</div>
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<div class="card-heading"><h5 class="card-title">SSP For Locality</h5>
- </div>
- <hr>
- <div class="center"><a href="#"><h3 style="color: black">{{displayData}}</h3></a></div>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-heading">
+              <h5 class="card-title">SSP For Locality</h5>
+            </div>
+            <hr>
+            <div class="center"><a href="#">
+                <h3 style="color: black">{{displayData}}</h3>
+              </a></div>
 
-</div>
-</div>
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<div class="card-heading"><h5 class="card-title">Total Assessments</h5>
- </div>
- <hr>
- <div class="center"><a href="#"><h3 style="color: black">35</h3></a></div>
-</div>
-</div>
-<div class="second-row">
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<div class="card-heading"><h5 class="card-title">Total Policies</h5>
- </div>
- <hr>
- <div class="center"><a href="#"><h3 style="color: black">18</h3></a></div>
-</div>
-</div>
-   </div>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-heading">
+              <h5 class="card-title">Total Assessments</h5>
+            </div>
+            <hr>
+            <div class="center"><a href="#">
+                <h3 style="color: black">35</h3>
+              </a></div>
+          </div>
+        </div>
+        <div class="second-row">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <div class="card-heading">
+                <h5 class="card-title">Total Policies</h5>
+              </div>
+              <hr>
+              <div class="center"><a href="#">
+                  <h3 style="color: black">18</h3>
+                </a></div>
+            </div>
+          </div>
+        </div>
 
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<div class="card-heading"><h5 class="card-title">Upcoming Audit</h5>
- </div>
- <hr>
- <div class="center"><a href="#"><h3 style="color: black">35</h3></a></div>
-</div>
-</div>
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<div class="card-heading"><h5 class="card-title">Total Audit</h5>
- </div>
- <hr>
- <div class="center"><a href="#"><h3 style="color: black">3</h3></a></div>
-</div>
-</div>
-   </div>  
-   </div>
-   </section>
-   <br>
-   <br>
-   <br>
-   <br>
- 
-   
-  
-<section>
-  <div class="former clear-right">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-<th scope="col" (click)="handleSort()">Localities <i
-        class="fa fa-arrow-down" *ngIf="!desc"></i> <i
-        class="fa fa-arrow-up" *ngIf="desc"></i></th>
-       
-          
-          <th scope="col">Recertification Date</th>
-          <th scope="col">Renewal Date</th>
-          <th scope="col">Signed</th>
-        </tr>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-heading">
+              <h5 class="card-title">Upcoming Audit</h5>
+            </div>
+            <hr>
+            <div class="center"><a href="#">
+                <h3 style="color: black">35</h3>
+              </a></div>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-heading">
+              <h5 class="card-title">Total Audit</h5>
+            </div>
+            <hr>
+            <div class="center"><a href="#">
+                <h3 style="color: black">3</h3>
+              </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+  <br>
+  <br>
 
-      </thead>
-      <tbody>
-        <tr *ngFor="let locality of Localities |  paginate: { itemsPerPage: 10, currentPage: p }">
-          <td>
-            <a class="box" (click)="viewApplication(locality.value)" style="cursor: pointer;">{{locality.applicationAcronym}}</a>
-          </td>
-         
-          <td>{{locality.recertificationDt | filter}}</td>
-          <td>{{locality.receiptDt | filter}}</td>
-          <td>{{locality.signed | signed }}</td>
-          
 
-        </tr>
-      </tbody>
-    </table>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </div>
-</section>
+
+  <section>
+    <div class="former clear-right">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Localities <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up"
+                *ngIf="desc"></i></th>
+
+
+            <th scope="col">Recertification Date</th>
+            <th scope="col">Renewal Date</th>
+            <th scope="col">Signed</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let locality of Localities |  paginate: { itemsPerPage: 10, currentPage: p }">
+            <td>
+              <a class="box" (click)="viewApplication(locality.value)" style="cursor: pointer;">{{locality.applicationAcronym}}</a>
+            </td>
+
+            <td>{{locality.recertificationDt | filter}}</td>
+            <td>{{locality.receiptDt | filter}}</td>
+            <td>{{locality.signed | signed }}</td>
+
+
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </section>
 </div>

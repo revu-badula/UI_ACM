@@ -14,12 +14,14 @@ import { Router } from '@angular/router';
 })
 export class ReportsComponent implements OnInit {
 
- displayData:number;
- Localities:any;
+  public displayData: number;
+  public Localities: any;
+  public p:number=1;
+  public desc:boolean=false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
-     
+
 
   }
 
@@ -29,13 +31,14 @@ export class ReportsComponent implements OnInit {
     this.getAllMOUs();
   }
 
-  getLocalityTotal(){
-      this._apiservice.getLocalityTotal().
-      subscribe((data:any) =>{
+  getLocalityTotal() {
+    this._apiservice.getLocalityTotal().
+      subscribe((data: any) => {
         this.displayData = data;
-      },error => {console.log(error);
-      
-      } 
+      }, error => {
+        console.log(error);
+
+      }
 
 
       );
@@ -43,26 +46,27 @@ export class ReportsComponent implements OnInit {
   }
 
 
-  getAllMOUs(){
+  getAllMOUs() {
     this._apiservice.getAllMOUs().
-    subscribe((data:any) =>{
-      this.Localities = data;
-    },error => {console.log(error);
-    
-    } 
+      subscribe((data: any) => {
+        this.Localities = data;
+      }, error => {
+        console.log(error);
+
+      }
 
 
-    );
+      );
 
-}
-
-
+  }
 
 
 
-  
-  
-  
-  
+
+
+
+
+
+
 
 }

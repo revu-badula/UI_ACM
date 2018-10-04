@@ -12,11 +12,13 @@
   <div class="modal-body">
     <div>
       <div class="col-sm-5 col-md-5 col-lg-5">
+        <form #myFileForm="ngForm">
         <label class="input">
-          <input type="file" file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx" #fileInput (change)="getFile($event)"
+          <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx" #fileInput (change)="getFile($event)"
             required>
 
         </label>
+        </form>
       </div>
 
     </div>
@@ -24,7 +26,7 @@
   <div class="modal-footer">
 
     <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
-    <button type="savebtn" class="btn btn-outline-dark" (click)="compareFile();c()">Compare</button>
+    <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark" (click)="compareFile();c()">Compare</button>
   </div>
 </ng-template>
 
@@ -155,7 +157,7 @@
             <div class="asterisk">*</div>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="vauditDate" [(ngModel)]="vauditDate" readonly>
             <my-date-picker ngModel *ngIf="showOriginal" name="auditDate" (dateChanged)="getAuditDate($event)" [(ngModel)]="auditDate" required></my-date-picker>
-            <p style="color: red;font-weight: bold;">{{err1}}</p>
+            
 
           </div>
 
@@ -166,7 +168,6 @@
             <label for="dueDate">Next Audit Date</label>
             <div class="asterisk">*</div>
             <my-date-picker name="nextDate" [options]="myDatePickerOptions" ngModel (dateChanged)="getDate($event)" [(ngModel)]="nextDate" required></my-date-picker>
-            <p style="color: red;font-weight: bold;">{{err}}</p>
           </div>
           <div class="form-group col-md-6">
 
