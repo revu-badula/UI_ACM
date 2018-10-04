@@ -19,6 +19,7 @@ export class LegalmainComponent implements OnInit {
   public loading:boolean = false;
   public  desc = false;
    public p: number = 1;
+   public showPagination:boolean=true;
    public signed:boolean=false;
   public recertificationDt:boolean=false;
   constructor(private _apiservice: ApiserviceService,
@@ -62,6 +63,10 @@ export class LegalmainComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.appMOUs = data;
+        if(data.length === 0)
+        {
+          this.showPagination=false;
+        }
 
       }, error => {
         this.loading = false;

@@ -20,8 +20,9 @@ export class SystemLegalmainComponent implements OnInit {
   public loading: boolean = false;
   public moudtos: any;
   public p: number = 1;
-  public signed:boolean=false;
-  public recertificationDt:boolean=false;
+  public showPagination: boolean = true;
+  public signed: boolean = false;
+  public recertificationDt: boolean = false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -44,8 +45,8 @@ export class SystemLegalmainComponent implements OnInit {
         let month = d.getMonth() + 1;
         let year = d.getFullYear();
         this.updatedTime = month + "/" + day + "/" + year;
-        this.moudtos = data.applicationViewDTO.moudtos;
-        // this.getAppMOUs(data.applicationViewDTO.applicationId);
+        //this.moudtos = data.applicationViewDTO.moudtos;
+        this.getAppMOUs(data.applicationViewDTO.applicationId);
       }, error => {
         this.loading = false;
         console.log(error);
@@ -53,14 +54,23 @@ export class SystemLegalmainComponent implements OnInit {
   }
 
 
-  // getAppMOUs(id) {
+  getAppMOUs(id) {
+    this.loading = true;
+    this._apiservice.getAppMOUs(id)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.moudtos = data
+        if (data.length === 0) {
 
-  //   this._apiservice.getAppMOUs(id)
-  //     .subscribe((data: any) => {
-  //       this.appMOUs = data;
+          this.showPagination = false;
+        }
 
-  //     }, error => console.log(error));
-  // }
+
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+  }
 
   editClick() {
     this.showSigned = true;

@@ -12,10 +12,12 @@ export class LocalitySolutionsLinkComponent implements OnInit {
 
   public appSolutions: any;
   public loading: boolean = false;
-  public desc = false;
-  public des = false;
-  public dec = false;
+  public desc: boolean = false;
+  public des: boolean = false;
+  public dec: boolean = false;
+  public precinctType: boolean = false;
   public p: number = 1;
+  public showPagination: boolean = true;
   constructor(private _apiservice: ApiserviceService, private router: Router, private utilService: UtilService) {
     this.viewApplication(localStorage.getItem('localityName'));
     localStorage.removeItem('appSolId');
@@ -30,7 +32,14 @@ export class LocalitySolutionsLinkComponent implements OnInit {
     this._apiservice.viewApplication(local)
       .subscribe((data: any) => {
         this.loading = false;
-        this.appSolutions = data.applicationViewDTO.applicationSolutionDTOs;
+
+        if (data.applicationViewDTO.applicationSolutionDTOs === undefined) {
+          this.showPagination = false;
+          this.appSolutions = [];
+        }
+        else {
+          this.appSolutions = data.applicationViewDTO.applicationSolutionDTOs;
+        }
       }, error => {
         this.loading = false;
         console.log(error);
@@ -250,6 +259,41 @@ export class LocalitySolutionsLinkComponent implements OnInit {
 
 
   // }
+
+  handleSorting1() {
+
+    if (!this.precinctType) {
+      this.appSolutions.sort(this.doAs1);
+      this.precinctType = true;
+    }
+    else {
+      this.appSolutions.sort(this.doDs1);
+      this.precinctType = false;
+    }
+
+  }
+
+  doAs1(a, b) {
+
+    if (a.solutionsDTO.precinctTypeName > b.solutionsDTO.precinctTypeName) {
+      return -1;
+    } else if (a.solutionsDTO.precinctTypeName < b.solutionsDTO.precinctTypeName) {
+      return 1;
+    }
+    return 0;
+  }
+
+  doDs1(a, b) {
+    if (a.solutionsDTO.precinctTypeName < b.solutionsDTO.precinctTypeName) {
+      return -1;
+    } else if (a.solutionsDTO.precinctTypeName > b.solutionsDTO.precinctTypeName) {
+      return 1;
+    }
+    return 0;
+  }
+
+
+
 
 
 }

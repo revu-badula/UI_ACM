@@ -33,7 +33,6 @@ export class ReportsComponent implements OnInit {
       this._apiservice.getLocalityTotal().
       subscribe((data:any) =>{
         this.displayData = data;
-        console.log(this.displayData);
       },error => {console.log(error);
       
       } 
@@ -48,7 +47,6 @@ export class ReportsComponent implements OnInit {
     this._apiservice.getAllMOUs().
     subscribe((data:any) =>{
       this.Localities = data;
-      console.log(this.Localities);
     },error => {console.log(error);
     
     } 

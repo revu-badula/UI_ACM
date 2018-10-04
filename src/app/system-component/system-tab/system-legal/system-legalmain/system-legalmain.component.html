@@ -85,7 +85,7 @@
         <tbody>
   
   
-          <tr *ngFor="let appsolution of moudtos">
+          <tr *ngFor="let appsolution of moudtos | paginate: { itemsPerPage: 10, currentPage: p }">
             <td>
               <a class="box" (click)="getAppMOU(appsolution.mouId)" style="cursor: pointer;">{{ appsolution.name}}</a>
             </td>
@@ -100,7 +100,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
     </div>
   
   

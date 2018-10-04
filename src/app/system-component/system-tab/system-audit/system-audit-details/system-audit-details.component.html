@@ -62,7 +62,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let  audit of appAuditDTOs">
+                    <tr *ngFor="let  audit of appAuditDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
                          <td>
                             <a (click)="getAudit(audit.appAuditId)" style="cursor:pointer;color:blue;">{{ audit.auditName | systemfilterAuditName }}</a>
                         </td>
@@ -73,7 +73,7 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
         </form>
     </div>
     <router-outlet></router-outlet>

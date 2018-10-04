@@ -61,10 +61,12 @@ export class AuditDetailsComponent implements OnInit {
         let d = new Date(data.applicationViewDTO.updatedTime);
         if (data.applicationViewDTO.appAuditDTOs === undefined) {
           this.showPagination = false;
+          this.appAuditDTOs = [];
         }
-        else {
+        else{
           this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
         }
+        
         let day = d.getDate();
         let month = d.getMonth() + 1;
         let year = d.getFullYear();

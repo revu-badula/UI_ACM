@@ -46,6 +46,7 @@ export class SystemAssessTabComponent implements OnInit {
         if(data.applicationViewDTO.assessmentDTOs === undefined)
         {
           this.showPagination=false;
+          this.assessmentDTOs=[];
         }
         else{
         this.assessmentDTOs = data.applicationViewDTO.assessmentDTOs;
