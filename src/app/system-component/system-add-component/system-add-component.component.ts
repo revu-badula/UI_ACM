@@ -11,7 +11,7 @@ import { UtilService } from '../../util.service';
 })
 export class SystemAddComponentComponent implements OnInit {
 
-  public showForm: string;
+
   public titus: string;
   public system: any;
   public acronyms: any;

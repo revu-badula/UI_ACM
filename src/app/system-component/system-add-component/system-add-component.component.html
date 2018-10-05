@@ -32,7 +32,7 @@
 
       <tr *ngFor="let pendingApplication of pendingApplications | paginate: { itemsPerPage: 10, currentPage: p }">
         <td>
-          <a class="anchor" (click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
+          <a class="anchor"  (click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
         </td>
         <td>
           {{pendingApplication.businessOwnerNameDoe}}

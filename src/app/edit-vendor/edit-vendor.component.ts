@@ -100,15 +100,15 @@ export class EditVendorComponent implements OnInit {
       backdrop : 'static',
       keyboard : false
       };
-    this.loading = true;
+    //this.loading = true;
     value['vendorId'] = this.userId;
 
     this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
-        this.loading = false;
+        //this.loading = false;
         this.modalService.open(this.content, ngbModalOptions);
       }, error => {
-        this.loading = false;
+        //this.loading = false;
         console.log(error);
       });
 

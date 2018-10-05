@@ -93,7 +93,7 @@
                 <div class="form-group col-md-6">
                     <label for="costField">Cost Field</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" placeholder="Phone Number" [(ngModel)] = "serverContact.cost" ngModel name="cost" required>
+                    <input type="text" class="form-control" placeholder="Cost Field" [(ngModel)] = "serverContact.cost" ngModel name="cost" required>
                 </div>
             </div>
      <h5>Secondary Contact</h5>
@@ -144,7 +144,7 @@
                 <div class="form-group col-md-6">
                     <label for="vendorName">Vendor Name</label>
                   
-                    <input type="text" class="form-control" id="vendorName"  name="'vname'">
+                    <input type="text" class="form-control" id="vendorName"  name="'vname'" [(ngModel)]="device.vendorName">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="productName">Product Name</label>
@@ -209,7 +209,7 @@
  		<div class="form-group col-md-6"> 
              <label for="db/AppServerName">DB/APP Server Name</label> 
                <input type="text" class="form-control" id="db/AppServerName" [(ngModel)] = "device.dbServer"  name = "dbserver"> 
-             	</div> -->
+             	</div>
       </div> 
          <div class="form-row"> 
           	<div class="form-group col-md-6"> 

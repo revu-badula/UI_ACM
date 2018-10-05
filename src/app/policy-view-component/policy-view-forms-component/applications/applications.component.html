@@ -1,14 +1,47 @@
-<div class="applications">
-				<span><b>APPLICATIONS</b></span>
-			<hr />
-			</div>
-<table class="table table-bordered">
-	<thead>
-		    <tr>
-		      <th scope="col">Acronym</th>
-		      <th scope="col">Name</th>
-		      <th scope="col">Business Owner</th>
-		      <th scope="col">Project Manager</th>
-		    </tr>
-		  </thead>
-</table>
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+
+
+<form class="forms">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" (click)="handleSort('acronym')">Acronym
+          <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+
+        <th scope="col" (click)="handleSort1('businessOwnerNameDoe')">Business Owner
+          <i class="fa fa-arrow-down" *ngIf="!businessOwner"></i> <i class="fa fa-arrow-up" *ngIf="businessOwner"></i></th>
+
+
+        <th scope="col" (click)="handleSort2('systemOwnerNameDoe')">System Owner
+          <i class="fa fa-arrow-down" *ngIf="!systemOwner"></i> <i class="fa fa-arrow-up" *ngIf="systemOwner"></i></th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let pendingApplication of pendingApplications | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td>
+          <a class="anchor" style="cursor: pointer;" (click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
+        </td>
+        <td>
+          {{pendingApplication.businessOwnerNameDoe}}
+        </td>
+
+        <td>
+          {{pendingApplication.systemOwnerNameDoe}}
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+  <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
+  <br>
+
+
+</form>
