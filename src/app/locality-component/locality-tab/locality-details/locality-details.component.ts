@@ -225,6 +225,8 @@ export class LocalityDetailsComponent implements OnInit {
     this.router.navigate(['/locality/map']);
   }
 
+  
+
 
 
 
