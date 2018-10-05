@@ -31,7 +31,7 @@ export class FormsComponent implements OnInit {
    this.modalService.open(content);
 
   }
-d(){
+f(){
 this.router.navigate(['/vendorsView']);
 }
 

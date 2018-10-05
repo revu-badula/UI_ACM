@@ -39,7 +39,7 @@ declare var swal: any; ''
 
 				<div class="asterisk">*</div>
 				<input type="email" class="form-control" id="modelNumber"
-					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="5" maxlength="10">
+					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="0" maxlength="10">
 
 			</div>
 			<div class="form-group col-md-6">
@@ -84,51 +84,51 @@ declare var swal: any; ''
 				<select id="inputState" class="form-control" id="state"
 					formControlName=state>
 					<option selected>Choose...</option>
-					<option value="AL">Alabama</option>
-	<option value="AK">Alaska</option>
-	<option value="AZ">Arizona</option>
-	<option value="AR">Arkansas</option>
-	<option value="CA">California</option>
-	<option value="CO">Colorado</option>
-	<option value="CT">Connecticut</option>
-	<option value="DE">Delaware</option>
-	<option value="DC">District Of Columbia</option>
-	<option value="FL">Florida</option>
-	<option value="GA">Georgia</option>
-	<option value="HI">Hawaii</option>
-	<option value="ID">Idaho</option>
-	<option value="IL">Illinois</option>
-	<option value="IN">Indiana</option>
-	<option value="IA">Iowa</option>
-	<option value="KS">Kansas</option>
-	<option value="KY">Kentucky</option>
-	<option value="LA">Louisiana</option>
-	<option value="ME">Maine</option>
-	<option value="MD">Maryland</option>
-	<option value="MA">Massachusetts</option>
-	<option value="MI">Michigan</option>
-	<option value="MN">Minnesota</option>
-	<option value="MS">Mississippi</option>
-	<option value="MO">Missouri</option>
-	<option value="MT">Montana</option>
-	<option value="NE">Nebraska</option>
-	<option value="NV">Nevada</option>
-	<option value="NH">New Hampshire</option>
-	<option value="NJ">New Jersey</option>
-	<option value="NM">New Mexico</option>
-	<option value="NY">New York</option>
-	<option value="NC">North Carolina</option>
-	<option value="ND">North Dakota</option>
-	<option value="OH">Ohio</option>
-	<option value="OK">Oklahoma</option>
-	<option value="OR">Oregon</option>
-	<option value="PA">Pennsylvania</option>
-	<option value="RI">Rhode Island</option>
-	<option value="SC">South Carolina</option>
-	<option value="SD">South Dakota</option>
-	<option value="TN">Tennessee</option>
-	<option value="TX">Texas</option>
-	<option value="UT">Utah</option>
+					  <option value="AL">Alabama (AL)</option>
+	<option value="AK">Alaska (AK)</option>
+	<option value="AZ">Arizona (AZ)</option>
+	<option value="AR">Arkansas (AR)</option>
+	<option value="CA">California (CA)</option>
+	<option value="CO">Colorado (CO)</option>
+	<option value="CT">Connecticut (CT)</option>
+	<option value="DE">Delaware (DE)</option>
+	<option value="DC">District Of Columbia (DC)</option>
+	<option value="FL">Florida (FL)</option>
+	<option value="GA">Georgia (GA)</option>
+	<option value="HI">Hawaii (HI)</option>
+	<option value="ID">Idaho (ID)</option>
+	<option value="IL">Illinois (IL)</option>
+	<option value="IN">Indiana (IN)</option>
+	<option value="IA">Iowa (IA)</option>
+	<option value="KS">Kansas (KS)</option>
+	<option value="KY">Kentucky (KY)</option>
+	<option value="LA">Louisiana (LA)</option>
+	<option value="ME">Maine (ME)</option>
+	<option value="MD">Maryland (MD)</option>
+	<option value="MA">Massachusetts (MA)</option>
+	<option value="MI">Michigan (MI)</option>
+	<option value="MN">Minnesota (MN)</option>
+	<option value="MS">Mississippi (MS)</option>
+	<option value="MO">Missouri (MO)</option>
+	<option value="MT">Montana (MT)</option>
+	<option value="NE">Nebraska (NE)</option>
+	<option value="NV">Nevada (NV)</option>
+	<option value="NH">New Hampshire (NH)</option>
+	<option value="NJ">New Jersey (NJ)</option>
+	<option value="NM">New Mexico (NM)</option>
+	<option value="NY">New York (NY)</option>
+	<option value="NC">North Carolina (NC)</option>
+	<option value="ND">North Dakota (ND)</option>
+	<option value="OH">Ohio (OH)</option>
+	<option value="OK">Oklahoma (OK)</option>
+	<option value="OR">Oregon (OR)</option>
+	<option value="PA">Pennsylvania (PA)</option>
+	<option value="RI">Rhode Island (RI)</option>
+	<option value="SC">South Carolina (SC)</option>
+	<option value="SD">South Dakota (SD)</option>
+	<option value="TN">Tennessee (TN)</option>
+	<option value="TX">Texas (TX)</option>
+	<option value="UT">Utah (UT)</option>
 	<option value="VT">Vermont</option>
 	<option value="VA">Virginia</option>
 	<option value="WA">Washington</option>
@@ -206,8 +206,9 @@ declare var swal: any; ''
 			</div>
 
 		</div>
-		
+		<br>
         <div class="display-file">
+        <br>
 						<table border="1">
 							<tr>
 								<th>FileName</th>

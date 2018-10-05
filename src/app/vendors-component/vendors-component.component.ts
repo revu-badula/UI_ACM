@@ -21,7 +21,7 @@ export class VendorsComponentComponent implements OnInit {
    this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
         console.log(data);
-        this.modalService.open(this.content);
+        //this.modalService.open(this.content);
         open(data.responseString);
       }, error => console.log(error));
   }
