@@ -5,7 +5,7 @@ import { Observable, Subject, Subscription, BehaviorSubject } from 'rxjs/Rx';
 export class IdleTimeoutService {
     private _count: number = 0;
     private _serviceId: string = 'idleTimeoutSvc-' + Math.floor(Math.random() * 10000);
-    private _timeoutSeconds: number = 5;
+    private _timeoutSeconds: number = 2;
     private timerSubscription: Subscription;
     private timer: Observable<number>;
     private resetOnTrigger: boolean = false;
@@ -26,7 +26,7 @@ export class IdleTimeoutService {
             this.timerSubscription.unsubscribe();
         }
 
-        this.timer = Observable.timer(this._timeoutSeconds * 60 * 1000);
+        this.timer = Observable.timer(this._timeoutSeconds * 1000);
         this.timerSubscription = this.timer.subscribe(n => {
             this.timerComplete(n);
         });

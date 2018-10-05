@@ -37,7 +37,8 @@
 
 				<label for="inputState">System Acronym</label>
 				<div class="asterisk">*</div>
-				<input type="text" class="form-control" name="acronym" [(ngModel)]="system.acronym" required readonly>
+				<input type="text" *ngIf="showBox" class="form-control" name="acronym" [(ngModel)]="system.acronym" required>
+				<input type="text" *ngIf="!showBox" class="form-control" name="acronym" [(ngModel)]="system.acronym" required readonly>
 			</div>
 			<div class="form-group col-md-6">
 

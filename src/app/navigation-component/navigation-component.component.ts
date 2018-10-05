@@ -32,6 +32,12 @@ export class NavigationComponentComponent implements OnInit {
     localStorage.removeItem('active');
     localStorage.removeItem('assessActive');
     localStorage.removeItem('assesId');
+    localStorage.removeItem('systemName');
+    localStorage.removeItem('systemActive');
+    localStorage.removeItem('systemAssessActive');
+    localStorage.removeItem('systemAuditActive');
+    localStorage.removeItem('systemAppAuditId');
+    localStorage.removeItem('sysassesId');
     this.router.navigate(['/logout']);
   }
 

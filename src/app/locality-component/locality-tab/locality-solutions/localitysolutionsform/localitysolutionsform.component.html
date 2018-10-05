@@ -98,9 +98,6 @@
 				</select>
 			</div>
 
-
-
-
 			<div class="form-group col-md-6">
 				<label for="modelSolution">System Type</label>
 				<div class="asterisk">*</div>
@@ -114,12 +111,6 @@
 			</div>
 		</div>
 
-
-
-
-		<!-- 	 <input type="text"  -->
-		<!--  					class="form-control" *ngIf="!isAddNewSolution" name="name"  -->
-		<!-- 				[(ngModel)]="applicationSolution.solutionsDTO.name"> -->
 		<div>
 			<div class="form-row">
 				<div class="form-group col-12">
@@ -162,31 +153,20 @@
 					<div class="form-group col-md-6">
 						<label for="lastName">Hosting Type</label>
 						<div class="asterisk">*</div>
-						<!-- <input type="text"  class="form-control" ngModel name="hostingTypeId" required
-						 [(ngModel)]="applicationSolution.solutionsDTO.hostingTypeDTO.name" readonly> -->
 						<input type="text" class="form-control" name="hostingTypeId" required [(ngModel)]="hostType" readonly>
-						<!-- <select id="inputState" *ngIf="isAddNewSolution" class="form-control" ngModel name="modelHname" required
-						 (change)="getHostingType($event.target.value)" required>
-							<option>Choose...</option>
-							<option value="4">Not Applicable</option>
-							<option value="1">Wireless - Cloud</option>
-							<option value="2">Wireless - OnPrem</option>
-							<option value="3">Both</option>
-
-						</select> -->
+						
 
 
 					</div>
 				</div>
 
-				<!-- <hr /> -->
 				<div class="form-row" *ngIf="isVisible">
 					<div class="form-group col-md-6">
 						<label for="units">Add Unit</label>
 						<div class="plus" *ngIf="showPlus">
 
 
-							<!-- 							 [ngClass]="{disabled: editableForm}" -->
+						
 							<i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="open1()"></i>
 
 						</div>
@@ -222,11 +202,13 @@
 
 			</div>
 
-			<button type="submit" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick">Submit</button>
-			<button type="submit" class="btn btn-primary" (click)="close($event)">Cancel</button>
+			
+			
 
 
 		</div>
 	</fieldset>
+	<button type="submit" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick">Submit</button>
+	<button type="submit" class="btn btn-primary" (click)="close($event)">Cancel</button>
 
 </form>

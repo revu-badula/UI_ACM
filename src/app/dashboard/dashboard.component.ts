@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { UserIdleService } from 'angular-user-idle';
@@ -10,6 +10,7 @@ import { DialogService } from '../dialog.service';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   @ViewChild('content') content: TemplateRef<any>;
@@ -91,7 +92,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy()
   {
-    // this._idleTimerSubscription.unsubscribe(); 
+     //this._idleTimerSubscription.unsubscribe(); 
   }
 
   deleteCookie()
