@@ -1,126 +1,128 @@
 <div class="my-container">
-	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title">Audit</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>{{info}}</p>
-    </div>
-    <div class="modal-footer">
-      <button  *ngIf="!showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Ok</button>
-      <button  *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
-    </div>
-  </ng-template>
-
-  
-  
-  
-  
-  <div class="plus" *ngIf="showLegalBox">
-    <div class="save-edit" style="float: right">
-  
-      <fa class="edit-icon icons" [name]="'edit'"  (click)="editClick()"></fa>
-    </div>
+  <div class="modal-header">
+    <h4 class="modal-title">Audit</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  <div class="form-div">
-    <div class="former">
-  
-      <div class="form-row">
-        <div class="form-group col-md-6">
-  
-          <label for="inputState">System Acronym</label>
-          <div class="asterisk">*</div>
-          <input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
-        </div>
-        
+  <div class="modal-body">
+    <p>{{info}}</p>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Ok</button>
+    <button *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+  </div>
+</ng-template>
 
-        <div class="form-group col-md-6">
-            <label for="lastName">System Name</label>
-            <div class="asterisk">*</div>
-            <input type="text" class="form-control" id="lastName" value="{{sysName}}" readonly>
-          </div>
+
+
+
+
+<div class="plus" *ngIf="showLegalBox">
+  <div class="save-edit" style="float: right">
+
+    <fa class="edit-icon icons" [name]="'edit'" (click)="editClick()"></fa>
+  </div>
+</div>
+<div class="form-div">
+  <div class="former">
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+
+        <label for="inputState">System Acronym</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
       </div>
-  
-  
-  
-      <div class="form-row">
-          <div class="form-group col-md-6">
-              <label for="lastName">Last updated by</label>
-              <input type="text" class="form-control" id="lastName"  readonly="readonly" readonly>
-            </div>
-        <div class="form-group col-md-6">
-          <label for="email">Updated at</label>
-          <input type="email" class="form-control" id="email" value="{{updatedTime}}" readonly>
-        </div>
+
+
+      <div class="form-group col-md-6">
+        <label for="lastName">System Name</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" id="lastName" value="{{sysName}}" readonly>
       </div>
-  
-  
     </div>
-    <form #myForm="ngForm" (ngSubmit)="saveMOU()" enctype="multipart/form-data"
-    class="former">
+
+
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="lastName">Last updated by</label>
+        <input type="text" class="form-control" id="lastName" readonly="readonly" readonly>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Updated at</label>
+        <input type="email" class="form-control" id="email" value="{{updatedTime}}" readonly>
+      </div>
+    </div>
+
+
+  </div>
+  <form #myForm="ngForm" (ngSubmit)="saveMOU()" enctype="multipart/form-data" class="former">
     <div class="panel-heading">
 
-      <span *ngIf="!showLegalBox" class=" title elipsis pull-right"> <a
-        (click)="saveMOU()" *ngIf="myForm.valid" title="Save MOU"
-        class="ng-hide"> <i class="fa fa-floppy-o" aria-hidden="true"
-          style="font-size: 24px;"></i></a>
+      <span *ngIf="!showLegalBox" class=" title elipsis pull-right"> <a (click)="saveMOU()" *ngIf="myForm.valid" title="Save MOU"
+          class="ng-hide"> <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i></a>
       </span> <span class=" title elipsis pull-right"> <a (click)="goBack()" title="Go back to audit section.">
-          <i class="fa fa-arrow-circle-o-left" aria-hidden="true"
-          style="font-size: 24px;"></i>
-      </a>
+          <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
       </span>
 
     </div>
     <fieldset [disabled]="showLegalBox">
-    <p>
-      <b>Legal Documents</b>
-    </p>
+      <p>
+        <b>Legal Documents</b>
+      </p>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputState">Name</label> <input type="text"
-          class="form-control" name="name" [(ngModel)]="mou.name" required>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Name</label> <input type="text" class="form-control" name="name" [(ngModel)]="mou.name"
+            required>
+        </div>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputState">Signed</label> <select id="modelSolution"
-          class="form-control" name="signed" [(ngModel)]="mou.signed" required>
-          <option selected>Choose...</option>
-          <option [value]="true">Yes</option>
-          <option [value]="false">No</option>
-        </select>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Signed</label> <select id="modelSolution" class="form-control" name="signed"
+            [(ngModel)]="mou.signed" required>
+            <option selected>Choose...</option>
+            <option [value]="true">Yes</option>
+            <option [value]="false">No</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputState">Date of Receipt</label>
-        <my-date-picker name="mydate" [options]="myDatePickerOptions"
-        (dateChanged) = "getDate($event)" [(ngModel)]="moureceiptdt" required></my-date-picker>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Date of Receipt</label>
+          <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="getDate($event)" [(ngModel)]="moureceiptdt"
+            required></my-date-picker>
+        </div>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputState">Recertification Date</label>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Recertification Date</label>
 
-        <my-date-picker name="myname" [options]="myDatePickerOptions"
-          (dateChanged) = "getNextDate($event)"	[(ngModel)]="mourecertdt" required></my-date-picker>
+          <my-date-picker name="myname" [options]="myDatePickerOptions" (dateChanged)="getNextDate($event)" [(ngModel)]="mourecertdt"
+            required></my-date-picker>
+        </div>
       </div>
-    </div>	
-    <hr class="former" />
-    <p>
-      <b>MOU Attachments</b>
-    </p>
+      <hr class="former" />
+      <div class="form-row">
+        <div class="form-group col-md-6">
 
-    <div>
+          <label for="inputState">MOU Attachments</label>
+
+
+        </div>
+
+      </div>
       <div class="col-sm-5 col-md-5 col-lg-5">
         <input type="file" #fileInput (change)="createMOUDTO($event)">
-        <br>
+      </div>
+      <br>
+      <div class="display-file">
         <table border="1">
           <tr>
             <th>Filename</th>
@@ -134,8 +136,8 @@
               <i class="fa fa-trash" aria-hidden="true" style="font-size: 24px;"></i>
             </td>
           </tr>
-          </table>
-          <!-- <p *ngFor="let file of mou.mouDocDTOs let i=index">
+        </table>
+        <!-- <p *ngFor="let file of mou.mouDocDTOs let i=index">
     <span *ngIf="file.status"><a (click)="getFile(file.mouDocId)" style="color:blue;cursor:pointer;">{{file.fileName}}</a>
     <i (click)="deleteFile(file.mouDocId,i)" class="fa fa-trash" aria-hidden="true"
           style="font-size: 24px;"></i>
@@ -143,6 +145,7 @@
     </p> -->
       </div>
 
-    </div>
+
     </fieldset>
+
   </form>
