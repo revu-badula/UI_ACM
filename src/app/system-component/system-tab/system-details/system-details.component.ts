@@ -110,7 +110,7 @@ export class SystemDetailsComponent implements OnInit {
         .subscribe((data: any) => {
           this.loading = false;
           this.appId = data.applicationViewDTO.applicationId;
-          this.contentData = "system has been created.";
+          this.contentData = "System has been created.";
           localStorage.setItem('systemName', data.applicationViewDTO.acronym);
           localStorage.setItem('systemActive', 'true');
           this.modalService.open(this.content, ngbModalOptions);
@@ -126,7 +126,7 @@ export class SystemDetailsComponent implements OnInit {
       formData.append('application', JSON.stringify(this.system));
       this.http.post(APP_CONFIG.updateSystem, formData).subscribe((data: any) => {
         this.loading = false;
-        this.contentData = "system has been updated.";
+        this.contentData = "System has been updated.";
         this.modalService.open(this.content, ngbModalOptions);
       }, error => {
         this.loading = false;

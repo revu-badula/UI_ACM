@@ -21,6 +21,11 @@ border-color: #ddd; */
     color: #000 !important;
 }
 
+.confbtn{
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 
 .ngx-pagination {
     margin-left: 0;
