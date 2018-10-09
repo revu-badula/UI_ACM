@@ -66,8 +66,8 @@
                             <a (click)="getAudit(audit.appAuditId)" style="cursor:pointer;color:blue;">{{ audit.auditTypeName }}</a>
                         </td>
                         <td>{{ audit.auditType }}</td>
-                        <td>{{ audit.auditDate | filterDate }}</td>
-                        <td>{{ audit.nextAuditDate | filterDate }}</td>
+                        <td>{{ audit.auditDate | filterDate | date:'MM/dd/yyyy' }}</td>
+                        <td>{{ audit.nextAuditDate | filterDate | date:'MM/dd/yyyy' }}</td>
                         <td>{{ audit.status }}</td>
                     </tr>
                 </tbody>

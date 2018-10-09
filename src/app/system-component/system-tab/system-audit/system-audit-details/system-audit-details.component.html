@@ -71,8 +71,8 @@
                             systemfilterAuditName }}</a>
                     </td>
                     <td>{{ audit.auditType }}</td>
-                    <td>{{ audit.auditDate | filterDate }}</td>
-                    <td>{{ audit.nextAuditDate | filterDate }}</td>
+                    <td>{{ audit.auditDate | filterDate | date:'MM/dd/yyyy' }}</td>
+                    <td>{{ audit.nextAuditDate | filterDate | date:'MM/dd/yyyy' }}</td>
                     <td>{{ audit.status }}</td>
                 </tr>
             </tbody>

@@ -1,42 +1,55 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-
-import { FormBuilder, FormGroup, Validators,FormsModule,ReactiveFormsModule} from '@angular/forms';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Router} from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { PhonePipe } from '../locality-component/phone-pipe';
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.css']
+  styleUrls: ['./forms.component.css'],
+  providers: [PhonePipe]
 })
 export class FormsComponent implements OnInit {
-  
+
   @Output() submitClick = new EventEmitter<object>();
-   public editVendorForm: FormGroup;
-  constructor( private fb: FormBuilder, private router: Router,private modalService: NgbModal) { }
+  public editVendorForm: FormGroup;
+  constructor(private fb: FormBuilder, private router: Router, 
+    private modalService: NgbModal, private phone:PhonePipe) { }
 
   ngOnInit() {
-   this.createForm();
+    this.createForm();
   }
-  
-   createVendor(value){
-   console.log(this.editVendorForm.value);
+
+  createVendor(value) {
+    console.log(this.editVendorForm.value);
     this.submitClick.emit(value);
     console.log(value);
   }
-  cancelButton(){
-  this.router.navigate(['/dashboard']);
+  cancelButton() {
+    this.router.navigate(['/dashboard']);
   }
-  
+
   open(content) {
-   this.modalService.open(content);
+    this.modalService.open(content);
 
   }
-f(){
-this.router.navigate(['/vendorsView']);
-}
+  f() {
+    this.router.navigate(['/vendorsView']);
+  }
+
+  getPhoneNumber(value)
+  {
+    // console.log(this.phone.transform(value));
+    // this.editVendorForm.controls['phoneNumber'].setValue(this.phone.transform(value));
+    this.editVendorForm.patchValue({
+      vendorContact:{
+        phoneNumber:this.phone.transform(value)
+      }
+    });
+  }
 
 
- createForm() {
+  createForm() {
     this.editVendorForm = this.fb.group({
       name: ['', Validators.required],
       vendorAddress: this.fb.group({

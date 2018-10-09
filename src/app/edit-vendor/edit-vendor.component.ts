@@ -4,11 +4,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { PhonePipe } from '../locality-component/phone-pipe';
 @Component({
   selector: 'app-edit-vendor',
   templateUrl: './edit-vendor.component.html',
   styleUrls: ['./edit-vendor.component.css'],
-  providers: [ApiserviceService]
+  providers: [ApiserviceService, PhonePipe]
 })
 
 
@@ -35,7 +36,9 @@ export class EditVendorComponent implements OnInit {
 
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder, private modalService: NgbModal) {
+  constructor(private router: Router, private route: ActivatedRoute, 
+    private _apiservice: ApiserviceService, private fb: FormBuilder, 
+    private modalService: NgbModal, private phone: PhonePipe) {
   }
 
 
@@ -90,7 +93,16 @@ export class EditVendorComponent implements OnInit {
     });
   }
 
-
+  getPhoneNumber(value)
+  {
+    // console.log(this.phone.transform(value));
+    // this.editVendorForm.controls['phoneNumber'].setValue(this.phone.transform(value));
+    this.editVendorForm.patchValue({
+      vendorContact:{
+        phoneNumber:this.phone.transform(value)
+      }
+    });
+  }
 
 
 

@@ -61,8 +61,8 @@
                             <a (click)="getAudit(assess.assessmentId)" style="cursor:pointer;color:blue;">{{ assess.auditName}}</a>
                         </td>
                         <td>{{ assess.name }}</td>
-                        <td>{{ assess.assessmentDt | filterDate}}</td>
-                        <td>{{assess.nextAssessmentDt | filterDate }}</td>
+                        <td>{{ assess.assessmentDt | filterDate | date:'MM/dd/yyyy'}}</td>
+                        <td>{{assess.nextAssessmentDt | filterDate | date:'MM/dd/yyyy' }}</td>
                         <td>{{ assess.status }}</td>
                     </tr>
                 </tbody>

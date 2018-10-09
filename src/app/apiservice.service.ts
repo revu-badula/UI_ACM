@@ -51,7 +51,6 @@ getDatabases(){
       .map(res => <Response>res.json());
   }
   postVendorData(body) {
-    console.log("body", body);
     let url = APP_CONFIG.postVendor;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
