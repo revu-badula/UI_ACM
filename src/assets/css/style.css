@@ -15,12 +15,11 @@ border-color: #ddd; */
 	color: #ffffff;
 }
 
-
-
-
-
-
-
+.btn-primary.disabled, .btn-primary:disabled {
+  background-color: #A9A9A9 !important;
+    border-color: #A9A9A9 !important;
+    color: #000 !important;
+}
 
 
 .ngx-pagination {

@@ -20,6 +20,7 @@ export class SystemLegalmainComponent implements OnInit {
   public loading: boolean = false;
   public moudtos: any;
   public p: number = 1;
+  public sysName:any;
   public showPagination: boolean = true;
   public signed: boolean = false;
   public recertificationDt: boolean = false;
@@ -40,6 +41,7 @@ export class SystemLegalmainComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
+        this.sysName = data.applicationViewDTO.name;
         let d = new Date(data.applicationViewDTO.updatedTime);
         let day = d.getDate();
         let month = d.getMonth() + 1;

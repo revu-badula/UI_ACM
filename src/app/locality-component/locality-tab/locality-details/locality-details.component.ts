@@ -12,12 +12,13 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../../../util.service';
 import { FilterPipeDate } from '../../locality-date-filter';
 import { Cookie } from 'ng2-cookies';
+import { PhonePipe } from '../../phone-pipe';
 
 @Component({
   selector: 'app-locality-details',
   templateUrl: './locality-details.component.html',
   styleUrls: ['./locality-details.component.css'],
-  providers: [ApiserviceService]
+  providers: [ApiserviceService, PhonePipe]
 })
 export class LocalityDetailsComponent implements OnInit {
   daysArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -42,22 +43,14 @@ export class LocalityDetailsComponent implements OnInit {
   public isShow: boolean = false;
 
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
-    , private http: Http, private _location: Location, private modalService: NgbModal, private router: Router, private utilservice: UtilService) {
+    , private http: Http, private _location: Location, private modalService: NgbModal,
+     private router: Router, private utilservice: UtilService, private phone: PhonePipe) {
 
 
     this.locality = new Locality();
 
     this.workHours = new WorkHours();
-    // this.route.params.subscribe(params => {
-    //   this.loc = params['Locality'];
-    //   UtilService.localityName = this.loc;
-
-
-
-    // });
-
-
-    //this.locality = new Locality(); 
+    
   }
 
   ngOnInit() {
@@ -86,7 +79,6 @@ export class LocalityDetailsComponent implements OnInit {
       let url_update = APP_CONFIG.addLocality;
       this.locality.createdByName = Cookie.get('userName');
       formData.append('createApp', JSON.stringify(this.locality));
-      console.log(JSON.stringify(this.locality));
       this.http.post(url_update, formData)
       .map(res => res.json())
       .subscribe((data: any) => {
@@ -225,7 +217,10 @@ export class LocalityDetailsComponent implements OnInit {
     this.router.navigate(['/locality/map']);
   }
 
-  
+  getPhoneNumber(value)
+  {
+    this.locality.phoneNumber=this.phone.transform(value);
+  }
 
 
 

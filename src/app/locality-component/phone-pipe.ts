@@ -1,16 +1,50 @@
-import {Pipe} from '@angular/core';
+import { Pipe } from '@angular/core';
 
 @Pipe({
     name: 'phone'
 })
-export class PhonePipe{
-    transform(val, args) {
-        val = val.charAt(0) != 0 ? '0' + val : '' + val;
-        let newStr = '';
-        let i;    
-        for(let i=0; i < (Math.floor(val.length/2) - 1); i++){
-           newStr = newStr+ val.substr(i*2, 2) + '-';
+export class PhonePipe {
+    transform(val) {
+        if (!val) { return ''; }
+
+        let value = val.toString().trim().replace(/^\+/, '');
+
+        if (value.match(/[^0-9]/)) {
+            return val;
         }
-        return newStr+ val.substr(i*2);
-    }
+
+        let country, city, number;
+
+        switch (value.length) {
+            case 10: // +1PPP####### -> C (PPP) ###-####
+                country = 1;
+                city = value.slice(0, 3);
+                number = value.slice(3);
+                break;
+
+            case 11: // +CPPP####### -> CCC (PP) ###-####
+                country = value[0];
+                city = value.slice(1, 4);
+                number = value.slice(4);
+                break;
+
+            // case 12: // +CCCPP####### -> CCC (PP) ###-####
+            //     country = value.slice(0, 3);
+            //     city = value.slice(3, 5);
+            //     number = value.slice(5);
+            //     break;
+
+            default:
+                return val;
+        }
+        if (country == 1) {
+            country = "";
+        }
+
+        number = number.slice(0, 3) + '-' + number.slice(3);
+
+        return (country + " (" + city + ") " + number).trim();
+    };
+
+
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LocalityComponentRoutingModule} from '.././app.routing';
+import { LocalityComponentRoutingModule } from '.././app.routing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NavigationComponentModule } from '../navigation-component/navigation-component.module';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
@@ -51,10 +51,10 @@ import { AssessBudgetComponent } from './locality-tab/locality-assessment/assess
 import { AssessAttachmentsComponent } from './locality-tab/locality-assessment/assess-attachments/assess-attachments.component';
 import { AssessLessonsComponent } from './locality-tab/locality-assessment/assess-lessons/assess-lessons.component';
 import { LocalitysolutionsformComponent } from './locality-tab/locality-solutions/localitysolutionsform/localitysolutionsform.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbdModalContent } from './locality-tab/locality-solutions/ngb-modal.component';
 import { PhonePipe } from './phone-pipe';
-import { DialogComponent} from '../dialog.service';
+import { DialogComponent } from '../dialog.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -69,22 +69,22 @@ import { DialogComponent} from '../dialog.service';
     NgxPaginationModule,
     LoadingModule.forRoot({
       animationType: ANIMATION_TYPES.rotatingPlane,
-      backdropBackgroundColour: 'rgba(0,0,0,0.5)', 
+      backdropBackgroundColour: 'rgba(0,0,0,0.5)',
       backdropBorderRadius: '4px',
-      primaryColour: '#fff', 
-      secondaryColour: '#fff', 
+      primaryColour: '#fff',
+      secondaryColour: '#fff',
       tertiaryColour: '#fff',
-      fullScreenBackdrop:true
-  })
+      fullScreenBackdrop: true
+    })
   ],
-  declarations: [LocalityAddComponentComponent, LocalityTabComponent,LocalityComponentComponent, LocalityDetailsComponent, LocalitySolutionsComponent, LocalitySolutionsLinkComponent, LocalitySolutionstablelinkComponent, LocalityBusinessComponent, LocalityAuditComponent, AuditDetailsComponent, AuditFindingsComponent, AuditRecomendationsComponent, LocalityLegalComponent, AuditManagementComponent, LocalitySecurityComponent, AuditActionComponent, AuditBusinessriskComponent, AuditSecurityriskComponent, AuditBudgetComponent, AuditAttachmentsComponent, LocalityAssessmentComponent, 
-  LocalityTechnicalComponent,FilterPipeDate, FilterAuditName,AuditFirstComponent, 
-  AuditDetailsTab, AuditLessonsComponent, AssessDetailsComponent, AssessTabComponent,
-  AuditDetailsTab1, LegalformComponent, LegalmainComponent, AssessDetailsComponent, 
-  AssessTabComponent, AssessDowntabsComponent,AssessFindComponent,
-  AssessRecomendComponent,ManagementComponent,AssessActionComponent,
-  AssessBusinessComponent,AssessSecurityComponent,AssessBudgetComponent,
-  AssessAttachmentsComponent,AssessLessonsComponent, LocalitysolutionsformComponent, NgbdModalContent, PhonePipe],
+  declarations: [LocalityAddComponentComponent, LocalityTabComponent, LocalityComponentComponent, LocalityDetailsComponent, LocalitySolutionsComponent, LocalitySolutionsLinkComponent, LocalitySolutionstablelinkComponent, LocalityBusinessComponent, LocalityAuditComponent, AuditDetailsComponent, AuditFindingsComponent, AuditRecomendationsComponent, LocalityLegalComponent, AuditManagementComponent, LocalitySecurityComponent, AuditActionComponent, AuditBusinessriskComponent, AuditSecurityriskComponent, AuditBudgetComponent, AuditAttachmentsComponent, LocalityAssessmentComponent,
+    LocalityTechnicalComponent, FilterPipeDate, FilterAuditName, AuditFirstComponent,
+    AuditDetailsTab, AuditLessonsComponent, AssessDetailsComponent, AssessTabComponent,
+    AuditDetailsTab1, LegalformComponent, LegalmainComponent, AssessDetailsComponent,
+    AssessTabComponent, AssessDowntabsComponent, AssessFindComponent,
+    AssessRecomendComponent, ManagementComponent, AssessActionComponent,
+    AssessBusinessComponent, AssessSecurityComponent, AssessBudgetComponent,
+    AssessAttachmentsComponent, AssessLessonsComponent, LocalitysolutionsformComponent, NgbdModalContent, PhonePipe],
   entryComponents: [NgbdModalContent, DialogComponent]
 })
 export class LocalityComponentModule { }

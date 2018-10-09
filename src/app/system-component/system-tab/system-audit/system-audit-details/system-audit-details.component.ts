@@ -30,6 +30,7 @@ export class SystemAuditDetailsComponent implements OnInit {
   public auditDate: boolean = false;
   public nextAuditDate: boolean = false;
   public showPagination:boolean = true;
+  public sysName:any;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
     private router: Router, private route: ActivatedRoute) {
@@ -53,6 +54,7 @@ export class SystemAuditDetailsComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.mainData = data.applicationViewDTO.acronym;
+        this.sysName = data.applicationViewDTO.name;
         let d = new Date(data.applicationViewDTO.updatedTime);
         if(data.applicationViewDTO.appAuditDTOs === undefined)
         {
