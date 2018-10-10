@@ -66,6 +66,7 @@ import { SignedPipe } from './signed-pipe';
 import { DevicetabComponent } from './devicetab/devicetab.component';
 import { IdleTimeoutService } from './idleTimeOutService';
 import { DialogComponent } from './dialog.service';
+import { OnlyIntegerDirective } from './locality-component/only-integer.directive';
 @NgModule({
   declarations: [
     AppComponent,

@@ -12,7 +12,7 @@ import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 declare var swal: any; ''
 import { Cookie } from 'ng2-cookies';
-
+import { IMyDate, IMyDpOptions } from 'mydatepicker';
 @Component({
   selector: 'app-system-assess-action',
   templateUrl: './system-assess-action.component.html',
@@ -32,6 +32,11 @@ export class SystemAssessActionComponent implements OnInit {
   public showForm: boolean = true;
   public endDate: any;
   public startDate: any;
+  myDatePickerOptions: IMyDpOptions = {
+    disableUntil: { year: 0, month: 0, day: 0 },
+    showTodayBtn: false
+
+  };
   constructor(private _apiservice: ApiserviceService, private utilService: UtilService,
     private http: Http, private router: Router, private modalService: NgbModal, private datepipe: DatePipe) {
     this.appAssess = new AppAssess();
@@ -68,15 +73,16 @@ export class SystemAssessActionComponent implements OnInit {
         .subscribe((data: any) => {
           this.loading = false;
           this.appAssess = data
-
+          let day,month,year;
           if (this.appAssess.actionPlanStartDt === null) {
             this.startDate = { date: null };
+            this.myForm.controls['endDate'].disable();
           }
           else {
             let d = new Date(this.appAssess.actionPlanStartDt);
-            let day = d.getDate();
-            let month = d.getMonth() + 1;
-            let year = d.getFullYear();
+             day = d.getDate();
+             month = d.getMonth() + 1;
+             year = d.getFullYear();
             this.startDate = { date: { year: year, month: month, day: day } };
           }
 
@@ -88,6 +94,10 @@ export class SystemAssessActionComponent implements OnInit {
             let month1 = dt.getMonth() + 1;
             let year1 = dt.getFullYear();
             this.endDate = { date: { year: year1, month: month1, day: day1 } };
+            this.myDatePickerOptions.disableUntil.day = day;
+            this.myDatePickerOptions.disableUntil.month = month;
+            this.myDatePickerOptions.disableUntil.year = year;
+            this.myDatePickerOptions.showTodayBtn = false;
           }
         }, error => {
           this.loading = false;
@@ -127,13 +137,23 @@ export class SystemAssessActionComponent implements OnInit {
 
 
   getStartDate(value) {
+    this.myForm.controls['endDate'].disable();
+    this.endDate = null;
     if (value.formatted === "") {
       this.appAssess.actionPlanStartDt = null;
     }
     else {
-      let d = value.formatted;
-      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAssess.actionPlanStartDt = moment(latest_date).format();
+      let d = new Date(value.formatted);
+      let year = d.getFullYear();
+      let month = d.getMonth() + 1;
+      let day = d.getDate();
+      this.myDatePickerOptions.disableUntil.day = day;
+      this.myDatePickerOptions.disableUntil.month = month;
+      this.myDatePickerOptions.disableUntil.year = year;
+      this.myDatePickerOptions.showTodayBtn = false;
+      this.myForm.controls['endDate'].enable();
     }
 
   }
@@ -161,7 +181,7 @@ export class SystemAssessActionComponent implements OnInit {
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
 
-    if (this.myForm.dirty) {
+    if (this.myForm.dirty && this.myForm.valid) {
 
 
       return this.confirm1('Do you want to save changes?', 'for action plan', 'YES', 'NO');
