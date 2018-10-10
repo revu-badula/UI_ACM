@@ -1,16 +1,16 @@
-import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { APP_CONFIG } from '../../../../app.config';
 import { UtilService } from '../../../../util.service';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { AppAudit } from '../../../../data.model.auditDTO';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
-import {Http, HttpModule, Headers, RequestOptions} from '@angular/http';
+import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { NgbModal,NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule, NgForm, FormGroup } from '@angular/forms';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 declare var swal: any; ''
 
 @Component({
@@ -20,20 +20,20 @@ declare var swal: any; ''
 })
 export class AuditBudgetComponent implements OnInit {
 
-  @ViewChild('content') content:TemplateRef<any>;
+  @ViewChild('content') content: TemplateRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
 
   appAudit: AppAudit;
-  public appAuditDTOs:any;
-  public editData:any;
-  public showForm:boolean=true;
-  public loading:boolean = false;
-  public showEdit:boolean = false;
-  public info:string="";
-  constructor( private _apiservice: ApiserviceService, 
-    private utilService: UtilService,private http: Http,private route: ActivatedRoute,
-    private router:Router, private modalService: NgbModal) { 
-      
+  public appAuditDTOs: any;
+  public editData: any;
+  public showForm: boolean = true;
+  public loading: boolean = false;
+  public showEdit: boolean = false;
+  public info: string = "";
+  constructor(private _apiservice: ApiserviceService,
+    private utilService: UtilService, private http: Http, private route: ActivatedRoute,
+    private router: Router, private modalService: NgbModal, private dialogService: DialogService) {
+
     this.appAudit = new AppAudit();
     this.getAppId();
   }
@@ -45,72 +45,68 @@ export class AuditBudgetComponent implements OnInit {
     this.loading = true;
     this._apiservice.viewApplication(localStorage.getItem('localityName'))
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.appAudit.applicationID = data.applicationViewDTO.applicationId;
         this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
         this.showOnPageLoad();
       }, error => {
         this.loading = false;
-        console.log(error);});
-    }
+        console.log(error);
+      });
+  }
 
-    showOnPageLoad()
-    {
-      if(localStorage.getItem('appAuditId') === null)
-      {
-        
-      }
-      else{
-        this.showEdit=true;
-        let id = localStorage.getItem('appAuditId');
-        let auid = +id;
+  showOnPageLoad() {
+    if (localStorage.getItem('appAuditId') === null) {
+
+    }
+    else {
+      this.showEdit = true;
+      let id = localStorage.getItem('appAuditId');
+      let auid = +id;
       this.editData = this.appAuditDTOs.filter(item => item.appAuditId === auid);
-      
-      for(let i=0;i<this.editData.length;i++)
-      {
+
+      for (let i = 0; i < this.editData.length; i++) {
         this.appAudit = this.editData[i];
       }
 
-    
 
-      
+
+
 
     }
-    
+
   }
-  
-  showAudit(){
- this.router.navigate(['/locality/tab/Audit']);
- }
+
+  showAudit() {
+    this.router.navigate(['/locality/tab/Audit']);
+  }
 
 
-  saveBudget()
-  {
+  saveBudget() {
     let ngbModalOptions: NgbModalOptions = {
-      backdrop : 'static',
-      keyboard : false
-      };
+      backdrop: 'static',
+      keyboard: false
+    };
     this.loading = true;
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
     let url_update = APP_CONFIG.updateAppAuditInfo;
-    this.appAudit.updatedBy=Cookie.get('userName');
+    this.appAudit.updatedBy = Cookie.get('userName');
     let data = JSON.stringify(this.appAudit);
-    this.http.post(url_update,data,options)
-        .subscribe((data: any) => {
-          this.loading = false;
-          const { myForm: { value: formValueSnap } } = this;
-         this.myForm.reset(formValueSnap);
-          this.info="Budget has been updated.";
-          this.modalService.open(this.content,ngbModalOptions);
-        }, error => {
-          this.loading = false;
-          console.log(error);
-        });
+    this.http.post(url_update, data, options)
+      .subscribe((data: any) => {
+        this.loading = false;
+        const { myForm: { value: formValueSnap } } = this;
+        this.myForm.reset(formValueSnap);
+        this.info = "Budget has been updated.";
+        this.modalService.open(this.content, ngbModalOptions);
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
   }
-  valueChanged()
-  {
+  valueChanged() {
     this.showForm = false;
     this.showEdit = false;
   }
@@ -118,18 +114,33 @@ export class AuditBudgetComponent implements OnInit {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     // console.log(this.myForm);
     // console.log(this.myForm.dirty);
-    
+
     //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
-      if(this.myForm.dirty){
+    if (this.myForm.dirty) {
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
-    return  this.confirm1('Do you want to save changes?', 'for budget', 'YES', 'NO');
-       
+      //return  this.confirm1('Do you want to save changes?', 'for budget', 'YES', 'NO');
+
+
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Budget?", true, "Yes", "No")
+          .then((result) => {
+            if (result) {
+              this.saveBudget();
+              resolve(false);
+            }
+            else {
+              resolve(true);
+            }
+          }, error => reject(error));
+
+      });
 
     }
-    
-    return true;
+    else {
+      return true;
+    }
 
   }
 
@@ -161,7 +172,7 @@ export class AuditBudgetComponent implements OnInit {
 
 
   }
- 
+
 
 
 

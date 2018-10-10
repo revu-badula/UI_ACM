@@ -13,7 +13,7 @@ import { AppAssess, AssessmentPolicyDTO, Policy } from '../../../../data.model.a
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 declare var swal: any; ''
 @Component({
   selector: 'app-assess-business',
@@ -32,7 +32,7 @@ export class AssessBusinessComponent implements OnInit {
   public showForm: boolean = true;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private route: ActivatedRoute,
-    private router: Router, private modalService: NgbModal, private datepipe: DatePipe) {
+    private router: Router, private modalService: NgbModal, private datepipe: DatePipe, private dialogService: DialogService) {
     this.appAssess = new AppAssess();
     this.getAppId();
   }
@@ -91,7 +91,7 @@ export class AssessBusinessComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
     let url_update = APP_CONFIG.updateAppAssessment;
-    this.appAssess.updatedBy=Cookie.get('userName');
+    this.appAssess.updatedBy = Cookie.get('userName');
     let data = JSON.stringify(this.appAssess);
     this.http.post(url_update, data, options)
       .subscribe((data: any) => {
@@ -111,56 +111,70 @@ export class AssessBusinessComponent implements OnInit {
     this.showSave = true;
     this.showEdit = false;
   }
-  showLeft(){
+  showLeft() {
     this.router.navigate(['locality/tab/assessment']);
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    // console.log(this.myForm);
+    // console.log(this.myForm.dirty);
+    //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
+    if (this.myForm.dirty) {
+      //return this.dialogService.confirm('Discard changes for Budget?');
+      //const modal=this.modalService.open(this.content1, ngbModalOptions);
+
+      //return this.confirm1('Do you want to save changes?', 'for business risk', 'YES', 'NO');
+
+
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Business Risk?", true, "Yes", "No")
+          .then((result) => {
+            if (result) {
+              this.saveBusinessRisk();
+              resolve(false);
+            }
+            else {
+              resolve(true);
+            }
+          }, error => reject(error));
+
+      });
+    }
+    else {
+      return true;
     }
 
-    canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-      // console.log(this.myForm);
-      // console.log(this.myForm.dirty);
-      //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
-      if (this.myForm.dirty) {
-        //return this.dialogService.confirm('Discard changes for Budget?');
-        //const modal=this.modalService.open(this.content1, ngbModalOptions);
-  
-        return this.confirm1('Do you want to save changes?', 'for business risk', 'YES', 'NO');
-  
-  
-      }
-  
-      return true;
-  
-    }
-  
-  
-  
-  
-    confirm1(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
-      return new Promise<boolean>((resolve, reject) => {
-        swal({
-          title: title,
-          text: text,
-          type: 'warning',
-          showCancelButton: showCancelButton,
-          confirmButtonText: confirmButtonText,
-          cancelButtonText: cancelButtonText,
-          allowOutsideClick: false
-        }).then((result) => {
-          if (result.value !== undefined && result.value) {
-            this.saveBusinessRisk();
-            resolve(false);
-          }
-          else {
-            resolve(true);
-          }
-        }, error => reject(error));
-      });
-  
-  
-  
-  
-    }
-  
+  }
+
+
+
+
+  confirm1(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
+    return new Promise<boolean>((resolve, reject) => {
+      swal({
+        title: title,
+        text: text,
+        type: 'warning',
+        showCancelButton: showCancelButton,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.value !== undefined && result.value) {
+          this.saveBusinessRisk();
+          resolve(false);
+        }
+        else {
+          resolve(true);
+        }
+      }, error => reject(error));
+    });
+
+
+
+
+  }
+
 
 
 

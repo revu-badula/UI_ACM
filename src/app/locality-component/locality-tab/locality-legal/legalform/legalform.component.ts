@@ -9,7 +9,7 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 declare var swal: any; ''
 @Component({
   selector: 'app-legalform',
@@ -46,7 +46,7 @@ export class LegalformComponent implements OnInit {
   public showLegalBox: boolean = true;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router) {
+    private router: Router, private dialogService: DialogService) {
     this.mou = new Mou();
     this.getAppId();
   }
@@ -235,9 +235,10 @@ export class LegalformComponent implements OnInit {
 
 
   deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    // this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.mou.mouDocDTOs.length;
             if (length === 1) {

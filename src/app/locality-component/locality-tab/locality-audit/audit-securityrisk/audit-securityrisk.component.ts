@@ -10,7 +10,7 @@ import { NgbModal,NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 declare var swal: any; ''
 @Component({
   selector: 'app-audit-securityrisk',
@@ -33,7 +33,7 @@ export class AuditSecurityriskComponent implements OnInit {
  
   constructor( private _apiservice: ApiserviceService, 
     private utilService: UtilService,private http: Http,private router:Router,
-    private route: ActivatedRoute, private modalService: NgbModal) { 
+    private route: ActivatedRoute, private modalService: NgbModal, private dialogService: DialogService) { 
      
     this.appAudit = new AppAudit();
     this.getAppId();
@@ -127,12 +127,28 @@ export class AuditSecurityriskComponent implements OnInit {
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
-      return this.confirm1('Do you want to save changes?', 'for security risk', 'YES', 'NO');
+      //return this.confirm1('Do you want to save changes?', 'for security risk', 'YES', 'NO');
 
+
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Security Risk?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveSecurityRisk();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
 
     }
-
+    else{
     return true;
+    }
 
   }
 

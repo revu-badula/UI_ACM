@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 declare var swal: any; '';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 @Component({
   selector: 'app-legalform',
   templateUrl: './system-legalform.component.html',
@@ -48,7 +48,7 @@ export class SystemLegalformComponent implements OnInit {
   public sysName:any;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router) {
+    private router: Router, private dialogService: DialogService) {
     this.mou = new Mou();
     this.getAppId();
   }
@@ -229,9 +229,10 @@ export class SystemLegalformComponent implements OnInit {
     window.open(APP_CONFIG.getMOUFile + '?' + 'mouDocId' + '=' + id)
   }
   deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.mou.mouDocDTOs.length;
             if (length === 1) {
