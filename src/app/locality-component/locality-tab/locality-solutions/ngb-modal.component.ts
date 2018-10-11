@@ -39,16 +39,21 @@ import { DialogService } from '../../../dialog.service';
 				<label for="model">Model Number</label>
 
 				<div class="asterisk">*</div>
-				<input type="email" class="form-control" id="modelNumber"
-					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="0" maxlength="10">
-
+				<input type="text" class="form-control" id="modelNumber"
+					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="5" maxlength="10">
+                    <div style="color:red;" *ngIf="modalForm.get('modelNumber').errors && modalForm.get('modelNumber').dirty">
+                    modelNumber 5 to 10 numbers
+                   </div>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="serial">Serial Number</label>
 				<div class="asterisk">*</div>
 				<input type="text" class="form-control" id="serialNumber"
 					placeholder="Equipment Serial Number"
-					formControlName="serialNumber" minlength="5" maxlength="10">
+                    formControlName="serialNumber" minlength="5" maxlength="10">
+                    <div style="color:red;" *ngIf="modalForm.get('serialNumber').errors && modalForm.get('serialNumber').dirty">
+                    serialNumber 5 to 10 numbers
+                   </div>
 			</div>
 		</div>
 		<p>
@@ -257,7 +262,7 @@ export class NgbdModalContent implements OnInit {
     fileToUpload: File = null;
     deviceDocDTO: DeviceDocDTO;
     public selectDate: any;
-    public selectDate1:any;
+    public selectDate1: any;
     public nextSelectDate: any;
     public myFiles: any;
     public files = [] as File[];
@@ -389,9 +394,9 @@ export class NgbdModalContent implements OnInit {
                 //     this.activeModal.close();
                 // });
                 this.dialogService.open("Info", " Device has been updated.", false, "Ok", "No")
-                .then(result => {
-                     this.activeModal.close();
-                });
+                    .then(result => {
+                        this.activeModal.close();
+                    });
 
             }, error => {
                 this.loading = false;
@@ -414,9 +419,9 @@ export class NgbdModalContent implements OnInit {
                 //     this.activeModal.close();
                 // });
                 this.dialogService.open("Info", " Device has been created.", false, "Ok", "No")
-                .then(result => {
-                     this.activeModal.close();
-                });
+                    .then(result => {
+                        this.activeModal.close();
+                    });
 
             }, error => {
                 this.loading = false;
