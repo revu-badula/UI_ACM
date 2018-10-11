@@ -129,13 +129,13 @@ table{
     
     	i.fa {
     text-decoration: none !important;
-    padding: 5px 4px;
+    
      color: #3A539B;
 }
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
+    font-size: larger;
     text-rendering: auto;
      color: #3A539B;
    }
@@ -152,14 +152,14 @@ table{
    
    
 .plus{
-	float:right;
+	
 	 vertical-align: middle;
     font-size: 20px;
  
-    padding: 2px;
-    margin-left: 20px;
+    padding: 6px;
+  
     color: #3A539B;
-    margin-top: 15px;
+    margin-right: 20px;
     
 }
 
