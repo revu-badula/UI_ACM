@@ -84,8 +84,6 @@ public showEli:boolean = true;
         if(this.policyAccess.endDate!=null){
           this.dateRetreive();
         }
-      	console.log(data);
-      	console.log(this.policyAccess);
       });
   }
   
@@ -104,17 +102,13 @@ public showEli:boolean = true;
   	this.policyDocumentDTO = new PolicyDocumentsDTO();
     this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
     this.policyDocumentDTO.activeFlag = true;
-   
-    console.log(fileInput.target.files[0]);
     this.files.push(fileInput.target.files[0]);
-    console.log(this.policyAccess.policyDocumentsDTOs);
     if(this.policyAccess.policyDocumentsDTOs == null)
           {
           
           this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
         }
     this.policyAccess.policyDocumentsDTOs.push(this.policyDocumentDTO);
-    console.log(this.policyAccess.policyDocumentsDTOs);
   }
   
   deleteFile(id, index) {
