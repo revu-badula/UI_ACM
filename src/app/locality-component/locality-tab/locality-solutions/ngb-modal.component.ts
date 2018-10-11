@@ -181,7 +181,7 @@ import { DialogService } from '../../../dialog.service';
 				<label for="dueDate">Next Scanning Date</label>
 				<div class="asterisk">*</div>
 						 
-				<my-date-picker name="mname" [selDate]="nextSelectDate" [options]="myDatePickerOptions"
+				<my-date-picker name="mname" [selDate]="selectDate1" [options]="myDatePickerOptions"
 					formControlName=nextScanningDt1 ></my-date-picker>
 					
 			</div>
@@ -257,6 +257,7 @@ export class NgbdModalContent implements OnInit {
     fileToUpload: File = null;
     deviceDocDTO: DeviceDocDTO;
     public selectDate: any;
+    public selectDate1:any;
     public nextSelectDate: any;
     public myFiles: any;
     public files = [] as File[];
@@ -299,11 +300,19 @@ export class NgbdModalContent implements OnInit {
             this.modalForm.controls['zipCode'].setValue(this.deviceData.zipCode);
             this.modalForm.controls['overallStatus'].setValue(this.deviceData.overallStatus);
             let d = new Date(this.deviceData.nextScanningDt);
+            let nd = new Date(this.deviceData.currentScanningDt);
             this.selectDate = {
                 date: {
                     year: d.getFullYear(),
                     month: d.getMonth() + 1,
                     day: d.getDate()
+                }
+            }
+            this.selectDate1 = {
+                date: {
+                    year: nd.getFullYear(),
+                    month: nd.getMonth() + 1,
+                    day: nd.getDate()
                 }
             }
             let month = d.getMonth() + 1;
@@ -312,6 +321,7 @@ export class NgbdModalContent implements OnInit {
 
             this.device.deviceDocDTO = this.deviceData.deviceDocDTO;
             this.modalForm.controls['nextScanningDt'].setValue(this.selectDate);
+            this.modalForm.controls['nextScanningDt1'].setValue(this.selectDate1);
             this.modalForm.controls['notes'].setValue(this.deviceData.notes);
             this.myDatePickerOptions.disableUntil.day = day;
             this.myDatePickerOptions.disableUntil.month = month;
@@ -355,7 +365,9 @@ export class NgbdModalContent implements OnInit {
         this.device.state = value.state;
         this.device.zipCode = value.zipCode;
         let latest_date = this.datepipe.transform(value.nextScanningDt.formatted, 'yyyy-MM-dd');
-        this.device.nextScanningDt = moment(latest_date).format();;
+        this.device.nextScanningDt = moment(latest_date).format();
+        let lat_dat = this.datepipe.transform(value.nextScanningDt1.formatted, 'yyyy-MM-dd');
+        this.device.currentScanningDt = moment(lat_dat).format();
         this.device.overallStatus = value.overallStatus;
         this.device.notes = value.notes;
         this.device.appSolutionId = this.appSolutionId;

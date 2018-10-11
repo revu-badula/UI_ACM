@@ -303,8 +303,8 @@
 						<label for="phone"><b>Phone Number</b></label>
 					
 						<input type="text" class="form-control" id="phone" 
-							name="phoneNumber" pattern="^\d{3}-\d{3}-\d{4}$"
-							title='Phone Number (Format: 999-999-9999)'
+							name="phoneNumber"
+						
 							[(ngModel)]="solution.labVendorsDTO.phoneNumber"
 							[name]="'phoneNumber'"  readonly>
 					</div>
@@ -316,8 +316,9 @@
 			<h4>Standard</h4>
 			<div class="installation form-group">
 				<label class="hosting-notes" for="standard"><b>Notes</b></label>
-				<!-- <p *ngIf="showForm">{{ policyAccess.description }}</p> -->
-				<textarea *ngIf="!showFrm" cols="156" rows="7" id="standard"></textarea>
+				 <p *ngIf="showForm">{{ solution.certStadard }}</p> 
+				<textarea *ngIf="!showFrm" cols="156" rows="7" id="standard"
+				[(ngModel)]="solution.certStadard" name="standard Notes"></textarea>
 				<div class="attachments-div">
 					<p class="attachments">
 						<b>Attachments</b>

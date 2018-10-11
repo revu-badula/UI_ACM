@@ -61,8 +61,8 @@
 			<input type="text" class="form-control" id="lastName" value="enter here">
 		</div>
 		<div class="form-group col-md-6">
-			<label for="email">Updated at</label>
-			<input type="email" class="form-control" id="email" value="{{updatedTime}}">
+			<label for="updated At">Updated at</label>
+			<input type="text" class="form-control" id="updatedAt" value="{{updatedTime}}">
 		</div>
 	</div>
 
@@ -176,7 +176,8 @@
 
 									<th scope="col">Model #</th>
 									<th scope="col">Serial #</th>
-									<th scope="col">Next due date</th>
+									<th scope="col">Current Date</th>
+									<th scope="col">Next Date</th>
 									<th scope="col">Overall status</th>
 								</tr>
 							</thead>
@@ -188,6 +189,7 @@
 									<td *ngIf="!showPlus">{{table.modelNumber }}</td>
 									<td>{{ table.serialNumber }}</td>
 									<td>{{ table.nextScanningDt | filterDate }}</td>
+									<td>{{ table.currentScanningDt | filterDate }}</td>
 									<td>{{ table.overallStatus }}</td>
 
 								</tr>

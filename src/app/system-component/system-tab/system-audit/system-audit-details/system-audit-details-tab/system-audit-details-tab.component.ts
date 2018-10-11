@@ -11,7 +11,7 @@ import { UtilService } from "../../../../../util.service";
     public mainData:any;
     public updatedTime:any;
     public disabled:boolean;
-
+    public sysName:any;
     constructor(private _apiservice: ApiserviceService, 
       private utilService: UtilService, private route: ActivatedRoute) {
         this.disabled=UtilService.disabled;
@@ -29,6 +29,7 @@ import { UtilService } from "../../../../../util.service";
           .subscribe((data: any) => {
             //this.appAudit.applicationID = data.applicationViewDTO.applicationId;
             this.mainData = data.applicationViewDTO.acronym;
+            this.sysName = data.applicationViewDTO.name;
             let d = new Date(data.applicationViewDTO.updatedTime);
             //this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
             let day = d.getDate();

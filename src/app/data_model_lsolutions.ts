@@ -60,6 +60,7 @@ export class Device {
 	zipCode: string;
 
 	nextScanningDt: any;
+	currentScanningDt: any
 	overallStatus: string;
 	notes: string;
 	deviceDocDTO: any = [];
