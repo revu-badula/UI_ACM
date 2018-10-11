@@ -163,10 +163,9 @@ export class DocumentsComponent implements OnInit {
   
   
   transferDocument(){
-  
-  	
+  	console.log("inside transfer document");
   	this.showDocument = true;
-
+    //c('Save click');
   }
   
   
