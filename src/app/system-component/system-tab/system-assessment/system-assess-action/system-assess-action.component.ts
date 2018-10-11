@@ -13,6 +13,7 @@ import { Observable, Subject } from 'rxjs';
 declare var swal: any; ''
 import { Cookie } from 'ng2-cookies';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
+import { DialogService } from '../../../../dialog.service';
 @Component({
   selector: 'app-system-assess-action',
   templateUrl: './system-assess-action.component.html',
@@ -38,7 +39,8 @@ export class SystemAssessActionComponent implements OnInit {
 
   };
   constructor(private _apiservice: ApiserviceService, private utilService: UtilService,
-    private http: Http, private router: Router, private modalService: NgbModal, private datepipe: DatePipe) {
+    private http: Http, private router: Router, private modalService: NgbModal, 
+    private datepipe: DatePipe, private dialogService: DialogService) {
     this.appAssess = new AppAssess();
     this.getAppId();
   }
@@ -184,12 +186,29 @@ export class SystemAssessActionComponent implements OnInit {
     if (this.myForm.dirty && this.myForm.valid) {
 
 
-      return this.confirm1('Do you want to save changes?', 'for action plan', 'YES', 'NO');
+      //return this.confirm1('Do you want to save changes?', 'for action plan', 'YES', 'NO');
 
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Action Plan?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveActionPlan();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
 
     }
-
+    else{
     return true;
+    }
+
+   
 
   }
 

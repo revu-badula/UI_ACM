@@ -4,7 +4,7 @@ import { UtilService } from '../../../../../util.service';
 import { AppAssess, AssessmentPolicyDTO, Policy } from '../../../../../data.model.assessmentDTO';
 import { Router, ActivatedRoute } from '@angular/router';
 import { APP_CONFIG } from '../../../../../app.config';
-
+import { DialogService } from '../../../../../dialog.service';
 @Component({
   selector: 'app-assess-tab',
   templateUrl: './system-assess-tab.component.html',
@@ -26,7 +26,8 @@ export class SystemAssessTabComponent implements OnInit {
 
   public showPlusButton: boolean = false;
   constructor(private _apiservice: ApiserviceService,
-    private utilService: UtilService, private route: ActivatedRoute, private router: Router) {
+    private utilService: UtilService, private route: ActivatedRoute, private router: Router,
+    private dialogService: DialogService) {
     this.getAppId();
     localStorage.removeItem('sysassesId');
     localStorage.removeItem('systemAssessActive');

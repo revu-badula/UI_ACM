@@ -13,7 +13,7 @@ import { AppAssess, AssessmentPolicyDTO, Policy } from '../../../../data.model.a
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 declare var swal: any; ''
 
 @Component({
@@ -33,7 +33,7 @@ export class SystemAssessBusinessComponent implements OnInit {
   public showForm: boolean = true;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private route: ActivatedRoute,
-    private router: Router, private modalService: NgbModal, private datepipe: DatePipe) {
+    private router: Router, private modalService: NgbModal, private datepipe: DatePipe, private dialogService: DialogService) {
     this.appAssess = new AppAssess();
     this.getAppId();
   }
@@ -120,12 +120,28 @@ export class SystemAssessBusinessComponent implements OnInit {
       if (this.myForm.dirty) {
         
   
-        return this.confirm1('Do you want to save changes?', 'for business risk', 'YES', 'NO');
-  
-  
+        //return this.confirm1('Do you want to save changes?', 'for business risk', 'YES', 'NO');
+        return new Promise<boolean>((resolve, reject) => {
+          this.dialogService.open("Info", " Do you want to save changes for Business Risk?", true, "Yes", "No")
+          .then((result) =>{
+            if(result)
+            {
+              this.saveBusinessRisk();
+              resolve(false);
+            }
+            else{
+              resolve(true);
+            }
+          },error => reject(error));
+            
+        });
+    
+      }
+      else{
+      return true;
       }
   
-      return true;
+     
   
     }
   

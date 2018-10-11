@@ -15,6 +15,7 @@ import { NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng
 import { DatePipe } from '@angular/common';
 import { AppAssess, AssessmentPolicyDTO, Policy } from '../../../../data.model.assessmentDTO';
 import { Observable, Subject } from 'rxjs';
+
 let ngbModalOptions: NgbModalOptions = {
   backdrop: 'static',
   keyboard: false
@@ -135,12 +136,28 @@ export class SystemAssessBudgetComponent implements OnInit {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.myForm.dirty) {
 
-      return this.confirm1('Do you want to save changes?', 'for budget', 'YES', 'NO');
+      //return this.confirm1('Do you want to save changes?', 'for budget', 'YES', 'NO');
 
-
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Budget?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveBudget();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
+  
     }
-
+    else{
     return true;
+    }
+    
 
   }
 

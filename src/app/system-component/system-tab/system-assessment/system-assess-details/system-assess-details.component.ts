@@ -15,6 +15,7 @@ import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
 declare var swal: any; ''
+import { DialogService } from '../../../../dialog.service';
 @Component({
   selector: 'app-assess-details',
   templateUrl: './system-assess-details.component.html',
@@ -75,7 +76,8 @@ export class SystemAssessDetailsComponent implements OnInit {
   public changeOverallStatus: boolean = false;
   public assessmentPolicyDto: AssessmentPolicyDTO;
   constructor(private router: Router, private _apiservice: ApiserviceService,
-    private utilService: UtilService, private http: Http, private datepipe: DatePipe, private modalService: NgbModal) {
+    private utilService: UtilService, private http: Http, private datepipe: DatePipe,
+     private modalService: NgbModal, private dialogService: DialogService) {
     this.policies = [];
     this.policyDisplay = new Policy();
     this.getAppId();
@@ -616,12 +618,28 @@ export class SystemAssessDetailsComponent implements OnInit {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.myForm.dirty && this.myForm.valid) {
 
-      return this.confirm1('Do you want to save changes?', 'for details', 'YES', 'NO');
+      //return this.confirm1('Do you want to save changes?', 'for details', 'YES', 'NO');
 
 
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Details?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveAudit();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
+  
     }
-
+    else{
     return true;
+    }
 
   }
 

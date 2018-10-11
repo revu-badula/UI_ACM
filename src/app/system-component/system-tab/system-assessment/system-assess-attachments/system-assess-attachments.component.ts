@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 declare var swal: any; ''
 import { AppAssess, AssessmentPolicyDTO, Policy, AssessmentFileDTO } from '../../../../data.model.assessmentDTO';
 interface Window {
@@ -50,7 +50,7 @@ export class SystemAssessAttachmentsComponent implements OnInit {
   public showForm: boolean = true;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private route: ActivatedRoute,
-    private router: Router, private modalService: NgbModal, private datepipe: DatePipe) {
+    private router: Router, private modalService: NgbModal, private datepipe: DatePipe, private dialogService: DialogService) {
     this.appAssess = new AppAssess();
     this.getAppId();
   }
@@ -162,9 +162,10 @@ export class SystemAssessAttachmentsComponent implements OnInit {
 
   deleteFile(id, index) {
 
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.appAssess.assessmentFileDTOs.length;
             if (length === 1) {
@@ -300,11 +301,28 @@ export class SystemAssessAttachmentsComponent implements OnInit {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
    
     if (this.givenfile) {
-      return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
+     // return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
+     return new Promise<boolean>((resolve, reject) => {
+      this.dialogService.open("Info", " Do you want to save changes for Attachments?", true, "Yes", "No")
+      .then((result) =>{
+        if(result)
+        {
+          this.saveAttachments();
+          resolve(false);
+        }
+        else{
+          resolve(true);
+        }
+      },error => reject(error));
+        
+    });
 
-    }
+  }
+  else{
+  return true;
+  }
 
-    return true;
+    
 
   }
 

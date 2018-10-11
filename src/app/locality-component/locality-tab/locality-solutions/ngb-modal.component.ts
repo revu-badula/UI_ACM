@@ -13,6 +13,7 @@ import { UtilService } from '../../../util.service';
 import { Cookie } from 'ng2-cookies';
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 declare var swal: any; ''
+import { DialogService } from '../../../dialog.service';
 @Component({
     selector: 'ngbd-modal-content',
     template: `
@@ -278,7 +279,8 @@ export class NgbdModalContent implements OnInit {
 
     constructor(public activeModal: NgbActiveModal,
         private _fb: FormBuilder, private _apiservice: ApiserviceService,
-        private http: Http, private datepipe: DatePipe, private utilService: UtilService) {
+        private http: Http, private datepipe: DatePipe, private utilService: UtilService,
+        private dialogService: DialogService) {
         this.device = new Device();
 
         //this.createForm();
@@ -395,6 +397,10 @@ export class NgbdModalContent implements OnInit {
                 this.alert('Success', 'Device has been created.').then(success => {
                     this.activeModal.close();
                 });
+                // this.dialogService.open("Info", " Device has been created?", false, "Ok", "No")
+                // .then(result => {
+                //      this.activeModal.close();
+                // });
 
             }, error => {
                 this.loading = false;
@@ -438,9 +444,10 @@ export class NgbdModalContent implements OnInit {
     }
 
     deleteFile(id, index) {
-        this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+        //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+        this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
             .then((result: any) => {
-                if (result.value !== undefined && result.value) {
+                if (result) {
                     if (id === undefined) {
                         let length = this.device.deviceDocDTO.length;
                         if (length === 1) {
