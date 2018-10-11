@@ -33,7 +33,7 @@
     	</div> -->
    	<div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cancel</button>
-    <button class="submit btn btn-outline-dark" (click) = "transferDocument();c('Save click');createPolicyDocumentDTO($event)">Upload</button>
+    <button class="submit btn btn-outline-dark" (click) = "transferDocument();c('Save click')">Upload</button>
   </div>
     </form>
   </div>
@@ -55,7 +55,23 @@
 </ng-template>
 <form (ngSubmit) = "submitDocument()">
 <div class="installation form-group">
+<!-- 			<div *ngIf = "showDocument" class="display-file"> -->
+<!--             <br> -->
+							
+<!-- 							<table border="1"> -->
+<!-- 							<tr> -->
+<!-- 								<th>FileName</th> -->
+<!-- 								<th>Action</th> -->
+<!-- 							</tr> -->
+<!-- 							<tr *ngFor=" let policyDocument of displayPolicyDocuments"> -->
+<!-- 								<td style="cursor: pointer; color: blue;">{{policyDocument.documentName}}</td> -->
+<!-- 								<td style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td> -->
 
+							
+<!-- 							</tr> -->
+<!-- 						</table> -->
+							
+<!--             </div> -->
             <label class="hosting-notes" for="policyResources"><b>Policy Resources</b></label><!-- <div class="asterisk-inline asterisk">*</div> -->
             <textarea cols="156" rows="7" id="Policy Resources" ngModel name="policyResources" [(ngModel)] = "policyGrpData.resourceLinks" [name] = "'resource_links'" *ngIf="!plus" required></textarea>
           </div>
