@@ -36,6 +36,7 @@ export class EditSolutionComponent implements OnInit {
 
   renewDate: NgbDateStruct;
   showForm: boolean = true;
+  clickExp:boolean = true;
 
   editSolution: FormGroup;
   certDocDTO: CertDocDTO;
@@ -276,6 +277,7 @@ export class EditSolutionComponent implements OnInit {
     this.showForm = false;
     this.isClick = true;
     this.showFrm = false;
+    this.clickExp = false;
   }
 
 

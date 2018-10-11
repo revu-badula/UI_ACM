@@ -12,7 +12,7 @@ export class Device{
   localDiskSpace: string;
   cpuCount: number;
   physicalCpuCount: number;
- 
+ purpose:any;
   
   logicalCpuCount: number;
   ipAddress: string;

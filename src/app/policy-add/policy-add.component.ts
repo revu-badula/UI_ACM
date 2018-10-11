@@ -4,6 +4,7 @@ import {Http, HttpModule, Headers, RequestOptions} from '@angular/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {APP_CONFIG} from '../app.config';
 import {ApiserviceService} from '../apiservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-policy-add',
@@ -38,7 +39,7 @@ export class PolicyAddComponent implements OnInit {
   public other = [];
   public endDate: any;
 
-  constructor(
+  constructor(private router: Router,
   private  http: Http, private modalService: NgbModal, private _apiservice: ApiserviceService) {
   	this.policyPost = new Policy();
   	 this.policyPost.policyDocumentsDTOs = [] as  PolicyDocumentsDTO[];
@@ -189,6 +190,17 @@ viewEvent(addPolicies: any,event){
   	console.log(event);
   	console.log(ch);
   }
+  
+  
+  
+  d(){
+  
+  this.router.navigate(['/policyView/policyDetails:auditID']);
+  
+
+  }
+  
+  
   
   saveLink(){
   

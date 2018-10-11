@@ -8,6 +8,7 @@ import {Location} from '@angular/common';
 import { UtilService } from '../util.service';
 import {ActivatedRoute, Params } from  '@angular/router';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
+import { PhonePipe } from '../locality-component/phone-pipe';
 
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
@@ -15,7 +16,7 @@ import { DatePipe } from '@angular/common';
   selector: 'app-update-device',
   templateUrl: './update-device.component.html',
   styleUrls: ['./update-device.component.css'],
-  providers: [ApiserviceService],
+  providers: [ApiserviceService, PhonePipe],
 })
 export class UpdateDeviceComponent implements OnInit {
   device: Device;
@@ -31,6 +32,7 @@ appId:number;
   serverContact1:Server;
    
    public startDate:any;
+   public showBtt:boolean=true;
    renDate:any;
    public endDate:any;
   public myDatePickerOptions: IMyDpOptions = {
@@ -44,7 +46,7 @@ appId:number;
   //public renewalDate: IMyDate = null;
   public licenceStartDate: IMyDate = null;
   
-  constructor(private _apiservice: ApiserviceService,private activatedRoute:ActivatedRoute,private datepipe: DatePipe, private  http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) { 
+  constructor(private phone: PhonePipe,private _apiservice: ApiserviceService,private activatedRoute:ActivatedRoute,private datepipe: DatePipe, private  http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) { 
     this.device = new Device();
     this.serverContact = new Server();
     this.serverContact1 = new Server(); 
@@ -60,6 +62,11 @@ appId:number;
   });
     this.getDBServer(this.deviceId);
   }
+    getPhoneNumbers(value)
+  {
+    this.serverContact.phoneNumber=this.phone.transform(value);
+  }
+  
   
    open(content){
      this.modalService.open(content);
@@ -152,6 +159,7 @@ appId:number;
   editorGroup(): void {
   this.showForm = false; 
   this.isLol = true;
+  this.showBtt = false;
   }
   
   

@@ -27,6 +27,7 @@ export class EditVendorComponent implements OnInit {
   public state: string;
   public zipCode: string;
   public loading: boolean = false;
+  public showEdi:boolean= true;
   //public vendorDetails: VendorDetails;
 
 
@@ -43,9 +44,10 @@ export class EditVendorComponent implements OnInit {
 
 
   editClicked(event): void {
+
     if (this.editVendorForm.disabled) {
       this.editVendorForm.enable();
-    }
+        }
     else {
       this.editVendorForm.disable();
     }

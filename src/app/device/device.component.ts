@@ -9,12 +9,13 @@ import { FilterPipe } from '../convertDate.pipe';
 import { DatePipe } from '@angular/common';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
 import * as moment from 'moment';
+import { PhonePipe } from '../locality-component/phone-pipe';
 
 @Component({
   selector: 'app-device',
   templateUrl: './device.component.html',
   styleUrls: ['./device.component.css'],
-  providers: [ApiserviceService],
+  providers: [ApiserviceService, PhonePipe],
 })
 export class DeviceComponent implements OnInit {
   public showForm: boolean = false;
@@ -33,7 +34,7 @@ export class DeviceComponent implements OnInit {
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'
   };
-  constructor(private _apiservice: ApiserviceService, private http: Http, private modalService: NgbModal, private utilservice: UtilService, private datepipe: DatePipe) {
+  constructor(private phone: PhonePipe,private _apiservice: ApiserviceService, private http: Http, private modalService: NgbModal, private utilservice: UtilService, private datepipe: DatePipe) {
     this.device = new Device();
     this.getDevice = new Device();
     this.device.serverContactDTOs = [];
@@ -56,6 +57,26 @@ export class DeviceComponent implements OnInit {
       this.showForm = false;
     }
   }
+  
+  
+  
+  
+  getPhoneNumbers(value)
+  {
+    this.serverContact.phoneNumber=this.phone.transform(value);
+  }
+  
+   getPhoneNumber(value)
+  {
+    this.serverContact1.phoneNumber=this.phone.transform(value);
+  }
+
+  
+  
+  
+  
+  
+  
 
   open(content) {
     this.modalService.open(content);

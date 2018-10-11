@@ -32,7 +32,9 @@
 		      <th scope="col" (click)="handleSort()">Host Name
 		        <i            class="fa fa-arrow-down" *ngIf="!desc"></i> <i
 					class="fa fa-arrow-up" *ngIf="desc"></i></th>
-		       <th scope="col">Product Name</th>
+		       <th scope="col" (click)="handleSorting()">Product Name
+		       <i            class="fa fa-arrow-down" *ngIf="!des"></i> <i
+					class="fa fa-arrow-up" *ngIf="des"></i></th>
 
 		      <th scope="col">Create Date</th>
 		      <th scope="col">Last modified date</th>

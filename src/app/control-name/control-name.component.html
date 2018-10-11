@@ -9,7 +9,7 @@
                 	<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
                 	<a href="javascript:void(0)" (click)="backClicked()"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
                 </div>
-                <div class="save-edit">
+                <div class="save-edit" *ngIf="showEli">
                 	<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0"  (click)="editorGroup()" [name]="'edit'"></fa>
                 </div>
                 <!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
@@ -266,10 +266,14 @@
 </div>
 <div *ngIf="showDiv">
 	<form class="form">
-	<label>Link from Internal</label>
-	<input type = "radio" name="linkedPolicies" (change) = "radioValue($event)" value="Link from Internal">
-	<label>Link from External</label>
+	<div>
+<label style="padding-left:5px">Link from Internal</label>
+<input type = "radio" name="linkedPolicies" (change) = "radioValue($event)" value="Link from Internal"> 
+		
+	<label style="padding-right:5px">Link from External</label>
 	<input type = "radio" name="linkedPolicies" (change) = "radioValue($event)" value="Link From  External">
+	</div>
+	<br>
 	<div *ngIf="displayField===1" class="form-row">
 		<div class="form-group col-md-6">
 			<label class="label-form" for="definitiveSource"><b>Definitive Source</b></label><div class="asterisk">*</div>
@@ -290,12 +294,14 @@
 			<h4>Artifacts</h4>
 	<textarea cols="156" rows="7" id="patches"></textarea>
 		</div>
-	<div>
+	<div *ngIf="showDef">
 		<h5>CONTROLS</h5>
 		<table class="table table-bordered">
 		  <thead>
 		    <tr>
-		      <th scope="col">Control Number</th>
+		    <th scope="col">Link</th>
+		      <th scope="col" (click)="handleSort()">Control Number <i            class="fa fa-arrow-down" *ngIf="!desc"></i> <i
+					class="fa fa-arrow-up" *ngIf="desc"></i></th>
 		      <th scope="col">Policy Name</th>
 		      <th scope="col">Priority</th>
 		      <th scope="col">Policy Value</th>
@@ -317,13 +323,16 @@
 		      <td></td>
 		      <td></td>
 		      <td></td>
-		      <td>{{ policy.status }}</td>
+		      <td></td>
+		    
+		      <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'"class="fa fa-check-circle"></i></td>
 		    </tr>
 		  </tbody>
 			</table>
-	</div>
-	<hr />
+			<hr />
 	 <pagination-controls (pageChange)="p = $event"></pagination-controls>
-	<button class="btn btn-primary" (click) = "saveLink()">Link</button>
+	</div>
+	
+	<button *ngIf="showBt" class="btn btn-primary" (click) = "saveLink()">Link</button>
 </form>
 </div>

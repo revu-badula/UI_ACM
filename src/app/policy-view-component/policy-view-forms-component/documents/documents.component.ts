@@ -68,7 +68,7 @@ export class DocumentsComponent implements OnInit {
   	
     this.policyDocumentDTOobj.documentName = fileInput.target.files[0].name;
 
-    
+     this.policyDocumentDTOobj.activeFlag = true;
     //this.certDocDTO.section = section;
     console.log(fileInput.target.files[0]);
     this.files.push(fileInput.target.files[0]);
@@ -81,6 +81,12 @@ export class DocumentsComponent implements OnInit {
     this.policyDocumentDTO.push(this.policyDocumentDTOobj);
     console.log(this.policyDocumentDTO);
   }
+  
+  
+  
+  
+   
+  
   
   
   
@@ -157,9 +163,10 @@ export class DocumentsComponent implements OnInit {
   
   
   transferDocument(){
-  	console.log("inside transfer document");
+  
+  	
   	this.showDocument = true;
-    //c('Save click');
+
   }
   
   

@@ -16,7 +16,12 @@
 	border-color: #3A539B;
 }
 
-
+   .primary {
+  color: green !important;
+}
+.secondary {
+  color: red !important;
+}
 
 
 th{

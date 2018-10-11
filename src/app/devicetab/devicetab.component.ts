@@ -22,6 +22,7 @@ export class DevicetabComponent implements OnInit {
   public p: number = 1;
   public loading: boolean = false;
   public desc = false;
+  public des = false;
   constructor(private _apiservice: ApiserviceService, private http: Http, private modalService: NgbModal, private utilservice: UtilService, private datepipe: DatePipe) {
     this.device = new Device();
 
@@ -82,6 +83,49 @@ export class DevicetabComponent implements OnInit {
     }
     return 0;
   }
+  
+  
+  
+  
+  
+  
+  
+  handleSorting() {
+
+    if (!this.des) {
+      this.displayDevices.sort(this.doAs);
+      this.des = true;
+    }
+    else {
+      this.displayDevices.sort(this.doDs);
+      this.des = false;
+    }
+
+  }
+
+  doAs(a, b) {
+
+
+    if (a.productName > b.productName) {
+      return -1;
+    } else if (a.productName < b.productName) {
+      return 1;
+    }
+    return 0;
+  }
+
+  doDs(a, b) {
+
+    if (a.productName < b.productName) {
+      return -1;
+    } else if (a.productName > b.productName) {
+      return 1;
+    }
+    return 0;
+  }
+  
+  
+  
 
 
 

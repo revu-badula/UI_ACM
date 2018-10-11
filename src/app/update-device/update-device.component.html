@@ -2,32 +2,42 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <app-navigation-component></app-navigation-component>
-<div class="navigate sticky-top">
-            <!--<div class="home">
-                <i class="fas fa-home home-icon icons"></i>
-                < class="fas fa-arrow-left left-icon icons"></i>
-            </div>-->
+
+
+
+   
+               <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
+         
             <div class="form-options">
                 <div class="home-back">
                 	<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
                 	<a href="javascript:void(0)" routerLink="/devicetab"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
-                	<div class="save-edit" style="float:right">
-                	<fa class="edit-icon icons" data-toggle="tooltip"  title="Save" data-animation="true" data-delay="0" (click)="editorGroup()" [name]="'edit'"></fa>
-                </div> 
-                	
-                	
-               </div>
-               
-               
-               <!--  <fa class="edit-icon icons" [name]="'edit'"></fa> -->
-            </div>
-        </div>
+                </div>
+                <div class="save-edit" *ngIf="showBtt">
+                	<fa class="edit-icon icons"   data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
+                </div>
 
-<!-- <div class="save-edit"> -->
-<!-- 			<fa class="edit-icon icons" data-toggle="tooltip" -->
-<!-- 				data-placement="right" title="Save" data-animation="true" -->
-<!-- 				data-delay="0" (click)="editorGroup()" [name]="'edit'"></fa> -->
-<!-- 		</div> -->
+            </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Success</h4>

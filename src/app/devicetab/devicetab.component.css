@@ -100,6 +100,9 @@ table thead tr th{
 	font-weight: 500;
 	color: black;
 }
+th{
+	text-align:center;
+}
 
 .btn{
 	background-color: #3A539B;

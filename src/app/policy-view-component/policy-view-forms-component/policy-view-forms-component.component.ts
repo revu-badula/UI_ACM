@@ -35,7 +35,7 @@ export class PolicyViewFormsComponentComponent implements OnInit {
   }
 
   ngOnInit() {
-  //this.fetchPolicies(UtilService.policyGrpId);
+  
   this.showDropdown();
   }
   
@@ -48,7 +48,7 @@ selectType(policy){
    UtilService.policyGrpId=policy;
    this.fetchPolicies(UtilService.policyGrpId);
     this.router.navigate(['dummy'], {relativeTo:this.route});
-   //this.router.navigate(['policyDetails'], {relativeTo:this.route});
+   
     }
     }
 

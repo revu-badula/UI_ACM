@@ -38,6 +38,7 @@ export class ControlNameComponent implements OnInit {
   linkedPolicy: Policy;
   showLink: boolean = true;
   public links:any;
+  public showBt:boolean = false;
   public accountnum: any[] =[];
   public list: any;
     public p: number = 1;
@@ -47,7 +48,9 @@ export class ControlNameComponent implements OnInit {
   public endDate: any;
   public displayEndDate: IMyDate = null;
     public showFrm: boolean = true;
-
+public showDef:boolean = false;
+public showEli:boolean = true;
+ public desc = false;
   constructor(private _location: Location, private activatedRoute: ActivatedRoute,  private _apiservice: ApiserviceService, 
   private  http: Http, private modalService: NgbModal) {
   	this.policyAccess = new Policy();
@@ -89,6 +92,7 @@ export class ControlNameComponent implements OnInit {
    editorGroup(): void {
     this.showForm = false; 
     this.showFrm = false;
+    this.showEli = false;
   }
   
   open(content){
@@ -144,6 +148,39 @@ export class ControlNameComponent implements OnInit {
       });
   }
   
+   handleSort() {
+
+    if (!this.desc) {
+      this.policies.sort(this.doAsc);
+      this.desc = true;
+    }
+    else {
+      this.policies.sort(this.doDsc);
+      this.desc = false;
+    }
+
+  }
+
+  doAsc(a, b) {
+    
+
+    if (a.controlNumber > b.controlNumber) {
+      return -1;
+    } else if (a.controlNumber < b.controlNumber) {
+      return 1;
+    }
+    return 0;
+  }
+
+  doDsc(a, b) {
+   
+    if (a.controlNumber < b.controlNumber) {
+      return -1;
+    } else if (a.controlNumber > b.controlNumber) {
+      return 1;
+    }
+    return 0;
+  }
   
   
   
@@ -260,8 +297,7 @@ fetchPolicies(id){
 }
 
 viewEvent(addPolicies: any,event){
- this.definitive= false;
- this.policy= false;
+
  
   	
   	if(this.policyAccess.linkedPolicies == null)
@@ -416,9 +452,15 @@ viewEvent(addPolicies: any,event){
   	//console.log(event);
   	if(event.target.defaultValue === "Link from Internal"){
   		this.displayField = 1;
+  		this.showDef= true;
+  		this.showBt = true
   	}
   	else{
+  	this.definitive= false;
+  	this.policy= false;
+  	this.showDef = false;
   		this.displayField = 0;
+  		this.showBt = true;
   	}
   }
   

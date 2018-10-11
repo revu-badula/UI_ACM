@@ -21,7 +21,9 @@
 .save-edit{
 	float: right;
 }
-
+.save-times{
+	float: right;
+}
 a{
 	text-decoration: none;
 }
@@ -61,6 +63,62 @@ a{
 }
 
 .save-icon{
+    color: #3A539B;
+}
+
+.times-icon{
+	color: #3A539B;
+}
+
+
+
+a{
+	text-decoration: none;
+}
+
+.icons{
+    vertical-align: middle;
+    font-size: 20px;
+    margin-top: -20px;
+    padding: 2px;
+    margin-left: 5px;
+}
+
+/*.left-icons{
+	float: left;
+}
+
+.icons{
+	display: inline-block;
+}*/
+
+.home-icon{
+    color: #3A539B;
+}
+
+.home-icon:hover{
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.left-icon{
+    /*margin-left: 10px;*/
+    color: #3A539B;
+}
+
+.edit-icon{
     color: #3A539B;
 }
 
@@ -138,9 +196,7 @@ table thead tr th{
 	float: left;
 }
 
-.save-edit{
-	float: right;
-}
+
 
 a{
 	text-decoration: none;
@@ -165,6 +221,8 @@ a{
 .edit-icon{
     /*margin-left: 10px;*/
     color: #3A539B;
+    
+    
 }
 
 .left-icon{
@@ -172,10 +230,9 @@ a{
     color: #3A539B;
 }
 
-.save-icon{
-    color: #3A539B;
+.save-edit{
+	float: right;
 }
-
 .download-icon{
 	 color: #3A539B;
 }

@@ -25,7 +25,7 @@
 		<div class="save-edit">
 			<fa class="edit-icon icons" data-toggle="tooltip"
 				data-placement="right" title="Save" data-animation="true"
-				data-delay="0" (click)="editorGroup()" [name]="'edit'"></fa>
+				data-delay="0" *ngIf="clickExp" (click)="editorGroup()" [name]="'edit'"></fa>
 		</div>
 		<!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
 	</div>
@@ -278,35 +278,35 @@
 				<div class="certification-test form-row">
 					<div class="form-group col-md-6">
 						<label for="firstName"><b>First Name</b></label>
-						<div class="asterisk">*</div>
-						<input type="text" class="form-control" id="firstName" ngModel
+						
+						<input type="text" class="form-control" id="firstName" 
 							name="firstName" [(ngModel)]="solution.labVendorsDTO.firstName"
-							[name]="'firstName'" required>
+							[name]="'firstName'"  readonly>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="lastName"><b>Last Name</b></label>
 						<div class="asterisk">*</div>
-						<input type="text" class="form-control" id="lastName" ngModel
+						<input type="text" class="form-control" id="lastName" 
 							name="lastName" [(ngModel)]="solution.labVendorsDTO.lastName"
-							[name]="'lastName'" required>
+							[name]="'lastName'"  readonly>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="email"><b>Email Id</b></label>
-						<div class="asterisk">*</div>
+						
 						<input type="email" class="form-control"
 							title='Email Id (Format: @example.com)'
-							placeholder="Enter your email" id="email" ngModel name="emailId"
+							placeholder="Enter your email" id="email"  name="emailId"
 							[(ngModel)]="solution.labVendorsDTO.emailId" [name]="'emailId'"
-							required>
+							readonly>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="phone"><b>Phone Number</b></label>
-						<div class="asterisk">*</div>
-						<input type="text" class="form-control" id="phone" ngModel
+					
+						<input type="text" class="form-control" id="phone" 
 							name="phoneNumber" pattern="^\d{3}-\d{3}-\d{4}$"
 							title='Phone Number (Format: 999-999-9999)'
 							[(ngModel)]="solution.labVendorsDTO.phoneNumber"
-							[name]="'phoneNumber'" required>
+							[name]="'phoneNumber'"  readonly>
 					</div>
 				</div>
 			</div>

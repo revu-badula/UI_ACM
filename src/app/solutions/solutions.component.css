@@ -193,8 +193,21 @@ a{
 
 table{
 	width:100%;
+	table-layout: fixed;
 }
 
-th{
-	background-color:#cecfd5; 
+
+
+td{
+	 ;
+  
+  text-align: center;
+}
+
+th
+{
+		background-color:#cecfd5; 
+  
+
+  text-align: center;
 }

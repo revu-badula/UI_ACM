@@ -22,6 +22,7 @@ export class SolutionsComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('f') solutionsForm: NgForm;
   solution: Solution;
+  
   public systemTypeDTO: any;
   approveDate: any;
   renewalDate: any;
@@ -76,6 +77,8 @@ export class SolutionsComponent implements OnInit {
     this.files.push(fileInput.target.files[0]);
     this.solution.certDocDTOs.push(this.certDocDTO);
   }
+  
+ 
 
  
   showLabVendor(id) {
