@@ -82,6 +82,9 @@ tbody tr:nth-of-type(odd){
 	background-color: #EEEEEE !important;
 }
 
+th{
+	text-align:center;
+}
 table thead tr th{
 	font-weight: 500;
 	color: black;

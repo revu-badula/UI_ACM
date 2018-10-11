@@ -9,7 +9,9 @@
 
 }
 
-
+th{
+	text-align: center;
+}
 .table-fixed thead {
   width: 97%;
 }
