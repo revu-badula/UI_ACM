@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
 declare var swal: any; ''
+import { DialogService } from '../../../../dialog.service';
 interface Window {
   chrome: any;
   StyleMedia: any;
@@ -47,7 +48,7 @@ export class SystemAuditAttachmentsComponent implements OnInit {
   public loading: boolean = false;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private modalService: NgbModal,
-    private router: Router) {
+    private router: Router, private dialogService: DialogService) {
 
     this.appAudit = new AppAudit();
     this.getAppId();
@@ -158,7 +159,8 @@ export class SystemAuditAttachmentsComponent implements OnInit {
   }
 
   deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
         if (result.value !== undefined && result.value) {
           if (id === undefined) {
@@ -297,12 +299,29 @@ export class SystemAuditAttachmentsComponent implements OnInit {
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
-      return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
-
-
+      //return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Attachments?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveAttachments();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
+  
+    }
+    else{
+    return true;
     }
 
-    return true;
+
+    
 
   }
 

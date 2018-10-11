@@ -373,8 +373,12 @@ export class NgbdModalContent implements OnInit {
             this.http.post(url_update, formData).subscribe((data: any) => {
                 this.loading = false;
                 UtilService.popModal = true;
-                this.alert('Success', 'Device has been updated.').then(success => {
-                    this.activeModal.close();
+                // this.alert('Success', 'Device has been updated.').then(success => {
+                //     this.activeModal.close();
+                // });
+                this.dialogService.open("Info", " Device has been updated.", false, "Ok", "No")
+                .then(result => {
+                     this.activeModal.close();
                 });
 
             }, error => {
@@ -394,13 +398,13 @@ export class NgbdModalContent implements OnInit {
             this.http.post(url_update, formData).subscribe((data: any) => {
                 UtilService.popModal = true;
                 this.loading = false;
-                this.alert('Success', 'Device has been created.').then(success => {
-                    this.activeModal.close();
-                });
-                // this.dialogService.open("Info", " Device has been created?", false, "Ok", "No")
-                // .then(result => {
-                //      this.activeModal.close();
+                // this.alert('Success', 'Device has been created.').then(success => {
+                //     this.activeModal.close();
                 // });
+                this.dialogService.open("Info", " Device has been created.", false, "Ok", "No")
+                .then(result => {
+                     this.activeModal.close();
+                });
 
             }, error => {
                 this.loading = false;

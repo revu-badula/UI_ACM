@@ -16,7 +16,8 @@ import { Component, Input, OnInit, ApplicationRef, ChangeDetectorRef } from '@an
     </div>
     <div class="modal-footer">
       <button *ngIf="showCancel" type="button" class="btn btn-secondary" (click)="activeModal.close(false)">{{ cancelText }}</button>
-      <button type="button" class="btn btn-secondary" (click)="activeModal.close(true)">{{ confirmText }}</button>
+      <button *ngIf="showCancel" type="button" class="btn btn-secondary" (click)="activeModal.close(true)">{{ confirmText }}</button>
+      <button *ngIf="!showCancel" type="button" class="btn btn-secondary confbtn" (click)="activeModal.close(true)">{{ confirmText }}</button>
     </div>
   `
 })
