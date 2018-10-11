@@ -22,7 +22,7 @@ i.fa {
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
+    font-size: large;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -36,14 +36,14 @@ i.fa {
 	color:white;
 }
 
-.icons{
-		color:#3A539B;
-   vertical-align: middle;
-   font-size: 20px;
-   margin-bottom: 2px;
-   padding: 2px;
+/* .icons{ */
+/* 		color:#3A539B; */
+/*    vertical-align: middle; */
+/*    font-size: 20px; */
+/*    margin-bottom: 2px; */
+/*    padding: 2px; */
   
-}
+/* } */
   
 
 .plus{
@@ -51,7 +51,7 @@ i.fa {
    vertical-align: middle;
    font-size: 20px;
    margin-bottom: 20px;
-   padding: 2px;
+   padding: 6px;
    margin-right: 20px;
 }
 

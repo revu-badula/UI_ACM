@@ -10,28 +10,29 @@
 }
 
 
-  
-   .primary {
-  color: green !important;
+
+
+.plus{
+			color:#3A539B;
+   vertical-align: middle;
+  font-size:20px;
+   margin-bottom: 20px;
+   padding: 6px;
+   margin-right: 20px;
 }
-.secondary {
-  color: red !important;
-}
-   
-
-
-
-
 
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
+    font-size: large;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-
  
 }
+
+
+
+
 
 
 
@@ -129,20 +130,19 @@ tbody tr:nth-of-type(odd) {
 color: black;
 margin-left: 10px;
 }
-.icons{
-		color:#3A539B;
-   font-size: 20px;
-   margin-bottom: 20px;
-   padding: 2px;
+/* .icons{ */
+/* 		color:#3A539B; */
+/*    vertical-align: middle; */
+/*    font-size: 20 */
+/*    margin-bottom: 20px; */
+/*    padding: 2px; */
 
+/* } */
+  
+
+   .primary {
+  color: green !important;
 }
-
-.plus{
-   color:#3A539B;
-   font-size: 20px;
-   //margin-top: 10px;
-   padding: 2px;
-   margin: 20px;
-   float:right;
+.secondary {
+  color: red !important;
 }
-

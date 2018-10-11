@@ -36,22 +36,22 @@ i.fa {
 	color:white;
 }
 
-.icons{
-		color:#3A539B;
-   vertical-align: middle;
-   font-size: 20px;
-   margin-bottom: 2px;
-   padding: 2px;
+/* .icons{ */
+/* 		color:#3A539B; */
+/*    vertical-align: middle; */
+/*    font-size: 20px; */
+/*    margin-bottom: 2px; */
+/*    padding: 2px; */
   
-}
+/* } */
   
 
 .plus{
 			color:#3A539B;
    vertical-align: middle;
    font-size: 20px;
-   margin-bottom: 20px;
-   padding: 2px;
+ 
+   padding: 6px;
    margin-right: 20px;
 }
 
