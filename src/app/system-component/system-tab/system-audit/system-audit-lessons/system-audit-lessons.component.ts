@@ -13,7 +13,7 @@ import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 declare var swal: any; ''
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 @Component({
   selector: 'app-audit-lessons',
   templateUrl: './system-audit-lessons.component.html',
@@ -36,7 +36,7 @@ appAudit: AppAudit;
  
   constructor( private _apiservice: ApiserviceService, 
     private utilService: UtilService,private http: Http,private modalService: NgbModal,
-    private datepipe: DatePipe,private router:Router) { 
+    private datepipe: DatePipe,private router:Router, private dialogService: DialogService) { 
      
     this.appAudit = new AppAudit();
     this.getAppId();
@@ -168,12 +168,31 @@ appAudit: AppAudit;
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
-      return this.confirm1('Do you want to save changes?', 'for lessons learned', 'YES', 'NO');
-
-
+      //return this.confirm1('Do you want to save changes?', 'for lessons learned', 'YES', 'NO');
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Lessons Learned?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveLessons();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
+  
+    }
+    else{
+    return true;
     }
 
-    return true;
+
+
+
+  
 
   }
 

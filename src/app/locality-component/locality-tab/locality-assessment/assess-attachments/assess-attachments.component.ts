@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
+import { DialogService } from '../../../../dialog.service';
 
 declare var swal: any; ''
 import { AppAssess, AssessmentPolicyDTO, Policy, AssessmentFileDTO } from '../../../../data.model.assessmentDTO';
@@ -50,7 +51,7 @@ export class AssessAttachmentsComponent implements OnInit {
   public showForm: boolean = true;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private route: ActivatedRoute,
-    private router: Router, private modalService: NgbModal, private datepipe: DatePipe) {
+    private router: Router, private modalService: NgbModal, private datepipe: DatePipe, private dialogService: DialogService) {
     this.appAssess = new AppAssess();
     this.getAppId();
   }
@@ -109,7 +110,7 @@ export class AssessAttachmentsComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
     let url_update = APP_CONFIG.updateAppAssessment;
-    this.appAssess.updatedBy=Cookie.get('userName');
+    this.appAssess.updatedBy = Cookie.get('userName');
     let data = JSON.stringify(this.appAssess);
     this.http.post(url_update, data, options)
       .subscribe((data: any) => {
@@ -133,7 +134,7 @@ export class AssessAttachmentsComponent implements OnInit {
     }
     else {
       if (this.appAssess.assessmentFileDTOs === null) {
-        this.givenfile=true;
+        this.givenfile = true;
         this.appAssess.assessmentFileDTOs = [];
         this.assessmentFileDTO = new AssessmentFileDTO();
         this.assessmentFileDTO.fileName = fileInput.target.files[0].name;
@@ -167,17 +168,18 @@ export class AssessAttachmentsComponent implements OnInit {
 
   deleteFile(id, index) {
 
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", "Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.appAssess.assessmentFileDTOs.length;
             if (length === 1) {
-              this.givenfile=false;
+              this.givenfile = false;
               this.appAssess.assessmentFileDTOs = [];
             }
             else {
-              this.givenfile=false;
+              this.givenfile = false;
               for (let i = index; i < length; i++) {
                 this.appAssess.assessmentFileDTOs[i] = this.appAssess.assessmentFileDTOs[i + 1];
               }
@@ -310,12 +312,26 @@ export class AssessAttachmentsComponent implements OnInit {
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
-      return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
+      //return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Attachments?", true, "Yes", "No")
+          .then((result) => {
+            if (result) {
+              this.saveAttachments();
+              resolve(false);
+            }
+            else {
+              resolve(true);
+            }
+          }, error => reject(error));
 
+      });
 
     }
+    else {
 
-    return true;
+      return true;
+    }
 
   }
 

@@ -14,7 +14,7 @@ import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 declare var swal: any; ''
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 @Component({
   selector: 'app-system-assess-security',
   templateUrl: './system-assess-security.component.html',
@@ -33,7 +33,7 @@ export class SystemAssessSecurityComponent implements OnInit {
   public showForm: boolean = true;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private route: ActivatedRoute,
-    private router: Router, private modalService: NgbModal, private datepipe: DatePipe) {
+    private router: Router, private modalService: NgbModal, private datepipe: DatePipe, private dialogService: DialogService) {
     this.appAssess = new AppAssess();
     this.getAppId();
   }
@@ -119,12 +119,27 @@ export class SystemAssessSecurityComponent implements OnInit {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.myForm.dirty) {
 
-      return this.confirm1('Do you want to save changes?', 'for security risk', 'YES', 'NO');
-
-
+      //return this.confirm1('Do you want to save changes?', 'for security risk', 'YES', 'NO');
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Security Risk?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveSecurityRisk();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
+  
+    }
+    else{
+    return true;
     }
 
-    return true;
 
   }
 

@@ -10,7 +10,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 
 declare var swal: any; ''
 interface Window {
@@ -49,7 +49,7 @@ export class AuditAttachmentsComponent implements OnInit {
   public loading: boolean = false;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private modalService: NgbModal,
-    private router: Router) {
+    private router: Router, private dialogService: DialogService) {
 
     this.appAudit = new AppAudit();
     this.getAppId();
@@ -160,9 +160,10 @@ export class AuditAttachmentsComponent implements OnInit {
   }
 
   deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.appAudit.appAuditFileDTOs.length;
             if (length === 1) {
@@ -299,12 +300,28 @@ export class AuditAttachmentsComponent implements OnInit {
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
-      return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
+      //return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
 
+
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Attachments?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveAttachments();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
 
     }
-
+    else{
     return true;
+    }
 
   }
 

@@ -8,7 +8,7 @@ export class PhonePipe {
         if (!val) { return ''; }
 
         let value = val.toString().trim().replace(/^\+/, '');
-
+        //value.match(/[^0-9]/)
         if (value.match(/[^0-9]/)) {
             return val;
         }

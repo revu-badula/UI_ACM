@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
-
+import { DialogService } from '../../../../dialog.service';
 declare var swal: any; ''
 
 
@@ -80,7 +80,7 @@ export class SystemAuditFirstComponent implements OnInit {
   public loading: boolean = false;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
-    private router: Router, private route: ActivatedRoute, public datepipe: DatePipe) {
+    private router: Router, private route: ActivatedRoute, public datepipe: DatePipe, private dialogService: DialogService) {
     this.appAudit = new AppAudit();
     this.policyDisplay = new Policy();
     this.policies = [];
@@ -565,12 +565,29 @@ export class SystemAuditFirstComponent implements OnInit {
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
-      return this.confirm1('Do you want to save changes?', 'for details', 'YES', 'NO');
+      //return this.confirm1('Do you want to save changes?', 'for details', 'YES', 'NO');
 
-
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Details?", true, "Yes", "No")
+        .then((result) =>{
+          if(result)
+          {
+            this.saveAudit();
+            resolve(false);
+          }
+          else{
+            resolve(true);
+          }
+        },error => reject(error));
+          
+      });
+  
+    }
+    else{
+    return true;
     }
 
-    return true;
+
 
   }
 

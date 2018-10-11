@@ -9,7 +9,7 @@ import { AppAssess, AssessmentPolicyDTO, Policy } from '../../../../data.model.a
 import { FormsModule, NgForm, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-
+import { DialogService } from '../../../../dialog.service';
 declare var swal: any; ''
 
 @Component({
@@ -30,7 +30,7 @@ export class SystemAssessFindComponent implements OnInit {
   public showEdit:boolean=false;
   public showForm:boolean=true;
   constructor(private _apiservice: ApiserviceService, private utilService: UtilService,
-    private http: Http, private router: Router, private modalService: NgbModal) {
+    private http: Http, private router: Router, private modalService: NgbModal, private dialogService: DialogService) {
 
     this.appAssess = new AppAssess();
     this.getAppId();
@@ -116,12 +116,28 @@ export class SystemAssessFindComponent implements OnInit {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
       if(this.myForm.dirty){
      
-    return  this.confirm1('Do you want to save changes?', 'for findings', 'YES', 'NO');
-       
+    //return  this.confirm1('Do you want to save changes?', 'for findings', 'YES', 'NO');
+    return new Promise<boolean>((resolve, reject) => {
+      this.dialogService.open("Info", " Do you want to save changes for Findings?", true, "Yes", "No")
+      .then((result) =>{
+        if(result)
+        {
+          this.saveFindings();
+          resolve(false);
+        }
+        else{
+          resolve(true);
+        }
+      },error => reject(error));
+        
+    });
 
-    }
-    
-    return true;
+  }
+  else{
+  return true;
+  }
+
+   
 
   }
 

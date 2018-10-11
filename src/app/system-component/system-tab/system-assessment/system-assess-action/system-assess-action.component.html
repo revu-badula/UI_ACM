@@ -19,7 +19,7 @@
       <div class="plus">
       
       <span *ngIf="showSave" class=" title elipsis pull-right">
-                <a title="Save Audit" class="ng-hide" (click)="saveActionPlan()">
+                <a title="Save Audit" *ngIf="this.myForm.valid" class="ng-hide" (click)="saveActionPlan()">
                     <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
                 </a>
             </span>
@@ -56,11 +56,11 @@
 
                 <label for="inputState">Start date</label>
 
-                <my-date-picker name="startDate" (dateChanged)="getStartDate($event)" [(ngModel)]="startDate"></my-date-picker>
+                <my-date-picker name="startDate" ngModel (dateChanged)="getStartDate($event)" [(ngModel)]="startDate" required></my-date-picker>
             </div>
             <div class="form-group col-md-6">
                 <label for="lastName">End date</label>
-                <my-date-picker name="endDate" (dateChanged)="getEndDate($event)" [(ngModel)]="endDate"></my-date-picker>
+                <my-date-picker name="endDate" ngModel (dateChanged)="getEndDate($event)" [options]="myDatePickerOptions" [(ngModel)]="endDate" required></my-date-picker>
             </div>
         </div>
         <div class="form-row">
