@@ -100,9 +100,7 @@ export class PolicyDetailsComponent implements OnInit {
 }
   
   displayReview(val){
-    /*console.log(this.policyDisplay.policyReviewTermId);
-    console.log(this.policyDisplay.policyReviewTerm);
-    console.log(value);*/
+    
     this.policyDisplay.policyReviewTermId = val.target.value;
     this.policyDisplay.policyReviewTerm = val.target.options[val.target.selectedIndex].text;
     }
@@ -117,10 +115,9 @@ transferDocument(){
   }
   
   createPolicyFile(fileInput: any){
-    //this.certDocDTO.section = section;
-    //console.log(fileInput.target.files[0]);
+    
     this.files.push(fileInput.target.files[0]);
-    //console.log(this.policyDocumentDTO);
+    
     
   }
   
@@ -177,10 +174,10 @@ transferDocument(){
   dateSubmit(){
     let date = this.lastReviewDate.formatted;
     this.policyDisplay.lastReviewDate = Date.parse(date);
-    //console.log(this.policyDisplay.lastReviewDate);
+    
     let reviewDate = this.nextReviewDate.formatted;
         this.policyDisplay.policyReviewDate = Date.parse(reviewDate);
-       //console.log(this.policyDisplay.policyReviewDate);
+       
   }
   
   updatePolicyGrp(){
@@ -188,7 +185,7 @@ transferDocument(){
     if((this.lastReviewDate && this.nextReviewDate)!=null){
         this.dateSubmit();
     }
-    //console.log(this.policyDisplay);
+    
     this.policyObj = JSON.stringify(this.policyDisplay);
     let url = APP_CONFIG.updatePolicyGrp;
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -196,11 +193,7 @@ transferDocument(){
      this.http.post(url, this.policyObj, options).subscribe((data: any) => {
               console.log(data);
             }, error => console.log(error));
-    /*this._apiservice.updatePolicyGrp(this.policyObj)
-      .subscribe((data: any) => {
-      console.log(data);
-      }, error => {
-        console.log(error)});*/
+    
   }
   
   uploadPolicyFile(){
@@ -213,8 +206,6 @@ transferDocument(){
     this.policyDocumentsSubmit.createdBy = "testing";
     this.policyDocumentsSubmit.updatedBy = "testing";
     policyDocumentsData.append('policy', JSON.stringify(this.policyDocumentsSubmit));
-  	//console.log(policyDocumentsData.get('policy'));
-  	//console.log(policyDocumentsData.get('file'));
   	 this.http.post(url, policyDocumentsData).subscribe((data: any) => {
               console.log(data);
             }, error => console.log(error));

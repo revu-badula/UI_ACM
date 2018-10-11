@@ -90,14 +90,10 @@ fetchPolicies(id){
 	this._apiservice.fetchPolicies(id)
     .subscribe((data: any) => {
     	this.policyDisplay=data.policyGrpDTO;
-    	//console.log(this.policies);
-    	/*console.log(this.policyDisplay);
-      	console.log(this.policyDisplay.updatedBy);
-      	console.log(this.policyDisplay.updatedTs);*/
-        //var grpId = this.policyDisplay.policyGrpId;
+    	
       	var date = this.policyDisplay.updatedTs;
      var dt = new Date(0);
-     //console.log(dt.setUTCSeconds(utcSeconds));
+  
         let d = new Date(this.policyDisplay.updatedTs);
         this.selectDate = {
            year: d.getFullYear(),

@@ -27,7 +27,7 @@ export class DocumentsComponent implements OnInit {
     this.policyGrpData = new PolicyGrp();
     this.policyDocumentDTO = [];
     this.files = [] as File[];
-    //this.policyDocumentDTOobj = new PolicyDocumentsDTO();
+   
 
   }
 
@@ -78,7 +78,7 @@ export class DocumentsComponent implements OnInit {
     if (this.policyDocumentDTO == null) {
       this.policyDocumentDTO = [];
     }
-    //this.policyDocuments.policyDocumentsDTOs.push(this.policyDocumentDTO);
+
     this.policyDocumentDTO.push(this.policyDocumentDTOobj);
    
   

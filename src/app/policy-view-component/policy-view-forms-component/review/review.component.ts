@@ -112,31 +112,26 @@ export class ReviewComponent implements OnInit {
     this.reviewDueDate = value.dueDate.formatted;
     let d = Date.parse(this.reviewDueDate);
     let tabarray = {
-     //assignedTo:value.firstName,
+   
      assignedTo:this.assignTo,
     dueDate:this.reviewDueDate,
     status:"Open",
     policyGrpId: UtilService.policyGrpId
     }
-    console.log(this.reviewData);
-    console.log(tabarray);
+   
+   
     this.reviewData.push(tabarray);
-    /*this.review.assignedTo ? : string;
-    this.review.dueDate ? : any;*/
+    
     for (let i = 0; i<this.reviewData.length;i++){
-      /*this.review[i].assignedTo = this.reviewData[i].assignedTo;
-      this.review[i].dueDate = this.reviewData[i].dueDate;
-      this.review[i].status = this.reviewData[i].status;
-      this.review[i].policyGrpId = this.reviewData[i].policyGrpId;*/
+      
       console.log(this.reviewData[i]); 
       this.review.push(this.reviewData[i]);
       this.addArray.push(this.reviewData[i]);
       this.reviewData=[];
       
     }
-    //this.review.push(tabarray);
-  console.log(this.review);
-  }
+   
+    }
   
   createForm() {
     this.reviewForm = this.fb.group({
@@ -152,7 +147,7 @@ export class ReviewComponent implements OnInit {
   displayPolicy(policy: number){
     this.showPolicy = true;
     this.pId = policy;
-    console.log(policy);
+    
     this.getPolicy(this.pId);
   }
  
@@ -166,7 +161,7 @@ export class ReviewComponent implements OnInit {
       .subscribe((data: any) => {
         console.log(data);
         this.users = data;
-        console.log(this.users);
+        
       }, error => console.log(error));
  
  }
@@ -174,25 +169,24 @@ export class ReviewComponent implements OnInit {
  getUseronName(name){
 this._apiservice.getUseronName(name)
       .subscribe((data: any) => {
-        console.log("inside get");
-        console.log(data);
+        
 
   });
-  console.log("Testing.........");
+  
   }
   
   fetchPolicies(id){
   this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
-        console.log("inside get");
+        
         console.log(data);
         this.loading = false;
         this.policyData=data.policyReviewDTOs;
         this.policies = data.policyDTOs;
-        console.log(this.policyData);
+        
 
   });
-  console.log("Testing.........");
+  
   }
   
   dateRetreive(){
@@ -214,14 +208,13 @@ this._apiservice.getUseronName(name)
           this.dateRetreive();
         }
         console.log(data);
-        console.log(this.policyAccess);
+        
       });
   }
   
   postReview(){
-    //this.popUpForm.resetForm();
-    console.log("Testing postReview");
-  console.log(this.review);
+    
+      
   let url = APP_CONFIG.assignReviewers;
 this._apiservice.assignReviewers(this.review)
       .subscribe((data: any) => {
@@ -244,10 +237,10 @@ this._apiservice.assignReviewers(this.review)
           month: d.getMonth() + 1,
           day: d.getDate()
         }
-               console.log(this.reviewDTO);
+               
 
   });
-  console.log("Testing.........");
+  
   }
 
 }

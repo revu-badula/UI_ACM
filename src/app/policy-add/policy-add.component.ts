@@ -58,16 +58,15 @@ export class PolicyAddComponent implements OnInit {
   createPolicyDocumentDTO(fileInput: any){
   	this.policyDocumentDTO = new PolicyDocumentsDTO();
     this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
-    //this.certDocDTO.section = section;
-    console.log(fileInput.target.files[0]);
+   
     this.files.push(fileInput.target.files[0]);
-    console.log(this.policyPost.policyDocumentsDTOs);
+   
     if(this.policyPost.policyDocumentsDTOs == null)
           {
           this.policyPost.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
         }
     this.policyPost.policyDocumentsDTOs.push(this.policyDocumentDTO);
-    console.log(this.policyPost.policyDocumentsDTOs);
+ 
   }
   
   dateSubmit(){
@@ -82,7 +81,7 @@ export class PolicyAddComponent implements OnInit {
     if(this.endDate!=null){
       this.dateSubmit();
     }
-  	console.log(this.policyPost);
+  	
   	formData.append('policy', JSON.stringify(this.policyPost));
   	for (let i = 0; i < this.files.length; i++) {
      formData.append('files', this.files[i]);
@@ -161,7 +160,7 @@ viewEvent(addPolicies: any,event){
   		addPolicies.linkType = 'ADD';
   		addPolicies.status = true;
   		 this.policyPost.linkedPolicies.push(addPolicies);
-  		 console.log(this.policyPost.linkedPolicies.length);
+  		
   	}
   	else{
   	
@@ -179,11 +178,8 @@ viewEvent(addPolicies: any,event){
   	
   	} // ELse end
   	
-  	console.log(this.policyPost.linkedPolicies);
-  	//console.log(this.addNewPolicy);
-  	//this.policyAccess.linkedPolicies.push(this.addNewPolicy);
-  	//this.addNewPolicy = [];
-  	console.log(this.policyPost.linkedPolicies);
+  
+  
   }
   
   checkEvent(event: any, ch: boolean){
@@ -213,13 +209,13 @@ viewEvent(addPolicies: any,event){
   	
   	console.log(this.policyPost.linkedPolicies);
   	this.links = this.policyPost.linkedPolicies;
-  	console.log(this.links);
+
   		for(let i=0;i<this.links.length;i++)
   	{
   	this.other.push(this.links[i].controlNumber);
   	
   	}
-  	console.log(this.other);
+  
   	}
   
   radioValue(event: any){
