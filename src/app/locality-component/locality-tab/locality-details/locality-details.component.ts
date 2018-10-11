@@ -21,7 +21,7 @@ import { PhonePipe } from '../../phone-pipe';
   providers: [ApiserviceService, PhonePipe]
 })
 export class LocalityDetailsComponent implements OnInit {
-  daysArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('editForm') solutionsForm: NgForm;
   @ViewChild('content') content: TemplateRef<any>;
