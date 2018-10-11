@@ -84,11 +84,11 @@ export class VendorsViewComponent implements OnInit {
   handleSorted() {
 
     if (!this.des) {
-      this.vendors.sort(this.doAs);
+      this.vendors.vendorContact.sort(this.doAs);
       this.des = true;
     }
     else {
-      this.vendors.sort(this.doDs);
+      this.vendors.vendorContact.sort(this.doDs);
       this.des = false;
     }
 

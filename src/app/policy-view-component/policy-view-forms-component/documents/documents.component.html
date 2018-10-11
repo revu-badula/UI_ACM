@@ -33,7 +33,7 @@
     	</div> -->
    	<div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cancel</button>
-    <button class="submit btn btn-outline-dark" (click) = "transferDocument();c('Save click')">Upload</button>
+    <button class="submit btn btn-outline-dark" (click) = "transferDocument();c('Save click');createPolicyDocumentDTO($event)">Upload</button>
   </div>
     </form>
   </div>
