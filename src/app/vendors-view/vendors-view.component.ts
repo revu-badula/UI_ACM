@@ -81,41 +81,39 @@ export class VendorsViewComponent implements OnInit {
 
 
 
-  handleSorted() {
+   handleSorted() {
 
     if (!this.des) {
-      this.vendors.vendorContact.sort(this.doAs);
+      this.vendors.vendorsContact.sort(this.doAs);
       this.des = true;
     }
     else {
-      this.vendors.vendorContact.sort(this.doDs);
+      this.vendors.vendorsContact.sort(this.doDs);
       this.des = false;
     }
 
   }
 
   doAs(a, b) {
-    console.log(a.firstName + " " + a.lastName, b.firstName + " " + b.lastName);
+    
 
-    if (a.firstName + " " + a.lastName > b.firstName + " " + b.lastName) {
+    if (a.firstName + "" +a.lastName > b.firstName + "" +b.lastName) {
       return -1;
-    } else if (a.firstName + " " + a.lastName < b.firstName + " " + b.lastName) {
+    } else if (a.firstName + "" +a.lastName < b.firstName + "" +b.lastName) {
       return 1;
     }
     return 0;
   }
 
   doDs(a, b) {
-    console.log(a.firstName + " " + a.lastName, b.firstName + " " + b.lastName);
-    if (a.firstName + " " + a.lastName < b.firstName + " " + b.lastName) {
+   
+    if (a.firstName + "" +a.lastName < b.firstName + "" +b.lastName) {
       return -1;
-    } else if (a.firstName + " " + a.lastName > b.firstName + " " + b.lastName) {
+    } else if (a.firstName + "" +a.lastName > b.firstName + "" +b.lastName) {
       return 1;
     }
     return 0;
   }
-
-
 
 
 

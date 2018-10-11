@@ -218,7 +218,7 @@
 			<h4>Documents</h4>
 	<input type = "file" #fileInput (change)="createPolicyDocumentDTO($event)">
 	<div class="display-file">
-            	<table border="1">
+            	<table border="1" style="width:100%">
 							<tr>
 								<th>FileName</th>
 								<th *ngIf="!showFrm">Action</th>
@@ -266,7 +266,7 @@
 </div>
 <div *ngIf="showDiv">
 	<form class="form">
-	<div>
+	<div style="text-align:center">
 <label style="padding-left:5px">Link from Internal</label>
 <input type = "radio" name="linkedPolicies" (change) = "radioValue($event)" value="Link from Internal"> 
 		

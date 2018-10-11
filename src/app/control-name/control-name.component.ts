@@ -453,14 +453,14 @@ viewEvent(addPolicies: any,event){
   	if(event.target.defaultValue === "Link from Internal"){
   		this.displayField = 1;
   		this.showDef= true;
-  		this.showBt = true
+  		this.showBt = true;
   	}
   	else{
   	this.definitive= false;
   	this.policy= false;
   	this.showDef = false;
   		this.displayField = 0;
-  		this.showBt = true;
+  		
   	}
   }
   
