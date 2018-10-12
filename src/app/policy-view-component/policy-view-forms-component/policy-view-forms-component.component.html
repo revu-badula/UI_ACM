@@ -2,15 +2,17 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label class="label-form" for="definitiveSource"><b>Definitive Source</b></label><div class="asterisk">*</div>
-              <select class="form-control" id="definitiveSource" required (change)="selectDefinitive($event.target.value)">
-                <option selected>Choose...</option>
+							<select class="form-control" id="definitiveSource" name="definiteSource" [(ngModel)]="auditTypeId" 
+							required (change)="selectDefinitive($event.target.value)">
+							 <option value="">Choose...</option>
                 <option  *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName  }}</option>
               </select>
 		</div>
 		<div class="form-group col-md-6">
 			<label class="label-form" for="typePolicy"><b>Type/Policy</b></label><div class="asterisk">*</div>
-              <select class="form-control" id="typePolicy" required (change)="selectType($event.target.value)">
-                <option selected>Choose...</option>
+							<select class="form-control" id="typePolicy" name="type" required [(ngModel)]="policyGrpId"
+							(change)="selectType($event.target.value)">
+							  <option value="">Choose...</option>
                 <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{ policyType.policyGrpName }}</option>
               </select>
 		</div>

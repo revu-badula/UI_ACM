@@ -16,7 +16,7 @@ static loginstate:boolean = false;
 static onEdit:boolean=false;
 static auditActive:boolean;
 public isLocalitySolutionAdd: boolean = false;
-
+static backClicked: boolean = false;
 static appAuditId:any;
 static appMouId:any;
 public subject = new BehaviorSubject<any>(false);

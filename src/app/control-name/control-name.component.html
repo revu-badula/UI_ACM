@@ -262,7 +262,7 @@
 	<hr />
 	<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
 	<button type="submit" (click)="open(content)"  [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
-	<button type="cancel" class="cancel btn btn-primary" routerLink="/policyView/policyDetails">Cancel</button>
+	<button type="cancel" class="cancel btn btn-primary" (click)="goTo($event)">Cancel</button>
 	<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
 </form>
 </div>

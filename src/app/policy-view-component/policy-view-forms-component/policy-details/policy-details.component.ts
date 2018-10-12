@@ -53,6 +53,12 @@ export class PolicyDetailsComponent implements OnInit {
   	  this.policyDocumentDTO = [];
   	this.files = [] as File[];
     this.policyReview = new PolicyReviewTerm();
+    if(UtilService.backClicked)
+    {
+      UtilService.backClicked=false;
+      this.fetchPolicies(UtilService.policyGrpId);
+
+    }
    }
   
   open(content) {

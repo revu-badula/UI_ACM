@@ -9,6 +9,7 @@ import { Policy, PolicyDocumentsDTO, PolicyGrp } from '../data_modelPolicy';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {APP_CONFIG} from '../app.config';
 import { IMyDate } from 'mydatepicker';
+import { UtilService } from '../util.service';
 declare var swal: any; ''
 @Component({
   selector: 'app-control-name',
@@ -51,8 +52,10 @@ export class ControlNameComponent implements OnInit {
 public showDef:boolean = false;
 public showEli:boolean = true;
  public desc = false;
-  constructor(private _location: Location, private activatedRoute: ActivatedRoute,  private _apiservice: ApiserviceService, 
-  private  http: Http, private modalService: NgbModal) {
+  constructor(private _location: Location, private activatedRoute: ActivatedRoute,  
+    private _apiservice: ApiserviceService, 
+  private  http: Http, private modalService: NgbModal, 
+  private utilService: UtilService, private router: Router) {
   	this.policyAccess = new Policy();
   	 this.policyAccess.policyDocumentsDTOs = [] as  PolicyDocumentsDTO[];
     this.files = [] as File[];
@@ -72,6 +75,7 @@ public showEli:boolean = true;
   }
   
   backClicked() {
+    UtilService.backClicked=true;
     this._location.back();
   }
   
@@ -223,7 +227,6 @@ public showEli:boolean = true;
   addPolicy(){
   	let url = APP_CONFIG.updatePolicy;
   	var formData = new FormData();
-  	console.log(this.policyAccess);
     if(this.endDate!=null){
       this.dateSubmit();
     }
@@ -231,9 +234,7 @@ public showEli:boolean = true;
   	for (let i = 0; i < this.files.length; i++) {
      formData.append('files', this.files[i]);
     }
-  	console.log(formData.get('policy'));
   	 this.http.post(url, formData).subscribe((data: any) => {
-              console.log(data);
             }, error => console.log(error));
   }
   
@@ -304,7 +305,6 @@ viewEvent(addPolicies: any,event){
   		addPolicies.linkType = 'ADD';
   		addPolicies.status = true;
   		 this.policyAccess.linkedPolicies.push(addPolicies);
-  		 console.log(this.policyAccess.linkedPolicies.length);
   	}
   	else{
   	
@@ -322,16 +322,14 @@ viewEvent(addPolicies: any,event){
   	
   	} // ELse end
   	
-  	console.log(this.policyAccess.linkedPolicies);
+  	
   	//console.log(this.addNewPolicy);
   	//this.policyAccess.linkedPolicies.push(this.addNewPolicy);
   	//this.addNewPolicy = [];
-  	console.log(this.policyAccess.linkedPolicies);
+  
   }
   
   checkEvent(event: any, ch: boolean){
-  	console.log(event);
-  	console.log(ch);
   }
   
   saveLink(){
@@ -340,18 +338,14 @@ viewEvent(addPolicies: any,event){
   
   	this.showDiv = false;
   	this.showLink = false;
-  	
-  
-  	
-  	console.log(this.policyAccess.linkedPolicies);
   	this.links = this.policyAccess.linkedPolicies;
-  	console.log(this.links);
+
   		for(let i=0;i<this.links.length;i++)
   	{
   	this.other.push(this.links[i].controlNumber);
   	
   	}
-  	console.log(this.other);
+  
   	
   	
   	
@@ -379,10 +373,8 @@ viewEvent(addPolicies: any,event){
     const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     if (number > 100) {
       this.color = 'online';
-      console.log('You are 100px from the top to bottom');
     } else {
       this.color = 'offline';
-      console.log('You are 500px from the top to bottom');
     }
 
   }
@@ -456,6 +448,13 @@ viewEvent(addPolicies: any,event){
   		this.displayField = 0;
   		
   	}
+  }
+
+  goTo(event)
+  {
+    event.preventDefault();
+    UtilService.backClicked=true;
+    this.router.navigate(['/policyView/policyDetails'])
   }
   
 

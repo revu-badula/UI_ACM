@@ -5,7 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {APP_CONFIG} from '../app.config';
 import {ApiserviceService} from '../apiservice.service';
 import { Router } from '@angular/router';
-
+import { UtilService } from '../util.service';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-policy-add',
   templateUrl: './policy-add.component.html',
@@ -40,7 +41,8 @@ export class PolicyAddComponent implements OnInit {
   public endDate: any;
 
   constructor(private router: Router,
-  private  http: Http, private modalService: NgbModal, private _apiservice: ApiserviceService) {
+  private  http: Http, private modalService: NgbModal, 
+  private _apiservice: ApiserviceService, private _location: Location, private utilService: UtilService) {
   	this.policyPost = new Policy();
   	 this.policyPost.policyDocumentsDTOs = [] as  PolicyDocumentsDTO[];
     this.files = [] as File[];
@@ -53,6 +55,12 @@ export class PolicyAddComponent implements OnInit {
   
   open(content){
   	 this.modalService.open(content);
+  }
+  getColor() {
+    return this.color === 'online' ? '#ffffff' : 'white';
+  }
+  getOpacity() {
+    return this.color === 'online' ? 0.8 : 1;
   }
   
   createPolicyDocumentDTO(fileInput: any){
@@ -226,6 +234,19 @@ viewEvent(addPolicies: any,event){
   	else{
   		this.displayField = 0;
   	}
+  }
+
+  backClicked()
+  {
+    UtilService.backClicked=true;
+    this._location.back();
+  }
+
+  goTo(event)
+  {
+    event.preventDefault();
+    UtilService.backClicked=true;
+    this.router.navigate(['/policyView/policyDetails'])
   }
 
 }
