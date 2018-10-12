@@ -74,6 +74,7 @@ export class DocumentsComponent implements OnInit {
     this.policyDocumentDTOobj = new PolicyDocumentsDTO();
 
     this.policyDocumentDTOobj.documentName = fileInput.target.files[0].name;
+    this.policyDocumentDTOobj.activeFlag=true;
     this.files.push(fileInput.target.files[0]);
     if (this.policyDocumentDTO == null) {
       this.policyDocumentDTO = [];
@@ -176,7 +177,7 @@ export class DocumentsComponent implements OnInit {
 
     this.policyGrpData.policyGrpId = UtilService.policyGrpId;
     let url = APP_CONFIG.uploadPolicyDocuments;
-    var policyDocumentsData = new FormData();
+    let policyDocumentsData = new FormData();
 
     for (let i = 0; i < this.files.length; i++) {
       policyDocumentsData.append('files', this.files[i]);
