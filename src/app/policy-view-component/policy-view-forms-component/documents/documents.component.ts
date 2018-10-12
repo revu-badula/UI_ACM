@@ -64,7 +64,14 @@ export class DocumentsComponent implements OnInit {
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
         this.loading = false;
-        this.fetchPolicyDocuments = data.policyDocumentsDTOs;
+        
+        if(data.policyDocumentsDTOs === null)
+        {
+          this.fetchPolicyDocuments=[];
+        }
+        else{
+          this.fetchPolicyDocuments = data.policyDocumentsDTOs;
+        }
       }, error => console.log(error));
 
   }
