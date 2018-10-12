@@ -29,10 +29,8 @@ export class PolicyViewComponentComponent implements OnInit {
     const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     if (number > 100) {
       this.color = 'online';
-      console.log('You are 100px from the top to bottom');
     } else {
       this.color = 'offline';
-      console.log('You are 500px from the top to bottom');
     }
 
   }
