@@ -21,11 +21,10 @@ import { PhonePipe } from '../../phone-pipe';
   providers: [ApiserviceService, PhonePipe]
 })
 export class LocalityDetailsComponent implements OnInit {
-  daysArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  daysArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('editForm') solutionsForm: NgForm;
   @ViewChild('content') content: TemplateRef<any>;
-
   color: String;
   public applicationViewDTO: any;
   locality: Locality;
@@ -44,13 +43,13 @@ export class LocalityDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
     , private http: Http, private _location: Location, private modalService: NgbModal,
-     private router: Router, private utilservice: UtilService, private phone: PhonePipe) {
+    private router: Router, private utilservice: UtilService, private phone: PhonePipe) {
 
 
     this.locality = new Locality();
 
     this.workHours = new WorkHours();
-    
+
   }
 
   ngOnInit() {
@@ -80,19 +79,19 @@ export class LocalityDetailsComponent implements OnInit {
       this.locality.createdByName = Cookie.get('userName');
       formData.append('createApp', JSON.stringify(this.locality));
       this.http.post(url_update, formData)
-      .map(res => res.json())
-      .subscribe((data: any) => {
-        this.loading = false;
-        this.contentData = "locality has been created.";
-        this.appId = data.applicationViewDTO.applicationId;
-        localStorage.setItem('localityName',data.applicationViewDTO.acronym);
-        localStorage.setItem('active', 'true');
+        .map(res => res.json())
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.contentData = "locality has been created.";
+          this.appId = data.applicationViewDTO.applicationId;
+          localStorage.setItem('localityName', data.applicationViewDTO.acronym);
+          localStorage.setItem('active', 'true');
 
-        this.modalService.open(this.content, ngbModalOptions);
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+          this.modalService.open(this.content, ngbModalOptions);
+        }, error => {
+          this.loading = false;
+          console.log(error);
+        });
 
     }
     else {
@@ -122,12 +121,13 @@ export class LocalityDetailsComponent implements OnInit {
           this.isShow = true;
           this.editableForm = false;
           this.locality.acronym = local;
-          this.locality.fipsCd=localStorage.getItem('fipscode');
+          this.locality.fipsCd = localStorage.getItem('fipscode');
           this.locality.workHoursDTOs = []
           for (let day in this.daysArray) {
             this.workHours = new WorkHours();
             this.workHours.day = this.daysArray[day];
             this.locality.workHoursDTOs.push(this.workHours);
+
           }
 
         }
@@ -217,9 +217,8 @@ export class LocalityDetailsComponent implements OnInit {
     this.router.navigate(['/locality/map']);
   }
 
-  getPhoneNumber(value)
-  {
-    this.locality.phoneNumber=this.phone.transform(value);
+  getPhoneNumber(value) {
+    this.locality.phoneNumber = this.phone.transform(value);
   }
 
 

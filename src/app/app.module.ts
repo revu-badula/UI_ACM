@@ -67,6 +67,8 @@ import { DevicetabComponent } from './devicetab/devicetab.component';
 import { IdleTimeoutService } from './idleTimeOutService';
 import { DialogComponent } from './dialog.service';
 import { OnlyIntegerDirective } from './locality-component/only-integer.directive';
+import { CustomCurrencyPipe } from './currency-pipe';
+import  { CurrencyPipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,8 +110,8 @@ import { OnlyIntegerDirective } from './locality-component/only-integer.directiv
     DummyComponent,
     ReportsComponent,
     SignedPipe,
-    DialogComponent
-
+    DialogComponent,
+    CustomCurrencyPipe
 
 
   ],
@@ -147,7 +149,7 @@ import { OnlyIntegerDirective } from './locality-component/only-integer.directiv
     DialogBoxComponent, DialogComponent
   ],
   providers: [RegisterService, UtilService, ApiserviceService, AlertService,
-     AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService],
+     AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

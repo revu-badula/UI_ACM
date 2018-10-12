@@ -15,6 +15,7 @@ import { NgbModal, NgbModalOptions, ModalDismissReasons } from '@ng-bootstrap/ng
 import { DatePipe } from '@angular/common';
 import { AppAssess, AssessmentPolicyDTO, Policy } from '../../../../data.model.assessmentDTO';
 import { Observable, Subject } from 'rxjs';
+import { CustomCurrencyPipe } from '../../../../currency-pipe';
 let ngbModalOptions: NgbModalOptions = {
   backdrop: 'static',
   keyboard: false
@@ -24,7 +25,7 @@ declare var swal: any; ''
   selector: 'app-assess-budget',
   templateUrl: './assess-budget.component.html',
   styleUrls: ['./assess-budget.component.css'],
-  providers: [AlertService, DialogService]
+  providers: [AlertService, DialogService, CustomCurrencyPipe]
 })
 export class AssessBudgetComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any>;
@@ -45,7 +46,8 @@ export class AssessBudgetComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private route: ActivatedRoute,
     private router: Router, private modalService: NgbModal, private datepipe: DatePipe,
-    private alertservice: AlertService, private dialogService: DialogService) {
+    private alertservice: AlertService, private dialogService: DialogService, 
+    private currencyPipe: CustomCurrencyPipe) {
 
     this.appAssess = new AppAssess();
     this.getAppId();
@@ -191,4 +193,7 @@ export class AssessBudgetComponent implements OnInit {
     console.log(url);
     this.router.navigateByUrl(url);
   }
+
+
+  
 }
