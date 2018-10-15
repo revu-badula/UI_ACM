@@ -63,7 +63,7 @@ export class LocalityDetailsComponent implements OnInit {
     this.isShow = true;
 
   }
-  
+
 
 
 
@@ -218,21 +218,38 @@ export class LocalityDetailsComponent implements OnInit {
     this.router.navigate(['/locality/map']);
   }
 
-  getPhoneNumber(e,value) {
-  
-              let key = e.charCode || e.keyCode || 0;
-             if (key !== 8 && key !== 9) {
-                 if (value.length === 3) {
-                     this.locality.phoneNumber=value + '-';
-                 }
-                 if (value.length === 7) {
-                     this.locality.phoneNumber=value + '-';
-                 }
+  getPhoneNumber(e, value) {
 
-             }
+    let key = e.charCode || e.keyCode || 0;
+    if (key !== 8 && key !== 9) {
+      if (value.length === 3) {
+        this.locality.phoneNumber = value + '-';
+      }
+      if (value.length === 7) {
+        this.locality.phoneNumber = value + '-';
+      }
 
-             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-    
+    }
+
+    return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+
+  }
+
+  getNumber(value) {
+    if(value.length === 12)
+    {
+      this.locality.phoneNumber=value;
+    }
+    else{
+     let data = value.slice(0,3);
+     let pn = data + '-';
+     let d2 = value.slice(3,6);
+     let pn2 = d2 + '-';
+     let d3 = value.slice(6,10);
+     let phm=pn+pn2+d3;
+     this.locality.phoneNumber=phm;
+    }
+
   }
 
 
