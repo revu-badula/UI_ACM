@@ -14,27 +14,7 @@
             </div>
         </div>
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-<ng-template #content let-c="close" let-d="dismiss">
+   <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Success</h4>
     <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -56,10 +36,7 @@
 
 <form class="form" (ngSubmit) = "submitDevice()" enctype="multipart/form-data"
 	#editForm="ngForm">
-
-	
-
-		<div class=" form-row">
+<div class=" form-row">
 		<div class="form-group col-md-6">
             <label for="hostName">Host Name</label><div class="asterisk">*</div>
               <input type="text" class="form-control"  [(ngModel)] = "device.hostName"  ngModel name = "host" required>
@@ -102,8 +79,8 @@
                 <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                     <input type="tel" class="form-control" ngModel name="phoneNumber" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"
-					[ngModel]="serverContact.phoneNumber" required maxlength="14" minlength="14" (change)="getPhoneNumbers($event.target.value)">
+                     <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
+					[ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12">
                 </div>
                 </div>
                 <div class = "form-row">
@@ -118,14 +95,6 @@
                     <input type="text" class="form-control" placeholder="cost field" [(ngModel)] = "serverContact.cost" ngModel name="cost" required>
               
                 </div>
-                
-                
-                
-                
-                
-                
-                
-                
                 
                 </div>
             
@@ -146,7 +115,7 @@
                <div class="form-group col-md-6"     [class.has-error]="email.invalid && email.touched">
                     <label for="email">Email ID</label>
                     <div class="asterisk">*</div>
-                    <input type="email" class="form-control" [email]="serverContact1.emailId!==''" name="email" [(ngModel)] = "serverContact1.emailId" #email="ngModel" required>
+                    <input id="email" type="text"  class="form-control" [email]="serverContact1.emailId!==''" name="email" [(ngModel)] = "serverContact1.emailId" #email="ngModel" required>
                       <span class="help-block" style="color:red"
                  *ngIf = "email.errors?.required && email.touched">
                 Email is required 
@@ -159,8 +128,8 @@
                 <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                    <input type="tel" class="form-control" ngModel name="phoneNumber" 
-					[ngModel]="serverContact1.phoneNumber" required maxlength="14" minlength="14">
+                    <input type="tel" class="form-control" ngModel name="phoneNu" placeholder="xxx-xxx-xxxx"  
+					[ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12">
 					
                 </div>
                 

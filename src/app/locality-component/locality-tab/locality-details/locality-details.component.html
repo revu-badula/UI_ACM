@@ -96,47 +96,134 @@
 			<div class="form-group col-md-6">
 				<label for="lastName">Email Id</label>
 				<div class="asterisk">*</div>
-				<input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
-			</div>
+				<input type="email" class="form-control" [email]="locality.emailId!==''" name="email" [(ngModel)]="locality.emailId" #email="ngModel" required>
+                      <span class="help-block" style="color:red"
+                 *ngIf = "email.errors?.required && email.touched">
+                Email is required 
+                 </span>
+                 <span class="help-block" style="color:red"
+                 *ngIf = "email.errors?.email && email.touched">
+                Email is invalid
+                 </span>
+                 
+							</div>
 			<div class="form-group col-md-6">
 
 				<label for="email">Phone No</label>
 				<div class="asterisk">*</div>
-				<input type="tel" class="form-control" ngModel name="phoneNumber" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"
-				 [ngModel]="locality.phoneNumber | phone" required maxlength="14" minlength="14" (change)="getPhoneNumber($event.target.value)">
+				<input type="tel" class="form-control" ngModel name="phoneNumber" (keydown)="getPhoneNumber($event,$event.target.value)"
+				 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="lastName">Website Address</label>
+				<label for="url">Website Address</label>
 				<div class="asterisk">*</div>
-				<input type="text" class="form-control" ngModel name="websiteAdd" [(ngModel)]="locality.website" required>
+				<input type="text" class="form-control"  id="url" pattern="https?://.+"  name="url" #url="ngModel" [(ngModel)]="locality.website" required>
+			<div *ngIf="url.errors && (url.dirty || url.touched)">
+			<div [hidden]="!url.errors.required" style="color:red">
+          URL is required!
+        </div>
+        <div [hidden]="!url.errors.pattern" style="color:red">
+          Must be a valid URL!
+        </div>
+		</div>
 			</div>
-			<div class="form-group col-md-6">
+			
+			
+	
+<div class="form-group col-md-6">
 				<label for="email">Veris Id</label>
 				<div class="asterisk">*</div>
-				<input type="email" class="form-control" maxlength="10" ngModel name="verisId" [(ngModel)]="locality.verisId" required>
+				<input type="text" id="verisId" pattern="[0-9]{5}" class="form-control" maxlength="10" name="verisId" #verisId="ngModel" [(ngModel)]="locality.verisId" required>
+				<div *ngIf="verisId.errors && (verisId.dirty || verisId.touched)">
+			<div [hidden]="!verisId.errors.required" style="color:red">
+          Veris Id is required!
+        </div>
+        <div [hidden]="!verisId.errors.pattern" style="color:red">
+          Must be  10 numbers!
+        </div>
+		</div>
+				
 			</div>
 
 		</div>
 		<hr />
 		<h5>Other Information</h5>
-		<label for="lastName">Central Absentee Perceived(CAP)</label>
-		<div class="asterisk">*</div>
+		<br>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-
-
-				<input type="radio" required [value]="true" ngModel name="capInd" [(ngModel)]="locality.capInd" [checked]="locality.capInd">Yes<br>
-				<input type="radio" [value]="false" ngModel name="capInd" [(ngModel)]="locality.capInd" [checked]="locality.capInd">No
+		
+		
+		<div class="toggle-group">
+<label for="ons">
+        <span class="aural">Show:</span>Central Absentee Perceived(CAP)
+    </label>
+    <input type="checkbox" name="ons" id="ons" [(ngModel)]="locality.capInd" tabindex="1" [checked]="locality.capInd">
+ 
+  
+    <div class="onoffswitch" aria-hidden="true">
+        <div class="onoffswitch-label">
+            <div class="onoffswitch-inner"></div>
+            <div class="onoffswitch-switch"></div>
+        </div>
+    </div>
+</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			</div>
 		</div>
-		<label for="email">Bail out</label>
-		<div class="asterisk">*</div>
+	
+		
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<input type="radio" [value]="true" ngModel name="bailoutInd" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">Yes<br>
-				<input type="radio" [value]="false" ngModel name="bailoutInd" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">No
+				
+
+
+
+
+
+	
+
+
+<div class="toggle-group">
+<label for="on-swit">
+        <span class="aural">Show:</span>Bail out
+    </label>
+    <input type="checkbox" name="on-swit" id="on-swit" [(ngModel)]="locality.bailoutInd" tabindex="1" [checked]="locality.bailoutInd">
+ 
+  
+    <div class="onoffswitch" aria-hidden="true">
+        <div class="onoffswitch-label">
+            <div class="onoffswitch-inner"></div>
+            <div class="onoffswitch-switch"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 
 			</div>
 		</div>
@@ -194,24 +281,94 @@
 
 		<h5>PollBook</h5>
 
-		<label for="lastName">Paper PollBook</label>
-		<div class="asterisk">*</div>
+		
+		<br>
+	
 		<div class="form-row">
 			<div class="form-group col-md-6">
+<div class="toggle-group">
+<label for="on-switch">
+        <span class="aural">Show:</span>Paper PollBook
+    </label>
+    <input type="checkbox" name="on-switch" id="on-switch" [(ngModel)]="locality.paperPollbook" tabindex="1" [checked]="locality.paperPollbook">
+ 
+  
+    <div class="onoffswitch" aria-hidden="true">
+        <div class="onoffswitch-label">
+            <div class="onoffswitch-inner"></div>
+            <div class="onoffswitch-switch"></div>
+        </div>
+    </div>
+</div>
+				
 
-				<input type="radio" ngModel name="paperPollbook" [value]="true" [(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook">Yes<br>
-				<input type="radio" ngModel name="paperPollbook" [value]="false" [(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook">
-				No
 			</div>
-		</div>
+			
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+  </div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
 		<label for="email">Electronic PollBook</label>
-		<div class="asterisk">*</div>
+		<br>
+		
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<input type="radio" ngModel name="electronicPollbook" [value]="true" [(ngModel)]="locality.electronicPollbook"
-				 [checked]="locality.electronicPollbook">Yes<br>
-				<input type="radio" ngModel name="electronicPollbook" [value]="false" [(ngModel)]="locality.electronicPollbook"
-				 [checked]="locality.electronicPollbook"> No
+				
+				 <br>
+				 <div class="toggle-group">
+<label for="on-off-switch">
+        <span class="aural">Show:</span>Electronic PollBook
+    </label>
+    <input type="checkbox" name="on-off-switch" id="on-off-switch" [(ngModel)]="locality.electronicPollbook" tabindex="1" [checked]="locality.electronicPollbook">
+ 
+  
+    <div class="onoffswitch" aria-hidden="true">
+        <div class="onoffswitch-label">
+            <div class="onoffswitch-inner"></div>
+            <div class="onoffswitch-switch"></div>
+        </div>
+    </div>
+</div>
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
 			</div>
 		</div>
 

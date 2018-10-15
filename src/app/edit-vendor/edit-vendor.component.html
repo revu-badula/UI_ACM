@@ -60,8 +60,12 @@
                 <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                    <input type="tel" class="form-control" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$" minlength="14" maxlength="14" id="phonenum"  required  formControlName="phoneNumber" (change)="getPhoneNumber($event.target.value)">
+                    <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12" id="phonenumber"  required  formControlName="phoneNumber" >
                 </div>
+                
+                 
+                
+                
             </div> 
         </div> 
         <hr />

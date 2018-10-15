@@ -63,6 +63,7 @@ export class LocalityDetailsComponent implements OnInit {
     this.isShow = true;
 
   }
+  
 
 
 
@@ -217,8 +218,21 @@ export class LocalityDetailsComponent implements OnInit {
     this.router.navigate(['/locality/map']);
   }
 
-  getPhoneNumber(value) {
-    this.locality.phoneNumber = this.phone.transform(value);
+  getPhoneNumber(e,value) {
+  
+              let key = e.charCode || e.keyCode || 0;
+             if (key !== 8 && key !== 9) {
+                 if (value.length === 3) {
+                     this.locality.phoneNumber=value + '-';
+                 }
+                 if (value.length === 7) {
+                     this.locality.phoneNumber=value + '-';
+                 }
+
+             }
+
+             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+    
   }
 
 

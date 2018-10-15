@@ -52,11 +52,10 @@
                     <div class="asterisk">*</div>
                     <input type="email" class="form-control"  id="email" placeholder="Email ID" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" formControlName="emailId">
                 </div>
-                <div class="form-group col-md-6">
+                 <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="phone" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"
-                     placeholder="Phone Number" required minlength="14" maxlength="14" formControlName="phoneNumber" (change)="getPhoneNumber($event.target.value)">
+                    <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12" id="phonenumber"  required  formControlName="phoneNumber" >
                 </div>
             </div>
         </div>

@@ -61,15 +61,7 @@ export class DeviceComponent implements OnInit {
   
   
   
-  getPhoneNumbers(value)
-  {
-    this.serverContact.phoneNumber=this.phone.transform(value);
-  }
-  
-   getPhoneNumber(value)
-  {
-    this.serverContact1.phoneNumber=this.phone.transform(value);
-  }
+
 
   
   
@@ -204,26 +196,29 @@ export class DeviceComponent implements OnInit {
 
   }
 
-}
 
 
 
-  /*getStartDate(value)
-    {
-      if (value.formatted === "") {
-        this.device.licenseStartDt=null;
-      }
-      else {
-        let d = value.formatted;
+
+ getPhoneNumber(e,value) {
+  
+              let key = e.charCode || e.keyCode || 0;
+             if (key !== 8 && key !== 9) {
+                 if (value.length === 3) {
+                     this.serverContact.phoneNumber=value + '-';
+                 }
+                 if (value.length === 7) {
+                     this.serverContact.phoneNumber=value + '-';
+                 }
+
+             }
+
+             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
     
-        let latest_date =this.datepipe.transform(d, 'yyyy-MM-dd');
-          this.device.licenseStartDt = moment(latest_date).format();
-      }
-      
-    }*/
+  }
 
 
-
+}
  /*let d = new Date(this.solution.certDt);
         this.selectDate = {
            year: d.getFullYear(),

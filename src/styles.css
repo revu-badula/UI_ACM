@@ -14,6 +14,10 @@
     margin-left: 2px;
 }
 
+th{
+	text-align: center!important;
+}
+
 .btn {
     float: right;
     margin-top: 25px;

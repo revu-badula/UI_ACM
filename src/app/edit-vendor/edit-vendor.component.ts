@@ -76,7 +76,6 @@ export class EditVendorComponent implements OnInit {
 
 
 
-
   createForm() {
     this.editVendorForm = this.fb.group({
       name: ['', Validators.required],
@@ -90,21 +89,51 @@ export class EditVendorComponent implements OnInit {
         firstName: '',
         lastName: '',
         emailId: ['', Validators.email],
-        phoneNumber: ['', Validators.required]
+        phoneNumber: ['', Validators.required,]
       }),
     });
   }
 
-  getPhoneNumber(value)
+  /*getPhoneNumber(value)
   {
-    // console.log(this.phone.transform(value));
-    // this.editVendorForm.controls['phoneNumber'].setValue(this.phone.transform(value));
+  
     this.editVendorForm.patchValue({
       vendorContact:{
         phoneNumber:this.phone.transform(value)
       }
     });
+  }*/
+
+
+
+
+ getPhoneNumber(e,value) {
+  
+              let key = e.charCode || e.keyCode || 0;
+             if (key !== 8 && key !== 9) {
+                 if (value.length === 3) {
+                     this.editVendorForm.patchValue({
+      vendorContact:{
+        phoneNumber:value + '-'
+      }
+    });
+                 }
+                 if (value.length === 7) {
+                     this.editVendorForm.patchValue({
+      vendorContact:{
+        phoneNumber:value + '-' 
+      }
+    });
+                 }
+
+             }
+
+             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+    
   }
+
+
+
 
 
 

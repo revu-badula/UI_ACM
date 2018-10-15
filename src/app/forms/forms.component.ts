@@ -37,7 +37,7 @@ export class FormsComponent implements OnInit {
     this.router.navigate(['/vendorsView']);
   }
 
-  getPhoneNumber(value)
+  /*getPhoneNumber(value)
   {
     // console.log(this.phone.transform(value));
     // this.editVendorForm.controls['phoneNumber'].setValue(this.phone.transform(value));
@@ -46,7 +46,37 @@ export class FormsComponent implements OnInit {
         phoneNumber:this.phone.transform(value)
       }
     });
+  }*/
+
+
+
+getPhoneNumber(e,value) {
+  
+              let key = e.charCode || e.keyCode || 0;
+             if (key !== 8 && key !== 9) {
+                 if (value.length === 3) {
+                     this.editVendorForm.patchValue({
+      vendorContact:{
+        phoneNumber:value + '-'
+      }
+    });
+                 }
+                 if (value.length === 7) {
+                     this.editVendorForm.patchValue({
+      vendorContact:{
+        phoneNumber:value + '-' 
+      }
+    });
+                 }
+
+             }
+
+             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+    
   }
+
+
+
 
 
   createForm() {
