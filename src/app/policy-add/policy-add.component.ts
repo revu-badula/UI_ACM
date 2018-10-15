@@ -90,7 +90,7 @@ export class PolicyAddComponent implements OnInit {
       keyboard: false
     };
     let url = APP_CONFIG.savePolicy;
-    this.policyPost.policyGrpId = 1;
+    this.policyPost.policyGrpId = UtilService.policyGrpId;
     var formData = new FormData();
     if (this.endDate != null) {
       this.dateSubmit();

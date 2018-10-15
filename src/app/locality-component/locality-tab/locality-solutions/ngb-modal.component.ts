@@ -40,7 +40,7 @@ import { DialogService } from '../../../dialog.service';
 
 				<div class="asterisk">*</div>
 				<input type="text" class="form-control" id="modelNumber"
-					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="5" maxlength="10">
+					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="5" maxlength="10" appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('modelNumber').errors && modalForm.get('modelNumber').dirty">
                     modelNumber 5 to 10 numbers
                    </div>
@@ -50,7 +50,7 @@ import { DialogService } from '../../../dialog.service';
 				<div class="asterisk">*</div>
 				<input type="text" class="form-control" id="serialNumber"
 					placeholder="Equipment Serial Number"
-                    formControlName="serialNumber" minlength="5" maxlength="10">
+                    formControlName="serialNumber" minlength="5" maxlength="10" appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('serialNumber').errors && modalForm.get('serialNumber').dirty">
                     serialNumber 5 to 10 numbers
                    </div>
@@ -187,7 +187,7 @@ import { DialogService } from '../../../dialog.service';
 				<div class="asterisk">*</div>
 						 
 				<my-date-picker name="mname" [selDate]="selectDate1" [options]="myDatePickerOptions"
-					formControlName=nextScanningDt1 ></my-date-picker>
+					formControlName=nextScanningDt1></my-date-picker>
 					
 			</div>
 		</div>

@@ -55,11 +55,12 @@
             <div class="form-group col-md-6">
 
                 <label for="inputState">Start date</label>
-
+                <div class="asterisk">*</div>
                 <my-date-picker name="startDate" ngModel (dateChanged)="getStartDate($event)" [(ngModel)]="startDate" required></my-date-picker>
             </div>
             <div class="form-group col-md-6">
                 <label for="lastName">End date</label>
+                <div class="asterisk">*</div>
                 <my-date-picker name="endDate" ngModel (dateChanged)="getEndDate($event)" [options]="myDatePickerOptions" [(ngModel)]="endDate" required></my-date-picker>
             </div>
         </div>
