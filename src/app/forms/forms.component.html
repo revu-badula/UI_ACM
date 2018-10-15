@@ -58,7 +58,7 @@
                  <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                    <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12" id="phonenumber"  required  formControlName="phoneNumber" >
+                    <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12" id="phonenumber"  (change)="getNumber($event.target.value)"  required  formControlName="phoneNumber" >
                 </div>
             </div>
         </div>

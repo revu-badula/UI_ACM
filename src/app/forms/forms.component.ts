@@ -34,6 +34,45 @@ export class FormsComponent implements OnInit {
   f() {
     this.router.navigate(['/vendorsView']);
   }
+  
+  
+  getNumber(value) {
+    if(value.length === 12)
+    {
+        this.editVendorForm.patchValue({
+      vendorContact:{
+        phoneNumber:value 
+      }
+    });
+    }
+    else{
+     let data = value.slice(0,3);
+     let pn = data + '-';
+     let d2 = value.slice(3,6);
+     let pn2 = d2 + '-';
+     let d3 = value.slice(6,10);
+     let phm=pn+pn2+d3;
+       this.editVendorForm.patchValue({
+      vendorContact:{
+        phoneNumber:phm
+      }
+    });
+    }
+
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   /*getPhoneNumber(value)
   {
