@@ -13,17 +13,15 @@ export class FormsComponent implements OnInit {
 
   @Output() submitClick = new EventEmitter<object>();
   public editVendorForm: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router, 
-    private modalService: NgbModal, private phone:PhonePipe) { }
+  constructor(private fb: FormBuilder, private router: Router,
+    private modalService: NgbModal, private phone: PhonePipe) { }
 
   ngOnInit() {
     this.createForm();
   }
 
   createVendor(value) {
-    console.log(this.editVendorForm.value);
     this.submitClick.emit(value);
-    console.log(value);
   }
   cancelButton() {
     this.router.navigate(['/dashboard']);
@@ -50,29 +48,28 @@ export class FormsComponent implements OnInit {
 
 
 
-getPhoneNumber(e,value) {
-  
-              let key = e.charCode || e.keyCode || 0;
-             if (key !== 8 && key !== 9) {
-                 if (value.length === 3) {
-                     this.editVendorForm.patchValue({
-      vendorContact:{
-        phoneNumber:value + '-'
+  getPhoneNumber(e, value) {
+    let key = e.charCode || e.keyCode || 0;
+    if (key !== 8 && key !== 9) {
+      if (value.length === 3) {
+        this.editVendorForm.patchValue({
+          vendorContact: {
+            phoneNumber: value + '-'
+          }
+        });
       }
-    });
-                 }
-                 if (value.length === 7) {
-                     this.editVendorForm.patchValue({
-      vendorContact:{
-        phoneNumber:value + '-' 
+      if (value.length === 7) {
+        this.editVendorForm.patchValue({
+          vendorContact: {
+            phoneNumber: value + '-'
+          }
+        });
       }
-    });
-                 }
 
-             }
+    }
 
-             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-    
+    return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+
   }
 
 
@@ -87,7 +84,7 @@ getPhoneNumber(e,value) {
         city: '',
         state: '',
         zipcode: ['', Validators.required]
-       
+
       }),
       vendorContact: this.fb.group({
         firstName: '',

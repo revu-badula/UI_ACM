@@ -51,6 +51,9 @@
                     <label for="email">Email ID</label>
                     <div class="asterisk">*</div>
                     <input type="email" class="form-control"  id="email" placeholder="Email ID" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" formControlName="emailId">
+                    <div style="color:red;" *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors && editVendorForm.controls.vendorContact.get('emailId').dirty">
+                        Please enter valid email
+                       </div>
                 </div>
                  <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
