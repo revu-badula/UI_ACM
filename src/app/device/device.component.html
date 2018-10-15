@@ -80,7 +80,7 @@
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
                      <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
-					[ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12">
+					[ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)">
                 </div>
                 </div>
                 <div class = "form-row">
@@ -128,8 +128,8 @@
                 <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                    <input type="tel" class="form-control" ngModel name="phoneNu" placeholder="xxx-xxx-xxxx"  
-					[ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12">
+                            <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber1($event,$event.target.value)"
+					[ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber1($event.target.value)">
 					
                 </div>
                 

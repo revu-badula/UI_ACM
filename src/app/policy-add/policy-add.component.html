@@ -205,7 +205,7 @@
 	<button type="submit" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
 	
 	
-		<button type="cancel" class="cancel btn btn-primary" (click)="goTo($event)">Cancel</button>
+		<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
 </form>
 </div>
 <div *ngIf="showDiv">
