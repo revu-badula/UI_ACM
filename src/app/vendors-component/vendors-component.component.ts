@@ -16,11 +16,10 @@ export class VendorsComponentComponent implements OnInit {
   ngOnInit() {
   }
   submitClicked(value): void {
-  console.log(value);
+  //console.log(value);
    //this.modalService.open(this.content);
    this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
-        console.log(data);
         //this.modalService.open(this.content);
         open(data.responseString);
       }, error => console.log(error));
@@ -28,6 +27,5 @@ export class VendorsComponentComponent implements OnInit {
   
   goToPage(){
   this.router.navigate(['/vendorsView']);
-  console.log("333333333333333333333333333");
   }
 }

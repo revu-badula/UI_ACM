@@ -1,4 +1,7 @@
 <app-navigation-component></app-navigation-component>
+<div class="my-container">
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
     <div class="navigate sticky-top">
             <!--<div class="home">
                 <i class="fas fa-home home-icon icons"></i>
@@ -22,15 +25,12 @@
    <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Success</h4>
-    <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button> -->
   </div>
   <div class="modal-body">
     <p>Solution Added</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark"  routerLink="/solutionsView" (click)="c('Save click')">Close</button>
+    <button type="button" class="btn btn-outline-dark confbtn"  (click)="c();redirect()">Close</button>
   </div>
 </ng-template>
    <form (ngSubmit)="createSolution()" enctype="multipart/form-data" #f="ngForm">
@@ -333,8 +333,8 @@
             <hr />
          <div class="buttons">
          	<!-- <button type="submit" (click)="open(content)" [disabled]="!f.valid" class="submit btn btn-primary">Submit</button> -->
-         	<button type="submit" (click)="open(content)" class="submit btn btn-primary" [disabled]="!f.valid">Submit</button>
-         	<button type="cancel" (click)="d()"class="cancel btn btn-primary">Cancel</button>
+         	<button type="submit"  class="submit btn btn-primary" [disabled]="!f.valid">Submit</button>
+         	<button type="cancel" (click)="cancelButton($event)"class="cancel btn btn-primary">Cancel</button>
         	<!-- <button type="submit" class="submit btn btn-primary" [disabled]="!form.valid">Submit</button> -->
         </div>
 </form>

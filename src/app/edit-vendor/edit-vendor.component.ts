@@ -27,18 +27,14 @@ export class EditVendorComponent implements OnInit {
   public state: string;
   public zipCode: string;
   public loading: boolean = false;
-  public showEdi:boolean= true;
+  public showEdi: boolean = true;
   //public vendorDetails: VendorDetails;
 
 
   public editVendorForm: FormGroup;
-  @ViewChild('content') content:TemplateRef<any>;
-
-
-
-
-  constructor(private router: Router, private route: ActivatedRoute, 
-    private _apiservice: ApiserviceService, private fb: FormBuilder, 
+  @ViewChild('content') content: TemplateRef<any>;
+  constructor(private router: Router, private route: ActivatedRoute,
+    private _apiservice: ApiserviceService, private fb: FormBuilder,
     private modalService: NgbModal, private phone: PhonePipe) {
   }
 
@@ -47,7 +43,7 @@ export class EditVendorComponent implements OnInit {
 
     if (this.editVendorForm.disabled) {
       this.editVendorForm.enable();
-        }
+    }
     else {
       this.editVendorForm.disable();
     }
@@ -71,7 +67,7 @@ export class EditVendorComponent implements OnInit {
 
   }
 
- 
+
 
 
 
@@ -106,53 +102,52 @@ export class EditVendorComponent implements OnInit {
 
 
 
- getPhoneNumber(e,value) {
-  
-              let key = e.charCode || e.keyCode || 0;
-             if (key !== 8 && key !== 9) {
-                 if (value.length === 3) {
-                     this.editVendorForm.patchValue({
-      vendorContact:{
-        phoneNumber:value + '-'
-      }
-    });
-                 }
-                 if (value.length === 7) {
-                     this.editVendorForm.patchValue({
-      vendorContact:{
-        phoneNumber:value + '-' 
-      }
-    });
-                 }
+  getPhoneNumber(e, value) {
 
-             }
+    let key = e.charCode || e.keyCode || 0;
+    if (key !== 8 && key !== 9) {
+      if (value.length === 3) {
+        this.editVendorForm.patchValue({
+          vendorContact: {
+            phoneNumber: value + '-'
+          }
+        });
+      }
+      if (value.length === 7) {
+        this.editVendorForm.patchValue({
+          vendorContact: {
+            phoneNumber: value + '-'
+          }
+        });
+      }
 
-             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-    
+    }
+
+    return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+
   }
 
 
-getNumber(value) {
-    if(value.length === 12)
-    {
-        this.editVendorForm.patchValue({
-      vendorContact:{
-        phoneNumber:value 
-      }
-    });
+  getNumber(value) {
+    if (value.length === 12) {
+      this.editVendorForm.patchValue({
+        vendorContact: {
+          phoneNumber: value
+        }
+      });
     }
-    else{
-     let data = value.slice(0,3);
-     let pn = data + '-';
-     let d2 = value.slice(3,6);
-     let pn2 = d2 + '-';
-     let d3 = value.slice(6,10);
-     let phm=pn+pn2+d3;
-       this.editVendorForm.patchValue({
-      vendorContact:{
-        phoneNumber:phm
-      }
-    });
+    else {
+      let data = value.slice(0, 3);
+      let pn = data + '-';
+      let d2 = value.slice(3, 6);
+      let pn2 = d2 + '-';
+      let d3 = value.slice(6, 10);
+      let phm = pn + pn2 + d3;
+      this.editVendorForm.patchValue({
+        vendorContact: {
+          phoneNumber: phm
+        }
+      });
     }
 
   }
@@ -163,23 +158,25 @@ getNumber(value) {
 
   createVendor(value): void {
     let ngbModalOptions: NgbModalOptions = {
-      backdrop : 'static',
-      keyboard : false
-      };
-    //this.loading = true;
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.loading = true;
     value['vendorId'] = this.userId;
 
     this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
-        //this.loading = false;
+        this.loading = false;
+        this.modalService.open(this.content,ngbModalOptions);
       }, error => {
-        //this.loading = false;
+        this.loading = false;
         console.log(error);
       });
 
   }
-  cancelButton() {
+  cancelButton(event) {
     //this.editVendorForm.disable();
+    event.preventDefault();
     this.router.navigate(['/vendorsView']);
 
 

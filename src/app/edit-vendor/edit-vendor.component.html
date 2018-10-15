@@ -1,31 +1,29 @@
 <div class="my-container">
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
-<app-navigation-component ></app-navigation-component>
+<app-navigation-component></app-navigation-component>
 <ng-template #content let-c="close" let-d="dismiss">
-<div class="modal-header">
-  <h4 class="modal-title">Success</h4>
-  <button type="button" class="close" aria-label="Close" (click)="d()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <p>The vendor has been successfully updated</p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
-</div>
+    <div class="modal-header">
+        <h4 class="modal-title">Success</h4>
+    </div>
+    <div class="modal-body">
+        <p>The vendor has been successfully updated</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
+    </div>
 </ng-template>
 <app-edit-navigation (editClick)="editClicked($event)" (cancelClick)="cancelButton()"></app-edit-navigation>
-<div class="form-div" >
-    <form  class="forms" [formGroup]="editVendorForm" (ngSubmit)="createVendor(editVendorForm.value)">
+<div class="form-div">
+    <form class="forms" [formGroup]="editVendorForm" (ngSubmit)="createVendor(editVendorForm.value)">
         <div class="page-description">
             <h3>Vendors</h3>
             <hr class="after-heading" />
         </div>
         <div class="tip">
             <p class="tip-text">
-                <fa class="light-bulb" [name]="'lightbulb-o'"></fa>Tip:</p>
+                <fa class="light-bulb" [name]="'lightbulb-o'"></fa>Tip:
+            </p>
         </div>
         <div class="form-row">
             <div class="form-group col-12">
@@ -55,24 +53,26 @@
                 <div class="form-group col-md-6">
                     <label for="email">Email ID</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control"  id="email"  title='Email Id (Format: @example.com)' placeholder="Enter your email" formControlName="emailId">
-               <div style="color:red;" *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors && editVendorForm.controls.vendorContact.get('emailId').dirty">
+                    <input type="text" class="form-control" id="email" title='Email Id (Format: @example.com)'
+                        placeholder="Enter your email" formControlName="emailId">
+                    <div style="color:red;" *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors && editVendorForm.controls.vendorContact.get('emailId').dirty">
                         Please enter valid email
-                       </div>
+                    </div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
                     <div class="asterisk">*</div>
-                    <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12" id="phonenumber"  required  formControlName="phoneNumber" (change)="getNumber($event.target.value)" >
+                    <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
+                        minlength="12" maxlength="12" id="phonenumber" required formControlName="phoneNumber" (change)="getNumber($event.target.value)">
                 </div>
-                
-                 
-                
-                
-            </div> 
-        </div> 
+
+
+
+
+            </div>
+        </div>
         <hr />
-        <div formGroupName="vendorAddress" >
+        <div formGroupName="vendorAddress">
             <p><b>Address</b></p>
             <div class="form-group">
                 <label for="inputAddress">Street Name</label>
@@ -87,75 +87,74 @@
                     <label for="inputState">State</label>
                     <div class="asterisk">*</div>
                     <select id="inputState" class="form-control" formControlName="state">
-            <option selected>Choose...</option>
-           <option value="AL">Alabama (AL)</option>
-	<option value="AK">Alaska (AK)</option>
-	<option value="AZ">Arizona (AZ)</option>
-	<option value="AR">Arkansas (AR)</option>
-	<option value="CA">California (CA)</option>
-	<option value="CO">Colorado (CO)</option>
-	<option value="CT">Connecticut (CT)</option>
-	<option value="DE">Delaware (DE)</option>
-	<option value="DC">District Of Columbia (DC)</option>
-	<option value="FL">Florida (FL)</option>
-	<option value="GA">Georgia (GA)</option>
-	<option value="HI">Hawaii (HI)</option>
-	<option value="ID">Idaho (ID)</option>
-	<option value="IL">Illinois (IL)</option>
-	<option value="IN">Indiana (IN)</option>
-	<option value="IA">Iowa (IA)</option>
-	<option value="KS">Kansas (KS)</option>
-	<option value="KY">Kentucky (KY)</option>
-	<option value="LA">Louisiana (LA)</option>
-	<option value="ME">Maine (ME)</option>
-	<option value="MD">Maryland (MD)</option>
-	<option value="MA">Massachusetts (MA)</option>
-	<option value="MI">Michigan (MI)</option>
-	<option value="MN">Minnesota (MN)</option>
-	<option value="MS">Mississippi (MS)</option>
-	<option value="MO">Missouri (MO)</option>
-	<option value="MT">Montana (MT)</option>
-	<option value="NE">Nebraska (NE)</option>
-	<option value="NV">Nevada (NV)</option>
-	<option value="NH">New Hampshire (NH)</option>
-	<option value="NJ">New Jersey (NJ)</option>
-	<option value="NM">New Mexico (NM)</option>
-	<option value="NY">New York (NY)</option>
-	<option value="NC">North Carolina (NC)</option>
-	<option value="ND">North Dakota (ND)</option>
-	<option value="OH">Ohio (OH)</option>
-	<option value="OK">Oklahoma (OK)</option>
-	<option value="OR">Oregon (OR)</option>
-	<option value="PA">Pennsylvania (PA)</option>
-	<option value="RI">Rhode Island (RI)</option>
-	<option value="SC">South Carolina (SC)</option>
-	<option value="SD">South Dakota (SD)</option>
-	<option value="TN">Tennessee (TN)</option>
-	<option value="TX">Texas (TX)</option>
-	<option value="UT">Utah (UT)</option>
-	<option value="VT">Vermont</option>
-	<option value="VA">Virginia(VA)</option>
-	<option value="WA">Washington</option>
-	<option value="WV">West Virginia</option>
-	<option value="WI">Wisconsin</option>
-	<option value="WY">Wyoming</option>
-            
-            <option>...</option>
-          </select>
+                        <option selected>Choose...</option>
+                        <option value="AL">Alabama (AL)</option>
+                        <option value="AK">Alaska (AK)</option>
+                        <option value="AZ">Arizona (AZ)</option>
+                        <option value="AR">Arkansas (AR)</option>
+                        <option value="CA">California (CA)</option>
+                        <option value="CO">Colorado (CO)</option>
+                        <option value="CT">Connecticut (CT)</option>
+                        <option value="DE">Delaware (DE)</option>
+                        <option value="DC">District Of Columbia (DC)</option>
+                        <option value="FL">Florida (FL)</option>
+                        <option value="GA">Georgia (GA)</option>
+                        <option value="HI">Hawaii (HI)</option>
+                        <option value="ID">Idaho (ID)</option>
+                        <option value="IL">Illinois (IL)</option>
+                        <option value="IN">Indiana (IN)</option>
+                        <option value="IA">Iowa (IA)</option>
+                        <option value="KS">Kansas (KS)</option>
+                        <option value="KY">Kentucky (KY)</option>
+                        <option value="LA">Louisiana (LA)</option>
+                        <option value="ME">Maine (ME)</option>
+                        <option value="MD">Maryland (MD)</option>
+                        <option value="MA">Massachusetts (MA)</option>
+                        <option value="MI">Michigan (MI)</option>
+                        <option value="MN">Minnesota (MN)</option>
+                        <option value="MS">Mississippi (MS)</option>
+                        <option value="MO">Missouri (MO)</option>
+                        <option value="MT">Montana (MT)</option>
+                        <option value="NE">Nebraska (NE)</option>
+                        <option value="NV">Nevada (NV)</option>
+                        <option value="NH">New Hampshire (NH)</option>
+                        <option value="NJ">New Jersey (NJ)</option>
+                        <option value="NM">New Mexico (NM)</option>
+                        <option value="NY">New York (NY)</option>
+                        <option value="NC">North Carolina (NC)</option>
+                        <option value="ND">North Dakota (ND)</option>
+                        <option value="OH">Ohio (OH)</option>
+                        <option value="OK">Oklahoma (OK)</option>
+                        <option value="OR">Oregon (OR)</option>
+                        <option value="PA">Pennsylvania (PA)</option>
+                        <option value="RI">Rhode Island (RI)</option>
+                        <option value="SC">South Carolina (SC)</option>
+                        <option value="SD">South Dakota (SD)</option>
+                        <option value="TN">Tennessee (TN)</option>
+                        <option value="TX">Texas (TX)</option>
+                        <option value="UT">Utah (UT)</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia(VA)</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+
+                        <option>...</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputZip">Zip Code</label>
                     <div class="asterisk">*</div>
-                    <input type="text" class="form-control"  pattern="[0-9]{5}" title='Zip Code (Format: 00000)'  id="inputZip" formControlName="zipcode">
+                    <input type="text" class="form-control" pattern="[0-9]{5}" title='Zip Code (Format: 00000)' id="inputZip"
+                        formControlName="zipcode">
                 </div>
             </div>
         </div>
         <div class="buttons">
-         <button [disabled]="editVendorForm.invalid" type="submit" class="btn btn-primary" (click)="open(content)" *ngIf="!editVendorForm.disabled">Submit</button>
-             <button type="cancel" class="btn btn-primary"(click)="cancelButton()" >Cancel</button>
-            
-             
-         
+            <button [disabled]="editVendorForm.invalid" type="submit" class="btn btn-primary"
+                *ngIf="!editVendorForm.disabled">Submit</button>
+            <button type="cancel" class="btn btn-primary" (click)="cancelButton($event)">Cancel</button>
 
         </div>
     </form>

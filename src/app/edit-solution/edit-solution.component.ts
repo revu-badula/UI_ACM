@@ -1,13 +1,13 @@
 import { ApiserviceService } from '../apiservice.service';
 import { Solution, SystemType, HostingType, LabVendors, CertDocDTO, Vendor } from '../data_model';
 import { APP_CONFIG } from '../app.config';
-import { Component, OnInit, HostListener, ViewChild, ElementRef, NgModule } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, NgModule, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { File } from 'babel-types';
 import { Location } from '@angular/common';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subject } from 'rxjs';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { IMyDate } from 'mydatepicker';
@@ -29,6 +29,7 @@ declare var swal: any; ''
 export class EditSolutionComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('editForm') solutionsForm: NgForm;
+  @ViewChild('content') content: TemplateRef<any>;
   color: String;
   solution: Solution;
 
@@ -125,12 +126,7 @@ export class EditSolutionComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.solution.solutionId = params['id'];
       this.editSolution.disable();
-      //this.solutionsForm.form.disabled;
-
-      //if (params['id'] != null)
-      //{
       this.onDisplaySolution();
-      //}
       this.getSolutionsOnload();
 
     });
@@ -243,6 +239,10 @@ export class EditSolutionComponent implements OnInit {
   }
 
   createSolution() {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
     let url_update = APP_CONFIG.postSolution;
     let url_add = APP_CONFIG.addSolutions;
     var formData = new FormData();
@@ -257,13 +257,15 @@ export class EditSolutionComponent implements OnInit {
     this.loading=true;
     this.http.post(url_update, formData).subscribe((data: any) => {
       this.loading=false;
+      this.modalService.open(this.content, ngbModalOptions);
     }, error => {
       this.loading=false;
       console.log(error);
     });
   }
 
-  backClicked() {
+  backClicked(event) {
+    event.preventDefault();
     this._location.back();
   }
 

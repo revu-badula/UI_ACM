@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Solution, SystemType, HostingType, LabVendors, CertDocDTO, Vendor } from '../data_model';
 import { Http, HttpModule } from '@angular/http';
@@ -7,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { ApiserviceService } from '../apiservice.service';
 import { APP_CONFIG } from '../app.config';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 declare var swal: any; ''
 
@@ -21,8 +21,9 @@ declare var swal: any; ''
 export class SolutionsComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('f') solutionsForm: NgForm;
+  @ViewChild('content') content: TemplateRef<any>;
   solution: Solution;
-  
+
   public systemTypeDTO: any;
   approveDate: any;
   renewalDate: any;
@@ -43,7 +44,7 @@ export class SolutionsComponent implements OnInit {
   files: File[] = [];
   //public labForm: string;
   public labForm: boolean = false;
-  public loading:boolean = false;
+  public loading: boolean = false;
   date: Date = new Date();
   settings = {
     bigBanner: true,
@@ -77,10 +78,10 @@ export class SolutionsComponent implements OnInit {
     this.files.push(fileInput.target.files[0]);
     this.solution.certDocDTOs.push(this.certDocDTO);
   }
-  
- 
 
- 
+
+
+
   showLabVendor(id) {
     this.solution.labVendorsDTO.labVendorId = id;
     if (id === 'Choose') {
@@ -99,25 +100,30 @@ export class SolutionsComponent implements OnInit {
   }
 
 
-  d() {
+  cancelButton(event) {
+    event.preventDefault();
     this.router.navigate(['/dashboard']);
   }
 
+  redirect() {
+    this.router.navigate(['/solutionsView']);
+  }
+
   getSolutionsOnload() {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getSolutionsOnload()
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.systemTypeDTO = data.systemTypeDTOs;
         this.solutionType = data.solutionTypeDTOs;
         this.vendorDTO = data.vendorsDTOs;
         this.hostingTypeDTO = data.hostingTypeDTOs;
         this.labVendorsDTO = data.labVendorsDTOs;
         this.precinctTypes = data.precinctTypeDTOs;
-        
+
 
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
   }
@@ -131,6 +137,10 @@ export class SolutionsComponent implements OnInit {
   }
 
   createSolution() {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
     let url = APP_CONFIG.addSolutions;
 
     if ((this.approveDate && this.renewalDate) != null) {
@@ -143,12 +153,13 @@ export class SolutionsComponent implements OnInit {
       formData.append('certDocs', this.files[i]);
 
     }
-    this.loading=true;
+    this.loading = true;
 
     this.http.post(url, formData).subscribe((data: any) => {
-      this.loading=false;
+      this.loading = false;
+      this.modalService.open(this.content, ngbModalOptions);
     }, error => {
-      this.loading=false;
+      this.loading = false;
       console.log(error);
     });
 
