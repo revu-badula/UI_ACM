@@ -96,17 +96,8 @@
 			<div class="form-group col-md-6">
 				<label for="lastName">Email Id</label>
 				<div class="asterisk">*</div>
-				<input type="email" class="form-control" [email]="locality.emailId!==''" name="email" [(ngModel)]="locality.emailId" #email="ngModel" required>
-                      <span class="help-block" style="color:red"
-                 *ngIf = "email.errors?.required && email.touched">
-                Email is required 
-                 </span>
-                 <span class="help-block" style="color:red"
-                 *ngIf = "email.errors?.email && email.touched">
-                Email is invalid
-                 </span>
-                 
-							</div>
+				<input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+			</div>
 			<div class="form-group col-md-6">
 
 				<label for="email">Phone No</label>
@@ -132,42 +123,60 @@
 			
 			
 	
-<div class="form-group col-md-6">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div class="form-group col-md-6">
 				<label for="email">Veris Id</label>
 				<div class="asterisk">*</div>
-				<input type="text" id="verisId" pattern="[0-9]{5}" class="form-control" maxlength="10" name="verisId" #verisId="ngModel" [(ngModel)]="locality.verisId" required>
-				<div *ngIf="verisId.errors && (verisId.dirty || verisId.touched)">
-			<div [hidden]="!verisId.errors.required" style="color:red">
-          Veris Id is required!
-        </div>
-        <div [hidden]="!verisId.errors.pattern" style="color:red">
-          Must be  10 numbers!
-        </div>
-		</div>
-				
+				<input type="email" class="form-control" maxlength="10" ngModel name="verisId" [(ngModel)]="locality.verisId" required>
 			</div>
 
 		</div>
 		<hr />
 		<h5>Other Information</h5>
-		<br>
+		
 		<div class="form-row">
 			<div class="form-group col-md-6">
-		
-		
-		<div class="toggle-group">
+
+				
+				
+				
+				
+				<div class="toggle-group">
 <label for="ons">
         <span class="aural">Show:</span>Central Absentee Perceived(CAP)
     </label>
-    <input type="checkbox" name="ons" id="ons" [(ngModel)]="locality.capInd" tabindex="1" [checked]="locality.capInd">
- 
-  
-    <div class="onoffswitch" aria-hidden="true">
+    <input type="checkbox"  name="ons" id="ons" [(ngModel)]="locality.capInd" tabindex="1" [checked]="locality.capInd" required>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				 <div class="onoffswitch" aria-hidden="true">
         <div class="onoffswitch-label">
             <div class="onoffswitch-inner"></div>
             <div class="onoffswitch-switch"></div>
         </div>
     </div>
+				
+
 </div>
 				
 				
@@ -189,7 +198,7 @@
 			</div>
 		</div>
 	
-		
+		<div class="asterisk">*</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				
@@ -198,23 +207,24 @@
 
 
 
-	
-
-
-<div class="toggle-group">
-<label for="on-swit">
+	<div class="toggle-group">
+<label for="on">
         <span class="aural">Show:</span>Bail out
     </label>
-    <input type="checkbox" name="on-swit" id="on-swit" [(ngModel)]="locality.bailoutInd" tabindex="1" [checked]="locality.bailoutInd">
- 
-  
-    <div class="onoffswitch" aria-hidden="true">
+
+				<input type="checkbox" required  id="on" name="on"  tabindex="1"         [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
+				  				 <div class="onoffswitch" aria-hidden="true">
         <div class="onoffswitch-label">
             <div class="onoffswitch-inner"></div>
             <div class="onoffswitch-switch"></div>
         </div>
     </div>
+				
+
 </div>
+
+
+
 
 
 
@@ -290,9 +300,8 @@
 <label for="on-switch">
         <span class="aural">Show:</span>Paper PollBook
     </label>
-    <input type="checkbox" name="on-switch" id="on-switch" [(ngModel)]="locality.paperPollbook" tabindex="1" [checked]="locality.paperPollbook">
- 
-  
+    <input type="checkbox"  name="on-switch" id="on-switch" [(ngModel)]="locality.paperPollbook" tabindex="1" [checked]="locality.paperPollbook">
+     
     <div class="onoffswitch" aria-hidden="true">
         <div class="onoffswitch-label">
             <div class="onoffswitch-inner"></div>
@@ -339,12 +348,11 @@
 			
 		
 		<label for="email">Electronic PollBook</label>
-		<br>
-		
+		<div class="asterisk">*</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				
-				 <br>
+				 
 				 <div class="toggle-group">
 <label for="on-off-switch">
         <span class="aural">Show:</span>Electronic PollBook
