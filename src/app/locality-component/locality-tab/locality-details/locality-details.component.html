@@ -146,8 +146,7 @@
 					<label for="ons">
 						<span class="aural">Show:</span>Central Absentee Perceived(CAP)
 					</label>
-					<input type="checkbox" name="ons" id="ons" [(ngModel)]="locality.capInd" tabindex="1" [checked]="locality.capInd"
-					 required>
+					<input type="checkbox" name="ons" id="ons" [(ngModel)]="locality.capInd" tabindex="1" [checked]="locality.capInd">
 
 
 					<div class="onoffswitch" aria-hidden="true">
@@ -179,7 +178,7 @@
 			</div>
 		</div>
 
-		<div class="asterisk">*</div>
+		
 		<div class="form-row">
 			<div class="form-group col-md-6">
 
@@ -193,7 +192,7 @@
 						<span class="aural">Show:</span>Bail out
 					</label>
 
-					<input type="checkbox" required id="on" name="on" tabindex="1" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
+					<input type="checkbox"  id="on" name="on" tabindex="1" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
 					<div class="onoffswitch" aria-hidden="true">
 						<div class="onoffswitch-label">
 							<div class="onoffswitch-inner"></div>
@@ -270,7 +269,7 @@
 		</div>
 		<hr />
 
-		<h5>PollBook</h5>
+		<label for ="poll">PollBook</label>
 
 
 		<br>
@@ -329,7 +328,7 @@
 
 
 		<label for="email">Electronic PollBook</label>
-		<div class="asterisk">*</div>
+		
 		<div class="form-row">
 			<div class="form-group col-md-6">
 

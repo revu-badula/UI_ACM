@@ -445,6 +445,7 @@ viewEvent(addPolicies: any,event){
   	this.definitive= false;
   	this.policy= false;
   	this.showDef = false;
+  	this.showBt = false;
   		this.displayField = 0;
   		
   	}
