@@ -17,6 +17,7 @@ export class VendorsViewComponent implements OnInit {
   public vendorsContact: any;
   public desc = false;
   public des = false;
+  public lname: boolean=false;
   public p: number = 1;
   public loading: boolean = false;
   constructor(private _location: Location, private _apiservice: ApiserviceService, private router: Router) { }
@@ -31,9 +32,7 @@ export class VendorsViewComponent implements OnInit {
     this._apiservice.getVendors()
       .subscribe((data: any) => {
         this.loading = false;
-        this.vendors = data.vendorsDTOs.sort(function (val1, val2) {
-          return val1.name > val2.name
-        });
+        this.vendors = data.vendorsDTOs;
         this.vendorsContact = data.vendorsDTOs.vendorContact;
       }, error =>{
         this.loading=false;
@@ -119,14 +118,40 @@ export class VendorsViewComponent implements OnInit {
 
 
 
+  handleSort3(value) {
+    if (!this.lname) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.vendors.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.lname = true;
+    }
+    else {
+      let orderByValue = value;
+      this.vendors.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.lname = false;
+    }
+
+
+  }
 
 
 
-
-
-  /*openVendorEdit(id)
-  {
-    this.router.navigate(['/editVendors/' + id]);
-  }*/
 
 }

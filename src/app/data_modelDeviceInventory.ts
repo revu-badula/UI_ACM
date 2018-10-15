@@ -1,5 +1,5 @@
-export class Device{
-  
+export class Device {
+
   databaseId: number;
   hostName: string;
   platform: string;
@@ -12,13 +12,14 @@ export class Device{
   localDiskSpace: string;
   cpuCount: number;
   physicalCpuCount: number;
- purpose:any;
-  
+  purpose: any;
+  operatingSystem: any;
+  controlName: any;
   logicalCpuCount: number;
   ipAddress: string;
   dbServer: string;
-  createdTs:any;
-  updatedTs:any;
+  createdTs: any;
+  updatedTs: any;
   serverName: string;
   archiveLogMode: string;
   sizeGb: string;
@@ -39,18 +40,18 @@ export class Device{
   serverContactDTOs: any = [];
 }
 
-export class Server{
-serverContactId:number;
-	//serverEntity:ServerEntity;
-	firstName:string;
-	lastName:string;
-	emailId:string;
-	phoneNumber:string;
-	isPrimary:boolean;
-	divisionName:string;
-	cost:string;
-	createdBy:string;
-	createdTs:any;
-	updatedBy:string;
-	updatedTs:any;
+export class Server {
+  serverContactId: number;
+  //serverEntity:ServerEntity;
+  firstName: string;
+  lastName: string;
+  emailId: string;
+  phoneNumber: string;
+  isPrimary: boolean;
+  divisionName: string;
+  cost: string;
+  createdBy: string;
+  createdTs: any;
+  updatedBy: string;
+  updatedTs: any;
 }

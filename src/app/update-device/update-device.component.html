@@ -185,7 +185,7 @@
             	</div>
          <div class="form-group col-md-6">
             <label for="updateLevel">Control Name</label>
-              <input type="text" class="form-control" id="updateLevel">
+              <input type="text" class="form-control" name="controlName" [(ngModel)] = "device.controlName" id="updateLevel">
             	</div>
 		<div class="form-group col-md-6">
             <label for="clockFrequency">Clock Frequency</label>
@@ -221,7 +221,7 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
             <label for="operatingSystem">Operating System</label>
-              <input type="text" class="form-control" id="operatingSystem">
+              <input type="text" class="form-control" name="operatingSystem" [(ngModel)] = "device.operatingSystem" id="operatingSystem">
             	</div>
          <div class="form-group col-md-6">
             <label for="version">Version</label>
@@ -257,7 +257,7 @@
  	</fieldset>
 	<hr /> 
  	<h4>Purpose</h4> 
- 	<textarea cols="156" rows="7" id="patches"></textarea> 	<hr /> 
+ 	<textarea cols="156" rows="7" id="patches" name="purpose" [(ngModel)] = "device.purpose"></textarea> 	<hr /> 
 	<button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark">Show List</button>
 	<button type="submit" (click)="open(content)" class="submit btn btn-primary" [disabled]="!editForm.valid" *ngIf="isLol" >Submit</button>
 	<button type="cancel" routerLink="/devicetab" class="cancel btn btn-primary">Cancel</button>
