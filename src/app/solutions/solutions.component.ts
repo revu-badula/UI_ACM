@@ -10,7 +10,7 @@ import { APP_CONFIG } from '../app.config';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 declare var swal: any; ''
-
+import { Cookie } from 'ng2-cookies';
 
 @Component({
   selector: 'app-solutions',
@@ -147,7 +147,7 @@ export class SolutionsComponent implements OnInit {
       this.dateSubmit();
     }
     var formData = new FormData();
-
+    this.solution.createdBy=Cookie.get('userName');
     formData.append('solution', JSON.stringify(this.solution));
     for (let i = 0; i < this.files.length; i++) {
       formData.append('certDocs', this.files[i]);

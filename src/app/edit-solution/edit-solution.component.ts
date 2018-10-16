@@ -11,7 +11,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subject } from 'rxjs';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { IMyDate } from 'mydatepicker';
-
+import { Cookie } from 'ng2-cookies';
 
 import { finalize } from 'rxjs/operators';
 
@@ -249,6 +249,7 @@ export class EditSolutionComponent implements OnInit {
     if ((this.solution.certDt && this.solution.certRenewalDueDt) != null) {
       this.dateSubmit();
     }
+    this.solution.updatedBy=Cookie.get('userName');
     formData.append('solution', JSON.stringify(this.solution));
     for (let i = 0; i < this.files.length; i++) {
       formData.append('certDocs', this.files[i]);

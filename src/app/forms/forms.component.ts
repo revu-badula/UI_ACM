@@ -4,6 +4,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { PhonePipe } from '../locality-component/phone-pipe';
 import { ApiserviceService } from '../apiservice.service';
+import { Cookie } from 'ng2-cookies';
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -28,14 +29,15 @@ export class FormsComponent implements OnInit {
       backdrop: 'static',
       keyboard: false
     };
-    this.loading=true;
+    this.loading = true;
+    value['createdBy'] = Cookie.get('userName');
     this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.modalService.open(this.content, ngbModalOptions);
-      }, error =>{
-        this.loading=false;
-       console.log(error);
+      }, error => {
+        this.loading = false;
+        console.log(error);
       });
   }
   cancelButton(event) {

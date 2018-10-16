@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } 
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { PhonePipe } from '../locality-component/phone-pipe';
+import { Cookie } from 'ng2-cookies';
 @Component({
   selector: 'app-edit-vendor',
   templateUrl: './edit-vendor.component.html',
@@ -163,7 +164,7 @@ export class EditVendorComponent implements OnInit {
     };
     this.loading = true;
     value['vendorId'] = this.userId;
-
+    value['updatedBy'] = Cookie.get('userName');
     this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
         this.loading = false;
