@@ -103,7 +103,8 @@
 				<label for="email">Phone No</label>
 				<div class="asterisk">*</div>
 				<input type="tel" class="form-control" ngModel name="phoneNumber" (keydown)="getPhoneNumber($event,$event.target.value)"
-				 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)" onlyInteger>
+				 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
+				 onlyInteger>
 			</div>
 		</div>
 		<div class="form-row">
@@ -178,7 +179,7 @@
 			</div>
 		</div>
 
-		
+
 		<div class="form-row">
 			<div class="form-group col-md-6">
 
@@ -192,7 +193,7 @@
 						<span class="aural">Show:</span>Bail out
 					</label>
 
-					<input type="checkbox"  id="on" name="on" tabindex="1" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
+					<input type="checkbox" id="on" name="on" tabindex="1" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
 					<div class="onoffswitch" aria-hidden="true">
 						<div class="onoffswitch-label">
 							<div class="onoffswitch-inner"></div>
@@ -252,7 +253,6 @@
 
 		<hr />
 		<label>Region</label>
-		<div class="asterisk">*</div>
 
 		<div class="form-row">
 
@@ -269,7 +269,7 @@
 		</div>
 		<hr />
 
-		<label for ="poll">PollBook</label>
+		<label for="poll">PollBook</label>
 
 
 		<br>
@@ -328,7 +328,7 @@
 
 
 		<label for="email">Electronic PollBook</label>
-		
+
 		<div class="form-row">
 			<div class="form-group col-md-6">
 

@@ -69,6 +69,7 @@ import { DialogComponent } from './dialog.service';
 import { OnlyIntegerDirective } from './locality-component/only-integer.directive';
 import { CustomCurrencyPipe } from './currency-pipe';
 import  { CurrencyPipe } from '@angular/common';
+import { OnlyInteger } from './integer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -111,7 +112,8 @@ import  { CurrencyPipe } from '@angular/common';
     ReportsComponent,
     SignedPipe,
     DialogComponent,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
+    OnlyInteger
 
 
   ],

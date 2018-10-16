@@ -1,31 +1,40 @@
 <app-navigation-component></app-navigation-component>
+<div class="my-container">
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
 <div class="navigate sticky-top">
-            <!--<div class="home">
+  <!--<div class="home">
                 <i class="fas fa-home home-icon icons"></i>
                 < class="fas fa-arrow-left left-icon icons"></i>
             </div>-->
-            <div class="form-options">
-                <div class="home-back">
-                	<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
-                	<a href="javascript:void(0)" routerLink="/dashboard"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
-                </div>
-               
-          
-            </div>
-        </div>
-        
-   <ng-template #content let-c="close" let-d="dismiss">
+  <div class="form-options">
+    <div class="home-back">
+      <a routerLink="/dashboard">
+        <fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
+          data-delay="0" [name]="'home'"></fa>
+      </a>
+      <a href="javascript:void(0)" routerLink="/dashboard">
+        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
+          data-delay="0" [name]="'arrow-left'"></fa>
+      </a>
+    </div>
+
+
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Success</h4>
     <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button> -->
-  </div> 
+  </div>
   <div class="modal-body">
     <p>Device Added</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" routerLink="/devicetab" (click)="c('Save click')">Close</button>
+    <button type="button" class="btn btn-outline-dark confbtn"  (click)="c();redirect()">Close</button>
   </div>
 </ng-template>
 
@@ -34,225 +43,231 @@
 
 
 
-<form class="form" (ngSubmit) = "submitDevice()" enctype="multipart/form-data"
-	#editForm="ngForm">
-<div class=" form-row">
-		<div class="form-group col-md-6">
-            <label for="hostName">Host Name</label><div class="asterisk">*</div>
-              <input type="text" class="form-control"  [(ngModel)] = "device.hostName"  ngModel name = "host" required>
-            	</div>
-        <div class="form-group col-md-6">
-            <label for="systemTag">System Tag</label><div class="asterisk">*</div>
-              <input type="text" class="form-control"  [(ngModel)] = "device.systemTag"  ngModel name = "system" required>
-            	</div>
-	</div>
-	<hr />
-	<h4>Contact Details</h4>
-	<h5>Primary Contact</h5>
-	<div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="firstName">First Name</label>
-                    <div class="asterisk">*</div>
-                    <input type="text"  class="form-control" [(ngModel)] = "serverContact.firstName" ngModel name = "firstname"  required>
-                 
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="lastName">Last Name</label>
-                    <div class="asterisk">*</div>
-                    <input type="text" class="form-control" [(ngModel)] = "serverContact.lastName" ngModel name = "lastname" required>
-                </div>
-            </div>
-            <div class="form-row">
-                 <div class="form-group col-md-6"     [class.has-error]="email.invalid && email.touched">
-                    <label for="email">Email ID</label>
-                    <div class="asterisk">*</div>
-                    <input type="email" class="form-control" [email]="serverContact.emailId!==''" name="email" [(ngModel)] = "serverContact.emailId" #email="ngModel" required>
-                      <span class="help-block" style="color:red"
-                 *ngIf = "email.errors?.required && email.touched">
-                Email is required 
-                 </span>
-                 <span class="help-block" style="color:red"
-                 *ngIf = "email.errors?.email && email.touched">
-                Email is invalid
-                 </span>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="phone">Phone Number</label>
-                    <div class="asterisk">*</div>
-                     <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
-					[ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)">
-                </div>
-                </div>
-                <div class = "form-row">
-                <div class="form-group col-md-6">
-                    <label for="responsibleDivision/unitName">Responsible Division/Unit Name</label>
-                    <div class="asterisk">*</div>
-                    <input type="email" class="form-control"   [(ngModel)] = "serverContact.divisionName" ngModel name="division" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="costField">Cost Field</label>
-                    <div class="asterisk">*</div>
-              <div class="dollar"><input type="number" class="form-control"  [(ngModel)] = "serverContact.cost" ngModel name="cost" required></div>     
-
-                </div>
-                
-                </div>
-            
-   <h5>Secondary Contact</h5>
+  <form class="form" (ngSubmit)="submitDevice()" enctype="multipart/form-data" #editForm="ngForm">
+    <div class=" form-row">
+      <div class="form-group col-md-6">
+        <label for="hostName">Host Name</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" [(ngModel)]="device.hostName" ngModel name="host" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="systemTag">System Tag</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" [(ngModel)]="device.systemTag" ngModel name="system" required>
+      </div>
+    </div>
+    <hr />
+    <h4>Contact Details</h4>
+    <h5>Primary Contact</h5>
     <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="firstName">First Name</label>
-                    <div class="asterisk">*</div>
-                       <input type="text" class="form-control" id="firstName" [(ngModel)] = "serverContact1.firstName"  ngModel name = "firstname" [ngModelOptions]="{standalone: true}"  required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="lastName">Last Name</label>
-                    <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="lastName" [(ngModel)] = "serverContact1.lastName" ngModel name = "lnum" [ngModelOptions]="{standalone: true}" required>
-                </div>
-            </div>
-            <div class="form-row">
-               <div class="form-group col-md-6"     [class.has-error]="email.invalid && email.touched">
-                    <label for="email">Email ID</label>
-                    <div class="asterisk">*</div>
-                    <input id="email" type="text"  class="form-control" [email]="serverContact1.emailId!==''" name="email" [(ngModel)] = "serverContact1.emailId" #email="ngModel" required>
-                      <span class="help-block" style="color:red"
-                 *ngIf = "email.errors?.required && email.touched">
-                Email is required 
-                 </span>
-                 <span class="help-block" style="color:red"
-                 *ngIf = "email.errors?.email && email.touched">
-                Email is invalid
-                 </span>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="phone">Phone Number</label>
-                    <div class="asterisk">*</div>
-                            <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber1($event,$event.target.value)"
-					[ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber1($event.target.value)">
-					
-                </div>
-                
-            </div>
-	<hr />
-	<div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="licenceStartDate">License Start Date</label>
-                   
-             
-                    
-       <my-date-picker name="myname" placeholder="mm/dd/yyyy"  [(ngModel)]="startDate" (dateChanged)="getStartDate($event)" ></my-date-picker>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="licenseEndDate">License End Date</label>
-                    
-                         <my-date-picker name="myname" name="lnew" placeholder="mm/dd/yyyy" [(ngModel)]="endDate" (dateChanged)="getEndDate($event)" ></my-date-picker> 
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="licenceRenewalDate">License Renewal Date</label>
-                    <div class="asterisk">*</div>
-                     <my-date-picker ngModel name="lrenew" [(ngModel)]="renDate" placeholder="mm/dd/yyyy" (dateChanged)="getRenDate($event)" required></my-date-picker>
-                </div>
-                
-                <div class="form-group col-md-6">
-                    <label for="vendorName">Vendor Name</label>
-                    <input type="text" class="form-control"   id="vendorName" name="'vname'" [(ngModel)]="device.vendorName">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="productName">Product Name</label>
-                    <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="productName" [(ngModel)]="device.productName" ngModel name="product" required>
-                </div>
-            </div>
-	<h4>Configuration</h4>
-		<div class=" form-row">
-		<div class="form-group col-md-6">
-            <label for="hardware">Hardware</label>
-              <input type="text" class="form-control" id="hardware" [(ngModel)] = "device.hardware"  name = "hardware">
-            	</div>
-         <div class="form-group col-md-6">
-            <label for="updateLevel">Control Name</label>
-              <input type="text" class="form-control" name="controlName" [(ngModel)]="device.controlName" id="updateLevel">
-            	</div>
-		<div class="form-group col-md-6">
-            <label for="clockFrequency">Clock Frequency</label>
-              <input type="text" class="form-control" id="clockFrequency" [(ngModel)] = "device.clockFrequency"  name = "clock" >
-            	</div>
-         <div class="form-group col-md-6">
-            <label for="memory">Memory</label>
-              <input type="text" class="form-control" id="memory" [(ngModel)] = "device.memorySize"  name = "memory">
-            	</div>
-		<div class="form-group col-md-6">
-            <label for="diskSpace">Disk Space</label>
-              <input type="text" class="form-control" id="diskSpace" [(ngModel)] = "device.localDiskSpace"  name = "space">
-            	</div>
-         <div class="form-group col-md-6">
-            <label for="cpuCount">CPU Count</label>
-              <input type="text" class="form-control" id="cpuCount" [(ngModel)] = "device.cpuCount"  name = "cpu">
-            	</div>
-		<div class="form-group col-md-6">
-            <label for="physicalCpuCount">Physical CPU Count</label>
-              <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)] = "device.physicalCpuCount"  name = "physical">
-            	</div>
-         <div class="form-group col-md-6">
-            <label for="logicalCpuCount">Logical CPU Count</label>
-              <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)] = "device.logicalCpuCount"  name = "logical">
-            	</div>
-         <div class="form-group col-md-6"> 
-             <label for="ipAddress">IP Address</label> 
-               <input type="text" class="form-control" id="ipAddress" [(ngModel)] = "device.ipAddress"  name = "ipaddress"> 
-           	</div> 
-	</div>
-	<hr />
-	<h4>Operating System</h4>
-	<div class="form-row">
-		<div class="form-group col-md-6">
-            <label for="operatingSystem">Operating System</label>
-              <input type="text" class="form-control" name="opeartingSystem" [(ngModel)] = "device.operatingSystem" id="operatingSystem">
-            	</div>
-         <div class="form-group col-md-6">
-            <label for="version">Version</label>
-              <input type="text" class="form-control" id="version" [(ngModel)] = "device.osVersion" name = "osversion">
-            	</div>
-	</div>
-	<hr /> 
- 	<h4>Database Server</h4> 
- 	<div class="form-row"> 
- 		<div class="form-group col-md-6"> 
-             <label for="db/AppServerName">DB/APP Server Name</label> 
-               <input type="text" class="form-control" id="db/AppServerName" [(ngModel)] = "device.dbServer"  name = "dbserver"> 
-             	</div> 
-      </div> 
-         <div class="form-row"> 
-          	<div class="form-group col-md-6"> 
-             <label for="serverName">Server Name</label> 
-               <input type="text" class="form-control" id="serverName" [(ngModel)] = "device.serverName"  name = "servername"> 
-             	</div> 
-              <div class="form-group col-md-6"> 
-             <label for="version">Version</label> 
-               <input type="text" class="form-control" id="version" [(ngModel)] = "device.dbVersion"  name = "dbversion"> 
-            	</div>
-             <div class="form-group col-md-6"> 
-             <label for="sizeGb">Size GB</label> 
-            <input type="text" class="form-control" id="sizeGb" [(ngModel)] = "device.sizeGb"  name = "sizegb"> 
-             	</div> 
-             <div class="form-group col-md-6"> 
-             <label for="archiveLogMode">Archive Log Mode</label> 
-              <input type="text" class="form-control" id="archiveLogMode" [(ngModel)] = "device.archiveLogMode"  name = "db_version"> 
-             	</div> 
- 	</div> 
- 	
-	<hr /> 
-	    <div class="form-row"> 
- 	<label>Purpose</label>
- 	<textarea cols="156" rows="7" id="patches" name="purpose" [(ngModel)] = "device.purpose"></textarea> 	<hr /> 
-	</div>
-	
-	 <hr/>
-	
-	
-	<button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark">Show List</button>
-	<button type="submit" (click)="open(content)" class="submit btn btn-primary" [disabled]="!editForm.valid" >Submit</button>
-	<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
-	</form>
+      <div class="form-group col-md-6">
+        <label for="firstName">First Name</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" [(ngModel)]="serverContact.firstName" ngModel name="firstname" required>
+
+      </div>
+      <div class="form-group col-md-6">
+        <label for="lastName">Last Name</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" [(ngModel)]="serverContact.lastName" ngModel name="lastname" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" [class.has-error]="email.invalid && email.touched">
+        <label for="email">Email ID</label>
+        <div class="asterisk">*</div>
+        <input type="email" class="form-control" [email]="serverContact.emailId!==''" name="email" [(ngModel)]="serverContact.emailId"
+          #email="ngModel" required>
+        <span class="help-block" style="color:red" *ngIf="email.errors?.required && email.touched">
+          Email is required
+        </span>
+        <span class="help-block" style="color:red" *ngIf="email.errors?.email && email.touched">
+          Email is invalid
+        </span>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="phone">Phone Number</label>
+        <div class="asterisk">*</div>
+        <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
+          [ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)" onlyInteger>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="responsibleDivision/unitName">Responsible Division/Unit Name</label>
+        <div class="asterisk">*</div>
+        <input type="email" class="form-control" [(ngModel)]="serverContact.divisionName" ngModel name="division"
+          required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="costField">Cost Field</label>
+        <div class="asterisk">*</div>
+        <div class="dollar"><input type="number" class="form-control" [(ngModel)]="serverContact.cost" ngModel name="cost"
+            required></div>
+
+      </div>
+
+    </div>
+
+    <h5>Secondary Contact</h5>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="firstName">First Name</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="serverContact1.firstName" ngModel name="firstname"
+          [ngModelOptions]="{standalone: true}" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="lastName">Last Name</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="serverContact1.lastName" ngModel name="lnum"
+          [ngModelOptions]="{standalone: true}" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6" [class.has-error]="email.invalid && email.touched">
+        <label for="email">Email ID</label>
+        <div class="asterisk">*</div>
+        <input id="email" type="text" class="form-control" [email]="serverContact1.emailId!==''" name="email"
+          [(ngModel)]="serverContact1.emailId" #email="ngModel" required>
+        <span class="help-block" style="color:red" *ngIf="email.errors?.required && email.touched">
+          Email is required
+        </span>
+        <span class="help-block" style="color:red" *ngIf="email.errors?.email && email.touched">
+          Email is invalid
+        </span>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="phone">Phone Number</label>
+        <div class="asterisk">*</div>
+        <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber1($event,$event.target.value)"
+          [ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber1($event.target.value)" onlyInteger>
+
+      </div>
+
+    </div>
+    <hr />
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="licenceStartDate">License Start Date</label>
+
+
+
+        <my-date-picker name="myname" placeholder="mm/dd/yyyy" [(ngModel)]="startDate" (dateChanged)="getStartDate($event)"></my-date-picker>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="licenseEndDate">License End Date</label>
+
+        <my-date-picker name="myname" name="lnew" placeholder="mm/dd/yyyy" [(ngModel)]="endDate" (dateChanged)="getEndDate($event)"></my-date-picker>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="licenceRenewalDate">License Renewal Date</label>
+        <div class="asterisk">*</div>
+        <my-date-picker ngModel name="lrenew" [(ngModel)]="renDate" placeholder="mm/dd/yyyy" (dateChanged)="getRenDate($event)"
+          required></my-date-picker>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="vendorName">Vendor Name</label>
+        <input type="text" class="form-control" id="vendorName" name="'vname'" [(ngModel)]="device.vendorName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="productName">Product Name</label>
+        <div class="asterisk">*</div>
+        <input type="text" class="form-control" id="productName" [(ngModel)]="device.productName" ngModel name="product"
+          required>
+      </div>
+    </div>
+    <h4>Configuration</h4>
+    <div class=" form-row">
+      <div class="form-group col-md-6">
+        <label for="hardware">Hardware</label>
+        <input type="text" class="form-control" id="hardware" [(ngModel)]="device.hardware" name="hardware">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="updateLevel">Control Name</label>
+        <input type="text" class="form-control" name="controlName" [(ngModel)]="device.controlName" id="updateLevel">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="clockFrequency">Clock Frequency</label>
+        <input type="text" class="form-control" id="clockFrequency" [(ngModel)]="device.clockFrequency" name="clock">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="memory">Memory</label>
+        <input type="text" class="form-control" id="memory" [(ngModel)]="device.memorySize" name="memory">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="diskSpace">Disk Space</label>
+        <input type="text" class="form-control" id="diskSpace" [(ngModel)]="device.localDiskSpace" name="space">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="cpuCount">CPU Count</label>
+        <input type="text" class="form-control" id="cpuCount" [(ngModel)]="device.cpuCount" name="cpu">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="physicalCpuCount">Physical CPU Count</label>
+        <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)]="device.physicalCpuCount" name="physical">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="logicalCpuCount">Logical CPU Count</label>
+        <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)]="device.logicalCpuCount" name="logical">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="ipAddress">IP Address</label>
+        <input type="text" class="form-control" id="ipAddress" [(ngModel)]="device.ipAddress" name="ipaddress">
+      </div>
+    </div>
+    <hr />
+    <h4>Operating System</h4>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="operatingSystem">Operating System</label>
+        <input type="text" class="form-control" name="opeartingSystem" [(ngModel)]="device.operatingSystem" id="operatingSystem">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="version">Version</label>
+        <input type="text" class="form-control" id="version" [(ngModel)]="device.osVersion" name="osversion">
+      </div>
+    </div>
+    <hr />
+    <h4>Database Server</h4>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="db/AppServerName">DB/APP Server Name</label>
+        <input type="text" class="form-control" id="db/AppServerName" [(ngModel)]="device.dbServer" name="dbserver">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="serverName">Server Name</label>
+        <input type="text" class="form-control" id="serverName" [(ngModel)]="device.serverName" name="servername">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="version">Version</label>
+        <input type="text" class="form-control" id="version" [(ngModel)]="device.dbVersion" name="dbversion">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="sizeGb">Size GB</label>
+        <input type="text" class="form-control" id="sizeGb" [(ngModel)]="device.sizeGb" name="sizegb">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="archiveLogMode">Archive Log Mode</label>
+        <input type="text" class="form-control" id="archiveLogMode" [(ngModel)]="device.archiveLogMode" name="db_version">
+      </div>
+    </div>
+
+    <hr />
+    <div class="form-row">
+      <label>Purpose</label>
+      <textarea cols="156" rows="7" id="patches" name="purpose" [(ngModel)]="device.purpose"></textarea>
+      <hr />
+    </div>
+
+    <hr />
+
+
+    <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark">Show List</button>
+    <button type="submit"  class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+    <button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
+  </form>
 </div>

@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { APP_CONFIG } from '../app.config';
 import { ApiserviceService } from '../apiservice.service';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { Device, Server } from '../data_modelDeviceInventory';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../util.service';
 import { FilterPipe } from '../convertDate.pipe';
 import { DatePipe } from '@angular/common';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
 import * as moment from 'moment';
 import { PhonePipe } from '../locality-component/phone-pipe';
-
+import { Cookie } from 'ng2-cookies';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-device',
   templateUrl: './device.component.html',
@@ -25,6 +26,7 @@ export class DeviceComponent implements OnInit {
   public desc = false;
   public p: number = 1;
   renewalDate: any;
+  public loading: boolean = false;
   serverContact: Server;
   serverContact1: Server;
   public startDate: any;
@@ -34,7 +36,10 @@ export class DeviceComponent implements OnInit {
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'
   };
-  constructor(private phone: PhonePipe,private _apiservice: ApiserviceService, private http: Http, private modalService: NgbModal, private utilservice: UtilService, private datepipe: DatePipe) {
+  @ViewChild('content') content: TemplateRef<any>;
+  constructor(private phone: PhonePipe, private _apiservice: ApiserviceService,
+    private http: Http, private modalService: NgbModal, private utilservice: UtilService,
+    private datepipe: DatePipe, private router: Router) {
     this.device = new Device();
     this.getDevice = new Device();
     this.device.serverContactDTOs = [];
@@ -57,18 +62,18 @@ export class DeviceComponent implements OnInit {
       this.showForm = false;
     }
   }
-  
-  
-  
-  
 
 
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
 
   open(content) {
     this.modalService.open(content);
@@ -86,7 +91,7 @@ export class DeviceComponent implements OnInit {
     this._apiservice.getDatabases()
       .subscribe((data: any) => {
         this.displayDevices = data;
-        
+
       }, error => {
 
         console.log(error);
@@ -100,7 +105,9 @@ export class DeviceComponent implements OnInit {
   }
 
 
-
+  redirect() {
+    this.router.navigate(['/devicetab']);
+  }
 
   handleSort() {
 
@@ -160,58 +167,56 @@ export class DeviceComponent implements OnInit {
     }
 
   }
-  
-  
-  
-   getNumber(value) {
-    if(value.length === 12)
-    {
-      this.serverContact.phoneNumber=value;
+
+
+
+  getNumber(value) {
+    if (value.length === 10) {
+      let data = value.slice(0, 3);
+      let pn = data + '-';
+      let d2 = value.slice(3, 6);
+      let pn2 = d2 + '-';
+      let d3 = value.slice(6, 10);
+      let phm = pn + pn2 + d3;
+      this.serverContact.phoneNumber = phm;
     }
-    else{
-     let data = value.slice(0,3);
-     let pn = data + '-';
-     let d2 = value.slice(3,6);
-     let pn2 = d2 + '-';
-     let d3 = value.slice(6,10);
-     let phm=pn+pn2+d3;
-     this.serverContact.phoneNumber=phm;
+    else {
+      this.serverContact.phoneNumber = value;
     }
 
   }
-  
-  
+
+
   getNumber1(value) {
-    if(value.length === 12)
-    {
-      this.serverContact1.phoneNumber=value;
+    if (value.length === 12) {
+      this.serverContact1.phoneNumber = value;
     }
-    else{
-     let data = value.slice(0,3);
-     let pn = data + '-';
-     let d2 = value.slice(3,6);
-     let pn2 = d2 + '-';
-     let d3 = value.slice(6,10);
-     let phm=pn+pn2+d3;
-     this.serverContact1.phoneNumber=phm;
+    else {
+      let data = value.slice(0, 3);
+      let pn = data + '-';
+      let d2 = value.slice(3, 6);
+      let pn2 = d2 + '-';
+      let d3 = value.slice(6, 10);
+      let phm = pn + pn2 + d3;
+      this.serverContact1.phoneNumber = phm;
     }
 
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   getRenDate(value) {
@@ -235,16 +240,27 @@ export class DeviceComponent implements OnInit {
 
 
   submitDevice() {
-
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.loading = true;
     let url = APP_CONFIG.saveDBServerInfo;
     this.serverContact1.isPrimary = false
     this.serverContact.isPrimary = true
+    this.serverContact.createdBy = Cookie.get('userName');
+    this.serverContact1.createdBy = Cookie.get('userName');
+    this.device.createdBy = Cookie.get('userName');
     this.device.serverContactDTOs.push(this.serverContact);
     this.device.serverContactDTOs.push(this.serverContact1);
 
     this.http.post(url, this.device).subscribe((data: any) => {
-
-    }, error => console.log(error));
+      this.loading = false;
+      this.modalService.open(this.content, ngbModalOptions);
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
 
   }
 
@@ -252,60 +268,60 @@ export class DeviceComponent implements OnInit {
 
 
 
- getPhoneNumber(e,value) {
-  
-              let key = e.charCode || e.keyCode || 0;
-             if (key !== 8 && key !== 9) {
-                 if (value.length === 3) {
-                     this.serverContact.phoneNumber=value + '-';
-                 }
-                 if (value.length === 7) {
-                     this.serverContact.phoneNumber=value + '-';
-                 }
+  getPhoneNumber(e, value) {
 
-             }
+    let key = e.charCode || e.keyCode || 0;
+    if (key !== 8 && key !== 9) {
+      if (value.length === 3) {
+        this.serverContact.phoneNumber = value + '-';
+      }
+      if (value.length === 7) {
+        this.serverContact.phoneNumber = value + '-';
+      }
 
-             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-    
+    }
+
+    return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+
   }
-  
-  
-   getPhoneNumber1(e,value) {
-  
-              let key = e.charCode || e.keyCode || 0;
-             if (key !== 8 && key !== 9) {
-                 if (value.length === 3) {
-                     this.serverContact1.phoneNumber=value + '-';
-                 }
-                 if (value.length === 7) {
-                     this.serverContact1.phoneNumber=value + '-';
-                 }
 
-             }
 
-             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
-    
+  getPhoneNumber1(e, value) {
+
+    let key = e.charCode || e.keyCode || 0;
+    if (key !== 8 && key !== 9) {
+      if (value.length === 3) {
+        this.serverContact1.phoneNumber = value + '-';
+      }
+      if (value.length === 7) {
+        this.serverContact1.phoneNumber = value + '-';
+      }
+
+    }
+
+    return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
