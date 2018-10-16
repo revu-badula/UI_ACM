@@ -152,9 +152,12 @@ import { DialogService } from '../../../dialog.service';
 			<div class="form-group col-md-6">
 				<label for="inputZip">Zip Code</label>
 				<div class="asterisk">*</div>
-				<input type="text" class="form-control" pattern="[0-9]{5}"
+				<input type="text" class="form-control" maxlength=5 minlength=5
 					title='Zip Code (Format: 00000)' id="zipCode"
-					formControlName=zipCode>
+                    formControlName=zipCode appOnlyInteger>
+                    <div style="color:red;" *ngIf="modalForm.get('zipCode').errors && modalForm.get('zipCode').dirty">
+                    zipCode must be 5 numbers
+                   </div>
 			</div>
 		</div>
 		<hr />

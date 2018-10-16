@@ -103,7 +103,7 @@
 				<label for="email">Phone No</label>
 				<div class="asterisk">*</div>
 				<input type="tel" class="form-control" ngModel name="phoneNumber" (keydown)="getPhoneNumber($event,$event.target.value)"
-				 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)">
+				 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)" onlyInteger>
 			</div>
 		</div>
 		<div class="form-row">

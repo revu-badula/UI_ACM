@@ -56,6 +56,7 @@ import { NgbdModalContent } from './locality-tab/locality-solutions/ngb-modal.co
 import { PhonePipe } from './phone-pipe';
 import { DialogComponent } from '../dialog.service';
 import { OnlyIntegerDirective } from './only-integer.directive';
+import { OnlyInteger } from '../integer';
 @NgModule({
   imports: [
     CommonModule,
@@ -86,7 +87,7 @@ import { OnlyIntegerDirective } from './only-integer.directive';
     AssessRecomendComponent, ManagementComponent, AssessActionComponent,
     AssessBusinessComponent, AssessSecurityComponent, AssessBudgetComponent,
     AssessAttachmentsComponent, AssessLessonsComponent, LocalitysolutionsformComponent,
-     NgbdModalContent, PhonePipe, OnlyIntegerDirective],
+     NgbdModalContent, PhonePipe, OnlyIntegerDirective, OnlyInteger],
   entryComponents: [NgbdModalContent, DialogComponent]
 })
 export class LocalityComponentModule { }
