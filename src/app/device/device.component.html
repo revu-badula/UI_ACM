@@ -243,8 +243,14 @@
  	</div> 
  	
 	<hr /> 
- 	<h4>Purpose</h4> 
+	    <div class="form-row"> 
+ 	<label>Purpose</label>
  	<textarea cols="156" rows="7" id="patches" name="purpose" [(ngModel)] = "device.purpose"></textarea> 	<hr /> 
+	</div>
+	
+	 <hr/>
+	
+	
 	<button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark">Show List</button>
 	<button type="submit" (click)="open(content)" class="submit btn btn-primary" [disabled]="!editForm.valid" >Submit</button>
 	<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
