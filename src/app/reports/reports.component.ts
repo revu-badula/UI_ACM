@@ -18,6 +18,8 @@ export class ReportsComponent implements OnInit {
   public Localities: any;
   public p:number=1;
   public desc:boolean=false;
+    systemTypes: any;
+    sysTypes:any;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -29,6 +31,7 @@ export class ReportsComponent implements OnInit {
 
     this.getLocalityTotal();
     this.getAllMOUs();
+    this.showDropdown();
   }
 
   getLocalityTotal() {
@@ -46,6 +49,44 @@ export class ReportsComponent implements OnInit {
   }
 
 
+
+
+ showDropdown() {
+
+      this._apiservice.getSolutionsOnload()
+      .subscribe((data: any) => {
+        this.systemTypes = data.systemTypeDTOs;
+      }, error => { console.log(error); });
+
+
+  }
+
+
+
+ selectSystem(systemTypeId) {
+
+    if (systemTypeId === 'Choose...' || systemTypeId === "") {
+      
+      this.sysTypes= [];
+    }
+    else {
+ 
+      UtilService.sysId = systemTypeId;
+      this._apiservice.getSolOnTypeForReports(systemTypeId)
+        .subscribe((data: any) => {
+          this.sysTypes = data.solutionDTOs;
+        }, error => { console.log(error) });
+    }
+
+
+
+  }
+
+
+
+
+
+
   getAllMOUs() {
     this._apiservice.getAllMOUs().
       subscribe((data: any) => {
@@ -59,13 +100,6 @@ export class ReportsComponent implements OnInit {
       );
 
   }
-
-
-
-
-
-
-
 
 
 

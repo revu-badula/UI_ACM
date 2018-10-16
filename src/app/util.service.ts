@@ -9,6 +9,7 @@ static systemName:string;
 static policyGrpId: number;
 static auditId: number;
 static showTab:boolean;
+static sysId:number;
 static disabled: boolean = true;
 static popModal:boolean = false;
 static active:boolean;

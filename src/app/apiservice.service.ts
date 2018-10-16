@@ -365,5 +365,12 @@ getDatabases(){
       .map(res => <Response>res.json());
   }
 
+  getSolOnTypeForReports(systemTypeId){
+    let url = APP_CONFIG.getSolOnTypeForReports;
+    return this._httpService.get(url + '?' + 'systemTypeId' + '=' + systemTypeId)
+      .map(res => <Response>res.json())
+
+  }
+
 
 }
