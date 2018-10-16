@@ -140,6 +140,7 @@ export class FormsComponent implements OnInit {
         city: '',
         state: '',
         zipcode: ['', Validators.required]
+          
 
       }),
       vendorContact: this.fb.group({
