@@ -14,9 +14,20 @@
     margin-left: 2px;
 }
 
-th{
+th,td{
 	text-align: center!important;
 }
+
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #f8f9fa;
+    opacity: 1;
+}
+
+
+
+
+
 
 .btn {
     float: right;

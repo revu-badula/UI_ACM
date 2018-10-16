@@ -239,7 +239,7 @@
 					<tbody>
 						<tr *ngFor="let day of locality.workHoursDTOs;let i = index;">
 							<th>{{day.day}}</th>
-							<td><label for="appt-time">Time</label> <input type="time" id="{{day.openTm}}" name="{{day.openTm}}" [(ngModel)]="day.openTm"
+							<td><label for="appt-time">Time</label> <input type="time" id="{{day.openTm}}"  name="{{day.openTm}}" [(ngModel)]="day.openTm"
 								 [ngModelOptions]="{standalone:true}" min="9:00" max="18:00" required (input)="time = $event.target.value" />
 								To <label for="appt-time"></label> <input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00"
 								 max="18:00" [(ngModel)]="day.closeTm" [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" /></td>

@@ -126,6 +126,7 @@ export class LocalityDetailsComponent implements OnInit {
           for (let day in this.daysArray) {
             this.workHours = new WorkHours();
             this.workHours.day = this.daysArray[day];
+          
             this.locality.workHoursDTOs.push(this.workHours);
 
           }

@@ -1,4 +1,20 @@
-i.fa {
+
+.dollar{
+	
+	position: relative;
+	}
+.dollar input{
+	padding-left:15px;
+	}
+.dollar:before {
+	position: absolute;
+    content:"$";
+    left:5px;
+	top:6.5px;
+ 	}
+ 	
+ 	
+ 	i.fa {
     text-decoration: none !important;
     padding: 5px 4px;
      color: #3A539B;
