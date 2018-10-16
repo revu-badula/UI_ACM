@@ -62,7 +62,7 @@
                     <div class="asterisk">*</div>
                     <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
                         minlength="12" maxlength="12" id="phonenumber" (change)="getNumber($event.target.value)"
-                        required formControlName="phoneNumber">
+                        required formControlName="phoneNumber" onlyInteger>
                 </div>
             </div>
         </div>
@@ -141,9 +141,13 @@
                 <div class="form-group col-md-6">
                     <label for="inputZip">Zip Code</label>
                     <div class="asterisk">*</div>
-                    <input type="number" class="form-control"   pattern="[0-9]{5}" placeholder="00000" id="inputZip"
-                        formControlName="zipcode">
-                </div>
+                    <input type="text" class="form-control"   maxlength=5 minlength=5 placeholder="00000" id="inputZip"
+                        formControlName="zipcode" appOnlyInteger>
+                      
+                    <div style="color:red;" *ngIf="editVendorForm.controls.vendorAddress.get('zipcode').errors && editVendorForm.controls.vendorAddress.get('zipcode').dirty">
+                        ZipCode must be 5 numbers!
+                    </div>
+                    </div>
             </div>
         </div>
         <div class="buttons">
