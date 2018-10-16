@@ -150,8 +150,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="licenceRenewalDate">License Renewal Date</label>
-                
-                     <my-date-picker name="lrenew" [(ngModel)]="renDate" placeholder="mm/dd/yyyy" (dateChanged)="getRenDate($event)"></my-date-picker>
+                    <div class="asterisk">*</div>
+                     <my-date-picker ngModel name="lrenew" [(ngModel)]="renDate" placeholder="mm/dd/yyyy" (dateChanged)="getRenDate($event)" required></my-date-picker>
                 </div>
                 
                 <div class="form-group col-md-6">

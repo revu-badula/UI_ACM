@@ -227,7 +227,9 @@
 		<div>
 			<h4>Voting System Test Laboratory - VSTL</h4>
 			<div class="certification-test form-group col-md-6">
-				<label for="label-form labVendor"><b>Lab Vendor</b></label> <input type="text" class="form-control" id="labVendor"
+				<label for="label-form labVendor"><b>Lab Vendor</b></label>
+				  <div class="asterisk">*</div>
+				 <input type="text" class="form-control" id="labVendor"
 				 *ngIf="showForm" [(ngModel)]="solution.labVendorsDTO.name" [name]="'lab_name'">
 				<select class="form-control" id="labVendor" ngModel name="labVendor" *ngIf="!showForm" [(ngModel)]="solution.labVendorsDTO.labVendorId"
 				 (change)="solution.labVendorsDTO.labVendorId = $event.target.value" required>

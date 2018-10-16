@@ -50,18 +50,27 @@
 <div class="policy-add" *ngIf="policyEntity">
 	<div class="forms">
 		<div class="form-row">
-			<div class="installation form-group">
-			<label for="policyName"><b>Policy Name</b></label><div class="asterisk">*</div>
+		<div class="form-group col-md-6">
+			<label for="policyName"><b>Policy Name</b></label>
+			<div class="asterisk" style="color:red">*</div>
             <input type="text" class="display form-control" id="policyName" formControlName="policyName"  required>
-            <label class="hosting-notes" for="policyDescription"><b>Policy Description</b></label></div> 
+           </div>
+</div>
+            <div class="form-row">
+		<div class="form-group col-md-6">
+            <label class="hosting-notes" for="policyDescription"><b>Policy Description</b></label>
+            <div class="asterisk" style="color:red">*</div></div> 
             <textarea cols="156" rows="7" id="policyDescription" required formControlName="policyDescription"></textarea>
           </div>
-		</div>
-	<div class="buttons">
+          
+          <div class="buttons">
          	
         	<button type="submit" class="submit btn btn-primary" [disabled]="policyGroupForm.invalid">Submit</button>
         	<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
         </div>
+          
+		</div>
+	
 	</div>
 </form>
 
