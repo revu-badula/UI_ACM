@@ -125,13 +125,14 @@
 			</div>
 
 
-			<div class="form-row">
+		 <div class="form-row">
 				<div class="form-group col-md-6">
 					<label class="label-form" for="systemType"><b>System
 							Type</b></label>
 			<div class="asterisk">*</div> 
 					<select id="modelSolution"  class="form-control" 
-				 ngModel name="system" required>
+				 ngModel name="system" required (change)="selectSystem($event.target.value)">
+				
 					<option *ngFor="let systemType of systemTypes" value="{{ systemType.systemTypeId }}">{{systemType.name}}</option>
 
 				</select>
@@ -145,8 +146,15 @@
 					   <option *ngFor="let sysType of  sysTypes" value="{{ sysType.solutionId }}">{{ sysType.name }}</option>
 					</select>
 				</div>
-			</div>
+			</div>  
+
+
+
+
+
+<!--////////////////////////////////////////////////////////////// -->
 		
+<!-- ////////////////////////////////////////////////////////////// -->	
 			
 	</form>
 </div>

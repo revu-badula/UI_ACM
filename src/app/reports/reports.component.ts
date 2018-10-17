@@ -2,9 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../apiservice.service';
 import { Http } from '@angular/http';
 import { UtilService } from '../util.service';
-import { IMyDate, IMyDpOptions } from 'mydatepicker';
+import { ApplicationSolution, SolutionsDTO, Vendor, Device, HostingType, SystemType } from '../data_model_lsolutions';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Solution } from '../data_model';
+
+
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
+
+import { formatDate } from '@angular/common';
+import { Cookie } from 'ng2-cookies';
+
 
 
 @Component({
@@ -18,8 +27,56 @@ export class ReportsComponent implements OnInit {
   public Localities: any;
   public p:number=1;
   public desc:boolean=false;
-    systemTypes: any;
+  public names: any;
+  //  systemTypes: any;
     sysTypes:any;
+
+    ////////////
+    public vendor: Vendor;
+  precinctTypes: any;
+  systemTypes: any;
+  solutions: SolutionsDTO;
+  applicationSolution: ApplicationSolution;
+  solution: Solution;
+  device: Device;
+  editableForm: boolean = true;
+  public showButton: boolean = true;
+
+  hostingnames: any;
+  public precinctTypeId: number;
+  public modelSname: string;
+  public solutionId: number;
+  public appId: any;
+
+  public appSolutions: any;
+  public appSolutionId: any;
+  public appSolutionDevice: any;
+  public hostingTypeId: any;
+  public solutionTypeName: any;
+  public versionNumber: any;
+  public vendors: any;
+  public showPrecinct: any;
+  public showText: any;
+  contentData: string = "";
+  public devices: any;
+  public deviceId: any;
+  public isVisible = false;
+  public showLegal = false;
+  public showInnerForm = false;
+  public isAddNewSolution = false;
+  public notVisible = false;
+  public boxVisible = false;
+  public editForm: boolean = true;
+  public acronym: any;
+  public updatedTime: any;
+  public loading: boolean = false;
+  public sysName: any;
+  public isClick: boolean = true;
+  public showBuck: boolean = true;
+  public hostType: any;
+  public showPlus: boolean=true;
+
+    //////////////////////
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -49,8 +106,6 @@ export class ReportsComponent implements OnInit {
   }
 
 
-
-
  showDropdown() {
 
       this._apiservice.getSolutionsOnload()
@@ -58,33 +113,23 @@ export class ReportsComponent implements OnInit {
         this.systemTypes = data.systemTypeDTOs;
       }, error => { console.log(error); });
 
-
   }
 
+  selectSystem(systemTypeId) {
 
-
- selectSystem(systemTypeId) {
-
-    if (systemTypeId === 'Choose...' || systemTypeId === "") {
-      
-      this.sysTypes= [];
-    }
-    else {
+  
  
-      UtilService.sysId = systemTypeId;
-      this._apiservice.getSolOnTypeForReports(systemTypeId)
+    UtilService.sysId = systemTypeId;
+    this._apiservice.getSolOnTypeForReports(systemTypeId)
         .subscribe((data: any) => {
-          this.sysTypes = data.solutionDTOs;
-        }, error => { console.log(error) });
-    }
+        this.sysTypes = data.solutionDTOs;
+        console.log(this.sysTypes.name);
+      }, error => { console.log(error) });
+   
 
 
 
   }
-
-
-
-
 
 
   getAllMOUs() {
@@ -100,6 +145,115 @@ export class ReportsComponent implements OnInit {
       );
 
   }
+
+  //////////////////////////////////////////////
+
+
+ 
+
+  // selectModSolution(solutionId) {
+  //   if(solutionId === "")
+  //   {
+
+  //   }
+  //   else{
+  //   this.solutionId = solutionId;
+  //   this.loading = true;
+  //   this._apiservice.getSolutionExtra(solutionId)
+  //     .subscribe((data: any) => {
+  //       this.loading = false;
+  //       this.showInnerForm = true;
+  //       this.solution = data;
+  //       this.applicationSolution.solutionsDTO.name=this.solution.name;
+        
+
+
+
+
+  //     }, error => {
+  //       this.loading = false;
+  //       console.log(error);
+  //     });
+  //   }
+
+  // }
+
+
+ 
+
+ 
+
+
+
+
+  
+
+  
+  // selectSystemType(id) {
+
+  //   if (id === 'Choose...' || id === "") {
+  //     this.names = [];
+  //   } else {
+  //     this.selectBox(id);
+  //   }
+
+  // }
+
+  // selectForm(solutionId) {
+
+  //   if (solutionId === 'Choose...') {
+
+  //   }
+  //   else {
+  //     //this.loading = true;
+  //     this._apiservice.getSolution(solutionId)
+  //       .subscribe((data: any) => {
+  //         //this.loading = false;
+  //       }, error => {
+  //         //this.loading = false;
+  //         console.log(error);
+  //       });
+
+
+  //   }
+
+  // }
+
+
+  // selectBox(systemType) {
+
+  //   if (systemType === 'Choose...') {
+  //     this.names = [];
+
+  //   }
+  //   else {
+
+  //     this._apiservice.getSolOnTypeForReports(systemType)
+  //       .subscribe((data: any) => {
+  //         this.names = data.solutionsDTOs;
+  //       }, error => {
+
+  //         console.log(error);
+  //       });
+  //   }
+  // }
+
+  
+
+  // close(event) {
+  //   event.preventDefault();
+  //   this.router.navigate(['/locality/tab/solutions']);
+  // }
+
+  // getHostingType(value) {
+  //   if (value === 'Choose...') {
+
+  //   }
+   
+
+  // }
+
+  ////////////////////////////////////////////////
 
 
 
