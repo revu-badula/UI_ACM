@@ -108,11 +108,6 @@ table thead tr td{
   background-color: #EEEEEE;
 }
 
-*{
-  box-sizing: border-box;
-  margin: 0;
-  /* padding: 0;*/
-}
 
 .navigate{
   margin: 15px;
