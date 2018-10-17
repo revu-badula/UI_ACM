@@ -55,14 +55,7 @@ export class FormsComponent implements OnInit {
 
 
   getNumber(value) {
-    if (value.length === 12) {
-      this.editVendorForm.patchValue({
-        vendorContact: {
-          phoneNumber: value
-        }
-      });
-    }
-    else {
+    if (value.length === 10) {
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -72,6 +65,14 @@ export class FormsComponent implements OnInit {
       this.editVendorForm.patchValue({
         vendorContact: {
           phoneNumber: phm
+        }
+      });
+
+    }
+    else {
+      this.editVendorForm.patchValue({
+        vendorContact: {
+          phoneNumber: value
         }
       });
     }

@@ -112,8 +112,7 @@ import { OnlyInteger } from './integer';
     ReportsComponent,
     SignedPipe,
     DialogComponent,
-    CustomCurrencyPipe,
-    OnlyInteger
+    CustomCurrencyPipe
 
 
   ],
