@@ -14,6 +14,27 @@
     </div>
 </ng-template>
 <app-edit-navigation (editClick)="editClicked($event)" (cancelClick)="cancelButton()"></app-edit-navigation>
+<div class="former">
+  
+      <div class="form-row">
+        <div class="form-group col-md-6">
+  
+          <label for="inputState">Last updated by</label>
+          <div class="asterisk">*</div>
+          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last updated date</label>
+          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+        </div>
+      </div>
+  
+ </div>
+
+
+
+
+
 <div class="form-div">
     <form class="forms" [formGroup]="editVendorForm" (ngSubmit)="createVendor(editVendorForm.value)">
         <div class="page-description">

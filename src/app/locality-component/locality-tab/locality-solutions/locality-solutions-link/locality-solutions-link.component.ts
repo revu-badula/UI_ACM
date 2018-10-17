@@ -25,9 +25,31 @@ export class LocalitySolutionsLinkComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-  viewApplication(local) {
+  
+  
+  
+ /* getAppId() {
+    this.loading = true;
+    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.acronym = data.applicationViewDTO.acronym;
+        let d = new Date(data.applicationViewDTO.updatedTime);
+        let day = d.getDate();
+        let month = d.getMonth() + 1;
+        let year = d.getFullYear();
+        this.updatedTime = month + "/" + day + "/" + year;
+        this.getAppMOUs(data.applicationViewDTO.applicationId);
+      }, error => {
+        this.loading = false;
+      console.log(error);
+      }
+    );
+  }*/
+  
+  
+  
+viewApplication(local) {
     this.loading = true;
     this._apiservice.viewApplication(local)
       .subscribe((data: any) => {

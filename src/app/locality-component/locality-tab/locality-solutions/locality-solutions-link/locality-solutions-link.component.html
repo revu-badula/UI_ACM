@@ -1,6 +1,60 @@
 <div class="my-container">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
+
+  <div class="former">
+  
+      <div class="form-row">
+        <div class="form-group col-md-6">
+  
+          <label for="inputState">Acronym</label>
+          <div class="asterisk">*</div>
+          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last updated by</label>
+          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+        </div>
+      </div>
+  
+  
+  
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="lastName">Name</label>
+          <div class="asterisk">*</div>
+          <input type="text" class="form-control" id="lastName" value="enter here">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Updated at</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+      </div>
+  
+  
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="plus">
 
     <i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="selectLocality()"></i>

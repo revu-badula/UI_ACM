@@ -5,7 +5,6 @@
 
 
 
-
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
 
   <div class="form-options">
@@ -61,6 +60,30 @@
 </ng-template>
 
 <div>
+
+
+
+<div class="former">
+  
+      <div class="form-row">
+        <div class="form-group col-md-6">
+  
+          <label for="inputState">Last updated by</label>
+          <div class="asterisk">*</div>
+          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last updated date</label>
+          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+        </div>
+      </div>
+  
+ </div>
+
+
+
+
+
 
 
   <form class="form" (ngSubmit)="updateDevice()" enctype="multipart/form-data" #editForm="ngForm">
