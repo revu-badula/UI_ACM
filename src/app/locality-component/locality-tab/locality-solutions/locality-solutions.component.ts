@@ -66,13 +66,13 @@ export class LocalitySolutionsComponent implements OnInit {
     this.isOverlayVisible = false;
 
 
-    this.viewApplication(localStorage.getItem('localityName'));
+    //this.viewApplication(localStorage.getItem('localityName'));
   }
 
   ngOnInit() {
 
     this.createForm();
-    this.showPrecinctType();
+    //this.showPrecinctType();
   }
 
   createForm() {

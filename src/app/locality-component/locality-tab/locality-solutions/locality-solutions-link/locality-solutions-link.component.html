@@ -2,37 +2,37 @@
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
-  <div class="former">
-  
-      <div class="form-row">
+<div class="former">
+
+    <div class="form-row">
         <div class="form-group col-md-6">
-  
-          <label for="inputState">Acronym</label>
-          <div class="asterisk">*</div>
-          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+
+            <label for="inputState">Acronym</label>
+            <div class="asterisk">*</div>
+            <input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
         </div>
         <div class="form-group col-md-6">
-          <label for="lastName">Last updated by</label>
-          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+            <label for="lastName">Last updated by</label>
+            <input type="text" class="form-control" id="lastName" value="{{updatedTime}}" readonly="readonly">
         </div>
-      </div>
-  
-  
-  
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="lastName">Name</label>
-          <div class="asterisk">*</div>
-          <input type="text" class="form-control" id="lastName" value="enter here">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="email">Updated at</label>
-          <input type="email" class="form-control" id="email">
-        </div>
-      </div>
-  
-  
     </div>
+
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="lastName">Name</label>
+            <div class="asterisk">*</div>
+            <input type="text" class="form-control" id="lastName" value="enter here">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="updatedAt">Updated at</label>
+            <input type="text" class="form-control" id="email">
+        </div>
+    </div>
+
+
+</div>
 
 
 
@@ -74,10 +74,12 @@
                         class="fa fa-arrow-up" *ngIf="des"></i></th>
                 <th scope="col" (click)="handleSorting()">Equipment Type<i class="fa fa-arrow-down" *ngIf="!dec"></i>
                     <i class="fa fa-arrow-up" *ngIf="dec"></i></th>
-                <th scope="col"  (click)="handleSorting1()">Precinct Type
-                        <i class="fa fa-arrow-down" *ngIf="!precinctType"></i>
-                        <i class="fa fa-arrow-up" *ngIf="precinctType"></i>
+                <th scope="col" (click)="handleSorting1()">Precinct Type
+                    <i class="fa fa-arrow-down" *ngIf="!precinctType"></i>
+                    <i class="fa fa-arrow-up" *ngIf="precinctType"></i>
                 </th>
+                <th>Last UpdatedBy</th>
+                <th>Last Updated Date</th>
             </tr>
         </thead>
         <tbody>
@@ -89,6 +91,8 @@
                 <td> {{ appsolution.solutionsDTO.vendor.name}}</td>
                 <td>{{ appsolution.solutionsDTO.solutionTypeName}}</td>
                 <td>{{ appsolution.solutionsDTO.precinctTypeName}}</td>
+                <td>{{ appsolution.updatedBy}}</td>
+                <td>{{appsolution.updatedTs | filterDate | date:'MM/dd/yyyy'}}</td>
             </tr>
         </tbody>
 

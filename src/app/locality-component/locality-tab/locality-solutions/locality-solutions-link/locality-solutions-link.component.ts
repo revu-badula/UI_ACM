@@ -17,6 +17,8 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   public dec: boolean = false;
   public precinctType: boolean = false;
   public p: number = 1;
+  public acronym: any;
+  public updatedTime: any;
   public showPagination: boolean = true;
   constructor(private _apiservice: ApiserviceService, private router: Router, private utilService: UtilService) {
     this.viewApplication(localStorage.getItem('localityName'));
@@ -54,7 +56,12 @@ viewApplication(local) {
     this._apiservice.viewApplication(local)
       .subscribe((data: any) => {
         this.loading = false;
-
+        this.acronym = data.applicationViewDTO.acronym;
+        let d = new Date(data.applicationViewDTO.updatedTime);
+        let day = d.getDate();
+        let month = d.getMonth() + 1;
+        let year = d.getFullYear();
+        this.updatedTime = month + "/" + day + "/" + year;
         if (data.applicationViewDTO.applicationSolutionDTOs === undefined) {
           this.showPagination = false;
           this.appSolutions = [];

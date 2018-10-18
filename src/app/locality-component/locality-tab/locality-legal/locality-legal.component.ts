@@ -46,7 +46,7 @@ export class LocalityLegalComponent implements OnInit {
     private  http: Http,private modalService: NgbModal,private utilservice: UtilService,
   private router: Router) { 
   this.mou = new Mou();
-  this.getAppId(); 
+  //this.getAppId(); 
   this.files = [] as File[];
    
  }

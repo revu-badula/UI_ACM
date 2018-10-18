@@ -49,7 +49,7 @@
     <p>Documents has been updated</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+    <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
   </div>
 </ng-template>
 <form (ngSubmit)="submitDocument()">
@@ -71,9 +71,9 @@
     <!-- 						</table> -->
 
     <!--             </div> -->
-    <label class="hosting-notes" for="policyResources"><b>Policy Resources</b></label><!-- <div class="asterisk-inline asterisk">*</div> -->
-    <textarea cols="156" rows="7" id="Policy Resources" ngModel name="policyResources" [(ngModel)]="policyGrpData.resourceLinks"
-      [name]="'resource_links'" *ngIf="!plus" required></textarea>
+    <!-- <label class="hosting-notes" for="policyResources"><b>Policy Resources</b></label><div class="asterisk-inline asterisk">*</div> -->
+    <!-- <textarea cols="156" rows="7" id="Policy Resources" ngModel name="policyResources" [(ngModel)]="policyGrpData.resourceLinks"
+      [name]="'resource_links'" *ngIf="!plus" required></textarea> -->
   </div>
   <div class="display-file">
 
