@@ -189,10 +189,7 @@ export class DeviceComponent implements OnInit {
 
 
   getNumber1(value) {
-    if (value.length === 12) {
-      this.serverContact1.phoneNumber = value;
-    }
-    else {
+     if (value.length === 10) {
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -201,7 +198,9 @@ export class DeviceComponent implements OnInit {
       let phm = pn + pn2 + d3;
       this.serverContact1.phoneNumber = phm;
     }
-
+else {
+      this.serverContact1.phoneNumber = value;
+    }
   }
 
 

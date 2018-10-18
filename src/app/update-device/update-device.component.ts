@@ -260,10 +260,8 @@ export class UpdateDeviceComponent implements OnInit {
 
 
   getNumber(value) {
-    if (value.length === 12) {
-      this.serverContact.phoneNumber = value;
-    }
-    else {
+    if (value.length === 10) {
+     
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -272,15 +270,15 @@ export class UpdateDeviceComponent implements OnInit {
       let phm = pn + pn2 + d3;
       this.serverContact.phoneNumber = phm;
     }
-
+else{
+  this.serverContact.phoneNumber = value;
+}
   }
 
 
   getNumber1(value) {
-    if (value.length === 12) {
-      this.serverContact1.phoneNumber = value;
-    }
-    else {
+    if (value.length === 10) {
+    
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -289,7 +287,9 @@ export class UpdateDeviceComponent implements OnInit {
       let phm = pn + pn2 + d3;
       this.serverContact1.phoneNumber = phm;
     }
-
+else{
+  this.serverContact1.phoneNumber = value;
+}
   }
 
 
