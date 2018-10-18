@@ -81,6 +81,8 @@ export class PolicyDocumentsDTO{
 	createdTs: any;
 	updatedBy: string;
 	updatedTs: any;
+	policyGrpId: any;
+	fileContent:any;
 	}
   
 export class PolicyReviewTerm{

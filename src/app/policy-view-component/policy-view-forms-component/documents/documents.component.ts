@@ -1,12 +1,14 @@
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { Policy, PolicyDocumentsDTO, PolicyGrp } from '../../../data_modelPolicy';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { APP_CONFIG } from '../../../app.config';
 import { UtilService } from '../../../util.service';
 import { ApiserviceService } from '../../../apiservice.service';
-declare var swal: any; ''
+import { Cookie } from 'ng2-cookies';
+declare var swal: any; '';
+import { DialogService } from '../../../dialog.service';
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -14,8 +16,10 @@ declare var swal: any; ''
 })
 export class DocumentsComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
+  @ViewChild('content') content: TemplateRef<any>;
   plus = true;
-  policyDocumentDTO: PolicyDocumentsDTO[];
+  policyDocumentDTO: PolicyDocumentsDTO;
+  policyDocumentsDTO: any;
   files: File[] = [];
   policyGrpData: PolicyGrp;
   policyDocumentDTOobj: any;
@@ -23,11 +27,12 @@ export class DocumentsComponent implements OnInit {
   public fetchPolicyDocuments: any;
   public loading: boolean = false;
 
-  constructor(private modalService: NgbModal, private http: Http, private utilservice: UtilService, private _apiservice: ApiserviceService) {
+  constructor(private modalService: NgbModal, private http: Http, private utilservice: UtilService, 
+    private _apiservice: ApiserviceService, private dialogService: DialogService) {
     this.policyGrpData = new PolicyGrp();
-    this.policyDocumentDTO = [];
     this.files = [] as File[];
-   
+    this.policyDocumentDTO = new PolicyDocumentsDTO();
+
 
   }
 
@@ -48,6 +53,7 @@ export class DocumentsComponent implements OnInit {
       backdrop: 'static',
       keyboard: false
     };
+    this.policyDocumentDTO = new PolicyDocumentsDTO();
     const modalRef = this.modalService.open(upload, ngbModalOptions);
     // modalRef.result.then((result) => {
 
@@ -64,33 +70,61 @@ export class DocumentsComponent implements OnInit {
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
         this.loading = false;
-        
-        if(data.policyDocumentsDTOs === null)
-        {
-          this.fetchPolicyDocuments=[];
-        }
-        else{
-          this.fetchPolicyDocuments = data.policyDocumentsDTOs;
-        }
+        this.policyDocumentsDTO = data.policyDocumentsDTOs;
+
       }, error => console.log(error));
 
   }
 
   createPolicyDocumentDTO(fileInput: any) {
-
-    this.policyDocumentDTOobj = new PolicyDocumentsDTO();
-
-    this.policyDocumentDTOobj.documentName = fileInput.target.files[0].name;
-    this.policyDocumentDTOobj.activeFlag=true;
-    this.files.push(fileInput.target.files[0]);
-    if (this.policyDocumentDTO == null) {
-      this.policyDocumentDTO = [];
+    let files = fileInput.target.files[0];
+    if (files === undefined) { }
+    else {
+      if (this.policyDocumentsDTO === null) {
+        this.policyDocumentsDTO=[];
+        this.policyDocumentDTO = new PolicyDocumentsDTO();
+        this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
+        this.policyDocumentDTO.activeFlag = true;
+        this.policyDocumentDTO.policyGrpId = UtilService.policyGrpId;
+        this.policyDocumentDTO.createdBy = Cookie.get('userName');
+        this.getFileContent(fileInput.target.files[0])
+          .then(
+            data =>
+              this.policyDocumentDTO.fileContent = data);
+        this.policyDocumentsDTO.push(this.policyDocumentDTO);
+      }
+      else{
+        this.policyDocumentDTO = new PolicyDocumentsDTO();
+        this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
+        this.policyDocumentDTO.activeFlag = true;
+        this.policyDocumentDTO.policyGrpId = UtilService.policyGrpId;
+        this.policyDocumentDTO.createdBy = Cookie.get('userName');
+        this.getFileContent(fileInput.target.files[0])
+          .then(
+            data =>
+              this.policyDocumentDTO.fileContent = data);
+        this.policyDocumentsDTO.push(this.policyDocumentDTO);
+      }
     }
 
-    this.policyDocumentDTO.push(this.policyDocumentDTOobj);
-   
-  
-    
+
+  }
+
+
+  getFileContent(file) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        resolve(reader.result)
+
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+
+
   }
 
 
@@ -122,26 +156,27 @@ export class DocumentsComponent implements OnInit {
 
 
   deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
-            let length = this.fetchPolicyDocuments.length;
+            let length = this.policyDocumentsDTO.length;
             if (length === 1) {
-              this.fetchPolicyDocuments = []; //a,b,c,d,f = [2] =[3]
+              this.policyDocumentsDTO = []; //a,b,c,d,f = [2] =[3]
             }
             else {
               for (let i = index; i < length; i++) {
-                this.fetchPolicyDocuments[i] = this.fetchPolicyDocuments[i + 1];
+                this.policyDocumentsDTO[i] = this.policyDocumentsDTO[i + 1];
               }
-              this.fetchPolicyDocuments.splice(length - 1, 1);
+              this.policyDocumentsDTO.splice(length - 1, 1);
             }
 
           }
           else {
-            for (let i = 0; i < this.fetchPolicyDocuments.length; i++) {
-              if (this.fetchPolicyDocuments[i].policyDocId === id) {
-                this.fetchPolicyDocuments[i].activeFlag = false;
+            for (let i = 0; i < this.policyDocumentsDTO.length; i++) {
+              if (this.policyDocumentsDTO[i].policyDocId === id) {
+                this.policyDocumentsDTO[i].activeFlag = false;
+                this.policyDocumentsDTO[i].updatedBy = Cookie.get('userName');
               }
             }
           }
@@ -151,13 +186,6 @@ export class DocumentsComponent implements OnInit {
         console.log(error);
       });
   }
-
-
-
-
-
-
-
 
 
   getPolicyDocumentAttch(id) {
@@ -170,7 +198,7 @@ export class DocumentsComponent implements OnInit {
   transferDocument() {
     this.showDocument = true;
     //let data =JSON.stringify(this.policyDocumentDTO);
-    this.fetchPolicyDocuments.push(this.policyDocumentDTOobj);
+    //this.fetchPolicyDocuments.push(this.policyDocumentDTOobj);
     //console.log(this.fetchPolicyDocuments);
   }
 
@@ -181,19 +209,32 @@ export class DocumentsComponent implements OnInit {
 
 
   submitDocument() {
-
+    this.loading=true;
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
     this.policyGrpData.policyGrpId = UtilService.policyGrpId;
     let url = APP_CONFIG.uploadPolicyDocuments;
-    let policyDocumentsData = new FormData();
+    // let policyDocumentsData = new FormData();
 
-    for (let i = 0; i < this.files.length; i++) {
-      policyDocumentsData.append('files', this.files[i]);
+    // for (let i = 0; i < this.files.length; i++) {
+    //   policyDocumentsData.append('files', this.files[i]);
 
-    }
-    policyDocumentsData.append('policy', JSON.stringify(this.policyGrpData));
-
-    this.http.post(url, policyDocumentsData).subscribe((data: any) => {
-    }, error => console.log(error));
+    // }
+    // // for (let i = 0; i < this.policyDocumentDTO.length; i++) {
+    // policyDocumentsData.append('policy', JSON.stringify(this.policyDocumentDTO));
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    let data = JSON.stringify(this.policyDocumentsDTO);
+    this.http.post(url, data, options).subscribe((data: any) => {
+      this.loading=false;
+      this.modalService.open(this.content, ngbModalOptions)
+    }, error => {
+      this.loading=false;
+      console.log(error);
+    });
   }
 
 }
