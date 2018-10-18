@@ -1,4 +1,22 @@
 <app-navigation-component></app-navigation-component>
+<div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
+	<!-- <div class="home">
+			<i class="fas fa-home home-icon icons"></i>
+			< class="fas fa-arrow-left left-icon icons"></i>
+	</div> -->
+	<div class="form-options">
+			<div class="home-back">
+				<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
+				<a href="javascript:void(0)" routerLink="/dashboard"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
+			</div>
+			
+			<!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
+	</div>
+</div> 
+
+
+
+
 <div class="center">
 	<form class="former">
 	<div class="dashboard">
@@ -88,7 +106,7 @@
 			</div>
 		</div>
 		
-		<br> <br> <br> <br>
+		<br> 
 
 
 
@@ -123,8 +141,10 @@
 				</table>
 				<pagination-controls (pageChange)="p = $event"></pagination-controls>
 			</div>
+			</form>
+			</div>
 
-
+<form class="former">
 		 <div class="form-row">
 				<div class="form-group col-md-6">
 					<label class="label-form" for="systemType"><b>System
@@ -132,7 +152,7 @@
 			<div class="asterisk">*</div> 
 					<select id="modelSolution"  class="form-control" 
 				 ngModel name="system" required (change)="selectSystem($event.target.value)">
-				
+				<option>Choose...</option>
 					<option *ngFor="let systemType of systemTypes" value="{{ systemType.systemTypeId }}">{{systemType.name}}</option>
 
 				</select>
@@ -140,21 +160,68 @@
 				<div class="model form-group col-md-6">
 					<label class="label-form" for="modelSolution"><b>Model/Solution</b></label>
 					<div class="asterisk">*</div>
-					<select class="form-control" id="system" 
+					<select class="form-control" id="system" (change)="selectSolution($event.target.value)"
 						name="system" required>
-						<option>Choose</option>
+						<option>Choose...</option>
 					   <option *ngFor="let sysType of  sysTypes" value="{{ sysType.solutionId }}">{{ sysType.name }}</option>
 					</select>
 				</div>
 			</div>  
 
 
+</form>
 
 
 
-<!--////////////////////////////////////////////////////////////// -->
-		
-<!-- ////////////////////////////////////////////////////////////// -->	
 			
-	</form>
-</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="former clear-right">
+<form class="former">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Localities <i class="fa fa-arrow-down"
+								*ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+
+
+							<th scope="col">System Type</th>
+							<th scope="col">Precinct Type</th>
+							<th scope="col">Model/Solution</th>
+							<th scope="col">Vendor Name</th>
+							<th scope="col">Version</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						<tr
+							*ngFor="let local of Locals |  paginate: { itemsPerPage: 10, currentPage: p }">
+							<td><a class="box" 
+								style="cursor: pointer;">{{local}}</a></td>
+
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+
+
+						</tr>
+					</tbody>
+				</table>
+				<pagination-controls (pageChange)="p = $event"></pagination-controls>
+				</form>
+			</div>

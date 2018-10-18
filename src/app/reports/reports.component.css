@@ -34,12 +34,10 @@ h1{
 }
 
 .dashboard{
-    width: 100%;
+
     margin-top: 50px;
-    margin-left: 5%;
-    /*position: absolute;
-    top: 25%;
-    left: 5%;*/
+    margin-left: 12%;
+  
 }
 
 .card{
@@ -650,11 +648,7 @@ transform:rotate(attr(data-value,deg,0);
     background-color: #EEEEEE;
   }
   
-  *{
-    box-sizing: border-box;
-    margin: 0;
-    /* padding: 0;*/
-  }
+ 
   
   .navigate{
     margin: 15px;

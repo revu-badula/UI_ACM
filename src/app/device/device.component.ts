@@ -170,6 +170,7 @@ export class DeviceComponent implements OnInit {
 
 
 
+
   getNumber(value) {
     if (value.length === 10) {
       let data = value.slice(0, 3);

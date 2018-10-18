@@ -373,4 +373,10 @@ getDatabases(){
   }
 
 
+getLocOnTypeForReports(solutionId){
+let url = APP_CONFIG.getLocOnTypeForReports;
+    return this._httpService.get(url + '?' + 'solutionId' + '=' + solutionId)
+      .map(res => <Response>res.json())
+}
+
 }

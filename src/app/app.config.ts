@@ -77,7 +77,8 @@ export const APP_CONFIG = {
   getPendingApplications: apiBaseUrl + 'getPendingApplications',
   getLocalityForView: apiBaseUrl + 'getLocalityForView',
   getAllMOUs: apiBaseUrl+'getAllMOUs',
-  getSolOnTypeForReports: apiBaseUrl+'getSolOnTypeForReports'
+  getSolOnTypeForReports: apiBaseUrl+'getSolOnTypeForReports',
+  getLocOnTypeForReports: apiBaseUrl+'getLocOnTypeForReports'
 }
 
 

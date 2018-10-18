@@ -133,89 +133,39 @@
 		</div>
 		<hr />
 		<h5>Other Information</h5>
+<label for="poll">Central Absentee Perceived(CAP)</label>
 
 		<div class="form-row">
 			<div class="form-group col-md-6">
-
-
-
-
-
-				<div class="toggle-group">
-					<label for="ons">
-						<span class="aural">Show:</span>Central Absentee Perceived(CAP)
-					</label>
-					<input type="checkbox" name="ons" id="ons" [(ngModel)]="locality.capInd" tabindex="1" [checked]="locality.capInd">
-
-
-					<div class="onoffswitch" aria-hidden="true">
-						<div class="onoffswitch-label">
-							<div class="onoffswitch-inner"></div>
-							<div class="onoffswitch-switch"></div>
-						</div>
-					</div>
-
-
-				</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+					<div class="can-toggle">
+  <input id="o" type="checkbox"  name="o" [(ngModel)]="locality.capInd"  [checked]="locality.capInd">
+  <label for="o">
+    <div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+    <div class="can-toggle__label-text"></div>
+  </label>
+</div>
 
 
 			</div>
 		</div>
 
 
+	<label for="poll">PollBook</label>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 
+		<div class="can-toggle">
+  <input id="g" type="checkbox"  name="g"[(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
+  <label for="g">
+    <div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+    <div class="can-toggle__label-text"></div>
+  </label>
+</div>
 
 
 
-
-
-				<div class="toggle-group">
-					<label for="on">
-						<span class="aural">Show:</span>Bail out
-					</label>
-
-					<input type="checkbox" id="on" name="on" tabindex="1" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
-					<div class="onoffswitch" aria-hidden="true">
-						<div class="onoffswitch-label">
-							<div class="onoffswitch-inner"></div>
-							<div class="onoffswitch-switch"></div>
-						</div>
-					</div>
-
-
-				</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-			</div>
 		</div>
+	</div> 
 
 		<hr />
 
@@ -268,94 +218,41 @@
 		<hr />
 
 		<label for="poll">PollBook</label>
-
+	
 
 		<br>
 
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<div class="toggle-group">
-					<label for="on-switch">
-						<span class="aural">Show:</span>Paper PollBook
-					</label>
-					<input type="checkbox" name="on-switch" id="on-switch" [(ngModel)]="locality.paperPollbook" tabindex="1" [checked]="locality.paperPollbook">
-
-					<div class="onoffswitch" aria-hidden="true">
-						<div class="onoffswitch-label">
-							<div class="onoffswitch-inner"></div>
-							<div class="onoffswitch-switch"></div>
-						</div>
-					</div>
-				</div>
+			
+			<div class="can-toggle">
+  <input id="e" type="checkbox"   name="e" [(ngModel)]="locality.paperPollbook"  [checked]="locality.paperPollbook">
+  <label for="e">
+    <div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+    <div class="can-toggle__label-text"></div>
+  </label>
+</div>
 
 
 			</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<label for="email">Electronic PollBook</label>
-
+	
 		<div class="form-row">
 			<div class="form-group col-md-6">
 
-
-				<div class="toggle-group">
-					<label for="on-off-switch">
-						<span class="aural">Show:</span>Electronic PollBook
-					</label>
-					<input type="checkbox" name="on-off-switch" id="on-off-switch" [(ngModel)]="locality.electronicPollbook" tabindex="1"
-					 [checked]="locality.electronicPollbook">
-
-
-					<div class="onoffswitch" aria-hidden="true">
-						<div class="onoffswitch-label">
-							<div class="onoffswitch-inner"></div>
-							<div class="onoffswitch-switch"></div>
-						</div>
-					</div>
-				</div>
-
-
-
-
-
-
-
-
-
-
+				<div class="can-toggle">
+  <input id="l" type="checkbox"  name="l" [(ngModel)]="locality.electronicPollbook" 
+					 [checked]="locality.electronicPollbook" >
+  <label for="l">
+    <div class="can-toggle__switch" data-checked="Yes" data-unchecked="No" ></div>
+    <div class="can-toggle__label-text" ></div>
+  </label>
+</div>
+	
 			</div>
 		</div>
 

@@ -25,10 +25,11 @@ export class ReportsComponent implements OnInit {
 
   public displayData: number;
   public Localities: any;
+  public Locals:any;
   public p:number=1;
   public desc:boolean=false;
   public names: any;
-  //  systemTypes: any;
+   
     sysTypes:any;
 
     ////////////
@@ -41,7 +42,7 @@ export class ReportsComponent implements OnInit {
   device: Device;
   editableForm: boolean = true;
   public showButton: boolean = true;
-
+  color: String;
   hostingnames: any;
   public precinctTypeId: number;
   public modelSname: string;
@@ -117,22 +118,51 @@ export class ReportsComponent implements OnInit {
 
   selectSystem(systemTypeId) {
 
-  
+   if (systemTypeId === 'Choose...' || systemTypeId === "") {
+      this.sysTypes = [];
+    }
+    else {
+    
  
     UtilService.sysId = systemTypeId;
     this._apiservice.getSolOnTypeForReports(systemTypeId)
         .subscribe((data: any) => {
-        this.sysTypes = data.solutionDTOs;
-        console.log(this.sysTypes.name);
+        this.sysTypes = data.solutionsDTOs;
       }, error => { console.log(error) });
-   
+   }
+ }
+ 
+ 
 
+ 
+ 
+ 
+ 
+ 
+ selectSolution(solutionId) {
 
-
+   if (solutionId === 'Choose...' || solutionId === "") {
+      this.Locals = [];
+    }
+    else {
+    UtilService.soluId = solutionId;
+  this._apiservice.getLocOnTypeForReports(solutionId)
+        .subscribe((data: any) => {
+         this.Locals = data;
+      }, error => { console.log(error) });
+   }
+ }
+ 
+   getColor() {
+    return this.color === 'online' ? '#ffffff' : 'white';
   }
-
-
-  getAllMOUs() {
+  getOpacity() {
+    return this.color === 'online' ? 0.8 : 1;
+  }
+ 
+ 
+ 
+ getAllMOUs() {
     this._apiservice.getAllMOUs().
       subscribe((data: any) => {
         this.Localities = data;
@@ -146,40 +176,12 @@ export class ReportsComponent implements OnInit {
 
   }
 
-  //////////////////////////////////////////////
+
 
 
  
 
-  // selectModSolution(solutionId) {
-  //   if(solutionId === "")
-  //   {
-
-  //   }
-  //   else{
-  //   this.solutionId = solutionId;
-  //   this.loading = true;
-  //   this._apiservice.getSolutionExtra(solutionId)
-  //     .subscribe((data: any) => {
-  //       this.loading = false;
-  //       this.showInnerForm = true;
-  //       this.solution = data;
-  //       this.applicationSolution.solutionsDTO.name=this.solution.name;
-        
-
-
-
-
-  //     }, error => {
-  //       this.loading = false;
-  //       console.log(error);
-  //     });
-  //   }
-
-  // }
-
-
- 
+  
 
  
 
@@ -189,72 +191,6 @@ export class ReportsComponent implements OnInit {
   
 
   
-  // selectSystemType(id) {
-
-  //   if (id === 'Choose...' || id === "") {
-  //     this.names = [];
-  //   } else {
-  //     this.selectBox(id);
-  //   }
-
-  // }
-
-  // selectForm(solutionId) {
-
-  //   if (solutionId === 'Choose...') {
-
-  //   }
-  //   else {
-  //     //this.loading = true;
-  //     this._apiservice.getSolution(solutionId)
-  //       .subscribe((data: any) => {
-  //         //this.loading = false;
-  //       }, error => {
-  //         //this.loading = false;
-  //         console.log(error);
-  //       });
-
-
-  //   }
-
-  // }
-
-
-  // selectBox(systemType) {
-
-  //   if (systemType === 'Choose...') {
-  //     this.names = [];
-
-  //   }
-  //   else {
-
-  //     this._apiservice.getSolOnTypeForReports(systemType)
-  //       .subscribe((data: any) => {
-  //         this.names = data.solutionsDTOs;
-  //       }, error => {
-
-  //         console.log(error);
-  //       });
-  //   }
-  // }
-
   
-
-  // close(event) {
-  //   event.preventDefault();
-  //   this.router.navigate(['/locality/tab/solutions']);
-  // }
-
-  // getHostingType(value) {
-  //   if (value === 'Choose...') {
-
-  //   }
-   
-
-  // }
-
-  ////////////////////////////////////////////////
-
-
 
 }
