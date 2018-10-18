@@ -13,7 +13,7 @@
         <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
     </div>
 </ng-template>
-<app-edit-navigation (editClick)="editClicked($event)" (cancelClick)="cancelButton()"></app-edit-navigation>
+<app-edit-navigation (editClick)="editClicked($event)" (cancelClick)="cancelButton($event)"></app-edit-navigation>
 <div class="former">
   
       <div class="form-row">
@@ -21,11 +21,11 @@
   
           <label for="inputState">Last updated by</label>
           <div class="asterisk">*</div>
-          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+          <input type="text" class="form-control" id="lastName" value="{{updatedBy}}"  readonly="readonly">
         </div>
         <div class="form-group col-md-6">
           <label for="lastName">Last updated date</label>
-          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+          <input type="text" class="form-control" id="lastName" value="{{ updatedTs | filterDate}}"  readonly="readonly">
         </div>
       </div>
   

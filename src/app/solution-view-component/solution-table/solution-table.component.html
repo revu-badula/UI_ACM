@@ -24,6 +24,8 @@
 					class="sorting fa fa-arrow-up" *ngIf="de"></i></th>
       <th>Certificate Date</th>
       <th>Due Date</th> 
+      <th>Last UpdatedBy</th>
+      <th>Last Updated Date</th>
 
 
     </tr>
@@ -37,6 +39,8 @@
                          <!-- <td>{{ solution.certDt }}</td> -->
                          <td>{{ solution.certDt | filter | date:'MM/dd/yyyy'  }}</td> 
                          <td>{{ solution.certRenewalDueDt | date:'MM/dd/yyyy' }}</td>
+                         <td>{{ solution.updatedBy}}</td>
+                         <td>{{ solution.updatedTs | filterDate | date:'MM/dd/yyyy' }}</td>
                     </tr>
     </tbody>
   </table>

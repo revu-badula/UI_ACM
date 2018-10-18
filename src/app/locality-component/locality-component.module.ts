@@ -89,6 +89,6 @@ import { OnlyInteger } from '../integer';
     AssessAttachmentsComponent, AssessLessonsComponent, LocalitysolutionsformComponent,
     NgbdModalContent, PhonePipe, OnlyIntegerDirective, OnlyInteger],
   entryComponents: [NgbdModalContent, DialogComponent],
-  exports:[OnlyInteger, OnlyIntegerDirective]
+  exports:[OnlyInteger, OnlyIntegerDirective, FilterPipeDate]
 })
 export class LocalityComponentModule { }

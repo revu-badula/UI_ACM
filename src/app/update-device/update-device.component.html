@@ -52,11 +52,11 @@
   
           <label for="inputState">Last updated by</label>
           <div class="asterisk">*</div>
-          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+          <input type="text" class="form-control" id="lastName" value="{{device.updatedBy}}"  readonly="readonly">
         </div>
         <div class="form-group col-md-6">
           <label for="lastName">Last updated date</label>
-          <input type="text" class="form-control" id="lastName"  readonly="readonly">
+          <input type="text" class="form-control" id="lastName" value="{{device.updatedTs | filterDate}}"  readonly="readonly">
         </div>
       </div>
   

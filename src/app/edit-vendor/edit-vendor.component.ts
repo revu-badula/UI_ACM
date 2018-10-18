@@ -29,6 +29,8 @@ export class EditVendorComponent implements OnInit {
   public zipCode: string;
   public loading: boolean = false;
   public showEdi: boolean = true;
+  public updatedBy:any;
+  public updatedTs:any;
   //public vendorDetails: VendorDetails;
 
 
@@ -192,6 +194,8 @@ export class EditVendorComponent implements OnInit {
     this._apiservice.getVendorExtra(this.userId)
       .subscribe((data: any) => {
         this.loading = false;
+        this.updatedBy=data.updatedBy;
+        this.updatedTs=data.updatedTs;
         (<FormGroup>this.editVendorForm)
           .patchValue(data, { onlySelf: true });
       }, error => {
