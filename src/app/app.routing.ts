@@ -128,7 +128,10 @@ import { SystemAssessLessonsComponent } from './system-component/system-tab/syst
 import { SystemGuardAssess } from './system-assess-guard';
 import { ReportsComponent } from './reports/reports.component';
 import { DevicetabComponent } from './devicetab/devicetab.component';
-
+import { ReportLegalComponent } from './reports/report-legal/report-legal.component';
+import { ReportSolutionsComponent } from './reports/report-solutions/report-solutions.component';
+import { ReportVendorComponent } from './reports/report-vendor/report-vendor.component';
+import { ReportDeviceComponent } from './reports/report-device/report-device.component';
 const appRoutes: Routes = [
 
   { path: '', component: LoginPageComponent },
@@ -146,6 +149,10 @@ const appRoutes: Routes = [
   { path: 'updateDevice/:id', component: UpdateDeviceComponent, canActivate: [AuthGuard] },
   { path: 'systemView', component: SystemViewComponentComponent, canActivate: [AuthGuard] },
   { path:'reports', component:ReportsComponent, canActivate: [AuthGuard]},
+  { path:'rlegal', component:ReportLegalComponent, canActivate:[AuthGuard]},
+  { path:'rsolution', component:ReportSolutionsComponent, canActivate:[AuthGuard]},
+  { path:'rvendor', component:ReportVendorComponent, canActivate:[AuthGuard]},
+  { path:'rdevice', component:ReportDeviceComponent , canActivate:[AuthGuard]},
   
   {
     path: "locality", component: LocalityComponentComponent, canActivate: [AuthGuard],

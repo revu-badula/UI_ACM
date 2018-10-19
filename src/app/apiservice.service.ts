@@ -373,9 +373,14 @@ getDatabases(){
   }
 
 
-getLocOnTypeForReports(solutionId){
-let url = APP_CONFIG.getLocOnTypeForReports;
+getLocOnTypeForSystem(solutionId){
+let url = APP_CONFIG.getLocOnTypeForSystem;
     return this._httpService.get(url + '?' + 'solutionId' + '=' + solutionId)
+      .map(res => <Response>res.json())
+}
+getSolOnTypeForPrecinct(precinctTypeId){
+let url = APP_CONFIG.getSolOnTypeForPrecinct;
+    return this._httpService.get(url + '?' + 'precinctTypeId' + '=' + precinctTypeId)
       .map(res => <Response>res.json())
 }
 

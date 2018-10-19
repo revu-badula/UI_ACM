@@ -24,17 +24,13 @@ import { Cookie } from 'ng2-cookies';
 export class ReportsComponent implements OnInit {
 
   public displayData: number;
-  public Localities: any;
+
   public Locals:any;
   public p:number=1;
   public desc:boolean=false;
   public names: any;
-   
-    sysTypes:any;
-
-    ////////////
-    public vendor: Vendor;
-  precinctTypes: any;
+   sysTypes:any;
+   precinctTypes: any;
   systemTypes: any;
   solutions: SolutionsDTO;
   applicationSolution: ApplicationSolution;
@@ -77,7 +73,7 @@ export class ReportsComponent implements OnInit {
   public hostType: any;
   public showPlus: boolean=true;
 
-    //////////////////////
+   
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -88,8 +84,8 @@ export class ReportsComponent implements OnInit {
   ngOnInit() {
 
     this.getLocalityTotal();
-    this.getAllMOUs();
-    this.showDropdown();
+
+    
   }
 
   getLocalityTotal() {
@@ -107,51 +103,7 @@ export class ReportsComponent implements OnInit {
   }
 
 
- showDropdown() {
-
-      this._apiservice.getSolutionsOnload()
-      .subscribe((data: any) => {
-        this.systemTypes = data.systemTypeDTOs;
-      }, error => { console.log(error); });
-
-  }
-
-  selectSystem(systemTypeId) {
-
-   if (systemTypeId === 'Choose...' || systemTypeId === "") {
-      this.sysTypes = [];
-    }
-    else {
-    
  
-    UtilService.sysId = systemTypeId;
-    this._apiservice.getSolOnTypeForReports(systemTypeId)
-        .subscribe((data: any) => {
-        this.sysTypes = data.solutionsDTOs;
-      }, error => { console.log(error) });
-   }
- }
- 
- 
-
- 
- 
- 
- 
- 
- selectSolution(solutionId) {
-
-   if (solutionId === 'Choose...' || solutionId === "") {
-      this.Locals = [];
-    }
-    else {
-    UtilService.soluId = solutionId;
-  this._apiservice.getLocOnTypeForReports(solutionId)
-        .subscribe((data: any) => {
-         this.Locals = data;
-      }, error => { console.log(error) });
-   }
- }
  
    getColor() {
     return this.color === 'online' ? '#ffffff' : 'white';
@@ -162,7 +114,7 @@ export class ReportsComponent implements OnInit {
  
  
  
- getAllMOUs() {
+ /*getAllMOUs() {
     this._apiservice.getAllMOUs().
       subscribe((data: any) => {
         this.Localities = data;
@@ -174,23 +126,6 @@ export class ReportsComponent implements OnInit {
 
       );
 
-  }
-
-
-
-
- 
-
-  
-
- 
-
-
-
-
-  
-
-  
-  
+  }*/
 
 }

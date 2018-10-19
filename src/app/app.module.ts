@@ -70,6 +70,10 @@ import { OnlyIntegerDirective } from './locality-component/only-integer.directiv
 import { CustomCurrencyPipe } from './currency-pipe';
 import  { CurrencyPipe } from '@angular/common';
 import { OnlyInteger } from './integer';
+import { ReportLegalComponent } from './reports/report-legal/report-legal.component';
+import { ReportSolutionsComponent } from './reports/report-solutions/report-solutions.component';
+import { ReportVendorComponent } from './reports/report-vendor/report-vendor.component';
+import { ReportDeviceComponent } from './reports/report-device/report-device.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,7 +116,11 @@ import { OnlyInteger } from './integer';
     ReportsComponent,
     SignedPipe,
     DialogComponent,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
+    ReportLegalComponent,
+    ReportSolutionsComponent,
+    ReportVendorComponent,
+    ReportDeviceComponent
 
 
   ],
