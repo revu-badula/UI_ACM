@@ -53,6 +53,7 @@ import { SystemAssessLessonsComponent } from './system-tab/system-assessment/sys
 import { SystemAssessRecomendComponent } from './system-tab/system-assessment/system-assess-recomend/system-assess-recomend.component';
 import { SystemAssessSecurityComponent } from './system-tab/system-assessment/system-assess-security/system-assess-security.component';
 import { SystemAssessManagementComponent } from './system-tab/system-assessment/system-assess-management/system-assess-management.component';
+import { LocalityComponentModule } from '../locality-component/locality-component.module';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { SystemAssessManagementComponent } from './system-tab/system-assessment/
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
+    LocalityComponentModule,
    // SystemComponentRoutingModule,
    LocalityComponentRoutingModule,
     MyDatePickerModule,
