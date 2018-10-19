@@ -557,7 +557,6 @@ export class SystemAssessDetailsComponent implements OnInit {
       //this._apiservice.comparePolicyFile(formData)
       this.http.post(url, formData).map(res => { return res.json(); })
         .subscribe((data: any) => {
-          console.log(data.auditPolicyDTOs);
         }, error => {
           this.errorfile = "invalid file for compare";
         });
