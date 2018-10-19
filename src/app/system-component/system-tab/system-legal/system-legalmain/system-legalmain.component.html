@@ -80,6 +80,8 @@
             <i class="fa fa-arrow-down" *ngIf="!recertificationDt"></i>
             <i class="fa fa-arrow-up" *ngIf="recertificationDt"></i></th>
             <th scope="col">Notify</th>
+            <th scope="col">Last UpdatedBy</th>
+            <th scope="col">Last Updated Date</th>
           </tr>
   
   
@@ -98,6 +100,8 @@
                 <i class="fa fa-envelope" style="color:#3A539B !important"></i>
               </a>
             </td>
+            <td>{{appsolution.updatedBy}}</td>
+            <td>{{appsolution.updatedTs | filterDate | date:'MM/dd/yyyy'}}</td>
   
           </tr>
         </tbody>

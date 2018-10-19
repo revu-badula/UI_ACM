@@ -62,6 +62,8 @@
                             *ngIf="!nextAuditDate"></i>
                         <i class="fa fa-arrow-up" *ngIf="nextAuditDate"></i></th>
                     <th scope="col">Status</th>
+                    <th scope="col">Last UpdatedBy</th>
+                    <th scope="col">Last Updated Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,6 +76,8 @@
                     <td>{{ audit.auditDate | filterDate | date:'MM/dd/yyyy' }}</td>
                     <td>{{ audit.nextAuditDate | filterDate | date:'MM/dd/yyyy' }}</td>
                     <td>{{ audit.status }}</td>
+                    <td>{{ audit.updatedBy}}</td>
+                    <td>{{ audit.upadateTs | filterDate | date:'MM/dd/yyyy'}}</td>
                 </tr>
             </tbody>
         </table>

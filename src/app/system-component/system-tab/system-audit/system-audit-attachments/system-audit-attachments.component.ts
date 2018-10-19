@@ -162,7 +162,7 @@ export class SystemAuditAttachmentsComponent implements OnInit {
     //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
     this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.appAudit.appAuditFileDTOs.length;
             if (length === 1) {
