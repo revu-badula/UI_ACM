@@ -19,6 +19,8 @@ import { Cookie } from 'ng2-cookies';
 })
 export class ReportVendorComponent implements OnInit {
  color: String;
+ public desc:boolean=false;
+ public p:number=1;
 constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router){}
