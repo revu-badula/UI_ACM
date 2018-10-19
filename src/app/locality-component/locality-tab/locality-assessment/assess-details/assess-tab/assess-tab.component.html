@@ -13,28 +13,28 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
         
-                        <label for="inputState">Acronym</label>
+                        <label for="inputState">Name</label>
                         <div class="asterisk">*</div>
                         <input type="text" class="form-control" id="lastName" value="{{ mainData }}" readonly>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lastName">Last updated by</label>
         
-                        <input type="text" class="form-control" id="lastName" value="{{ updatedTime }}" readonly>
+                        <input type="text" class="form-control" id="lastName"  readonly>
                     </div>
                 </div>
         
         
         
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <!-- <div class="form-group col-md-6">
                         <label for="lastName">Name</label>
                         <div class="asterisk">*</div>
                         <input type="text" class="form-control" id="lastName" value="enter here">
-                    </div>
+                    </div> -->
                     <div class="form-group col-md-6">
-                        <label for="email">Updated at</label>
-                        <input type="email" class="form-control" id="email" value="enter here">
+                        <label for="updatedAt">Last uspdated at</label>
+                        <input type="text" class="form-control" id="updatedAt" value="{{ updatedTime }}">
                     </div>
                 </div>
             </form>
@@ -53,6 +53,8 @@
                         <th scope="col" (click)="handleSort2('assessmentDt')">Assessment Date<i class="fa fa-arrow-down" *ngIf="!assessmentDt"></i> <i class="fa fa-arrow-up" *ngIf="assessmentDt"></i></th>
                         <th scope="col" (click)="handleSort3('nextAssessmentDt')">Next Assessment Date<i class="fa fa-arrow-down" *ngIf="!nextAssessmentDt"></i> <i class="fa fa-arrow-up" *ngIf="nextAssessmentDt"></i></th>
                         <th scope="col">Status</th>
+                        <th scope="col">Last UpdatedBy</th>
+                        <th scope="col">Last Updated Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +66,8 @@
                         <td>{{ assess.assessmentDt | filterDate | date:'MM/dd/yyyy'}}</td>
                         <td>{{assess.nextAssessmentDt | filterDate | date:'MM/dd/yyyy' }}</td>
                         <td>{{ assess.status }}</td>
+                        <td>{{ assess.updatedBy}}</td>
+                        <td>{{ assess.updatedTs | filterDate | date:'MM/dd/yyyy' }}</td>
                     </tr>
                 </tbody>
             </table>
