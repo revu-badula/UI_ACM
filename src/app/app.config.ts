@@ -79,7 +79,9 @@ export const APP_CONFIG = {
   getAllMOUs: apiBaseUrl+'getAllMOUs',
   getSolOnTypeForReports: apiBaseUrl+'getSolOnTypeForReports',
   getLocOnTypeForSystem: apiBaseUrl+'getLocOnTypeForSystem',
-  getSolOnTypeForPrecinct:apiBaseUrl+'getSolOnTypeForPrecinct'
+  getSolOnTypeForPrecinct:apiBaseUrl+'getSolOnTypeForPrecinct',
+  getLocOnVendor:apiBaseUrl+'getLocOnVendor',
+  getLocOnDevice:apiBaseUrl+'getLocOnDevice'
 }
 
 
