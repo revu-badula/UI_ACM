@@ -1,0 +1,54 @@
+<app-navigation-component></app-navigation-component>
+<div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
+	
+	<div class="form-options">
+			<div class="home-back">
+				<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
+				<a href="javascript:void(0)" routerLink="/dashboard"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
+			</div>
+			
+		
+	</div>
+</div> 
+<div class="former clear-right">
+<form class="former">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Localities <i class="fa fa-arrow-down"
+								*ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+
+
+							<th scope="col">Solution Name</th>
+							<th scope="col">Version</th>
+						<th scope="col">Device Number</th>
+						<th scope="col">Equipment Number</th>
+						<th scope="col">Scanned Date</th>
+						
+		
+						
+							
+						</tr>
+
+					</thead>
+					<tbody>
+						<tr>
+							<td><a class="box" 
+								style="cursor: pointer;"></a></td>
+
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							
+							
+
+
+						</tr>
+					</tbody>
+				</table>
+				<pagination-controls (pageChange)="p = $event"></pagination-controls>
+				</form>
+			</div>
+
