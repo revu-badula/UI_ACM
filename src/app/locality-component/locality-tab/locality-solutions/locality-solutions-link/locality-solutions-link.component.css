@@ -21,10 +21,7 @@ i.fa {
     text-rendering: auto;
    }
    
- .form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
+
 
 th{
     font-weight: bold;

@@ -17,10 +17,6 @@
     overflow: hidden;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-}
-
 .clear-right {
 	clear:right;
 	overflow: hidden;

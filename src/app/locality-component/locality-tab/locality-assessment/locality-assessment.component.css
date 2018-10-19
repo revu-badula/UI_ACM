@@ -1,15 +1,4 @@
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-/* .icons{ */
-/* 	color:#3A539B; */
-/*    vertical-align: middle; */
-/*    font-size: 20px; */
-/*    margin-bottom: 20px; */
-/*    padding: 2px; */
-/*    margin-right: 20px; */
-/* } */
+
 
 
 
@@ -59,11 +48,6 @@ th{
 
 .table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th {
     border-top: 0;
-}
-
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
 }
 
 

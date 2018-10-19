@@ -4,12 +4,6 @@
     white-space: nowrap;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-
-
 
 
 .plus{

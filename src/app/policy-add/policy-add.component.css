@@ -36,13 +36,6 @@ a{
     margin-left: 5px;
 }
 
-/*.left-icons{
-	float: left;
-}
-
-.icons{
-	display: inline-block;
-}*/
 
 .home-icon{
     color: #3A539B;
@@ -69,16 +62,6 @@ a{
 .times-icon{
 	color: #3A539B;
 }
-
-
-
-
-
-
-
-
-
-
 
 .form{
      padding: 20px;
@@ -112,18 +95,6 @@ table thead tr th{
 .showList{
 	float: left;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 i.fa {
     text-decoration: none !important;
@@ -174,34 +145,10 @@ i.fa {
 }
 
 
-
-
-
-
-
-
-
-
-
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-
 .nav-link{
 	color: black;
 	margin-left: 10px;
 }
-
-/* .icons{ */
-/* 	color:#3A539B; */
-/*    vertical-align: middle; */
-/*    font-size: 20px; */
-/*    margin-bottom: 20px; */
-/*    padding: 2px; */
-/*    margin-right: 20px; */
-/* } */
-
 
 
 input[readonly] {
@@ -300,29 +247,10 @@ table{
     font-size:20px;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-
-.form-control:disabled, .form-control[readonly] {
-    background-color: #f8f9fa;
-    opacity: 1;
-}
-
 .nav-link{
 	color: black;
 	margin-left: 10px;
 }
-
-/* .icons{ */
-/* 	color:#3A539B; */
-/*    vertical-align: middle; */
-/*    font-size: 20px; */
-/*    margin-bottom: 20px; */
-/*    padding: 2px; */
-/*    margin-right: 20px; */
-/* } */
 
 
 

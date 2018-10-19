@@ -75,18 +75,6 @@ label{
 	float: right;
 }
 
-/*select, option{
-	width: 120px;
-	height: 35px;
-	border-radius: 4px;
-	border: 1px solid rgba(0,0,0,.15);
-	margin-left: 5px;
-}
-
-/*.label-form{
-	margin-right: 5px;
-}*/
-
 .model-solution-row{
 	padding: 1%;
 }

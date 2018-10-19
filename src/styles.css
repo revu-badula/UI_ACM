@@ -20,11 +20,13 @@ th,td{
 
 
 .form-control:disabled, .form-control[readonly] {
-    background-color: #f8f9fa;
+    background-color: #e9ecef;
     opacity: 1;
 }
 
-
+.form-control[_ngcontent-c7]:disabled, .form-control[readonly][_ngcontent-c7] {
+    background-color: #e9ecef;
+}
 
 
 

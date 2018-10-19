@@ -36,16 +36,6 @@ i.fa {
 	color:white;
 }
 
-/* .icons{ */
-/* 		color:#3A539B; */
-/*    vertical-align: middle; */
-/*    font-size: 20px; */
-/*    margin-bottom: 20px; */
-   
-  
-/* } */
-  
-
 .plus{
 			color:#3A539B;
    vertical-align: middle;
@@ -91,12 +81,7 @@ th{
     border-top: 0;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-
-
+.
 table {
     border: 1px solid black;
     width: 100%;

@@ -187,10 +187,6 @@ table thead tr th{
 	float: left;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-}
-
 .navigate{
     margin: 15px;
     padding: 5px;

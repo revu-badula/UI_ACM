@@ -68,15 +68,6 @@ i.fa {
 
 
 
-
-
-
-
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-
 .nav-link{
 	color: black;
 	margin-left: 10px;

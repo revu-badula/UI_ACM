@@ -50,31 +50,10 @@ i.fa {
 
 
 
-
-
-
-
-
-
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-
 .nav-link{
 	color: black;
 	margin-left: 10px;
 }
-
-/* .icons{ */
-/* 	color:#3A539B; */
-/*    vertical-align: middle; */
-/*    font-size: 20px; */
-/*    margin-bottom: 20px; */
-/*    padding: 2px; */
-/*    margin-right: 20px; */
-/* } */
-
 
 
 input[readonly] {

@@ -31,12 +31,6 @@ tbody tr:nth-child(even) {
   background-color:white;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-
-
 .plus{
 	float:right;
 	 vertical-align: middle;
@@ -189,28 +183,4 @@ tbody tr:nth-child(even) {
 tbody tr:nth-of-type(odd) {
     background-color: #EEEEEE !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

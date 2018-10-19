@@ -59,10 +59,7 @@ th {
 
 
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
+
 
 .nav-link{
 	color: black;

@@ -27,12 +27,7 @@ i.fa {
     font-size: inherit;
     text-rendering: auto;
    }
-   
- .form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
-
+ 
 th{
     font-weight: bold;
     color: black;

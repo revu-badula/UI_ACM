@@ -4,10 +4,6 @@
     white-space: nowrap;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
-}
 
 .modal-header{
 	background-color: #3A539B;

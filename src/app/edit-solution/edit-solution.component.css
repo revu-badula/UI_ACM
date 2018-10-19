@@ -74,9 +74,7 @@ form{
     overflow: hidden;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-}
+
 
 
 .page-description{

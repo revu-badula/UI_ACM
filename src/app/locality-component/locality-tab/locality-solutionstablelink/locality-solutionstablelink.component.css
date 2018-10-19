@@ -1,17 +1,7 @@
-
-
-
- i.disabled {
+i.disabled {
            pointer-events: none !important;
            cursor: default;
     }
-
-
-
-
-
-
-
 
 .form{
   padding: 20px;
@@ -189,26 +179,6 @@ tbody tr:nth-child(even) {
 tbody tr:nth-of-type(odd) {
     background-color: #EEEEEE !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
