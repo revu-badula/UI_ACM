@@ -14,6 +14,7 @@ import { IMyDate } from 'mydatepicker';
 import { Cookie } from 'ng2-cookies';
 
 import { finalize } from 'rxjs/operators';
+import { DialogService } from '../dialog.service';
 
 declare var swal: any; ''
 
@@ -59,7 +60,8 @@ export class EditSolutionComponent implements OnInit {
   //  public systemTyp:any
 
   constructor(private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
-    , private http: Http, private _location: Location, private modalService: NgbModal, private router: Router) {
+    , private http: Http, private _location: Location, private modalService: NgbModal, 
+    private router: Router, private dialogService: DialogService) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
     this.solution.hostingTypeDTO = new HostingType();
@@ -133,11 +135,16 @@ export class EditSolutionComponent implements OnInit {
   }
 
   createCertDTO(fileInput: any, section: string) {
+    let files = fileInput.target.files[0];
+    if (files === undefined) { }
+    else{
     this.certDocDTO = new CertDocDTO();
     this.certDocDTO.fileName = fileInput.target.files[0].name;
     this.certDocDTO.section = section;
+    this.certDocDTO.activeFlag=true;
     this.files.push(fileInput.target.files[0]);
     this.solution.certDocDTOs.push(this.certDocDTO);
+    }
   }
 
   dateRetreive() {
@@ -211,25 +218,39 @@ export class EditSolutionComponent implements OnInit {
 
 
   deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.solution.certDocDTOs.length;
             if (length === 1) {
+              this.files=[];
               this.solution.certDocDTOs = [];
             }
             else {
+              for(let j=0;j<this.files.length;j++)
+              {
+                if(this.files[j].name === this.solution.certDocDTOs[index].fileName)
+                {
+                  this.files.splice(j,1);
+                }
+              }
               for (let i = index; i < length; i++) {
                 this.solution.certDocDTOs[i] = this.solution.certDocDTOs[i + 1];
               }
               this.solution.certDocDTOs.splice(length - 1, 1);
+  
+
             }
 
           }
           else {
-
-            this.solution.certDocDTOs.splice(index, 1);
+            for (let i = 0; i < this.solution.certDocDTOs.length; i++) {
+              if (this.solution.certDocDTOs[i].certDocId === id) {
+                this.solution.certDocDTOs[i].activeFlag = false;
+              }
+            }
           }
         }
 

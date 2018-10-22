@@ -8,26 +8,26 @@ export class Solution {
   solutionId: number;
   certDt: any;
   certStadard: string;
-  certRenewalDueDt:any;
+  certRenewalDueDt: any;
   name: string;
   versionNumber: string;
   patches: string;
-  notes: string; 
+  notes: string;
   solutionType: number;
   vendorId: number;
   createdBy: string;
   createdTs;
   updatedBy: string;
   updatedTs: string
-  vendor :Vendor;
+  vendor: Vendor;
   solutionTypeName: string;
   labVendorId: number;
-  labVendorsDTO : LabVendors;
+  labVendorsDTO: LabVendors;
   systemTypeDTO: SystemType;
-  precinctTypeId:number;
-  precinctTypeName:string;
+  precinctTypeId: number;
+  precinctTypeName: string;
   hostingTypeDTO: HostingType;
-  hostingTypeNotes:string;
+  hostingTypeNotes: string;
   certDocDTOs: Array<CertDocDTO> = [];
 }
 
@@ -81,8 +81,9 @@ export class VendorContact {
 }
 
 export class CertDocDTO {
-   certDocId: number;
+  certDocId: number;
   fileName: string;
-   fileLocation: string;
-  section:string;
+  fileLocation: string;
+  section: string;
+  activeFlag: any;
 }
