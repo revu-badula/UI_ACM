@@ -1,68 +1,71 @@
 <app-navigation-component></app-navigation-component>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
-	
+
 	<div class="form-options">
-			<div class="home-back">
-				<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
-				<a href="javascript:void(0)" routerLink="/dashboard"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
-			</div>
-			
-		
+		<div class="home-back">
+			<a routerLink="/dashboard">
+				<fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
+				 data-delay="0" [name]="'home'"></fa>
+			</a>
+			<a href="javascript:void(0)" routerLink="/dashboard">
+				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
+				 data-delay="0" [name]="'arrow-left'"></fa>
+			</a>
+		</div>
+
+
 	</div>
-</div> 
+</div>
 <div class="former clear-right">
-<form class="former">
- <div class="form-row">
-				<div class="form-group col-md-6">
-					<label class="label-form" for="systemType"><b>Vendor Name</b></label>
-			<div class="asterisk">*</div> 
-					<select id="modelSolution"  class="form-control" 
-				 ngModel name="system" required (change)="someVendor($event.target.value)">>
-<option>Choose...</option>
+	<form class="former">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label class="label-form" for="systemType"><b>Vendor Name</b></label>
+				<div class="asterisk">*</div>
+				<select id="modelSolution" class="form-control" ngModel name="system" required (change)="someVendor($event.target.value)">>
+					<option>Choose...</option>
 					<option *ngFor="let vendorType of vendorTypes" value="{{vendorType.vendorId}}">{{vendorType.name}}</option>
 
 				</select>
-				</div>
-				
-			</div>  
-
-
-
-
-
-
-				<table class="table table-bordered"> 
-					<thead>
-						<tr>
-							<th scope="col">Localities <i class="fa fa-arrow-down"
-								*ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-
-
-							<th scope="col">Vendor Name</th>
-							<th scope="col">Vendor Contact Name</th>
-							<th scope="col">Solution Name</th>
-							<th scope="col">Version Number</th>
-						
-							
-						</tr>
-
-					</thead>
-					<tbody>
-						<tr  *ngFor="let venType of venTypes let i=index">
-						
-<!--  							<td><a class="box" -->
-<!-- 							style="cursor: pointer;">{{venType[i].applicationName}}</a></td> -->
-
-       						<td>{{venType.vendorName}}</td>
-							<td>{{venType.vendorFirstName + "" + venType.vendorLastName}}</td>
-							<td>{{venType.solutionName}}</td>
-							<td>{{venType.solutionVersionName}}</td>
-
-
-						</tr>
-					</tbody>
-					
-				</table> 
-				<pagination-controls (pageChange)="p = $event"></pagination-controls>
-				</form>
 			</div>
+
+		</div>
+
+
+
+
+
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Localities <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+
+
+					<th scope="col">Vendor Name</th>
+					<th scope="col">Vendor Contact Name</th>
+					<th scope="col">Solution Name</th>
+					<th scope="col">Version Number</th>
+
+
+				</tr>
+
+			</thead>
+			<tbody>
+				<ng-container *ngFor="let venType of venTypes">
+					<tr *ngFor="let appSolution of venType.appSolutionDTOs">
+						<td><a class="box" style="cursor: pointer;">{{appSolution.applicationName}}</a></td>
+
+						<td>{{appSolution.vendorName}}</td>
+						<td>{{venType.vendorFirstName + "" + venType.vendorLastName}}</td>
+						<td>{{venType.solutionName}}</td>
+						<td>{{venType.solutionVersionName}}</td>
+					</tr>
+
+				</ng-container>
+			</tbody>
+
+		</table>
+		<pagination-controls (pageChange)="p = $event"></pagination-controls>
+	</form>
+</div>

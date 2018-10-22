@@ -15,13 +15,10 @@ import { Cookie } from 'ng2-cookies';
 })
 export class ReportVendorComponent implements OnInit {
  color: String;
-<<<<<<< HEAD
  public vendorTypes:any;
  public venTypes:any;
-=======
  public desc:boolean=false;
  public p:number=1;
->>>>>>> branch 'master' of https://github.com/revu-badula/UI_ACM.git
 constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router){}
@@ -51,9 +48,6 @@ someVendor(value){
       this.venTypes = [];
     }
     else {
-    
- 
-    
     this._apiservice.getLocOnVendors(value)
         .subscribe((data: any) => {
         this.venTypes = data;
