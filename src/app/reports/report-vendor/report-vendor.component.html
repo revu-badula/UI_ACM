@@ -12,7 +12,26 @@
 </div> 
 <div class="former clear-right">
 <form class="former">
-				<table class="table table-bordered">
+ <div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="label-form" for="systemType"><b>Vendor Name</b></label>
+			<div class="asterisk">*</div> 
+					<select id="modelSolution"  class="form-control" 
+				 ngModel name="system" required (change)="someVendor($event.target.value)">>
+<option>Choose...</option>
+					<option *ngFor="let vendorType of vendorTypes" value="{{vendorType.vendorId}}">{{vendorType.name}}</option>
+
+				</select>
+				</div>
+				
+			</div>  
+
+
+
+
+
+
+				<table class="table table-bordered"> 
 					<thead>
 						<tr>
 							<th scope="col">Localities <i class="fa fa-arrow-down"
@@ -29,19 +48,21 @@
 
 					</thead>
 					<tbody>
-						<tr>
-							<td><a class="box" 
-								style="cursor: pointer;"></a></td>
+						<tr  *ngFor="let venType of venTypes let i=index">
+						
+ 							<td><a class="box"
+							style="cursor: pointer;">{{venType[i].applicationName}}</a></td>
 
-							<td></td>
-							<td></td>
-							
-							
+       						<td>{{venType[i].vendorName}}</td>
+							<td>{{venType.vendorFirstName + "" + venType.vendorLastName}}</td>
+							<td>{{venType.solutionName}}</td>
+							<td>{{venType.solutionVersionName}}</td>
 
 
 						</tr>
 					</tbody>
-				</table>
+					
+				</table> 
 				<pagination-controls (pageChange)="p = $event"></pagination-controls>
 				</form>
 			</div>

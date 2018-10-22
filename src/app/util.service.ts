@@ -10,6 +10,7 @@ static policyGrpId: number;
 static auditId: number;
 static showTab:boolean;
 static sysId:number;
+static venId:number;
 static soluId:number;
 static preId:number;
 static disabled: boolean = true;

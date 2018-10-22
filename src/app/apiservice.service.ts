@@ -384,4 +384,10 @@ let url = APP_CONFIG.getSolOnTypeForPrecinct;
       .map(res => <Response>res.json())
 }
 
+
+getLocOnVendors(vendorId){
+let url = APP_CONFIG.getLocOnVendors;
+    return this._httpService.get(url + '?' + 'vendorId' + '=' + vendorId)
+      .map(res => <Response>res.json())
+}
 }
