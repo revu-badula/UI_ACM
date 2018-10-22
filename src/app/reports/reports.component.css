@@ -43,8 +43,8 @@ h1{
 
 .card{
     float: left;
-    margin-left: 5px;
-    margin-bottom: 15px;
+    margin-left: 100px;
+    margin-bottom: 50px;
 }
 
 .card-heading{
@@ -75,14 +75,7 @@ h1{
     margin-left: 20px;
 }
 
-/*.second-row{
-    margin-top: 20px;
-}
-
-.third-row{
-    
-}*/
-
+/
 .skills {
     width: 80%;
     max-width: 960px;
@@ -497,10 +490,7 @@ Push it out to the left of the containing box.
 .pie.big:BEFORE {
     left:0px;
 }
-/* 
-big pieces will also need a second semicircle, pointed in the
-opposite direction to hide the first part behind.
-*/
+
 .pie.big:AFTER {
     content:"";
     position:absolute;
@@ -585,10 +575,7 @@ to fill in unsightly gaps.
    
     float:left;
   }
-  #second {
-   
-    float:left;
-  }
+ 
   #third {
    
     float:left;

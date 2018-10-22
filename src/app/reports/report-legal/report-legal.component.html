@@ -20,7 +20,7 @@
 						<tr>
 							<th scope="col">Localities <i class="fa fa-arrow-down"
 								*ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-
+		<th scope="col"> Document Name</th>
 
 							<th scope="col">Recertification Date</th>
 							<th scope="col"> Date of Receipt</th>
@@ -32,8 +32,8 @@
 						<tr
 							*ngFor="let locality of Localities |  paginate: { itemsPerPage: 10, currentPage: p }">
 							<td><a class="box" (click)="viewApplication(locality.value)"
-								style="cursor: pointer;">{{locality.applicationAcronym}}</a></td>
-
+								style="cursor: pointer;color:blue">{{locality.applicationAcronym}}</a></td>
+	<td>{{locality.name}}</td>
 							<td>{{locality.recertificationDt | filter}}</td>
 							<td>{{locality.receiptDt | filter}}</td>
 							<td>{{locality.signed | signed }}</td>

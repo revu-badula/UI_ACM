@@ -332,7 +332,11 @@ getDatabases(){
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
-
+getAllTotals(){
+let url = APP_CONFIG.getAllTotals;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+}
 
   getLocalityTotal() {
     let url = APP_CONFIG.getLocalityTotal;
@@ -381,6 +385,12 @@ let url = APP_CONFIG.getLocOnTypeForSystem;
 getSolOnTypeForPrecinct(precinctTypeId){
 let url = APP_CONFIG.getSolOnTypeForPrecinct;
     return this._httpService.get(url + '?' + 'precinctTypeId' + '=' + precinctTypeId)
+      .map(res => <Response>res.json())
+}
+
+getLocForDevices(){
+let url = APP_CONFIG.getLocForDevices;
+    return this._httpService.get(url)
       .map(res => <Response>res.json())
 }
 

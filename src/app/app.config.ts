@@ -81,7 +81,8 @@ export const APP_CONFIG = {
   getLocOnTypeForSystem: apiBaseUrl+'getLocOnTypeForSystem',
   getSolOnTypeForPrecinct:apiBaseUrl+'getSolOnTypeForPrecinct',
   getLocOnVendors:apiBaseUrl+'getLocOnVendors',
-  getLocOnDevice:apiBaseUrl+'getLocOnDevice'
+  getLocForDevices:apiBaseUrl+'getLocForDevices',
+  getAllTotals:apiBaseUrl+'getAllTotals'
 }
 
 

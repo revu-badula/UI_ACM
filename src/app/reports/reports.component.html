@@ -1,9 +1,6 @@
 <app-navigation-component></app-navigation-component>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
-	<!-- <div class="home">
-			<i class="fas fa-home home-icon icons"></i>
-			< class="fas fa-arrow-left left-icon icons"></i>
-	</div> -->
+
 	<div class="form-options">
 			<div class="home-back">
 				<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
@@ -17,95 +14,66 @@
 
 
 
-<div>
-	
-	<div class="dashboard">
-			<div class="first-row">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<div class="card-heading">
-							<h5 class="card-title">Search an Application</h5>
-						</div>
-						<hr />
-						<!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-						<div class="center">
-							<a href="#"><i class="fa fa-search fa-1x"></i></a>
-						</div>
+ <div class="page-description">
+            <h5 style="text-align: center">Reports</h5>
+           
+        </div>
+        <form>
+		  <div class="dashboard">
+         <div class="first-row">
+        <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <div class="card-heading"><h5 class="card-title">Total Legal</h5>
+      </div>
+    <hr />
+    <div class="center"> 
+							<a routerLink="/rlegal"> 
+ 								<h3 style="color: black">{{legal}}</h3> 
+ 							</a> 
+ 						</div>
 
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<div class="card-heading">
-							<h5 class="card-title">Total Legal</h5>
-						</div>
-						<hr>
-						<div class="center">
-							<a routerLink="/rlegal">
-								<h3 style="color: black">{{displayData}}</h3>
-							</a>
-						</div>
+  </div>
+</div>
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <div class="card-heading"><h5 class="card-title">Total Solutions</h5>
+      </div>
+    <hr />
+   <div class="center"> 
+							<a routerLink="/rsolution"> 
+								<h3 style="color: black">{{solution}}</h3> 
+ 							</a> 
+						</div> 
+  </div>
+</div>
 
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<div class="card-heading">
-							<h5 class="card-title">Total Solutions</h5>
-						</div>
-						<hr>
-						<div class="center">
-							<a routerLink="/rsolution">
-								<h3 style="color: black">35</h3>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="second-row">
-					<div class="card" style="width: 18rem;">
-						<div class="card-body">
-							<div class="card-heading">
-								<h5 class="card-title">Total Vendors</h5>
-							</div>
-							<hr>
-							<div class="center">
-								<a routerLink="/rvendor">
-									<h3 style="color: black">18</h3>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<div class="card-heading">
-							<h5 class="card-title">Total Scanned Devices</h5>
-						</div>
-						<hr>
-						<div class="center">
-							<a routerLink="/rdevice">
-								<h3 style="color: black">35</h3>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<div class="card-heading">
-							<h5 class="card-title">Total Audit</h5>
-						</div>
-						<hr>
-						<div class="center">
-							<a href="#">
-								<h3 style="color: black">3</h3>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-
-	</div>
-			
+        </div>
+    <div class="second-row">
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <div class="card-heading"><h5 class="card-title">Total Vendors</h5>
+      </div>
+    <hr />
+   <div class="center"> 
+ 								<a routerLink="/rvendor">
+ 									<h3 style="color: black">{{vendor}}</h3> 
+ 								</a> 
+</div>
+  </div>
+</div>
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <div class="card-heading"><h5 class="card-title">Total Scanned Devices</h5>
+      </div>
+    <hr />
+   <div class="center"> 
+ 							<a routerLink="/rdevice"> 
+ 								<h3 style="color: black">{{devices}}</h3> 
+ 							</a> 
+ 						</div>
+  </div>
+  
+</div>
+  </div> 
+</div>	
+</form>	

@@ -15,15 +15,16 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th scope="col">Localities <i class="fa fa-arrow-down"
+							<th scope="col">Model Number <i class="fa fa-arrow-down"
 								*ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
 
 
-							<th scope="col">Solution Name</th>
-							<th scope="col">Version</th>
-						<th scope="col">Device Number</th>
-						<th scope="col">Equipment Number</th>
-						<th scope="col">Scanned Date</th>
+							<th scope="col">Serial Name</th>
+							<th scope="col">Current Scanning Date</th>
+						<th scope="col">Next Scanning Date</th>
+						<th scope="col">Solution Name</th>
+						<th scope="col">Location</th>
+						<th scope="col">OverAll Status</th>
 						
 		
 						
@@ -32,15 +33,16 @@
 
 					</thead>
 					<tbody>
-						<tr>
+						<tr *ngFor="let device of devices |  paginate: { itemsPerPage: 10, currentPage: p }">
 							<td><a class="box" 
-								style="cursor: pointer;"></a></td>
+								style="cursor: pointer;color:blue">{{device.modelNumber}}</a></td>
 
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{device.serialNumber}}</td>
+							<td>{{device.currentScanningDt|filter}}</td>
+							<td>{{device.nextScanningDt|filter}}</td>
+							<td>{{device.solutionName}}</td>
+							<td>{{device.appName}}</td>
+							<td>{{device.overallStatus}}</td>
 							
 							
 

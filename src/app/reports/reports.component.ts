@@ -6,8 +6,6 @@ import { ApplicationSolution, SolutionsDTO, Vendor, Device, HostingType, SystemT
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Solution } from '../data_model';
-
-
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 
@@ -32,46 +30,24 @@ export class ReportsComponent implements OnInit {
    sysTypes:any;
    precinctTypes: any;
   systemTypes: any;
-  solutions: SolutionsDTO;
-  applicationSolution: ApplicationSolution;
-  solution: Solution;
-  device: Device;
+  
+
   editableForm: boolean = true;
   public showButton: boolean = true;
   color: String;
-  hostingnames: any;
-  public precinctTypeId: number;
-  public modelSname: string;
-  public solutionId: number;
-  public appId: any;
-
-  public appSolutions: any;
-  public appSolutionId: any;
-  public appSolutionDevice: any;
-  public hostingTypeId: any;
-  public solutionTypeName: any;
-  public versionNumber: any;
-  public vendors: any;
-  public showPrecinct: any;
-  public showText: any;
+  
+ 
   contentData: string = "";
-  public devices: any;
-  public deviceId: any;
-  public isVisible = false;
-  public showLegal = false;
-  public showInnerForm = false;
-  public isAddNewSolution = false;
-  public notVisible = false;
-  public boxVisible = false;
-  public editForm: boolean = true;
-  public acronym: any;
-  public updatedTime: any;
-  public loading: boolean = false;
-  public sysName: any;
+  public devices: number;
+  public legal:number;
+  public solution:number;
+  public vendor:number;
+ 
   public isClick: boolean = true;
   public showBuck: boolean = true;
   public hostType: any;
   public showPlus: boolean=true;
+  public reports:any;
 
    
   constructor(private _apiservice: ApiserviceService,
@@ -84,6 +60,8 @@ export class ReportsComponent implements OnInit {
   ngOnInit() {
 
     this.getLocalityTotal();
+    this.getAll();
+    
 
     
   }
@@ -114,10 +92,14 @@ export class ReportsComponent implements OnInit {
  
  
  
- /*getAllMOUs() {
-    this._apiservice.getAllMOUs().
+ getAll() {
+    this._apiservice.getAllTotals().
       subscribe((data: any) => {
-        this.Localities = data;
+        this.reports = data;
+        this.devices=data[0];
+        this.solution=data[1];
+        this.vendor= data[2];
+        this.legal=data[3];
       }, error => {
         console.log(error);
 
@@ -126,6 +108,6 @@ export class ReportsComponent implements OnInit {
 
       );
 
-  }*/
+  }
 
 }
