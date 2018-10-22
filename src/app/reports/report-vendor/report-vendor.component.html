@@ -50,10 +50,10 @@
 					<tbody>
 						<tr  *ngFor="let venType of venTypes let i=index">
 						
- 							<td><a class="box"
-							style="cursor: pointer;">{{venType[i].applicationName}}</a></td>
+<!--  							<td><a class="box" -->
+<!-- 							style="cursor: pointer;">{{venType[i].applicationName}}</a></td> -->
 
-       						<td>{{venType[i].vendorName}}</td>
+       						<td>{{venType.vendorName}}</td>
 							<td>{{venType.vendorFirstName + "" + venType.vendorLastName}}</td>
 							<td>{{venType.solutionName}}</td>
 							<td>{{venType.solutionVersionName}}</td>

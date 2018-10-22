@@ -36,6 +36,7 @@ constructor(private _apiservice: ApiserviceService,
     return this.color === 'online' ? 0.8 : 1;
   }
   
+  
   showVendor() {
       this._apiservice.getVendors()
       .subscribe((data: any) => {
