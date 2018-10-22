@@ -6,12 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./report-device.component.css']
 })
 export class ReportDeviceComponent implements OnInit {
- color: String;
+  color: String;
+  public desc:boolean=false;
+  public p:number=1;
   constructor() { }
 
   ngOnInit() {
   }
-getColor() {
+  getColor() {
     return this.color === 'online' ? '#ffffff' : 'white';
   }
   getOpacity() {
