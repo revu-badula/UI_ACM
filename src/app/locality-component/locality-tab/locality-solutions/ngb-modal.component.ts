@@ -478,6 +478,11 @@ export class NgbdModalContent implements OnInit {
                             this.device.deviceDocDTO = []; //a,b,c,d,f = [2] =[3]
                         }
                         else {
+                            for (let j = 0; j < this.files.length; j++) {
+                                if (this.files[j].name === this.device.deviceDocDTO[index].fileName) {
+                                    this.files.splice(j, 1);
+                                }
+                            }
                             for (let i = index; i < length; i++) {
                                 this.device.deviceDocDTO[i] = this.device.deviceDocDTO[i + 1];
                             }

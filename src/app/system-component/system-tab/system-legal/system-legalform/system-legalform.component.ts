@@ -239,6 +239,13 @@ export class SystemLegalformComponent implements OnInit {
               this.mou.mouDocDTOs = [];
             }
             else {
+              for(let j=0;j<this.files.length;j++)
+              {
+                if(this.files[j].name === this.mou.mouDocDTOs[index].fileName)
+                {
+                  this.files.splice(j,1);
+                }
+              }
               for (let i = index; i < length; i++) {
                 this.mou.mouDocDTOs[i] = this.mou.mouDocDTOs[i + 1];
               }

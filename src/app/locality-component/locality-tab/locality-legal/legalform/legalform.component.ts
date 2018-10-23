@@ -245,6 +245,13 @@ export class LegalformComponent implements OnInit {
               this.mou.mouDocDTOs = []; //a,b,c,d,f = [2] =[3]
             }
             else {
+              for(let j=0;j<this.files.length;j++)
+              {
+                if(this.files[j].name === this.mou.mouDocDTOs[index].fileName)
+                {
+                  this.files.splice(j,1);
+                }
+              }
               for (let i = index; i < length; i++) {
                 this.mou.mouDocDTOs[i] = this.mou.mouDocDTOs[i + 1];
               }
