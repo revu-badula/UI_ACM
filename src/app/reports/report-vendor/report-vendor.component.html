@@ -1,4 +1,7 @@
 <app-navigation-component></app-navigation-component>
+<div class="my-container">
+		<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+	  </div>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
 
 	<div class="form-options">
@@ -30,12 +33,15 @@
 			</div>
 
 		</div>
+	</form>
+</div>
 
 
 
 
 
-
+<div class="former clear-right" *ngIf="showTable">
+		<form class="former">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -52,7 +58,7 @@
 
 			</thead>
 			<tbody>
-				<ng-container *ngFor="let venType of venTypes">
+				<ng-container *ngFor="let venType of venTypes |  paginate: { itemsPerPage: 10, currentPage: p }">
 					<tr *ngFor="let appSolution of venType.appSolutionDTOs">
 						<td><a class="box" style="cursor: pointer;">{{appSolution.applicationName}}</a></td>
 

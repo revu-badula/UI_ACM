@@ -73,7 +73,7 @@
           <textarea name="description" id="description" rows="10" class="form-control" [(ngModel)]="appAssess.budgetDescription"></textarea>
         
       </div>
-      <div class="form-row">
+      <!-- <div class="form-row">
         <div class="form-group col-md-6">
 
           <label for="inputState">Overall estimates</label>
@@ -82,7 +82,19 @@
           
         </div>
 
-      </div>
+      </div> -->
+
+      <div class="form-row">
+          <label for="inputState">Overall estimates</label>
+          <div class="input-group mb-3">
+  
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="overallEstimates"
+              id="lastName" [(ngModel)]="appAssess.budget" onlyDollar>
+          </div>
+        </div>
     </fieldset>
   </form>
 </div>

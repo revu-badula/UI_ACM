@@ -14,17 +14,19 @@ import { Cookie } from 'ng2-cookies';
   styleUrls: ['./report-vendor.component.css']
 })
 export class ReportVendorComponent implements OnInit {
- color: String;
- public vendorTypes:any;
- public venTypes:any;
- public desc:boolean=false;
- public p:number=1;
-constructor(private _apiservice: ApiserviceService,
+  color: String;
+  public vendorTypes: any;
+  public venTypes: any;
+  public desc: boolean = false;
+  public p: number = 1;
+  public showTable: boolean = false;
+  public loading: boolean = false;
+  constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router){}
+    private router: Router) { }
 
   ngOnInit() {
-  this.showVendor();
+    this.showVendor();
   }
   getColor() {
     return this.color === 'online' ? '#ffffff' : 'white';
@@ -32,41 +34,34 @@ constructor(private _apiservice: ApiserviceService,
   getOpacity() {
     return this.color === 'online' ? 0.8 : 1;
   }
-  
-  
+
+
   showVendor() {
-      this._apiservice.getVendors()
+    this._apiservice.getVendors()
       .subscribe((data: any) => {
         this.vendorTypes = data.vendorsDTOs;
       }, error => { console.log(error); });
 
   }
-  
-someVendor(value){
 
-   if (value === 'Choose...' || value === "") {
+  someVendor(value) {
+
+    if (value === 'Choose...' || value === "") {
       this.venTypes = [];
     }
     else {
-    this._apiservice.getLocOnVendors(value)
+      this.loading = true;
+      this._apiservice.getLocOnVendors(value)
         .subscribe((data: any) => {
-        this.venTypes = data;
-        for(let i=0;i<data.length;i++)
-        {
-        let k=data[i].appSolutionDTOs;
-        if(k.length > 0)
-        {
-        for(let j=0;j<k.length;j++)
-        {
-        let applicationName =k[j].applicationName;
-        }
-        }
-       
-       
-        }
-      }, error => { console.log(error) });
-   }
-}  
-  
+          this.loading = false;
+          this.showTable = true;
+          this.venTypes = data;
+        }, error => {
+          this.loading = false;
+          console.log(error)
+        });
+    }
+  }
+
 
 }

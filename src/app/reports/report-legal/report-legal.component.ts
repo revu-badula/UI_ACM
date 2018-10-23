@@ -21,57 +21,20 @@ export class ReportLegalComponent implements OnInit {
 
   public displayData: number;
   public Localities: any;
-  public Locals:any;
-  public p:number=1;
-  public desc:boolean=false;
+  public Locals: any;
+  public p: number = 1;
+  public desc: boolean = false;
   public names: any;
-   
-    sysTypes:any;
-
-
- 
+  public showLeg: boolean = false;
+  sysTypes: any;
   precinctTypes: any;
   systemTypes: any;
- 
-
-
-
-  editableForm: boolean = true;
-  public showButton: boolean = true;
   color: String;
-  hostingnames: any;
-  public precinctTypeId: number;
-  public modelSname: string;
-  public solutionId: number;
-  public appId: any;
-
-  public appSolutions: any;
-  public appSolutionId: any;
-  public appSolutionDevice: any;
-  public hostingTypeId: any;
-  public solutionTypeName: any;
-  public versionNumber: any;
-  public vendors: any;
-  public showPrecinct: any;
   public showText: any;
-  contentData: string = "";
-  public devices: any;
-  public deviceId: any;
-  public isVisible = false;
-  public showLegal = false;
-  public showInnerForm = false;
-  public isAddNewSolution = false;
-  public notVisible = false;
-  public boxVisible = false;
   public editForm: boolean = true;
-  public acronym: any;
-  public updatedTime: any;
   public loading: boolean = false;
-  public sysName: any;
-  public isClick: boolean = true;
-  public showBuck: boolean = true;
-  public hostType: any;
-  public showPlus: boolean=true;
+  public locality:any;
+  public systems:any;
 
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
@@ -83,7 +46,8 @@ export class ReportLegalComponent implements OnInit {
   ngOnInit() {
 
 
-    this.getAllMOUs();
+    this.getLocForMous();
+    this.getSysForMous();
 
   }
   getColor() {
@@ -92,16 +56,21 @@ export class ReportLegalComponent implements OnInit {
   getOpacity() {
     return this.color === 'online' ? 0.8 : 1;
   }
- 
 
 
 
 
-getAllMOUs() {
-    this._apiservice.getAllMOUs().
+
+  getLocForMous() {
+    this.showLeg = true;
+    this.Localities = [];
+    this.loading = true;
+    this._apiservice.getLocForMous().
       subscribe((data: any) => {
+        this.loading = false;
         this.Localities = data;
       }, error => {
+        this.loading = false;
         console.log(error);
 
       }
@@ -111,9 +80,39 @@ getAllMOUs() {
 
   }
 
+  getSysForMous() {
+    this.loading = true;
+    this.Localities = [];
+
+    this._apiservice.getSysForMous().
+      subscribe((data: any) => {
+        this.loading = false;
+        this.Localities = data;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+
+      }
 
 
+      );
 
 
+  }
+  getLoc(event)
+  {
+    if(event.target.checked)
+    {
+      this.getLocForMous();
+    }
+  }
+  getSys(event)
+  {
+    if(event.target.checked)
+    {
+      this.getSysForMous();
+    }
+  }
 
 }
+

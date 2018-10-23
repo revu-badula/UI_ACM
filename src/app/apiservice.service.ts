@@ -25,11 +25,11 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
-getDatabases(){
-  let url = APP_CONFIG.getDatabases;
+  getDatabases() {
+    let url = APP_CONFIG.getDatabases;
     return this._httpService.get(url)
       .map(res => <Response>res.json());
-}
+  }
 
 
   getSolutionExtra(id) {
@@ -332,11 +332,11 @@ getDatabases(){
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
-getAllTotals(){
-let url = APP_CONFIG.getAllTotals;
+  getAllTotals() {
+    let url = APP_CONFIG.getAllTotals;
     return this._httpService.get(url)
       .map(res => <Response>res.json());
-}
+  }
 
   getLocalityTotal() {
     let url = APP_CONFIG.getLocalityTotal;
@@ -356,7 +356,7 @@ let url = APP_CONFIG.getAllTotals;
       .map(res => <Response>res.json());
   }
 
-  
+
   getLocalityForView() {
     let url = APP_CONFIG.getLocalityForView;
     return this._httpService.get(url)
@@ -369,7 +369,7 @@ let url = APP_CONFIG.getAllTotals;
       .map(res => <Response>res.json());
   }
 
-  getSolOnTypeForReports(systemTypeId){
+  getSolOnTypeForReports(systemTypeId) {
     let url = APP_CONFIG.getSolOnTypeForReports;
     return this._httpService.get(url + '?' + 'systemTypeId' + '=' + systemTypeId)
       .map(res => <Response>res.json())
@@ -377,27 +377,38 @@ let url = APP_CONFIG.getAllTotals;
   }
 
 
-getLocOnTypeForSystem(solutionId){
-let url = APP_CONFIG.getLocOnTypeForSystem;
+  getLocOnTypeForSystem(solutionId) {
+    let url = APP_CONFIG.getLocOnTypeForSystem;
     return this._httpService.get(url + '?' + 'solutionId' + '=' + solutionId)
       .map(res => <Response>res.json())
-}
-getSolOnTypeForPrecinct(precinctTypeId){
-let url = APP_CONFIG.getSolOnTypeForPrecinct;
+  }
+  getSolOnTypeForPrecinct(precinctTypeId) {
+    let url = APP_CONFIG.getSolOnTypeForPrecinct;
     return this._httpService.get(url + '?' + 'precinctTypeId' + '=' + precinctTypeId)
       .map(res => <Response>res.json())
-}
+  }
 
-getLocForDevices(){
-let url = APP_CONFIG.getLocForDevices;
+  getLocForDevices() {
+    let url = APP_CONFIG.getLocForDevices;
     return this._httpService.get(url)
       .map(res => <Response>res.json())
-}
+  }
 
 
-getLocOnVendors(vendorId){
-let url = APP_CONFIG.getLocOnVendors;
+  getLocOnVendors(vendorId) {
+    let url = APP_CONFIG.getLocOnVendors;
     return this._httpService.get(url + '?' + 'vendorId' + '=' + vendorId)
       .map(res => <Response>res.json())
-}
+  }
+  getLocForMous() {
+    let url = APP_CONFIG.getLocForMous;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+
+  getSysForMous() {
+    let url = APP_CONFIG.getSysForMous;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
 }

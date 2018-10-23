@@ -1,103 +1,106 @@
 <app-navigation-component></app-navigation-component>
+<div class="my-container">
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
-	
+
 	<div class="form-options">
-			<div class="home-back">
-				<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
-				<a href="javascript:void(0)" routerLink="/dashboard"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
-			</div>
-			
-		
+		<div class="home-back">
+			<a routerLink="/dashboard">
+				<fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
+				 data-delay="0" [name]="'home'"></fa>
+			</a>
+			<a href="javascript:void(0)" routerLink="/dashboard">
+				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
+				 data-delay="0" [name]="'arrow-left'"></fa>
+			</a>
+		</div>
+
+
 	</div>
-</div> 
+</div>
 
 <form class="former">
-		 <div class="form-row">
-				<div class="form-group col-md-6">
-					<label class="label-form" for="systemType"><b>System
-							Type</b></label>
-			<div class="asterisk">*</div> 
-					<select id="modelSolution"  class="form-control" 
-				 ngModel name="system" required (change)="selectSystem($event.target.value)">
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label class="label-form" for="systemType"><b>System
+					Type</b></label>
+			<div class="asterisk">*</div>
+			<select id="modelSolution" class="form-control" ngModel name="system" required (change)="selectSystem($event.target.value)">
 				<option>Choose...</option>
-					<option *ngFor="let systemType of systemTypes" value="{{ systemType.systemTypeId }}">{{systemType.name}}</option>
+				<option *ngFor="let systemType of systemTypes" value="{{ systemType.systemTypeId }}">{{systemType.name}}</option>
 
-				</select>
-				</div>
-				<div class="model form-group col-md-6">
-					<label class="label-form" for="modelSolution"><b>Model/Solution</b></label>
-					<div class="asterisk">*</div>
-					<select class="form-control" id="system" (change)="selectSolution($event.target.value)"
-						name="system" required>
-						<option>Choose...</option>
-					   <option *ngFor="let sysType of  sysTypes" value="{{ sysType.solutionId }}">{{ sysType.name }}</option>
-					</select>
-				</div>
-			</div>  
-			
-			<h6 style="text-align:center">OR</h6>
-
- <div class="form-row">
-				<div class="form-group col-md-6">
-					<label class="label-form" for="precinctType"><b>Precinct
-							Type</b></label>
-			<div class="asterisk">*</div> 
-					<select id="modelSolution"  class="form-control" 
-				 ngModel name="precinct" required (change)="selectPrecinct($event.target.value)">
+			</select>
+		</div>
+		<div class="model form-group col-md-6">
+			<label class="label-form" for="modelSolution"><b>Model/Solution</b></label>
+			<div class="asterisk">*</div>
+			<select class="form-control" id="system" (change)="selectSolution($event.target.value)" name="system" required>
 				<option>Choose...</option>
-					<option *ngFor="let precType of precTypes" value="{{ precType.precinctTypeId }}">{{precType.typeName}}</option>
+				<option *ngFor="let sysType of  sysTypes" value="{{ sysType.solutionId }}">{{ sysType.name }}</option>
+			</select>
+		</div>
+	</div>
 
-				</select>
-				</div>
-				<div class="model form-group col-md-6">
-					<label class="label-form" for="modelSolution"><b>Model/Solution</b></label>
-					<div class="asterisk">*</div>
-					<select class="form-control" id="system" (change)="selectSolution($event.target.value)"
-						name="system" required>
-							<option>Choose...</option>
-					   <option *ngFor="let precitType of  precitTypes" value="{{ precitType.solutionId }}">{{ precitType.solutionTypeName }}</option>
-						
-					</select>
-				</div>
-			</div>  
+	<h6 style="text-align:center">OR</h6>
+
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label class="label-form" for="precinctType"><b>Precinct
+					Type</b></label>
+			<div class="asterisk">*</div>
+			<select id="modelSolution" class="form-control" ngModel name="precinct" required (change)="selectPrecinct($event.target.value)">
+				<option>Choose...</option>
+				<option *ngFor="let precType of precTypes" value="{{ precType.precinctTypeId }}">{{precType.typeName}}</option>
+
+			</select>
+		</div>
+		<div class="model form-group col-md-6">
+			<label class="label-form" for="modelSolution"><b>Model/Solution</b></label>
+			<div class="asterisk">*</div>
+			<select class="form-control" id="system" (change)="selectSolution($event.target.value)" name="system" required>
+				<option>Choose...</option>
+				<option *ngFor="let precitType of  precitTypes" value="{{ precitType.solutionId }}">{{ precitType.solutionTypeName
+					}}</option>
+
+			</select>
+		</div>
+	</div>
 
 
 
 
 </form>
-<div class="former clear-right">
-<form class="former">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th scope="col">Localities <i class="fa fa-arrow-down"
-								*ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+<div class="former clear-right" *ngIf="showTable">
+	<form class="former">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Localities <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
 
 
-							<th scope="col">System Type</th>
-							<th scope="col">Precinct Type</th>
-							<th scope="col">Model/Solution</th>
-							<th scope="col">Vendor Name</th>
-							<th scope="col">Version</th>
-						</tr>
+					<th scope="col">System Type</th>
+					<th scope="col">Precinct Type</th>
+					<th scope="col">Model/Solution</th>
+					<th scope="col">Vendor Name</th>
+					<th scope="col">Version</th>
+				</tr>
 
-					</thead>
-					<tbody>
-						<tr
-							*ngFor="let local of Locals |  paginate: { itemsPerPage: 10, currentPage: p }">
-							<td><a class="box" 
-								style="cursor: pointer;color:blue">{{local.applicationName}}</a></td>
+			</thead>
+			<tbody>
+				<tr *ngFor="let local of Locals |  paginate: { itemsPerPage: 10, currentPage: p }">
+					<td><a class="box" style="cursor: pointer;color:blue">{{local.applicationName}}</a></td>
 
-							<td>{{local.systemType}}</td>
-							<td>{{local.precinctType}}</td>
-							<td>{{local.solutionName}}</td>
-							<td>{{local.vendorName}}</td>
-							<td>{{local.versionNumber}}</td>
+					<td>{{local.systemType}}</td>
+					<td>{{local.precinctType}}</td>
+					<td>{{local.solutionName}}</td>
+					<td>{{local.vendorName}}</td>
+					<td>{{local.versionNumber}}</td>
 
 
-						</tr>
-					</tbody>
-				</table>
-				<pagination-controls (pageChange)="p = $event"></pagination-controls>
-				</form>
-			</div>
+				</tr>
+			</tbody>
+		</table>
+		<pagination-controls (pageChange)="p = $event"></pagination-controls>
+	</form>
+</div>

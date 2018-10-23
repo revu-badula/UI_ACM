@@ -30,38 +30,14 @@ export class ReportSolutionsComponent implements OnInit {
 
   precTypes: any;
   systemTypes: any;
- 
-
-  editableForm: boolean = true;
-  public showButton: boolean = true;
   color: String;
   hostingnames: any;
+  public showTable:boolean=false;
   public precinctTypeId: number;
   public modelSname: string;
   public solutionId: number;
   public appId: any;
 public precitTypes:any;
-  public appSolutions: any;
-  public appSolutionId: any;
-  public appSolutionDevice: any;
-  public hostingTypeId: any;
-  public solutionTypeName: any;
-  public versionNumber: any;
-  public vendors: any;
-  
-  public showText: any;
-  contentData: string = "";
-  public devices: any;
-  public deviceId: any;
-  public isVisible = false;
-  public showLegal = false;
-  public showInnerForm = false;
-  public isAddNewSolution = false;
-  public notVisible = false;
-  public boxVisible = false;
-  public editForm: boolean = true;
-  public acronym: any;
-  public updatedTime: any;
   public loading: boolean = false;
   public sysName: any;
   public isClick: boolean = true;
@@ -153,11 +129,16 @@ getColor() {
       this.Locals = [];
     }
     else {
+      this.loading=true;
     UtilService.soluId = solutionId;
   this._apiservice.getLocOnTypeForSystem(solutionId)
         .subscribe((data: any) => {
+          this.loading=false;
+          this.showTable=true;
          this.Locals = data;
-      }, error => { console.log(error) });
+      }, error => { 
+        this.loading=false;
+        console.log(error) });
    }
  }
   

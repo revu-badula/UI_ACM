@@ -129,8 +129,15 @@
         <div class="form-group col-md-6">
           <label for="costField">Cost Field</label>
           <div class="asterisk">*</div>
-          <div class="dollar"><input type="number" class="form-control" [(ngModel)]="serverContact.cost" ngModel name="cost"
-              required></div>
+          <!-- <div class="dollar"><input type="number" class="form-control" [(ngModel)]="serverContact.cost" ngModel name="cost"
+              required></div> -->
+              <div class="input-group mb-3">
+        
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="serverContact.cost" ngModel name="cost" required onlyDollar>
+                </div>
 
 
 

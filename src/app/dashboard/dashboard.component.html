@@ -1,21 +1,18 @@
 <ng-template #content let-c="close" let-d="dismiss">
-<div class="modal-header">
-	<h4 class="modal-title" style="color:white">Info</h4>
-	<!--   <button type="button" class="close" aria-label="Close" (click)="d()"> -->
-	<!--     <span aria-hidden="true">&times;</span> -->
-	<!--   </button> -->
-</div>
-<div class="modal-body">
-	<h3><b>Do  you want to open:</b></h3>
-	<button type="button" class="btn btn-outline-dark"
-		(click)="c();showLocal()">Locality</button>
-		<button type="button" class="btn btn-outline-dark"
-		(click)="c();showSys()">Systems</button>
-</div>
-<div class="modal-footer">
-	<button type="button" class="btn btn-outline-dark confbtn"
-		(click)="c()">Close</button>
-</div>
+  <div class="modal-header">
+    <h4 class="modal-title" style="color:white">Info</h4>
+    <!--   <button type="button" class="close" aria-label="Close" (click)="d()"> -->
+    <!--     <span aria-hidden="true">&times;</span> -->
+    <!--   </button> -->
+  </div>
+  <div class="modal-body">
+    <h3><b>Do you want to open:</b></h3>
+    <button type="button" class="btn btn-outline-dark" (click)="c();showLocal()">Locality</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c();showSys()">Systems</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
+  </div>
 </ng-template>
 
 
@@ -27,147 +24,210 @@
 <!--           </nav> -->
 <!--     </div> -->
 <app-navigation-component></app-navigation-component>
-    <div class="dashboard">
-         <div class="first-row">
-        <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Locality</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <!-- <a routerLink="/locality/map" class="card-link"><fa [name]="'plus-circle'"></fa></a> -->
-    <a routerLink="/locality/map" class="view-edit card-link"><fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Vendors</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a routerLink="/vendors" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a [routerLink]="['/vendorsView']" class="view-edit card-link"><fa [name]="'eye'"></fa>/ <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Solutions</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a routerLink="/solutions" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <!-- <a routerLink="/solutionsView" class="card-link"><fa [name]="'plus-circle'"></fa></a> -->
-    <a routerLink="/solutionsView" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Audit</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a  (click)="open(content)" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a  (click)="open(content)" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-        </div>
-    <div class="second-row">
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Assessment</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a (click)="open(content)" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a (click)="open(content)" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Reports</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a routerLink="/reports" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a routerLink="/reports" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Dashboard</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a routerLink="/dashboard" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a routerLink="/dashboard" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
+<div class="dashboard">
+  <div class="first-row">
     <div class="card" style="width: 18rem;">
       <div class="card-body">
-        <div class="card-heading"><h5 class="card-title">Systems</h5>
-          </div>
+        <div class="card-heading">
+          <h5 class="card-title">Locality</h5>
+        </div>
         <hr />
         <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a routerLink="/system/tab2/info" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-        <a routerLink="/system/map" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <!-- <a routerLink="/locality/map" class="card-link"><fa [name]="'plus-circle'"></fa></a> -->
+        <a routerLink="/locality/map" class="view-edit card-link" title="Create or View or Edit">
+          <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
       </div>
-</div>
-</div>
-        <div class="third-row">
+    </div>
     <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Security Life Cycle</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a routerLink="/dashboard" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a routerLink="/dashboard" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Compliance Check</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a routerLink="/dashboard" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a routerLink="/dashboard" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Policies</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a routerLink="/policy" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a routerLink="/policyView" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-   <div class="card-heading"><h5 class="card-title">Device Inventory</h5>
-      </div>
-    <hr />
-    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a routerLink="/deviceInventory" class="card-link"><fa [name]="'plus-circle'"></fa></a>
-    <a routerLink="/devicetab" class="view-edit card-link"><fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa></a>
-  </div>
-</div>
-        
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Vendors</h5>
         </div>
-        
-        </div>    
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">To add or update an existing vendor information.</p>
+        <a routerLink="/vendors" class="card-link" title="Create New">
+          <fa [name]="'plus-circle'" title="Create New"></fa>
+        </a>
+        <a title="View or Edit" [routerLink]="['/vendorsView']" class="view-Edit card-link">
+          <fa [name]="'eye'" title="View or Edit"></fa>/ <fa [name]="'edit'" title="View or Edit"></fa>
+        </a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Solutions</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a routerLink="/solutions" class="card-link" title="Create New">
+          <fa [name]="'plus-circle'"></fa>
+        </a>
+        <!-- <a routerLink="/solutionsView" class="card-link"><fa [name]="'plus-circle'"></fa></a> -->
+        <a routerLink="/solutionsView" class="view-edit card-link" title="View or Edit">
+          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Audit</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <!-- <a  (click)="open(content)" class="card-link"><fa [name]="'plus-circle'"></fa></a> -->
+        <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit">
+          <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="second-row">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Assessment</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <!-- <a (click)="open(content)" class="card-link"><fa [name]="'plus-circle'"></fa></a> -->
+        <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit">
+          <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Reports</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <!-- <a routerLink="/reports" class="card-link"><fa [name]="'plus-circle'"></fa></a> -->
+        <a routerLink="/reports" class="view-edit card-link" title="View">
+          <fa [name]="'eye'"></fa>
+        </a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Screening Tool</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a routerLink="/dashboard" class="card-link" title="Create New">
+          <fa [name]="'plus-circle'"></fa>
+        </a>
+        <a routerLink="/dashboard" class="view-edit card-link" title="View or Edit">
+          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Systems</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a routerLink="/system/tab2/info" class="card-link" title="Create New">
+          <fa [name]="'plus-circle'"></fa>
+        </a>
+        <a routerLink="/system/map" class="view-edit card-link" title="View or Edit">
+          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="third-row">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Security Life Cycle</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <!-- <a routerLink="/dashboard" class="card-link" title="Create New">
+          <fa [name]="'plus-circle'"></fa>
+        </a> -->
+        <a routerLink="/dashboard" class="view-edit card-link" title="View">
+          <fa [name]="'eye'"></fa> 
+        </a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Compliance Check</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a routerLink="/dashboard" class="card-link" title="Create New">
+          <fa [name]="'plus-circle'"></fa>
+        </a>
+        <a routerLink="/dashboard" class="view-edit card-link" title="View or Edit">
+          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Policies</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a routerLink="/policy" class="card-link" title="Create New">
+          <fa [name]="'plus-circle'"></fa>
+        </a>
+        <a routerLink="/policyView" class="view-edit card-link" title="View or Edit">
+          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Device Inventory</h5>
+        </div>
+        <hr />
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a routerLink="/deviceInventory" class="card-link" title="Create New">
+          <fa [name]="'plus-circle'"></fa>
+        </a>
+        <a routerLink="/devicetab" class="view-edit card-link" title="View or Edit">
+          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

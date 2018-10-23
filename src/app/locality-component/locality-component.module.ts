@@ -57,6 +57,7 @@ import { PhonePipe } from './phone-pipe';
 import { DialogComponent } from '../dialog.service';
 import { OnlyIntegerDirective } from './only-integer.directive';
 import { OnlyInteger } from '../integer';
+import { OnlyDollar } from 'app/dollar-validation';
 @NgModule({
   imports: [
     CommonModule,
@@ -87,8 +88,8 @@ import { OnlyInteger } from '../integer';
     AssessRecomendComponent, ManagementComponent, AssessActionComponent,
     AssessBusinessComponent, AssessSecurityComponent, AssessBudgetComponent,
     AssessAttachmentsComponent, AssessLessonsComponent, LocalitysolutionsformComponent,
-    NgbdModalContent, PhonePipe, OnlyIntegerDirective, OnlyInteger],
+    NgbdModalContent, PhonePipe, OnlyIntegerDirective, OnlyInteger, OnlyDollar],
   entryComponents: [NgbdModalContent, DialogComponent],
-  exports:[OnlyInteger, OnlyIntegerDirective, FilterPipeDate]
+  exports:[OnlyInteger, OnlyIntegerDirective, FilterPipeDate, OnlyDollar]
 })
 export class LocalityComponentModule { }

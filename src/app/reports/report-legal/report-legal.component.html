@@ -1,47 +1,72 @@
 <app-navigation-component></app-navigation-component>
+<div class="my-container">
+        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+    </div>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
-	<!-- <div class="home">
-			<i class="fas fa-home home-icon icons"></i>
-			< class="fas fa-arrow-left left-icon icons"></i>
-	</div> -->
-	<div class="form-options">
-			<div class="home-back">
-				<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
-				<a href="javascript:void(0)" routerLink="/reports"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
-			</div>
-			
-			<!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
-	</div>
-</div> 
+    <!-- <div class="home">
+            <i class="fas fa-home home-icon icons"></i>
+            < class="fas fa-arrow-left left-icon icons"></i>
+    </div> -->
+    <div class="form-options">
+        <div class="home-back">
+            <a routerLink="/dashboard">
+                <fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home"
+                    data-animation="true" data-delay="0" [name]="'home'"></fa>
+            </a>
+            <a href="javascript:void(0)" routerLink="/reports">
+                <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+                    data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+            </a>
+        </div>
+
+        <!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
+    </div>
+</div>
 <form class="former">
-<div class="former clear-right">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th scope="col">Localities <i class="fa fa-arrow-down"
-								*ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-		<th scope="col"> Document Name</th>
+    <!-- <div id="outer" style="width:130%">
+         <div id="inner">
+            <label>Localities</label>&nbsp;
+            <input type="radio" name="locality" (change)="getLocForMous()" [value]="locality">
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+            <label>Systems</label> &nbsp;
+            <input type="radio" name="system" [value]="system" (change)="getSysForMous()">
+        </div> 
+    </div> -->
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+            <input type="radio" name="options" [value]="locality" (focus)="getLoc($event)"  autocomplete="off" checked>Locality
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" [value]="systems" (focus)="getSys($event)"  autocomplete="off">Systems
+        </label>
+    </div>
+    <div class="former clear-right">
+        <table class="table table-bordered" *ngIf="showLeg">
+            <thead>
+                <tr>
+                    <th scope="col">Name <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+                    <th scope="col"> Document Name</th>
 
-							<th scope="col">Recertification Date</th>
-							<th scope="col"> Date of Receipt</th>
-							<th scope="col">Signed</th>
-						</tr>
+                    <th scope="col">Recertification Date</th>
+                    <th scope="col"> Date of Receipt</th>
+                    <th scope="col">Signed</th>
+                </tr>
 
-					</thead>
-					<tbody>
-						<tr
-							*ngFor="let locality of Localities |  paginate: { itemsPerPage: 10, currentPage: p }">
-							<td><a class="box" (click)="viewApplication(locality.value)"
-								style="cursor: pointer;color:blue">{{locality.applicationAcronym}}</a></td>
-	<td>{{locality.name}}</td>
-							<td>{{locality.recertificationDt | filter}}</td>
-							<td>{{locality.receiptDt | filter}}</td>
-							<td>{{locality.signed | signed }}</td>
+            </thead>
+            <tbody>
+                <tr *ngFor="let locality of Localities |  paginate: { itemsPerPage: 10, currentPage: p }">
+                    <td><a class="box" (click)="viewApplication(locality.value)" style="cursor: pointer;color:blue">{{locality.applicationAcronym}}</a></td>
+                    <td>{{locality.name}}</td>
+                    <td>{{locality.recertificationDt | filter}}</td>
+                    <td>{{locality.receiptDt | filter}}</td>
+                    <td>{{locality.signed | signed }}</td>
 
 
-						</tr>
-					</tbody>
-				</table>
-				<pagination-controls (pageChange)="p = $event"></pagination-controls>
-			</div>
-			</form>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+</form>

@@ -1,10 +1,10 @@
 
-const baseUrl = 'http://localhost:8080/ApplicationPortfolioManager/services/';
+//const baseUrl = 'http://localhost:8080/ApplicationPortfolioManager/services/';
 
 //const baseUrl = 'http://ec2-54-86-177-206.compute-1.amazonaws.com/ApplicationPortfolioManager/services/';
 
 
-//const baseUrl='http://172.24.16.56:8080/ApplicationPortfolioManager/services/';
+const baseUrl='http://172.24.16.56:8080/ApplicationPortfolioManager/services/';
 
 const apiBaseUrl = baseUrl;
 
@@ -82,7 +82,9 @@ export const APP_CONFIG = {
   getSolOnTypeForPrecinct:apiBaseUrl+'getSolOnTypeForPrecinct',
   getLocOnVendors:apiBaseUrl+'getLocOnVendors',
   getLocForDevices:apiBaseUrl+'getLocForDevices',
-  getAllTotals:apiBaseUrl+'getAllTotals'
+  getAllTotals:apiBaseUrl+'getAllTotals',
+  getLocForMous:apiBaseUrl+'getLocForMous',
+  getSysForMous:apiBaseUrl + 'getSysForMous'
 }
 
 
