@@ -23,33 +23,30 @@ export class ReportsComponent implements OnInit {
 
   public displayData: number;
 
-  public Locals:any;
-  public p:number=1;
-  public desc:boolean=false;
+  public Locals: any;
+  public p: number = 1;
+  public desc: boolean = false;
   public names: any;
-   sysTypes:any;
-   precinctTypes: any;
+  sysTypes: any;
+  precinctTypes: any;
   systemTypes: any;
-  
 
+  public loading: boolean = false;
   editableForm: boolean = true;
   public showButton: boolean = true;
   color: String;
-  
- 
-  contentData: string = "";
   public devices: number;
-  public legal:number;
-  public solution:number;
-  public vendor:number;
- 
+  public legal: number;
+  public solution: number;
+  public vendor: number;
+
   public isClick: boolean = true;
   public showBuck: boolean = true;
   public hostType: any;
-  public showPlus: boolean=true;
-  public reports:any;
+  public showPlus: boolean = true;
+  public reports: any;
 
-   
+
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -59,18 +56,18 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getLocalityTotal();
+    //this.getLocalityTotal();
     this.getAll();
-    
-
-    
   }
 
   getLocalityTotal() {
+    this.loading = true;
     this._apiservice.getLocalityTotal().
       subscribe((data: any) => {
+        this.loading = false;
         this.displayData = data;
       }, error => {
+        this.loading = false;
         console.log(error);
 
       }
@@ -81,26 +78,29 @@ export class ReportsComponent implements OnInit {
   }
 
 
- 
- 
-   getColor() {
+
+
+  getColor() {
     return this.color === 'online' ? '#ffffff' : 'white';
   }
   getOpacity() {
     return this.color === 'online' ? 0.8 : 1;
   }
- 
- 
- 
- getAll() {
+
+
+
+  getAll() {
+    this.loading = true;
     this._apiservice.getAllTotals().
       subscribe((data: any) => {
+        this.loading = false;
         this.reports = data;
-        this.devices=data[0];
-        this.solution=data[1];
-        this.vendor= data[2];
-        this.legal=data[3];
+        this.devices = data[0];
+        this.solution = data[1];
+        this.vendor = data[2];
+        this.legal = data[3];
       }, error => {
+        this.loading = false;
         console.log(error);
 
       }
