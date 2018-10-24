@@ -4,10 +4,7 @@ import { Http } from '@angular/http';
 import { UtilService } from '../../util.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
-import { DatePipe } from '@angular/common';
-import { formatDate } from '@angular/common';
-import { Cookie } from 'ng2-cookies';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-report-vendor',
   templateUrl: './report-vendor.component.html',
@@ -23,7 +20,7 @@ export class ReportVendorComponent implements OnInit {
   public loading: boolean = false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router) { }
+    private router: Router,  private _location: Location) { }
 
   ngOnInit() {
     this.showVendor();
@@ -62,6 +59,8 @@ export class ReportVendorComponent implements OnInit {
         });
     }
   }
-
+  backClicked() {
+    this._location.back();
+  }
 
 }

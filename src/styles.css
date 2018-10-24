@@ -14,10 +14,9 @@
     margin-left: 2px;
 }
 
-th,td{
-	text-align: center!important;
+th, td {
+    text-align: center!important;
 }
-
 
 .form-control:disabled, .form-control[readonly] {
     background-color: #e9ecef;
@@ -27,9 +26,6 @@ th,td{
 .form-control[_ngcontent-c7]:disabled, .form-control[readonly][_ngcontent-c7] {
     background-color: #e9ecef;
 }
-
-
-
 
 .btn {
     float: right;
@@ -46,11 +42,31 @@ th,td{
     margin-left: 3px;
 }
 
-label{
-	font-weight:bolder;
-	
+label {
+    font-weight: bolder;
 }
 
-h5{
-	font-weight:bolder;
+h5 {
+    font-weight: bolder;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #3A539B;
+    border-color: #3A539B;
+}
+
+.btn1 {
+    float: right;
+    margin-top: 25px;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    padding: 10px 10px;
+    width: auto;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 3px;
 }
