@@ -39,12 +39,11 @@ export class ReportsComponent implements OnInit {
   public legal: number;
   public solution: number;
   public vendor: number;
-
   public isClick: boolean = true;
-  public showBuck: boolean = true;
-  public hostType: any;
-  public showPlus: boolean = true;
-  public reports: any;
+  public signLocality:any;
+  public unSignLocality:any;
+  public signSystem:any;
+  public unSignSystem:any;
 
 
   constructor(private _apiservice: ApiserviceService,
@@ -94,11 +93,14 @@ export class ReportsComponent implements OnInit {
     this._apiservice.getAllTotals().
       subscribe((data: any) => {
         this.loading = false;
-        this.reports = data;
         this.devices = data[0];
         this.solution = data[1];
         this.vendor = data[2];
-        this.legal = data[3];
+        this.signLocality = data[4];
+        this.unSignLocality = data[5];
+        this.signSystem = data[6];
+        this.unSignSystem=data[7];
+        
       }, error => {
         this.loading = false;
         console.log(error);

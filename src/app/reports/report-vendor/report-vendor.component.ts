@@ -18,6 +18,9 @@ export class ReportVendorComponent implements OnInit {
   public p: number = 1;
   public showTable: boolean = false;
   public loading: boolean = false;
+  public firstName:boolean=false;
+  public solutionName:boolean=false;
+  public solutionVersionName:boolean=false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router,  private _location: Location) { }
@@ -34,10 +37,14 @@ export class ReportVendorComponent implements OnInit {
 
 
   showVendor() {
+    this.loading=true;
     this._apiservice.getVendors()
       .subscribe((data: any) => {
+        this.loading=false;
         this.vendorTypes = data.vendorsDTOs;
-      }, error => { console.log(error); });
+      }, error => {
+        this.loading=false;
+        console.log(error); });
 
   }
 
@@ -62,5 +69,211 @@ export class ReportVendorComponent implements OnInit {
   backClicked() {
     this._location.back();
   }
+
+  handleSort(value) {
+    if (!this.desc) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.venTypes.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = true;
+    }
+    else {
+      let orderByValue = value;
+      this.venTypes.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc = false;
+    }
+
+
+  }
+
+  handleSort1(value) {
+
+    if (!this.firstName) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.venTypes.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.firstName = true;
+    }
+    else {
+      let orderByValue = value;
+      this.venTypes.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.firstName= false;
+    }
+
+
+  }
+
+
+  handleSort2(value) {
+
+    if (!this.solutionName) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.venTypes.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.solutionName = true;
+    }
+    else {
+      let orderByValue = value;
+      this.venTypes.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.solutionName = false;
+    }
+
+
+  }
+
+
+  handleSort3(value) {
+
+    if (!this.solutionVersionName) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.venTypes.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.solutionVersionName = true;
+    }
+    else {
+      let orderByValue = value;
+      this.venTypes.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.solutionVersionName = false;
+    }
+
+
+  }
+
+  // handleSort4(value) {
+
+  //   if (!this.venName) {
+  //     //this.policies.sort(this.doAsc);
+  //     let orderByValue = value;
+  //     this.venTypes.sort((a: any, b: any) => {
+  //       if (a[orderByValue] > b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] < b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     this.venName = true;
+  //   }
+  //   else {
+  //     let orderByValue = value;
+  //     this.venTypes.sort((a: any, b: any) => {
+  //       if (a[orderByValue] < b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] > b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     //this.policies.sort(this.doDsc);
+  //     this.venName = false;
+  //   }
+
+
+  // }
+
+  // handleSort5(value) {
+
+  //   if (!this.verNum) {
+  //     //this.policies.sort(this.doAsc);
+  //     let orderByValue = value;
+  //     this.venTypes.sort((a: any, b: any) => {
+  //       if (a[orderByValue] > b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] < b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     this.verNum = true;
+  //   }
+  //   else {
+  //     let orderByValue = value;
+  //     this.venTypes.sort((a: any, b: any) => {
+  //       if (a[orderByValue] < b[orderByValue]) {
+  //         return -1;
+  //       } else if (a[orderByValue] > b[orderByValue]) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //     //this.policies.sort(this.doDsc);
+  //     this.verNum = false;
+  //   }
+
+
+  // }
+
 
 }

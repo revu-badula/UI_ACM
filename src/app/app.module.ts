@@ -75,6 +75,7 @@ import { ReportLegalComponent } from './reports/report-legal/report-legal.compon
 import { ReportSolutionsComponent } from './reports/report-solutions/report-solutions.component';
 import { ReportVendorComponent } from './reports/report-vendor/report-vendor.component';
 import { ReportDeviceComponent } from './reports/report-device/report-device.component';
+import { ReportlegalsystemComponent } from './reports/reportlegalsystem/reportlegalsystem.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,7 +122,8 @@ import { ReportDeviceComponent } from './reports/report-device/report-device.com
     ReportLegalComponent,
     ReportSolutionsComponent,
     ReportVendorComponent,
-    ReportDeviceComponent
+    ReportDeviceComponent,
+    ReportlegalsystemComponent
 
 
   ],

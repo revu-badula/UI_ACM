@@ -1,7 +1,7 @@
 <app-navigation-component></app-navigation-component>
 <div class="my-container">
-		<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-	  </div>
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
 
 	<div class="form-options">
@@ -41,34 +41,36 @@
 
 
 <div class="former clear-right" *ngIf="showTable">
-		<form class="former">
+	<form class="former">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th scope="col">Localities <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-
-
+					<th scope="col" (click)="handleSort('applicationName')">Localities <i class="fa fa-arrow-down" *ngIf="!desc"></i>
+						<i class="fa fa-arrow-up" *ngIf="desc"></i></th>
 					<th scope="col">Vendor Name</th>
-					<th scope="col">Vendor Contact Name</th>
-					<th scope="col">Solution Name</th>
-					<th scope="col">Version Number</th>
+					<th scope="col" (click)="handleSort1('vendorFirstName')">Vendor Contact Name <i class="fa fa-arrow-down" *ngIf="!firstName"></i>
+						<i class="fa fa-arrow-up" *ngIf="firstName"></i></th>
+					<th scope="col" (click)="handleSort2('solutionName')">Solution Name <i class="fa fa-arrow-down" *ngIf="!solutionName"></i>
+						<i class="fa fa-arrow-up" *ngIf="solutionName"></i></th>
+					<th scope="col" (click)="handleSort3('solutionVersionName')">Version Number <i class="fa fa-arrow-down" *ngIf="!solutionVersionName"></i>
+						<i class="fa fa-arrow-up" *ngIf="solutionVersionName"></i></th>
 
 
 				</tr>
 
 			</thead>
 			<tbody>
-				<ng-container *ngFor="let venType of venTypes |  paginate: { itemsPerPage: 10, currentPage: p }">
-					<tr *ngFor="let appSolution of venType.appSolutionDTOs">
+				<ng-template ngFor let-venType [ngForOf]="venTypes">
+					<tr *ngFor="let appSolution of venType.appSolutionDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
 						<td><a class="box" style="cursor: pointer;">{{appSolution.applicationName}}</a></td>
 
 						<td>{{appSolution.vendorName}}</td>
-						<td>{{venType.vendorFirstName + "" + venType.vendorLastName}}</td>
+						<td>{{venType.vendorFirstName}} {{venType.vendorLastName}}</td>
 						<td>{{venType.solutionName}}</td>
 						<td>{{venType.solutionVersionName}}</td>
 					</tr>
 
-				</ng-container>
+				</ng-template>
 			</tbody>
 
 		</table>

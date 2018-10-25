@@ -132,6 +132,7 @@ import { ReportLegalComponent } from './reports/report-legal/report-legal.compon
 import { ReportSolutionsComponent } from './reports/report-solutions/report-solutions.component';
 import { ReportVendorComponent } from './reports/report-vendor/report-vendor.component';
 import { ReportDeviceComponent } from './reports/report-device/report-device.component';
+import { ReportlegalsystemComponent } from './reports/reportlegalsystem/reportlegalsystem.component';
 const appRoutes: Routes = [
 
   { path: '', component: LoginPageComponent },
@@ -153,6 +154,7 @@ const appRoutes: Routes = [
   { path:'rsolution', component:ReportSolutionsComponent, canActivate:[AuthGuard]},
   { path:'rvendor', component:ReportVendorComponent, canActivate:[AuthGuard]},
   { path:'rdevice', component:ReportDeviceComponent , canActivate:[AuthGuard]},
+  { path:'rsystems', component:ReportlegalsystemComponent, canActivate:[AuthGuard]},
   
   {
     path: "locality", component: LocalityComponentComponent, canActivate: [AuthGuard],

@@ -1,4 +1,5 @@
-import { Component, OnInit, TemplateRef, ViewChild, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, OnDestroy, ChangeDetectorRef, 
+  ChangeDetectionStrategy, Renderer2 } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { UserIdleService } from 'angular-user-idle';
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // private _idleTimerSubscription: Subscription;
   constructor(private modalService: NgbModal, private router: Router,
      private changeRef: ChangeDetectorRef, private idleTimeoutSvc: IdleTimeoutService, 
-     private dialogSvc: DialogService) {
+     private dialogSvc: DialogService, private renderer: Renderer2) {
     localStorage.removeItem('localityName');
     localStorage.removeItem('appAuditId');
     localStorage.removeItem('appMouId');
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     localStorage.removeItem('active');
     localStorage.removeItem('systemName');
     localStorage.removeItem('systemActive');
+    //this.renderer.setStyle(document.body, 'background-color', 'yellow');
   }
 
   ngOnInit() {

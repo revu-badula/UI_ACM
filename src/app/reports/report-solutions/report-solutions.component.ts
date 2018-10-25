@@ -26,8 +26,13 @@ export class ReportSolutionsComponent implements OnInit {
   public color: String;
   public precitTypes: any;
   public loading: boolean = false;
-  public showTable:boolean=false;
-
+  public showTable: boolean = false;
+  public precType: boolean = false;
+  public sysType: boolean = false;
+  public mSolution: boolean = false;
+  public venName: boolean = false;
+  public verNum: boolean = false;
+  public showPage:boolean=false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router, private _location: Location) { }
@@ -47,21 +52,29 @@ export class ReportSolutionsComponent implements OnInit {
   }
 
   showDropdown() {
-
+    this.loading = true;
     this._apiservice.getSolutionsOnload()
       .subscribe((data: any) => {
+        this.loading = false;
         this.systemTypes = data.systemTypeDTOs;
-      }, error => { console.log(error); });
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
 
   }
 
 
   showPrecinct() {
-
+    this.loading = true;
     this._apiservice.getSolutionsOnload()
       .subscribe((data: any) => {
+        this.loading = false;
         this.precTypes = data.precinctTypeDTOs;
-      }, error => { console.log(error); });
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
   }
 
 
@@ -72,9 +85,6 @@ export class ReportSolutionsComponent implements OnInit {
       this.sysTypes = [];
     }
     else {
-
-
-      UtilService.sysId = systemTypeId;
       this._apiservice.getSolOnTypeForReports(systemTypeId)
         .subscribe((data: any) => {
           this.sysTypes = data.solutionsDTOs;
@@ -90,9 +100,6 @@ export class ReportSolutionsComponent implements OnInit {
       this.precitTypes = [];
     }
     else {
-
-
-      UtilService.preId = precinctTypeId;
       this._apiservice.getSolOnTypeForPrecinct(precinctTypeId)
         .subscribe((data: any) => {
           this.precitTypes = data.solutionsDTOs;
@@ -120,6 +127,10 @@ export class ReportSolutionsComponent implements OnInit {
           this.loading = false;
           this.showTable = true;
           this.Locals = data;
+          if(data.length > 0)
+          {
+            this.showPage=true;
+          }
         }, error => {
           this.loading = false;
           console.log(error)
@@ -132,6 +143,213 @@ export class ReportSolutionsComponent implements OnInit {
   backClicked() {
     this._location.back();
   }
+
+  handleSort(value) {
+    if (!this.desc) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = true;
+    }
+    else {
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc = false;
+    }
+
+
+  }
+
+  handleSort1(value) {
+
+    if (!this.sysType) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.sysType = true;
+    }
+    else {
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.sysType = false;
+    }
+
+
+  }
+
+
+  handleSort2(value) {
+
+    if (!this.precType) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.precType = true;
+    }
+    else {
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.precType = false;
+    }
+
+
+  }
+
+
+  handleSort3(value) {
+
+    if (!this.mSolution) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.mSolution = true;
+    }
+    else {
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.mSolution = false;
+    }
+
+
+  }
+
+  handleSort4(value) {
+
+    if (!this.venName) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.venName = true;
+    }
+    else {
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.venName = false;
+    }
+
+
+  }
+
+  handleSort5(value) {
+
+    if (!this.verNum) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.verNum = true;
+    }
+    else {
+      let orderByValue = value;
+      this.Locals.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.verNum = false;
+    }
+
+
+  }
+
+
 
 
 

@@ -4,79 +4,194 @@
 </div>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
 
-	<div class="form-options">
-			<div class="home-back">
-				<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
-				<a href="javascript:void(0)" routerLink="/dashboard"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
-			</div>
-			
-			<!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
-	</div>
-</div> 
+  <div class="form-options">
+    <div class="home-back">
+      <a routerLink="/dashboard">
+        <fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
+          data-delay="0" [name]="'home'"></fa>
+      </a>
+      <a href="javascript:void(0)" routerLink="/dashboard">
+        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
+          data-delay="0" [name]="'arrow-left'"></fa>
+      </a>
+    </div>
+
+    <!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
+  </div>
+</div>
 
 
 
 
- <div class="page-description">
-            <h5 style="text-align: center">Reports</h5>
-           
+<div class="page-description">
+  <div class="page-description">
+    <h3 class="headerClass">Reports</h3>
+    <hr class="after-heading" />
+  </div>
+  <!-- <h5 style="text-align: center">Reports</h5> -->
+
+</div>
+<form>
+  <div class="pageImg" >
+    <div class="dashboard">
+      <table class="wholeDashboard">
+        <tr id="backClass">
+
+          <td class="backGroundClass">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <div class="card-heading">
+                  <h5 class="card-title"> Legal Documents for Localities</h5>
+                </div>
+                <hr />
+                <!-- <a routerLink="/rlegal" class="card-link">
+              <h3 style="color: black">{{legal}}</h3>
+            </a>
+            <a class="card-link">
+              <h3 style="color: black">{{legal}}</h3>
+            </a> -->
+                <table class="tableForSigned">
+          <th><u>Unsigned</u></th>
+          <th><u>Signed</u></th>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+          <td>
+            <h4><a routerLink="/rlegal" style="color:red;">{{unSignLocality}}</a></h4>
+          </td>
+          <td>
+            <h4><a routerLink="/rlegal" style="color: green;">{{signLocality}}</a></h4>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  </td>
+  <td class="backGroundClass">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title"> Legal Documents for Systems</h5>
         </div>
-        <form>
-		  <div class="dashboard">
-         <div class="first-row">
-        <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Total Legal</h5>
-      </div>
-    <hr />
-    <div class="center"> 
-							<a routerLink="/rlegal"> 
- 								<h3 style="color: black">{{legal}}</h3> 
- 							</a> 
- 						</div>
-
+        <hr />
+        <table class="tableForSigned">
+  <th><u>Unsigned</u></th>
+  <th><u>Signed</u></th>
+  <tr></tr>
+  <tr></tr>
+  <tr class="center">
+    <td>
+      <h4><a routerLink="/rsystems" style="color: red;">{{unSignSystem}}</a></h4>
+    </td>
+    <td>
+      <h4><a routerLink="/rsystems" style="color:green;">{{signSystem}}</a></h4>
+    </td>
+  </tr>
+  </table>
+  <!-- <a routerLink="/rlegal" class="card-link">
+              <h3 style="color: black">{{legal}}</h3>
+            </a>
+            <a class="card-link">
+              <h3 style="color: black">{{legal}}</h3>
+            </a> -->
   </div>
-</div>
+  </div>
+  </td>
+  <td class="backGroundClass">
     <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Total Solutions</h5>
-      </div>
-    <hr />
-   <div class="center"> 
-							<a routerLink="/rsolution"> 
-								<h3 style="color: black">{{solution}}</h3> 
- 							</a> 
-						</div> 
-  </div>
-</div>
-
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Localities and Solutions</h5>
         </div>
-    <div class="second-row">
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Total Vendors</h5>
+        <hr />
+        <div class="center">
+          <a routerLink="/rsolution">
+            <h3 style="color: black">{{solution}}</h3>
+          </a>
+        </div>
       </div>
-    <hr />
-   <div class="center"> 
- 								<a routerLink="/rvendor">
- 									<h3 style="color: black">{{vendor}}</h3> 
- 								</a> 
-</div>
-  </div>
-</div>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <div class="card-heading"><h5 class="card-title">Total Scanned Devices</h5>
+    </div>
+  </td>
+
+
+  </tr>
+  <tr class="backGroundClass">
+    <td class="backGroundClass">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title"> Total Scanned Devices</h5>
+          </div>
+          <hr />
+          <div class="center">
+            <a routerLink="/rdevice">
+              <h3 style="color: black">{{devices}}</h3>
+            </a>
+          </div>
+        </div>
+
       </div>
-    <hr />
-   <div class="center"> 
- 							<a routerLink="/rdevice"> 
- 								<h3 style="color: black">{{devices}}</h3> 
- 							</a> 
- 						</div>
+    </td>
+    <td class="backGroundClass">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Localities and Vendors</h5>
+          </div>
+          <hr />
+          <div class="center">
+            <a routerLink="/rvendor">
+              <h3 style="color: black">{{vendor}}</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </td>
+    <td class="backGroundClass">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Overall Solutions</h5>
+          </div>
+          <hr />
+          <div class="center">
+            <a routerLink="/solutionsView">
+              <h5 style="color: black">Click here to view all solutions</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    </td>
+
+  </tr>
+  <tr id="backClass1">
+    <td class="backGroundClass">
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Overall Vendors</h5>
+          </div>
+          <hr />
+          <div class="center">
+            <a routerLink="/vendorsView">
+              <h5 style="color: black">click here to view all vendors</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    </td>
+
+  </tr>
+  </table>
   </div>
-  
-</div>
-  </div> 
-</div>	
-</form>	
+  <!-- <div class="card">
+    <h5 class="card-header">Featured</h5>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> -->
+  </div>
+</form>
