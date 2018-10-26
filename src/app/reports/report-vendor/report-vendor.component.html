@@ -68,7 +68,7 @@
 				<!-- <ng-template ngFor let-venType [ngForOf]="venTypes"> -->
 					<tr *ngFor="let appSolution of venType.appSolutionDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
 		
-						<td><a class="box" style="cursor: pointer;color: blue;">{{appSolution.vendorName}}</a></td>
+						<td><a class="box" style="cursor: pointer;color: blue;" (click)="getVendor(venType.vendorId)">{{appSolution.vendorName}}</a></td>
 						<td>{{venType.vendorFirstName}} {{venType.vendorLastName}}</td>
 						<td>{{venType.solutionName}}</td>
 						<td>{{venType.solutionVersionName}}</td>

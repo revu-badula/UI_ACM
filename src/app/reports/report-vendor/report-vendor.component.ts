@@ -18,12 +18,12 @@ export class ReportVendorComponent implements OnInit {
   public p: number = 1;
   public showTable: boolean = false;
   public loading: boolean = false;
-  public firstName:boolean=false;
-  public solutionName:boolean=false;
-  public solutionVersionName:boolean=false;
+  public firstName: boolean = false;
+  public solutionName: boolean = false;
+  public solutionVersionName: boolean = false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router,  private _location: Location) { }
+    private router: Router, private _location: Location) { }
 
   ngOnInit() {
     this.showVendor();
@@ -37,14 +37,15 @@ export class ReportVendorComponent implements OnInit {
 
 
   showVendor() {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getVendors()
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.vendorTypes = data.vendorsDTOs;
       }, error => {
-        this.loading=false;
-        console.log(error); });
+        this.loading = false;
+        console.log(error);
+      });
 
   }
 
@@ -131,7 +132,7 @@ export class ReportVendorComponent implements OnInit {
         }
       });
       //this.policies.sort(this.doDsc);
-      this.firstName= false;
+      this.firstName = false;
     }
 
 
@@ -274,6 +275,12 @@ export class ReportVendorComponent implements OnInit {
 
 
   // }
+
+  getVendor(id) {
+    let url ="editVendors"+"/"+id;
+    this.router.navigateByUrl(url);
+
+  }
 
 
 }

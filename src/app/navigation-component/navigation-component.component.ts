@@ -40,6 +40,7 @@ export class NavigationComponentComponent implements OnInit {
     localStorage.removeItem('sysassesId');
     localStorage.removeItem('appSolId');
     localStorage.removeItem('systemMouId');
+    localStorage.removeItem('fipscode');
     this.router.navigate(['/logout']);
   }
 

@@ -222,7 +222,8 @@ export class ReportlegalsystemComponent implements OnInit {
   getSystem(value)
   {
     localStorage.setItem('systemName', value);
-    this.router.navigate(['/system/tab2/info']);
+    localStorage.setItem('systemActive','true');
+    this.router.navigate(['/system/tab2/legal']);
   }
 
 

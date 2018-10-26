@@ -33,6 +33,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     localStorage.removeItem('systemActive');
     localStorage.removeItem('fipscode');
     localStorage.removeItem('appSolId');
+    localStorage.removeItem('systemAssessActive');
+    localStorage.removeItem('systemAuditActive');
+    localStorage.removeItem('systemAppAuditId');
+    localStorage.removeItem('sysassesId');
+    localStorage.removeItem('appSolId');
+    localStorage.removeItem('systemMouId');
     //this.renderer.setStyle(document.body, 'background-color', 'yellow');
   }
 

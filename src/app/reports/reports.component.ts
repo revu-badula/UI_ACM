@@ -54,6 +54,8 @@ export class ReportsComponent implements OnInit {
     private router: Router) {
     UtilService.signlegal = false;
     UtilService.signsystem = false;
+    UtilService.pass=false;
+    UtilService.pending=false;
 
 
   }
@@ -127,6 +129,15 @@ export class ReportsComponent implements OnInit {
   goTo1() {
     UtilService.signsystem = true;
     this.router.navigate(['/rsystems']);
+  }
+
+  goTo2() {
+    UtilService.pass = true;
+    this.router.navigate(['/rdevice']);
+  }
+  goTo3() {
+    UtilService.pending = true;
+    this.router.navigate(['/rdevice']);
   }
 
 }

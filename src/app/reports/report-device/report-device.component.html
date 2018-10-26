@@ -35,7 +35,7 @@
 
 			</thead>
 			<tbody>
-				<tr *ngFor="let device of devices |  paginate: { itemsPerPage: 10, currentPage: p }">
+				<tr *ngFor="let device of sortDevices |  paginate: { itemsPerPage: 10, currentPage: p }">
 					<td><a class="box" style="cursor: pointer;color:blue" (click)="getLocality(device.appName)">{{device.appName}}</a></td>
 					<td>{{device.modelNumber}}</td>
 

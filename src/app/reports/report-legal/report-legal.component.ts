@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { UtilService } from '../../util.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-
+import {  county } from '../../county';
 
 @Component({
   selector: 'app-report-legal',
@@ -253,8 +253,13 @@ export class ReportLegalComponent implements OnInit {
   }
 
   getLocality(value) {
+    // let countyarray = county.filter(item => item.county_name === value);
+    // for (let i = 0; i < countyarray.length; i++) {
+    //   localStorage.setItem('fipscode', countyarray[i].county_code);
+    // }
     localStorage.setItem('localityName', value);
-    this.router.navigate(['/locality/tab/info']);
+    localStorage.setItem('active', 'true');
+    this.router.navigate(['/locality/tab/legal']);
   }
 
 }

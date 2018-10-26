@@ -23,6 +23,7 @@ export class ReportDeviceComponent implements OnInit {
   public sName:boolean=false;
   public overall:boolean=false;
   public loading:boolean=false;
+  public sortDevices:any=[];
    constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router,  private _location: Location)  {
@@ -49,6 +50,37 @@ export class ReportDeviceComponent implements OnInit {
         {
           this.showPage=true;
         }
+        if(UtilService.pass){
+        for(let i=0;i<this.devices.length;i++)
+        {
+          if(this.devices[i].overallStatus === "Passed")
+          {
+            this.sortDevices.push(this.devices[i]);
+          }
+        
+        }
+      }
+      else if(UtilService.pending)
+      {
+        for(let i=0;i<this.devices.length;i++)
+        {
+          if(this.devices[i].overallStatus === "Pending")
+          {
+            this.sortDevices.push(this.devices[i]);
+          }
+        
+        }
+      }
+      else{
+        for(let i=0;i<this.devices.length;i++)
+        {
+          if(this.devices[i].overallStatus === "Failed")
+          {
+            this.sortDevices.push(this.devices[i]);
+          }
+        
+        }
+      }
       }, error => {
         this.loading=false;
         console.log(error);
@@ -67,7 +99,7 @@ export class ReportDeviceComponent implements OnInit {
     if (!this.desc) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -80,7 +112,7 @@ export class ReportDeviceComponent implements OnInit {
     }
     else {
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -101,7 +133,7 @@ export class ReportDeviceComponent implements OnInit {
     if (!this.mNum) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -114,7 +146,7 @@ export class ReportDeviceComponent implements OnInit {
     }
     else {
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -136,7 +168,7 @@ export class ReportDeviceComponent implements OnInit {
     if (!this.sNum) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -149,7 +181,7 @@ export class ReportDeviceComponent implements OnInit {
     }
     else {
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -171,7 +203,7 @@ export class ReportDeviceComponent implements OnInit {
     if (!this.curScan) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -184,7 +216,7 @@ export class ReportDeviceComponent implements OnInit {
     }
     else {
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -205,7 +237,7 @@ export class ReportDeviceComponent implements OnInit {
     if (!this.nextScan) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -218,7 +250,7 @@ export class ReportDeviceComponent implements OnInit {
     }
     else {
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -239,7 +271,7 @@ export class ReportDeviceComponent implements OnInit {
     if (!this.sName) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -252,7 +284,7 @@ export class ReportDeviceComponent implements OnInit {
     }
     else {
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -273,7 +305,7 @@ export class ReportDeviceComponent implements OnInit {
     if (!this.overall) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -286,7 +318,7 @@ export class ReportDeviceComponent implements OnInit {
     }
     else {
       let orderByValue = value;
-      this.devices.sort((a: any, b: any) => {
+      this.sortDevices.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -304,7 +336,8 @@ export class ReportDeviceComponent implements OnInit {
 
   getLocality(value) {
     localStorage.setItem('localityName', value);
-    this.router.navigate(['/locality/tab/info']);
+    localStorage.setItem('active','true');
+    this.router.navigate(['/locality/tab/solutions']);
   }
 
 }

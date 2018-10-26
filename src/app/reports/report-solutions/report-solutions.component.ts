@@ -35,7 +35,10 @@ export class ReportSolutionsComponent implements OnInit {
   public showPage:boolean=false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router, private _location: Location) { }
+    private router: Router, private _location: Location) {
+      localStorage.removeItem('localityName');
+      localStorage.removeItem('active');
+     }
 
   ngOnInit() {
     this.showDropdown();
@@ -349,7 +352,11 @@ export class ReportSolutionsComponent implements OnInit {
 
   }
 
-
+  getLocality(value) {
+    localStorage.setItem('localityName', value);
+    localStorage.setItem('active','true');
+    this.router.navigate(['/locality/tab/solutions']);
+  }
 
 
 
