@@ -27,17 +27,20 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Name <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-                    <th scope="col"> Document Name</th>
-                    <th scope="col">Recertification Date</th>
-                    <th scope="col"> Date of Receipt</th>
+                    <th scope="col" (click)="handleSort('applicationAcronym')">Localities<i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+                    <th scope="col" (click)="handleSort3('name')"> Document Name <i class="fa fa-arrow-down" *ngIf="!name"></i>
+						<i class="fa fa-arrow-up" *ngIf="name"></i></th>
+                    <th scope="col" (click)="handleSort1('recertificationDt')">Recertification Date <i class="fa fa-arrow-down" *ngIf="!rcDt"></i>
+						<i class="fa fa-arrow-up" *ngIf="rcDt"></i></th>
+                    <th scope="col" (click)="handleSort2('receiptDt')"> Date of Receipt <i class="fa fa-arrow-down" *ngIf="!dtrcpt"></i>
+						<i class="fa fa-arrow-up" *ngIf="dtrcpt"></i></th>
                     <th scope="col">Signed</th>
                 </tr>
 
             </thead>
             <tbody>
-                <tr *ngFor="let locality of Localities |  paginate: { itemsPerPage: 10, currentPage: p }">
-                    <td><a class="box" (click)="viewApplication(locality.value)" style="cursor: pointer;color:blue">{{locality.applicationAcronym}}</a></td>
+                <tr *ngFor="let locality of signedLocalities |  paginate: { itemsPerPage: 10, currentPage: p }">
+                    <td><a class="box" style="cursor: pointer;color:blue">{{locality.applicationAcronym}}</a></td>
                     <td>{{locality.name}}</td>
                     <td>{{locality.recertificationDt | filter}}</td>
                     <td>{{locality.receiptDt | filter}}</td>

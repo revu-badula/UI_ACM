@@ -23,6 +23,8 @@ public isLocalitySolutionAdd: boolean = false;
 static backClicked: boolean = false;
 static appAuditId:any;
 static appMouId:any;
+static signlegal:boolean=false;
+static signsystem:boolean=false;
 public subject = new BehaviorSubject<any>(false);
 public subject1 = new BehaviorSubject<any>(false);
 setEditTrue(val : boolean) {

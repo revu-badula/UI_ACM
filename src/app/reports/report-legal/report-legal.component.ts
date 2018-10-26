@@ -18,13 +18,19 @@ export class ReportLegalComponent implements OnInit {
   public Locals: any;
   public p: number = 1;
   public desc: boolean = false;
+  public name: boolean = false;
+  public rcDt: boolean = false;
+  public dtrcpt: boolean = false;
   sysTypes: any;
   precinctTypes: any;
   systemTypes: any;
   color: String;
+  public showTable: boolean = false;
   public loading: boolean = false;
   public locality: any;
   public systems: any;
+  public signedLocalities: any = [];
+  public unsignedLocalities: any = [];
 
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
@@ -56,6 +62,23 @@ export class ReportLegalComponent implements OnInit {
       subscribe((data: any) => {
         this.loading = false;
         this.Localities = data;
+        if (UtilService.signlegal) {
+          for (let i = 0; i < this.Localities.length; i++) {
+            if (this.Localities[i].signed) {
+              this.signedLocalities.push(this.Localities[i]);
+            }
+
+          }
+        }
+        else {
+          for (let i = 0; i < this.Localities.length; i++) {
+            if (!(this.Localities[i].signed)) {
+              this.signedLocalities.push(this.Localities[i]);
+            }
+
+          }
+        }
+
       }, error => {
         this.loading = false;
         console.log(error);
@@ -75,6 +98,7 @@ export class ReportLegalComponent implements OnInit {
       subscribe((data: any) => {
         this.loading = false;
         this.Localities = data;
+
       }, error => {
         this.loading = false;
         console.log(error);
@@ -86,16 +110,147 @@ export class ReportLegalComponent implements OnInit {
 
 
   }
-  getLoc(event) {
-    if (event.target.checked) {
-      this.getLocForMous();
+
+
+
+  handleSort(value) {
+    if (!this.desc) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.signedLocalities.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = true;
     }
-  }
-  getSys(event) {
-    if (event.target.checked) {
-      this.getSysForMous();
+    else {
+      let orderByValue = value;
+      this.signedLocalities.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc = false;
     }
+
+
   }
+
+  handleSort1(value) {
+
+    if (!this.rcDt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.signedLocalities.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.rcDt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.signedLocalities.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.rcDt = false;
+    }
+
+
+  }
+
+
+  handleSort2(value) {
+
+    if (!this.dtrcpt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.signedLocalities.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.dtrcpt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.signedLocalities.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.dtrcpt = false;
+    }
+
+
+  }
+
+
+  handleSort3(value) {
+
+    if (!this.name) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.signedLocalities.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.name = true;
+    }
+    else {
+      let orderByValue = value;
+      this.signedLocalities.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.name = false;
+    }
+
+
+  }
+
+
 
 }
 

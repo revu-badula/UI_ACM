@@ -40,15 +40,17 @@ export class ReportsComponent implements OnInit {
   public solution: number;
   public vendor: number;
   public isClick: boolean = true;
-  public signLocality:any;
-  public unSignLocality:any;
-  public signSystem:any;
-  public unSignSystem:any;
+  public signLocality: any;
+  public unSignLocality: any;
+  public signSystem: any;
+  public unSignSystem: any;
 
 
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
+    UtilService.signlegal = false;
+    UtilService.signsystem = false;
 
 
   }
@@ -99,8 +101,8 @@ export class ReportsComponent implements OnInit {
         this.signLocality = data[4];
         this.unSignLocality = data[5];
         this.signSystem = data[6];
-        this.unSignSystem=data[7];
-        
+        this.unSignSystem = data[7];
+
       }, error => {
         this.loading = false;
         console.log(error);
@@ -110,6 +112,15 @@ export class ReportsComponent implements OnInit {
 
       );
 
+  }
+
+  goTo() {
+    UtilService.signlegal = true;
+    this.router.navigate(['/rlegal']);
+  }
+  goTo1() {
+    UtilService.signsystem = true;
+    this.router.navigate(['/rsystems']);
   }
 
 }

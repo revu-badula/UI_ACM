@@ -32,59 +32,59 @@
 
 </div>
 <form>
-  <div class="pageImg" >
+  <div class="pageImg">
     <!-- <div class="dashboard"> -->
-      <table class="wholeDashboard">
-        <tr id="backClass">
+    <table class="wholeDashboard">
+      <tr id="backClass">
 
-          <td class="backGroundClass">
-            <!-- <div class="card" style="width: 18rem;"> -->
-              <div class="card-body">
-                <div class="card-heading">
-                  <h5 class="card-title"> Legal Documents for Localities</h5>
-                </div>
-                <hr />
-                <!-- <a routerLink="/rlegal" class="card-link">
+        <td class="backGroundClass">
+          <!-- <div class="card" style="width: 18rem;"> -->
+          <div class="card-body">
+            <div class="card-heading">
+              <h5 class="card-title"> Legal Documents for Localities</h5>
+            </div>
+            <hr />
+            <!-- <a routerLink="/rlegal" class="card-link">
               <h3 style="color: black">{{legal}}</h3>
             </a>
             <a class="card-link">
               <h3 style="color: black">{{legal}}</h3>
             </a> -->
-                <table class="tableForSigned">
-          <th><u>Unsigned</u></th>
-          <th><u>Signed</u></th>
-        <tr></tr>
-        <tr></tr>
-        <tr>
-          <td>
-            <h4><a routerLink="/rlegal" style="color:red;">{{unSignLocality}}</a></h4>
-          </td>
-          <td>
-            <h4><a routerLink="/rlegal" style="color: green;">{{signLocality}}</a></h4>
-          </td>
-        </tr>
-      </table>
-    </div>
+            <table class="tableForSigned">
+        <th><u>Unsigned</u></th>
+        <th><u>Signed</u></th>
+      <tr></tr>
+      <tr></tr>
+      <tr class="backGroundClass" id="backClass3">
+        <td>
+          <h4><a routerLink="/rlegal" style="color:red;">{{unSignLocality}}</a></h4>
+        </td>
+        <td>
+          <h4><a (click)="goTo()" style="color: green;cursor: pointer;">{{signLocality}}</a></h4>
+        </td>
+      </tr>
+    </table>
+  </div>
   <!-- </div> -->
   </td>
   <td class="backGroundClass">
     <!-- <div class="card" style="width: 18rem;"> -->
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title"> Legal Documents for Systems</h5>
-        </div>
-        <hr />
-        <table class="tableForSigned">
+    <div class="card-body">
+      <div class="card-heading">
+        <h5 class="card-title"> Legal Documents for Systems</h5>
+      </div>
+      <hr />
+      <table class="tableForSigned">
   <th><u>Unsigned</u></th>
   <th><u>Signed</u></th>
   <tr></tr>
   <tr></tr>
-  <tr class="center">
+  <tr class="center" id="backClass4">
     <td>
       <h4><a routerLink="/rsystems" style="color: red;">{{unSignSystem}}</a></h4>
     </td>
     <td>
-      <h4><a routerLink="/rsystems" style="color:green;">{{signSystem}}</a></h4>
+      <h4><a (click)="goTo1()" style="color:green;cursor: pointer;">{{signSystem}}</a></h4>
     </td>
   </tr>
   </table>
@@ -99,17 +99,17 @@
   </td>
   <td class="backGroundClass">
     <!-- <div class="card" style="width: 18rem;"> -->
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Localities and Solutions</h5>
-        </div>
-        <hr />
-        <div class="center">
-          <a routerLink="/rsolution">
-            <h3 style="color: black">{{solution}}</h3>
-          </a>
-        </div>
+    <div class="card-body">
+      <div class="card-heading">
+        <h5 class="card-title">Localities and Solutions</h5>
       </div>
+      <hr />
+      <div class="center">
+        <a routerLink="/rsolution">
+          <h3 style="color: black">{{solution}}</h3>
+        </a>
+      </div>
+    </div>
     <!-- </div> -->
   </td>
 
@@ -118,48 +118,48 @@
   <tr class="backGroundClass">
     <td class="backGroundClass">
       <!-- <div class="card"> -->
-        <div class="card-body">
-          <div class="card-heading">
-            <h5 class="card-title"> Total Scanned Devices</h5>
-          </div>
-          <hr />
-          <div class="center">
-            <a routerLink="/rdevice">
-              <h3 style="color: black">{{devices}}</h3>
-            </a>
-          </div>
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title"> Total Scanned Devices</h5>
         </div>
+        <hr />
+        <div class="center">
+          <a routerLink="/rdevice">
+            <h3 style="color: black">{{devices}}</h3>
+          </a>
+        </div>
+      </div>
 
       <!-- </div> -->
     </td>
     <td class="backGroundClass">
       <!-- <div class="card" style="width: 18rem;"> -->
-        <div class="card-body">
-          <div class="card-heading">
-            <h5 class="card-title">Localities and Vendors</h5>
-          </div>
-          <hr />
-          <div class="center">
-            <a routerLink="/rvendor">
-              <h3 style="color: black">{{vendor}}</h3>
-            </a>
-          </div>
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Localities and Vendors</h5>
         </div>
+        <hr />
+        <div class="center">
+          <a routerLink="/rvendor">
+            <h3 style="color: black">{{vendor}}</h3>
+          </a>
+        </div>
+      </div>
       <!-- </div> -->
     </td>
     <td class="backGroundClass">
       <!-- <div class="card" style="width: 18rem;"> -->
-        <div class="card-body">
-          <div class="card-heading">
-            <h5 class="card-title">Overall Solutions</h5>
-          </div>
-          <hr />
-          <div class="center">
-            <a routerLink="/solutionsView">
-              <h5 style="color: black">Click here to view all solutions</h5>
-            </a>
-          </div>
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Overall Solutions</h5>
         </div>
+        <hr />
+        <div class="center">
+          <a routerLink="/solutionsView">
+            <h5 style="color: black">Click here to view all solutions</h5>
+          </a>
+        </div>
+      </div>
       <!-- </div> -->
     </td>
 
@@ -168,17 +168,17 @@
     <td class="backGroundClass">
 
       <!-- <div class="card" style="width: 18rem;"> -->
-        <div class="card-body">
-          <div class="card-heading">
-            <h5 class="card-title">Overall Vendors</h5>
-          </div>
-          <hr />
-          <div class="center">
-            <a routerLink="/vendorsView">
-              <h5 style="color: black">click here to view all vendors</h5>
-            </a>
-          </div>
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Overall Vendors</h5>
         </div>
+        <hr />
+        <div class="center">
+          <a routerLink="/vendorsView">
+            <h5 style="color: black">click here to view all vendors</h5>
+          </a>
+        </div>
+      </div>
       <!-- </div> -->
     </td>
 
