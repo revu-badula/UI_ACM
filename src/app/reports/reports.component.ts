@@ -44,6 +44,9 @@ export class ReportsComponent implements OnInit {
   public unSignLocality: any;
   public signSystem: any;
   public unSignSystem: any;
+  public devPassed:number;
+  public devPending:number;
+  public devFailed:number;
 
 
   constructor(private _apiservice: ApiserviceService,
@@ -102,6 +105,9 @@ export class ReportsComponent implements OnInit {
         this.unSignLocality = data[5];
         this.signSystem = data[6];
         this.unSignSystem = data[7];
+        this.devPassed=data[8];
+        this.devPending=data[9];
+        this.devFailed=data[10];
 
       }, error => {
         this.loading = false;

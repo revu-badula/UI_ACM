@@ -123,11 +123,25 @@
           <h5 class="card-title"> Total Scanned Devices</h5>
         </div>
         <hr />
-        <div class="center">
-          <a routerLink="/rdevice">
-            <h3 style="color: black">{{devices}}</h3>
-          </a>
-        </div>
+        <table class="tableForSigned">
+            <th><u>Failed</u></th>
+            <th><u>Pending</u></th>
+            <th><u>Passed</u></th>
+            <tr></tr>
+            <tr></tr>
+            <tr class="center" id="backClass4">
+              <td>
+                <h4><a routerLink="/rsystems" style="color: red;">{{devFailed}}</a></h4>
+              </td>
+              <td>
+                <h4><a (click)="goTo1()" style="color:rgb(255, 153, 0);cursor: pointer;">{{devPending}}</a></h4>
+              </td>
+
+              <td>
+                  <h4><a (click)="goTo1()" style="color:green;cursor: pointer;">{{devPassed}}</a></h4>
+                </td>
+            </tr>
+            </table>
       </div>
 
       <!-- </div> -->
@@ -156,7 +170,7 @@
         <hr />
         <div class="center">
           <a routerLink="/solutionsView">
-            <h5 style="color: black">Click here to view all solutions</h5>
+            <h3 style="color: black">{{solution}}</h3>
           </a>
         </div>
       </div>
@@ -175,7 +189,7 @@
         <hr />
         <div class="center">
           <a routerLink="/vendorsView">
-            <h5 style="color: black">click here to view all vendors</h5>
+            <h3 style="color: black">{{vendor}}</h3>
           </a>
         </div>
       </div>
