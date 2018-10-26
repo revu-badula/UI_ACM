@@ -40,7 +40,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let locality of signedLocalities |  paginate: { itemsPerPage: 10, currentPage: p }">
-                    <td><a class="box" style="cursor: pointer;color:blue">{{locality.applicationAcronym}}</a></td>
+                    <td><a class="box" style="cursor: pointer;color:blue" (click)="getLocality(locality.applicationAcronym)">{{locality.applicationAcronym}}</a></td>
                     <td>{{locality.name}}</td>
                     <td>{{locality.recertificationDt | filter}}</td>
                     <td>{{locality.receiptDt | filter}}</td>

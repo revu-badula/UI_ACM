@@ -25,7 +25,10 @@ export class ReportDeviceComponent implements OnInit {
   public loading:boolean=false;
    constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router,  private _location: Location)  { }
+    private router: Router,  private _location: Location)  {
+      localStorage.removeItem('localityName');
+      localStorage.removeItem('active');
+     }
 
   ngOnInit() {
   this.showDevice();
@@ -297,6 +300,11 @@ export class ReportDeviceComponent implements OnInit {
     }
 
 
+  }
+
+  getLocality(value) {
+    localStorage.setItem('localityName', value);
+    this.router.navigate(['/locality/tab/info']);
   }
 
 }

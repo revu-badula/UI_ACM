@@ -38,6 +38,8 @@ export class NavigationComponentComponent implements OnInit {
     localStorage.removeItem('systemAuditActive');
     localStorage.removeItem('systemAppAuditId');
     localStorage.removeItem('sysassesId');
+    localStorage.removeItem('appSolId');
+    localStorage.removeItem('systemMouId');
     this.router.navigate(['/logout']);
   }
 

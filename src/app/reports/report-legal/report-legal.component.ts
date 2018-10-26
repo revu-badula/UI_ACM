@@ -35,6 +35,8 @@ export class ReportLegalComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
+    localStorage.removeItem('localityName');
+    localStorage.removeItem('active');
 
 
   }
@@ -250,7 +252,10 @@ export class ReportLegalComponent implements OnInit {
 
   }
 
-
+  getLocality(value) {
+    localStorage.setItem('localityName', value);
+    this.router.navigate(['/locality/tab/info']);
+  }
 
 }
 

@@ -30,7 +30,8 @@ export class ReportlegalsystemComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
-
+    localStorage.removeItem('systemName');
+    localStorage.removeItem('systemActive');
 
   }
 
@@ -216,6 +217,12 @@ export class ReportlegalsystemComponent implements OnInit {
     }
 
 
+  }
+
+  getSystem(value)
+  {
+    localStorage.setItem('systemName', value);
+    this.router.navigate(['/system/tab2/info']);
   }
 
 
