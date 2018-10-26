@@ -6,7 +6,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
 	<div class="modal-header">
 		<h4 class="modal-title">Success</h4>
-	
+
 	</div>
 	<div class="modal-body">
 		<p>{{contentData}}</p>
@@ -24,45 +24,45 @@
 
 
 
-		<div class="tip">
-			<p class="tip-text">
-				<fa class="light-bulb" [name]="'lightbulb-o'"></fa>
-				Tip:
-			</p>
+	<div class="tip">
+		<p class="tip-text">
+			<fa class="light-bulb" [name]="'lightbulb-o'"></fa>
+			Tip:
+		</p>
+	</div>
+	<h5>General Information</h5>
+	<div class="form-row" *ngIf="showEditButton">
+		<div class="form-group col-md-6">
+
+			<label for="inputState">Last Updated by</label>
+			<div class="asterisk">*</div>
+			<input type="text" class="form-control">
 		</div>
-		<h5>General Information</h5>
-		<div class="form-row" *ngIf="showEditButton">
-			<div class="form-group col-md-6">
-
-				<label for="inputState">Last Updated by</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control">
-			</div>
-			<div class="form-group col-md-6">
-				<label for="lastName">Updated at</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime" readonly>
-			</div>
+		<div class="form-group col-md-6">
+			<label for="lastName">Updated at</label>
+			<div class="asterisk">*</div>
+			<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime" readonly>
 		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
 
-				<label for="inputState">Locality Name</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly">
-			</div>
-			
-			<div class="form-group col-md-6">
-				<label for="lastName">FIPS Code</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" ngModel name="fipsCd" [(ngModel)]="locality.fipsCd" readonly>
+			<label for="inputState">Locality Name</label>
+			<div class="asterisk">*</div>
+			<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly">
+		</div>
 
-			</div>
+		<div class="form-group col-md-6">
+			<label for="lastName">FIPS Code</label>
+			<div class="asterisk">*</div>
+			<input type="text" class="form-control" ngModel name="fipsCd" [(ngModel)]="locality.fipsCd" readonly>
 
 		</div>
-	
-		</form>
-		<form #formName="ngForm" class="former clear-right" (ngSubmit)="createLocality()" enctype="multipart/form-data">
+
+	</div>
+
+</form>
+<form #formName="ngForm" class="former clear-right" (ngSubmit)="createLocality()" enctype="multipart/form-data">
 	<fieldset [disabled]="editableForm">
 		<h5>Contact Information</h5>
 		<div class="form-row">
@@ -85,7 +85,15 @@
 			<div class="form-group col-md-6">
 				<label for="lastName">Email Id</label>
 				<div class="asterisk">*</div>
-				<input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+				<input type="email" class="form-control" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [email]="locality.emailId!==''" name="email" [(ngModel)]="locality.emailId"
+				 #email="ngModel" required>
+				<span class="help-block" style="color:red" *ngIf="email.errors?.required && email.touched">
+					Email is required
+				</span>
+				<span class="help-block" style="color:red" *ngIf="email.errors?.email && email.touched">
+					Email is invalid
+				</span>
+				<!-- <input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"> -->
 			</div>
 			<div class="form-group col-md-6">
 
@@ -124,36 +132,36 @@
 		</div>
 		<hr />
 		<h5>Other Information</h5>
-<label for="poll">Central Absentee Perceived(CAP)</label>
+		<label for="poll">Central Absentee Perceived(CAP)</label>
 
 		<div class="form-row">
 			<div class="form-group col-md-6">
-					<div class="can-toggle">
-  <input id="o" type="checkbox"  name="o" [(ngModel)]="locality.capInd"  [checked]="locality.capInd">
-  <label for="o">
-    <div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
-    <div class="can-toggle__label-text"></div>
-  </label>
-</div>
+				<div class="can-toggle">
+					<input id="o" type="checkbox" name="o" [(ngModel)]="locality.capInd" [checked]="locality.capInd">
+					<label for="o">
+						<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+						<div class="can-toggle__label-text"></div>
+					</label>
+				</div>
 
 
 			</div>
 		</div>
 
 
-	<label for="poll">PollBook</label>
+		<label for="poll">PollBook</label>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 
-		<div class="can-toggle">
-  <input id="g" type="checkbox"  name="g"[(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
-  <label for="g">
-    <div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
-    <div class="can-toggle__label-text"></div>
-  </label>
-</div>
-</div>
-	</div> 
+				<div class="can-toggle">
+					<input id="g" type="checkbox" name="g" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
+					<label for="g">
+						<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+						<div class="can-toggle__label-text"></div>
+					</label>
+				</div>
+			</div>
+		</div>
 
 		<hr />
 
@@ -175,7 +183,7 @@
 					<tbody>
 						<tr *ngFor="let day of locality.workHoursDTOs;let i = index;">
 							<th>{{day.day}}</th>
-							<td><label for="appt-time">Time</label> <input type="time" id="{{day.openTm}}"  name="{{day.openTm}}" [(ngModel)]="day.openTm"
+							<td><label for="appt-time">Time</label> <input type="time" id="{{day.openTm}}" name="{{day.openTm}}" [(ngModel)]="day.openTm"
 								 [ngModelOptions]="{standalone:true}" min="9:00" max="18:00" required (input)="time = $event.target.value" />
 								To <label for="appt-time"></label> <input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00"
 								 max="18:00" [(ngModel)]="day.closeTm" [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" /></td>
@@ -206,20 +214,20 @@
 		<hr />
 
 		<label for="poll">PollBook</label>
-	
+
 
 		<br>
 
 		<div class="form-row">
 			<div class="form-group col-md-6">
-			
-			<div class="can-toggle">
-  <input id="e" type="checkbox"   name="e" [(ngModel)]="locality.paperPollbook"  [checked]="locality.paperPollbook">
-  <label for="e">
-    <div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
-    <div class="can-toggle__label-text"></div>
-  </label>
-</div>
+
+				<div class="can-toggle">
+					<input id="e" type="checkbox" name="e" [(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook">
+					<label for="e">
+						<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+						<div class="can-toggle__label-text"></div>
+					</label>
+				</div>
 
 
 			</div>
@@ -228,19 +236,18 @@
 		</div>
 
 		<label for="email">Electronic PollBook</label>
-	
+
 		<div class="form-row">
 			<div class="form-group col-md-6">
 
 				<div class="can-toggle">
-  <input id="l" type="checkbox"  name="l" [(ngModel)]="locality.electronicPollbook" 
-					 [checked]="locality.electronicPollbook" >
-  <label for="l">
-    <div class="can-toggle__switch" data-checked="Yes" data-unchecked="No" ></div>
-    <div class="can-toggle__label-text" ></div>
-  </label>
-</div>
-	
+					<input id="l" type="checkbox" name="l" [(ngModel)]="locality.electronicPollbook" [checked]="locality.electronicPollbook">
+					<label for="l">
+						<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+						<div class="can-toggle__label-text"></div>
+					</label>
+				</div>
+
 			</div>
 		</div>
 

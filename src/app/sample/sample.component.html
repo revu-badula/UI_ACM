@@ -1,0 +1,365 @@
+<section>
+
+  <form>
+    <div class="pageImg">
+      <!-- <div class="dashboard"> -->
+      <table class="wholeDashboard">
+        <tr id="backClass">
+
+          <td class="backGroundClass">
+            <!-- <div class="card" style="width: 18rem;"> -->
+            <div class="card-body">
+              <div class="card-heading">
+                <h5 class="card-title"> Legal Documents for Localities</h5>
+              </div>
+              <hr />
+              <!-- <a routerLink="/rlegal" class="card-link">
+                <h3 style="color: black">{{legal}}</h3>
+              </a>
+              <a class="card-link">
+                <h3 style="color: black">{{legal}}</h3>
+              </a> -->
+              <table class="tableForSigned">
+          <th><u>Unsigned</u></th>
+          <th><u>Signed</u></th>
+        <tr></tr>
+        <tr></tr>
+        <tr class="backGroundClass" id="backClass3">
+          <td>
+            <h4><a routerLink="/rlegal" style="color:red;">12</a></h4>
+          </td>
+          <td>
+            <h4><a (click)="goTo()" style="color: green;cursor: pointer;">8</a></h4>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- </div> -->
+    </td>
+    <td class="backGroundClass">
+      <!-- <div class="card" style="width: 18rem;"> -->
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title"> Legal Documents for Systems</h5>
+        </div>
+        <hr />
+        <table class="tableForSigned">
+    <th><u>Unsigned</u></th>
+    <th><u>Signed</u></th>
+    <tr></tr>
+    <tr></tr>
+    <tr class="center" id="backClass4">
+      <td>
+        <h4><a routerLink="/rsystems" style="color: red;">8</a></h4>
+      </td>
+      <td>
+        <h4><a (click)="goTo1()" style="color:green;cursor: pointer;">4</a></h4>
+      </td>
+    </tr>
+    </table>
+    <!-- <a routerLink="/rlegal" class="card-link">
+                <h3 style="color: black">{{legal}}</h3>
+              </a>
+              <a class="card-link">
+                <h3 style="color: black">{{legal}}</h3>
+              </a> -->
+    </div>
+    <!-- </div> -->
+    </td>
+    <td class="backGroundClass">
+      <!-- <div class="card" style="width: 18rem;"> -->
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Localities and Solutions</h5>
+        </div>
+        <hr />
+        <div class="center">
+          <a routerLink="/rsolution">
+            <h3 style="color: black">45</h3>
+          </a>
+        </div>
+      </div>
+      <!-- </div> -->
+    </td>
+
+
+    </tr>
+    <tr class="backGroundClass">
+      <td class="backGroundClass">
+        <!-- <div class="card"> -->
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title"> Total Scanned Devices</h5>
+          </div>
+          <hr />
+          <table class="tableForSigned">
+      <th><u>Failed</u></th>
+      <th><u>Pending</u></th>
+      <th><u>Passed</u></th>
+    <tr></tr>
+    <tr></tr>
+    <tr class="center" id="backClass4">
+      <td>
+        <h4><a routerLink="/rdevice" style="color: red;">10</a></h4>
+      </td>
+      <td>
+        <h4><a (click)="goTo3()" style="color:rgb(255, 153, 0);cursor: pointer;">5</a></h4>
+      </td>
+
+      <td>
+        <h4><a (click)="goTo2()" style="color:green;cursor: pointer;">5</a></h4>
+      </td>
+    </tr>
+    </table>
+    </div>
+
+    <!-- </div> -->
+    </td>
+    <td class="backGroundClass">
+      <!-- <div class="card" style="width: 18rem;"> -->
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Localities and Vendors</h5>
+        </div>
+        <hr />
+        <div class="center">
+          <a routerLink="/rvendor">
+            <h3 style="color: black">30</h3>
+          </a>
+        </div>
+      </div>
+      <!-- </div> -->
+    </td>
+    <td class="backGroundClass">
+      <!-- <div class="card" style="width: 18rem;"> -->
+      <div class="card-body">
+        <div class="card-heading">
+          <h5 class="card-title">Overall Solutions</h5>
+        </div>
+        <hr />
+        <div class="center">
+          <a routerLink="/solutionsView">
+            <h3 style="color: black">20</h3>
+          </a>
+        </div>
+      </div>
+      <!-- </div> -->
+    </td>
+
+    </tr>
+    <tr id="backClass1">
+      <td class="backGroundClass">
+
+        <!-- <div class="card" style="width: 18rem;"> -->
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Overall Vendors</h5>
+          </div>
+          <hr />
+          <div class="center">
+            <a routerLink="/vendorsView">
+              <h3 style="color: black">18</h3>
+            </a>
+          </div>
+        </div>
+
+      </td>
+
+    </tr>
+    </table>
+
+    </div>
+  </form>
+</section>
+<section>
+
+  <div class="form-div">
+    <div class="former">
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+
+          <label for="inputState">Name</label>
+          <div class="asterisk">*</div>
+          <input type="text" class="form-control" id="lastName" value="" readonly="readonly">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last updated by</label>
+          <input type="text" class="form-control" id="lastName" readonly="readonly">
+        </div>
+      </div>
+
+
+
+      <div class="form-row">
+
+        <div class="form-group col-md-6">
+          <label for="updated">Last updated at</label>
+          <input type="text" class="form-control" id="email" value="">
+        </div>
+      </div>
+
+
+    </div>
+
+    <form #myForm="ngForm" (ngSubmit)="saveMOU()" enctype="multipart/form-data" class="former">
+      <div class="panel-heading">
+
+        <span *ngIf="!showLegalBox" class=" title elipsis pull-right"> <a (click)="saveMOU()" *ngIf="myForm.valid"
+            title="Save MOU" class="ng-hide"> <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i></a>
+        </span> <span class=" title elipsis pull-right"> <a (click)="goBack()" title="Go back to audit section.">
+            <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+          </a>
+        </span>
+
+      </div>
+      <p>
+        <b>Legal Documents</b>
+      </p>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Name</label> <input type="text" class="form-control" name="name" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Signed</label> <select id="modelSolution" class="form-control" name="signed" required>
+            <option selected>Choose...</option>
+            <option [value]="true">Yes</option>
+            <option [value]="false">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Date of Receipt</label>
+          <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="getDate($event)" required></my-date-picker>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Recertification Date</label>
+
+          <my-date-picker name="myname" [options]="myDatePickerOptions" (dateChanged)="getNextDate($event)" required></my-date-picker>
+        </div>
+      </div>
+      <hr class="former" />
+
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+
+          <label for="inputState">MOU Attachments</label>
+
+
+        </div>
+
+
+      </div>
+      <div class="col-sm-5 col-md-5 col-lg-5">
+        <input type="file" #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
+
+
+      </div>
+      <br>
+
+      <div class="display-file">
+        <table border="1">
+          <tr>
+            <th>FileName</th>
+            <th *ngIf="!showForm">Action</th>
+          </tr>
+          <tr>
+            <td style="cursor: pointer; color: blue;">test</td>
+            <td (click)="deleteFile(file.mouDocId,i)" style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true"
+                style="font-size: 24px;color: #3A539B;"></i></td>
+
+
+          </tr>
+        </table>
+
+
+      </div>
+
+
+    </form>
+  </div>
+</section>
+<br>
+<section>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Vendor Name
+        </th>
+        <th scope="col">Contact Name
+          <i class="fa fa-arrow-down" *ngIf="!lname"></i> <i class="fa fa-arrow-up" *ngIf="lname"></i></th>
+        <th>Email Id</th>
+        <th>Phone Number</th>
+        <th>Last UpdatedBy</th>
+        <th>Last Updated Date</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Test1</td>
+        <td>Test2</td>
+        <td>Test3</td>
+        <td>Test4</td>
+        <td>Test3</td>
+        <td>Test4</td>
+      </tr>
+      <tr>
+        <td>Test1</td>
+        <td>Test2</td>
+        <td>Test3</td>
+        <td>Test4</td>
+        <td>Test3</td>
+        <td>Test4</td>
+      </tr>
+      <tr>
+        <td>Test1</td>
+        <td>Test2</td>
+        <td>Test3</td>
+        <td>Test4</td>
+        <td>Test3</td>
+        <td>Test4</td>
+      </tr>
+      <tr>
+        <td>Test1</td>
+        <td>Test2</td>
+        <td>Test3</td>
+        <td>Test4</td>
+        <td>Test3</td>
+        <td>Test4</td>
+      </tr>
+      <tr>
+        <td>Test1</td>
+        <td>Test2</td>
+        <td>Test3</td>
+        <td>Test4</td>
+        <td>Test3</td>
+        <td>Test4</td>
+      </tr>
+      <tr>
+        <td>Test1</td>
+        <td>Test2</td>
+        <td>Test3</td>
+        <td>Test4</td>
+        <td>Test3</td>
+        <td>Test4</td>
+      </tr>
+      <tr>
+        <td>Test1</td>
+        <td>Test2</td>
+        <td>Test3</td>
+        <td>Test4</td>
+        <td>Test3</td>
+        <td>Test4</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
