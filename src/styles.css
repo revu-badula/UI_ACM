@@ -5,7 +5,7 @@
     border-radius: 10px;
     border: 1px solid transparent;
     margin: 20px;
-    background-color: #EEEEEE;
+    background-color:rgba(#eee, #eee, #eee, 0.2);
 }
 
 .asterisk {
@@ -48,5 +48,9 @@ label {
 
 h5 {
     font-weight: bolder;
+}
+
+.center{
+    margin: 0 auto; 
 }
 
