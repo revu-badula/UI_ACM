@@ -46,6 +46,7 @@ export class SystemLegalformComponent implements OnInit {
   public showLegalBox: boolean = true;
   public moudtos: any;
   public sysName:any;
+  public updatedBy:any;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router, private dialogService: DialogService) {
@@ -64,6 +65,7 @@ export class SystemLegalformComponent implements OnInit {
         this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
         this.sysName = data.applicationViewDTO.name;
+        this.updatedBy=data.applicationViewDTO.updatedBy;
         this.moudtos = data.applicationViewDTO.moudtos;
         let d = new Date(data.applicationViewDTO.updatedTime);
         let day = d.getDate();

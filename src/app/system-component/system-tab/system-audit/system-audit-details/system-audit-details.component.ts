@@ -29,8 +29,9 @@ export class SystemAuditDetailsComponent implements OnInit {
   public auditType: boolean = false;
   public auditDate: boolean = false;
   public nextAuditDate: boolean = false;
-  public showPagination:boolean = true;
-  public sysName:any;
+  public showPagination: boolean = true;
+  public sysName: any;
+  public updatedBy: any;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
     private router: Router, private route: ActivatedRoute) {
@@ -53,16 +54,16 @@ export class SystemAuditDetailsComponent implements OnInit {
     this._apiservice.viewApplication(localStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
+        this.updatedBy = data.applicationViewDTO.updatedBy;
         this.mainData = data.applicationViewDTO.acronym;
         this.sysName = data.applicationViewDTO.name;
         let d = new Date(data.applicationViewDTO.updatedTime);
-        if(data.applicationViewDTO.appAuditDTOs === undefined)
-        {
-          this.appAuditDTOs=[];
-          this.showPagination=false;
+        if (data.applicationViewDTO.appAuditDTOs === undefined) {
+          this.appAuditDTOs = [];
+          this.showPagination = false;
         }
-        else{
-        this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
+        else {
+          this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
         }
         let day = d.getDate();
         let month = d.getMonth() + 1;

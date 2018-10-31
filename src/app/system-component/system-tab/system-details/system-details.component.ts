@@ -28,14 +28,14 @@ export class SystemDetailsComponent implements OnInit {
   system: System;
   appId: number;
   updatedTime: any;
-  editableForm: boolean = true;
+  public editableForm: boolean = true;
   viewType: any;
   contentData: string = "";
-  showEditButton: boolean = false;
+  public showEditButton: boolean = false;
   public showSource: boolean = true;
   public loading: boolean = false;
   public showBox: boolean = true;
-
+  public isShow:boolean=false;
 
 
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService,
@@ -51,7 +51,7 @@ export class SystemDetailsComponent implements OnInit {
 
   editClick(event): void {
     this.editableForm = false;
-    this.showEditButton = false;
+    this.isShow = true;
     this.showSource = true;
 
   }
@@ -59,6 +59,7 @@ export class SystemDetailsComponent implements OnInit {
   showData() {
     if (localStorage.getItem('systemName') === null) {
       this.editableForm = false;
+      this.isShow=true;
     }
     else {
       this.loading = true;

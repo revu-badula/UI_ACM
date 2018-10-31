@@ -24,6 +24,7 @@ export class SystemLegalmainComponent implements OnInit {
   public showPagination: boolean = true;
   public signed: boolean = false;
   public recertificationDt: boolean = false;
+  public updatedBy:any;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -41,6 +42,7 @@ export class SystemLegalmainComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
+        this.updatedBy=data.applicationViewDTO.updatedBy;
         this.sysName = data.applicationViewDTO.name;
         let d = new Date(data.applicationViewDTO.updatedTime);
         let day = d.getDate();

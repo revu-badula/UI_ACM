@@ -24,6 +24,7 @@ export class SystemAssessTabComponent implements OnInit {
   public nextAssessmentDt:boolean=false;
   public showPagination:boolean=true;
   public sysName:any;
+  public updatedBy:any;
   public showPlusButton: boolean = false;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private route: ActivatedRoute, private router: Router,
@@ -44,6 +45,7 @@ export class SystemAssessTabComponent implements OnInit {
         this.loading = false;
         this.mainData = data.applicationViewDTO.acronym;
         this.sysName = data.applicationViewDTO.name;
+        this.updatedBy=data.applicationViewDTO.updatedBy;
         let d = new Date(data.applicationViewDTO.updatedTime);
         if(data.applicationViewDTO.assessmentDTOs === undefined)
         {

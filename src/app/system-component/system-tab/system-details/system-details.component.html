@@ -15,7 +15,7 @@
 		<button type="button" class="btn btn-outline-dark confbtn" (click)="c();">Ok</button>
 	</div>
 </ng-template>
-<div class="save-edit" style="float: right;" *ngIf="showEditButton">
+<div class="save-edit" style="float: right;" *ngIf="showEditButton && !isShow">
 	<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0"
 	 [name]="'edit'" (click)="editClick()"></fa>
 </div>
@@ -48,17 +48,17 @@
 			</div>
 
 		</div>
-		<div *ngIf="!showSource" class="form-row">
+		<div *ngIf="showEditButton" class="form-row">
 			<div class="form-group col-md-6">
 
 				<label for="inputState">Last Updated by</label>
 
-				<input type="text" class="form-control" name="lastUpdatedBy" [(ngModel)]="system.updatedBy">
+				<input type="text" class="form-control" name="lastUpdatedBy" [(ngModel)]="system.updatedBy" readonly>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="lastName">Updated at</label>
 
-				<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime">
+				<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime" readonly>
 			</div>
 		</div>
 
@@ -103,7 +103,7 @@
 	</fieldset>
 	<div class="buttons">
 
-		<button *ngIf="!showEditButton" type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
+		<button *ngIf="isShow" type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
 		<button type="cancel" class="cancel btn btn-primary" (click)="goBack($event)">Cancel</button>
 	</div>
 

@@ -12,6 +12,7 @@ import { UtilService } from "../../../../../util.service";
     public updatedTime:any;
     public disabled:boolean;
     public sysName:any;
+    public updatedBy:any;
     constructor(private _apiservice: ApiserviceService, 
       private utilService: UtilService, private route: ActivatedRoute) {
         this.disabled=UtilService.disabled;
@@ -28,6 +29,7 @@ import { UtilService } from "../../../../../util.service";
         this._apiservice.viewApplication(localStorage.getItem('systemName'))
           .subscribe((data: any) => {
             //this.appAudit.applicationID = data.applicationViewDTO.applicationId;
+            this.updatedBy=data.applicationViewDTO.updatedBy;
             this.mainData = data.applicationViewDTO.acronym;
             this.sysName = data.applicationViewDTO.name;
             let d = new Date(data.applicationViewDTO.updatedTime);
