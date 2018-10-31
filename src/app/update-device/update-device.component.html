@@ -278,13 +278,13 @@
           <input type="text" class="form-control" id="archiveLogMode" [(ngModel)]="device.archiveLogMode" name="db_version">
         </div>
       </div>
-    </fieldset>
+    
     <hr />
     <div class="form-row">
       <label>Purpose</label>
-      <textarea cols="156" rows="7" id="patches" name="purpose" [(ngModel)]="device.purpose"></textarea>
-      <hr />
+      <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" name="purpose" [(ngModel)]="device.purpose"></textarea>
     </div>
+  </fieldset>
     <hr />
     <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark">Show List</button>
     <button type="submit" class="submit btn btn-primary" [disabled]="!editForm.valid" *ngIf="isLol">Submit</button>

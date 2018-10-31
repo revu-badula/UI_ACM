@@ -10,6 +10,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../../../util.service';
 import { SystemFilterPipeDate } from '../../system-date-filter';
+import { Cookie } from 'ng2-cookies';
 
 @Component({
   selector: 'app-system-details',
@@ -37,25 +38,14 @@ export class SystemDetailsComponent implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
-    , private http: Http, private _location: Location, private modalService: NgbModal, private router: Router, private utilservice: UtilService) {
-      
+  constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService,
+    private fb: FormBuilder, private http: Http, private _location: Location, private modalService: NgbModal, private router: Router, private utilservice: UtilService) {
+
     this.system = new System();
     this.showData();
-
-
-
-
-
-
-
-
-
-    //this.system = new System(); 
   }
 
   ngOnInit() {
-    //this.viewApplication(localStorage.getItem('systemName'));
 
   }
 
@@ -104,6 +94,7 @@ export class SystemDetailsComponent implements OnInit {
     };
     if (this.appId === undefined) {
       this.loading = true;
+      this.system.createdBy = Cookie.get('userName');
       formData.append('createApp', JSON.stringify(this.system));
       this.http.post(url_update, formData)
         .map(res => res.json())
@@ -123,6 +114,7 @@ export class SystemDetailsComponent implements OnInit {
     else {
       this.loading = true;
       this.system.applicationId = this.appId;
+      this.system.updatedBy = Cookie.get('userName');
       formData.append('application', JSON.stringify(this.system));
       this.http.post(APP_CONFIG.updateSystem, formData).subscribe((data: any) => {
         this.loading = false;
@@ -139,35 +131,6 @@ export class SystemDetailsComponent implements OnInit {
   selectDefinitive(val) {
 
   }
-
-  // viewApplication(system) {
-  //   this._apiservice.viewApplication(system)
-  //     .subscribe((data: any) => {
-  //       if (data.applicationViewDTO === null) {
-  //         this.editableForm = false;
-  //         this.system.acronym = system;
-
-  //       }
-  //       else {
-  //         this.showEditButton = true;
-  //         UtilService.active = true;
-
-
-  //       }
-
-  //    //   this.system.workHoursDTOs = []
-
-
-  //  //     console.log("this.system.workHoursDTOs", this.system.workHoursDTOs)
-  //     }, error => console.log(error));
-
-
-
-  // }
-
-
-
-
 
 
 

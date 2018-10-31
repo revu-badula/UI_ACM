@@ -63,7 +63,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserIdleModule } from 'angular-user-idle';
 import { ReportsComponent } from './reports/reports.component';
 import { SignedPipe } from './signed-pipe';
-
 import { DevicetabComponent } from './devicetab/devicetab.component';
 import { IdleTimeoutService } from './idleTimeOutService';
 import { DialogComponent } from './dialog.service';
@@ -77,6 +76,7 @@ import { ReportVendorComponent } from './reports/report-vendor/report-vendor.com
 import { ReportDeviceComponent } from './reports/report-device/report-device.component';
 import { ReportlegalsystemComponent } from './reports/reportlegalsystem/reportlegalsystem.component';
 import { SampleComponent } from './sample/sample.component';
+import { NgxSummernoteModule } from 'ngx-summernote';
 @NgModule({
   declarations: [
     AppComponent,
@@ -141,6 +141,7 @@ import { SampleComponent } from './sample/sample.component';
     LocalityComponentRoutingModule,
     LocalityComponentModule,
     //SystemComponentRoutingModule,
+    NgxSummernoteModule,
     SystemComponentModule,
     BrowserAnimationsModule,
     NavigationComponentModule,

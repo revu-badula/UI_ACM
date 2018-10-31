@@ -36,7 +36,7 @@
 
 			<label for="inputState">Last Updated by</label>
 			<div class="asterisk">*</div>
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" name="lastUpdatedBy" [(ngModel)]="locality.updatedBy" readonly>
 		</div>
 		<div class="form-group col-md-6">
 			<label for="lastName">Updated at</label>
@@ -85,12 +85,12 @@
 			<div class="form-group col-md-6">
 				<label for="lastName">Email Id</label>
 				<div class="asterisk">*</div>
-				<input type="email" class="form-control" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [email]="locality.emailId!==''" name="email" [(ngModel)]="locality.emailId"
+				<input type="email" class="form-control" [email]="locality.emailId!==''" name="email" [(ngModel)]="locality.emailId"
 				 #email="ngModel" required>
 				<span class="help-block" style="color:red" *ngIf="email.errors?.required && email.touched">
 					Email is required
 				</span>
-				<span class="help-block" style="color:red" *ngIf="email.errors?.email && email.touched">
+				<span class="help-block" style="color:red" *ngIf="email.errors?.email && email.dirty">
 					Email is invalid
 				</span>
 				<!-- <input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"> -->

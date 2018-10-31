@@ -68,7 +68,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   public showBuck: boolean = true;
   public hostType: any;
   public showPlus: boolean=true;
-
+  public updatedBy:any;
 
   constructor(private _fb: FormBuilder, private router: Router, private modalService: NgbModal,
     private _apiservice: ApiserviceService, private http: Http,
@@ -102,6 +102,7 @@ export class LocalitysolutionsformComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
+        this.updatedBy =data.applicationViewDTO.updatedBy;
         let d = new Date(data.applicationViewDTO.updatedTime);
         let day = d.getDate();
         let month = d.getMonth() + 1;

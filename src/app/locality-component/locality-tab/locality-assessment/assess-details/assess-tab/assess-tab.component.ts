@@ -21,7 +21,7 @@ export class AssessTabComponent implements OnInit {
   public name:boolean=false;
   public assessmentDt:boolean=false;
   public nextAssessmentDt:boolean=false;
-
+  public updatedBy:any;
   public showPagination:boolean=true;
 
   public showPlusButton: boolean = false;
@@ -41,6 +41,7 @@ export class AssessTabComponent implements OnInit {
     this._apiservice.viewApplication(localStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
+        this.updatedBy=data.applicationViewDTO.updatedBy;
         this.mainData = data.applicationViewDTO.acronym;
         let d = new Date(data.applicationViewDTO.updatedTime);
         if(data.applicationViewDTO.assessmentDTOs === undefined)

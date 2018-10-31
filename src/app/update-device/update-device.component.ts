@@ -30,7 +30,21 @@ export class UpdateDeviceComponent implements OnInit {
   color: String;
   serverContact: Server;
   serverContact1: Server;
-
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    width:"100%",
+    toolbar: [
+      // [groupName, [list of button]]
+      ['misc', ['undo', 'redo']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+    
+  };
   public startDate: any;
   public showBtt: boolean = true;
   renDate: any;

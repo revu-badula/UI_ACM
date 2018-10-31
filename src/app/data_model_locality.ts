@@ -25,6 +25,7 @@ export class Locality {
 	applicationId: number;
 	workHoursDTOs: any[] = [];
 	userId:any;
+	modifiedBy:string
 
 
 

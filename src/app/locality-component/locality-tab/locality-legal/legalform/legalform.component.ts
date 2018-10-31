@@ -40,6 +40,7 @@ export class LegalformComponent implements OnInit {
   public showSigned: boolean = false;
   public certify: any;
   public recipt: any;
+  public updatedBy:any;
   public loading: boolean = false;
   contentData: string = "";
   public showForm: boolean = true;
@@ -61,6 +62,7 @@ export class LegalformComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
+        this.updatedBy=data.applicationViewDTO.updatedBy;
         let d = new Date(data.applicationViewDTO.updatedTime);
         let day = d.getDate();
         let month = d.getMonth() + 1;

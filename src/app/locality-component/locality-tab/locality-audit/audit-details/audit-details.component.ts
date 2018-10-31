@@ -32,6 +32,7 @@ export class AuditDetailsComponent implements OnInit {
   public auditType: boolean = false;
   public auditDate:boolean=false;
   public nextAuditDate:boolean=false;
+  public updatedBy:any;
   public showPagination: boolean = true;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
@@ -58,6 +59,7 @@ export class AuditDetailsComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.mainData = data.applicationViewDTO.acronym;
+        this.updatedBy =data.applicationViewDTO.updatedBy;
         let d = new Date(data.applicationViewDTO.updatedTime);
         if (data.applicationViewDTO.appAuditDTOs === undefined) {
           this.showPagination = false;

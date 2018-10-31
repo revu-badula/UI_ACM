@@ -1,6 +1,6 @@
 <app-navigation-component></app-navigation-component>
 <div class="my-container">
-	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
 <div class="navigate sticky-top">
@@ -35,7 +35,7 @@
     <p>Device Added</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark confbtn"  (click)="c();redirect()">Close</button>
+    <button type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Close</button>
   </div>
 </ng-template>
 
@@ -74,15 +74,15 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" [class.has-error]="email.invalid && email.touched">
+      <div class="form-group col-md-6">
         <label for="email">Email ID</label>
         <div class="asterisk">*</div>
-        <input type="email" class="form-control" [email]="serverContact.emailId!==''" name="email" [(ngModel)]="serverContact.emailId"
-          #email="ngModel" required>
+        <input type="email" class="form-control" [email]="serverContact.emailId!==''"
+          name="email" [(ngModel)]="serverContact.emailId" #email="ngModel" required>
         <span class="help-block" style="color:red" *ngIf="email.errors?.required && email.touched">
           Email is required
         </span>
-        <span class="help-block" style="color:red" *ngIf="email.errors?.email && email.touched">
+        <span class="help-block" style="color:red" *ngIf="email.errors?.email && email.dirty">
           Email is invalid
         </span>
       </div>
@@ -90,14 +90,15 @@
         <label for="phone">Phone Number</label>
         <div class="asterisk">*</div>
         <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
-          [ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)" onlyInteger>
+          [ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
+          onlyInteger>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="responsibleDivision/unitName">Responsible Division/Unit Name</label>
         <div class="asterisk">*</div>
-        <input type="email" class="form-control" [(ngModel)]="serverContact.divisionName" ngModel name="division"
+        <input type="text" class="form-control" [(ngModel)]="serverContact.divisionName" ngModel name="division"
           required>
       </div>
       <div class="form-group col-md-6">
@@ -106,17 +107,18 @@
         <!-- <div class="dollar"><input type="number"   class="form-control currency" [(ngModel)]="serverContact.cost" ngModel name="cost"
             required></div> -->
 
-                <div class="input-group mb-3">
-        
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="serverContact.cost" ngModel name="cost" required onlyDollar>
-                </div>
-              
+        <div class="input-group mb-3">
+
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="serverContact.cost"
+            ngModel name="cost" required onlyDollar>
+        </div>
 
 
-          
+
+
       </div>
 
     </div>
@@ -137,15 +139,15 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6" [class.has-error]="email.invalid && email.touched">
+      <div class="form-group col-md-6">
         <label for="email">Email ID</label>
         <div class="asterisk">*</div>
-        <input id="email" type="text" class="form-control" [email]="serverContact1.emailId!==''" name="email"
-          [(ngModel)]="serverContact1.emailId" #email="ngModel" required>
-        <span class="help-block" style="color:red" *ngIf="email.errors?.required && email.touched">
+        <input id="email1" type="email" class="form-control" [email]="serverContact1.emailId!==''" name="email1"
+          [(ngModel)]="serverContact1.emailId" #email1="ngModel" required>
+        <span class="help-block" style="color:red" *ngIf="email1.errors?.required && email1.touched">
           Email is required
         </span>
-        <span class="help-block" style="color:red" *ngIf="email.errors?.email && email.touched">
+        <span class="help-block" style="color:red" *ngIf="email1.errors?.email && email1.dirty">
           Email is invalid
         </span>
       </div>
@@ -153,7 +155,8 @@
         <label for="phone">Phone Number</label>
         <div class="asterisk">*</div>
         <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber1($event,$event.target.value)"
-          [ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber1($event.target.value)" onlyInteger>
+          [ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber1($event.target.value)"
+          onlyInteger>
 
       </div>
 
@@ -271,7 +274,7 @@
     <hr />
     <div class="form-row">
       <label>Purpose</label>
-      <textarea cols="156" rows="7" id="patches" name="purpose" [(ngModel)]="device.purpose"></textarea>
+      <textarea cols="156" rows="7"  id="ngxSummernote" name="purpose" [ngxSummernote]="config" [(ngModel)]="device.purpose"></textarea>
       <hr />
     </div>
 
@@ -279,7 +282,7 @@
 
 
     <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark">Show List</button>
-    <button type="submit"  class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+    <button type="submit" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
     <button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
   </form>
 </div>

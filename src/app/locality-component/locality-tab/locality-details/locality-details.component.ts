@@ -77,6 +77,7 @@ export class LocalityDetailsComponent implements OnInit {
       this.locality.activeLocality = 1;
       let url_update = APP_CONFIG.addLocality;
       this.locality.createdByName = Cookie.get('userName');
+      this.locality.createdBy = Cookie.get('userName');
       formData.append('createApp', JSON.stringify(this.locality));
       this.http.post(url_update, formData)
         .map(res => res.json())
@@ -126,7 +127,7 @@ export class LocalityDetailsComponent implements OnInit {
           for (let day in this.daysArray) {
             this.workHours = new WorkHours();
             this.workHours.day = this.daysArray[day];
-          
+
             this.locality.workHoursDTOs.push(this.workHours);
 
           }

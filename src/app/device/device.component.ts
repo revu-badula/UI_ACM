@@ -30,9 +30,25 @@ export class DeviceComponent implements OnInit {
   serverContact: Server;
   serverContact1: Server;
   public startDate: any;
+  public test:any;
   public endDate: any;
   isLol: boolean = false;
   renDate: any;
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    width:'100%',
+    toolbar: [
+      // [groupName, [list of button]]
+      ['misc', ['undo', 'redo']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+    
+  };
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'
   };
@@ -189,7 +205,7 @@ export class DeviceComponent implements OnInit {
 
 
   getNumber1(value) {
-     if (value.length === 10) {
+    if (value.length === 10) {
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -198,7 +214,7 @@ export class DeviceComponent implements OnInit {
       let phm = pn + pn2 + d3;
       this.serverContact1.phoneNumber = phm;
     }
-else {
+    else {
       this.serverContact1.phoneNumber = value;
     }
   }
@@ -253,7 +269,6 @@ else {
     this.device.createdBy = Cookie.get('userName');
     this.device.serverContactDTOs.push(this.serverContact);
     this.device.serverContactDTOs.push(this.serverContact1);
-
     this.http.post(url, this.device).subscribe((data: any) => {
       this.loading = false;
       this.modalService.open(this.content, ngbModalOptions);

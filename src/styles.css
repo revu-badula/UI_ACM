@@ -5,7 +5,8 @@
     border-radius: 10px;
     border: 1px solid transparent;
     margin: 20px;
-    background-color:rgba(#eee, #eee, #eee, 0.2);
+    /* background-color:rgba(#eee, #eee, #eee, 0.2); */
+    background-color: #eee;
 }
 
 .asterisk {
