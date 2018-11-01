@@ -41,7 +41,7 @@ export class FormsComponent implements OnInit {
       });
   }
   cancelButton(event) {
-    event.preventdefault();
+    event.preventDefault();
     this.router.navigate(['/dashboard']);
   }
 
@@ -137,16 +137,16 @@ export class FormsComponent implements OnInit {
     this.editVendorForm = this.fb.group({
       name: ['', Validators.required],
       vendorAddress: this.fb.group({
-        streetName: '',
-        city: '',
-        state: '',
+        streetName: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
         zipcode: ['', Validators.required]
           
 
       }),
       vendorContact: this.fb.group({
-        firstName: '',
-        lastName: '',
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
         emailId: ['', Validators.email],
         phoneNumber: ['', Validators.required]
       }),

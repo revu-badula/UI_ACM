@@ -3,7 +3,6 @@ i.fa {
     padding: 5px 4px;
 }
 
-
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
@@ -13,16 +12,17 @@ i.fa {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.nav-link{
-	color: black;
-	margin-left: 10px;
+.nav-link {
+    color: black;
+    margin-left: 10px;
 }
-.help{
-	font-size: 15px;
-	color: #3A539B;
+
+.help {
+    font-size: 15px;
+    color: #3A539B;
 }
 
 .disabled {
-           pointer-events: none !important;
-           cursor: default;
-    }
+    pointer-events: none !important;
+    cursor: default;
+}

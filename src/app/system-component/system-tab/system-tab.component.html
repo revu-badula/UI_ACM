@@ -1,14 +1,14 @@
-<div class="form-div">
+<!-- <div class="form-div">
     <div class="head">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link"  routerLinkActive="active" routerLink="/system/tab2/info" [routerLinkActiveOptions]="{exact: true}"><fa class="help" [name]="'info-circle'"></fa>Information </a>
-            </li>
-           
-       <!--   <li class="nav-item">
+            </li> -->
+
+<!--   <li class="nav-item">
                 <a class="nav-link" routerLink="/system/tab/solutions"  routerLinkActive="active"><fa class="help" [name]="'info-circle'"></fa>Solutions</a>
             </li> -->
-            <li class="nav-item">
+<!-- <li class="nav-item">
                 <a class="nav-link "  routerLinkActive="active" routerLink="/system/tab2/legal"><fa class="help" [name]="'info-circle'"></fa>Legal</a>
             </li>
             <li class="nav-item">
@@ -31,4 +31,48 @@
         </ul>
     </div>
   <router-outlet></router-outlet>
+</div> -->
+<div class="form-div">
+    <div class="head">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/info">
+                    <fa class="help" [name]="'info-circle'"></fa> &nbsp;Information
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " routerLinkActive="active" routerLink="/system/tab2/legal">
+                    <fa class="help" [name]="'gavel'"></fa> &nbsp;Legal
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " routerLinkActive="active" routerLink="/system/tab2/Audit">
+                    <fa class="help" [name]="'book'"></fa> &nbsp;Audit/Compliance
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " routerLinkActive="active" routerLink="/system/tab2/assessment">
+                    <fa class="help" [name]="'check-circle'"></fa> &nbsp;Assessment
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " routerLinkActive="active" routerLink="/system/tab2/security">
+                    <fa class="help" [name]="'lock'"></fa> &nbsp;Security
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " routerLinkActive="active" routerLink="/system/tab2/technical">
+                    <fa class="help" [name]="'desktop'"></fa> &nbsp;Technical
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " routerLinkActive="active" routerLink="/system/tab2/business">
+                    <fa class="help" [name]="'building'"></fa> &nbsp;Business
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <router-outlet></router-outlet>
 </div>
