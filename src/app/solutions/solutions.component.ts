@@ -42,6 +42,21 @@ export class SolutionsComponent implements OnInit {
   public showForm: boolean = false;
   certDocDTO: CertDocDTO;
   files: File[] = [];
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    width:'100%',
+    toolbar: [
+      // [groupName, [list of button]]
+      ['misc', ['undo', 'redo']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+    
+  };
   //public labForm: string;
   public labForm: boolean = false;
   public loading: boolean = false;

@@ -94,3 +94,6 @@ p {
 .third-row{
     
 }*/
+#noColor {
+    background-color: inherit;
+}

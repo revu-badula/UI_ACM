@@ -20,248 +20,265 @@
 	 [name]="'edit'" (click)="editClick()"></fa>
 </div>
 
-<form class="former clear-right">
+<form class="forms">
+	<div id="form1">
+		<form class="former clear-right">
+			<div class="infoBox">
+				<div class="form-row headerOfBox">
+					<h5><i>General Information</i></h5>
+				</div>
 
+				<div class="form-row" *ngIf="showEditButton">
+					<div class="form-group col-md-6">
 
+						<label for="inputState">Last Updated by<span class="asterisk">*</span></label>
 
-	<div class="tip">
-		<p class="tip-text">
-			<fa class="light-bulb" [name]="'lightbulb-o'"></fa>
-			Tip:
-		</p>
-	</div>
-	<h5>General Information</h5>
-	<div class="form-row" *ngIf="showEditButton">
-		<div class="form-group col-md-6">
-
-			<label for="inputState">Last Updated by</label>
-			<div class="asterisk">*</div>
-			<input type="text" class="form-control" name="lastUpdatedBy" [(ngModel)]="locality.updatedBy" readonly>
-		</div>
-		<div class="form-group col-md-6">
-			<label for="lastName">Updated at</label>
-			<div class="asterisk">*</div>
-			<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime" readonly>
-		</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-6">
-
-			<label for="inputState">Locality Name</label>
-			<div class="asterisk">*</div>
-			<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly">
-		</div>
-
-		<div class="form-group col-md-6">
-			<label for="lastName">FIPS Code</label>
-			<div class="asterisk">*</div>
-			<input type="text" class="form-control" ngModel name="fipsCd" [(ngModel)]="locality.fipsCd" readonly>
-
-		</div>
-
-	</div>
-
-</form>
-<form #formName="ngForm" class="former clear-right" (ngSubmit)="createLocality()" enctype="multipart/form-data">
-	<fieldset [disabled]="editableForm">
-		<h5>Contact Information</h5>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-
-				<label for="inputState">First Name</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" ngModel name="firstName" [(ngModel)]="locality.firstName" required>
-			</div>
-			<div class="form-group col-md-6">
-				<label for="lastName">Last Name</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" ngModel name="lastName" [(ngModel)]="locality.lastName" required>
-			</div>
-		</div>
-
-
-
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="lastName">Email Id</label>
-				<div class="asterisk">*</div>
-				<input type="email" class="form-control" [email]="locality.emailId!==''" name="email" [(ngModel)]="locality.emailId"
-				 #email="ngModel" required>
-				<span class="help-block" style="color:red" *ngIf="email.errors?.required && email.touched">
-					Email is required
-				</span>
-				<span class="help-block" style="color:red" *ngIf="email.errors?.email && email.dirty">
-					Email is invalid
-				</span>
-				<!-- <input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"> -->
-			</div>
-			<div class="form-group col-md-6">
-
-				<label for="email">Phone No</label>
-				<div class="asterisk">*</div>
-				<input type="tel" class="form-control" ngModel name="phoneNumber" (keydown)="getPhoneNumber($event,$event.target.value)"
-				 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
-				 onlyInteger>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="url">Website Address</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" id="url" pattern="https?://.+" name="url" #url="ngModel" [(ngModel)]="locality.website"
-				 required>
-				<div *ngIf="url.errors && (url.dirty || url.touched)">
-					<div [hidden]="!url.errors.required" style="color:red">
-						URL is required!
+						<input type="text" class="form-control" [(ngModel)]="locality.updatedBy" readonly>
 					</div>
-					<div [hidden]="!url.errors.pattern" style="color:red">
-						Must be a valid URL!
+					<div class="form-group col-md-6">
+						<label for="lastName">Updated at<span class="asterisk">*</span></label>
+
+						<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime" readonly>
 					</div>
 				</div>
-			</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
 
+						<label for="inputState">Locality Name <span class="asterisk">*</span></label>
 
+						<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly">
+					</div>
 
-			<div class="form-group col-md-6">
-				<label for="email">Veris Id</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" maxlength="10" ngModel name="verisId" [(ngModel)]="locality.verisId"
-				 required>
-			</div>
+					<div class="form-group col-md-6">
+						<label for="lastName">FIPS Code <span class="asterisk">*</span></label>
 
-		</div>
-		<hr />
-		<h5>Other Information</h5>
-		<label for="poll">Central Absentee Perceived(CAP)</label>
+						<input type="text" class="form-control" ngModel name="fipsCd" [(ngModel)]="locality.fipsCd" readonly>
 
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<div class="can-toggle">
-					<input id="o" type="checkbox" name="o" [(ngModel)]="locality.capInd" [checked]="locality.capInd">
-					<label for="o">
-						<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
-						<div class="can-toggle__label-text"></div>
-					</label>
-				</div>
+					</div>
 
-
-			</div>
-		</div>
-
-
-		<label for="poll">PollBook</label>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-
-				<div class="can-toggle">
-					<input id="g" type="checkbox" name="g" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
-					<label for="g">
-						<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
-						<div class="can-toggle__label-text"></div>
-					</label>
-				</div>
-			</div>
-		</div>
-
-		<hr />
-
-		<div class="form-row">
-
-			<div class="form-group col-md-6">
-
-				<p>
-					<b>Hours of operation</b>
-				</p>
-
-				<table class="table table-striped table-hover table-bordere">
-					<thead>
-						<tr>
-							<th scope="col">Day</th>
-							<th scope="col">Time</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr *ngFor="let day of locality.workHoursDTOs;let i = index;">
-							<th>{{day.day}}</th>
-							<td><label for="appt-time">Time</label> <input type="time" id="{{day.openTm}}" name="{{day.openTm}}" [(ngModel)]="day.openTm"
-								 [ngModelOptions]="{standalone:true}" min="9:00" max="18:00" required (input)="time = $event.target.value" />
-								To <label for="appt-time"></label> <input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00"
-								 max="18:00" [(ngModel)]="day.closeTm" [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" /></td>
-						</tr>
-					</tbody>
-				</table>
-				<!-- <button type="submit" class="btn btn-primary" (click)="setTime()">Submit</button> -->
-			</div>
-		</div>
-
-
-		<hr />
-		<label>Region</label>
-
-		<div class="form-row">
-
-			<div class="form-group col-md-6">
-
-
-				<input type="checkbox" name="vebaRegion" [(ngModel)]="locality.vebaRegion">VEBA region<br> <input type="checkbox"
-				 name="vravRegion" [(ngModel)]="locality.vravRegion">VRAV
-				region
-			</div>
-
-
-
-		</div>
-		<hr />
-
-		<label for="poll">PollBook</label>
-
-
-		<br>
-
-		<div class="form-row">
-			<div class="form-group col-md-6">
-
-				<div class="can-toggle">
-					<input id="e" type="checkbox" name="e" [(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook">
-					<label for="e">
-						<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
-						<div class="can-toggle__label-text"></div>
-					</label>
-				</div>
-
-
-			</div>
-
-
-		</div>
-
-		<label for="email">Electronic PollBook</label>
-
-		<div class="form-row">
-			<div class="form-group col-md-6">
-
-				<div class="can-toggle">
-					<input id="l" type="checkbox" name="l" [(ngModel)]="locality.electronicPollbook" [checked]="locality.electronicPollbook">
-					<label for="l">
-						<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
-						<div class="can-toggle__label-text"></div>
-					</label>
 				</div>
 
 			</div>
-		</div>
 
-		<hr />
+		</form>
 
-		<p>
-			<b>Notes</b>
-		</p>
-		<textarea name="" id="" rows="10" class="form-control" name="notes" [(ngModel)]="locality.notes"></textarea>
-	</fieldset>
-	<div class="buttons">
+		<form #formName="ngForm" class="former clear-right" (ngSubmit)="createLocality()" enctype="multipart/form-data">
+			<fieldset [disabled]="editableForm">
 
-		<button type="submit" class="submit btn btn-primary" [disabled]="!formName.valid" *ngIf="isShow">Submit</button>
-		<button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
+				<div class="infoBox">
+					<div class="form-row headerOfBox">
+						<h5><i>Contact Information</i></h5>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+
+							<label for="inputState">First Name <span class="asterisk">*</span></label>
+
+							<input type="text" class="form-control" ngModel name="firstName" [(ngModel)]="locality.firstName" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="lastName">Last Name<span class="asterisk">*</span></label>
+
+							<input type="text" class="form-control" ngModel name="lastName" [(ngModel)]="locality.lastName" required>
+						</div>
+					</div>
+
+
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="lastName">Email Id <span class="asterisk">*</span></label>
+
+							<input type="email" class="form-control" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [email]="locality.emailId!==''"
+							 name="email" [(ngModel)]="locality.emailId" #email="ngModel" required>
+							<span class="help-block" style="color:red" *ngIf="email.errors?.required && email.touched">
+								Email is required
+							</span>
+							<span class="help-block" style="color:red" *ngIf="email.errors?.email && email.touched">
+								Email is invalid
+							</span>
+							<!-- <input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"> -->
+						</div>
+						<div class="form-group col-md-6">
+
+							<label for="email">Phone No <div class="asterisk">*</div></label>
+
+							<input type="tel" class="form-control" ngModel name="phoneNumber" (keydown)="getPhoneNumber($event,$event.target.value)"
+							 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
+							 onlyInteger>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="url">Website Address <div class="asterisk">*</div></label>
+
+							<input type="text" class="form-control" id="url" pattern="https?://.+" name="url" #url="ngModel" [(ngModel)]="locality.website"
+							 required>
+							<div *ngIf="url.errors && (url.dirty || url.touched)">
+								<div [hidden]="!url.errors.required" style="color:red">
+									URL is required!
+								</div>
+								<div [hidden]="!url.errors.pattern" style="color:red">
+									Must be a valid URL!
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="email">Veris Id<div class="asterisk">*</div></label>
+							<input type="text" class="form-control" maxlength="10" ngModel name="verisId" [(ngModel)]="locality.verisId"
+							 required>
+						</div>
+					</div>
+
+
+				</div>
+
+				<hr />
+
+				<div class="infoBox">
+					<div class="form-row headerOfBox">
+						<h5><i>Other Information</i></h5>
+					</div>
+
+
+
+					<div class="form-row">
+
+						<div class="form-group col-md-3">
+							<label for="poll">Central Absentee Perceived(CAP)</label>
+						</div>
+						<div class="can-toggle form-group col-md-3">
+
+							<input id="o" type="checkbox" name="o" [(ngModel)]="locality.capInd" [checked]="locality.capInd">
+							<label for="o">
+								<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+								<div class="can-toggle__label-text"></div>
+							</label>
+						</div>
+
+
+
+
+
+						<div class="form-group col-md-3">
+							<label for="poll">PollBook</label>
+						</div>
+						<div class="can-toggle form-group col-md-3">
+							<input id="g" type="checkbox" name="g" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
+							<label for="g">
+								<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+								<div class="can-toggle__label-text"></div>
+							</label>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label>Region</label>
+						</div>
+						<div class="form-group col-md-3">
+
+							<input type="checkbox" name="vebaRegion" [(ngModel)]="locality.vebaRegion">VEBA region<br>
+							<input type="checkbox" name="vravRegion" [(ngModel)]="locality.vravRegion">VRAV region
+						</div>
+
+					</div>
+
+					<hr>
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label>PollBook</label>
+						</div>
+
+
+						<div class="form-group col-md-3">
+
+							<div class="can-toggle">
+								<input id="e" type="checkbox" name="e" [(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook">
+								<label for="e">
+									<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+									<div class="can-toggle__label-text"></div>
+								</label>
+							</div>
+
+
+						</div>
+
+
+						<div class="form-group col-md-3">
+
+							<label for="email">Electronic PollBook</label>
+
+						</div>
+						<div class="form-group col-md-3">
+
+							<div class="can-toggle">
+								<input id="l" type="checkbox" name="l" [(ngModel)]="locality.electronicPollbook" [checked]="locality.electronicPollbook">
+								<label for="l">
+									<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+									<div class="can-toggle__label-text"></div>
+								</label>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+				<br>
+				<br>
+
+
+				<div class="form-row">
+
+					<div class="form-group col-md-12">
+
+						<div class="infoBox">
+							<div class="form-row headerOfBox">
+								<h5><i>Hours of Operation</i></h5>
+							</div>
+
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th scope="col" id="colorWhite">Day</th>
+										<th scope="col" id="colorWhite">Time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let day of locality.workHoursDTOs;let i = index;">
+										<th>{{day.day}}</th>
+										<td><label for="appt-time">Time</label> <input type="time" id="{{day.openTm}}" name="{{day.openTm}}"
+											 [(ngModel)]="day.openTm" [ngModelOptions]="{standalone:true}" min="9:00" max="18:00" required (input)="time = $event.target.value" />
+											To <label for="appt-time"></label> <input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00"
+											 max="18:00" [(ngModel)]="day.closeTm" [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" /></td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- <button type="submit" class="btn btn-primary" (click)="setTime()">Submit</button> -->
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="infoBox">
+					<div class="form-row headerOfBox">
+						<h5><i>Notes</i></h5>
+					</div>
+
+					<textarea name="" id="" rows="10" class="form-control" name="notes" [(ngModel)]="locality.notes"></textarea>
+				</div>
+			</fieldset>
+			<div class="buttons">
+
+				<button type="submit" class="submit btn btn-primary" [disabled]="!formName.valid" *ngIf="isShow">Submit</button>
+				<button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
+			</div>
+
+		</form>
 	</div>
 
 </form>
