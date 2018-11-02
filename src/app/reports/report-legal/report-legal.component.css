@@ -868,34 +868,24 @@ h1 {
   position: relative;
 }
 
-.lines {
-  height: 100%;
-  position: relative;
-}
-
 .line {
   height: inherit;
-  width: 2px;
+  width: 100%;
   position: absolute;
-  background: rgba(238, 238, 238, 0.6);
+ background-color:transparent;
 }
-
 .line.l--0 {
   left: 0;
 }
-
 .line.l--25 {
   left: 25%;
 }
-
 .line.l--50 {
   left: 50%;
 }
-
 .line.l--75 {
   left: 75%;
 }
-
 .line.l--100 {
   left: calc(100% - 1px);
 }
@@ -908,11 +898,11 @@ h1 {
   bottom: -20px;
   right: -50px;
 }
-
 .line__label.title {
   text-transform: uppercase;
   font-weight: bold;
 }
+
 
 .charts {
   width: 100%;
@@ -1657,7 +1647,7 @@ h1 {
   height: inherit;
   width: 2px;
   position: absolute;
-  background: rgba(238, 238, 238, 0.6);
+  background: transparent;
 }
 
 .line.l--0 {

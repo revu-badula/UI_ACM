@@ -19,7 +19,14 @@
 
 	</div>
 </div>
-<div class="former clear-right">
+
+<div>
+		<h3 class="line" style="width:100%">Vendors</h3>
+	  
+	</div>
+	<br>
+	<br>
+<div class="clear-right">
 	<form class="former">
 		<div class="form-row">
 			<div class="form-group col-md-6">
@@ -40,22 +47,23 @@
 
 
 
-<div class="former clear-right" *ngIf="showTable">
+<div class=" clear-right" *ngIf="showTable">
+	
 	<form class="former">
 		<table class="table table-bordered">
 			<thead>
-				<tr>
+				<tr >
 
-					<th scope="col">Vendor Name</th>
-					<th scope="col" (click)="handleSort1('vendorFirstName')">Vendor Contact Name
+					<th scope="col" style="color:white !important">Vendor Name</th>
+					<th scope="col" (click)="handleSort1('vendorFirstName')" style="color:white !important">Vendor Contact Name
 						<!-- <i class="fa fa-arrow-down" *ngIf="!firstName"></i>
 						<i class="fa fa-arrow-up" *ngIf="firstName"></i> -->
 					</th>
-					<th scope="col" (click)="handleSort2('solutionName')">Solution Name <i class="fa fa-arrow-down" *ngIf="!solutionName"></i>
+					<th scope="col" (click)="handleSort2('solutionName')" style="color:white !important">Solution Name <i class="fa fa-arrow-down" *ngIf="!solutionName"></i>
 						<i class="fa fa-arrow-up" *ngIf="solutionName"></i></th>
-					<th scope="col" (click)="handleSort3('solutionVersionName')">Version Number <i class="fa fa-arrow-down" *ngIf="!solutionVersionName"></i>
+					<th scope="col" (click)="handleSort3('solutionVersionName')" style="color:white !important">Version Number <i class="fa fa-arrow-down" *ngIf="!solutionVersionName"></i>
 						<i class="fa fa-arrow-up" *ngIf="solutionVersionName"></i></th>
-					<th scope="col" (click)="handleSort('applicationName')">Localities
+					<th scope="col" (click)="handleSort('applicationName')" style="color:white !important">Localities
 						<!-- <i class="fa fa-arrow-down" *ngIf="!desc"></i>
 						<i class="fa fa-arrow-up" *ngIf="desc"></i> -->
 					</th>

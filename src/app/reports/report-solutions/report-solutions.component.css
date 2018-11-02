@@ -90,16 +90,11 @@ h1{
     position: relative;
   }
   
-  .lines {
-    height: 100%;
-    position: relative;
-  }
-  
   .line {
     height: inherit;
-    width: 2px;
+    width: 100%;
     position: absolute;
-    background: rgba(238, 238, 238, 0.6);
+   background-color:transparent;
   }
   .line.l--0 {
     left: 0;

@@ -95,9 +95,9 @@
   
   .line {
     height: inherit;
-    width: 2px;
+    width: 100%;
     position: absolute;
-    background: rgba(238, 238, 238, 0.6);
+   background-color:transparent;
   }
   
   .line.l--0 {
@@ -877,7 +877,7 @@
     height: inherit;
     width: 2px;
     position: absolute;
-    background: rgba(238, 238, 238, 0.6);
+    background:transparent;
   }
   
   .line.l--0 {

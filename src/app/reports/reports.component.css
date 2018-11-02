@@ -58,7 +58,7 @@ h1 {
 }
 
 .card-body {
-  background-color: #ffffff;
+  background-color:snow;
   width: 85%;
   height: 200px;
   -webkit-box-shadow: 2px 2px 2px 2px #000;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
@@ -96,9 +96,9 @@ h1 {
 
 .line {
   height: inherit;
-  width: 2px;
+ width:100%;
   position: absolute;
-  background: rgba(238, 238, 238, 0.6);
+  /* background: rgba(238, 238, 238, 0.6); */
 }
 
 .line.l--0 {
@@ -813,11 +813,13 @@ table thead tr td {
 
 .pageImg {
   /* background-image: url(./../../assets/img/sky.jpg); */
-  background-color: #efefef;
+   background-color: #ffffff; 
   padding: 2% 40% 0% 0%;
   background-repeat: no-repeat;
   background-size: cover;
   margin: 70px;
+  margin-top:7%;
+  border: 1px solid;
 }
 
  tbody[_ngcontent-c1] tr[_ngcontent-c1]:nth-of-type(odd) {

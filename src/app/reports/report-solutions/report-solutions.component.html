@@ -20,6 +20,13 @@
 	</div>
 </div>
 
+<div>
+		<h3 class="line" style="width:100%">Solutions and Localities</h3>
+	  
+	</div>
+	<br>
+	<br>
+
 <form class="former">
 	<div class="form-row">
 		<div class="form-group col-md-6">
@@ -71,22 +78,23 @@
 
 
 </form>
-<div class="former clear-right" *ngIf="showTable">
+<div class=" clear-right" *ngIf="showTable">
+		
 	<form class="former">
 		<table class="table table-bordered">
 			<thead>
-				<tr>
-					<th scope="col" (click)="handleSort('applicationName')">Localities <i class="fa fa-arrow-down" *ngIf="!desc"></i>
+				<tr class="colorWhite">
+					<th scope="col" (click)="handleSort('applicationName')" style="color:white !important">Localities <i class="fa fa-arrow-down" *ngIf="!desc"></i>
 						<i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-					<th scope="col" (click)="handleSort1('systemType')">System Type <i class="fa fa-arrow-down" *ngIf="!sysType"></i>
+					<th scope="col" (click)="handleSort1('systemType')" style="color:white !important">System Type <i class="fa fa-arrow-down" *ngIf="!sysType"></i>
 						<i class="fa fa-arrow-up" *ngIf="sysType"></i></th>
-					<th scope="col" (click)="handleSort2('precinctType')">Precinct Type <i class="fa fa-arrow-down" *ngIf="!precType"></i>
+					<th scope="col" (click)="handleSort2('precinctType')" style="color:white !important">Precinct Type <i class="fa fa-arrow-down" *ngIf="!precType"></i>
 						<i class="fa fa-arrow-up" *ngIf="precType"></i></th>
-					<th scope="col" (click)="handleSort3('solutionName')">Model/Solution <i class="fa fa-arrow-down" *ngIf="!mSolution"></i>
+					<th scope="col" (click)="handleSort3('solutionName')" style="color:white !important">Model/Solution <i class="fa fa-arrow-down" *ngIf="!mSolution"></i>
 						<i class="fa fa-arrow-up" *ngIf="mSolution"></i></th>
-					<th scope="col" (click)="handleSort4('vendorName')">Vendor Name <i class="fa fa-arrow-down" *ngIf="!venName"></i>
+					<th scope="col" (click)="handleSort4('vendorName')" style="color:white !important">Vendor Name <i class="fa fa-arrow-down" *ngIf="!venName"></i>
 						<i class="fa fa-arrow-up" *ngIf="venName"></i></th>
-					<th scope="col" (click)="handleSort5('versionNumber')">Version <i class="fa fa-arrow-down" *ngIf="!verNum"></i> <i
+					<th scope="col" (click)="handleSort5('versionNumber')" style="color:white !important">Version <i class="fa fa-arrow-down" *ngIf="!verNum"></i> <i
 						 class="fa fa-arrow-up" *ngIf="verNum"></i></th>
 				</tr>
 

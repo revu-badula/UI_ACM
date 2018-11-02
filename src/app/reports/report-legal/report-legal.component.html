@@ -22,19 +22,25 @@
         <!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
     </div>
 </div>
-<form class="former">
+<form>
+        <div>
+				<h3 class="line" style="width:100%">Legal Documents</h3>
+			  
+			</div>
+			<br>
+			<br>
     <div class="former clear-right">
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col" (click)="handleSort('applicationAcronym')">Localities<i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-                    <th scope="col" (click)="handleSort3('name')"> Document Name <i class="fa fa-arrow-down" *ngIf="!name"></i>
+                    <th scope="col" (click)="handleSort('applicationAcronym')" style="color:white !important">Localities<i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+                    <th scope="col" (click)="handleSort3('name')" style="color:white !important"> Document Name <i class="fa fa-arrow-down" *ngIf="!name"></i>
 						<i class="fa fa-arrow-up" *ngIf="name"></i></th>
-                    <th scope="col" (click)="handleSort1('recertificationDt')">Recertification Date <i class="fa fa-arrow-down" *ngIf="!rcDt"></i>
+                    <th scope="col" (click)="handleSort1('recertificationDt')" style="color:white !important">Recertification Date <i class="fa fa-arrow-down" *ngIf="!rcDt"></i>
 						<i class="fa fa-arrow-up" *ngIf="rcDt"></i></th>
-                    <th scope="col" (click)="handleSort2('receiptDt')"> Date of Receipt <i class="fa fa-arrow-down" *ngIf="!dtrcpt"></i>
+                    <th scope="col" (click)="handleSort2('receiptDt')" style="color:white !important"> Date of Receipt <i class="fa fa-arrow-down" *ngIf="!dtrcpt"></i>
 						<i class="fa fa-arrow-up" *ngIf="dtrcpt"></i></th>
-                    <th scope="col">Signed</th>
+                    <th scope="col" style="color:white !important">Signed</th>
                 </tr>
 
             </thead>
