@@ -30,7 +30,7 @@ export class DeviceComponent implements OnInit {
   serverContact: Server;
   serverContact1: Server;
   public startDate: any;
-  public test:any;
+  public test: any;
   public endDate: any;
   isLol: boolean = false;
   renDate: any;
@@ -38,7 +38,7 @@ export class DeviceComponent implements OnInit {
     placeholder: '',
     tabsize: 2,
     height: 200,
-    width:'100%',
+    width: '100%',
     toolbar: [
       // [groupName, [list of button]]
       ['misc', ['undo', 'redo']],
@@ -47,7 +47,7 @@ export class DeviceComponent implements OnInit {
       ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-    
+
   };
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'
@@ -64,10 +64,7 @@ export class DeviceComponent implements OnInit {
   }
 
   ngOnInit() {
-    //for(let i = 1;i <= UtilService.noIds;i++){
-    //this.getDBServer(1);
-    this.getDatabases();
-    //}
+
   }
 
   changeForm() {
@@ -95,25 +92,6 @@ export class DeviceComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  /* getDBServer(id){
-     this._apiservice.getDBServer(id)
-     .subscribe((data:any) => {
-       this.deviceData = data
-       console.log(this.getDevice);
-     },error => console.log(error));
-   
-   }*/
-  getDatabases() {
-    this._apiservice.getDatabases()
-      .subscribe((data: any) => {
-        this.displayDevices = data;
-
-      }, error => {
-
-        console.log(error);
-      }
-      );
-  }
 
   editorGroup(): void {
     this.showForm = false;

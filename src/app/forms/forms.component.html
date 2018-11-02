@@ -13,14 +13,15 @@
     </div>
 </ng-template>
 <div>
-    <div class="page-description">
-        <h3>Vendors</h3>
-        <hr class="after-heading" />
-    </div>
+    
 
     <form [formGroup]="editVendorForm" id="myForm" class="forms" (ngSubmit)="createVendor(editVendorForm.value)">
 
         <div id="form1" style="padding-top: 3%;">
+                <div class="page-description">
+                        <h3>Vendors</h3>
+                        <hr class="after-heading" />
+                    </div>
             <div class="infoBox">
                 <div class="form-row headerOfBox">
                     <h4>Vendor Information</h4>
