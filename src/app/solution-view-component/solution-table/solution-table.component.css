@@ -29,7 +29,8 @@ table thead tr td{
   border-radius: 10px;
   border: 1px solid transparent;
   margin: 20px;
-  background-color: #EEEEEE;
+  background-color:#fff;
+  box-shadow: 
 }
 
 table-fixed thead {

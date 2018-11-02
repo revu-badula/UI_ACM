@@ -39,7 +39,7 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label class="label-form" for="policyEntity"><b>Policy Entity</b></label><div class="asterisk"><fa class="plus-icon" (click)="display(policyEntity)" [name]="'plus'"></fa></div>
-              <select class="form-control" id="policyEntity" required (change)="policy($event.target.value)">
+              <select class="form-control" id="inputState" required (change)="policy($event.target.value)">
                 <option selected>Choose...</option>
                 <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName  }}</option>
               </select>
@@ -51,15 +51,15 @@
 	<div class="forms">
 		<div class="form-row">
 		<div class="form-group col-md-6">
-			<label for="policyName"><b>Policy Name</b></label>
-			<div class="asterisk" style="color:red">*</div>
-            <input type="text" class="display form-control" id="policyName" formControlName="policyName"  required>
+			<label for="policyName"><b>Policy Name</b><div class="asterisk" style="color:red">*</div></label>
+			
+            <input type="text" class="display form-control" id="inputState" formControlName="policyName"  required>
            </div>
 </div>
             <div class="form-row">
 		<div class="form-group col-md-6">
-            <label class="hosting-notes" for="policyDescription"><b>Policy Description</b></label>
-            <div class="asterisk" style="color:red">*</div></div> 
+            <label class="hosting-notes" for="policyDescription"><b>Policy Description</b><div class="asterisk" style="color:red">*</div></label>
+            </div> 
             <textarea cols="156" rows="7" id="policyDescription" required formControlName="policyDescription"></textarea>
           </div>
           
