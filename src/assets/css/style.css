@@ -247,8 +247,8 @@ body {
 
 .headerOfBox {
   margin-bottom: 2%;
-  margin-left: -3%;
-  margin-right: -3%;
+  margin-left: -3% !important;
+  margin-right: -3% !important;
   color: white;
   background: rgb(30, 87, 153);
   /* Old browsers */

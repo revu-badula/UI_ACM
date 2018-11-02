@@ -29,8 +29,8 @@ export class EditVendorComponent implements OnInit {
   public zipCode: string;
   public loading: boolean = false;
   public showEdi: boolean = true;
-  public updatedBy:any;
-  public updatedTs:any;
+  public updatedBy: any;
+  public updatedTs: any;
   //public vendorDetails: VendorDetails;
 
 
@@ -78,16 +78,16 @@ export class EditVendorComponent implements OnInit {
     this.editVendorForm = this.fb.group({
       name: ['', Validators.required],
       vendorAddress: this.fb.group({
-        streetName: '',
-        city: '',
-        state: '',
+        streetName: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
         zipcode: ['', Validators.required]
       }),
       vendorContact: this.fb.group({
-        firstName: '',
-        lastName: '',
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
         emailId: ['', Validators.email],
-        phoneNumber: ['', Validators.required,]
+        phoneNumber: ['', Validators.required]
       }),
     });
   }
@@ -170,7 +170,7 @@ export class EditVendorComponent implements OnInit {
     this._apiservice.postVendorData(value)
       .subscribe((data: any) => {
         this.loading = false;
-        this.modalService.open(this.content,ngbModalOptions);
+        this.modalService.open(this.content, ngbModalOptions);
       }, error => {
         this.loading = false;
         console.log(error);
@@ -194,8 +194,8 @@ export class EditVendorComponent implements OnInit {
     this._apiservice.getVendorExtra(this.userId)
       .subscribe((data: any) => {
         this.loading = false;
-        this.updatedBy=data.updatedBy;
-        this.updatedTs=data.updatedTs;
+        this.updatedBy = data.updatedBy;
+        this.updatedTs = data.updatedTs;
         (<FormGroup>this.editVendorForm)
           .patchValue(data, { onlySelf: true });
       }, error => {

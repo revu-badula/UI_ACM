@@ -12,18 +12,18 @@
         <button type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Close</button>
     </div>
 </ng-template>
-<form class="forms">
+<div>
     <div class="page-description">
         <h3>Vendors</h3>
         <hr class="after-heading" />
     </div>
-    <div id="form1">
-        <form [formGroup]="editVendorForm" id="myForm" class="forms" (ngSubmit)="createVendor(editVendorForm.value)">
 
+    <form [formGroup]="editVendorForm" id="myForm" class="forms" (ngSubmit)="createVendor(editVendorForm.value)">
 
+        <div id="form1" style="padding-top: 3%;">
             <div class="infoBox">
                 <div class="form-row headerOfBox">
-                    <p><b>Vendor Information</b></p>
+                    <h4>Vendor Information</h4>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-12">
@@ -41,7 +41,7 @@
             <div class="infoBox">
                 <div formGroupName="vendorContact">
                     <div class="form-row headerOfBox">
-                        <p><b>Contact Person</b></p>
+                        <h4>Contact Person</h4>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -59,10 +59,10 @@
                         <div class="form-group col-md-6">
                             <label for="email">Email ID<font color=red>*</font></label>
                             <input type="email" class="form-control" id="email" placeholder="Email ID" formControlName="emailId">
-                            <div style="color:red;" *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors && editVendorForm.controls.vendorContact.get('emailId').dirty">
-                                <div>
-                                    Please enter valid email
-                                </div>
+                            <div style="color:red;padding-left: 43%;" *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors && editVendorForm.controls.vendorContact.get('emailId').dirty">
+
+                                Please enter valid email
+
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -79,7 +79,7 @@
             <div class="infoBox">
                 <div formGroupName="vendorAddress">
                     <div class="form-row headerOfBox">
-                        <p><b>Address</b></p>
+                        <h4>Address</h4>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -157,7 +157,7 @@
                             <input type="text" class="form-control" maxlength=5 minlength=5 placeholder="00000" id="inputZip"
                                 formControlName="zipcode" appOnlyInteger>
 
-                            <div style="color:red;" *ngIf="editVendorForm.controls.vendorAddress.get('zipcode').errors && editVendorForm.controls.vendorAddress.get('zipcode').dirty">
+                            <div style="color:red;padding-left: 43%;" *ngIf="editVendorForm.controls.vendorAddress.get('zipcode').errors && editVendorForm.controls.vendorAddress.get('zipcode').dirty">
                                 ZipCode must be 5 numbers!
                             </div>
                         </div>
@@ -165,14 +165,14 @@
                 </div>
             </div>
 
-
-        </form>
-        <div class="buttons">
-            <button type="submit" class="btn btn-primary" form="myForm" [disabled]="editVendorForm.invalid">Submit</button>
-            <button type="cancel" class="btn btn-primary" (click)="cancelButton($event)">Cancel</button>
-
-
         </div>
 
+    </form>
+    <div class="buttons" style="margin-right: 9%;">
+        <button type="submit" class="btn btn-primary" form="myForm" [disabled]="editVendorForm.invalid">Submit</button>
+        <button type="cancel" class="btn btn-primary" (click)="cancelButton($event)">Cancel</button>
+
+
     </div>
-</form>
+
+</div>
