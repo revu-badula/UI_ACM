@@ -44,15 +44,13 @@
 	</div> -->
 	<br>
 	<div id="form1">
-			<div class="moveHeadingUp">
-					<h3 class="">Solutions</h3>
-					<hr class="after-heading">
-				</div>
-					<br>
-				
-		<div class="infoBox">
+		<div class="moveHeadingUp">
+			<h3 class="">Solutions</h3>
+			<hr class="after-heading">
+		</div>
+		<br>
 
-				
+		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>General Information</h4>
 			</div>
@@ -87,7 +85,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label class="label-form" for="equipmentType"><b>Equipment Type</b><span class="asterisk">*</span></label>
-					
+
 					<select id="inputState" class="form-control" ngModel name="equipmentType" (change)="solution.solutionType = $event.target.value"
 					 required>
 						<option></option>
@@ -100,7 +98,8 @@
 						<span class="asterisk">*</span>
 					</label>
 
-					<select id="inputState" class="form-control" ngModel name="vendor" (change)="solution.vendorId = $event.target.value" required>
+					<select id="inputState" class="form-control" ngModel name="vendor" (change)="solution.vendorId = $event.target.value"
+					 required>
 						<option></option>
 						<option *ngFor="let vendor of vendorDTO" value="{{ vendor.vendorId }}">
 							{{ vendor.name }}
@@ -110,8 +109,8 @@
 
 				</div>
 				<div class="form-group col-md-6">
-					<label for="modelSolution">Precinct Type</label> <select id="inputState" class="form-control"
-					 ngModel name="precinct" (change)="solution.precinctTypeId = $event.target.value" required>
+					<label for="modelSolution">Precinct Type</label> <select id="inputState" class="form-control" ngModel name="precinct"
+					 (change)="solution.precinctTypeId = $event.target.value" required>
 						<option></option>
 						<option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{ precinct.typeName }}</option>
 
@@ -171,13 +170,13 @@
 					</option>
 				</select>
 			</div>
-<br>
-<br>
+			<br>
+			<br>
 			<div class="installation form-group">
 				<label class="hosting-notes" for="hostingNotes"><b>Hosting Notes</b></label><!-- <div class="asterisk-inline asterisk">*</div> -->
 				<div>
-						<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
-					</div>
+					<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
+				</div>
 			</div>
 
 			<div class="attachments-div">
@@ -208,9 +207,9 @@
 				</div>
 			</div>
 		</div>
-<br>
-<br>
-<br>
+		<br>
+		<br>
+		<br>
 		<!-- <p><b>Hosting Notes</b></p>
             <textarea cols="100" rows="7" id="hostingNotes"></textarea> -->
 		<div class="infoBox">
@@ -244,9 +243,10 @@
 
 			<div class="certification-test form-group col-md-12">
 				<label for="label-form labVendor"><b>Lab Vendor</b><span class="asterisk">*</span></label>
-				
+
 				<!--             <select class="form-control" id="labVendor" (change) = "solution.labVendorsDTO.labVendorId = $event.target.value"> -->
-				<select id="inputState" class="form-control" ngModel name="labVendor" (change)="showLabVendor($event.target.value)" required>
+				<select id="inputState" class="form-control" ngModel name="labVendor" (change)="showLabVendor($event.target.value)"
+				 required>
 					<option>Choose</option>
 					<option *ngFor="let lab of labVendorsDTO" value="{{ lab.labVendorId }}">
 						{{ lab.name }}
@@ -300,8 +300,8 @@
 			<div class="installation form-group">
 				<label class="hosting-notes" for="standard"><b>Notes</b></label>
 				<div>
-				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
-			</div>
+					<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
+				</div>
 				<div class="attachments-div">
 					<p class="attachments">
 						<b>Attachments</b>
@@ -337,10 +337,7 @@
 			</div>
 
 			<div class="installation form-group">
-				<label class="hosting-notes" for="patches"><b>Patches</b></label>
-				<div style="width:95%">
-				<textarea  rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.patches" [name]="'solution_patches'"></textarea>
-				</div>
+				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.patches" [name]="'solution_patches'"></textarea>
 				<div class="attachments-div">
 					<p class="attachments">
 						<b>Attachments</b>

@@ -38,7 +38,7 @@ export class EditSolutionComponent implements OnInit {
 
   renewDate: NgbDateStruct;
   showForm: boolean = true;
-  clickExp:boolean = true;
+  clickExp: boolean = true;
 
   editSolution: FormGroup;
   certDocDTO: CertDocDTO;
@@ -53,6 +53,21 @@ export class EditSolutionComponent implements OnInit {
   public labVendorsDTO: any;
   public solutionType: any;
   precinctTypes: any;
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    width:'100%',
+    toolbar: [
+      // [groupName, [list of button]]
+      ['misc', ['undo', 'redo']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+    
+  };
   public precinctTypeId: number;
   public loading: boolean = false;
   public isClick: boolean = false;
@@ -60,7 +75,7 @@ export class EditSolutionComponent implements OnInit {
   //  public systemTyp:any
 
   constructor(private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
-    , private http: Http, private _location: Location, private modalService: NgbModal, 
+    , private http: Http, private _location: Location, private modalService: NgbModal,
     private router: Router, private dialogService: DialogService) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
@@ -137,13 +152,13 @@ export class EditSolutionComponent implements OnInit {
   createCertDTO(fileInput: any, section: string) {
     let files = fileInput.target.files[0];
     if (files === undefined) { }
-    else{
-    this.certDocDTO = new CertDocDTO();
-    this.certDocDTO.fileName = fileInput.target.files[0].name;
-    this.certDocDTO.section = section;
-    this.certDocDTO.activeFlag=true;
-    this.files.push(fileInput.target.files[0]);
-    this.solution.certDocDTOs.push(this.certDocDTO);
+    else {
+      this.certDocDTO = new CertDocDTO();
+      this.certDocDTO.fileName = fileInput.target.files[0].name;
+      this.certDocDTO.section = section;
+      this.certDocDTO.activeFlag = true;
+      this.files.push(fileInput.target.files[0]);
+      this.solution.certDocDTOs.push(this.certDocDTO);
     }
   }
 
@@ -171,7 +186,7 @@ export class EditSolutionComponent implements OnInit {
   }
 
   onDisplaySolution() {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getSolutionExtra(this.solution.solutionId)
       .subscribe((data: Solution) => {
         this.loading = false;
@@ -191,17 +206,17 @@ export class EditSolutionComponent implements OnInit {
           this.solution.certDocDTOs = [] as CertDocDTO[];
         }
 
-      },error => {
-        this.loading=false;
+      }, error => {
+        this.loading = false;
         console.log(error);
       });
   }
 
   getSolutionsOnload() {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getSolutionsOnload()
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.systemTypeDTO = data.systemTypeDTOs;
         this.solutionType = data.solutionTypeDTOs;
         this.vendorDTO = data.vendorsDTOs;
@@ -210,7 +225,7 @@ export class EditSolutionComponent implements OnInit {
         this.precinctTypes = data.precinctTypeDTOs;
 
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
   }
@@ -225,22 +240,20 @@ export class EditSolutionComponent implements OnInit {
           if (id === undefined) {
             let length = this.solution.certDocDTOs.length;
             if (length === 1) {
-              this.files=[];
+              this.files = [];
               this.solution.certDocDTOs = [];
             }
             else {
-              for(let j=0;j<this.files.length;j++)
-              {
-                if(this.files[j].name === this.solution.certDocDTOs[index].fileName)
-                {
-                  this.files.splice(j,1);
+              for (let j = 0; j < this.files.length; j++) {
+                if (this.files[j].name === this.solution.certDocDTOs[index].fileName) {
+                  this.files.splice(j, 1);
                 }
               }
               for (let i = index; i < length; i++) {
                 this.solution.certDocDTOs[i] = this.solution.certDocDTOs[i + 1];
               }
               this.solution.certDocDTOs.splice(length - 1, 1);
-  
+
 
             }
 
@@ -270,18 +283,18 @@ export class EditSolutionComponent implements OnInit {
     if ((this.solution.certDt && this.solution.certRenewalDueDt) != null) {
       this.dateSubmit();
     }
-    this.solution.updatedBy=Cookie.get('userName');
+    this.solution.updatedBy = Cookie.get('userName');
     formData.append('solution', JSON.stringify(this.solution));
     for (let i = 0; i < this.files.length; i++) {
       formData.append('certDocs', this.files[i]);
 
     }
-    this.loading=true;
+    this.loading = true;
     this.http.post(url_update, formData).subscribe((data: any) => {
-      this.loading=false;
+      this.loading = false;
       this.modalService.open(this.content, ngbModalOptions);
     }, error => {
-      this.loading=false;
+      this.loading = false;
       console.log(error);
     });
   }
@@ -305,7 +318,7 @@ export class EditSolutionComponent implements OnInit {
   }
 
 
-  
+
 
   showFile(id) {
     window.open(APP_CONFIG.getSolutionFile + '?' + 'fileID' + '=' + id)
@@ -325,7 +338,7 @@ export class EditSolutionComponent implements OnInit {
   }
 
   getColor() {
-    return this.color === 'online' ? '#ffffff' : 'white';
+    // return this.color === 'online' ? '#ffffff' : 'white';
   }
 
 
@@ -367,7 +380,7 @@ export class EditSolutionComponent implements OnInit {
 
 
   getOpacity() {
-    return this.color === 'online' ? 0.8 : 1;
+    // return this.color === 'online' ? 0.8 : 1;
   }
 
 }
