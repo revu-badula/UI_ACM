@@ -269,7 +269,6 @@ body {
   border-color: #3A539B;
   border-radius: 20px;
   box-shadow: 5px 10px 20px 1px rgba(125, 122, 118, 1); */
-  float: right;
   margin-top: 25px;
   background-color: #3A539B;
   border-color: #3A539B;
@@ -371,4 +370,8 @@ table thead tr td{
 .dol {
   height: 38px;
   margin-top: 29%;
+}
+
+.moveHeadingUp{
+  margin-bottom: 1.8em;
 }

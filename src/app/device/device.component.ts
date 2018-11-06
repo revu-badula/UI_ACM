@@ -77,17 +77,6 @@ export class DeviceComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
   open(content) {
     this.modalService.open(content);
   }

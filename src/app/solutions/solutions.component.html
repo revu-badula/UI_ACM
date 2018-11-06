@@ -3,8 +3,8 @@
 	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
-
-<div class="navigate sticky-top">
+<app-option-list></app-option-list>
+<!-- <div class="navigate sticky-top">
 
 	<div class="form-options">
 		<div class="home-back">
@@ -16,11 +16,11 @@
 				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
 				 data-delay="0" [name]="'arrow-left'"></fa>
 			</a>
-		</div>
+		</div> -->
 
 		<!--  <fa class="edit-icon icons" [name]="'edit'"></fa> -->
-	</div>
-</div>
+	<!-- </div>
+</div> -->
 <!--<div class="first-div">
         <div class="model"><p><b>Model/Solution: Democracy Suite</b></p></div>
         <div class="version"><p><b>Version: D-Suite 4.14-E System</b></p></div>
@@ -44,7 +44,7 @@
 	</div> -->
 	<br>
 	<div id="form1">
-		<div class="moveHeadingUp">
+		<div>
 			<h3 class="">Solutions</h3>
 			<hr class="after-heading">
 		</div>
@@ -173,10 +173,9 @@
 			<br>
 			<br>
 			<div class="installation form-group">
-				<label class="hosting-notes" for="hostingNotes"><b>Hosting Notes</b></label><!-- <div class="asterisk-inline asterisk">*</div> -->
-				<div>
+					
 					<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
-				</div>
+			
 			</div>
 
 			<div class="attachments-div">
@@ -187,11 +186,7 @@
 					<br>
 					<br>
 					<table border="1">
-						<colgroup>
-							<col>
-							<col class="w">
 
-						</colgroup>
 						<tr>
 							<th>FileName</th>
 							<th>Action</th>
@@ -220,13 +215,13 @@
 			<div class="certification-test form-row">
 				<div class="form-group col-md-6">
 					<label for="approvedDate"><b>DoEL Approved Date</b></label>
-					<my-date-picker name="myname" id="inputState" [(ngModel)]="approveDate"></my-date-picker>
+					<my-date-picker name="myname" class="inputState1" [(ngModel)]="approveDate"></my-date-picker>
 					<!-- <p style="color: red;font-weight: bold;">{{err1}}</p> -->
 					<!-- <input type="date" class="form-control" id="approvedDate"> -->
 				</div>
 				<div class="form-group col-md-6">
 					<label for="dueDate"><b>Renewal Due Date</b></label>
-					<my-date-picker name="myname" id="inputState" [(ngModel)]="renewalDate"></my-date-picker>
+					<my-date-picker name="rename"  class="inputState1" [(ngModel)]="renewalDate"></my-date-picker>
 					<!-- <p style="color: red;font-weight: bold;">{{err}}</p> -->
 					<!-- <input type="date" class="form-control" id="dueDate"> -->
 				</div>
@@ -298,14 +293,10 @@
 			</div>
 
 			<div class="installation form-group">
-				<label class="hosting-notes" for="standard"><b>Notes</b></label>
-				<div>
-					<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
-				</div>
+
+				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
+
 				<div class="attachments-div">
-					<p class="attachments">
-						<b>Attachments</b>
-					</p>
 					<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
 					<div class="display-file">
 						<br>

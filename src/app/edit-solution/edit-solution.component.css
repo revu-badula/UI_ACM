@@ -64,7 +64,7 @@ form {
     /* padding: 20px; */
     border-radius: 10px;
     border: 1px solid transparent;
-    margin: 20px;
+    /* margin: 20px; */
     overflow: hidden;
 }
 
@@ -121,7 +121,7 @@ th {
 }
 
 h4 {
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 500;
 }
 
@@ -551,3 +551,14 @@ input[type=button] {
    #colorWhite{
     color:white;
    }
+
+   .inputState1 {
+    margin-top: 10px;
+    float: left;
+    box-sizing: border-box;
+    width: 50%;
+    line-height: 2em;
+    border-radius: 0.4rem;
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+}

@@ -8,7 +8,7 @@
 			<a routerLink="/dashboard">
 				<fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
 				 data-delay="0" [name]="'home'"></fa>
-			</a> <a href="javascript:void(0)" (click)="backClicked($event)">
+			</a> <a href="javascript:void(0)" routerLink="/solutionsView">
 				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
 				 data-delay="0" [name]="'arrow-left'"></fa>
 			</a>
@@ -41,10 +41,10 @@
 	</div>
 </ng-template>
 <div>
-	<form (ngSubmit)="createSolution()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
+	<form  (ngSubmit)="createSolution()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
 		<br>
-		<div id="form1">
-			<div class="moveHeadingUp">
+		<div id="form1" style="padding-top: 3%;">
+			<div>
 				<h3 class="">Solutions</h3>
 				<hr class="after-heading">
 			</div>
@@ -163,7 +163,7 @@
 						<!-- <textarea *ngIf="!showForm" [ngxSummernote]="config" id="ngxSummernote" cols="156" rows="7" id="hostingNotes"
 						 [(ngModel)]="solution.hostingTypeNotes" [name]="'hosting_notes'"></textarea> -->
 						<textarea  [ngxSummernote]="config" id="ngxSummernote" cols="156" rows="7" id="hostingNotes"
-						 [(ngModel)]="solution.hostingTypeNotes" [name]="'hosting_notes'"></textarea>
+						 [(ngModel)]="solution.hostingTypeNotes" [name]="'hosting_notes'" [ngxSummernoteDisabled]="showForm"></textarea>
 						<div class="attachments-div">
 							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'hosting')">
 
@@ -217,9 +217,9 @@
 					<div class="form-row">
 						<div class="certification-test form-group col-md-12">
 							<label for="label-form labVendor"><b>Lab Vendor</b>
-								<font color="red">*</font>
+								<!-- <font color="red">*</font> -->
 							</label>
-							<input type="text" class="form-control" id="labVendor" *ngIf="showForm" [(ngModel)]="solution.labVendorsDTO.name"
+							<input type="text" class="form-control" id="labVendor"  [(ngModel)]="solution.labVendorsDTO.name"
 							 [name]="'lab_name'" readonly>
 							<!-- <select class="form-control" style="width: 50%;" id="labVendor" ngModel name="labVendor" *ngIf="!showForm"
 							 [(ngModel)]="solution.labVendorsDTO.labVendorId" (change)="solution.labVendorsDTO.labVendorId = $event.target.value"
@@ -266,7 +266,7 @@
 					<div class="installation form-group">
 						<!-- <p *ngIf="showForm">{{ solution.certStadard }}</p> -->
 						<textarea  cols="156" [ngxSummernote]="config" id="ngxSummernote" rows="7" id="standard"
-						 [(ngModel)]="solution.certStadard" name="standard Notes"></textarea>
+						 [(ngModel)]="solution.certStadard" [ngxSummernoteDisabled]="showForm" name="standard Notes"></textarea>
 						<div class="attachments-div">
 
 							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
@@ -301,7 +301,7 @@
 					<div class="installation form-group">
 						<!-- <p *ngIf="showForm">{{ solution.patches }}</p> -->
 						<textarea  cols="156" rows="7" id="patches" [ngxSummernote]="config" id="ngxSummernote"
-						 [(ngModel)]="solution.patches" [name]="'solution_patches'"></textarea>
+						 [(ngModel)]="solution.patches" [ngxSummernoteDisabled]="showForm" [name]="'solution_patches'"></textarea>
 						<div class="attachments-div">
 							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
 							<div class="display-file">
@@ -332,7 +332,7 @@
 					</div>
 					<div class="installation form-group">
 						<!-- <p *ngIf="showForm">{{ solution.notes }}</p> -->
-						<textarea  cols="156" rows="7" [(ngModel)]="solution.notes" [ngxSummernote]="config" id="ngxSummernote" [name]="'solution_notes'"></textarea>
+						<textarea  cols="156" rows="7" [(ngModel)]="solution.notes" [ngxSummernoteDisabled]="showForm" [ngxSummernote]="config" id="ngxSummernote" [name]="'solution_notes'"></textarea>
 						<div class="attachments-div">
 							
 							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
