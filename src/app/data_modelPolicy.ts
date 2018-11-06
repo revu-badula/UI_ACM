@@ -46,6 +46,7 @@ export class Policy{
 		reviewDate:any;
 	 status:boolean;
 	linked:boolean;
+	subPolicyDTOs: any = [];
 	
 	  linkType: string;
 	
@@ -88,4 +89,17 @@ export class PolicyDocumentsDTO{
 export class PolicyReviewTerm{
   policyReviewTermId: number;
   policyReviewTerm: string;
+}
+
+export class subControl{
+
+ subPolicyId: number;
+ subControlNumber: any;
+ subPolicyName: any;
+ assignedTo: any;
+ endDate:any ;
+ procedure: any;
+ guidelines: any;
+ status: any;
+
 }

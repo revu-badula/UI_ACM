@@ -22,7 +22,7 @@ export class ControlNameComponent implements OnInit {
 	
 	@ViewChild('pol') pol: ElementRef;
 	color: String;
-	policyUrlId: number;
+	policyUrlId:any;
 	policyAccess: Policy;
 	showForm:boolean = true;
 	policyDocumentDTO: PolicyDocumentsDTO;
@@ -60,6 +60,7 @@ public showEli:boolean = true;
   	 this.policyAccess.policyDocumentsDTOs = [] as  PolicyDocumentsDTO[];
     this.files = [] as File[];
     this.policies = [];
+    localStorage.removeItem('policyId');
   	//this.linkedPolicy = new Policy();
    }
 
@@ -197,7 +198,11 @@ public showEli:boolean = true;
   
   
   
-  
+  goToSubControl(){
+    localStorage.setItem('policyId', this.policyUrlId);
+    this.router.navigate(['/subcontrol']);
+
+  }
   
   
   

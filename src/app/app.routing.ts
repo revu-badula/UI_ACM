@@ -133,6 +133,7 @@ import { ReportSolutionsComponent } from './reports/report-solutions/report-solu
 import { ReportVendorComponent } from './reports/report-vendor/report-vendor.component';
 import { ReportDeviceComponent } from './reports/report-device/report-device.component';
 import { ReportlegalsystemComponent } from './reports/reportlegalsystem/reportlegalsystem.component';
+import { SubControlNameComponent} from './control-name/sub-control-name/sub-control-name.component';
 
 const appRoutes: Routes = [
 
@@ -156,6 +157,7 @@ const appRoutes: Routes = [
   { path:'rvendor', component:ReportVendorComponent, canActivate:[AuthGuard]},
   { path:'rdevice', component:ReportDeviceComponent , canActivate:[AuthGuard]},
   { path:'rsystems', component:ReportlegalsystemComponent, canActivate:[AuthGuard]},
+  {path: 'subcontrol', component: SubControlNameComponent, canActivate:[AuthGuard]},
   
   
   {

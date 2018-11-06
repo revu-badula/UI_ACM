@@ -77,6 +77,7 @@ import { ReportDeviceComponent } from './reports/report-device/report-device.com
 import { ReportlegalsystemComponent } from './reports/reportlegalsystem/reportlegalsystem.component';
 
 import { NgxSummernoteModule } from 'ngx-summernote';
+import { SubControlNameComponent } from './control-name/sub-control-name/sub-control-name.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,6 +126,7 @@ import { NgxSummernoteModule } from 'ngx-summernote';
     ReportVendorComponent,
     ReportDeviceComponent,
     ReportlegalsystemComponent,
+    SubControlNameComponent,
 
 
 

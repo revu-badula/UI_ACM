@@ -223,6 +223,9 @@
                     <div class="headerOfBox">
                         <h4>Sub Control</h4>
                     </div>
+                    <div style="float:right">
+                        <fa class="plus-icon" (click)="goToSubControl()" [name]="'plus'"></fa>
+                    </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -239,7 +242,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><a> AC-1.1</a></td>
+                                <td><a routerLink="/subcontrol"> AC-1.1</a></td>
                                 <td><a>Access Enformcement 501</a></td>
                                 <td>John Doe</td>
                                 <td>10/31/2018</td>
@@ -335,32 +338,7 @@
                             <label for="externalPolicyLinks">External Policy Links</label>
                         </div>
                     </div>
-                    <!-- <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="externalPolicyLinks">External Policy Links</label>
-              <input type="text" class="form-control" id="externalPolicyLinks">
-                </div>
-    </div> -->
-                    <!-- <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="assignTo">Assign To</label>
-              <input type="text" class="form-control" id="assignTo">
-                </div>
-         <div class="form-group col-md-6">
-            <label for="endDate">End Date</label>
-              <my-date-picker name="myname"></my-date-picker>
-                </div>
-         <div class="form-group col-md-6">
-            <label for="status">Status</label>
-            <select class="form-control" id="inputState" *ngIf="showForm">
-                        <option>{{ policyAccess.status }}</option>
-                      </select>
-            <select class="form-control" id="inputState" (change)="policyAccess.status = $event.target.value" *ngIf="!showForm">
-                        <option value = "false">Open</option>
-                        <option value = "true">Close</option>
-                      </select>
-         </div>
-    </div> -->
+   
                 </div>
                 <br>
                 <br>
