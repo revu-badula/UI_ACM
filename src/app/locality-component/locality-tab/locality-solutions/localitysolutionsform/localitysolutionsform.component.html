@@ -36,181 +36,166 @@
 		<fa (click)="backClicked()" class="left-icons left-icon icons" [name]="'arrow-left'"></fa>
 	</a>
 </div>
-<div class="former clear-right">
+<div>
+	<form #formName="ngForm" id="myForm" class="former  clear-right" (ngSubmit)="saveAppSolution()">
+		<div id="form1">
+			<div class="infoBox">
+				<div class="headerOfBox">
+					<h4>General Information</h4>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
 
-
-	<div class="form-row">
-		<div class="form-group col-md-6">
-
-			<label for="inputState">Name</label>
-			<div class="asterisk">*</div>
-			<input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
-		</div>
-		<div class="form-group col-md-6">
-			<label for="lastName">Last updated by</label>
-			<input type="text" class="form-control" value={{updatedBy}} id="lastName" readonly="readonly">
-		</div>
-	</div>
-
-
-
-	<div class="form-row">
-		<!-- <div class="form-group col-md-6">
+						<label for="inputState">Name</label>
+						<input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="lastName">Last updated by</label>
+						<input type="text" class="form-control" value={{updatedBy}} id="lastName" readonly="readonly">
+					</div>
+				</div>
+				<div class="form-row">
+					<!-- <div class="form-group col-md-6">
 			<label for="lastName">Name</label>
 			<div class="asterisk">*</div>
 			<input type="text" class="form-control" id="lastName" value="enter here">
 		</div> -->
-		<div class="form-group col-md-6">
-			<label for="updated At">Last updated at</label>
-			<input type="text" class="form-control" id="updatedAt" value="{{updatedTime}}" readonly>
-		</div>
-	</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-<form #formName="ngForm" class="former  clear-right" (ngSubmit)="saveAppSolution()">
-	<fieldset [disabled]="editableForm">
-		<p>
-			<b>APPLICATION SOLUTIONS</b>
-		</p>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="modelSolution">Precinct Type</label>
-				<div class="asterisk">*</div>
-				<input type="text" [(ngModel)]="applicationSolution.solutionsDTO.precinctTypeName" class="form-control" *ngIf="!isAddNewSolution"
-				  name="name" required readonly>
-				<select id="modelSolution" [(ngModel)]="applicationSolution.solutionsDTO.precinctTypeId" *ngIf="isAddNewSolution" class="form-control"
-				 (change)="applicationSolution.solutionsDTO.precinctTypeId = $event.target.value"
-				 ngModel name="name" required>
-					<option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{precinct.typeName}}</option>
-
-				</select>
-			</div>
-
-			<div class="form-group col-md-6">
-				<label for="modelSolution">System Type</label>
-				<div class="asterisk">*</div>
-				<input type="text" class="form-control" name="system" *ngIf="!isAddNewSolution" [(ngModel)]="applicationSolution.solutionsDTO.systemTypeDTO.name" name="system"
-				 required readonly>
-				<select id="modelSolution" [(ngModel)]="applicationSolution.solutionsDTO.systemTypeDTO.systemTypeId" *ngIf="isAddNewSolution" class="form-control" (change)="selectSystemType($event.target.value);applicationSolution.solutionsDTO.systemTypeDTO.systemTypeId = $event.target.value"
-				 ngModel name="system" required>
-					<option *ngFor="let systemType of systemTypes" value="{{ systemType.systemTypeId }}">{{systemType.name}}</option>
-
-				</select>
-			</div>
-		</div>
-
-		<div>
-			<div class="form-row">
-				<div class="form-group col-12">
-					<label for="lastName">Model/Solution</label>
-					<div class="asterisk">*</div>
-					<input type="text" class="form-control" *ngIf="!isAddNewSolution" ngModel name="modelSname" [(ngModel)]="applicationSolution.solutionsDTO.name"
-					 required readonly>
-					<select *ngIf="isAddNewSolution" [(ngModel)]="applicationSolution.solutionsDTO.solutionId" id="inputState" class="form-control" (change)="selectModSolution($event.target.value);applicationSolution.solutionsDTO.solutionId = $event.target.value"
-					 name="modelSname" ngModel required>
-						
-						<option *ngFor="let name of names" value="{{name.solutionId}}">{{name.name}}</option>
-
-					</select>
+					<div class="form-group col-md-6">
+						<label for="updated At">Last updated at</label>
+						<input type="text" class="form-control" id="updatedAt" value="{{updatedTime}}" readonly>
+					</div>
 				</div>
 			</div>
+			<hr />
+			<br><br>
+			<div class="infoBox">
+				<fieldset [disabled]="editableForm">
+					<div class="headerOfBox">
+						<h4>APPLICATION SOLUTIONS</h4>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="modelSolution">Precinct Type<span class="asterisk">*</span></label>
+							<input type="text" [(ngModel)]="applicationSolution.solutionsDTO.precinctTypeName" class="form-control" *ngIf="!isAddNewSolution"
+							 name="name" required readonly>
+							<select id="modelSolution" style="width:50%;" [(ngModel)]="applicationSolution.solutionsDTO.precinctTypeId" *ngIf="isAddNewSolution"
+							 class="form-control" (change)="applicationSolution.solutionsDTO.precinctTypeId = $event.target.value" ngModel
+							 name="name" required>
+								<option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{precinct.typeName}}</option>
 
-			<div *ngIf="showInnerForm">
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="lastName">Version</label>
-						<div class="asterisk">*</div>
-						<input type="text" class="form-control" ngModel name="versionNumber" required [(ngModel)]="applicationSolution.solutionsDTO.versionNumber"
-						 readonly>
+							</select>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="modelSolution">System Type<span class="asterisk">*</span></label>
+							<input type="text" class="form-control" name="system" *ngIf="!isAddNewSolution" [(ngModel)]="applicationSolution.solutionsDTO.systemTypeDTO.name"
+							 name="system" required readonly>
+							<select id="modelSolution" style="width:50%;" [(ngModel)]="applicationSolution.solutionsDTO.systemTypeDTO.systemTypeId" *ngIf="isAddNewSolution"
+							 class="form-control" (change)="selectSystemType($event.target.value);applicationSolution.solutionsDTO.systemTypeDTO.systemTypeId = $event.target.value"
+							 ngModel name="system" required>
+								<option *ngFor="let systemType of systemTypes" value="{{ systemType.systemTypeId }}">{{systemType.name}}</option>
+
+							</select>
+						</div>
 					</div>
 
-					<div class="form-group col-md-6">
-						<label for="lastName">Equipment Type</label>
-						<div class="asterisk">*</div> <input type="text" class="form-control" ngModel name="solutionTypeName" required
-						 [(ngModel)]="applicationSolution.solutionsDTO.solutionTypeName" readonly>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="lastName">Vendor</label>
-						<div class="asterisk">*</div> <input type="text" class="form-control" ngModel name="vendors" required [(ngModel)]="applicationSolution.solutionsDTO.vendor.name"
-						 readonly>
-					</div>
-				</div>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="lastName">Hosting Type</label>
-						<div class="asterisk">*</div>
-						<input type="text" class="form-control" name="hostingTypeId" required [(ngModel)]="hostType" readonly>
-						
+					<div>
+						<div class="form-row">
+							<div class="form-group col-6">
+								<label for="lastName">Model/Solution<span class="asterisk">*</span></label>
+								<input type="text" class="form-control" *ngIf="!isAddNewSolution" ngModel name="modelSname" [(ngModel)]="applicationSolution.solutionsDTO.name"
+								 required readonly>
+								<select *ngIf="isAddNewSolution" style="width:50%;" [(ngModel)]="applicationSolution.solutionsDTO.solutionId" id="inputState"
+								 class="form-control" (change)="selectModSolution($event.target.value);applicationSolution.solutionsDTO.solutionId = $event.target.value"
+								 name="modelSname" ngModel required>
+
+									<option *ngFor="let name of names" value="{{name.solutionId}}">{{name.name}}</option>
+
+								</select>
+							</div>
+						</div>
+
+						<div *ngIf="showInnerForm">
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="lastName">Version<span class="asterisk">*</span></label>
+									<input type="text" class="form-control" ngModel name="versionNumber" required [(ngModel)]="applicationSolution.solutionsDTO.versionNumber"
+									 readonly>
+								</div>
+
+								<div class="form-group col-md-6">
+									<label for="lastName">Equipment Type<span class="asterisk">*</span></label>
+									 <input type="text" class="form-control" ngModel name="solutionTypeName" required
+									 [(ngModel)]="applicationSolution.solutionsDTO.solutionTypeName" readonly>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="lastName">Vendor<span class="asterisk">*</span></label>
+									<input type="text" class="form-control" ngModel name="vendors" required
+									 [(ngModel)]="applicationSolution.solutionsDTO.vendor.name" readonly>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="lastName">Hosting Type<span class="asterisk">*</span></label>
+									<input type="text" class="form-control" name="hostingTypeId" required [(ngModel)]="hostType" readonly>
 
 
-					</div>
-				</div>
 
-				<div class="form-row" *ngIf="isVisible">
-					<div class="form-group col-md-6">
-						<label for="units">Add Unit</label>
-						<div class="plus" *ngIf="showPlus">
+								</div>
+							</div>
+							<div class="form-row" *ngIf="isVisible">
+								<div class="form-group col-md-6">
+									<label for="units">Add Unit</label>
+									<div class="plus" *ngIf="showPlus">
 
 
-						
-							<i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="open1()"></i>
+
+										<i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="open1()"></i>
+
+									</div>
+									<table class="table table-striped table-hover table-bordere">
+										<thead>
+											<tr>
+
+												<th scope="col">Model #</th>
+												<th scope="col">Serial #</th>
+												<th scope="col">Current Date</th>
+												<th scope="col">Next Date</th>
+												<th scope="col">Overall status</th>
+											</tr>
+										</thead>
+										<tbody>
+
+											<tr *ngFor="let table of devices">
+												<td *ngIf="showPlus"><a class="box" (click)="open2(table)">{{
+														table.modelNumber }}</a></td>
+												<td *ngIf="!showPlus">{{table.modelNumber }}</td>
+												<td>{{ table.serialNumber }}</td>
+												<td>{{ table.nextScanningDt | filterDate }}</td>
+												<td>{{ table.currentScanningDt | filterDate }}</td>
+												<td>{{ table.overallStatus }}</td>
+
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+
+
 
 						</div>
-						<table class="table table-striped table-hover table-bordere">
-							<thead>
-								<tr>
 
-									<th scope="col">Model #</th>
-									<th scope="col">Serial #</th>
-									<th scope="col">Current Date</th>
-									<th scope="col">Next Date</th>
-									<th scope="col">Overall status</th>
-								</tr>
-							</thead>
-							<tbody>
 
-								<tr *ngFor="let table of devices">
-									<td *ngIf="showPlus"><a class="box" (click)="open2(table)">{{
-											table.modelNumber }}</a></td>
-									<td *ngIf="!showPlus">{{table.modelNumber }}</td>
-									<td>{{ table.serialNumber }}</td>
-									<td>{{ table.nextScanningDt | filterDate }}</td>
-									<td>{{ table.currentScanningDt | filterDate }}</td>
-									<td>{{ table.overallStatus }}</td>
 
-								</tr>
 
-							</tbody>
-						</table>
+
 					</div>
-
-				</div>
-
-
-
+				</fieldset>
 			</div>
-
-			
-			
-
-
 		</div>
-	</fieldset>
-	<button type="submit" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick">Submit</button>
-	<button type="submit" class="btn btn-primary" (click)="close($event)">Cancel</button>
-
-</form>
+	</form>
+	<button type="submit" form="myForm" style="margin-right:8%;" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick">Submit</button>
+	<button type="cancel" class="btn btn-primary" (click)="close($event)">Cancel</button>
+</div>

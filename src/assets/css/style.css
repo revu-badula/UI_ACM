@@ -350,6 +350,10 @@ table thead tr td{
 	color: black;
 }
 
+.table thead th{
+	color:#fff !important;
+}
+
 .table-bordered td, .table-bordered th {
     border: 1px solid black;
 }

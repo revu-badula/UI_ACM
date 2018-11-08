@@ -58,6 +58,7 @@ import { DialogComponent } from '../dialog.service';
 import { OnlyIntegerDirective } from './only-integer.directive';
 import { OnlyInteger } from '../integer';
 import { OnlyDollar } from 'app/dollar-validation';
+import { NgxSummernoteModule } from 'ngx-summernote';
 @NgModule({
   imports: [
     CommonModule,
@@ -66,6 +67,7 @@ import { OnlyDollar } from 'app/dollar-validation';
     OptionListModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxSummernoteModule,
     BrowserModule,
     LocalityComponentRoutingModule,
     MyDatePickerModule,

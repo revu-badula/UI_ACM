@@ -200,8 +200,8 @@ import { DialogService } from '../../../dialog.service';
 			
 		</p>
 		<div>
-			<textarea name="" id="" rows="5" class="form-control"
-				formControlName=notes></textarea>
+			<textarea name=""  rows="5" class="form-control"
+				formControlName=notes id="ngxSummernote"  [ngxSummernote]="config" [ngxSummernoteDisabled]="textDisable"></textarea>
 		</div>
 		<hr />
 		<p>
@@ -220,8 +220,8 @@ import { DialogService } from '../../../dialog.service';
         <br>
 						<table border="1">
 							<tr>
-								<th>FileName</th>
-								<th *ngIf="showUpbtn">Action</th>
+								<th id="colorWhite">FileName</th>
+								<th *ngIf="showUpbtn" id="colorWhite">Action</th>
 							</tr>
 							<tr *ngFor="let file of device.deviceDocDTO let i=index">
 								<td *ngIf="file.status"
@@ -278,8 +278,24 @@ export class NgbdModalContent implements OnInit {
     public isRequired: boolean = true;
     public showButton: boolean = false;
     device: Device;
+    config = {
+        placeholder: '',
+        tabsize: 2,
+        height: 125,
+        width: '100%',
+        toolbar: [
+          // [groupName, [list of button]]
+          ['misc', ['undo', 'redo']],
+          ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+          ['fontsize', ['fontname', 'fontsize', 'color']],
+          ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+        ],
+        fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+    
+      };
     public err: any;
     public showUpbtn: boolean = false;
+    public textDisable:boolean = false;
     myDatePickerOptions: IMyDpOptions = {
         disableUntil: { year: 0, month: 0, day: 0 },
         showTodayBtn: false
@@ -299,6 +315,7 @@ export class NgbdModalContent implements OnInit {
         if (this.isEdit) {
             this.createForm();
             this.showButton = true;
+            this.textDisable = true;
             this.modalForm.controls['modelNumber'].setValue(this.deviceData.modelNumber);
             this.modalForm.controls['serialNumber'].setValue(this.deviceData.serialNumber);
             this.modalForm.controls['street1'].setValue(this.deviceData.street1);
@@ -542,6 +559,7 @@ export class NgbdModalContent implements OnInit {
     editClick() {
         this.modalForm.enable();
         this.showUpbtn = true;
+        this.textDisable=false;
     }
 
 
