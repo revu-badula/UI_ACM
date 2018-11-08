@@ -98,8 +98,8 @@ export class subControl{
  subPolicyName: any;
  assignedTo: any;
  endDate:any ;
- procedure: any;
+ subprocedure: any;
  guidelines: any;
- status: any;
+ substatus: any;
 
 }

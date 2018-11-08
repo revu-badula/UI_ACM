@@ -47,6 +47,7 @@ export class ControlNameComponent implements OnInit {
   public loading:boolean = false;
   public displayPolicyDocuments: any;
   public endDate: any;
+  public subPolicyDTOs:any;
   public displayEndDate: IMyDate = null;
     public showFrm: boolean = true;
 public showDef:boolean = false;
@@ -61,6 +62,7 @@ public showEli:boolean = true;
     this.files = [] as File[];
     this.policies = [];
     localStorage.removeItem('policyId');
+    localStorage.removeItem('subPol');
   	//this.linkedPolicy = new Policy();
    }
 
@@ -86,6 +88,7 @@ public showEli:boolean = true;
         this.loading = false;
       	this.policyAccess = data;
         this.displayPolicyDocuments = data.policyDocumentsDTOs;
+        this.subPolicyDTOs = data.subPolicyDTOs;
         if(this.policyAccess.endDate!=null){
           this.dateRetreive();
         }
@@ -461,6 +464,13 @@ viewEvent(addPolicies: any,event){
     event.preventDefault();
     UtilService.backClicked=true;
     this.router.navigate(['/policyView/policyDetails'])
+  }
+
+  getSubpolicy(id)
+  {
+    localStorage.setItem('policyId', this.policyUrlId);
+    localStorage.setItem('subPol',id);
+    this.router.navigate(['/subcontrol'])
   }
   
 
