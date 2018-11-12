@@ -46,14 +46,12 @@
 
 							<label for="inputState">Locality Name <span class="asterisk">*</span></label>
 
-							<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly">
+							<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly" required>
 						</div>
 
 						<div class="form-group col-md-6">
 							<label for="lastName">FIPS Code</label>
-
 							<input type="text" class="form-control" ngModel name="fipsCd" [(ngModel)]="locality.fipsCd" readonly>
-
 						</div>
 
 					</div>

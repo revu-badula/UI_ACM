@@ -17,6 +17,7 @@ export class SubControlNameComponent implements OnInit {
   policyAccess: Policy;
   subControl1: subControl;
   public showForm: boolean = false;
+  public endDate:any;
   @ViewChild('content') content: TemplateRef<any>;
   constructor(private _apiservice: ApiserviceService, private http: Http,
     public datepipe: DatePipe,private modalService: NgbModal) {
@@ -54,6 +55,16 @@ export class SubControlNameComponent implements OnInit {
         if(item.subPolicyId === poId)
         {
           this.subControl1=item;
+          if (this.subControl1.endDate === null) {
+            this.endDate = { date: null };
+          }
+          else {
+            let d = new Date(this.subControl1.endDate);
+            let day = d.getDate();
+            let month = d.getMonth() + 1;
+            let year = d.getFullYear();
+            this.endDate = { date: { year: year, month: month, day: day } };
+          }
         }
       })
     }

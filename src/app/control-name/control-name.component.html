@@ -228,7 +228,7 @@
                     </div>
                     <table class="table table-bordered">
                         <thead>
-                            <tr *ngFor="let subPol of subPolicyDTOs">
+                            <tr>
 
                                 <th id="colorWhite">Sub Control Number</th>
                                 <th id="colorWhite">Sub Control Name</th>
@@ -241,19 +241,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><a (click)="getSubpolicy('15')"> AC-1.1</a></td>
-                                <td><a>Access Enformcement 501</a></td>
-                                <td>John Doe</td>
-                                <td>10/31/2018</td>
-                                <td>true</td>
-                            </tr>
-                            <tr>
-                                <td><a> AC-1.2</a></td>
-                                <td><a>Access Enformcement 502</a></td>
-                                <td>Jane Doe</td>
-                                <td>10/30/2018</td>
-                                <td>false</td>
+                            <tr *ngFor="let subPol of subPolicyDTOs">
+                                <td><a (click)="getSubpolicy(subPol.subPolicyId)" style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
+                                <td>{{subPol.subPolicyName}}</td>
+                                <td>{{subPol.assignedTo}}</td>
+                                <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
+                                <td>{{subPol.substatus}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -356,7 +349,6 @@
                                 <br>
                                 <table border="1" style="width:100%">
                                     <tr>
-                                        <th></th>
                                         <th>File Name</th>
                                         <th *ngIf="!showFrm">Action</th>
                                     </tr>
