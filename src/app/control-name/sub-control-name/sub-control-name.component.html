@@ -1,23 +1,49 @@
-<app-navigation-component></app-navigation-component>
 <div class="my-container">
-        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<app-navigation-component></app-navigation-component>
+
+<!-- <app-option-list></app-option-list> -->
+<div class="navigate sticky-top" style="margin-top: 1vw;">
+
+    <div class="form-options">
+        <div class="home-back">
+            <a routerLink="/dashboard">
+              <fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
+                data-delay="0" [name]="'home'"></fa>
+            </a>
+            <a href="javascript:void(0)" (click)="goTo()">
+              <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
+                data-delay="0" [name]="'arrow-left'"></fa>
+            </a>
+          </div>
+        <div class="save-edit" *ngIf="showBtt">
+            <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+                data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
+        </div>
+
     </div>
-<app-option-list></app-option-list>
+</div>
 <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title">Success</h4>
-        </div>
-        <div class="modal-body">
-            <p>The policy has been updated</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
-        </div>
-    </ng-template>
+    <div class="modal-header">
+        <h4 class="modal-title">Success</h4>
+    </div>
+    <div class="modal-body">
+        <p>The policy has been updated</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
+    </div>
+</ng-template>
 <div>
     <form (ngSubmit)="addSubPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
+
         <fieldset [disabled]='showForm'>
             <div id="form1">
+                <div class="moveHeadingUp">
+                    <h3>Sub-Control</h3>
+                    <hr class="after-heading" />
+                </div>
                 <div class="infoBox">
                     <div class="headerOfBox">
                         <h4>Control Information</h4>
@@ -43,50 +69,47 @@
 
                         <div class="form-group col-md-6">
                             <label for="endDate">End Date</label>
-                            <my-date-picker class="inputState1" name="myname" (dateChanged)="getEndDate($event)" [(ngModel)]="endDate"></my-date-picker>
+                            <my-date-picker class="inputState1" name="myname" (dateChanged)="getEndDate($event)"
+                                [(ngModel)]="endDate"></my-date-picker>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="status">Status</label>
-                            <select class="form-control" name="status" id="inputState" (change)="subControl1.substatus = $event.target.value">
-                                <option value="false">Open</option>
-                                <option value="true">Close</option>
+                            <input *ngIf="showBtt" type="text" name="substatus" class="form-control" id="substatus"
+                                [ngModel]="subControl1.substatus | subControlPipe">
+                            <select *ngIf="!showBtt" class="form-control" name="status"  [(ngModel)]="subControl1.substatus" id="inputState" (change)="subControl1.substatus = $event.target.value">
+                                <option value="true">Open</option>
+                                <option value="false">Close</option>
                             </select>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <br>
-                        <br>
-                        <div class="infoBox">
-                            <div class="headerOfBox">
-                                <h4>Procedures<font color="red">*</font>
-                                </h4>
-                            </div>
-
-                            <textarea *ngIf="!showForm" cols="156" rows="7" id="patches" ngModel name="policyProcedure"
-                                [(ngModel)]="subControl1.subprocedure" [name]="'policy_procedures'" required></textarea>
-
-                        </div>
+                <hr />
+                <br>
+                <br>
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Procedures<font color="red">*</font>
+                        </h4>
                     </div>
+
+                    <textarea cols="156" rows="7" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" id="patches"
+                        ngModel name="policyProcedure" [(ngModel)]="subControl1.subprocedure" [name]="'policy_procedures'"
+                        required></textarea>
+
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <br>
-                        <br>
-                        <div class="infoBox">
-                            <div class="headerOfBox">
-                                <h4>Guidelines</h4>
-                            </div>
-                            <textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="subControl1.guidelines"
-                                [name]="'policy_guidelines'"></textarea>
-                        </div>
+                <hr />
+                <br>
+                <br>
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Guidelines</h4>
                     </div>
+                    <textarea cols="156" rows="7" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" id="patches"
+                        [(ngModel)]="subControl1.guidelines" [name]="'policy_guidelines'"></textarea>
                 </div>
+
 
             </div>
         </fieldset>
@@ -95,6 +118,6 @@
 
         <!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
     </form>
-    <button type="submit" style="margin-right: 7%;" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
-    <button type="cancel" class="cancel btn btn-primary" (click)="goTo($event)">Cancel</button>
+    <button type="submit" style="margin-right: 7%;" *ngIf="!showBtt" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+    <button type="cancel" class="cancel btn btn-primary" (click)="goTo()">Cancel</button>
 </div>
