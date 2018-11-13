@@ -2,18 +2,18 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <ng-template #content1 let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title">Info</h4>
-    </div>
-    <div class="modal-body">
-      <p>Discard Changes for budget</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark confbtn" (click)="modal.close(true)">Yes</button>
-      <button type="button" class="btn btn-outline-dark confbtn" (click)="modal.close(false)">No</button>
-    </div>
-  </ng-template>
-  
+  <div class="modal-header">
+    <h4 class="modal-title">Info</h4>
+  </div>
+  <div class="modal-body">
+    <p>Discard Changes for budget</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark confbtn" (click)="modal.close(true)">Yes</button>
+    <button type="button" class="btn btn-outline-dark confbtn" (click)="modal.close(false)">No</button>
+  </div>
+</ng-template>
+
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Info</h4>
@@ -26,54 +26,57 @@
   </div>
 </ng-template>
 <div class="form-div">
-  <form  #myForm="ngForm" class="former">
-    <div class="panel-heading">
-      <label class="details">BUDGET</label>
-      <div class="plus">
+  <form #myForm="ngForm" class="former">
 
-        <span *ngIf="showSave" class=" title elipsis pull-right">
-          <a title="Save Audit" (click)="saveBudget()" class="ng-hide">
-            <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-        </span>
-        <span *ngIf="showEdit" class=" title elipsis pull-right">
-          <a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
-        </span>
+    <div class="plus">
 
-
-
-        <span class=" title elipsis pull-right">
-          <a title="Application audit history">
-            <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-        </span>
-
-        <span class=" title elipsis pull-right">
-
-          <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
-            <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-          <a title="Go back to audit section." (click)="showLeft()">
-            <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-        </span>
+      <span *ngIf="showSave" class=" title elipsis pull-right">
+        <a title="Save Audit" (click)="saveBudget()" class="ng-hide">
+          <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+      </span>
+      <span *ngIf="showEdit" class=" title elipsis pull-right">
+        <a>
+          <fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+        </a>
+      </span>
 
 
-      </div>
+
+      <span class=" title elipsis pull-right">
+        <a title="Application audit history">
+          <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+      </span>
+
+      <span class=" title elipsis pull-right">
+
+        <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
+          <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+        <a title="Go back to audit section." (click)="showLeft()">
+          <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+      </span>
+
 
     </div>
-    <hr/>
-    <fieldset [disabled]="showForm">
 
-      <div class="form-row">
-        
+    <div class="infoBox">
+      <div class="headerOfBox">
+      <h4>BUDGET</h4>
+      </div>
+      <fieldset [disabled]="showForm">
 
-          <label for="inputState">Description</label>
+        <div class="form-row">
+
+
+          <h5>Description</h5>
 
           <textarea name="description" id="description" rows="10" class="form-control" [(ngModel)]="appAssess.budgetDescription"></textarea>
-        
-      </div>
-      <!-- <div class="form-row">
+
+        </div>
+        <!-- <div class="form-row">
         <div class="form-group col-md-6">
 
           <label for="inputState">Overall estimates</label>
@@ -83,17 +86,28 @@
 
       </div> -->
 
-      <div class="form-row">
+        <div class="form-row">
           <label for="inputState">Overall estimates</label>
-          <div class="input-group mb-3">
-  
+          <!-- <div class="input-group mb-3">
+
             <div class="input-group-prepend">
               <span class="input-group-text">$</span>
             </div>
             <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="overallEstimates"
               id="lastName" [(ngModel)]="appAssess.budget" onlyDollar>
-          </div>
+          </div> -->
+
+
+          <div class="input-group col-md-6">
+              
+              <div class="input-group-prepend">
+                <span class="input-group-text dol">$</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="overallEstimates"
+              id="lastName" [(ngModel)]="appAssess.budget" onlyDollar>
+            </div>
         </div>
-    </fieldset>
+      </fieldset>
+    </div>
   </form>
 </div>

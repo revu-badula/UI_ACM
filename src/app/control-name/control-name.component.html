@@ -108,10 +108,10 @@
                             <select class="form-control" id="inputState" *ngIf="showForm">
                                 <option>{{ policyAccess.status }}</option>
                             </select>
-                            <select class="form-control" id="inputState" (change)="policyAccess.status = $event.target.value"
+                            <select class="form-control" id="inputState" name="status" [(ngModel)]="policyAccess.status" (change)="policyAccess.status = $event.target.value"
                                 *ngIf="!showForm">
-                                <option value="false">Open</option>
-                                <option value="true">Close</option>
+                                <option value="true">Open</option>
+                                <option value="false">Close</option>
                             </select>
                         </div>
 
@@ -347,7 +347,7 @@
                                     <th>File Name</th>
                                     <th *ngIf="!showFrm">Action</th>
                                 </tr>
-                                <tr *ngFor=" let policyDocument of displayPolicyDocuments let i = index">
+                                <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
                                     <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
                                     <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
                                         style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>

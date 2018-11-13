@@ -18,16 +18,31 @@ declare var swal: any; ''
 })
 export class AssessFindComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any>;
-  @ViewChild('myForm') myForm: FormGroup;
+  @ViewChild('myForm') myForm: NgForm;
 
   appAssess: AppAssess;
   public loading: boolean = false;
-  public appAssessmentDTOs:any;
-  public info:any;
-  public showSave:boolean=false;
-  public editData:any;
-  public showEdit:boolean=false;
-  public showForm:boolean=true;
+  public appAssessmentDTOs: any;
+  public info: any;
+  public showSave: boolean = false;
+  public editData: any;
+  public showEdit: boolean = false;
+  public showForm: boolean = true;
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    width: "100%",
+    toolbar: [
+      // [groupName, [list of button]]
+      ['misc', ['undo', 'redo']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+
+  };
   constructor(private _apiservice: ApiserviceService, private utilService: UtilService,
     private http: Http, private router: Router, private modalService: NgbModal, private dialogService: DialogService) {
 
@@ -64,27 +79,33 @@ export class AssessFindComponent implements OnInit {
     else {
       let id = localStorage.getItem('assesId');
       let auid = +id;
-      this.showEdit=true;
-      this.loading=true;
+      this.showEdit = true;
+      this.loading = true;
       // this.editData = this.appAssessmentDTOs.filter(item => item.assessmentId === auid);
 
       // for (let i = 0; i < this.editData.length; i++) {
       //   this.appAssess = this.editData[i];
       // }
       this._apiservice.getAssessData(auid)
-      .subscribe((data: any) => {
-        this.loading = false;
-        this.appAssess = data;
-      }, error => {
-        this.loading = false;
-        console.log(error);
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.appAssess = data;
+        }, error => {
+          this.loading = false;
+          console.log(error);
 
-      })
+        })
 
 
 
     }
   }
+
+  public markFormPristine(form:NgForm): void {
+    Object.keys(form.controls).forEach(control => {
+        form.controls[control].markAsPristine();
+    });
+}
 
   saveFindings() {
     let ngbModalOptions: NgbModalOptions = {
@@ -96,7 +117,7 @@ export class AssessFindComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
     let url_update = APP_CONFIG.updateAppAssessment;
-    this.appAssess.updatedBy=Cookie.get('userName');
+    this.appAssess.updatedBy = Cookie.get('userName');
     let data = JSON.stringify(this.appAssess);
     this.http.post(url_update, data, options)
       .subscribe((data: any) => {
@@ -111,41 +132,38 @@ export class AssessFindComponent implements OnInit {
       });
   }
 
-  valueChanged()
-  {
-    this.showForm=false;
-    this.showSave=true;
-    this.showEdit=false;
+  valueChanged() {
+    this.showForm = false;
+    this.showSave = true;
+    this.showEdit = false;
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     // console.log(this.myForm);
     // console.log(this.myForm.dirty);
-    
     //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
-      if(this.myForm.dirty){
+    if (this.myForm.dirty) {
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
-    //return  this.confirm1('Do you want to save changes?', 'for findings', 'YES', 'NO');
-       
-    return new Promise<boolean>((resolve, reject) => {
-      this.dialogService.open("Info", " Do you want to save changes for Findings?", true, "Yes", "No")
-      .then((result) =>{
-        if(result)
-        {
-          this.saveFindings();
-          resolve(false);
-        }
-        else{
-          resolve(true);
-        }
-      },error => reject(error));
-        
-    });
-  }
-  else {
-    return true;
-  }
+      //return  this.confirm1('Do you want to save changes?', 'for findings', 'YES', 'NO');
+
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Findings?", true, "Yes", "No")
+          .then((result) => {
+            if (result) {
+              this.saveFindings();
+              resolve(false);
+            }
+            else {
+              resolve(true);
+            }
+          }, error => reject(error));
+
+      });
+    }
+    else {
+      return true;
+    }
 
   }
 

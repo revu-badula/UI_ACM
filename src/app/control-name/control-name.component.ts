@@ -90,7 +90,7 @@ export class ControlNameComponent implements OnInit {
     this.getPolicy(this.policyUrlId);
     this.showDropdown();
     this.fetchPolicies(1);
-    this.loading = true;
+
   }
 
   backClicked() {
@@ -104,7 +104,7 @@ export class ControlNameComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.policyAccess = data;
-        this.displayPolicyDocuments = data.policyDocumentsDTOs;
+        this.policyAccess.policyDocumentsDTOs = data.policyDocumentsDTOs;
         this.subPolicyDTOs = data.subPolicyDTOs;
         if (this.policyAccess.endDate != null) {
           this.dateRetreive();

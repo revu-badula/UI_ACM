@@ -12,60 +12,62 @@
         <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
     </div>
 </ng-template>
-<div class="form-div">   
- <form #myForm="ngForm" class="former"> 
- 
-        <div class="panel-heading">
- <label class="details">RECOMENDATIONS</label>
-      <div class="plus">
-      
-      <span *ngIf="showSave" class=" title elipsis pull-right">
-                <a (click)="saveRecommendations()" title="Save Audit" class="ng-hide">
-                    <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
-                </a>
-            </span>
-        <span *ngIf="showEdit" class=" title elipsis pull-right">
-           <a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
-        </span>
+<div class="form-div">
+    <form #myForm="ngForm" class="former">
+            
+            <div class="plus">
 
-        
-  
-        <span class=" title elipsis pull-right">
-          <a  title="Application audit history">
-            <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-        </span>
-  
-        <span class=" title elipsis pull-right">
-  
-          <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
-            <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-          <a (click)="showLeft()" title="Go back to audit section.">
-            <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-        </span>
-  
-  
-      </div>
-     
-    </div>
-    <hr/>
- 
- <fieldset [disabled]="showForm"> 
-        <div class="form-row">
-            <div class="form-group col-md-6">
+                <span *ngIf="showSave" class=" title elipsis pull-right">
+                    <a (click)="saveRecommendations()" title="Save Audit" class="ng-hide">
+                        <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
+                    </a>
+                </span>
+                <span *ngIf="showEdit" class=" title elipsis pull-right">
+                    <a>
+                        <fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+                    </a>
+                </span>
 
-                <label for="inputState">Recomended by</label>
-               
-                 <input type="text" class="form-control" name="recomendedBy" id="recomendedBy"  [(ngModel)]="appAssess.recomendedBy">
+
+
+                <span class=" title elipsis pull-right">
+                    <a title="Application audit history">
+                        <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
+                    </a>
+                </span>
+
+                <span class=" title elipsis pull-right">
+
+                    <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
+                        <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
+                    </a>
+                    <a (click)="showLeft()" title="Go back to audit section.">
+                        <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+                    </a>
+                </span>
+
+
             </div>
-            <div class="form-group col-md-6">
-                <label for="lastName">Estimated completion date</label>
-                <my-date-picker  (dateChanged)="getEstDate($event)" [(ngModel)]="estDate" name="estDate"></my-date-picker>
+
+        <div class="infoBox">
+            <div class="headerOfBox">
+                    <h4>RECOMENDATIONS</h4>
             </div>
-            </div>
-        </fieldset>
-    
-            </form>
-            </div>
+            <fieldset [disabled]="showForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+
+                        <label for="inputState">Recomended by</label>
+
+                        <input type="text" class="form-control" name="recomendedBy" id="recomendedBy" [(ngModel)]="appAssess.recomendedBy">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastName">Estimated completion date</label>
+                        <my-date-picker  id="estCDate" (dateChanged)="getEstDate($event)" class="inputState1" [(ngModel)]="estDate" name="estCDate"></my-date-picker>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+    </form>
+</div>

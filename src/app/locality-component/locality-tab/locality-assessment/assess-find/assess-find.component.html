@@ -14,10 +14,7 @@
 </ng-template>
 <div class="form-div">
     <form #myForm="ngForm" class="former">
-
-
-        <div class="panel-heading">
-            <label class="details">FINDINGS</label>
+            
             <div class="plus">
 
                 <span *ngIf="showSave" class=" title elipsis pull-right"> <a (click)="saveFindings()" title="Save Audit"
@@ -41,53 +38,50 @@
 
 
             </div>
+        <div class="infoBox">
+            <div class="headerOfBox">
+                    <h4>FINDINGS</h4>
+            </div>
+            <fieldset [disabled]="showForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
 
+                        <label>Type of Finding</label>
+
+                        <input type="text" class="form-control" name="typeOfFindings" id="TypeOfFinding" [(ngModel)]="appAssess.typeOfFindings">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Overall risk level</label>
+                        <input type="text" class="form-control" name="overallRiskLevel" id="overallRiskLevel"
+                            [(ngModel)]="appAssess.overallRiskLevel">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <h5>Description</h5>
+                    <textarea id="description" rows="10" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" name="description" class="form-control" [(ngModel)]="appAssess.findingDescription"></textarea>
+
+
+                </div>
+                
+                <div class="form-row">
+                    <h4>Comments</h4>
+                    <textarea name="comments" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" id="comments" rows="10" class="form-control" [(ngModel)]="appAssess.findingComments"></textarea>
+
+                </div>
+            
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+
+                        <label>Responsible Party</label>
+                        <input type="text" name="responsibleParty" class="form-control" id="responsibleParty"
+                            [(ngModel)]="appAssess.responsibleParty">
+
+                    </div>
+
+                </div>
+            </fieldset>
         </div>
-        <hr />
-        <fieldset [disabled]="showForm">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-
-                    <label for="inputState">Type of Finding</label>
-
-                    <input type="text" class="form-control" name="typeOfFindings" id="TypeOfFinding" [(ngModel)]="appAssess.typeOfFindings">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="lastName">Overall risk level</label>
-                    <input type="text" class="form-control" name="overallRiskLevel" id="overallRiskLevel" [(ngModel)]="appAssess.overallRiskLevel">
-                </div>
-            </div>
-            <hr />
-            <div class="form-row">
-                
-
-                    <label for="inputState">Description</label>
-
-                    <textarea id="" rows="10" name="description" class="form-control" [(ngModel)]="appAssess.findingDescription"></textarea>
-                
-
-            </div>
-            <hr />
-            <div class="form-row">
-                
-
-                    <label for="inputState">Comments</label>
-
-                    <textarea name="comments" id="" rows="10" class="form-control" [(ngModel)]="appAssess.findingComments"></textarea>
-
-            </div>
-            <hr />
-            <div class="form-row">
-                <div class="form-group col-md-6">
-
-                    <label for="inputState">Responsible Party</label>
-                    <input type="text" name="responsibleParty" class="form-control" id="responsibleParty" [(ngModel)]="appAssess.responsibleParty">
-
-                </div>
-
-            </div>
-        </fieldset>
-
 
     </form>
 </div>
