@@ -1,16 +1,16 @@
 <form class="forms">
 	<div class="form-row">
 		<div class="form-group col-md-6">
-			<label class="label-form" for="definitiveSource"><b>Definitive Source</b></label><div class="asterisk">*</div>
-							<select class="form-control" id="definitiveSource" name="definiteSource" [(ngModel)]="auditTypeId" 
+			<label  for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
+							<select id="inputState" name="definiteSource" [(ngModel)]="auditTypeId" 
 							required (change)="selectDefinitive($event.target.value)">
 							 <option value="">Choose...</option>
                 <option  *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName  }}</option>
               </select>
 		</div>
 		<div class="form-group col-md-6">
-			<label class="label-form" for="typePolicy"><b>Type/Policy</b></label><div class="asterisk">*</div>
-							<select class="form-control" id="typePolicy" name="type" required [(ngModel)]="policyGrpId"
+			<label  for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
+							<select id="inputState" name="type" required [(ngModel)]="policyGrpId"
 							(change)="selectType($event.target.value)">
 							  <option value="">Choose...</option>
                 <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{ policyType.policyGrpName }}</option>
@@ -18,29 +18,7 @@
 		</div>
 		
 	</div>
-<!-- 	<div class="prepopulated" *ngIf = "definitive == true && policy == true">
-		<div class="model-solution-row form-row">
-            	<div class="model form-group col-md-6">
-            <label class="label-form" for="definitiveSourceInput">Definitive Source</label><div class="asterisk">*</div>
-              <input type="text" class="edit-disable form-control" id="definitiveSourceInput" readonly [(ngModel)] = "policy.definitiveSource">
-              <div class="hover-icon"><fa class="ban" [name]="'ban'"></fa></div>
-            	</div>
-            	<div class="version form-group col-md-6">
-            		<label class="label-form" for="updatedBy">Updated By</label><div class="asterisk">*</div>
-		              <input type="text" class="edit-disable form-control" id="updatedBy" readonly [(ngModel)] = "policyDisplay.updatedBy" [name] = "'updated_by'">
-		              <input type="text" class="edit-disable form-control" id="updatedBy" readonly [(ngModel)] = "policyDisplay.updatedBy" [name] = "'updated_by'">
-            	</div>
-            	<div class="form-group col-md-6">
-            <label class="label-form" for="Type/Policy">Type/Policy</label><div class="asterisk">*</div>
-              <input type="text" class="edit-disable form-control" id="Type/Policy" readonly [(ngModel)] = "policy.description">
-            	</div>
-            	<div class="form-group col-md-6">
-            		<label class="label-form" for="updtedAt">Updated At</label><div class="asterisk">*</div>
-		              <input type="text" class="edit-disable form-control" id="updatedAt" readonly [(ngModel)] = "policyDisplay.updatedTs" [name] = "'updated_ts'">
-		              <input type="text" class="edit-disable form-control" id="updatedAt" readonly [(ngModel)] = "date" [name] = "'updated_at'">
-            	</div> 
-            </div>
-	</div> -->
+
 </form>
 <div class="forms" *ngIf = "definitive == true && policy == true ">
 	<div class="policy-section">

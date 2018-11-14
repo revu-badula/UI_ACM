@@ -2,6 +2,7 @@ import { ApiserviceService } from "../../../../../apiservice.service";
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UtilService } from "../../../../../util.service";
+import { NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-audit-details',
   templateUrl: './audit-details-tab.component.html',
@@ -13,9 +14,15 @@ export class AuditDetailsTab implements OnInit {
   public disabled: boolean;
   public updatedBy: any;
   constructor(private _apiservice: ApiserviceService,
-    private utilService: UtilService, private route: ActivatedRoute) {
+    private utilService: UtilService, private route: ActivatedRoute, config: NgbProgressbarConfig) {
     this.disabled = UtilService.disabled;
     this.getAppId();
+
+    config.max = 10;
+    config.striped = true;
+    config.animated = true;
+    config.type = 'success';
+    config.height = '30px';
   }
 
   ngOnInit() {

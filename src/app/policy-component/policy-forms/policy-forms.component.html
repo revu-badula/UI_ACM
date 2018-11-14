@@ -38,7 +38,7 @@
 <form class="forms">
 	<div class="form-row">
 		<div class="form-group col-md-6">
-			<label class="label-form" for="policyEntity"><b>Policy Entity</b></label><div class="asterisk"><fa class="plus-icon" (click)="display(policyEntity)" [name]="'plus'"></fa></div>
+			<label for="policyEntity"><b>Policy Entity</b></label><span class="asterisk"><fa class="plus-icon" (click)="display(policyEntity)" [name]="'plus'"></fa></span>
               <select class="form-control" id="inputState" required (change)="policy($event.target.value)">
                 <option selected>Choose...</option>
                 <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName  }}</option>

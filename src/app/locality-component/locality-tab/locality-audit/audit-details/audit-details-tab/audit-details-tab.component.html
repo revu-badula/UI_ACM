@@ -1,6 +1,38 @@
-
-    
-     <div class="form-div">
+<!-- <div class="wrapper1">
+        <ul class="StepProgress">
+          <li class="StepProgress-item is-done"><strong>Post a contest</strong></li>
+          <li class="StepProgress-item is-done"><strong>Award an entry</strong>  </li>
+          
+        
+          <li class="StepProgress-item current"><strong>Post a contest</strong></li>
+          <li class="StepProgress-item current"><strong>Handover</strong></li>
+          <li class="StepProgress-item"><strong>Provide feedback</strong></li>
+        </ul>
+        </div> -->
+        <div class="form-row">
+        <div class="form-group col-md-2.5">
+        <div class="wrapper1">
+                <ul class="StepProgress">
+                  <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}"> <a routerLinkActive="active" routerLink="/locality/tab/Audit/Tab/first">Policy Details</a></li>
+                  <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">Access Control</li>
+                  <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">Evidence</li>
+                  <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}"><a routerLinkActive="active" routerLink="/locality/tab/Audit/Tab/find">Findings</a></li>
+                  <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">Security Risks</li>
+                  <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">Business Risks</li>
+                  <li class="StepProgress-item current" [ngClass]="{disabled:disabled}"><a routerLinkActive="active"  routerLink="/locality/tab/Audit/Tab/recomendation">Recomendations</a></li>
+                  <li class="StepProgress-item" [ngClass]="{disabled:disabled}"><a routerLinkActive="active" routerLink="/locality/tab/Audit/Tab/management">Management Response</a></li>
+                  <li class="StepProgress-item" [ngClass]="{disabled:disabled}"><a  routerLinkActive="active" routerLink="/locality/tab/Audit/Tab/action">Action Plan</a></li>
+                  <li class="StepProgress-item" [ngClass]="{disabled:disabled}"><a  routerLinkActive="active" routerLink="/locality/tab/Audit/Tab/budget">Budget</a></li>
+                  <li class="StepProgress-item" [ngClass]="{disabled:disabled}">
+                        <a  routerLinkActive="active" routerLink="/locality/tab/Audit/Tab/attachment">Attachments</a>
+                    </li>
+                    <li class="StepProgress-item" [ngClass]="{disabled:disabled}">
+                        <a  routerLinkActive="active" routerLink="/locality/tab/Audit/Tab/lessons">Lessons Learned</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+     <!-- <div class="form-div">
         <form class="former">
     
             <div class="form-row">
@@ -20,17 +52,27 @@
     
     
             <div class="form-row">
-                <!-- <div class="form-group col-md-6">
-                    <label for="lastName">Name</label>
-                    <div class="asterisk">*</div>
-                    <input type="text" class="form-control" id="lastName" value="enter here">
-                </div> -->
+                
                 <div class="form-group col-md-6">
                     <label for="lastUpdatedAt">Last updated at</label>
                     <input type="text" class="form-control" id="lastUpdatedAt" value="{{ updatedTime }}" readonly>
                 </div>
             </div>
         </form>
+    </div>
+<div class="wrapper1">
+    <ul class="StepProgress">
+      <li class="StepProgress-item is-done">Policy Details</li>
+      <li class="StepProgress-item is-done">Access Control</li>
+      <li class="StepProgress-item is-done>Evidence</li>
+      <li class="StepProgress-item is-done">Findings</li>
+      <li class="StepProgress-item is-done">Security Risks</li>
+      <li class="StepProgress-item is-done">Business Risks</li>
+      <li class="StepProgress-item current">Recommendations</li>
+      <li class="StepProgress-item">Managed Response</li>
+      <li class="StepProgress-item">Action Plan</li>
+      <li class="StepProgress-item">Budget</li>
+    </ul>
     </div>
 
         <div class="form-div">
@@ -70,5 +112,8 @@
                     </ul>
                 </div>
               
-            </div>
-            <router-outlet></router-outlet>
+            </div> -->
+            <div style="float: right" class="form-group col-md-9">
+           <router-outlet></router-outlet> 
+        </div>
+    </div>

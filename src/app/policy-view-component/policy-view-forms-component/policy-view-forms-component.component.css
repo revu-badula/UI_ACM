@@ -3,7 +3,7 @@
     border-radius: 10px;
     border: 1px solid transparent;
     margin: 20px;
-    background-color: #EEEEEE;
+    background-color: #ffffff;
     overflow: hidden;
 }
 
@@ -81,3 +81,65 @@ input[readonly] {
 	color: black;
 	margin-left: 10px;
 }
+
+#form {
+	background-color: #FFF;
+	height: 600px;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 0px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	padding: 0px;
+	text-align:center;
+   }
+   label {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #333;
+	height: 20px;
+	width: 200px;
+	margin-top: 10px;
+	margin-left: 10px;
+	text-align: right;
+	clear: both;
+	float:left;
+	margin-right:15px;
+   }
+   input {
+	
+	border: 1px solid #000;
+	margin-top: 10px;
+	float: left;
+   
+   
+	box-sizing: border-box;
+	width: 50%;
+	line-height: 2em;
+	border: 1px solid #AAA;
+	border-radius: 0.4rem;
+	-webkit-border-radius: 0.4rem;
+	-moz-border-radius: 0.4rem;
+   }
+   input[type=button] {
+	float:none;
+   }
+   
+   #inputState{
+	
+	border: 1px solid #000;
+	margin-top: 10px;
+	float: left;
+   
+   
+	box-sizing: border-box;
+	width: 50%;
+	line-height: 2em;
+	border: 1px solid #AAA;
+	border-radius: 0.4rem;
+	-webkit-border-radius: 0.4rem;
+	-moz-border-radius: 0.4rem;
+   
+   }
+   

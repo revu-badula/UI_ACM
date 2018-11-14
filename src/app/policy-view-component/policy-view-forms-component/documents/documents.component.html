@@ -13,6 +13,7 @@
   <hr />
 </div>
 <ng-template #upload let-c="close" let-d="dismiss">
+  <div class="infoBox">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Policy Documents</h4>
     <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -39,7 +40,7 @@
       <button class="submit btn btn-outline-dark" (click)="c()">Upload</button>
     </div>
   </div>
-
+</div>
 </ng-template>
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -54,26 +55,7 @@
 </ng-template>
 <form (ngSubmit)="submitDocument()">
   <div class="installation form-group">
-    <!-- 			<div *ngIf = "showDocument" class="display-file"> -->
-    <!--             <br> -->
-
-    <!-- 							<table border="1"> -->
-    <!-- 							<tr> -->
-    <!-- 								<th>FileName</th> -->
-    <!-- 								<th>Action</th> -->
-    <!-- 							</tr> -->
-    <!-- 							<tr *ngFor=" let policyDocument of displayPolicyDocuments"> -->
-    <!-- 								<td style="cursor: pointer; color: blue;">{{policyDocument.documentName}}</td> -->
-    <!-- 								<td style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td> -->
-
-
-    <!-- 							</tr> -->
-    <!-- 						</table> -->
-
-    <!--             </div> -->
-    <!-- <label class="hosting-notes" for="policyResources"><b>Policy Resources</b></label><div class="asterisk-inline asterisk">*</div> -->
-    <!-- <textarea cols="156" rows="7" id="Policy Resources" ngModel name="policyResources" [(ngModel)]="policyGrpData.resourceLinks"
-      [name]="'resource_links'" *ngIf="!plus" required></textarea> -->
+   
   </div>
   <div class="display-file">
 
@@ -81,8 +63,8 @@
 
     <table border="1">
       <tr>
-        <th>FileName</th>
-        <th *ngIf="!plus">Action</th>
+        <th style="color:white !important">File Name</th>
+        <th *ngIf="!plus" style="color:white !important">Action</th>
       </tr>
       <tr *ngFor=" let policyDocument of policyDocumentsDTO let i = index">
 

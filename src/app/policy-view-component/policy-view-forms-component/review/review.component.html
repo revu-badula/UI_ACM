@@ -2,8 +2,8 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <div *ngIf = "!showDetails">
-<div class="review">
-	<span><b>POLICY REVIEWER(S)</b></span>
+<div class="review form1">
+		<div class="headerOfBox"><h3>Policy Reviewers</h3></div>
 	<div class="policy-edit">
 		<!-- <fa (click)="open(content)" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa> -->
 		<fa (click)="changeButton()" *ngIf="plus" class="edit-icon icons"
@@ -124,7 +124,7 @@
 </div>
 <div *ngIf = "showDetails && !showPolicy">
 	<form class="form">
-	<h4>POLICY DETAILS</h4>
+	<h4>Policy Details</h4>
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label for="definitiveSource">Definitive Source</label>
@@ -152,7 +152,7 @@
 		<h4>Comments</h4>
 		<p  [(ngModel)] = "reviewDTO.comments" [name]="'review_comments'"ngDefaultControl></p>
 	</div> 
-	<h5>POLICY REVIEWERS</h5>
+	<h5>Policy Reviewers</h5>
 <table class="table table-bordered">
 		  <thead>
 		    <tr>

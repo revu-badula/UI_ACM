@@ -2,7 +2,7 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <div class="policies">
-				<span><b>Policies</b></span>
+				
 				<div class="policy-edit">
 				<fa (click) = "downloadFile(policyDropDownId)" *ngIf="plus" [name]="'download'" class="download-icon icons"></fa>
 				<fa class="edit-icon icons" (click)="changeButton()" *ngIf="plus" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
@@ -59,37 +59,42 @@
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
   </div>
 </ng-template>
-	
+    <div class="form1">
+        <div class="infoBox">
+                <div class="headerOfBox"><h3>Policies</h3></div>
 		<div class="description">
 			<div class="model-solution-row form-row">
-            	<!-- <div class="model form-group col-md-6">
-            <label class="label-form" for="definitiveSourceInput">Definitive Source</label><div class="asterisk">*</div>
-              <input type="text" class="edit-disable form-control" id="definitiveSourceInput" readonly [(ngModel)] = "policy.definitiveSource">
-              <div class="hover-icon"><fa class="ban" [name]="'ban'"></fa></div>
-            	</div> commented -->
+                
+                <br>
+                <br>
             	<div class="form-group col-md-6">
             		<label for="definitiveSource">Definitive Source</label>
-            		<input type="text" class="form-control" id="definitiveSource" [(ngModel)] = "policyGrpData.definitiveSource" [name] = "'definitive_source'">
+            		<input type="text" class="form-control" id="inputState"[(ngModel)] = "policyGrpData.definitiveSource" [name] = "'definitive_source'">
             		</div>
   			    <div class="form-group col-md-6">
   			    	<label for="typePolicy">Type/Policy</label>
-            		<input type="text" class="form-control" id="typePolicy" [(ngModel)] = "policyGrpData.policyGrpName" [name] = "'type_policy'">
+            		<input type="text" class="form-control" id="inputState" [(ngModel)] = "policyGrpData.policyGrpName" [name] = "'type_policy'">
   			    </div>
             	<div class="version form-group col-md-6">
             		<label class="label-form" for="updatedBy">Updated By</label><div class="asterisk">*</div>
 		             <!--  <input type="text" class="edit-disable form-control" id="updatedBy" readonly [(ngModel)] = "policyGrpData.updatedBy" [name] = "'updated_by'"> -->
-		              <input type="text" class="edit-disable form-control" id="updatedBy" readonly [(ngModel)] = "policyGrpData.updatedBy" [name] = "'updated_by'">
+		              <input type="text" class="edit-disable form-control" id="inputState" readonly [(ngModel)] = "policyGrpData.updatedBy" [name] = "'updated_by'">
             	</div>        
             	    	<div class="form-group col-md-6">
             		<label class="label-form" for="updtedAt">Updated At</label><div class="asterisk">*</div>
-		              <my-date-picker name="myname" [ngModel] = "policyGrpData.updatedTs" [selDate] = "displayUpdatedAt"></my-date-picker>
+		              <my-date-picker name="myname" id="inputState" [ngModel] = "policyGrpData.updatedTs" [selDate] = "displayUpdatedAt"></my-date-picker>
             	</div> 
             </div>
 	</div>
-	<hr />
+</div>
+<br>
+<br>
+</div>
 		<form (ngSubmit)="updatePolicyGrp()">
+            
 			<fieldset [disabled]='showForm'>
-			<label for="description">Description</label>
+                    <div class="infoBox">
+                            <div class="headerOfBox"><h3>Description</h3></div>
 			<textarea id="description" cols="156" rows="7" *ngIf="!showForm" [(ngModel)] = "policyDisplay.description" [name]="'policy_description'"></textarea>
 			<div class="model-solution-row form-row">
             	<div class="model form-group col-md-6">
@@ -124,10 +129,11 @@
 		              </select>
             	</div>
             </div>
+        </div>
 		</fieldset>
-		<hr />
-		
+	
 		</form>
+		
 		
 		<!-- <div *ngIf = "showDocument" class="display-file">
             	<ul
@@ -136,8 +142,8 @@
 									<a href = "#" style="cursor:pointer;color:blue;">{{ policyDocument.documentName }}</a></li>
 							</ul>
             </div> -->
-		
-		<h5>CONTROLS</h5>
+		<div class="infoBox">
+            <div class="headerOfBox"><h3>Controls</h3></div>
 		<table class="table table-bordered">
 		  <thead>
 		    <tr>
@@ -176,4 +182,5 @@
 		  </tbody>
 			</table>
 			<br>
-			<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+        </div>
