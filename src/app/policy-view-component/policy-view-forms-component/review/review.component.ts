@@ -45,6 +45,21 @@ export class ReviewComponent implements OnInit {
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'
   };
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    width:"100%",
+    toolbar: [
+      // [groupName, [list of button]]
+      ['misc', ['undo', 'redo']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+    
+  };
   constructor(private modalService: NgbModal, private _apiservice: ApiserviceService, private http: Http, private fb: FormBuilder, private utilservice: UtilService, private router: Router, private route: ActivatedRoute) {
     //this.review = new Review();
     this.review = [];

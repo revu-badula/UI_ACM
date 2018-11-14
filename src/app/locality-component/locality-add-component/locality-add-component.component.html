@@ -125,8 +125,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
 
-            <label class="label" for="modelSolution"><b>Please Select Your Locality </b></label>
-            <div class="asterisk">*</div>
+            <p class="lab1" for="modelSolution"><b>Please Select Your Locality</b><span class="asterisk">*</span></p>
             <select class="form-control" id="modelSolution" (change)="selectLocal($event.target.value)">
           <option selected>Choose...</option>
           <option  *ngFor="let county of counties">

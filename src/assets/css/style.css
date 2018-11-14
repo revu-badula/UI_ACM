@@ -416,6 +416,20 @@ table thead tr td{
   float:left;
   margin-right:15px;
  }
+
+ .lab1 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /* font-size: 18px;
+  color: #333;
+  height: 20px;
+  width:0px;
+  margin-top: 10px;
+  margin-left: 10px;
+  text-align: right;
+  clear: both;
+  float:left;
+  margin-right:15px; */
+ }
  input {
   
   border: 1px solid #000;
@@ -543,6 +557,23 @@ table thead tr td{
   /* background-color:rgba(#eee, #eee, #eee, 0.2); */
   background-color: #fff;
   box-shadow:5px 10px 20px 1px rgba(125, 122, 118, 1);
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1308px)
+{
+  label {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: #333;
+    height: auto !important;
+    width:auto !important;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+  }
 }
 
  

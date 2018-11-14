@@ -26,6 +26,21 @@ export class PolicyDetailsComponent implements OnInit {
   files: File[] = [];
   plus = true;
   p: number = 1;
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    width:"100%",
+    toolbar: [
+      // [groupName, [list of button]]
+      ['misc', ['undo', 'redo']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+    
+  };
   showDocument: boolean;
   showForm: boolean = true;
   public policyDropDownId: number;
