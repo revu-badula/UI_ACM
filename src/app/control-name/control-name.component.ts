@@ -11,6 +11,8 @@ import { APP_CONFIG } from '../app.config';
 import { IMyDate } from 'mydatepicker';
 import { UtilService } from '../util.service';
 declare var swal: any; ''
+import { DialogService } from '../dialog.service';
+import { Cookie } from 'ng2-cookies';
 @Component({
   selector: 'app-control-name',
   templateUrl: './control-name.component.html',
@@ -72,7 +74,7 @@ export class ControlNameComponent implements OnInit {
   constructor(private _location: Location, private activatedRoute: ActivatedRoute,
     private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal,
-    private utilService: UtilService, private router: Router) {
+    private utilService: UtilService, private router: Router, private dialogService: DialogService) {
     this.policyAccess = new Policy();
     this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     this.files = [] as File[];
@@ -83,6 +85,9 @@ export class ControlNameComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop=0;
+    document.documentElement.scrollTop=0;
+
     this.activatedRoute.params.subscribe(params => {
       this.policyUrlId = params['id'];
       this.policyAccess.policyId = params['id'];
@@ -139,9 +144,10 @@ export class ControlNameComponent implements OnInit {
   }
 
   deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", "Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.policyAccess.policyDocumentsDTOs.length;
             if (length === 1) {
@@ -242,6 +248,7 @@ export class ControlNameComponent implements OnInit {
     if (this.endDate != null) {
       this.dateSubmit();
     }
+    this.policyAccess.updatedBy = Cookie.get('userName');
     formData.append('policy', JSON.stringify(this.policyAccess));
     for (let i = 0; i < this.files.length; i++) {
       formData.append('files', this.files[i]);

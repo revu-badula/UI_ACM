@@ -7,6 +7,8 @@ import { ApiserviceService } from '../apiservice.service';
 import { Router } from '@angular/router';
 import { UtilService } from '../util.service';
 import { Location } from '@angular/common';
+import { DialogService } from '../dialog.service';
+import { Cookie } from 'ng2-cookies';
 @Component({
   selector: 'app-policy-add',
   templateUrl: './policy-add.component.html',
@@ -40,11 +42,25 @@ export class PolicyAddComponent implements OnInit {
   public list: any;
   public other = [];
   public endDate: any;
+  config = {
+    placeholder: '',
+    tabsize: 2,
+    height: 200,
+    width: "100%",
+    toolbar: [
+      // [groupName, [list of button]]
+      ['misc', ['undo', 'redo']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+    ],
+    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
 
+  };
   constructor(private router: Router,
     private http: Http, private modalService: NgbModal,
     private _apiservice: ApiserviceService, private _location: Location, 
-    private utilService: UtilService) {
+    private utilService: UtilService, private dialogService: DialogService) {
     this.policyPost = new Policy();
     this.policyPost.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     this.files = [] as File[];
@@ -59,16 +75,16 @@ export class PolicyAddComponent implements OnInit {
     this.modalService.open(content);
   }
   getColor() {
-    return this.color === 'online' ? '#ffffff' : 'white';
+    // return this.color === 'online' ? '#ffffff' : 'white';
   }
   getOpacity() {
-    return this.color === 'online' ? 0.8 : 1;
+    // return this.color === 'online' ? 0.8 : 1;
   }
 
   createPolicyDocumentDTO(fileInput: any) {
     this.policyDocumentDTO = new PolicyDocumentsDTO();
     this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
-
+    this.policyDocumentDTO.activeFlag=true;
     this.files.push(fileInput.target.files[0]);
 
     if (this.policyPost.policyDocumentsDTOs == null) {
@@ -90,6 +106,7 @@ export class PolicyAddComponent implements OnInit {
       keyboard: false
     };
     let url = APP_CONFIG.savePolicy;
+    this.policyPost.createdBy = Cookie.get('username');
     this.policyPost.policyGrpId = UtilService.policyGrpId;
     var formData = new FormData();
     if (this.endDate != null) {
@@ -241,5 +258,38 @@ export class PolicyAddComponent implements OnInit {
     UtilService.backClicked = true;
     this.router.navigate(['/policyView/policyDetails']);
   }
+
+  deleteFile(id, index) {
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", "Do you want to delete the file?", true, "Yes", "No")
+      .then((result: any) => {
+        if (result) {
+          if (id === undefined) {
+            let length = this.policyPost.policyDocumentsDTOs.length;
+            if (length === 1) {
+              this.policyPost.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
+            }
+            else {
+              for (let i = index; i < length; i++) {
+                this.policyPost.policyDocumentsDTOs[i] = this.policyPost.policyDocumentsDTOs[i + 1];
+              }
+              this.policyPost.policyDocumentsDTOs.splice(length - 1, 1);
+            }
+
+          }
+          else {
+            for (let i = 0; i < this.policyPost.policyDocumentsDTOs.length; i++) {
+              if (this.policyPost.policyDocumentsDTOs[i].policyDocId === id) {
+                this.policyPost.policyDocumentsDTOs[i].activeFlag = false;
+              }
+            }
+          }
+
+        }
+      }, error => {
+        console.log(error);
+      });
+  }
+
 
 }
