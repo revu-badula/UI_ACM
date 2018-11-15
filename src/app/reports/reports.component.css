@@ -58,13 +58,15 @@ h1 {
 }
 
 .card-body {
-  background-color:snow;
+  background-color: snow;
   width: 85%;
   height: 200px;
-  -webkit-box-shadow: 2px 2px 2px 2px #000;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow:    2px 2px 2px 2px #000;  /* Firefox 3.5 - 3.6 */
-  box-shadow:         2px 2px 2px 2px #000; 
-  margin:9%;
+  -webkit-box-shadow: 2px 2px 2px 2px #000;
+  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 2px 2px 2px 2px #000;
+  /* Firefox 3.5 - 3.6 */
+  box-shadow: 2px 2px 2px 2px #000;
+  margin: 9%;
 }
 
 .card-link {
@@ -96,9 +98,9 @@ h1 {
 
 .line {
   height: inherit;
- width:100%;
+  width: 100%;
   position: absolute;
-  /* background: rgba(238, 238, 238, 0.6); */
+  background-color:inherit;
 }
 
 .line.l--0 {
@@ -776,35 +778,35 @@ table thead tr td {
   text-align: center;
   border: 0px solid black;
   background: transparent;
-  padding:10%;
+  padding: 10%;
 }
 
 .wholeDashboard {
   width: 170%;
   text-align: center;
   border: 0px solid black;
-    background: transparent;  
+  background: transparent;
 }
 
-  .backGroundClass {
-  background: transparent !important;
-} 
-
-#backClass{
+.backGroundClass {
   background: transparent !important;
 }
 
-#backClass1{
+#backClass {
   background: transparent !important;
-} 
+}
 
-#backClass3{
+#backClass1 {
   background: transparent !important;
-} 
+}
 
-#backClass4{
+#backClass3 {
   background: transparent !important;
-} 
+}
+
+#backClass4 {
+  background: transparent !important;
+}
 
 .headerClass {
   padding-left: 5%;
@@ -813,19 +815,19 @@ table thead tr td {
 
 .pageImg {
   /* background-image: url(./../../assets/img/sky.jpg); */
-   background-color: #ffffff; 
+  background-color: #ffffff;
   padding: 2% 40% 0% 0%;
   background-repeat: no-repeat;
   background-size: cover;
   margin: 70px;
-  margin-top:7%;
+  margin-top: 7%;
   border: 1px solid;
 }
 
- tbody[_ngcontent-c1] tr[_ngcontent-c1]:nth-of-type(odd) {
-   background-color: transparent !important;
+tbody[_ngcontent-c1] tr[_ngcontent-c1]:nth-of-type(odd) {
+  background-color: transparent !important;
 }
 
 tbody[_ngcontent-c6] tr[_ngcontent-c6]:nth-of-type(odd) {
-   background-color: transparent !important;
-} 
+  background-color: transparent !important;
+}

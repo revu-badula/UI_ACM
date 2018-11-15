@@ -1,18 +1,15 @@
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
-<div class="documents">
-  <span><b>DOCUMENTS</b></span>
-  <div class="policy-edit">
-    <fa class="edit-icon icons" (click)="changeButton()" *ngIf="plus" data-toggle="tooltip" data-placement="right"
-      title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
-    <fa (click)="display(upload)" *ngIf="!plus" [name]="'upload'" class="download-icon icons"></fa>
-    <fa *ngIf="!plus" class="save-icon icons" [name]="'save'"></fa>
-    <fa (click)=close() *ngIf="!plus" class="close-icon icons" [name]="'times-circle'"></fa>
-  </div>
+
+<div class="policy-edit" style="padding-bottom: 1%;">
+  <fa class="edit-icon icons" (click)="changeButton()" *ngIf="plus" data-toggle="tooltip" data-placement="right" title="Save"
+    data-animation="true" data-delay="0" [name]="'edit'"></fa>
+  <fa (click)="display(upload)" *ngIf="!plus" [name]="'upload'" class="download-icon icons"></fa>
+  <fa *ngIf="!plus" class="save-icon icons" [name]="'save'"></fa>
+  <fa (click)=close() *ngIf="!plus" class="close-icon icons" [name]="'times-circle'"></fa>
 </div>
 <ng-template #upload let-c="close" let-d="dismiss">
-  <div class="infoBox">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Policy Documents</h4>
     <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -22,12 +19,11 @@
   <div class="modal-body">
     <form>
       <div class="form-row">
-        <div class="form-group col-12">
-          <label for="attachments"><b>Attachment</b></label>
+        <div class="form-group col-6">
+          <b>Attachment</b>
           <input id="attachments" class="form-control" type="file" (change)="createPolicyDocumentDTO($event)" />
         </div>
       </div>
-      <hr />
       <!-- <div class="form-row">
     		<div class="form-group col-12">
     			<label for="fileList"><b>Attachment</b></label>
@@ -39,7 +35,6 @@
       <button class="submit btn btn-outline-dark" (click)="c()">Upload</button>
     </div>
   </div>
-</div>
 </ng-template>
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -52,29 +47,30 @@
     <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
   </div>
 </ng-template>
-<form (ngSubmit)="submitDocument()">
-  <div class="installation form-group">
-   
+<div class="infoBox">
+  <div class="headerOfBox">
+    <h4>DOCUMENTS</h4>
   </div>
-  <div class="display-file">
+  <form (ngSubmit)="submitDocument()" id="myForm">
+    <div class="form-group col-md-6">
+      <div class="form-row">
+        <table border="1">
+          <tr>
+            <th style="color:white !important">File Name</th>
+            <th *ngIf="!plus" style="color:white !important">Action</th>
+          </tr>
+          <tr *ngFor=" let policyDocument of policyDocumentsDTO let i = index">
 
-    <br>
-
-    <table border="1">
-      <tr>
-        <th style="color:white !important">File Name</th>
-        <th *ngIf="!plus" style="color:white !important">Action</th>
-      </tr>
-      <tr *ngFor=" let policyDocument of policyDocumentsDTO let i = index">
-
-        <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
-        <td *ngIf="policyDocument.activeFlag && !plus" (click)="deleteFile(policyDocument.policyDocId,i)" style="cursor: pointer;"><i
-            class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+            <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+            <td *ngIf="policyDocument.activeFlag && !plus" (click)="deleteFile(policyDocument.policyDocId,i)" style="cursor: pointer;"><i
+                class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
 
 
-      </tr>
-    </table>
+          </tr>
+        </table>
 
-  </div>
-  <button type="submit" *ngIf="!plus" class="submit btn btn-outline-dark">Submit</button>
-</form>
+      </div>
+    </div>
+    <button type="submit" *ngIf="!plus" class="submit btn btn-outline-dark">Submit</button>
+  </form>
+</div>
