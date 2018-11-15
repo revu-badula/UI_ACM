@@ -34,9 +34,9 @@
                         </li>
 
                         <li class="StepProgress-item is-done">
-                                <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/assesscontrol"
-                                    [routerLinkActiveOptions]="{exact: true}">Access Control</a>
-                            </li>
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/assesscontrol"
+                                [routerLinkActiveOptions]="{exact: true}">Access Control</a>
+                        </li>
                         <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
                             <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/find1">Findings</a>
                         </li>
@@ -73,7 +73,7 @@
                     </ul>
                 </div>
             </div>
-            <div style="float:right" class="form-group col-md-9 fixBox">
+            <div style="float:right" class="form-group col-md-9" id="fixBox">
                 <router-outlet></router-outlet>
             </div>
         </div>

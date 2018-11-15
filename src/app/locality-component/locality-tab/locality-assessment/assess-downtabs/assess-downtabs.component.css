@@ -130,5 +130,6 @@ border-color: #ddd; */
 margin-top:-6%;
 margin-left:-1%;
 width:110%;
+z-index: -2;
 
 }

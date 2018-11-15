@@ -168,6 +168,10 @@ h3 {
   font-weight: bold;
 }
 
+.testColor {
+  color: #fff !important;
+}
+
 .badge {
   height: 50px;
   width: 50px;
@@ -186,6 +190,13 @@ h3 {
   vertical-align: middle;
   border-radius: 50%;
   background: green;
+}
+
+#fixBox {
+  margin-top: -6%;
+  margin-left: -1%;
+  width: 110%;
+  z-index: -2;
 }
 
 .tableForSigned {
@@ -605,6 +616,7 @@ input[type=button] {
     margin-left: 9vw;
   }
 }
+
 @media only screen and (min-width: 1401px) and (max-width: 1500px) {
   #navtab {
     margin-left: 13vw;
