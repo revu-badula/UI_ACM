@@ -125,3 +125,10 @@ border-color: #ddd; */
     -webkit-border-radius: 0.4rem;
     -moz-border-radius: 0.4rem;
 }
+
+#fixBox{
+margin-top:-6%;
+margin-left:-1%;
+width:110%;
+
+}
