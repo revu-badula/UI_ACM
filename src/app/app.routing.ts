@@ -54,7 +54,7 @@ import { AuditBusinessriskComponent } from './locality-component/locality-tab/lo
 import { AuditSecurityriskComponent } from './locality-component/locality-tab/locality-audit/audit-securityrisk/audit-securityrisk.component';
 import { AuditDetailsTab } from './locality-component/locality-tab/locality-audit/audit-details/audit-details-tab/audit-details-tab.component';
 import { AuditLessonsComponent } from './locality-component/locality-tab/locality-audit/audit-lessons/audit-lessons.component';
-
+import {AuditControlComponent} from './locality-component/locality-tab/locality-audit/audit-control/audit-control.component';
 import { AuditBudgetComponent } from './locality-component/locality-tab/locality-audit/audit-budget/audit-budget.component';
 import { AuditAttachmentsComponent } from './locality-component/locality-tab/locality-audit/audit-attachments/audit-attachments.component';
 import { LocalityLegalComponent } from './locality-component/locality-tab/locality-legal/locality-legal.component';
@@ -305,6 +305,9 @@ const appRoutes: Routes = [
                   path: 'find',
                   component: AuditFindingsComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
+               {  path: 'controlLocality',
+                  component:AuditControlComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                }, 
                 {
                   path: 'recomendation',
                   component: AuditRecomendationsComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]

@@ -1,0 +1,96 @@
+<!-- <div class="show" *ngIf="showHistory"> -->
+  <!-- <form id="former">
+    <div class="form-row">
+      <label for="inputState">Audit</label>
+      <hr />
+      <textarea name="" id="" rows="5" class="form-control"><button type="close" class="submit">Close</button></textarea>
+    </div>
+  </form> -->
+
+
+  <form id="former">
+    <div class="form-row">
+      <p>
+        <b>Access Control</b>
+      </p>
+      <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
+    </div>
+    <div class="panel-heading">
+
+      <span class="title elipsis pull-right">
+        <a title="Compare policies">
+          <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
+        </a>
+        <a title="Send notifications">
+          <i class="fa  fa-envelope-o" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+        <a title="Download compared policies" (click)="downloadFile()">
+          <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+      </span>
+    </div>
+    <!-- <hr class=htag/> -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+
+          <th scope="col" (click)="handleSort()">Control Number and Description
+            <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i>
+          </th>
+          <th scope="col" (click)="handleSort1('policyName')">Policy Name
+            <i class="fa fa-arrow-down" *ngIf="!policyName"></i> <i class="fa fa-arrow-up" *ngIf="policyName"></i>
+          </th>
+          <th scope="col" (click)="handleSort2('priority')">Priority
+            <i class="fa fa-arrow-down" *ngIf="!priority"></i> <i class="fa fa-arrow-up" *ngIf="priority"></i>
+          </th>
+          <th scope="col">Source Value</th>
+          <!-- <th scope="col">Implemented Value</th>
+              <th scope="col">Comparison results</th> -->
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+          <!-- <td>{{ policy.controlNumber }}</td> -->
+          <td>
+            <a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
+              policy.controlNumber
+              }}</a>
+          </td>
+          <td>{{ policy.policyName }}</td>
+          <td>{{ policy.priority }}</td>
+          <td>{{ policy.policyVal }}</td>
+          <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link">1</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link">2
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link">Next</a>
+          </li>
+        </ul>
+      </nav> -->
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+
+  </form>
+
+
+<!-- </div> -->

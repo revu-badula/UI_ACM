@@ -14,9 +14,9 @@
   </ng-template>
 <div class="form-div">
   <form #myForm="ngForm" class="former">
-
+    
     <div class="panel-heading">
-      <label class="details">RECOMENDATIONS</label>
+      <label class="details">Recommendation</label>
       <div class="plus">
 
           <span class=" title elipsis pull-right" *ngIf="showEdit">
@@ -60,14 +60,12 @@
     <fieldset [disabled]="showForm">
       <div class="form-row">
         <div class="form-group col-md-6">
-
-          <label for="inputState">Recomended by</label>
-
-          <input type="text" class="form-control" name="lastName" [(ngModel)]="appAudit.recomendedBy" id="recomendedBy" value="enter here">
+          <label for="inputState">Recommended by</label>
+          <input type="text" name="lastName" [(ngModel)]="appAudit.recomendedBy" id="recomendedBy" value="enter here">
         </div>
         <div class="form-group col-md-6">
           <label for="lastName">Estimated completion date</label>
-          <my-date-picker name="estDate" (dateChanged)="getEstDate($event)" [(ngModel)]="estDate"></my-date-picker>
+          <my-date-picker class="inputState" name="estDate" (dateChanged)="getEstDate($event)" [(ngModel)]="estDate"></my-date-picker>
         </div>
       </div>
     </fieldset>

@@ -46,6 +46,11 @@ export class AuditDetailsTab1 implements OnInit {
 
   }
 
+  status: boolean = false;
+clickEvent(){
+    this.status = !this.status;       
+}
+
 }
 
 
