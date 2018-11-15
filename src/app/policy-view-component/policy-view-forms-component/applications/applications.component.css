@@ -1,28 +1,27 @@
-.asterisk{
-	display: inline;
-	color: red;
-	margin-left: 2px;
+.asterisk {
+  display: inline;
+  color: red;
+  margin-left: 2px;
 }
 
-.applications{
-	margin-top: 15px;
+.applications {
+  margin-top: 15px;
 }
 
-table{
-	background-color: #ffffff;
+table {
+  background-color: #ffffff;
 }
 
-table thead tr th{
-	font-weight: 500;
-	color: black;
+table thead tr th {
+  font-weight: 500;
+  color: black;
 }
 
-table thead tr td{
-	color: black;
+table thead tr td {
+  color: black;
 }
 
-.forms{
-
+.forms {
   padding: 20px;
   border-radius: 10px;
   border: 1px solid transparent;
@@ -30,19 +29,17 @@ table thead tr td{
   background-color: #EEEEEE;
 }
 
-
-
-.asterisk{
+.asterisk {
   display: inline;
   color: red;
   margin-left: 2px;
 }
-th{
-	text-align:center;
+
+th {
+  text-align: center;
 }
 
 .btn {
-  float:right;
   margin-top: 25px;
   background-color: #3A539B;
   border-color: #3A539B;
@@ -56,11 +53,10 @@ th{
   margin-left: 3px;
 }
 
-.anchor{
-  color:blue !important;
-  cursor:pointer; 
+.anchor {
+  color: blue !important;
+  cursor: pointer;
 }
-
 
 .disabled {
   pointer-events: none;
@@ -69,202 +65,178 @@ th{
 }
 
 .clear-right {
-	clear:right;
-	overflow: hidden;
+  clear: right;
+  overflow: hidden;
 }
 
 .table-bordered td, .table-bordered th {
-    border: 1px solid #e9ecef;
+  border: 1px solid #e9ecef;
 }
 
-
-
-
-.nav-link{
-	color: black;
-	margin-left: 10px;
+.nav-link {
+  color: black;
+  margin-left: 10px;
 }
 
 input[readonly] {
-	background-color: #ffffff;
-	}
-
-table{
-	background-color: #ffffff;
-	text-align: center;
+  background-color: #ffffff;
 }
 
-table thead tr th{
-	font-weight: 500;
+table {
+  background-color: #ffffff;
+  text-align: center;
 }
 
-.modal-header{
-	background-color: #3A539B;
-	color: #ffffff;
+table thead tr th {
+  font-weight: 500;
 }
 
-.btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+.modal-header {
+  background-color: #3A539B;
+  color: #ffffff;
 }
 
-
-table{
-    background-color: #ffffff;
-    text-align: center;
-    }
-    
-    table thead tr th{
-    font-weight: 500;
-    color: black;
-    }
-    
-    table thead tr td{
-    color: black;
-    }
-    
-    
-    
-    
-    
-    	i.fa {
-    text-decoration: none !important;
-    padding: 5px 4px;
-     color: #3A539B;
+.btn {
+  background-color: #3A539B;
+  border-color: #3A539B;
 }
+
+table {
+  background-color: #ffffff;
+  text-align: center;
+}
+
+table thead tr th {
+  font-weight: 500;
+  color: black;
+}
+
+table thead tr td {
+  color: black;
+}
+
+i.fa {
+  text-decoration: none !important;
+  padding: 5px 4px;
+}
+
 .fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-     color: #3A539B;
-   }
-   
-   
-   .primary {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  /* color: #3A539B; */
+}
+
+.primary {
   color: red !important;
 }
+
 .secondary {
   color: green !important;
 }
-   
-   
-   
-   
-.plus{
-	float:right;
-	 vertical-align: middle;
-    font-size: 20px;
- 
-    padding: 2px;
-    margin-left: 20px;
-    color: #3A539B;
-    margin-top: 15px;
-    
+
+.plus {
+  float: right;
+  vertical-align: middle;
+  font-size: 20px;
+  padding: 2px;
+  margin-left: 20px;
+  color: #3A539B;
+  margin-top: 15px;
 }
 
-.policies{
-	margin-top: 15px;
+.policies {
+  margin-top: 15px;
 }
 
-.policy-edit{
-	float: right;
+.policy-edit {
+  float: right;
 }
 
-
-.icons{
-    vertical-align: middle;
-    font-size: 20px;
-    margin-top: -20px;
-    padding: 2px;
-   
-    font-size:20px;
+.icons {
+  vertical-align: middle;
+  font-size: 20px;
+  margin-top: -20px;
+  padding: 2px;
+  font-size: 20px;
 }
 
 .form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-   
+  background-color: #ffffff;
 }
 
 .form-control:disabled, .form-control[readonly] {
-    background-color: #f8f9fa;
-    opacity: 1;
+  background-color: #f8f9fa;
+  opacity: 1;
 }
 
-.nav-link{
-	color: black;
-	margin-left: 10px;
+.nav-link {
+  color: black;
+  margin-left: 10px;
 }
 
 /* .icons{ */
+
 /* 	color:#3A539B; */
+
 /*    vertical-align: middle; */
+
 /*    font-size: 20px; */
+
 /*    margin-bottom: 20px; */
+
 /*    padding: 2px; */
+
 /*    margin-right: 20px; */
+
 /* } */
 
-
-
 input[readonly] {
-	background-color: #ffffff;
-	}
-
-table{
-	background-color: #ffffff;
-	text-align: center;
-	border: 1px solid black;
+  background-color: #ffffff;
 }
 
-.table-bordered tbody tr:nth-of-type(odd){
-	background-color: #EEEEEE !important;
-	border: 1px solid black;
+table {
+  background-color: #ffffff;
+  text-align: center;
+  border: 1px solid black;
 }
 
-tbody tr:nth-of-type(odd){
-	background-color: #EEEEEE !important;
+.table-bordered tbody tr:nth-of-type(odd) {
+  background-color: #EEEEEE !important;
+  border: 1px solid black;
 }
 
-table thead tr th{
-	font-weight: 500;
-	color: black;
-	border: 1px solid black;
-	background-color: #cecfd5;
+tbody tr:nth-of-type(odd) {
+  background-color: #EEEEEE !important;
 }
 
-table thead tr td{
-	color: black;
+table thead tr th {
+  font-weight: 500;
+  color: black;
+  border: 1px solid black;
+  background-color: #cecfd5;
+}
+
+table thead tr td {
+  color: black;
 }
 
 .table-bordered td, .table-bordered th {
-    border: 1px solid black;
+  border: 1px solid black;
 }
 
-.modal-header{
-	background-color: #3A539B;
-	color: #ffffff;
+.modal-header {
+  background-color: #3A539B;
+  color: #ffffff;
 }
 
-.btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+.btn {
+  background-color: #3A539B;
+  border-color: #3A539B;
 }
 
-.confbtn{
-    margin-left: auto;
-    margin-right: auto;
+.confbtn {
+  margin-left: auto;
+  margin-right: auto;
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-

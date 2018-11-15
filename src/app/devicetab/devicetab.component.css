@@ -47,11 +47,6 @@ a{
 .home-icon{
     color: #3A539B;
 }
-
-.home-icon:hover{
-	
-}
-
 .edit-icon{
     /*margin-left: 10px;*/
     color: #3A539B;
@@ -128,14 +123,14 @@ th{
 i.fa {
     text-decoration: none !important;
     padding: 5px 4px;
-     color: #3A539B;
+     /* color: #3A539B; */
 }
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-     color: #3A539B;
+     /* color: #3A539B; */
    }
 .plus{
 	float:right;
