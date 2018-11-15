@@ -1,5 +1,5 @@
 <!-- <div class="show" *ngIf="showHistory"> -->
-  <!-- <form id="former">
+<!-- <form id="former">
     <div class="form-row">
       <label for="inputState">Audit</label>
       <hr />
@@ -7,29 +7,33 @@
     </div>
   </form> -->
 
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<form class="former">
+  <div class="form-row">
+    <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
+  </div>
+  <div class="panel-heading">
 
-  <form id="former">
-    <div class="form-row">
-      <p>
-        <b>Access Control</b>
-      </p>
-      <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
+    <span class="title elipsis pull-right">
+      <a title="Compare policies">
+        <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
+      </a>
+      <a title="Send notifications">
+        <i class="fa  fa-envelope-o" aria-hidden="true" style="font-size: 24px;"></i>
+      </a>
+      <a title="Download compared policies" (click)="downloadFile()">
+        <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
+      </a>
+    </span>
+  </div>
+  <!-- <hr class=htag/> -->
+  <div class="infoBox">
+    <div class="headerOfBox">
+      <h4>Access Control</h4>
     </div>
-    <div class="panel-heading">
 
-      <span class="title elipsis pull-right">
-        <a title="Compare policies">
-          <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
-        </a>
-        <a title="Send notifications">
-          <i class="fa  fa-envelope-o" aria-hidden="true" style="font-size: 24px;"></i>
-        </a>
-        <a title="Download compared policies" (click)="downloadFile()">
-          <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
-        </a>
-      </span>
-    </div>
-    <!-- <hr class=htag/> -->
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -88,9 +92,9 @@
       </nav> -->
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
+  </div>
 
-
-  </form>
+</form>
 
 
 <!-- </div> -->

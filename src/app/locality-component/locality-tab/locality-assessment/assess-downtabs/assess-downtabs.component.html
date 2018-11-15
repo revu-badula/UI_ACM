@@ -1,7 +1,7 @@
 <div>
     <form class="former">
-        
-            <!-- <div class="infoBox">
+
+        <!-- <div class="infoBox">
                 <div class="headerOfBox">
                     <h4>General Information</h4>
                 </div>
@@ -24,55 +24,58 @@
                 </div>
             </div> -->
 
-            <div class="form-row">
-                <div class="form-group col-md-2.5">
-        
-           
-                        <div class="wrapper1">
+        <div class="form-row">
+            <div class="form-group col-md-2.5">
+                <div class="wrapper1">
                     <ul class="StepProgress">
                         <li class="StepProgress-item is-done">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/first1"
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/first1"
                                 [routerLinkActiveOptions]="{exact: true}">Details</a>
                         </li>
+
+                        <li class="StepProgress-item is-done">
+                                <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/assesscontrol"
+                                    [routerLinkActiveOptions]="{exact: true}">Access Control</a>
+                            </li>
                         <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/find1">Findings</a>
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/find1">Findings</a>
                         </li>
                         <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/recomendation1">Recomendations</a>
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/recomendation1">Recomendations</a>
                         </li>
                         <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/management1">Management
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/management1">Management
                                 Response</a>
                         </li>
                         <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/action1">Action
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/action1">Action
                                 Plan</a>
                         </li>
 
                         <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/brisk1">Business
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/brisk1">Business
                                 Risk</a>
                         </li>
                         <li class="StepProgress-item" [ngClass]="{disabled:disabled}">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/srisk1">Security
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/srisk1">Security
                                 Risk</a>
                         </li>
                         <li class="StepProgress-item" [ngClass]="{disabled:disabled}">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/budget1">Budget</a>
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/budget1">Budget</a>
                         </li>
                         <li class="StepProgress-item" [ngClass]="{disabled:disabled}">
-                            <a  routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/attachment1">Attachments</a>
+                            <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/attachment1">Attachments</a>
                         </li>
                         <li class="StepProgress-item" [ngClass]="{disabled:disabled}">
                             <a routerLinkActive="active" routerLink="/locality/tab/assessment/Tabs/lessons1">Lessons
                                 Learned</a>
                         </li>
                     </ul>
-                    </div>
+                </div>
             </div>
-        <div style="float:right" class="form-group col-md-9" id="fixBox">
-            <router-outlet></router-outlet>
+            <div style="float:right" class="form-group col-md-9 fixBox">
+                <router-outlet></router-outlet>
+            </div>
         </div>
-    </div>
     </form>
 </div>

@@ -563,17 +563,16 @@ export class AuditControlComponent implements OnInit {
 
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    let test:boolean=false;
     // console.log(this.myForm);
     // console.log(this.myForm.dirty);
     //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
     // if (this.changeOverallStatus && this.showButton) {
-      if(this.myForm.dirty && this.myForm.valid){
+      if(test){
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
       //return this.confirm1('Do you want to save changes?', 'for details', 'YES', 'NO');
-
-
       return new Promise<boolean>((resolve, reject) => {
         this.dialogService.open("Info", " Do you want to save changes for Details?", true, "Yes", "No")
         .then((result) =>{

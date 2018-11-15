@@ -134,6 +134,7 @@ import { ReportVendorComponent } from './reports/report-vendor/report-vendor.com
 import { ReportDeviceComponent } from './reports/report-device/report-device.component';
 import { ReportlegalsystemComponent } from './reports/reportlegalsystem/reportlegalsystem.component';
 import { SubControlNameComponent} from './control-name/sub-control-name/sub-control-name.component';
+import { AssessControlComponent } from './locality-component/locality-tab/locality-assessment/assess-control/assess-control.component';
 
 const appRoutes: Routes = [
 
@@ -194,6 +195,10 @@ const appRoutes: Routes = [
               {
                 path: 'find1',
                 component: AssessFindComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+              },
+              {
+                path: 'assesscontrol',
+                component: AssessControlComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'recomendation1',
