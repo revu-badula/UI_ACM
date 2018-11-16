@@ -35,6 +35,7 @@ export class SolutionsComponent implements OnInit {
   public labVendorsfirstName: string;
   public labVendorslastName: string;
   public labVendorsphoneNumber: string;
+  public labVendorsemail: string;
   public labDetails: any;
   precinctTypes: any;
   public precinctTypeId: number;
@@ -46,7 +47,7 @@ export class SolutionsComponent implements OnInit {
     placeholder: '',
     tabsize: 2,
     height: 200,
-    width:'100%',
+    width: '100%',
     toolbar: [
       // [groupName, [list of button]]
       ['misc', ['undo', 'redo']],
@@ -55,7 +56,7 @@ export class SolutionsComponent implements OnInit {
       ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-    
+
   };
   //public labForm: string;
   public labForm: boolean = false;
@@ -109,6 +110,7 @@ export class SolutionsComponent implements OnInit {
       this.labVendorsfirstName = this.labDetails[0].firstName;
       this.labVendorslastName = this.labDetails[0].lastName;
       this.labVendorsphoneNumber = this.labDetails[0].phoneNumber;
+      this.labVendorsemail = this.labDetails[0].emailId;
 
     }
 
@@ -162,7 +164,7 @@ export class SolutionsComponent implements OnInit {
       this.dateSubmit();
     }
     var formData = new FormData();
-    this.solution.createdBy=Cookie.get('userName');
+    this.solution.createdBy = Cookie.get('userName');
     formData.append('solution', JSON.stringify(this.solution));
     for (let i = 0; i < this.files.length; i++) {
       formData.append('certDocs', this.files[i]);

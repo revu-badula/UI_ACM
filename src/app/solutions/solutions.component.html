@@ -18,8 +18,8 @@
 			</a>
 		</div> -->
 
-		<!--  <fa class="edit-icon icons" [name]="'edit'"></fa> -->
-	<!-- </div>
+<!--  <fa class="edit-icon icons" [name]="'edit'"></fa> -->
+<!-- </div>
 </div> -->
 <!--<div class="first-div">
         <div class="model"><p><b>Model/Solution: Democracy Suite</b></p></div>
@@ -173,9 +173,9 @@
 			<br>
 			<br>
 			<div class="installation form-group">
-					
-					<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
-			
+
+				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.hostingTypeNotes" name="hostingNotes"></textarea>
+
 			</div>
 
 			<div class="attachments-div">
@@ -221,7 +221,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="dueDate"><b>Renewal Due Date</b></label>
-					<my-date-picker name="rename"  class="inputState1" [(ngModel)]="renewalDate"></my-date-picker>
+					<my-date-picker name="rename" class="inputState1" [(ngModel)]="renewalDate"></my-date-picker>
 					<!-- <p style="color: red;font-weight: bold;">{{err}}</p> -->
 					<!-- <input type="date" class="form-control" id="dueDate"> -->
 				</div>
@@ -248,22 +248,23 @@
 					</option>
 				</select>
 			</div>
-			<div class="contact" *ngIf="labForm">
-				<!--  <div class="contact"> -->
-				<div class="certification-test form-row">
+			<div class="contact" *ngIf="labForm"><br><br><br>
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="firstName"><b>First Name</b></label>
-						<input type="text" id="firstName inputState" ngModel name="firstName" [(ngModel)]="labVendorsfirstName" [name]="'firstName'"
+						<input type="text" id="firstName" ngModel name="firstName" [(ngModel)]="labVendorsfirstName" [name]="'firstName'"
 						 readonly>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="lastName"><b>Last Name</b></label>
-						<input type="text" id="lastName inputState" ngModel name="lastName" [(ngModel)]="labVendorslastName" [name]="'lastName'"
+						<input type="text" id="lastName" ngModel name="lastName" [(ngModel)]="labVendorslastName" [name]="'lastName'"
 						 readonly>
 					</div>
+				</div>
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="email"><b>Email Id</b></label>
-						<input type="email" id="email inputState" name="email" [(ngModel)]="solution.labVendorsDTO.emailId" [name]="'emailId'"
+						<input type="email" id="email inputState" name="email" [(ngModel)]="labVendorsemail" [name]="'emailId'"
 						 readonly>
 					</div>
 					<div class="form-group col-md-6">
@@ -272,7 +273,9 @@
 						 readonly>
 					</div>
 				</div>
-				<!-- <div class="certification-test form-row">
+			</div>
+		</div>
+		<!-- <div class="certification-test form-row">
             <div class="form-group col-md-6">
                 <label for="email"><b>Email Id</b></label><div class="asterisk">*</div>
                 <input type="email" class="asterisk form-control" id="email" required>
@@ -282,58 +285,96 @@
                 <input type="text" class="asterisk form-control" id="phone" required>
             </div>
          </div> -->
-			</div>
+	
+	<br>
+	<br>
+	<br>
+	<div class="infoBox">
+		<div class="headerOfBox">
+			<h4>Standard</h4>
 		</div>
-		<br>
-		<br>
-		<br>
-		<div class="infoBox">
-			<div class="headerOfBox">
-				<h4>Standard</h4>
-			</div>
 
-			<div class="installation form-group">
+		<div class="installation form-group">
 
-				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
+			<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
 
-				<div class="attachments-div">
-					<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
-					<div class="display-file">
-						<br>
-						<br>
-						<br>
-						<table border="1">
-							<tr>
-								<th>FileName</th>
-								<th>Action</th>
-							</tr>
-							<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
-								<td *ngIf="certDocDTO.section == 'standard'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
-								<td *ngIf="certDocDTO.section == 'standard'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
-									 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: #3A539B;"></i></td>
+			<div class="attachments-div">
+				<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
+				<div class="display-file">
+					<br>
+					<br>
+					<br>
+					<table border="1">
+						<tr>
+							<th>FileName</th>
+							<th>Action</th>
+						</tr>
+						<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
+							<td *ngIf="certDocDTO.section == 'standard'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
+							<td *ngIf="certDocDTO.section == 'standard'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
+								 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: #3A539B;"></i></td>
 
 
-							</tr>
-						</table>
-					</div>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
+	</div>
+	<br>
+	<br>
+	<br>
+	<div class="infoBox">
+		<div class="headerOfBox">
+			<h4>Patches</h4>
+		</div>
+
+		<div class="installation form-group">
+			<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.patches" [name]="'solution_patches'"></textarea>
+			<div class="attachments-div">
+				<p class="attachments">
+					<b>Attachments</b>
+				</p>
+				<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
+				<div class="display-file">
+					<br>
+					<br>
+					<br>
+					<table border="1">
+						<tr>
+							<th>FileName</th>
+							<th>Action</th>
+						</tr>
+						<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
+							<td *ngIf="certDocDTO.section == 'patches'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
+							<td *ngIf="certDocDTO.section == 'patches'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
+								 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: #3A539B;"></i></td>
+
+
+						</tr>
+
+
+
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br><br>
+	<div>
 		<div class="infoBox">
 			<div class="headerOfBox">
-				<h4>Patches</h4>
+				<h4>Notes</h4>
 			</div>
 
 			<div class="installation form-group">
-				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.patches" [name]="'solution_patches'"></textarea>
+				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.notes" [name]="'solution_notes'"></textarea>
 				<div class="attachments-div">
 					<p class="attachments">
 						<b>Attachments</b>
 					</p>
-					<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
+					<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
 					<div class="display-file">
 						<br>
 						<br>
@@ -344,58 +385,19 @@
 								<th>Action</th>
 							</tr>
 							<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
-								<td *ngIf="certDocDTO.section == 'patches'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
-								<td *ngIf="certDocDTO.section == 'patches'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
+								<td *ngIf="certDocDTO.section == 'solution'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
+								<td *ngIf="certDocDTO.section == 'solution'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
 									 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: #3A539B;"></i></td>
 
 
 							</tr>
-
-
 
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-		<br>
-		<br><br>
-		<div>
-			<div class="infoBox">
-				<div class="headerOfBox">
-					<h4>Notes</h4>
-				</div>
-
-				<div class="installation form-group">
-					<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.notes" [name]="'solution_notes'"></textarea>
-					<div class="attachments-div">
-						<p class="attachments">
-							<b>Attachments</b>
-						</p>
-						<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
-						<div class="display-file">
-							<br>
-							<br>
-							<br>
-							<table border="1">
-								<tr>
-									<th>FileName</th>
-									<th>Action</th>
-								</tr>
-								<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
-									<td *ngIf="certDocDTO.section == 'solution'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
-									<td *ngIf="certDocDTO.section == 'solution'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
-										 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: #3A539B;"></i></td>
-
-
-								</tr>
-
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
 
 	</div>
 	<div class="buttons" style="margin-right:7%">

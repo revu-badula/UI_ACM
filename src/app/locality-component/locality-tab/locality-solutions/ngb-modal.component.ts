@@ -36,9 +36,7 @@ import { DialogService } from '../../../dialog.service';
 		(ngSubmit)="addDevice(modalForm.value)">
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="model">Model Number</label>
-
-				<div class="asterisk">*</div>
+				Model Number<span class="asterisk">*</span>
 				<input type="text" class="form-control" id="modelNumber"
 					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="5" maxlength="10" appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('modelNumber').errors && modalForm.get('modelNumber').dirty">
@@ -46,8 +44,7 @@ import { DialogService } from '../../../dialog.service';
                    </div>
 			</div>
 			<div class="form-group col-md-6">
-				<label for="serial">Serial Number</label>
-				<div class="asterisk">*</div>
+	            Serial Number<span class="asterisk">*</span>
 				<input type="text" class="form-control" id="serialNumber"
 					placeholder="Equipment Serial Number"
                     formControlName="serialNumber" minlength="5" maxlength="10" appOnlyInteger>
@@ -61,14 +58,12 @@ import { DialogService } from '../../../dialog.service';
 		</p>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="street">Street 1</label>
-				<div class="asterisk">*</div>
+				Street 1<span class="asterisk">*</span>
 				<input type="text" class="form-control" id="street1"
 					placeholder="enter here" formControlName="street1">
 			</div>
 			<div class="form-group col-md-6">
-				<label for="street">Street 2</label>
-				<div class="asterisk">*</div>
+				Street 2<span class="asterisk">*</span>
 				<input type="text" class="form-control" id="street2"
 					placeholder="enter here" formControlName="street2">
 			</div>
@@ -79,14 +74,12 @@ import { DialogService } from '../../../dialog.service';
         
         <div class="form-row">
         <div class="form-group col-md-6">
-        <label for="city">City</label>
-        <div class="asterisk">*</div>
+       City<span class="asterisk">*</span>
         <input type="text" class="form-control" id="city"
             placeholder="enter here" formControlName="city">
          </div>
 			<div class="form-group col-md-6">
-				<label for="state">State</label>
-				<div class="asterisk">*</div>
+			State<span class="asterisk">*</span>
 				<select id="inputState" class="form-control" id="state"
 					formControlName=state>
 					<option selected>Choose...</option>
@@ -150,45 +143,40 @@ import { DialogService } from '../../../dialog.service';
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="inputZip">Zip Code</label>
-				<div class="asterisk">*</div>
+				Zip Code<span class="asterisk">*</span>
 				<input type="text" class="form-control" maxlength=5 minlength=5
 					title='Zip Code (Format: 00000)' id="zipCode"
                     formControlName=zipCode appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('zipCode').errors && modalForm.get('zipCode').dirty">
                     zipCode must be 5 numbers
                    </div>
-			</div>
-		</div>
-		<hr />
-		
-			<label>Overall Scanning Status</label>
-			<div class="asterisk">*</div>
-		
-		<div>
-			<select id="inputState" class="form-control"
+            </div>
+            <div class="form-group col-md-6">
+			Overall Scanning Status<span class="asterisk">*</span>
+			<select  class="form-control"
 				formControlName=overallStatus>
 				<option selected>Choose...</option>
 				<option value="Passed">Passed</option>
 				<option value="Failed">Failed</option>
 				<option value="Pending">Pending</option>
 
-			</select>
+            </select>
+            <div style="color:red;" *ngIf="modalForm.get('overallStatus').errors && modalForm.get('overallStatus').dirty">
+                    overallStatus is required
+                   </div>
+        </div>
 		</div>
 		<hr />
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="dueDate">Current Scanning Date</label>
-				<div class="asterisk">*</div>
+			Current Scanning Date<span class="asterisk">*</span>
 						 
 				<my-date-picker name="myname" [selDate]="selectDate"
 					formControlName=nextScanningDt (dateChanged)="onDateChanged($event)"></my-date-picker>
 					
             </div>
             <div class="form-group col-md-6">
-				<label for="dueDate">Next Scanning Date</label>
-				<div class="asterisk">*</div>
-						 
+				Next Scanning Date<span class="asterisk">*</span>
 				<my-date-picker name="mname" [selDate]="selectDate1" [options]="myDatePickerOptions"
 					formControlName=nextScanningDt1></my-date-picker>
 					
@@ -208,10 +196,8 @@ import { DialogService } from '../../../dialog.service';
 			<b>Attachments</b>
 		</p>
 		<div>
-			<div class="col-sm-5 col-md-5 col-lg-5">
+			<div class="col-md-6">
 		<input type="file" #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
-
-			
 			</div>
 
 		</div>
@@ -284,18 +270,18 @@ export class NgbdModalContent implements OnInit {
         height: 125,
         width: '100%',
         toolbar: [
-          // [groupName, [list of button]]
-          ['misc', ['undo', 'redo']],
-          ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-          ['fontsize', ['fontname', 'fontsize', 'color']],
-          ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+            // [groupName, [list of button]]
+            ['misc', ['undo', 'redo']],
+            ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontsize', ['fontname', 'fontsize', 'color']],
+            ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
         ],
         fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-    
-      };
+
+    };
     public err: any;
     public showUpbtn: boolean = false;
-    public textDisable:boolean = false;
+    public textDisable: boolean = false;
     myDatePickerOptions: IMyDpOptions = {
         disableUntil: { year: 0, month: 0, day: 0 },
         showTodayBtn: false
@@ -559,7 +545,7 @@ export class NgbdModalContent implements OnInit {
     editClick() {
         this.modalForm.enable();
         this.showUpbtn = true;
-        this.textDisable=false;
+        this.textDisable = false;
     }
 
 
