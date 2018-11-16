@@ -61,6 +61,8 @@ import { OnlyDollar } from 'app/dollar-validation';
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { AuditControlComponent } from './locality-tab/locality-audit/audit-control/audit-control.component';
 import { AssessControlComponent } from './locality-tab/locality-assessment/assess-control/assess-control.component';
+import { AuditLandingComponent } from './locality-tab/locality-audit/audit-landing/audit-landing.component';
+import { AssesslandingComponent } from './locality-tab/locality-assessment/assesslanding/assesslanding.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -92,7 +94,7 @@ import { AssessControlComponent } from './locality-tab/locality-assessment/asses
     AssessRecomendComponent, ManagementComponent, AssessActionComponent,
     AssessBusinessComponent, AssessSecurityComponent, AssessBudgetComponent,
     AssessAttachmentsComponent, AssessLessonsComponent, LocalitysolutionsformComponent,
-    NgbdModalContent, PhonePipe, OnlyIntegerDirective, OnlyInteger, OnlyDollar, AuditControlComponent, AssessControlComponent],
+    NgbdModalContent, PhonePipe, OnlyIntegerDirective, OnlyInteger, OnlyDollar, AuditControlComponent, AssessControlComponent, AuditLandingComponent, AssesslandingComponent],
   entryComponents: [NgbdModalContent, DialogComponent],
   exports:[OnlyInteger, OnlyIntegerDirective, FilterPipeDate, OnlyDollar]
 })

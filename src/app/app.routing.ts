@@ -54,7 +54,7 @@ import { AuditBusinessriskComponent } from './locality-component/locality-tab/lo
 import { AuditSecurityriskComponent } from './locality-component/locality-tab/locality-audit/audit-securityrisk/audit-securityrisk.component';
 import { AuditDetailsTab } from './locality-component/locality-tab/locality-audit/audit-details/audit-details-tab/audit-details-tab.component';
 import { AuditLessonsComponent } from './locality-component/locality-tab/locality-audit/audit-lessons/audit-lessons.component';
-import {AuditControlComponent} from './locality-component/locality-tab/locality-audit/audit-control/audit-control.component';
+import { AuditControlComponent } from './locality-component/locality-tab/locality-audit/audit-control/audit-control.component';
 import { AuditBudgetComponent } from './locality-component/locality-tab/locality-audit/audit-budget/audit-budget.component';
 import { AuditAttachmentsComponent } from './locality-component/locality-tab/locality-audit/audit-attachments/audit-attachments.component';
 import { LocalityLegalComponent } from './locality-component/locality-tab/locality-legal/locality-legal.component';
@@ -133,8 +133,10 @@ import { ReportSolutionsComponent } from './reports/report-solutions/report-solu
 import { ReportVendorComponent } from './reports/report-vendor/report-vendor.component';
 import { ReportDeviceComponent } from './reports/report-device/report-device.component';
 import { ReportlegalsystemComponent } from './reports/reportlegalsystem/reportlegalsystem.component';
-import { SubControlNameComponent} from './control-name/sub-control-name/sub-control-name.component';
+import { SubControlNameComponent } from './control-name/sub-control-name/sub-control-name.component';
 import { AssessControlComponent } from './locality-component/locality-tab/locality-assessment/assess-control/assess-control.component';
+import { AuditLandingComponent } from './locality-component/locality-tab/locality-audit/audit-landing/audit-landing.component';
+import { AssesslandingComponent } from './locality-component/locality-tab/locality-assessment/assesslanding/assesslanding.component';
 
 const appRoutes: Routes = [
 
@@ -142,7 +144,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent },
-  { path:'devicetab', component:DevicetabComponent,canActivate: [AuthGuard]},
+  { path: 'devicetab', component: DevicetabComponent, canActivate: [AuthGuard] },
   { path: 'vendors', component: VendorsComponentComponent, canActivate: [AuthGuard] },
   { path: 'solutions', component: SolutionsComponent, canActivate: [AuthGuard] },
   { path: 'vendorsView', component: VendorsViewComponent, canActivate: [AuthGuard] },
@@ -152,15 +154,15 @@ const appRoutes: Routes = [
   { path: 'deviceInventory', component: DeviceComponent, canActivate: [AuthGuard] },
   { path: 'updateDevice/:id', component: UpdateDeviceComponent, canActivate: [AuthGuard] },
   { path: 'systemView', component: SystemViewComponentComponent, canActivate: [AuthGuard] },
-  { path:'reports', component:ReportsComponent, canActivate: [AuthGuard]},
-  { path:'rlegal', component:ReportLegalComponent, canActivate:[AuthGuard]},
-  { path:'rsolution', component:ReportSolutionsComponent, canActivate:[AuthGuard]},
-  { path:'rvendor', component:ReportVendorComponent, canActivate:[AuthGuard]},
-  { path:'rdevice', component:ReportDeviceComponent , canActivate:[AuthGuard]},
-  { path:'rsystems', component:ReportlegalsystemComponent, canActivate:[AuthGuard]},
-  {path: 'subcontrol', component: SubControlNameComponent, canActivate:[AuthGuard]},
-  
-  
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
+  { path: 'rlegal', component: ReportLegalComponent, canActivate: [AuthGuard] },
+  { path: 'rsolution', component: ReportSolutionsComponent, canActivate: [AuthGuard] },
+  { path: 'rvendor', component: ReportVendorComponent, canActivate: [AuthGuard] },
+  { path: 'rdevice', component: ReportDeviceComponent, canActivate: [AuthGuard] },
+  { path: 'rsystems', component: ReportlegalsystemComponent, canActivate: [AuthGuard] },
+  { path: 'subcontrol', component: SubControlNameComponent, canActivate: [AuthGuard] },
+
+
   {
     path: "locality", component: LocalityComponentComponent, canActivate: [AuthGuard],
     children: [
@@ -179,8 +181,13 @@ const appRoutes: Routes = [
           {
             path: 'assessment',
             component: LocalityAssessmentComponent, canActivate: [WorkflowGuard],
-            children: [{
-              path: '',
+            children: [
+              {
+                path: '',
+                component: AssesslandingComponent, canActivate: [AuthGuard]
+              },
+              {
+              path: 'assessmentOverview',
               component: AssessTabComponent, canActivate: [AuthGuard]
             },
             {
@@ -296,6 +303,10 @@ const appRoutes: Routes = [
             children: [
               {
                 path: '',
+                component: AuditLandingComponent, canActivate: [AuthGuard]
+              },
+              {
+                path: 'auditOverview',
                 component: AuditDetailsComponent, canActivate: [AuthGuard]
               },
               {
@@ -310,9 +321,10 @@ const appRoutes: Routes = [
                   path: 'find',
                   component: AuditFindingsComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
                 },
-               {  path: 'controlLocality',
-                  component:AuditControlComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
-                }, 
+                {
+                  path: 'controlLocality',
+                  component: AuditControlComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
+                },
                 {
                   path: 'recomendation',
                   component: AuditRecomendationsComponent, canActivate: [WorkflowGuardAudit], canDeactivate: [CanDeactivateGuard]
@@ -372,55 +384,55 @@ const appRoutes: Routes = [
 
 
   {
-    path: "system", component: SystemComponentComponent, canActivate:[AuthGuard],
+    path: "system", component: SystemComponentComponent, canActivate: [AuthGuard],
     //canActivate: [AuthGuard],
     children: [
       {
         path: 'map',
-        component: SystemAddComponentComponent, canActivate:[AuthGuard]
+        component: SystemAddComponentComponent, canActivate: [AuthGuard]
         // canActivate: [AuthGuard]
       },
       {
         path: 'tab2',
-        component: SystemTabComponent, canActivate:[AuthGuard],
+        component: SystemTabComponent, canActivate: [AuthGuard],
         //canActivate: [AuthGuard],
         children: [
           {
             path: 'info',
-            component: SystemDetailsComponent, canActivate:[AuthGuard]
+            component: SystemDetailsComponent, canActivate: [AuthGuard]
             // canActivate: [AuthGuard]
-          }, 
+          },
           {
             path: 'technical',
-            component: SystemTechnicalComponent, canActivate:[SystemGuard]
+            component: SystemTechnicalComponent, canActivate: [SystemGuard]
             // canActivate: [SystemGuard]
           },
           {
             path: 'legal',
-            component: SystemLegalComponent, canActivate:[SystemGuard],
+            component: SystemLegalComponent, canActivate: [SystemGuard],
             // canActivate: [SystemGuard],
             children: [
               {
                 path: '',
-                component: SystemLegalmainComponent, canActivate:[AuthGuard],
+                component: SystemLegalmainComponent, canActivate: [AuthGuard],
               },
               {
                 path: 'legalform',
-                component: SystemLegalformComponent, canActivate:[AuthGuard],
+                component: SystemLegalformComponent, canActivate: [AuthGuard],
               }
             ]
           },
-          
+
           {
             path: 'security',
-            component: SystemSecurityComponent, canActivate:[SystemGuard]
+            component: SystemSecurityComponent, canActivate: [SystemGuard]
             // canActivate: [SystemGuard]
           },
           {
             path: 'assessment',
-            component: SystemAssessmentComponent, canActivate:[SystemGuard],
+            component: SystemAssessmentComponent, canActivate: [SystemGuard],
             //canActivate: [WorkflowGuard],
-            
+
             children: [{
               path: '',
               component: SystemAssessTabComponent, canActivate: [AuthGuard]
@@ -434,52 +446,52 @@ const appRoutes: Routes = [
               children: [{
 
                 path: 'first2',
-                component: SystemAssessDetailsComponent, canActivate:[AuthGuard], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessDetailsComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
                 // canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'find2',
-                component: SystemAssessFindComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessFindComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'recomendation2',
-                component: SystemAssessRecomendComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessRecomendComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 //canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
-                path: 'management2', 
-                component: SystemAssessManagementComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                path: 'management2',
+                component: SystemAssessManagementComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'action2',
-                component: SystemAssessActionComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessActionComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 //canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'brisk2',
-                component: SystemAssessBusinessComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessBusinessComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'srisk2',
-                component: SystemAssessSecurityComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessSecurityComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'budget2',
-                component: SystemAssessBudgetComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessBudgetComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard],
               },
               {
                 path: 'attachment2',
-                component: SystemAssessAttachmentsComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessAttachmentsComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {
                 path: 'lessons2',
-                component: SystemAssessLessonsComponent, canActivate:[SystemGuardAssess], canDeactivate:[CanDeactivateGuard]
+                component: SystemAssessLessonsComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 //canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               }
               ]
@@ -488,21 +500,21 @@ const appRoutes: Routes = [
 
 
           },
-          
+
           {
             path: 'link',
-            component: SystemSolutionstablelinkComponent, canActivate:[SystemGuard]
+            component: SystemSolutionstablelinkComponent, canActivate: [SystemGuard]
             // canActivate: [WorkflowGuard]
           },
           {
             path: 'business',
-            component: SystemBusinessComponent, canActivate:[SystemGuard]
+            component: SystemBusinessComponent, canActivate: [SystemGuard]
             // canActivate: [WorkflowGuard]
           },
           {
 
             path: 'Audit',
-            component: SystemAuditComponent, canActivate:[SystemGuard],
+            component: SystemAuditComponent, canActivate: [SystemGuard],
             // canActivate: [WorkflowGuard],
             children: [
               {
