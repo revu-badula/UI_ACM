@@ -56,11 +56,16 @@
 					<th scope="col" (click)="handleSorting()">Product Name
 						<i class="fa fa-arrow-down testColor" *ngIf="!des"></i> <i class="fa fa-arrow-up testColor" *ngIf="des"></i></th>
 
-					<th scope="col">Create Date</th>
-					<th scope="col">Last modified date</th>
-					<th scope="col">Renewal date</th>
-					<th scope="col">Last UpdatedBy</th>
-					<th scope="col">Last Updated Date</th>
+					<th scope="col" (click)="handleSort2('createdTs')">Create Date<i class="fa fa-arrow-down testColor" *ngIf="!crtdt"></i>
+						<i class="fa fa-arrow-up testColor" *ngIf="crtdt"></i></th>
+					<th scope="col" (click)="handleSort3('updatedTs')">Last modified date<i class="fa fa-arrow-down testColor" *ngIf="!modifiedDt"></i>
+						<i class="fa fa-arrow-up testColor" *ngIf="modifiedDt"></i></th>
+					<th scope="col" (click)="handleSort4('licenseRenewDt')">Renewal date<i class="fa fa-arrow-down testColor" *ngIf="!rendt"></i>
+						<i class="fa fa-arrow-up testColor" *ngIf="rendt"></i></th>
+					<th scope="col" (click)="handleSort5('updatedBy')">Last UpdatedBy<i class="fa fa-arrow-down testColor" *ngIf="!updtBy"></i>
+						<i class="fa fa-arrow-up testColor" *ngIf="updtBy"></i></th>
+					<th scope="col" (click)="handleSort3('updatedTs')">Last Updated Date<i class="fa fa-arrow-down testColor" *ngIf="!modifiedDt"></i>
+						<i class="fa fa-arrow-up testColor" *ngIf="modifiedDt"></i></th>
 				</tr>
 			</thead>
 			<tbody>

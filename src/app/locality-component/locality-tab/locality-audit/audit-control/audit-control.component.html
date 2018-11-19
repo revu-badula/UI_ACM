@@ -6,6 +6,35 @@
       <textarea name="" id="" rows="5" class="form-control"><button type="close" class="submit">Close</button></textarea>
     </div>
   </form> -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Policy File</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true" id="testColor">&times;</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    <div class="form-row">
+      <div class="col-md-12">
+        <label>
+          Attachment
+        </label>
+        <form #myFileForm="ngForm">
+            <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx"
+              #fileInput (change)="getFile($event)" required>
+
+          
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+    <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark" (click)="compareFile();c()">Compare</button>
+  </div>
+</ng-template>
 
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>

@@ -21,6 +21,8 @@ export class FormsComponent implements OnInit {
     private modalService: NgbModal, private phone: PhonePipe, private _apiservice: ApiserviceService) { }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.createForm();
   }
 

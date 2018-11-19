@@ -192,14 +192,8 @@
 
 
 
-<div class="show" *ngIf="showTable">
+<!-- <div class="show" *ngIf="showTable">
   <form class="former">
-    <!-- <div class="form-row">
-       <p>
-        <b>POLICIES</b>
-      </p> 
-      <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
-    </div> -->
     <div class="plus">
 
       <span class="title elipsis pull-right">
@@ -214,7 +208,6 @@
         </a>
       </span>
     </div>
-    <!-- <hr class=htag/> -->
     <div class="infoBox">
       <div class="headerOfBox">
         <h4>Policies</h4>
@@ -236,7 +229,7 @@
         <tbody *ngIf="!showRow">
 
           <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-            <!-- <td>{{ policy.controlNumber }}</td> -->
+            
             <td>
               <a routerLink="/accessControl/{{ policy.policyDTO.policyId }}" style="cursor:pointer;color:blue;">{{
                 policy.policyDTO.controlNumber
@@ -250,7 +243,7 @@
         </tbody>
         <tbody *ngIf="showRow">
           <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-            <!-- <td>{{ policy.controlNumber }}</td> -->
+            
             <td>
               <a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
                 policy.controlNumber
@@ -271,4 +264,4 @@
 
 
 </div>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->

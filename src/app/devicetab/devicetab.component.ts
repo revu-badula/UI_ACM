@@ -23,6 +23,10 @@ export class DevicetabComponent implements OnInit {
   public loading: boolean = false;
   public desc = false;
   public des = false;
+  public crtdt: boolean = false;
+  public modifiedDt: boolean = false;
+  public rendt: boolean = false;
+  public updtBy: boolean = false;
   constructor(private _apiservice: ApiserviceService, private http: Http, private modalService: NgbModal, private utilservice: UtilService, private datepipe: DatePipe) {
     this.device = new Device();
 
@@ -83,13 +87,13 @@ export class DevicetabComponent implements OnInit {
     }
     return 0;
   }
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
   handleSorting() {
 
     if (!this.des) {
@@ -123,9 +127,144 @@ export class DevicetabComponent implements OnInit {
     }
     return 0;
   }
-  
-  
-  
+
+
+  handleSort2(value) {
+    if (!this.crtdt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.displayDevices.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.crtdt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.displayDevices.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.crtdt = false;
+    }
+
+
+  }
+
+  handleSort3(value) {
+    if (!this.modifiedDt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.displayDevices.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.modifiedDt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.displayDevices.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.modifiedDt = false;
+    }
+
+
+  }
+
+  handleSort4(value) {
+    if (!this.rendt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.displayDevices.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.rendt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.displayDevices.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.rendt = false;
+    }
+
+
+  }
+
+  handleSort5(value) {
+    if (!this.updtBy) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.displayDevices.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updtBy = true;
+    }
+    else {
+      let orderByValue = value;
+      this.displayDevices.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updtBy = false;
+    }
+
+
+  }
+
+
+
+
+
 
 
 

@@ -46,7 +46,8 @@
 
 							<label for="inputState">Locality Name <span class="asterisk">*</span></label>
 
-							<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly" required>
+							<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly"
+							 required>
 						</div>
 
 						<div class="form-group col-md-6">
@@ -81,8 +82,8 @@
 						<div class="form-group col-md-6">
 							<label for="lastName">Email Id <span class="asterisk">*</span></label>
 
-							<input type="email" class="form-control" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [email]="locality.emailId!==''"
-							 name="email" [(ngModel)]="locality.emailId" #email="ngModel" required>
+							<input type="email" class="form-control" [email]="locality.emailId!==''" name="email" [(ngModel)]="locality.emailId"
+							 #email="ngModel" required>
 							<span class="help-block" style="color:red;padding-left:43%;" *ngIf="email.errors?.required && email.touched">
 								Email is required
 							</span>
@@ -92,29 +93,33 @@
 							<!-- <input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"> -->
 						</div>
 						<div class="form-group col-md-6">
-							<label for="email">Phone No <div class="asterisk">*</div></label>
-							<input type="tel" class="form-control" ngModel name="phoneNumber" (keydown)="getPhoneNumber($event,$event.target.value)"
+							<label for="email">Phone No <span class="asterisk">*</span></label>
+							<input type="tel" class="form-control" name="phoneNumber" #phoneNumber="ngModel" (keydown)="getPhoneNumber($event,$event.target.value)"
 							 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
 							 onlyInteger>
+							<span class="help-block" style="color:red;padding-left:43%;" *ngIf="phoneNumber.errors?.required && phoneNumber.invalid && phoneNumber.dirty">
+								phoneNo is required
+							</span>
+
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="url">Website Address <div class="asterisk">*</div></label>
+							<label for="url">Website Address <span class="asterisk">*</span></label>
 
-							<input type="text" class="form-control" id="url" pattern="https?://.+" name="url" #url="ngModel" [(ngModel)]="locality.website"
+							<input type="url" class="form-control" id="url" name="url" #url="ngModel" [(ngModel)]="locality.website"
 							 required><br><br>
-							<div *ngIf="url.errors && (url.dirty || url.touched)">
-								<div [hidden]="!url.errors.required" style="color:red;padding-left: 43%;">
+							<div>
+								<div *ngIf="url.errors.required && url.touched" style="color:red;padding-left: 43%;">
 									URL is required!
 								</div>
-								<div [hidden]="!url.errors.pattern" style="color:red;padding-left: 43%;">
+								<!-- <div *ngIf="url.invalid && url.dirty" style="color:red;padding-left: 43%;">
 									Must be a valid URL!
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="email">Veris Id<div class="asterisk">*</div></label>
+							<label for="email">Veris Id<span class="asterisk">*</span></label>
 							<input type="text" class="form-control" maxlength="10" ngModel name="verisId" [(ngModel)]="locality.verisId"
 							 required>
 						</div>
@@ -226,11 +231,11 @@
 						<tbody>
 							<tr *ngFor="let day of locality.workHoursDTOs;let i = index;">
 								<td>{{day.day}}</td>
-								<td><input type="time" id="{{day.openTm}}" name="{{day.openTm}}"
-									 [(ngModel)]="day.openTm" [ngModelOptions]="{standalone:true}" min="9:00" max="18:00" required (input)="time = $event.target.value" />
+								<td><input type="time" id="{{day.openTm}}" name="{{day.openTm}}" [(ngModel)]="day.openTm" [ngModelOptions]="{standalone:true}"
+									 min="9:00" max="18:00" required (input)="time = $event.target.value" />
 									To </td>
-									<td><input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00"
-									 max="18:00" [(ngModel)]="day.closeTm" [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" /></td>
+								<td><input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00" max="18:00" [(ngModel)]="day.closeTm"
+									 [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -244,14 +249,16 @@
 					<div class="form-row headerOfBox">
 						<h4>Notes</h4>
 					</div>
-					<textarea  id="ngxSummernote"  [ngxSummernote]="config" rows="10" [ngxSummernoteDisabled]="editableForm" class="form-control" name="notes" [(ngModel)]="locality.notes"></textarea>
+					<textarea id="ngxSummernote" [ngxSummernote]="config" rows="10" [ngxSummernoteDisabled]="editableForm" class="form-control"
+					 name="notes" [(ngModel)]="locality.notes"></textarea>
 				</div>
 			</fieldset>
 
 		</div>
 	</form>
 	<div class="buttons">
-		<button type="submit" style="margin-right: 8%;" form="myForm" class="submit btn btn-primary" [disabled]="!formName.valid" *ngIf="isShow">Submit</button>
+		<button type="submit" style="margin-right: 8%;" form="myForm" class="submit btn btn-primary" [disabled]="!formName.valid"
+		 *ngIf="isShow">Submit</button>
 		<button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
 	</div>
 </div>

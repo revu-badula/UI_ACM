@@ -71,6 +71,8 @@ export class UpdateDeviceComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.activatedRoute.params.subscribe(params => {
       this.deviceId = params['id'];
     });

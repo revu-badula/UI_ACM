@@ -79,6 +79,8 @@ export class SolutionsComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.getSolutionsOnload();
 
   }

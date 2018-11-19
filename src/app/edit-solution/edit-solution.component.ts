@@ -12,7 +12,8 @@ import { Observable, Subject } from 'rxjs';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { IMyDate } from 'mydatepicker';
 import { Cookie } from 'ng2-cookies';
-
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 import { finalize } from 'rxjs/operators';
 import { DialogService } from '../dialog.service';
 
@@ -57,7 +58,7 @@ export class EditSolutionComponent implements OnInit {
     placeholder: '',
     tabsize: 2,
     height: 200,
-    width:'100%',
+    width: '100%',
     toolbar: [
       // [groupName, [list of button]]
       ['misc', ['undo', 'redo']],
@@ -66,7 +67,7 @@ export class EditSolutionComponent implements OnInit {
       ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-    
+
   };
   public precinctTypeId: number;
   public loading: boolean = false;
@@ -76,7 +77,7 @@ export class EditSolutionComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
     , private http: Http, private _location: Location, private modalService: NgbModal,
-    private router: Router, private dialogService: DialogService) {
+    private router: Router, private dialogService: DialogService, private datepipe: DatePipe) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
     this.solution.hostingTypeDTO = new HostingType();
@@ -147,6 +148,8 @@ export class EditSolutionComponent implements OnInit {
       this.getSolutionsOnload();
 
     });
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   createCertDTO(fileInput: any, section: string) {
@@ -163,17 +166,27 @@ export class EditSolutionComponent implements OnInit {
   }
 
   dateRetreive() {
-    let d = new Date(this.solution.certDt);
-    this.selectDate = {
-      year: d.getFullYear(),
-      month: d.getMonth() + 1,
-      day: d.getDate()
+    if ((this.solution.certDt && this.solution.certRenewalDueDt) != null) {
+      this.approveDate = { date: null };
+      this.dueDate = { date: null };
     }
-    let rd = new Date(this.solution.certRenewalDueDt);
-    this.renewalDate = {
-      year: rd.getFullYear(),
-      month: rd.getMonth() + 1,
-      day: rd.getDate() + 1
+    else {
+      let d = new Date(this.solution.certDt);
+      this.approveDate = {
+        date: {
+          year: d.getFullYear(),
+          month: d.getMonth() + 1,
+          day: d.getDate()
+        }
+      };
+      let rd = new Date(this.solution.certRenewalDueDt);
+      this.dueDate = {
+        date: {
+          year: rd.getFullYear(),
+          month: rd.getMonth() + 1,
+          day: rd.getDate() + 1
+        }
+      };
     }
   }
 
@@ -183,6 +196,27 @@ export class EditSolutionComponent implements OnInit {
     let renewDate = this.dueDate.date;
     this.dueDate = renewDate.year + '-' + renewDate.month + '-' + (renewDate.day + 1);
     this.solution.certRenewalDueDt = this.dueDate;
+  }
+
+
+  getApprovalDate(value) {
+    if (value.formatted === "") {
+      this.solution.certDt = null;
+    }
+    else {
+      let d = value.formatted;
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.solution.certDt = moment(latest_date).format();
+    }
+  }
+  getDueDate(value) {
+    if (value.formatted === "") {
+      this.solution.certRenewalDueDt = null;
+    }
+    else {
+      let d = value.formatted;
+      this.solution.certRenewalDueDt = Date.parse(d);
+    }
   }
 
   onDisplaySolution() {
@@ -198,10 +232,6 @@ export class EditSolutionComponent implements OnInit {
         this.solution.certDocDTOs = data.certDocDTOs;
         var utcSeconds = this.solution.certDt;
         var dt = new Date(0);
-
-        if ((this.solution.certDt && this.solution.certRenewalDueDt) != null) {
-          this.dateRetreive();
-        }
         if (this.solution.certDocDTOs == null) {
           this.solution.certDocDTOs = [] as CertDocDTO[];
         }
@@ -280,9 +310,9 @@ export class EditSolutionComponent implements OnInit {
     let url_update = APP_CONFIG.postSolution;
     let url_add = APP_CONFIG.addSolutions;
     var formData = new FormData();
-    if ((this.solution.certDt && this.solution.certRenewalDueDt) != null) {
-      this.dateSubmit();
-    }
+    // if ((this.solution.certDt && this.solution.certRenewalDueDt) != null) {
+    //   this.dateSubmit();
+    // }
     this.solution.updatedBy = Cookie.get('userName');
     formData.append('solution', JSON.stringify(this.solution));
     for (let i = 0; i < this.files.length; i++) {
