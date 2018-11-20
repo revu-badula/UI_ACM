@@ -1,0 +1,244 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Policy File</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-row">
+      <div class="col-md-12">
+        <form #myFileForm="ngForm">
+          <label class="input">Attachment</label>
+            <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx"
+              #fileInput (change)="getFile($event)" required>
+
+          
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+    <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark" (click)="compareFile();c()">Compare</button>
+  </div>
+</ng-template>
+
+
+<ng-template #content1 let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Info</h4>
+  </div>
+  <div class="modal-body">
+    <p>{{info}}</p>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Ok</button>
+    <button *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+  </div>
+</ng-template>
+
+
+
+
+<!-- <div>
+    <form #myForm="ngForm" class="former">
+      <fieldset [disabled]="showInitial">
+  
+        <div class="plus">
+  
+  
+          <span class=" title elipsis pull-right" *ngIf="showEdit">
+            <a>
+              <fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+            </a>
+          </span>
+  
+          <span *ngIf="showLegalBox" class=" title elipsis pull-right">
+            <a (click)="saveAudit()" *ngIf="myForm.valid">
+              <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+          </span>
+  
+          <span class=" title elipsis pull-right">
+            <a title="Application audit history">
+              <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+          </span>
+  
+          <span class=" title elipsis pull-right">
+  
+            <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
+              <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+            <a (click)="showAudit()" title="Go back to audit section.">
+              <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+          </span>
+        </div>
+        <div class="infoBox">
+          <div class="headerOfBox">
+            <h4>Details</h4>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group col-md-6">
+  
+              <label for="inputState">Definitive Source<span class="asterisk">*</span></label>
+              <input *ngIf="!showOriginal" type="text" class="form-control" name="auditName" [(ngModel)]="appAssess.auditName"
+                readonly>
+              <select *ngIf="showOriginal" style="width:50%;" ngModel class="form-control" id="definitiveSource" required name="assessName"
+                (change)="selectDefinitive($event.target.value)">
+                <option value="">Choose...</option>
+                <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{
+                  auditType.auditTypeName
+                  }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Type/Policy<span class="asterisk">*</span></label>
+              <input *ngIf="!showOriginal" type="text" class="form-control" name="policyId" [(ngModel)]="polName"
+                readonly>
+              <select *ngIf="showOriginal" style="width:50%;" ngModel class="form-control" id="typePolicy" name="policyId" required (change)="selectType($event.target.value)">
+                <option value="">Choose...</option>
+                <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{
+                  policyType.policyGrpName
+                  }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Assessment Name<span class="asterisk">*</span></label>
+              <input *ngIf="!showOriginal" type="text" class="form-control" id="lastName" name="auditType" value=""
+                [(ngModel)]="appAssess.name" readonly>
+              <input *ngIf="showOriginal" ngModel type="text" class="form-control" id="lastName" name="auditType" value=""
+                [(ngModel)]="appAssess.name" required>
+            </div>
+  
+            <div class="form-group col-md-6">
+              <label for="lastName">Assessment Date</label>
+              <input *ngIf="!showOriginal" type="text" class="form-control" name="vauditDate" [(ngModel)]="vassessDate"
+                readonly>
+              <my-date-picker *ngIf="showOriginal" id="assessmentDate" ngModel name="assessmentDate" class="inputState1" (dateChanged)="getAuditDate($event)"
+                [(ngModel)]="assessmentDt" required></my-date-picker>
+  
+  
+            </div>
+  
+  
+  
+  
+            <div class="form-group col-md-6">
+              <label for="dueDate">Next Assessment Date</label>
+              <my-date-picker id="nextDate" name="nextDate" [options]="myDatePickerOptions" class="inputState1" (dateChanged)="getDate($event)" ngModel
+                [(ngModel)]="nextAssessmentDt" required></my-date-picker>
+  
+            </div>
+            <div class="form-group col-md-6">
+  
+              <label for="inputState">Overall Status<span class="asterisk">*</span></label>
+              <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus"
+                [(ngModel)]="appAssess.status" readonly>
+              <select *ngIf="showOriginal || showStatus" style="width:50%;" ngModel id="modelSolution" [(ngModel)]="appAssess.status" class="form-control"
+                name="overallStatus" (change)="getNextDate($event.target.value)" required>
+                <option value="">Choose...</option>
+                <option value="Open">Open</option>
+                <option value="Suspended">Suspended</option>
+                <option value="Close">Close</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+  
+    </form>
+  </div> -->
+
+
+
+
+<div class="show">
+  <form class="former">
+    <!-- <div class="form-row">
+        <p>
+          <b>POLICIES</b>
+        </p>
+        <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
+      </div> -->
+    <div class="plus">
+
+      <span class="title elipsis pull-right">
+        <a title="Compare policies">
+          <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
+        </a>
+        <a title="Send notifications">
+          <i class="fa  fa-envelope-o" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+        <a title="Download compared policies" (click)="downloadFile()">
+          <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+      </span>
+    </div>
+    <div class="infoBox">
+      <div class="headerOfBox">
+        <h4>Policies</h4>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+
+            <th scope="col" (click)="handleSort('controlNumber')">Control Number and Description<i class="fa fa-arrow-down"
+                *ngIf="!desc"></i>
+              <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+            <th scope="col" (click)="handleSortPol('policyName')">Policy Name<i class="fa fa-arrow-down" *ngIf="!descpolname"></i>
+              <i class="fa fa-arrow-up" *ngIf="descpolname"></i></th>
+            <th scope="col">Priority</th>
+            <th scope="col">Source Value</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="!showRow">
+
+          <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+
+            <td>
+              <a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
+                policy.policyDTO.controlNumber
+                }}</a>
+            </td>
+            <td>{{ policy.policyDTO.policyName }}</td>
+            <td>{{ policy.policyDTO.priority }}</td>
+            <td>{{ policy.policyDTO.policyVal }}</td>
+            <td>{{ policy.status }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="showRow">
+          <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+
+            <td>
+              <a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a>
+            </td>
+            <td>{{ policy.policyName }}</td>
+            <td>{{ policy.priority }}</td>
+            <td>{{ policy.policyVal }}</td>
+            <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
+
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </form>
+
+
+</div>
+<!-- <router-outlet></router-outlet> -->

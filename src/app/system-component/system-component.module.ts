@@ -54,6 +54,8 @@ import { SystemAssessRecomendComponent } from './system-tab/system-assessment/sy
 import { SystemAssessSecurityComponent } from './system-tab/system-assessment/system-assess-security/system-assess-security.component';
 import { SystemAssessManagementComponent } from './system-tab/system-assessment/system-assess-management/system-assess-management.component';
 import { LocalityComponentModule } from '../locality-component/locality-component.module';
+import { SystemassesscontrolComponent } from './system-tab/system-assessment/systemassesscontrol/systemassesscontrol.component';
+import { SystemassesslandingComponent } from './system-tab/system-assessment/systemassesslanding/systemassesslanding.component';
 
 
 @NgModule({
@@ -82,6 +84,6 @@ import { LocalityComponentModule } from '../locality-component/locality-componen
   ],
   declarations: [SystemAddComponentComponent, SystemTabComponent,SystemComponentComponent, SystemDetailsComponent, SystemSolutionsComponent, SystemSolutionsLinkComponent, SystemSolutionstablelinkComponent, SystemBusinessComponent, SystemAuditComponent, SystemAuditDetailsComponent, SystemAuditFindingsComponent, SystemAuditRecomendationsComponent, SystemLegalComponent, SystemAuditManagementComponent, SystemSecurityComponent, SystemAuditActionComponent, SystemAuditBusinessriskComponent, SystemAuditSecurityriskComponent, 
   SystemAuditBudgetComponent, SystemAuditAttachmentsComponent, SystemAssessmentComponent, 
-  SystemTechnicalComponent,SystemFilterPipeDate, SystemFilterAuditName,SystemAuditFirstComponent, SystemAuditDetailsTab, SystemAuditLessonsComponent, SystemAssessDetailsComponent, SystemAssessTabComponent,SystemAuditDetailsTab1, SystemLegalformComponent, SystemLegalmainComponent,KeysPipe, SystemAssessDowntabsComponent, SystemAssessFindComponent, SystemAssessActionComponent, SystemAssessAttachmentsComponent, SystemAssessBudgetComponent, SystemAssessBusinessComponent, SystemAssessLessonsComponent, SystemAssessRecomendComponent, SystemAssessSecurityComponent, SystemAssessManagementComponent]
+  SystemTechnicalComponent,SystemFilterPipeDate, SystemFilterAuditName,SystemAuditFirstComponent, SystemAuditDetailsTab, SystemAuditLessonsComponent, SystemAssessDetailsComponent, SystemAssessTabComponent,SystemAuditDetailsTab1, SystemLegalformComponent, SystemLegalmainComponent,KeysPipe, SystemAssessDowntabsComponent, SystemAssessFindComponent, SystemAssessActionComponent, SystemAssessAttachmentsComponent, SystemAssessBudgetComponent, SystemAssessBusinessComponent, SystemAssessLessonsComponent, SystemAssessRecomendComponent, SystemAssessSecurityComponent, SystemAssessManagementComponent, SystemassesscontrolComponent, SystemassesslandingComponent]
 })
 export class SystemComponentModule {}

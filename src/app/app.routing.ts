@@ -137,6 +137,8 @@ import { SubControlNameComponent } from './control-name/sub-control-name/sub-con
 import { AssessControlComponent } from './locality-component/locality-tab/locality-assessment/assess-control/assess-control.component';
 import { AuditLandingComponent } from './locality-component/locality-tab/locality-audit/audit-landing/audit-landing.component';
 import { AssesslandingComponent } from './locality-component/locality-tab/locality-assessment/assesslanding/assesslanding.component';
+import { SystemassesscontrolComponent } from './system-component/system-tab/system-assessment/systemassesscontrol/systemassesscontrol.component';
+import { SystemassesslandingComponent } from './system-component/system-tab/system-assessment/systemassesslanding/systemassesslanding.component';
 
 const appRoutes: Routes = [
 
@@ -434,7 +436,14 @@ const appRoutes: Routes = [
             //canActivate: [WorkflowGuard],
 
             children: [{
+              
               path: '',
+              component: SystemassesslandingComponent, canActivate: [AuthGuard]
+              // canActivate: [AuthGuard]
+            },
+            {
+              
+              path: 'sysassessoverview',
               component: SystemAssessTabComponent, canActivate: [AuthGuard]
               // canActivate: [AuthGuard]
             },
@@ -452,6 +461,11 @@ const appRoutes: Routes = [
               {
                 path: 'find2',
                 component: SystemAssessFindComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
+                // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+              },
+              {
+                path: 'syscontrol',
+                component: SystemassesscontrolComponent, canActivate: [SystemGuardAssess], canDeactivate: [CanDeactivateGuard]
                 // canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
               },
               {

@@ -53,16 +53,15 @@
             <div class="form-group col-md-6">
 
                 <label for="inputState">Assessment Attachments</label>
-               
+                <input type="file" name="file" #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
+
                 
             </div>
             
             </div>
-             <div class="col-sm-5 col-md-5 col-lg-5">
-                <input type="file" name="file" #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
-
-							
-            </div>
+           
+               
+					
             </fieldset>
             <br>
             <table border="1">

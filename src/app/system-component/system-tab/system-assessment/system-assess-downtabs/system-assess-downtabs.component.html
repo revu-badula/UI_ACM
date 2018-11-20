@@ -1,7 +1,7 @@
 <div class="form-div">
     <form class="former">
 
-        <div class="form-row">
+        <!-- <div class="form-row">
             <div class="form-group col-md-6">
 
                 <label for="inputState">System Acronym</label>
@@ -14,11 +14,11 @@
                 <input type="text" class="form-control" id="lastName" value="{{ sysName}}" readonly>
             </div>
 
-        </div>
+        </div> -->
 
 
 
-        <div class="form-row">
+        <!-- <div class="form-row">
 
 
             <div class="form-group col-md-6">
@@ -30,51 +30,60 @@
                 <label for="email">Updated at</label>
                 <input type="text" class="form-control" id="email" value="{{ updatedTime }}" readonly>
             </div>
+        </div> -->
+
+
+        <div class="form-row">
+            <div class="form-group col-md-2.5" style="margin-top: 4rem;">
+                <div class="wrapper1">
+                    <ul class="StepProgress">
+                        <li class="StepProgress-item is-done">
+                            <a routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/first2"
+                                [routerLinkActiveOptions]="{exact: true}">Details</a>
+                        </li>
+                        <li class="StepProgress-item is-done">
+                                <a routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/syscontrol"
+                                    [routerLinkActiveOptions]="{exact: true}">Access Controls</a>
+                            </li>
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/find2">Findings</a>
+                        </li>
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a  routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/recomendation2">Recomendations</a>
+                        </li>
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a  routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/management2">Management
+                                Response</a>
+                        </li>
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a  routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/action2">Action
+                                Plan</a>
+                        </li>
+
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/brisk2">Business
+                                Risk</a>
+                        </li>
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a  routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/srisk2">Security
+                                Risk</a>
+                        </li>
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a  routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/budget2">Budget</a>
+                        </li>
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a  routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/attachment2">Attachments</a>
+                        </li>
+                        <li class="StepProgress-item is-done" [ngClass]="{disabled:disabled}">
+                            <a  routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/lessons2">Lessons
+                                Learned</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="float:right" class="form-group col-md-9">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </form>
-</div>
-
-<div class="form-div">
-    <div class="head">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/first2"
-                    [routerLinkActiveOptions]="{exact: true}">Details</a>
-            </li>
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/find2">Findings</a>
-            </li>
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/recomendation2">Recomendations</a>
-            </li>
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/management2">Management
-                    Response</a>
-            </li>
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/action2">Action
-                    Plan</a>
-            </li>
-
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/brisk2">Business
-                    Risk</a>
-            </li>
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/srisk2">Security
-                    Risk</a>
-            </li>
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/budget2">Budget</a>
-            </li>
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/attachment2">Attachments</a>
-            </li>
-            <li class="nav-item" [ngClass]="{disabled:disabled}">
-                <a class="nav-link" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/lessons2">Lessons
-                    Learned</a>
-            </li>
-        </ul>
-    </div>
-    <router-outlet></router-outlet>
 </div>
