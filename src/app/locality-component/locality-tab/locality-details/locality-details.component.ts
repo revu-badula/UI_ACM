@@ -5,7 +5,7 @@ import { File } from 'babel-types';
 import { Locality, applicationView, WorkHours } from '../../../data_model_locality';
 import { Component, OnInit, HostListener, ViewChild, ElementRef, TemplateRef, NgModule } from '@angular/core';
 import { ApiserviceService } from '../../../apiservice.service';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm, PatternValidator } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../../../util.service';
@@ -252,10 +252,12 @@ export class LocalityDetailsComponent implements OnInit {
   }
 
   getNumber(value) {
-
-    let phnNo = new RegExp("e");
-    console.log(phnNo.test(value));
+  
     if (value.length === 10) {
+      let val: any = +value;
+      let pattern = /[0-9\+\-\ ]/;
+      let phnTest = pattern.test(val);
+      if(phnTest){
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -263,6 +265,7 @@ export class LocalityDetailsComponent implements OnInit {
       let d3 = value.slice(6, 10);
       let phm = pn + pn2 + d3;
       this.locality.phoneNumber = phm;
+      }
 
     }
     else {

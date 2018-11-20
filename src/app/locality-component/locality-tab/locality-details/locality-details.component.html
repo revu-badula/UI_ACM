@@ -96,8 +96,8 @@
 							<label for="email">Phone No <span class="asterisk">*</span></label>
 							<input type="tel" class="form-control" name="phoneNumber" #phoneNumber="ngModel" (keydown)="getPhoneNumber($event,$event.target.value)"
 							 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
-							 onlyInteger>
-							<span class="help-block" style="color:red;padding-left:43%;" *ngIf="phoneNumber.errors?.required && phoneNumber.invalid && phoneNumber.dirty">
+							 onlyInteger autocomplete="off">
+							<span class="help-block" style="color:red;padding-left:43%;" *ngIf="phoneNumber.errors?.required && phoneNumber.dirty">
 								phoneNo is required
 							</span>
 
