@@ -16,8 +16,6 @@
 
 	<form #myForm="ngForm" class="former">
 
-		<div class="panel-heading">
-			<label class="details">LESSONS</label>
 			<div class="plus">
 					<span class=" title elipsis pull-right" *ngIf="showEdit">
 							<a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
@@ -49,9 +47,9 @@
 
 			</div>
 
-		</div>
-		<hr />
 		<fieldset [disabled]="showForm">
+			<div class="infoBox">
+			<div class="headerofBox"><h4>Lessons</h4></div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 
@@ -73,7 +71,7 @@
 					<label for="inputState">Description</label>
 
 					<textarea name="description" id="" rows="10" class="form-control" [(ngModel)]="appAudit.lessonsLearnedDescription"></textarea>
-				
+				</div>
 			</div>
 		</fieldset>
 	</form>

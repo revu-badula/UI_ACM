@@ -20,24 +20,21 @@
 	 [name]="'edit'" (click)="editClick()"></fa>
 </div>
 
-<form #formName="ngForm" class="former clear-right" (ngSubmit)="createSystem()" enctype="multipart/form-data">
+<form #formName="ngForm"  (ngSubmit)="createSystem()" enctype="multipart/form-data">
+<br>
+<br>
+
 	<div id="form1">
 		<fieldset [disabled]="editableForm">
 
-
-			<div class="tip">
-				<p class="tip-text">
-					<fa class="light-bulb" [name]="'lightbulb-o'"></fa>
-					Tip:
-				</p>
-			</div>
-			<h5>General Information</h5>
+				<div class="infoBox">
+						<div class="headerOfBox"><h4>Business</h4></div>
 
 			<div class="form-row">
 				<div class="form-group col-md-6">
 
-					<label for="inputState">System Acronym</label>
-					<div class="asterisk">*</div>
+					<label for="inputState">System Acronym <span class="asterisk">*</span></label>
+					
 					<input type="text" *ngIf="showBox" class="form-control" name="acronym" [(ngModel)]="system.acronym" required>
 					<input type="text" *ngIf="!showBox" class="form-control" name="acronym" [(ngModel)]="system.acronym" required
 					 readonly>
@@ -65,7 +62,7 @@
 			</div>
 
 
-			<hr />
+		</div>
 			<h5>Contact Information</h5>
 			<div class="form-row">
 				<div class="form-group col-md-6">

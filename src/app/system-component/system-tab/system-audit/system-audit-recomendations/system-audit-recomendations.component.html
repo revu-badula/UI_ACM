@@ -15,8 +15,6 @@
 <div class="form-div">   
  <form #myForm="ngForm" class="former"> 
  
-        <div class="panel-heading">
- <label class="details">RECOMENDATIONS</label>
       <div class="plus">
       
       <span *ngIf="!showForm" class=" title elipsis pull-right">
@@ -48,11 +46,11 @@
   
   
       </div>
-     
-    </div>
-    <hr/>
+
  
  <fieldset [disabled]="showForm"> 
+        <div class="infoBox">
+            <div class="headerOfBox"><h4>Recommendations</h4></div>
         <div class="form-row">
             <div class="form-group col-md-6">
 
@@ -64,7 +62,9 @@
                 <label for="lastName">Estimated completion date</label>
                 <my-date-picker  (dateChanged)="getEstDate($event)" [(ngModel)]="estDate" name="estDate"></my-date-picker>
             </div>
-            </div>
+        </div>    
+        </div>
+
         </fieldset>
     
             </form>

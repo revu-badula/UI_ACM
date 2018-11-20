@@ -29,7 +29,8 @@
 </div>
 <div class="form-div">
   <div class="former">
-
+    <div class="infoBox">
+      <div class="headerOfBox"><h4>General Information</h4></div>
     <div class="form-row">
       <div class="form-group col-md-6">
 
@@ -59,7 +60,7 @@
       </div>
     </div>
 
-
+</div>
   </div>
   <form #myForm="ngForm" (ngSubmit)="saveMOU()" enctype="multipart/form-data" class="former">
     <div class="panel-heading">
@@ -73,9 +74,8 @@
 
     </div>
     <fieldset [disabled]="showLegalBox">
-      <p>
-        <b>Legal Documents</b>
-      </p>
+        <div class="infoBox">
+            <div class="headerOfBox"><h4>Legal Documents</h4></div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -108,11 +108,13 @@
             required></my-date-picker>
         </div>
       </div>
-      <hr class="former" />
+    </div>
+    <div class="infoBox">
+        <div class="headerOfBox"><h4>MOU Attachments</h4></div>
       <div class="form-row">
         <div class="form-group col-md-6">
 
-          <label for="inputState">MOU Attachments</label>
+       
 
 
         </div>
@@ -145,7 +147,7 @@
     </p> -->
       </div>
 
-
+    </div>
     </fieldset>
 
   </form>

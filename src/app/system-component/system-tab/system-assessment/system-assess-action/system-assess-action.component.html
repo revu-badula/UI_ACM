@@ -14,8 +14,8 @@
     </ng-template>
 <div class="form-div">    
 <form #myForm="ngForm" class="former">
- <div class="panel-heading">
- <label class="details">ACTION PLAN</label>
+
+
       <div class="plus">
       
       <span *ngIf="showSave" class=" title elipsis pull-right">
@@ -47,20 +47,21 @@
   
   
       </div>
-     
-    </div>
-    <hr/>    
+      
+        <div class="infoBox">
+
+        <div class="headerOfBox">Action Plan</div>
         <fieldset [disabled]="showForm">
                   <div class="form-row">
             <div class="form-group col-md-6">
 
-                <label for="inputState">Start date</label>
-                <div class="asterisk">*</div>
+                <label for="inputState">Start date<span class="asterisk">*</span></label>
+                
                 <my-date-picker name="startDate" ngModel (dateChanged)="getStartDate($event)" [(ngModel)]="startDate" required></my-date-picker>
             </div>
             <div class="form-group col-md-6">
                 <label for="lastName">End date</label>
-                <div class="asterisk">*</div>
+                
                 <my-date-picker name="endDate" ngModel (dateChanged)="getEndDate($event)" [options]="myDatePickerOptions" [(ngModel)]="endDate" required></my-date-picker>
             </div>
         </div>
@@ -105,16 +106,7 @@
         </fieldset>
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    </div>
             </form>
             </div>
 

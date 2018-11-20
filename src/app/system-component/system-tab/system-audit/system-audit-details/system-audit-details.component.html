@@ -6,11 +6,12 @@
     <fa class="edit-icon icons" [name]="'edit'" style="float:right;" (click)="showPlus()"></fa>
 
 </div>
-
-
+<br>
+<br>
 <div class="form-div">
-    <form class="former">
-
+    <div class="former">
+    <form class="infoBox">
+        <div class="headerOfBox"><h4>General Information</h4></div>
         <div class="form-row">
             <div class="form-group col-md-6">
 
@@ -42,12 +43,14 @@
         </div>
     </form>
 </div>
-
+</div>
+<br>
 <div class="plus" *ngIf="showPlusButton">
     <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right;" (click)="goTo()"></i>
 </div>
-<div>
-    <form class="former">
+<div class="former">
+    <form class="infoBox">
+        <div class="headerOfBox"><h4>Audit Table</h4></div>
         <table class="table table-striped table-hover table-bordere">
             <thead>
                 <tr>

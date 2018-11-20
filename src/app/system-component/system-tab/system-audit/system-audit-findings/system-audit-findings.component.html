@@ -15,9 +15,6 @@
 <div class="form-div">
     <form #myForm="ngForm" class="former">
 
-
-        <div class="panel-heading">
-            <label class="details">FINDINGS</label>
             <div class="plus">
                 <span class=" title elipsis pull-right" *ngIf="showEdit">
                     <a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
@@ -49,9 +46,10 @@
 
             </div>
 
-        </div>
-        <hr />
+       
         <fieldset [disabled]="showForm">
+            <div class="infoBox">
+            <div class="headerOfBox"><h4>Findings</h4></div>
             <div class="form-row">
                 <div class="form-group col-md-6">
 
@@ -92,7 +90,7 @@
                     <input type="text" name="responsibleParty" class="form-control" id="responsibleParty" [(ngModel)]="appAudit.responsibleParty">
 
                 </div>
-
+            </div>
             </div>
         </fieldset>
 

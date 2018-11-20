@@ -14,8 +14,7 @@
 </ng-template>
 <div class="form-div">
   <form #myForm="ngForm" class="former">
-    <div class="panel-heading">
-      <label class="details">BUSINESS RISK</label>
+
       <div class="plus">
 
         <span *ngIf="showSave" (click)="saveBusinessRisk()" class=" title elipsis pull-right">
@@ -48,9 +47,9 @@
 
       </div>
 
-    </div>
-    <hr/>
 
+    <div class="infoBox">
+    <div class="headerOfBox"><h4>Business Risk</h4></div>
     <fieldset [disabled]="showForm">
       <div class="form-row">
         
@@ -59,10 +58,10 @@
 
           <textarea name="description" id="" rows="10" class="form-control" [(ngModel)]="appAssess.businessRisks"></textarea>
         
-
-      </div>
+        </div>
+  
     </fieldset>
-
+  </div>
 
 
 

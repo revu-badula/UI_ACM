@@ -14,8 +14,7 @@
     </ng-template>
 <div class="form-div">
 	<form #myForm="ngForm" class="former">
-		<div class="panel-heading">
-			<label class="details">SECURITY RISK</label>
+
 			<div class="plus">
 					<span class=" title elipsis pull-right" *ngIf="showEdit">
 							<a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
@@ -47,16 +46,17 @@
 
 			</div>
 
-		</div>
-		<hr />
 		<fieldset [disabled]="showForm">
+
+				<div class="infoBox">
+				<div class="headerOfBox"><h4>Security Risk</h4></div>
 			<div class="form-row">
 
 
 					<label for="inputState">Description</label>
 
 					<textarea name="description" id="" rows="10" class="form-control" [(ngModel)]="appAudit.securityRisks"></textarea>
-
+				</div>
 
 			</div>
 		</fieldset>

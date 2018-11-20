@@ -14,7 +14,7 @@
   </ng-template>
 <div class="form-div">
   <form #myForm="ngForm" class="former" name="businessForm">
-    <div class="panel-heading">
+
       <label class="details">BUSINESS RISK</label>
       <div class="plus">
           <span class=" title elipsis pull-right" *ngIf="showEdit">
@@ -52,10 +52,11 @@
 
       </div>
 
-    </div>
     <hr/>
 
     <fieldset [disabled]="showForm">
+      <div class="infoBox"></div>
+      <div class="headerOfBox"><h4>Business Risk</h4></div>
       <div class="form-row">
         
 
