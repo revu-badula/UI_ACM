@@ -4,9 +4,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
 	<div class="modal-header">
 		<h4 class="modal-title">Success</h4>
-		<!--   <button type="button" class="close" aria-label="Close" (click)="d()"> -->
-		<!--     <span aria-hidden="true">&times;</span> -->
-		<!--   </button> -->
+	
 	</div>
 	<div class="modal-body">
 		<p>{{contentData}}</p>
@@ -28,22 +26,22 @@
 		<fieldset [disabled]="editableForm">
 
 				<div class="infoBox">
-						<div class="headerOfBox"><h4>Business</h4></div>
+						<div class="headerOfBox"><h4>General Information</h4></div>
 
 			<div class="form-row">
 				<div class="form-group col-md-6">
 
 					<label for="inputState">System Acronym <span class="asterisk">*</span></label>
 					
-					<input type="text" *ngIf="showBox" class="form-control" name="acronym" [(ngModel)]="system.acronym" required>
-					<input type="text" *ngIf="!showBox" class="form-control" name="acronym" [(ngModel)]="system.acronym" required
+					<input type="text" *ngIf="showBox"  name="acronym" [(ngModel)]="system.acronym" required>
+					<input type="text" *ngIf="!showBox"  name="acronym" [(ngModel)]="system.acronym" required
 					 readonly>
 				</div>
 				<div class="form-group col-md-6">
 
-					<label for="inputState">System Name</label>
-					<div class="asterisk">*</div>
-					<input type="text" class="form-control" name="systemName" [(ngModel)]="system.name" required>
+					<label for="inputState">System Name<span class="asterisk">*</span></label>
+					
+					<input type="text"  name="systemName" [(ngModel)]="system.name" required>
 				</div>
 
 			</div>
@@ -52,45 +50,44 @@
 
 					<label for="inputState">Last Updated by</label>
 
-					<input type="text" class="form-control" name="lastUpdatedBy" [(ngModel)]="system.updatedBy" readonly>
+					<input type="text"  name="lastUpdatedBy" [(ngModel)]="system.updatedBy" readonly>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="lastName">Updated at</label>
 
-					<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime" readonly>
+					<input type="text"  name="updatedTime" [(ngModel)]="updatedTime" readonly>
 				</div>
 			</div>
-
-
 		</div>
-			<h5>Contact Information</h5>
+		<br>
+		<div class="infoBox">
+				<div class="headerOfBox"><h4>Contact Information</h4></div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 
-					<label for="inputState">Business Owner</label>
-					<div class="asterisk">*</div>
-					<input type="text" class="form-control" name="firstName" [(ngModel)]="system.businessOwnerNameDoe" required>
+					<label for="inputState">Business Owner <span class="asterisk">*</span></label>
+					
+					<input type="text" name="firstName" [(ngModel)]="system.businessOwnerNameDoe" required>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="lastName">System Owner</label>
-					<div class="asterisk">*</div>
-					<input type="text" class="form-control" name="lastName" [(ngModel)]="system.systemOwnerNameDoe" required>
+					<label for="lastName">System Owner <span class="asterisk">*</span></label>
+					
+					<input type="text"  name="lastName" [(ngModel)]="system.systemOwnerNameDoe" required>
 				</div>
 			</div>
 
-			<hr />
-			<h5>Other Information</h5>
-
-
-			<hr />
+		</div>
+		<br>
+		<div class="infoBox">
+				<div class="headerOfBox"><h4>Other Information</h4></div>
 
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label class="label-form" for="definitiveSource"><b>System Sensitivity</b></label>
 					<div class="asterisk">*</div>
-					<input *ngIf="!showSource" type="text" class="form-control" ngModel name="sysSen" [(ngModel)]="system.systemSensitivityName"
+					<input *ngIf="!showSource" type="text"  ngModel name="sysSen" [(ngModel)]="system.systemSensitivityName"
 					 required>
-					<select *ngIf="showSource" class="form-control" [(ngModel)]="system.systemSensitivity" (change)="selectDefinitive($event.target.value)"
+					<select *ngIf="showSource" class="inputState" [(ngModel)]="system.systemSensitivity" (change)="selectDefinitive($event.target.value)"
 					 name="sysSen" required>
 						<option value="1">High</option>
 						<option value="2">Medium</option>
@@ -98,7 +95,7 @@
 					</select>
 				</div>
 			</div>
-
+		</div>
 		</fieldset>
 		<div class="buttons">
 
