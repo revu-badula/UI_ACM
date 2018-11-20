@@ -13,9 +13,9 @@
   </div>
   </ng-template>
 <div class="form-div">
-  <form #myForm="ngForm" class="former" name="businessForm">
+  <form #myForm="ngForm"  name="businessForm">
 
-      <label class="details">BUSINESS RISK</label>
+
       <div class="plus">
           <span class=" title elipsis pull-right" *ngIf="showEdit">
               <a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
@@ -52,7 +52,8 @@
 
       </div>
 
-    <hr/>
+  <br>
+  <br>
 
     <fieldset [disabled]="showForm">
       <div class="infoBox"></div>
