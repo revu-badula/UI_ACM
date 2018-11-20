@@ -252,6 +252,9 @@ export class LocalityDetailsComponent implements OnInit {
   }
 
   getNumber(value) {
+
+    let phnNo = new RegExp("e");
+    console.log(phnNo.test(value));
     if (value.length === 10) {
       let data = value.slice(0, 3);
       let pn = data + '-';
