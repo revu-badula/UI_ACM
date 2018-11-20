@@ -139,6 +139,8 @@ import { AuditLandingComponent } from './locality-component/locality-tab/localit
 import { AssesslandingComponent } from './locality-component/locality-tab/locality-assessment/assesslanding/assesslanding.component';
 import { SystemassesscontrolComponent } from './system-component/system-tab/system-assessment/systemassesscontrol/systemassesscontrol.component';
 import { SystemassesslandingComponent } from './system-component/system-tab/system-assessment/systemassesslanding/systemassesslanding.component';
+import { SystemauditcontrolComponent } from './system-component/system-tab/system-audit/systemauditcontrol/systemauditcontrol.component';
+import { SystemauditlandingComponent } from './system-component/system-tab/system-audit/systemauditlanding/systemauditlanding.component';
 
 const appRoutes: Routes = [
 
@@ -533,6 +535,11 @@ const appRoutes: Routes = [
             children: [
               {
                 path: '',
+                component: SystemauditlandingComponent, canActivate: [AuthGuard]
+                // canActivate: [AuthGuard]
+              },
+              {
+                path: 'sysauditoverview',
                 component: SystemAuditDetailsComponent, canActivate: [AuthGuard]
                 // canActivate: [AuthGuard]
               },
@@ -544,6 +551,10 @@ const appRoutes: Routes = [
                   path: 'first',
                   component: SystemAuditFirstComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
                 },
+                {
+                path: 'auditControl',
+                component: SystemauditcontrolComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
+              },
                 {
                   path: 'find',
                   component: SystemAuditFindingsComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
