@@ -233,7 +233,7 @@ tbody tr:nth-of-type(odd) {
    }
 
 
-   .set-size {
+.set-size {
     font-size: 10em;
     text-align: center;
     display: inline-block

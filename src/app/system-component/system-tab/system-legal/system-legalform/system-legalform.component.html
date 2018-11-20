@@ -27,23 +27,26 @@
     <fa class="edit-icon icons" [name]="'edit'" (click)="editClick()"></fa>
   </div>
 </div>
+<br>
+<br>
+<div id="form1">
 <div class="form-div">
-  <div class="former">
+  
     <div class="infoBox">
       <div class="headerOfBox"><h4>General Information</h4></div>
     <div class="form-row">
       <div class="form-group col-md-6">
 
-        <label for="inputState">System Acronym</label>
-        <div class="asterisk">*</div>
-        <input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
+        <label for="inputState">System Acronym <span class="asterisk">*</span></label>
+        
+        <input type="text"   value="{{acronym}}" readonly="readonly">
       </div>
 
 
       <div class="form-group col-md-6">
-        <label for="lastName">System Name</label>
-        <div class="asterisk">*</div>
-        <input type="text" class="form-control" id="lastName" value="{{sysName}}" readonly>
+        <label for="lastName">System Name <span class="asterisk">*</span></label>
+        
+        <input type="text" value="{{sysName}}" readonly>
       </div>
     </div>
 
@@ -52,17 +55,19 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="lastName">Last updated by</label>
-        <input type="text" class="form-control" id="lastName" value={{updatedBy}} readonly="readonly" readonly>
+        <input type="text"   value={{updatedBy}} readonly="readonly" readonly>
       </div>
       <div class="form-group col-md-6">
         <label for="email">Updated at</label>
-        <input type="email" class="form-control" id="email" value="{{updatedTime}}" readonly>
+        <input type="email"  id="email" value="{{updatedTime}}" readonly>
       </div>
     </div>
 
 </div>
-  </div>
-  <form #myForm="ngForm" (ngSubmit)="saveMOU()" enctype="multipart/form-data" class="former">
+ 
+  <form #myForm="ngForm" (ngSubmit)="saveMOU()" enctype="multipart/form-data">
+    <br>
+    <br>
     <div class="panel-heading">
 
       <span *ngIf="!showLegalBox" class=" title elipsis pull-right"> <a (click)="saveMOU()" *ngIf="myForm.valid" title="Save MOU"
@@ -71,21 +76,24 @@
           <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
         </a>
       </span>
-
     </div>
+    <br>
+    <br>
+
     <fieldset [disabled]="showLegalBox">
+      <br>
+      <br>
+      <br>
         <div class="infoBox">
             <div class="headerOfBox"><h4>Legal Documents</h4></div>
-
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputState">Name</label> <input type="text" class="form-control" name="name" [(ngModel)]="mou.name"
-            required>
+          <label for="inputState">Name</label> 
+          <input type="text"  name="name" [(ngModel)]="mou.name" required>
         </div>
-      </div>
-      <div class="form-row">
+      
         <div class="form-group col-md-6">
-          <label for="inputState">Signed</label> <select id="modelSolution" class="form-control" name="signed"
+          <label for="inputState">Signed</label> <select class="inputState1" name="signed"
             [(ngModel)]="mou.signed" required>
             <option selected>Choose...</option>
             <option [value]="true">Yes</option>
@@ -96,30 +104,25 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputState">Date of Receipt</label>
-          <my-date-picker name="mydate" [options]="myDatePickerOptions" (dateChanged)="getDate($event)" [(ngModel)]="moureceiptdt"
+          <my-date-picker class="inputState1" name="mydate" [options]="myDatePickerOptions" (dateChanged)="getDate($event)" [(ngModel)]="moureceiptdt"
             required></my-date-picker>
         </div>
-      </div>
-      <div class="form-row">
+      
         <div class="form-group col-md-6">
           <label for="inputState">Recertification Date</label>
 
-          <my-date-picker name="myname" [options]="myDatePickerOptions" (dateChanged)="getNextDate($event)" [(ngModel)]="mourecertdt"
+          <my-date-picker class="inputState1" name="myname" [options]="myDatePickerOptions" (dateChanged)="getNextDate($event)" [(ngModel)]="mourecertdt"
             required></my-date-picker>
         </div>
       </div>
     </div>
+
+    <br>
+    <br>
+    <br>
     <div class="infoBox">
         <div class="headerOfBox"><h4>MOU Attachments</h4></div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-
-       
-
-
-        </div>
-
-      </div>
+     
       <div class="col-sm-5 col-md-5 col-lg-5">
         <input type="file" #fileInput (change)="createMOUDTO($event)">
       </div>
@@ -139,15 +142,11 @@
             </td>
           </tr>
         </table>
-        <!-- <p *ngFor="let file of mou.mouDocDTOs let i=index">
-    <span *ngIf="file.status"><a (click)="getFile(file.mouDocId)" style="color:blue;cursor:pointer;">{{file.fileName}}</a>
-    <i (click)="deleteFile(file.mouDocId,i)" class="fa fa-trash" aria-hidden="true"
-          style="font-size: 24px;"></i>
-    </span>
-    </p> -->
+ 
       </div>
 
     </div>
     </fieldset>
-
   </form>
+  </div>
+</div>
