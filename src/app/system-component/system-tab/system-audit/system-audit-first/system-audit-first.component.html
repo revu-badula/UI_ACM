@@ -86,6 +86,11 @@
 
           </div>
 
+          <div class="infoBox">
+              <div class="headerOfBox">
+                <h4>Audit Details</h4>
+              </div>
+
              <div class="form-row">
           <div class="form-group col-md-6">
 
@@ -146,6 +151,7 @@
             </select>
           </div>
         </div>
+      </div>
       </fieldset>
 
     </form>
@@ -180,7 +186,7 @@
 
 
 
-<div class="show" *ngIf="showTable">
+<!-- <div class="show" *ngIf="showTable">
   <form class="infoBox">
     <div class="headerOfBox"><h4>Policies</h4></div>
     <div class="form-row">
@@ -201,7 +207,7 @@
         </a>
       </span>
     </div>
-    <!-- <hr class=htag/> -->
+  
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -216,14 +222,13 @@
             <i class="fa fa-arrow-down" *ngIf="!priority"></i> <i class="fa fa-arrow-up" *ngIf="priority"></i>
           </th>
           <th scope="col">Source Value</th>
-          <!-- <th scope="col">Implemented Value</th>
-            <th scope="col">Comparison results</th> -->
+      
           <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-          <!-- <td>{{ policy.controlNumber }}</td> -->
+
           <td>
             <a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{ policy.controlNumber
               }}</a>
@@ -244,4 +249,4 @@
   </form>
 
 
-</div>
+</div> -->

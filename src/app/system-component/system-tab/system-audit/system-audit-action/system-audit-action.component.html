@@ -13,9 +13,8 @@
     </div>
     </ng-template>
 <div class="form-div">
-    <form #myForm="ngForm" class="former">
-        <div class="panel-heading">
-            <label class="details">ACTION PLAN</label>
+    <form #myForm="ngForm">
+   
             <div class="plus">
                     <span class=" title elipsis pull-right" *ngIf="showEdit">
                             <a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
@@ -52,9 +51,13 @@
 
             </div>
 
-        </div>
-        <hr/>
-        <fieldset [disabled]="showForm" class="infoBox">
+            <br>
+            <br>
+
+      
+        <fieldset [disabled]="showForm">
+                <div class="infoBox">
+                        <div class="headerOfBox"><h4>Action Plan</h4></div>
             <div class="form-row">
                 <div class="form-group col-md-6">
 
@@ -99,7 +102,7 @@
 
                     <label for="inputState">Closeout Comments</label>
                     <textarea name="Comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanCloseoutComments"></textarea>
-
+</div>
                             </div>
 
 

@@ -24,21 +24,23 @@
       <fa class="edit-icon icons" [name]="'edit'" (click)="editClick()"></fa>
     </div>
   </div>
+  <br>
+  <div id="form1">
   <div class="form-div">
-    <div class="former">
+   
       <div class="infoBox">
         <div class="headerOfBox"><h4>General Information</h4></div>
       <div class="form-row">
         <div class="form-group col-md-6">
   
-          <label for="inputState">System Acronym</label>
-          <div class="asterisk">*</div>
-          <input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
+          <label for="inputState">System Acronym <span class="asterisk">*</span></label>
+          
+          <input type="text"  id="lastName" value="{{acronym}}" readonly="readonly">
         </div>
         <div class="form-group col-md-6">
-            <label for="lastName">System Name</label>
-            <div class="asterisk">*</div>
-            <input type="text" class="form-control" id="lastName" value="{{sysName}}" readonly>
+            <label for="lastName">System Name  <span class="asterisk">*</span></label>
+           
+            <input type="text"  id="lastName" value="{{sysName}}" readonly>
           </div>
         
       </div>
@@ -49,26 +51,24 @@
         
         <div class="form-group col-md-6">
             <label for="lastName">Last updated by</label>
-            <input type="text" class="form-control" id="lastName" value="{{updatedBy}}"  readonly="readonly">
+            <input type="text"  id="lastName" value="{{updatedBy}}"  readonly="readonly">
           </div>
         <div class="form-group col-md-6">
           <label for="email">Updated at</label>
-          <input type="text" class="form-control" id="updatedAt" value="{{updatedTime}}" readonly>
+          <input type="text" id="updatedAt" value="{{updatedTime}}" readonly>
         </div>
       </div>
-  
       </div>
-    </div>
+   
+      <br>
+      <br>
     <div class="plus">
-  
       <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right;" *ngIf="showSigned" (click)="createMOU()"></i>
-  
-  
-  
-  
     </div>
   
-    <div class="former clear-right">
+    <br>
+    <br>
+
       <div class="infoBox">
       <table class="table table-striped table-hover table-bordere">
         <thead>
@@ -111,6 +111,5 @@
       <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
-
   </div>
   <router-outlet></router-outlet>

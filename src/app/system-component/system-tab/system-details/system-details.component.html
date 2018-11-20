@@ -60,6 +60,8 @@
 			</div>
 		</div>
 		<br>
+		<br>
+		<br>
 		<div class="infoBox">
 				<div class="headerOfBox"><h4>Contact Information</h4></div>
 			<div class="form-row">
@@ -78,13 +80,15 @@
 
 		</div>
 		<br>
+		<br>
+		<br>
 		<div class="infoBox">
 				<div class="headerOfBox"><h4>Other Information</h4></div>
 
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label class="label-form" for="definitiveSource"><b>System Sensitivity</b></label>
-					<div class="asterisk">*</div>
+					<label class="label-form" for="definitiveSource"><b>System Sensitivity</b> <span class="asterisk">*</span></label>
+					
 					<input *ngIf="!showSource" type="text"  ngModel name="sysSen" [(ngModel)]="system.systemSensitivityName"
 					 required>
 					<select *ngIf="showSource" class="inputState" [(ngModel)]="system.systemSensitivity" (change)="selectDefinitive($event.target.value)"
@@ -97,10 +101,11 @@
 			</div>
 		</div>
 		</fieldset>
+	</div>
 		<div class="buttons">
 
 			<button *ngIf="isShow" type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
 			<button type="cancel" class="cancel btn btn-primary" (click)="goBack($event)">Cancel</button>
 		</div>
-	</div>
+	
 </form>
