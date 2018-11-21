@@ -52,14 +52,14 @@
                     <div class=" form-row">
                         <div class="form-group col-md-6">
                             <label for="familyName">Last Updated By</label>
-                            <input type="text" class="form-control" id="updatedBy" ngModel name="updatedBy"
-                                [(ngModel)]="policyAccess.updatedBy" readonly>
+                            <input type="text" class="form-control" id="updatedBy" ngModel name="updatedBy" [(ngModel)]="policyAccess.updatedBy"
+                                readonly>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="familyName">Last Updated Date</label>
-                            <input type="text" class="form-control" id="updatedTs" ngModel name="updatedTs"
-                                [ngModel]="policyAccess.updatedTs | filter"  readonly>
+                            <input type="text" class="form-control" id="updatedTs" ngModel name="updatedTs" [ngModel]="policyAccess.updatedTs | filter"
+                                readonly>
                         </div>
                     </div>
 
@@ -93,7 +93,12 @@
 
                         <div class="form-group col-md-6">
                             <label for="assignTo">Assign To</label>
-                            <input type="text" class="form-control" id="assignTo">
+                             <input *ngIf="showEli" type="text" class="form-control" name="assignTo" id="assignTo" [(ngModel)]="policyAccess.assignTo" readonly> 
+                            <select *ngIf="!showEli" name="assignTo" style="width:50%;" [(ngModel)]="policyAccess.assignTo" class="form-control" id="searchUsers" (change)="policyAccess.assignTo=$event.target.value">
+                                <option selected>Choose...</option>
+                                <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+                                    getUser.firstName}} {{getUser.lastName }} </option>
+                            </select>
                         </div>
                     </div>
 
@@ -106,9 +111,9 @@
                         <div class="form-group col-md-6">
                             <label for="status">Status</label>
                             <input *ngIf="showForm" type="text" name="status" class="form-control" id="status"
-                            [ngModel]="policyAccess.status | controlPipe">
-                            <select class="form-control" id="inputState" name="status" [(ngModel)]="policyAccess.status" (change)="policyAccess.status = $event.target.value"
-                                *ngIf="!showForm">
+                                [ngModel]="policyAccess.status | controlPipe">
+                            <select class="form-control" id="inputState" name="status" [(ngModel)]="policyAccess.status"
+                                (change)="policyAccess.status = $event.target.value" *ngIf="!showForm">
                                 <option value="true">Open</option>
                                 <option value="false">Close</option>
                             </select>
@@ -256,7 +261,8 @@
                     <div class="headerOfBox">
                         <h4>Artifacts</h4>
                     </div>
-                    <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="policyAccess.artifacts" [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
+                    <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="policyAccess.artifacts"
+                        [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
                 </div>
 
                 <br>
@@ -268,7 +274,8 @@
                         <h4>Non-COV</h4>
 
                     </div>
-                    <textarea [ngxSummernote]="config" name="noncov" [(ngModel)]="policyAccess.nonCov" [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
+                    <textarea [ngxSummernote]="config" name="noncov" [(ngModel)]="policyAccess.nonCov"
+                        [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
                 </div>
 
                 <br>

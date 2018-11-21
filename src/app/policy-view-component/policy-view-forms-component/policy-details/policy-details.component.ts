@@ -105,6 +105,11 @@ export class PolicyDetailsComponent implements OnInit {
         this.policyDisplay = data.policyGrpDTO;
         this.policies = data.policyDTOs;
         this.policyGrpData = data.policyGrpDTO;
+        let dt= new Date(this.policyGrpData.updatedTs);
+        let month=dt.getMonth()+1;
+        let day=dt.getDate();
+        let year=dt.getFullYear();
+        this.updatedAt = month+"/"+day+"/"+year;
         let dUpdatedAt = new Date(this.policyDisplay.updatedTs);
         this.displayUpdatedAt = {
           year: dUpdatedAt.getFullYear(),

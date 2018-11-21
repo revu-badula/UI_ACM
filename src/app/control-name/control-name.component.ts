@@ -30,6 +30,7 @@ export class ControlNameComponent implements OnInit {
   policyDocumentDTO: PolicyDocumentsDTO;
   files: File[] = [];
   showDiv: boolean;
+  public users: any;
   displayField: number = 2;
   public definitive: boolean;
   public policy: boolean;
@@ -85,8 +86,8 @@ export class ControlNameComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.body.scrollTop=0;
-    document.documentElement.scrollTop=0;
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
     this.activatedRoute.params.subscribe(params => {
       this.policyUrlId = params['id'];
@@ -95,6 +96,7 @@ export class ControlNameComponent implements OnInit {
     this.getPolicy(this.policyUrlId);
     this.showDropdown();
     this.fetchPolicies(1);
+    this.getUsers();
 
   }
 
@@ -104,7 +106,7 @@ export class ControlNameComponent implements OnInit {
   }
 
   getPolicy(id) {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getPolicy(id)
       .subscribe((data: any) => {
         this.loading = false;
@@ -114,8 +116,8 @@ export class ControlNameComponent implements OnInit {
         if (this.policyAccess.endDate != null) {
           this.dateRetreive();
         }
-      },error =>{
-        this.loading=false;
+      }, error => {
+        this.loading = false;
         console.log(error);
       });
   }
@@ -238,7 +240,7 @@ export class ControlNameComponent implements OnInit {
   }
 
   addPolicy() {
-    this.loading=true;
+    this.loading = true;
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
       keyboard: false
@@ -257,7 +259,7 @@ export class ControlNameComponent implements OnInit {
       this.loading = false;
       this.modalService.open(this.content, ngbModalOptions);
     }, error => {
-      this.loading=false;
+      this.loading = false;
       console.log(error);
     });
   }
@@ -268,7 +270,7 @@ export class ControlNameComponent implements OnInit {
 
   selectType(policy) {
     if (policy === 'Choose...') {
-    this.policy = false;
+      this.policy = false;
     }
     else {
       this.policy = true;
@@ -348,6 +350,15 @@ export class ControlNameComponent implements OnInit {
   checkEvent(event: any, ch: boolean) {
   }
 
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+
+      }, error => console.log(error));
+
+  }
+
   saveLink() {
 
 
@@ -360,14 +371,6 @@ export class ControlNameComponent implements OnInit {
       this.other.push(this.links[i].controlNumber);
 
     }
-
-
-
-
-
-
-
-
 
 
   }

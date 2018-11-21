@@ -55,7 +55,7 @@ export class PolicyViewFormsComponentComponent implements OnInit {
     else {
       this.policy = true;
       UtilService.policyGrpId = policy;
-      this.fetchPolicies(UtilService.policyGrpId);
+      //this.fetchPolicies(UtilService.policyGrpId);
       this.router.navigate(['dummy'], { relativeTo: this.route });
 
     }
