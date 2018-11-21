@@ -72,11 +72,11 @@
 				<br>
 				<div class="form-group col-md-6">
 					<label for="definitiveSource">Definitive Source</label>
-					<input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.definitiveSource" [name]="'definitive_source'">
+					<input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.definitiveSource" [name]="'definitive_source'" readonly>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="typePolicy">Type/Policy</label>
-					<input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.policyGrpName" [name]="'type_policy'">
+					<input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.policyGrpName" [name]="'type_policy'" readonly>
 				</div>
 				<div class="version form-group col-md-6">
 					<label class="label-form" for="updatedBy">Updated By</label>
@@ -86,7 +86,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label class="label-form" for="updtedAt">Updated At</label>
-					<input type="text" name="updatedAt" id="inputState" [ngModel]="policyGrpData.updatedTs | filter">
+					<input type="text" name="updatedAt" id="inputState" [ngModel]="policyGrpData.updatedTs | filter" readonly>
 					<!-- <my-date-picker name="myname" class="inputState1" [ngModel]="policyGrpData.updatedTs" [selDate]="displayUpdatedAt"></my-date-picker> -->
 				</div>
 			</div>
