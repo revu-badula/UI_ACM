@@ -376,6 +376,14 @@ export class EditSolutionComponent implements OnInit {
   getColor() {
     // return this.color === 'online' ? '#ffffff' : 'white';
   }
+  closeDropdown()
+  {
+    let el=document.getElementById('renname');
+    if(el.classList.contains('open'))
+    {
+      el.classList.remove('open');
+    }
+  }
 
 
 

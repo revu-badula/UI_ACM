@@ -58,7 +58,7 @@ import { SystemassesscontrolComponent } from './system-tab/system-assessment/sys
 import { SystemassesslandingComponent } from './system-tab/system-assessment/systemassesslanding/systemassesslanding.component';
 import { SystemauditlandingComponent } from './system-tab/system-audit/systemauditlanding/systemauditlanding.component';
 import { SystemauditcontrolComponent } from './system-tab/system-audit/systemauditcontrol/systemauditcontrol.component';
-
+import { ClickOutsideModule } from 'ng-click-outside';
 
 @NgModule({
   imports: [
@@ -69,6 +69,7 @@ import { SystemauditcontrolComponent } from './system-tab/system-audit/systemaud
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
+    ClickOutsideModule,
     LocalityComponentModule,
    // SystemComponentRoutingModule,
    LocalityComponentRoutingModule,

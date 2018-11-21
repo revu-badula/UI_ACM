@@ -79,6 +79,7 @@ import { NgxSummernoteModule } from 'ngx-summernote';
 import { SubControlNameComponent } from './control-name/sub-control-name/sub-control-name.component';
 import { SubControlPipe } from './sub-control-status';
 import { ControlPipe } from './control-status';
+import { ClickOutsideModule } from 'ng-click-outside';
 @NgModule({
   declarations: [
     AppComponent,
@@ -148,6 +149,7 @@ import { ControlPipe } from './control-status';
     //SystemComponentRoutingModule,
     NgxSummernoteModule,
     SystemComponentModule,
+    ClickOutsideModule,
     BrowserAnimationsModule,
     NavigationComponentModule,
     OptionListModule,
