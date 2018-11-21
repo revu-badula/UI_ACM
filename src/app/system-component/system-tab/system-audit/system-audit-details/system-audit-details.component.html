@@ -6,87 +6,137 @@
     <fa class="edit-icon icons" [name]="'edit'" style="float:right;" (click)="showPlus()"></fa>
 
 </div>
-<br>
-<br>
-<div id="form1">
-<div class="form-div">
-   
-    <form class="infoBox">
-        <div class="headerOfBox"><h4>General Information</h4></div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
 
-                <label for="inputState">System Acronym <span class="asterisk">*</span></label>
-                
-                <input type="text" class="form-control" id="lastName" value="{{ mainData }}" readonly>
+<div>
+    <form class="former">
+        <div id="form1">
+            <div class="infoBox">
+                <div class="headerOfBox">
+                    <div class="form-row">
+                        <div class="form col-md-6">
+
+                            <h4>IT Policy 67</h4>
+                        </div>
+                        <div class="form col-md-6">
+                            <h4 style="text-align:right"> Next Audit Date :11/16/2018</h4>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- <form class="infoBox">
+                <div class="headerOfBox">
+                    <h4>General Information</h4>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+
+                        <label for="inputState">System Acronym <span class="asterisk">*</span></label>
+
+                        <input type="text" class="form-control" id="lastName" value="{{ mainData }}" readonly>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label for="lastName">System Name</label>
+                        <div class="asterisk">*</div>
+                        <input type="text" class="form-control" id="lastName" value="{{ sysName }}" readonly>
+                    </div>
+                </div>
+
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="lastName">Last updated by</label>
+
+                        <input type="text" class="form-control" value="{{updatedBy}}" id="lastName" readonly>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Updated at</label>
+                        <input type="text" class="form-control" id="email" value="{{ updatedTime }}" readonly>
+                    </div>
+                </div>
+            </form> -->
+
+                <div style="text-align: center">
+                    <div class="set-size charts-container">
+                        <div class="pie-wrapper progress-30">
+                            <span class="label">30<span class="smaller">% <br> Risk Level</span></span>
+                            <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="pie-wrapper progress-60">
+                            <span class="label">60<span class="smaller">% <br> Overall Score</span></span>
+                            <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="pie-wrapper progress-90">
+                            <span class="label">90<span class="smaller">% <br> Status</span></span>
+                            <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-
-
-            <div class="form-group col-md-6">
-                <label for="lastName">System Name</label>
-                <div class="asterisk">*</div>
-                <input type="text" class="form-control" id="lastName" value="{{ sysName }}" readonly>
+            <br><br>
+            <div class="plus" *ngIf="showPlusButton">
+                <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right;" (click)="goTo()"></i>
             </div>
-        </div>
+            <br><br>
+            <div class="infoBox">
 
+                <div class="headerOfBox">
+                    <h4>Audit Table</h4>
+                </div>
+                <table class="table table-striped table-hover table-bordere">
+                    <thead>
+                        <tr>
 
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="lastName">Last updated by</label>
-
-                <input type="text" class="form-control" value="{{updatedBy}}" id="lastName" readonly>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="email">Updated at</label>
-                <input type="text" class="form-control" id="email" value="{{ updatedTime }}" readonly>
+                            <th scope="col" (click)="handleSort('auditName')">Audit Name<i class="fa fa-arrow-down"
+                                    *ngIf="!desc"></i>
+                                <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+                            <th scope="col" (click)="handleSort1('auditType')">Audit Type<i class="fa fa-arrow-down"
+                                    *ngIf="!auditType"></i>
+                                <i class="fa fa-arrow-up" *ngIf="auditType"></i></th>
+                            <th scope="col" (click)="handleSort2('auditDate')">Audit Date<i class="fa fa-arrow-down"
+                                    *ngIf="!auditDate"></i>
+                                <i class="fa fa-arrow-up" *ngIf="auditDate"></i></th>
+                            <th scope="col" (click)="handleSort3('nextAuditDate')">Next Audit Date<i class="fa fa-arrow-down"
+                                    *ngIf="!nextAuditDate"></i>
+                                <i class="fa fa-arrow-up" *ngIf="nextAuditDate"></i></th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Last UpdatedBy</th>
+                            <th scope="col">Last Updated Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let  audit of appAuditDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <td>
+                                <a (click)="getAudit(audit.appAuditId)" style="cursor:pointer;color:blue;">{{
+                                    audit.auditName |
+                                    systemfilterAuditName }}</a>
+                            </td>
+                            <td>{{ audit.auditType }}</td>
+                            <td>{{ audit.auditDate | filterDate | date:'MM/dd/yyyy' }}</td>
+                            <td>{{ audit.nextAuditDate | filterDate | date:'MM/dd/yyyy' }}</td>
+                            <td>{{ audit.status }}</td>
+                            <td>{{ audit.updatedBy}}</td>
+                            <td>{{ audit.upadateTs | filterDate | date:'MM/dd/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
             </div>
         </div>
     </form>
-
-</div>
-<br>
-<div class="plus" *ngIf="showPlusButton">
-    <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right;" (click)="goTo()"></i>
-</div>
-<div >
-    <form class="infoBox">
-        <div class="headerOfBox"><h4>Audit Table</h4></div>
-        <table class="table table-striped table-hover table-bordere">
-            <thead>
-                <tr>
-
-                    <th scope="col" (click)="handleSort('auditName')">Audit Name<i class="fa fa-arrow-down" *ngIf="!desc"></i>
-                        <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-                    <th scope="col" (click)="handleSort1('auditType')">Audit Type<i class="fa fa-arrow-down" *ngIf="!auditType"></i>
-                        <i class="fa fa-arrow-up" *ngIf="auditType"></i></th>
-                    <th scope="col" (click)="handleSort2('auditDate')">Audit Date<i class="fa fa-arrow-down" *ngIf="!auditDate"></i>
-                        <i class="fa fa-arrow-up" *ngIf="auditDate"></i></th>
-                    <th scope="col" (click)="handleSort3('nextAuditDate')">Next Audit Date<i class="fa fa-arrow-down"
-                            *ngIf="!nextAuditDate"></i>
-                        <i class="fa fa-arrow-up" *ngIf="nextAuditDate"></i></th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Last UpdatedBy</th>
-                    <th scope="col">Last Updated Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let  audit of appAuditDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
-                    <td>
-                        <a (click)="getAudit(audit.appAuditId)" style="cursor:pointer;color:blue;">{{ audit.auditName |
-                            systemfilterAuditName }}</a>
-                    </td>
-                    <td>{{ audit.auditType }}</td>
-                    <td>{{ audit.auditDate | filterDate | date:'MM/dd/yyyy' }}</td>
-                    <td>{{ audit.nextAuditDate | filterDate | date:'MM/dd/yyyy' }}</td>
-                    <td>{{ audit.status }}</td>
-                    <td>{{ audit.updatedBy}}</td>
-                    <td>{{ audit.upadateTs | filterDate | date:'MM/dd/yyyy'}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
-    </form>
-</div>
 </div>
 <router-outlet></router-outlet>

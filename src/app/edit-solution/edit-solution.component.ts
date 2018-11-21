@@ -166,28 +166,8 @@ export class EditSolutionComponent implements OnInit {
   }
 
   dateRetreive() {
-    if ((this.solution.certDt && this.solution.certRenewalDueDt) != null) {
-      this.approveDate = { date: null };
-      this.dueDate = { date: null };
-    }
-    else {
-      let d = new Date(this.solution.certDt);
-      this.approveDate = {
-        date: {
-          year: d.getFullYear(),
-          month: d.getMonth() + 1,
-          day: d.getDate()
-        }
-      };
-      let rd = new Date(this.solution.certRenewalDueDt);
-      this.dueDate = {
-        date: {
-          year: rd.getFullYear(),
-          month: rd.getMonth() + 1,
-          day: rd.getDate() + 1
-        }
-      };
-    }
+
+
   }
 
   dateSubmit() {
@@ -230,6 +210,32 @@ export class EditSolutionComponent implements OnInit {
         this.solution.labVendorsDTO = data.labVendorsDTO;
         this.solution.vendor = data.vendor;
         this.solution.certDocDTOs = data.certDocDTOs;
+        if (this.solution.certDt === null) {
+          this.dueDate = { date: null };
+        }
+        else {
+          let d = new Date(this.solution.certDt);
+          this.approveDate = {
+            date: {
+              year: d.getFullYear(),
+              month: d.getMonth() + 1,
+              day: d.getDate()
+            }
+          };
+        }
+          if(this.solution.certRenewalDueDt === null){
+            this.approveDate = { date: null };
+          }
+          else{
+          let rd = new Date(this.solution.certRenewalDueDt);
+          this.dueDate = {
+            date: {
+              year: rd.getFullYear(),
+              month: rd.getMonth() + 1,
+              day: rd.getDate() + 1
+            }
+          };
+        }
         var utcSeconds = this.solution.certDt;
         var dt = new Date(0);
         if (this.solution.certDocDTOs == null) {
