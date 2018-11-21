@@ -1,6 +1,7 @@
 import { ApiserviceService } from '../../apiservice.service';
 import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from '../../convertDate.pipe';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-solution-table',
   templateUrl: './solution-table.component.html',
@@ -16,10 +17,16 @@ export class SolutionTableComponent implements OnInit {
   public loading: boolean = false;
   public p: number = 1;
 
-  constructor(private _apiservice: ApiserviceService) { }
+  constructor(private _apiservice: ApiserviceService, private router:Router) { }
 
   ngOnInit() {
     this.getSolutions();
+  }
+
+  goTo(id)
+  {
+    //let url="/editSolutions/{{ solution.solutionId }}" 
+    this.router.navigateByUrl("/editSolutions/"+id);
   }
 
   getSolutions() {
