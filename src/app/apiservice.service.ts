@@ -411,4 +411,15 @@ export class ApiserviceService {
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
+  getFamilies(id) {
+    let url = APP_CONFIG.fetchFamilies;
+    return this._httpService.get(url + '?' + 'policyGrpId' + '=' +id)
+      .map(res => <Response>res.json());
+  }
+
+  getPoliciesByFam(value) {
+    let url = APP_CONFIG.getPoliciesByFam;
+    return this._httpService.get(url + '?' + 'familyName' + '=' + value)
+      .map(res => <Response>res.json())
+  }
 }

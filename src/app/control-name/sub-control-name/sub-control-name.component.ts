@@ -20,6 +20,7 @@ export class SubControlNameComponent implements OnInit {
   public showForm: boolean = false;
   public endDate: any;
   color: String;
+  public users:any;
   public showBtt: boolean = false;
   config = {
     placeholder: '',
@@ -45,6 +46,9 @@ export class SubControlNameComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    this.getUsers();
   }
 
 
@@ -155,6 +159,15 @@ export class SubControlNameComponent implements OnInit {
     } else {
       this.color = 'offline';
     }
+
+  }
+
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+
+      }, error => console.log(error));
 
   }
 

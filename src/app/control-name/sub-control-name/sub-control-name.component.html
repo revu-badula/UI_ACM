@@ -64,7 +64,12 @@
                     <div class=" form-row">
                         <div class="form-group col-md-6">
                             <label for="assignTo">Assign To</label>
-                            <input type="text" name="assignedTo" class="form-control" id="assignTo" [(ngModel)]="subControl1.assignedTo">
+                            <input *ngIf="showBtt" type="text" name="assignedTo" class="form-control" id="assignTo" [(ngModel)]="subControl1.assignedTo">
+                            <select *ngIf="!showBtt"  name="assignTo" style="width:50%;" [(ngModel)]="subControl1.assignedTo" class="form-control" id="searchUsers" (change)="subControl1.assignedTo=$event.target.value">
+                                <option selected>Choose...</option>
+                                <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+                                    getUser.firstName}} {{getUser.lastName }} </option>
+                            </select>
                         </div>
 
                         <div class="form-group col-md-6">

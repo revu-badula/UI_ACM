@@ -84,7 +84,9 @@ export const APP_CONFIG = {
   getLocForDevices:apiBaseUrl+'getLocForDevices',
   getAllTotals:apiBaseUrl+'getAllTotals',
   getLocForMous:apiBaseUrl+'getLocForMous',
-  getSysForMous:apiBaseUrl + 'getSysForMous'
+  getSysForMous:apiBaseUrl + 'getSysForMous',
+  fetchFamilies:apiBaseUrl + 'fetchFamilies',
+  getPoliciesByFam:apiBaseUrl + 'getPoliciesByFam'
 }
 
 

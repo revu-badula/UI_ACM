@@ -81,13 +81,16 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th (click)="handleSort()" scope="col">Policy Name<i class="sorting fa fa-arrow-down" *ngIf="!desc"></i> <i class="sorting fa fa-arrow-up"
+				<th (click)="handleSort('policyGrpName')" scope="col">Policy Name<i class="sorting fa fa-arrow-down" *ngIf="!desc"></i> <i class="sorting fa fa-arrow-up"
 					 *ngIf="desc"></i></th>
-				<th (click)="handleSort()" scope="col">Assigned To<i class="sorting fa fa-arrow-down" *ngIf="!desc"></i> <i class="sorting fa fa-arrow-up"
-					 *ngIf="desc"></i></th>
-				<th scope="col">Assigned On</th>
-				<th scope="col">Due Date</th>
-				<th scope="col">Status</th>
+				<th (click)="handleSort2('assignedTo')" scope="col">Assigned To<i class="sorting fa fa-arrow-down" *ngIf="!desc2"></i> <i class="sorting fa fa-arrow-up"
+					 *ngIf="desc2"></i></th>
+				<th (click)="handleSort3('createdTs')" scope="col">Assigned On<i class="sorting fa fa-arrow-down" *ngIf="!desc3"></i> <i class="sorting fa fa-arrow-up"
+					*ngIf="desc3"></i></th>
+				<th (click)="handleSort4('dueDate')" scope="col">Due Date<i class="sorting fa fa-arrow-down" *ngIf="!desc4"></i> <i class="sorting fa fa-arrow-up"
+					*ngIf="desc4"></i></th>
+				<th (click)="handleSort5('status')" scope="col">Status<i class="sorting fa fa-arrow-down" *ngIf="!desc5"></i> <i class="sorting fa fa-arrow-up"
+					*ngIf="desc5"></i></th>
 				<!-- <th scope="col">Notify</th> -->
 			</tr>
 		</thead>

@@ -32,7 +32,11 @@ export class ReviewComponent implements OnInit {
   public users: any;
   public reviewDTO: any;
   public policyData: any;
-  private desc = false;
+  public desc = false;
+  public desc2 = false;
+  public desc3 = false;
+  public desc4 = false;
+  public desc5 = false;
   public loading: boolean = false;
   public showDetails: boolean;
   public policies: Policy[];
@@ -82,39 +86,9 @@ export class ReviewComponent implements OnInit {
     //this.plus=false;
   }
 
-  handleSort() {
+  
 
-    if (!this.desc) {
-      this.policyData.sort(this.doAsc);
-      this.desc = true;
-    }
-    else {
-      this.policyData.sort(this.doDsc);
-      this.desc = false;
-    }
-
-  }
-
-  doAsc(a, b) {
-
-
-    if (a.name > b.name) {
-      return -1;
-    } else if (a.name < b.name) {
-      return 1;
-    }
-    return 0;
-  }
-
-  doDsc(a, b) {
-    if (a.name < b.name) {
-      return -1;
-    } else if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  }
-
+  
   changeButton() {
     this.plus = false;
   }
@@ -247,5 +221,171 @@ export class ReviewComponent implements OnInit {
       });
 
   }
+
+  handleSort(value) {
+    if (!this.desc) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = true;
+    }
+    else {
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc = false;
+    }
+
+
+  }
+
+  handleSort2(value) {
+    if (!this.desc2) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc2 = true;
+    }
+    else {
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc2 = false;
+    }
+
+
+  }
+
+  handleSort3(value) {
+    if (!this.desc3) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc3 = true;
+    }
+    else {
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc3 = false;
+    }
+
+
+  }
+
+  handleSort4(value) {
+    if (!this.desc4) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc4 = true;
+    }
+    else {
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc4 = false;
+    }
+
+
+  }
+
+  handleSort5(value) {
+    if (!this.desc5) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc5 = true;
+    }
+    else {
+      let orderByValue = value;
+      this.policyData.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc5 = false;
+    }
+
+
+  }
+
 
 }

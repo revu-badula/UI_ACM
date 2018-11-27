@@ -25,12 +25,13 @@ export class PolicyDetailsComponent implements OnInit {
   policyDocumentDTO: PolicyDocumentsDTO[];
   files: File[] = [];
   plus = true;
+  public families: any;
   p: number = 1;
   config = {
     placeholder: '',
     tabsize: 2,
     height: 200,
-    width:"100%",
+    width: "100%",
     toolbar: [
       // [groupName, [list of button]]
       ['misc', ['undo', 'redo']],
@@ -39,7 +40,7 @@ export class PolicyDetailsComponent implements OnInit {
       ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-    
+
   };
   showDocument: boolean;
   showForm: boolean = true;
@@ -99,21 +100,22 @@ export class PolicyDetailsComponent implements OnInit {
   ngOnInit() {
     this.fetchPolicies(UtilService.policyGrpId);
     this.policyDropDownId = UtilService.policyGrpId;
-    this.loading = true;
+    this.getFamilies(UtilService.policyGrpId);
   }
 
   fetchPolicies(id) {
+    this.loading = true;
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
         this.loading = false;
         this.policyDisplay = data.policyGrpDTO;
         this.policies = data.policyDTOs;
         this.policyGrpData = data.policyGrpDTO;
-        let dt= new Date(this.policyGrpData.updatedTs);
-        let month=dt.getMonth()+1;
-        let day=dt.getDate();
-        let year=dt.getFullYear();
-        this.updatedAt = month+"/"+day+"/"+year;
+        let dt = new Date(this.policyGrpData.updatedTs);
+        let month = dt.getMonth() + 1;
+        let day = dt.getDate();
+        let year = dt.getFullYear();
+        this.updatedAt = month + "/" + day + "/" + year;
         let dUpdatedAt = new Date(this.policyDisplay.updatedTs);
         this.displayUpdatedAt = {
           year: dUpdatedAt.getFullYear(),
@@ -149,81 +151,6 @@ export class PolicyDetailsComponent implements OnInit {
 
   }
 
-  handleSort1() {
-    if (!this.desc1) {
-      this.policies.sort(this.doAsc);
-      this.desc1 = true;
-    }
-    else {
-      this.policies.sort(this.doDsc);
-      this.desc1 = false;
-    }
-
-  }
-
-  handleSort2() {
-    if (!this.desc2) {
-      this.policies.sort(this.doAsc);
-      this.desc2 = true;
-    }
-    else {
-      this.policies.sort(this.doDsc);
-      this.desc2 = false;
-    }
-
-  }
-
-  handleSort3() {
-    if (!this.desc3) {
-      this.policies.sort(this.doAsc);
-      this.desc3 = true;
-    }
-    else {
-      this.policies.sort(this.doDsc);
-      this.desc3 = false;
-    }
-  }
-
-  handleSort4() {
-    if (!this.desc4) {
-      this.policies.sort(this.doAsc);
-      this.desc4 = true;
-    }
-    else {
-      this.policies.sort(this.doDsc);
-      this.desc4 = false;
-    }
-  }
-
-
-  handleSort5() {
-    if (!this.desc5) {
-      this.policies.sort(this.doAsc);
-      this.desc5 = true;
-    }
-    else {
-      this.policies.sort(this.doDsc);
-      this.desc5 = false;
-    }
-  }
-
-  doAsc(a, b) {
-    if (a.name > b.name) {
-      return -1;
-    } else if (a.name < b.name) {
-      return 1;
-    }
-    return 0;
-  }
-
-  doDsc(a, b) {
-    if (a.name < b.name) {
-      return -1;
-    } else if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  }
 
   dateRetreive() {
     let d = new Date(this.policyDisplay.lastReviewDate);
@@ -278,12 +205,11 @@ export class PolicyDetailsComponent implements OnInit {
     }, error => console.log(error));
   }
 
-  handleSortA(value) {
-
-    if (!this.) {
+  handleSort(value) {
+    if (!this.desc1) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.moudtos.sort((a: any, b: any) => {
+      this.policies.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -292,11 +218,11 @@ export class PolicyDetailsComponent implements OnInit {
           return 0;
         }
       });
-      this.signed = true;
+      this.desc1 = true;
     }
     else {
       let orderByValue = value;
-      this.moudtos.sort((a: any, b: any) => {
+      this.policies.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -306,7 +232,7 @@ export class PolicyDetailsComponent implements OnInit {
         }
       });
       //this.policies.sort(this.doDsc);
-      this.signed = false;
+      this.desc1 = false;
     }
 
 
@@ -314,11 +240,10 @@ export class PolicyDetailsComponent implements OnInit {
 
 
   handleSort2(value) {
-
-    if (!this.recertificationDt) {
+    if (!this.desc2) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
-      this.moudtos.sort((a: any, b: any) => {
+      this.policies.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] < b[orderByValue]) {
@@ -327,11 +252,11 @@ export class PolicyDetailsComponent implements OnInit {
           return 0;
         }
       });
-      this.recertificationDt = true;
+      this.desc2 = true;
     }
     else {
       let orderByValue = value;
-      this.moudtos.sort((a: any, b: any) => {
+      this.policies.sort((a: any, b: any) => {
         if (a[orderByValue] < b[orderByValue]) {
           return -1;
         } else if (a[orderByValue] > b[orderByValue]) {
@@ -341,10 +266,147 @@ export class PolicyDetailsComponent implements OnInit {
         }
       });
       //this.policies.sort(this.doDsc);
-      this.recertificationDt = false;
+      this.desc2 = false;
     }
+
+
+
+
+  }
+  handleSort3(value) {
+    if (!this.desc3) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.policies.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc3 = true;
+    }
+    else {
+      let orderByValue = value;
+      this.policies.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc3 = false;
+    }
+
+
   }
 
+  handleSort4(value) {
+    if (!this.desc4) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.policies.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc4 = true;
+    }
+    else {
+      let orderByValue = value;
+      this.policies.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc4 = false;
+    }
+
+
+  }
+
+  handleSort5(value) {
+    if (!this.desc5) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.policies.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc5 = true;
+    }
+    else {
+      let orderByValue = value;
+      this.policies.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.desc5 = false;
+    }
+
+
+
+
+  }
+
+
+  getFamilies(id) {
+    this.families = [];
+    this._apiservice.getFamilies(id)
+      .subscribe((data: any) => {
+        // data.forEach(contact => {
+        // this.families.push(contact);
+        // console.log(this.families);
+        //});
+        this.families = data;
+      }, error => { console.log(error) });
+
+  }
+
+  getFamily(value) {
+
+    //console.log(value);
+    if (value === "") {
+
+    }
+    else {
+      this.loading = true;
+      this._apiservice.getPoliciesByFam(value)
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.policies = data;
+          //console.log(data);
+        }, error => {
+          this.loading = false;
+          console.log(error)
+        });
+    }
+  }
 
 
 

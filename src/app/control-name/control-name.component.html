@@ -223,7 +223,7 @@
                     <div class="headerOfBox">
                         <h4>Sub Control</h4>
                     </div>
-                    <div style="float:right">
+                    <div style="float:right" *ngIf="!showEli">
                         <fa class="plus-icon" (click)="goToSubControl()" [name]="'plus'"></fa>
                     </div>
                     <table class="table table-bordered">
@@ -242,7 +242,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let subPol of subPolicyDTOs">
-                                <td><a (click)="getSubpolicy(subPol.subPolicyId)" style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
+                                <td><a *ngIf="showEli">{{ subPol.subControlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.subPolicyId)" style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
                                 <td>{{subPol.subPolicyName}}</td>
                                 <td>{{subPol.assignedTo}}</td>
                                 <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
