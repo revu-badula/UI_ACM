@@ -188,8 +188,6 @@ export class SystemLegalmainComponent implements OnInit {
       //this.policies.sort(this.doDsc);
       this.recertificationDt = false;
     }
-
-
   }
 
 

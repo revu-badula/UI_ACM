@@ -51,7 +51,11 @@ export class PolicyDetailsComponent implements OnInit {
   public updatedAt: any;
   public displayUpdatedAt: IMyDate = null;
   public policyDocumentsSubmit: PolicyGrp;
-  public desc: boolean = false;
+  public desc1: boolean = false;
+  public desc2: boolean = false;
+  public desc3: boolean = false;
+  public desc4: boolean = false;
+  public desc5: boolean = false;
   public loading: boolean = false;
   public policyReviewTerm: any[] = [{ id: 1, reviewTerm: "Yearly" },
   { id: 2, reviewTerm: "Half-Yearly" },
@@ -119,7 +123,6 @@ export class PolicyDetailsComponent implements OnInit {
         if ((this.policyDisplay.lastReviewDate && this.policyDisplay.policyReviewDate) != null) {
           this.dateRetreive();
         }
-
       }, error => console.log(error));
 
   }
@@ -146,16 +149,62 @@ export class PolicyDetailsComponent implements OnInit {
 
   }
 
-  handleSort() {
-    if (!this.desc) {
+  handleSort1() {
+    if (!this.desc1) {
       this.policies.sort(this.doAsc);
-      this.desc = true;
+      this.desc1 = true;
     }
     else {
       this.policies.sort(this.doDsc);
-      this.desc = false;
+      this.desc1 = false;
     }
 
+  }
+
+  handleSort2() {
+    if (!this.desc2) {
+      this.policies.sort(this.doAsc);
+      this.desc2 = true;
+    }
+    else {
+      this.policies.sort(this.doDsc);
+      this.desc2 = false;
+    }
+
+  }
+
+  handleSort3() {
+    if (!this.desc3) {
+      this.policies.sort(this.doAsc);
+      this.desc3 = true;
+    }
+    else {
+      this.policies.sort(this.doDsc);
+      this.desc3 = false;
+    }
+  }
+
+  handleSort4() {
+    if (!this.desc4) {
+      this.policies.sort(this.doAsc);
+      this.desc4 = true;
+    }
+    else {
+      this.policies.sort(this.doDsc);
+      this.desc4 = false;
+    }
+  }
+
+
+  handleSort5() {
+    if (!this.desc5) {
+      this.policies.sort(this.doAsc);
+      this.desc5 = true;
+    }
+    else {
+      this.policies.sort(this.doDsc);
+      this.desc5 = false;
+    }
   }
 
   doAsc(a, b) {
@@ -228,5 +277,76 @@ export class PolicyDetailsComponent implements OnInit {
     this.http.post(url, policyDocumentsData).subscribe((data: any) => {
     }, error => console.log(error));
   }
+
+  handleSortA(value) {
+
+    if (!this.) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.moudtos.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.signed = true;
+    }
+    else {
+      let orderByValue = value;
+      this.moudtos.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.signed = false;
+    }
+
+
+  }
+
+
+  handleSort2(value) {
+
+    if (!this.recertificationDt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.moudtos.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.recertificationDt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.moudtos.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.recertificationDt = false;
+    }
+  }
+
+
+
+
 
 }

@@ -165,14 +165,15 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th (click)="handleSort()" scope="col">Control Number and Description<i class="sorting fa fa-arrow-down" *ngIf="!desc"></i>
-					<i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
-				<th (click)="handleSort()" scope="col">Policy Name<i class="sorting fa fa-arrow-down" *ngIf="!desc"></i> <i class="sorting fa fa-arrow-up"
-					 *ngIf="desc"></i></th>
-				<th (click)="handleSort()" scope="col">Priority<i class="second fa fa-arrow-down" *ngIf="!desc"></i> <i class="second fa fa-arrow-up"
-					 *ngIf="desc"></i></th>
-				<th (click)="handleSort()" scope="col">Policy Value<i class="second fa fa-arrow-down" *ngIf="!desc"></i> <i class="second fa fa-arrow-up"
-					 *ngIf="desc"></i></th>
+				<th (click)="handleSort1()" scope="col">Family Name <i class="sorting fa fa-arrow-down" *ngIf="!desc1"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc1"></i></th>
+				<th (click)="handleSort2()" scope="col">Control Number and Description<i class="sorting fa fa-arrow-down" *ngIf="!desc2"></i>
+					<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
+				<th (click)="handleSort3()" scope="col">Policy Name<i class="sorting fa fa-arrow-down" *ngIf="!desc3"></i> <i class="sorting fa fa-arrow-up"
+					 *ngIf="desc3"></i></th>
+				<th (click)="handleSort4()" scope="col">Priority<i class="second fa fa-arrow-down" *ngIf="!desc4"></i> <i class="second fa fa-arrow-up"
+					 *ngIf="desc4"></i></th>
+				<th (click)="handleSort5()" scope="col">Policy Value<i class="second fa fa-arrow-down" *ngIf="!desc5"></i> <i class="second fa fa-arrow-up"
+					 *ngIf="desc5"></i></th>
 				<!--  <th scope="col">Assigned To</th>
 		      <th scope="col">Assigned By</th>
 		      <th scope="col">Assigned On</th>
@@ -182,7 +183,7 @@
 		</thead>
 		<tbody>
 			<tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-				<!-- <td>{{ policy.controlNumber }}</td> -->
+				<td>{{policy.familyName}}</td>
 				<td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{ policy.controlNumber
 						}}</a></td>
 				<td>{{ policy.policyName }}</td>
