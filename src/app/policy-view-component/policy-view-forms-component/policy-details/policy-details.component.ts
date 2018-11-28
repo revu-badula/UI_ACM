@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { PolicyGrp, Policy, PolicyDocumentsDTO, PolicyReviewTerm } from '../../../data_modelPolicy';
 import { ApiserviceService } from '../../../apiservice.service';
 import { IMyDate } from 'mydatepicker';
@@ -8,6 +8,7 @@ import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { UtilService } from '../../../util.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
+import { Cookie } from 'ng2-cookies';
 
 
 @Component({
@@ -18,12 +19,14 @@ import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 })
 export class PolicyDetailsComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
+  @ViewChild('content1') content1: TemplateRef<any>;
   policyDisplay: PolicyGrp;
   policies: Policy[];
   policyGrpData: PolicyGrp;
   policyFileobj: any;
   policyDocumentDTO: PolicyDocumentsDTO[];
   files: File[] = [];
+  public users: any;
   plus = true;
   public families: any;
   p: number = 1;
@@ -101,6 +104,7 @@ export class PolicyDetailsComponent implements OnInit {
     this.fetchPolicies(UtilService.policyGrpId);
     this.policyDropDownId = UtilService.policyGrpId;
     this.getFamilies(UtilService.policyGrpId);
+    this.getUsers();
   }
 
   fetchPolicies(id) {
@@ -177,17 +181,28 @@ export class PolicyDetailsComponent implements OnInit {
   }
 
   updatePolicyGrp() {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
     this.policyDisplay.policyGrpId = UtilService.policyGrpId;
     if ((this.lastReviewDate && this.nextReviewDate) != null) {
       this.dateSubmit();
     }
-
+    this.policyDisplay.updatedBy=Cookie.get("userName");
     this.policyObj = JSON.stringify(this.policyDisplay);
     let url = APP_CONFIG.updatePolicyGrp;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
+    this.loading = true;
     this.http.post(url, this.policyObj, options).subscribe((data: any) => {
-    }, error => console.log(error));
+      this.loading = false;
+      this.modalService.open(this.content1, ngbModalOptions)
+
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
 
   }
 
@@ -394,6 +409,9 @@ export class PolicyDetailsComponent implements OnInit {
     if (value === "") {
 
     }
+    else if (value === "all") {
+      this.fetchPolicies(UtilService.policyGrpId);
+    }
     else {
       this.loading = true;
       this._apiservice.getPoliciesByFam(value)
@@ -406,6 +424,15 @@ export class PolicyDetailsComponent implements OnInit {
           console.log(error)
         });
     }
+  }
+
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+
+      }, error => console.log(error));
+
   }
 
 

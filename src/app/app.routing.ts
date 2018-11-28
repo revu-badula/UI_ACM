@@ -59,7 +59,7 @@ import { AuditBudgetComponent } from './locality-component/locality-tab/locality
 import { AuditAttachmentsComponent } from './locality-component/locality-tab/locality-audit/audit-attachments/audit-attachments.component';
 import { LocalityLegalComponent } from './locality-component/locality-tab/locality-legal/locality-legal.component';
 import { AuditManagementComponent } from './locality-component/locality-tab/locality-audit/audit-management/audit-management.component';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VendorsComponentComponent } from './vendors-component/vendors-component.component';
 import { VendorsViewComponent } from './vendors-view/vendors-view.component';
@@ -611,4 +611,16 @@ const appRoutes: Routes = [
 
 })
 //export class SystemComponentRoutingModule {}
-export class LocalityComponentRoutingModule { }
+export class LocalityComponentRoutingModule {
+
+  // constructor(private router: Router) {
+  //   this.router.errorHandler = (error: any) => {
+  //     let routerError = error.toString();
+  //             if (routerError.indexOf('Cannot match any routes') >= 0 ) {
+  //                 this.router.navigate(['/404']);
+  //             } else {
+  //                 throw error;
+  //             }
+  //   }
+  //   }
+ }

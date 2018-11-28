@@ -102,7 +102,7 @@ export class ReviewComponent implements OnInit {
 
       assignedTo: this.assignTo,
       dueDate: this.reviewDueDate,
-      status: "Open",
+      status: value.status,
       policyGrpId: UtilService.policyGrpId
     }
 
@@ -121,7 +121,8 @@ export class ReviewComponent implements OnInit {
   createForm() {
     this.reviewForm = this.fb.group({
       firstName: ['', Validators.required],
-      dueDate: ['', Validators.required]
+      dueDate: ['', Validators.required],
+      status: ['', Validators.required]
     });
   }
 

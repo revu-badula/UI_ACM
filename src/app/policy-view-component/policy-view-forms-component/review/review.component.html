@@ -41,6 +41,13 @@
 					<label for="dueDate"><b>Due Date</b></label>
 					<my-date-picker name="myname" [options]="myDatePickerOptions" formControlName="dueDate"></my-date-picker>
 				</div>
+				<div class="form-group col-12">
+						<label for="dueDate"><b>Status</b></label>
+					<select class="form-control"  name="selectstatus" formControlName="status">
+						<option value="true">Open</option>
+						<option value="false">Close</option>
+					</select>
+				</div>
 			</div>
 			<button type="submit" class="add btn btn-primary" [disabled]="!form.valid" (click)="data(reviewForm.value)">Add</button>
 			<hr />
@@ -100,7 +107,7 @@
 				<td>{{ tableData.assignedTo }}</td>
 				<td>{{ tableData.createdTs | filter }}</td>
 				<td>{{ tableData.dueDate | filter }}</td>
-				<td>{{ tableData.status }}</td>
+				<td>{{ tableData.status | subControlPipe }}</td>
 				<!-- <td>{{ solution.certRenewalDueDt }}</td> -->
 			</tr>
 		</tbody>

@@ -177,6 +177,7 @@ export class DocumentsComponent implements OnInit {
               if (this.policyDocumentsDTO[i].policyDocId === id) {
                 this.policyDocumentsDTO[i].activeFlag = false;
                 this.policyDocumentsDTO[i].updatedBy = Cookie.get('userName');
+                this.submitDocument();
               }
             }
           }
