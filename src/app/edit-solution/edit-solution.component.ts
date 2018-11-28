@@ -170,13 +170,13 @@ export class EditSolutionComponent implements OnInit {
 
   }
 
-  dateSubmit() {
-    let date = this.approveDate.formatted;
-    this.solution.certDt = Date.parse(date);
-    let renewDate = this.dueDate.date;
-    this.dueDate = renewDate.year + '-' + renewDate.month + '-' + (renewDate.day + 1);
-    this.solution.certRenewalDueDt = this.dueDate;
-  }
+  // dateSubmit() {
+  //   let date = this.approveDate.formatted;
+  //   this.solution.certDt = Date.parse(date);
+  //   let renewDate = this.dueDate.date;
+  //   this.dueDate = renewDate.year + '-' + renewDate.month + '-' + (renewDate.day + 1);
+  //   this.solution.certRenewalDueDt = this.dueDate;
+  // }
 
 
   getApprovalDate(value) {
@@ -212,30 +212,26 @@ export class EditSolutionComponent implements OnInit {
         this.solution.vendor = data.vendor;
         this.solution.certDocDTOs = data.certDocDTOs;
         if (this.solution.certDt === null) {
-          this.dueDate = { date: null };
+          this.approveDate = { date: null };
         }
         else {
           let d = new Date(this.solution.certDt);
+          let year = d.getFullYear();
+         let month = d.getMonth() + 1;
+          let day = d.getDate();
           this.approveDate = {
-            date: {
-              year: d.getFullYear(),
-              month: d.getMonth() + 1,
-              day: d.getDate()
-            }
+            date: { month: month, day: day, year: year}
           };
         }
-          if(this.solution.certRenewalDueDt === null){
-            this.approveDate = { date: null };
-          }
-          else{
+        if (this.solution.certRenewalDueDt === null) {
+          this.dueDate = { date: null };
+        }
+        else {
           let rd = new Date(this.solution.certRenewalDueDt);
-          this.dueDate = {
-            date: {
-              year: rd.getFullYear(),
-              month: rd.getMonth() + 1,
-              day: rd.getDate() + 1
-            }
-          };
+          let  year = rd.getFullYear();
+           let month = rd.getMonth() + 1;
+            let day = rd.getDate();
+          this.dueDate = { date: {month: month, day: day, year: year } };
         }
         var utcSeconds = this.solution.certDt;
         var dt = new Date(0);
@@ -377,11 +373,9 @@ export class EditSolutionComponent implements OnInit {
   getColor() {
     // return this.color === 'online' ? '#ffffff' : 'white';
   }
-  closeDropdown()
-  {
-    let el=document.getElementById('renname');
-    if(el.classList.contains('open'))
-    {
+  closeDropdown() {
+    let el = document.getElementById('renname');
+    if (el.classList.contains('open')) {
       el.classList.remove('open');
     }
   }
