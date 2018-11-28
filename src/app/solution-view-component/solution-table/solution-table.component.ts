@@ -12,6 +12,10 @@ export class SolutionTableComponent implements OnInit {
   public solutions: any;
   public desc: boolean = false;
   public des: boolean = false;
+  public signed:boolean=false;
+  public rendt:boolean=false;
+  public updt:boolean=false;
+  public updtBy:boolean=false;
   public dec: boolean = false;
   public de: boolean = false;
   public loading: boolean = false;
@@ -176,10 +180,153 @@ handleSorta() {
     }
     return 0;
   }
+
   
+
+  handleSort1(value) {
   
+    if (!this.signed) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.solutions.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.signed = true;
+    }
+    else {
+      let orderByValue = value;
+      this.solutions.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.signed = false;
+    }
+
+
+  }
+
+
   
+  handleSort2(value) {
   
+    if (!this.rendt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.solutions.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.rendt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.solutions.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.rendt = false;
+    }
+
+
+  }
+
+
+
+
+
+  handleSort3(value) {
+  
+    if (!this.updtBy) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.solutions.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updtBy = true;
+    }
+    else {
+      let orderByValue = value;
+      this.solutions.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updtBy = false;
+    }
+
+
+  }
+
+
+  
+  handleSort4(value) {
+  
+    if (!this.updt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.solutions.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.solutions.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updt = false;
+    }
+
+
+  }
+
   
   
   
