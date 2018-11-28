@@ -195,7 +195,8 @@ export class EditSolutionComponent implements OnInit {
     }
     else {
       let d = value.formatted;
-      this.solution.certRenewalDueDt = Date.parse(d);
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.solution.certRenewalDueDt = moment(latest_date).format();
     }
   }
 

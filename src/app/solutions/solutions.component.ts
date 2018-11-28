@@ -11,7 +11,8 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
 declare var swal: any; ''
 import { Cookie } from 'ng2-cookies';
-
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-solutions',
   templateUrl: './solutions.component.html',
@@ -68,7 +69,9 @@ export class SolutionsComponent implements OnInit {
     format: 'dd-MM-yyyy',
     defaultOpen: true
   }
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private _location: Location, private _apiservice: ApiserviceService, private http: Http, private modalService: NgbModal) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router,
+     private _location: Location, private _apiservice: ApiserviceService,
+      private http: Http, private modalService: NgbModal, private datepipe: DatePipe) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
     this.solution.hostingTypeDTO = new HostingType();
@@ -155,6 +158,29 @@ export class SolutionsComponent implements OnInit {
     this.solution.certRenewalDueDt = this.renewalDate;
   }
 
+  getApproveDt(value)
+  {
+    if (value.formatted === "") {
+      this.solution.certDt = null;
+    }
+    else {
+      let d = value.formatted;
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.solution.certDt = moment(latest_date).format();
+    }
+  }
+  getRenewDt(value)
+  {
+    if (value.formatted === "") {
+      this.solution.certRenewalDueDt = null;
+    }
+    else {
+      let d = value.formatted;
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.solution.certRenewalDueDt = moment(latest_date).format();
+    }
+  }
+
   createSolution() {
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -162,9 +188,9 @@ export class SolutionsComponent implements OnInit {
     };
     let url = APP_CONFIG.addSolutions;
 
-    if ((this.approveDate && this.renewalDate) != null) {
-      this.dateSubmit();
-    }
+    // if ((this.approveDate && this.renewalDate) != null) {
+    //   this.dateSubmit();
+    // }
     var formData = new FormData();
     this.solution.createdBy = Cookie.get('userName');
     formData.append('solution', JSON.stringify(this.solution));
