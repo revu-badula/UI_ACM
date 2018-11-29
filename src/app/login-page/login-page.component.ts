@@ -9,7 +9,7 @@ import { Http, RequestOptionsArgs, RequestOptions, Headers } from '@angular/http
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Cookie } from 'ng2-cookies';
-
+import { OktaAuthService } from '../okta/oka.service';
 //import { AlertService, AuthenticationService } from '../_services';
 
 @Component({
@@ -30,7 +30,8 @@ export class LoginPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, private alertService: AlertService,
     private authservice: AuthenticationService,
-    private utilservice: UtilService, private http: Http, private httpClient: HttpClient) {
+    private utilservice: UtilService, private http: Http, 
+    private httpClient: HttpClient, private okta: OktaAuthService) {
     UtilService.loginstate = false;
   }
 
@@ -153,5 +154,11 @@ export class LoginPageComponent implements OnInit {
         this.loading = false;
         console.log(error);
       })
+  }
+
+
+  getLogin()
+  {
+    this.okta.login();
   }
 }

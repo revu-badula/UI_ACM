@@ -17,6 +17,10 @@ export class VendorsViewComponent implements OnInit {
   public vendorsContact: any;
   public desc = false;
   public des = false;
+  public email:boolean=false;
+  public ph:boolean=false;
+  public updtBy:boolean=false;
+  public updt:boolean=false;
   public lname: boolean=false;
   public p: number = 1;
   public loading: boolean = false;
@@ -150,6 +154,148 @@ export class VendorsViewComponent implements OnInit {
 
 
   }
+
+
+
+  handleSort4(value) {
+    if (!this.email) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.vendors.vendorsContact.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.email = true;
+    }
+    else {
+      let orderByValue = value;
+      this.vendors.vendorsContact.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.email = false;
+    }
+
+
+  }
+
+
+
+  
+  handleSort5(value) {
+    if (!this.ph) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.vendors.vendorsContact.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.ph = true;
+    }
+    else {
+      let orderByValue = value;
+      this.vendors.vendorsContact.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.ph = false;
+    }
+
+
+  }
+
+
+  
+  handleSort6(value) {
+    if (!this.updtBy) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.vendors.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updtBy = true;
+    }
+    else {
+      let orderByValue = value;
+      this.vendors.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updtBy = false;
+    }
+
+
+  }
+
+
+  
+  handleSort7(value) {
+    if (!this.updt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.vendors.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.vendors.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updt = false;
+    }
+
+
+  }
+
 
 
 

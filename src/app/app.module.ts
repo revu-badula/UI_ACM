@@ -80,6 +80,9 @@ import { SubControlNameComponent } from './control-name/sub-control-name/sub-con
 import { SubControlPipe } from './sub-control-status';
 import { ControlPipe } from './control-status';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { CallbackComponent } from './callback/callback.component';
+import { OktaAuthService } from './okta/oka.service';
+import { SampleComponent } from './sample/sample.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -130,7 +133,9 @@ import { ClickOutsideModule } from 'ng-click-outside';
     ReportlegalsystemComponent,
     SubControlNameComponent,
     SubControlPipe,
-    ControlPipe
+    ControlPipe,
+    CallbackComponent,
+    SampleComponent
 
 
 
@@ -170,7 +175,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
   entryComponents: [
     DialogBoxComponent, DialogComponent
   ],
-  providers: [RegisterService, UtilService, ApiserviceService, AlertService,
+  providers: [RegisterService, UtilService, ApiserviceService, AlertService, OktaAuthService,
      AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe],
   bootstrap: [AppComponent]
 })

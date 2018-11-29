@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cookie } from 'ng2-cookies';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { HostListener } from '@angular/core';
+import { OktaAuthService } from '../okta/oka.service';
 @Component({
   selector: 'app-navigation-component',
   templateUrl: './navigation-component.component.html',
@@ -10,7 +11,7 @@ import { HostListener } from '@angular/core';
 export class NavigationComponentComponent implements OnInit {
 
   public userName:any;
-  constructor(private router: Router) {
+  constructor(private router: Router, private okta:OktaAuthService) {
     this.userName=Cookie.get("userName");
    }
 
@@ -23,6 +24,7 @@ export class NavigationComponentComponent implements OnInit {
   signOut()
   {
     //localStorage.clear();
+    this.okta.logout();
     Cookie.delete('access_token');
     Cookie.delete('userName');
     localStorage.removeItem('localityName');

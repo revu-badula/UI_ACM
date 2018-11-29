@@ -141,6 +141,7 @@ import { SystemassesscontrolComponent } from './system-component/system-tab/syst
 import { SystemassesslandingComponent } from './system-component/system-tab/system-assessment/systemassesslanding/systemassesslanding.component';
 import { SystemauditcontrolComponent } from './system-component/system-tab/system-audit/systemauditcontrol/systemauditcontrol.component';
 import { SystemauditlandingComponent } from './system-component/system-tab/system-audit/systemauditlanding/systemauditlanding.component';
+import { CallbackComponent } from './callback/callback.component';
 
 const appRoutes: Routes = [
 
@@ -165,7 +166,9 @@ const appRoutes: Routes = [
   { path: 'rdevice', component: ReportDeviceComponent, canActivate: [AuthGuard] },
   { path: 'rsystems', component: ReportlegalsystemComponent, canActivate: [AuthGuard] },
   { path: 'subcontrol', component: SubControlNameComponent, canActivate: [AuthGuard] },
-
+  {
+    path: 'callback', component: CallbackComponent
+  },
 
   {
     path: "locality", component: LocalityComponentComponent, canActivate: [AuthGuard],
@@ -605,7 +608,7 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
+  imports: [RouterModule.forRoot(appRoutes, { useHash: false })],
   exports: [RouterModule],
   providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard, WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard, SystemGuardAssess]
 
