@@ -149,12 +149,25 @@ export class LoginPageComponent implements OnInit {
         let ln = res.lastName;
         let userName = fn + " " + ln;
         Cookie.set('userName', userName);
-        this.router.navigate(['/dashboard']);
+        // console.log(res);
+        // this.router.navigate(['/dashboard']);
+        this.getUserRoles(res);
       }, error => {
         this.loading = false;
         console.log(error);
       })
   }
+
+    getUserRoles(res)
+    {
+      //console.log(res);
+      let url="http://172.24.16.56:8080/UAMWebservices/fetchRoleNamesSVC?userId="+res.emailId;
+      this.httpClient.get(url)
+      .subscribe((res:any) => {
+        console.log(res);
+        this.router.navigate(['/dashboard']);
+      });
+    }
 
 
   getLogin()

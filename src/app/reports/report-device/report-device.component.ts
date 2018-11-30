@@ -35,10 +35,10 @@ export class ReportDeviceComponent implements OnInit {
   this.showDevice();
   }
   getColor() {
-    return this.color === 'online' ? '#ffffff' : 'white';
+    // return this.color === 'online' ? '#ffffff' : 'white';
   }
   getOpacity() {
-    return this.color === 'online' ? 0.8 : 1;
+    // return this.color === 'online' ? 0.8 : 1;
   }
   showDevice(){
     this.loading=true;
