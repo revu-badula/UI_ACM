@@ -68,7 +68,7 @@ import { IdleTimeoutService } from './idleTimeOutService';
 import { DialogComponent } from './dialog.service';
 import { OnlyIntegerDirective } from './locality-component/only-integer.directive';
 import { CustomCurrencyPipe } from './currency-pipe';
-import  { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, LocationStrategy, APP_BASE_HREF, HashLocationStrategy } from '@angular/common';
 import { OnlyInteger } from './integer';
 import { ReportLegalComponent } from './reports/report-legal/report-legal.component';
 import { ReportSolutionsComponent } from './reports/report-solutions/report-solutions.component';
@@ -83,6 +83,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { CallbackComponent } from './callback/callback.component';
 import { OktaAuthService } from './okta/oka.service';
 import { SampleComponent } from './sample/sample.component';
+import { CustomHashLocationStrategy } from './custom-hash-location';
 @NgModule({
   declarations: [
     AppComponent,
@@ -175,8 +176,8 @@ import { SampleComponent } from './sample/sample.component';
   entryComponents: [
     DialogBoxComponent, DialogComponent
   ],
-  providers: [RegisterService, UtilService, ApiserviceService, AlertService, OktaAuthService,
-     AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe],
+  providers: [RegisterService, UtilService,{provide:APP_BASE_HREF, useValue:'/UIApp/'}, ApiserviceService, AlertService, OktaAuthService,
+    AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

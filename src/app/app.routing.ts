@@ -142,6 +142,7 @@ import { SystemassesslandingComponent } from './system-component/system-tab/syst
 import { SystemauditcontrolComponent } from './system-component/system-tab/system-audit/systemauditcontrol/systemauditcontrol.component';
 import { SystemauditlandingComponent } from './system-component/system-tab/system-audit/systemauditlanding/systemauditlanding.component';
 import { CallbackComponent } from './callback/callback.component';
+import { enableDebugTools } from '@angular/platform-browser';
 
 const appRoutes: Routes = [
 
@@ -608,7 +609,7 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { useHash: false })],
+  imports: [RouterModule.forRoot(appRoutes,{useHash:false})],
   exports: [RouterModule],
   providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard, WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard, SystemGuardAssess]
 
