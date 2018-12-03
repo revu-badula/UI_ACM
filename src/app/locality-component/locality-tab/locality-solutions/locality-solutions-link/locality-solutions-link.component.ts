@@ -20,6 +20,8 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   public acronym: any;
   public updatedTime: any;
   public updatedBy:any;
+  public updtBy:boolean=false;
+  public updt:boolean=false;
   public showPagination: boolean = true;
   constructor(private _apiservice: ApiserviceService, private router: Router, private utilService: UtilService) {
     this.viewApplication(localStorage.getItem('localityName'));
@@ -200,6 +202,77 @@ export class LocalitySolutionsLinkComponent implements OnInit {
       return 1;
     }
     return 0;
+  }
+
+
+
+  handleSort2(value) {
+  
+    if (!this.updtBy) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appSolutions.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updtBy = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appSolutions.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updtBy = false;
+    }
+
+
+  }
+
+
+  handleSort3(value) {
+  
+    if (!this.updt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appSolutions.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appSolutions.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updt = false;
+    }
+
+
   }
 
 

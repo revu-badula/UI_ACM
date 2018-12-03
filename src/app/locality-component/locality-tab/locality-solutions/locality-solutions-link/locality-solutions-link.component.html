@@ -62,8 +62,12 @@
                                 <i class="fa fa-arrow-down" *ngIf="!precinctType"></i>
                                 <i class="fa fa-arrow-up" *ngIf="precinctType"></i>
                             </th>
-                            <th style="width:14%;">Last UpdatedBy</th>
-                            <th style="width:15%;">Last Updated Date</th>
+                            <th style="width:14%;" (click)="handleSort2('updatedBy')">Last UpdatedBy
+                                    <i class="fa fa-arrow-down" *ngIf="!updtBy"></i>
+                                    <i class="fa fa-arrow-up" *ngIf="updtBy"></i></th>
+                            <th style="width:15%;" (click)="handleSort3('updatedTs')">Last Updated Date
+                                    <i class="fa fa-arrow-down" *ngIf="!updt"></i>
+                                    <i class="fa fa-arrow-up" *ngIf="updt"></i></th>
                         </tr>
                     </thead>
                     <tbody>

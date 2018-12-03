@@ -21,6 +21,8 @@ export class SystemAddComponentComponent implements OnInit {
   public desc: boolean = false;
   public businessOwner: boolean = false;
   public systemOwner: boolean = false;
+  public updtBy:boolean=false;
+  public updt:boolean=false;
   public p: number = 1;
   public showPagination:boolean=true;
   @ViewChild('content') content: TemplateRef<any>;
@@ -166,6 +168,74 @@ export class SystemAddComponentComponent implements OnInit {
 
 
   }
+
+
+  handleSort3(value) {
+    if (!this.updtBy) {
+
+      let orderByValue = value;
+      this.pendingApplications.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updtBy = true;
+    }
+    else {
+      let orderByValue = value;
+      this.pendingApplications.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updtBy = false;
+    }
+
+
+  }
+
+
+  handleSort4(value) {
+    if (!this.updt) {
+
+      let orderByValue = value;
+      this.pendingApplications.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.pendingApplications.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updt = false;
+    }
+
+
+  }
+
+
 
 
 
