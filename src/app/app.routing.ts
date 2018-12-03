@@ -143,6 +143,7 @@ import { SystemauditcontrolComponent } from './system-component/system-tab/syste
 import { SystemauditlandingComponent } from './system-component/system-tab/system-audit/systemauditlanding/systemauditlanding.component';
 import { CallbackComponent } from './callback/callback.component';
 import { enableDebugTools } from '@angular/platform-browser';
+import { CallGuard } from './callguard';
 
 const appRoutes: Routes = [
 
@@ -168,7 +169,7 @@ const appRoutes: Routes = [
   { path: 'rsystems', component: ReportlegalsystemComponent, canActivate: [AuthGuard] },
   { path: 'subcontrol', component: SubControlNameComponent, canActivate: [AuthGuard] },
   {
-    path: 'callback', component: CallbackComponent
+    path: 'callback', component: CallbackComponent, canActivate:[CallGuard]
   },
 
   {
@@ -611,7 +612,9 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes,{useHash:false})],
   exports: [RouterModule],
-  providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard, WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard, SystemGuardAssess]
+  providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard, 
+    WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard,
+     SystemGuardAssess, CallGuard]
 
 })
 //export class SystemComponentRoutingModule {}

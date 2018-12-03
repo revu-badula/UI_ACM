@@ -27,6 +27,7 @@ static signlegal:boolean=false;
 static signsystem:boolean=false;
 static pass:boolean=false;
 static pending:boolean=false;
+static calback:boolean=false;
 public subject = new BehaviorSubject<any>(false);
 public subject1 = new BehaviorSubject<any>(false);
 setEditTrue(val : boolean) {

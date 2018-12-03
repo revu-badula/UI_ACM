@@ -232,10 +232,10 @@
 							<tr *ngFor="let day of locality.workHoursDTOs;let i = index;">
 								<td>{{day.day}}</td>
 								<td><input type="time" id="{{day.openTm}}" name="{{day.openTm}}" [(ngModel)]="day.openTm" [ngModelOptions]="{standalone:true}"
-									 min="9:00" max="18:00" required (input)="time = $event.target.value" />
+									 min="9:00" max="18:00" required (input)="time = $event.target.value" [attr.disabled]="day.day === 'Sunday'? '' : null" />
 									To </td>
 								<td><input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00" max="18:00" [(ngModel)]="day.closeTm"
-									 [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" /></td>
+									 [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" [attr.disabled]="day.day === 'Sunday'? '' : null" /></td>
 							</tr>
 						</tbody>
 					</table>
