@@ -152,12 +152,12 @@ export class SystemAssessDetailsComponent implements OnInit {
     }
     else {
       let url_update = APP_CONFIG.updateAppAssessment;
+      this.appAssess.updatedBy = Cookie.get('userName');
       this.appAssess.assessmentPolicyDTOs = [];
       for (let i = 0; i < this.policies.length; i++) {
         this.appAssess.assessmentPolicyDTOs.push(this.policies[i]);
       }
       let data = JSON.stringify(this.appAssess);
-      this.appAssess.updatedBy = Cookie.get('userName');
       this.http.post(url_update, data, options)
         .subscribe((data: any) => {
           this.loading = false;

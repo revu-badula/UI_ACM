@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </form> -->
-
+<!-- 
                 <div style="text-align: center">
                     <div class="set-size charts-container">
                         <div class="pie-wrapper progress-30">
@@ -85,7 +85,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
             </div>
             <br><br>
             <div class="plus" *ngIf="showPlusButton">
@@ -122,8 +122,7 @@
                         <tr *ngFor="let  audit of appAuditDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
                             <td>
                                 <a (click)="getAudit(audit.appAuditId)" style="cursor:pointer;color:blue;">{{
-                                    audit.auditName |
-                                    systemfilterAuditName }}</a>
+                                    audit.auditTypeName }}</a>
                             </td>
                             <td>{{ audit.auditType }}</td>
                             <td>{{ audit.auditDate | filterDate | date:'MM/dd/yyyy' }}</td>
