@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sub-control-name',
   templateUrl: './sub-control-name.component.html',
@@ -20,13 +21,14 @@ export class SubControlNameComponent implements OnInit {
   public showForm: boolean = false;
   public endDate: any;
   color: String;
-  public users:any;
+  public showClose: boolean = false;
+  public users: any;
   public showBtt: boolean = false;
   config = {
     placeholder: '',
     tabsize: 2,
     height: 200,
-    width:"100%",
+    width: "100%",
     toolbar: [
       // [groupName, [list of button]]
       ['misc', ['undo', 'redo']],
@@ -35,11 +37,12 @@ export class SubControlNameComponent implements OnInit {
       ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-    
+
   };
   @ViewChild('content') content: TemplateRef<any>;
   constructor(private _apiservice: ApiserviceService, private http: Http,
-    public datepipe: DatePipe, private modalService: NgbModal, private _location: Location) {
+    public datepipe: DatePipe, private modalService: NgbModal,
+    private _location: Location, private router: Router) {
     this.subControl1 = new subControl();
     this.getPolicy();
 
@@ -54,7 +57,7 @@ export class SubControlNameComponent implements OnInit {
 
 
   getPolicy() {
-    this.loading=true;
+    this.loading = true;
     let polId = localStorage.getItem('policyId');
     let poId = +polId;
     this._apiservice.getPolicy(poId)
@@ -63,8 +66,8 @@ export class SubControlNameComponent implements OnInit {
         this.policyAccess = data;
         this.showInfo(data.subPolicyDTOs);
 
-      },error => {
-        this.loading=false;
+      }, error => {
+        this.loading = false;
         console.log(error);
       });
   }
@@ -75,6 +78,7 @@ export class SubControlNameComponent implements OnInit {
     else {
       this.showBtt = true;
       this.showForm = true;
+      this.showClose = true;
       let id = localStorage.getItem('subPol');
       let poId = +id;
       value.filter(item => {
@@ -169,6 +173,14 @@ export class SubControlNameComponent implements OnInit {
 
       }, error => console.log(error));
 
+  }
+
+
+
+  redirect() {
+    let id = localStorage.getItem('policyId');
+    let url = "/accessControl/" + id;
+    this.router.navigateByUrl(url);
   }
 
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OktaAuthService } from './okta/oka.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private okta: OktaAuthService)
+  {
+   // this.okta.isAuthenticated();
+  }
 }

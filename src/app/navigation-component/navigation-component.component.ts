@@ -22,7 +22,7 @@ export class NavigationComponentComponent implements OnInit {
 
 
 
-  signOut()
+   signOut()
   {
     //localStorage.clear();
     this.okta.logout();

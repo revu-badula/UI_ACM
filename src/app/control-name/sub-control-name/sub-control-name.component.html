@@ -32,7 +32,8 @@
         <p>The policy has been updated</p>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
+        <button type="button" *ngIf="!showClose" class="btn btn-outline-dark confbtn" (click)="redirect();c()">Close</button>
+        <button type="button" *ngIf="showClose" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
     </div>
 </ng-template>
 <div>

@@ -6,6 +6,8 @@ const baseUrl = 'http://localhost:8080/ApplicationPortfolioManager/services/';
 
 //const baseUrl='http://172.24.16.56:8080/ApplicationPortfolioManager/services/';
 
+//const baseUrl = 'http://23.96.86.203:8080/ApplicationPortfolioManager/services/';
+
 const apiBaseUrl = baseUrl;
 
 
