@@ -9,7 +9,7 @@
 		</button>
 	</div>
 	<div class="modal-body">
-		<p>{{contentData}}!</p>
+		<p>{{contentData}}</p>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
@@ -108,7 +108,7 @@
 								<select *ngIf="isAddNewSolution" style="width:50%;" [(ngModel)]="applicationSolution.solutionsDTO.solutionId" id="inputState"
 								 class="form-control" (change)="selectModSolution($event.target.value);applicationSolution.solutionsDTO.solutionId = $event.target.value"
 								 name="modelSname" ngModel required>
-
+								 <option value="">Choose...</option>
 									<option *ngFor="let name of names" value="{{name.solutionId}}">{{name.name}}</option>
 
 								</select>

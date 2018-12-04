@@ -41,7 +41,7 @@ export class OktaAuthService {
   }
 
   async handleAuthentication() {
-    this.isAuthenticated();
+    //this.isAuthenticated();
     const tokens = await this.oktaAuth.token.parseFromUrl();
 
     tokens.forEach(token => {
