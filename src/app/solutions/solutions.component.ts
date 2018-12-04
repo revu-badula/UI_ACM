@@ -13,6 +13,7 @@ declare var swal: any; ''
 import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { DialogService } from '../dialog.service';
 @Component({
   selector: 'app-solutions',
   templateUrl: './solutions.component.html',
@@ -71,7 +72,7 @@ export class SolutionsComponent implements OnInit {
   }
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
      private _location: Location, private _apiservice: ApiserviceService,
-      private http: Http, private modalService: NgbModal, private datepipe: DatePipe) {
+      private http: Http, private modalService: NgbModal, private datepipe: DatePipe,private dialogService: DialogService) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
     this.solution.hostingTypeDTO = new HostingType();
@@ -97,6 +98,7 @@ export class SolutionsComponent implements OnInit {
     this.certDocDTO.fileName = fileInput.target.files[0].name;
     this.certDocDTO.section = section;
     this.files.push(fileInput.target.files[0]);
+    this.inputEl.nativeElement.value = "";
     this.solution.certDocDTOs.push(this.certDocDTO);
   }
 
@@ -217,9 +219,10 @@ export class SolutionsComponent implements OnInit {
   }
 
   deleteFile(id, index) {
-    this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
-        if (result.value !== undefined && result.value) {
+        if (result) {
           if (id === undefined) {
             let length = this.solution.certDocDTOs.length;
             if (length === 1) {
