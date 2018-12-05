@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AlertService } from '../alert.service';
@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, private alertService: AlertService,
     private authservice: AuthenticationService,
-    private utilservice: UtilService, private http: Http, 
+    private utilservice: UtilService, private http: Http,
     private httpClient: HttpClient, private okta: OktaAuthService) {
     UtilService.loginstate = false;
   }
@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
     //this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // convenience getter for easy access to form fields
@@ -149,29 +149,35 @@ export class LoginPageComponent implements OnInit {
         let ln = res.lastName;
         let userName = fn + " " + ln;
         Cookie.set('userName', userName);
-        // console.log(res);
-        // this.router.navigate(['/dashboard']);
-        this.getUserRoles(res);
+        //console.log(this.router.routerState.snapshot.root.queryParams.returnUrl);
+        //     const state: RouterState = router.routerState;
+        //     const snapshot: RouterStateSnapshot = state.snapshot;
+        // const root: ActivatedRouteSnapshot = snapshot.root;
+        //const child = root.firstChild;
+        // let url = this.route.snapshot.queryParams['returnUrl'] || '/';
+        // console.log(url);
+        this.router.navigate(['/dashboard']);
+        //this.getUserRoles(res);
       }, error => {
         this.loading = false;
         console.log(error);
       })
   }
 
-    getUserRoles(res)
-    {
-      //console.log(res);
-      let url="http://172.24.16.56:8080/UAMWebservices/fetchRoleNamesSVC?userId="+res.emailId;
-      this.httpClient.get(url)
-      .subscribe((res:any) => {
+  getUserRoles(res) {
+    //console.log(res);
+    let url = "http://172.24.16.56:8080/UAMWebservices/fetchRoleNamesSVC?userId=" + res.emailId;
+    this.httpClient.get(url)
+      .subscribe((res: any) => {
         console.log(res);
         this.router.navigate(['/dashboard']);
       });
-    }
+  }
 
 
-  getLogin()
-  {
+  getLogin() {
+    // let url = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // console.log(url);
     this.okta.login();
   }
 }

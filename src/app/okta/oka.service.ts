@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as OktaAuth from '@okta/okta-auth-js';
 import { Cookie } from 'ng2-cookies';
 import { Http, RequestOptionsArgs, RequestOptions, Headers } from '@angular/http';
@@ -22,7 +22,7 @@ export class OktaAuthService {
   });
 
   public accesTok: any;
-  constructor(private router: Router, private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient, private route: ActivatedRoute) { }
 
   async isAuthenticated() {
     // Checks if there is a current accessToken in the TokenManger.
@@ -160,6 +160,8 @@ export class OktaAuthService {
 
     // });
     //console.log(user);
+    // let url = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // console.log(url);
     this.router.navigate(['/dashboard']);
   }
 }
