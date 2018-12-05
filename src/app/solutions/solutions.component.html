@@ -299,7 +299,7 @@
 			<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"></textarea>
 
 			<div class="attachments-div">
-				<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
+				<input type="file" #fileInput1 *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
 				<div class="display-file">
 					<br>
 					<br>
@@ -335,7 +335,7 @@
 				<p class="attachments">
 					<b>Attachments</b>
 				</p>
-				<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
+				<input type="file" #fileInput2 *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
 				<div class="display-file">
 					<br>
 					<br>
@@ -374,7 +374,7 @@
 					<p class="attachments">
 						<b>Attachments</b>
 					</p>
-					<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
+					<input type="file" #fileInput3 *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
 					<div class="display-file">
 						<br>
 						<br>

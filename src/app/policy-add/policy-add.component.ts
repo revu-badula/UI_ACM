@@ -32,6 +32,7 @@ export class PolicyAddComponent implements OnInit {
   public policyData: any;
   public auditTypes: any;
   public policyTypes: any;
+  public users:any;
   policies: Policy[];
   addNewPolicy: any = [];
   linkedPolicy: Policy;
@@ -65,10 +66,13 @@ export class PolicyAddComponent implements OnInit {
     this.policyPost.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     this.files = [] as File[];
     this.policies = [];
+    this.getUsers();
     //this.linkedPolicy = new Policy();
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   open(content) {
@@ -270,6 +274,14 @@ export class PolicyAddComponent implements OnInit {
               this.policyPost.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
             }
             else {
+
+              for(let j=0;j<this.files.length;j++)
+              {
+                if(this.files[j].name === this.policyPost.policyDocumentsDTOs[index].documentName)
+                {
+                  this.files.splice(j,1);
+                }
+              }
               for (let i = index; i < length; i++) {
                 this.policyPost.policyDocumentsDTOs[i] = this.policyPost.policyDocumentsDTOs[i + 1];
               }
@@ -289,6 +301,16 @@ export class PolicyAddComponent implements OnInit {
       }, error => {
         console.log(error);
       });
+  }
+
+
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+
+      }, error => console.log(error));
+
   }
 
 

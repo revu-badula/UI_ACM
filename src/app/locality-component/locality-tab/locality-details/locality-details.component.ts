@@ -153,6 +153,7 @@ export class LocalityDetailsComponent implements OnInit {
           this.showBtn = false;
           UtilService.active = true;
           localStorage.setItem('active', 'true');
+          //this.locality.fipsCd = localStorage.getItem('fipscode');
           this.appId = data.applicationViewDTO.applicationId;
           this.locality = data.applicationViewDTO;
           this.locality.workHoursDTOs = data.applicationViewDTO.workHoursDTOs;

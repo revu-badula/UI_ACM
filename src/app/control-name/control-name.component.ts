@@ -156,6 +156,13 @@ export class ControlNameComponent implements OnInit {
               this.policyAccess.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
             }
             else {
+              for(let j=0;j<this.files.length;j++)
+              {
+                if(this.files[j].name === this.policyAccess.policyDocumentsDTOs[index].documentName)
+                {
+                  this.files.splice(j,1);
+                }
+              }
               for (let i = index; i < length; i++) {
                 this.policyAccess.policyDocumentsDTOs[i] = this.policyAccess.policyDocumentsDTOs[i + 1];
               }

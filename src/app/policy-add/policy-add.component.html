@@ -41,14 +41,19 @@
 				</div>
 				<div class=" form-row">
 					<div class="form-group col-md-6">
-						<label for="familyName">Family Name</label>
+						<label for="familyName">Family Name<span class="asterisk">*</span></label>
 						<input type="text" class="form-control" id="familyName" ngModel name="familyName" [(ngModel)]="policyPost.familyName"
-						 [name]="'family_name'">
+						 [name]="'family_name'" required>
 					</div>
 				
 						<div class="form-group col-md-6">
 							<label for="assignTo">Assign To</label>
-							<input type="text" class="form-control" id="assignTo" [(ngModel)]="policyPost.assignedTo" [name]="'assi_to'">
+							<!-- <input type="text" class="form-control" id="assignTo" [(ngModel)]="policyPost.assignedTo" [name]="'assi_to'"> -->
+							<select name="assignTo" style="width:50%;" [(ngModel)]="policyPost.assignTo" class="form-control" id="searchUsers" (change)="policyPost.assignTo=$event.target.value">
+									<option selected>Choose...</option>
+									<option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+										getUser.firstName}} {{getUser.lastName }} </option>
+								</select>
 						</div>
 					</div>
 					<div class="form-row">
@@ -57,8 +62,9 @@
 							<my-date-picker name="myname" class="inputState1" [(ngModel)]="endDate"></my-date-picker>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="status">Status</label>
-							<select style="width: 50%;" class="form-control" id="status" name="status"  (change)="policyPost.status = $event.target.value">
+							<label for="status">Status<span class="asterisk">*</span></label>
+							<select style="width: 50%;" class="form-control" id="status" name="status" ngModel  (change)="policyPost.status = $event.target.value" required>
+								<option value="">Choose</option>
 								<option value="true">Open</option>
 								<option value="false">Close</option>
 							</select>
@@ -116,7 +122,8 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="priority">Priority<span class="asterisk">*</span></label>
-						<select style="width: 50%;" class="form-control" id="priority" (change)="policyPost.priority = $event.target.value">
+						<select style="width: 50%;" class="form-control" name="priority" ngModel id="priority" (change)="policyPost.priority = $event.target.value" required>
+							<option value="">Choose</option>
 							<option value="High">High</option>
 							<option value="Medium">Medium</option>
 							<option value="Low">Low</option>

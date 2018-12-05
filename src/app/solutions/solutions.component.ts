@@ -22,6 +22,9 @@ import { DialogService } from '../dialog.service';
 })
 export class SolutionsComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
+  @ViewChild('fileInput1') inputEl1: ElementRef;
+  @ViewChild('fileInput2') inputEl2: ElementRef;
+  @ViewChild('fileInput3') inputEl3: ElementRef;
   @ViewChild('f') solutionsForm: NgForm;
   @ViewChild('content') content: TemplateRef<any>;
   solution: Solution;
@@ -98,8 +101,21 @@ export class SolutionsComponent implements OnInit {
     this.certDocDTO.fileName = fileInput.target.files[0].name;
     this.certDocDTO.section = section;
     this.files.push(fileInput.target.files[0]);
-    this.inputEl.nativeElement.value = "";
     this.solution.certDocDTOs.push(this.certDocDTO);
+    if(section === "hosting"){
+    this.inputEl.nativeElement.value = "";
+    }
+    else if(section === "standard")
+    {
+      this.inputEl1.nativeElement.value = "";
+    }
+    else if(section === "patches")
+    {
+      this.inputEl2.nativeElement.value = "";
+    }
+    else{
+      this.inputEl3.nativeElement.value = "";
+    }
   }
 
 
@@ -229,6 +245,13 @@ export class SolutionsComponent implements OnInit {
               this.solution.certDocDTOs = [];
             }
             else {
+              for(let j=0;j<this.files.length;j++)
+              {
+                if(this.files[j].name === this.solution.certDocDTOs[index].fileName)
+                {
+                  this.files.splice(j,1);
+                }
+              }
               for (let i = index; i < length; i++) {
                 this.solution.certDocDTOs[i] = this.solution.certDocDTOs[i + 1];
               }
