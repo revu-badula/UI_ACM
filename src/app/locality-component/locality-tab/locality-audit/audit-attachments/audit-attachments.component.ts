@@ -140,6 +140,7 @@ export class AuditAttachmentsComponent implements OnInit {
               this.appAuditFileDTO.fileContent = data);
         //this.files.push(fileInput.target.files[0]);
         this.appAudit.appAuditFileDTOs.push(this.appAuditFileDTO);
+        this.inputEl.nativeElement.value = "";
       }
       else {
         this.givenfile = true;
@@ -153,6 +154,7 @@ export class AuditAttachmentsComponent implements OnInit {
               this.appAuditFileDTO.fileContent = data);
         //this.files.push(fileInput.target.files[0]);
         this.appAudit.appAuditFileDTOs.push(this.appAuditFileDTO);
+        this.inputEl.nativeElement.value = "";
 
       }
     }

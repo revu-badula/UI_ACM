@@ -74,8 +74,8 @@ export class SolutionsComponent implements OnInit {
     defaultOpen: true
   }
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
-     private _location: Location, private _apiservice: ApiserviceService,
-      private http: Http, private modalService: NgbModal, private datepipe: DatePipe,private dialogService: DialogService) {
+    private _location: Location, private _apiservice: ApiserviceService,
+    private http: Http, private modalService: NgbModal, private datepipe: DatePipe, private dialogService: DialogService) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
     this.solution.hostingTypeDTO = new HostingType();
@@ -97,24 +97,26 @@ export class SolutionsComponent implements OnInit {
 
 
   createCertDTO(fileInput: any, section: string) {
-    this.certDocDTO = new CertDocDTO();
-    this.certDocDTO.fileName = fileInput.target.files[0].name;
-    this.certDocDTO.section = section;
-    this.files.push(fileInput.target.files[0]);
-    this.solution.certDocDTOs.push(this.certDocDTO);
-    if(section === "hosting"){
-    this.inputEl.nativeElement.value = "";
-    }
-    else if(section === "standard")
-    {
-      this.inputEl1.nativeElement.value = "";
-    }
-    else if(section === "patches")
-    {
-      this.inputEl2.nativeElement.value = "";
-    }
-    else{
-      this.inputEl3.nativeElement.value = "";
+    let files = fileInput.target.files[0];
+    if (files === undefined) { }
+    else {
+      this.certDocDTO = new CertDocDTO();
+      this.certDocDTO.fileName = fileInput.target.files[0].name;
+      this.certDocDTO.section = section;
+      this.files.push(fileInput.target.files[0]);
+      this.solution.certDocDTOs.push(this.certDocDTO);
+      if (section === "hosting") {
+        this.inputEl.nativeElement.value = "";
+      }
+      else if (section === "standard") {
+        this.inputEl1.nativeElement.value = "";
+      }
+      else if (section === "patches") {
+        this.inputEl2.nativeElement.value = "";
+      }
+      else {
+        this.inputEl3.nativeElement.value = "";
+      }
     }
   }
 
@@ -176,8 +178,7 @@ export class SolutionsComponent implements OnInit {
     this.solution.certRenewalDueDt = this.renewalDate;
   }
 
-  getApproveDt(value)
-  {
+  getApproveDt(value) {
     if (value.formatted === "") {
       this.solution.certDt = null;
     }
@@ -187,8 +188,7 @@ export class SolutionsComponent implements OnInit {
       this.solution.certDt = moment(latest_date).format();
     }
   }
-  getRenewDt(value)
-  {
+  getRenewDt(value) {
     if (value.formatted === "") {
       this.solution.certRenewalDueDt = null;
     }
@@ -245,11 +245,9 @@ export class SolutionsComponent implements OnInit {
               this.solution.certDocDTOs = [];
             }
             else {
-              for(let j=0;j<this.files.length;j++)
-              {
-                if(this.files[j].name === this.solution.certDocDTOs[index].fileName)
-                {
-                  this.files.splice(j,1);
+              for (let j = 0; j < this.files.length; j++) {
+                if (this.files[j].name === this.solution.certDocDTOs[index].fileName) {
+                  this.files.splice(j, 1);
                 }
               }
               for (let i = index; i < length; i++) {

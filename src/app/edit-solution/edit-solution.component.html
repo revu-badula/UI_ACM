@@ -269,7 +269,7 @@
 						 [(ngModel)]="solution.certStadard" [ngxSummernoteDisabled]="showForm" name="standard Notes"></textarea>
 						<div class="attachments-div">
 
-							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
+							<input type="file" #fileInput1 *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
 							<div class="display-file">
 								<br>
 								<br>
@@ -303,7 +303,7 @@
 						<textarea  cols="156" rows="7" id="patches" [ngxSummernote]="config" id="ngxSummernote"
 						 [(ngModel)]="solution.patches" [ngxSummernoteDisabled]="showForm" [name]="'solution_patches'"></textarea>
 						<div class="attachments-div">
-							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
+							<input type="file" #fileInput2 *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
 							<div class="display-file">
 								<br><br><br>
 								<table border="1">
@@ -335,7 +335,7 @@
 						<textarea  cols="156" rows="7" [(ngModel)]="solution.notes" [ngxSummernoteDisabled]="showForm" [ngxSummernote]="config" id="ngxSummernote" [name]="'solution_notes'"></textarea>
 						<div class="attachments-div">
 							
-							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
+							<input type="file" #fileInput3 *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
 							<div class="display-file">
 								<br>
 								<br>

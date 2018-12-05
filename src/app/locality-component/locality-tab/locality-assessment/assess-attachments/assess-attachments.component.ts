@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, HostListener, ElementRef } from '@angular/core';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { UtilService } from '../../../../util.service';
 import { AppAudit } from '../../../../data.model.auditDTO';
@@ -40,6 +40,7 @@ declare let document: Document;
 export class AssessAttachmentsComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
+  @ViewChild('fileInput') inputEl: ElementRef;
   appAssess: AppAssess;
   assessmentFileDTO: AssessmentFileDTO;
   public loading: boolean = false;
@@ -146,6 +147,7 @@ export class AssessAttachmentsComponent implements OnInit {
               this.assessmentFileDTO.fileContent = data);
         //this.files.push(fileInput.target.files[0]);
         this.appAssess.assessmentFileDTOs.push(this.assessmentFileDTO);
+        this.inputEl.nativeElement.value = "";
       }
       else {
         //this.myForm.controls.file.markAsDirty();
@@ -160,6 +162,7 @@ export class AssessAttachmentsComponent implements OnInit {
               this.assessmentFileDTO.fileContent = data);
         //this.files.push(fileInput.target.files[0]);
         this.appAssess.assessmentFileDTOs.push(this.assessmentFileDTO);
+        this.inputEl.nativeElement.value = "";
 
       }
     }

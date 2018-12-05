@@ -172,6 +172,7 @@ export class LegalformComponent implements OnInit {
         this.files.push(fileInput.target.files[0]);
         this.mouDocDTO.newFile = true;
         this.mou.mouDocDTOs.push(this.mouDocDTO);
+        this.inputEl.nativeElement.value="";
       }
       else {
         this.mouDocDTO = new MOUDocDTO();
@@ -180,6 +181,7 @@ export class LegalformComponent implements OnInit {
         this.mouDocDTO.newFile = true;
         this.files.push(fileInput.target.files[0]);
         this.mou.mouDocDTOs.push(this.mouDocDTO);
+        this.inputEl.nativeElement.value="";
 
 
       }

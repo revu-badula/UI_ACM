@@ -197,7 +197,7 @@ import { DialogService } from '../../../dialog.service';
 		</p>
 		<div>
 			<div class="col-md-6">
-		<input type="file" #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
+		<input type="file" #fileInput formControlName=file (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
 			</div>
 
 		</div>
@@ -361,7 +361,8 @@ export class NgbdModalContent implements OnInit {
             overallStatus: ['', Validators.required],
             nextScanningDt: ['', Validators.required],
             nextScanningDt1: ['', Validators.required],
-            notes: ['']
+            notes: [''],
+            file:['']
 
         });
 
@@ -450,6 +451,7 @@ export class NgbdModalContent implements OnInit {
                 this.files.push(fileInput.target.files[0]);
                 this.deviceDocDTO.newFile = true;
                 this.device.deviceDocDTO.push(this.deviceDocDTO);
+                this.inputEl.nativeElement.value="";
             }
             else {
                 this.deviceDocDTO = new DeviceDocDTO();
@@ -458,7 +460,7 @@ export class NgbdModalContent implements OnInit {
                 this.deviceDocDTO.newFile = true;
                 this.files.push(fileInput.target.files[0]);
                 this.device.deviceDocDTO.push(this.deviceDocDTO);
-
+                this.inputEl.nativeElement.value="";
 
             }
         }

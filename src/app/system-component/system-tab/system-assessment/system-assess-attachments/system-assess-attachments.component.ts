@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, HostListener, ElementRef } from '@angular/core';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { UtilService } from '../../../../util.service';
 import { AppAudit } from '../../../../data.model.auditDTO';
@@ -37,8 +37,9 @@ declare let document: Document;
   styleUrls: ['./system-assess-attachments.component.css']
 })
 export class SystemAssessAttachmentsComponent implements OnInit {
- @ViewChild('content') content: TemplateRef<any>;
+  @ViewChild('content') content: TemplateRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
+  @ViewChild('fileInput') inputEl: ElementRef;
   appAssess: AppAssess;
   assessmentFileDTO: AssessmentFileDTO;
   public loading: boolean = false;
@@ -104,7 +105,7 @@ export class SystemAssessAttachmentsComponent implements OnInit {
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
     let url_update = APP_CONFIG.updateAppAssessment;
-    this.appAssess.updatedBy=Cookie.get('userName');
+    this.appAssess.updatedBy = Cookie.get('userName');
     let data = JSON.stringify(this.appAssess);
     this.http.post(url_update, data, options)
       .subscribe((data: any) => {
@@ -128,7 +129,7 @@ export class SystemAssessAttachmentsComponent implements OnInit {
     }
     else {
       if (this.appAssess.assessmentFileDTOs === null) {
-        this.givenfile=true;
+        this.givenfile = true;
         this.appAssess.assessmentFileDTOs = [];
         this.assessmentFileDTO = new AssessmentFileDTO();
         this.assessmentFileDTO.fileName = fileInput.target.files[0].name;
@@ -140,6 +141,7 @@ export class SystemAssessAttachmentsComponent implements OnInit {
               this.assessmentFileDTO.fileContent = data);
         //this.files.push(fileInput.target.files[0]);
         this.appAssess.assessmentFileDTOs.push(this.assessmentFileDTO);
+        this.inputEl.nativeElement.value = "";
       }
       else {
         //this.myForm.controls.file.markAsDirty();
@@ -154,7 +156,7 @@ export class SystemAssessAttachmentsComponent implements OnInit {
               this.assessmentFileDTO.fileContent = data);
         //this.files.push(fileInput.target.files[0]);
         this.appAssess.assessmentFileDTOs.push(this.assessmentFileDTO);
-
+        this.inputEl.nativeElement.value = "";
       }
     }
 
@@ -169,11 +171,11 @@ export class SystemAssessAttachmentsComponent implements OnInit {
           if (id === undefined) {
             let length = this.appAssess.assessmentFileDTOs.length;
             if (length === 1) {
-              this.givenfile=false;
+              this.givenfile = false;
               this.appAssess.assessmentFileDTOs = [];
             }
             else {
-              this.givenfile=false;
+              this.givenfile = false;
               for (let i = index; i < length; i++) {
                 this.appAssess.assessmentFileDTOs[i] = this.appAssess.assessmentFileDTOs[i + 1];
               }
@@ -299,30 +301,29 @@ export class SystemAssessAttachmentsComponent implements OnInit {
 
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-   
+
     if (this.givenfile) {
-     // return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
-     return new Promise<boolean>((resolve, reject) => {
-      this.dialogService.open("Info", " Do you want to save changes for Attachments?", true, "Yes", "No")
-      .then((result) =>{
-        if(result)
-        {
-          this.saveAttachments();
-          resolve(false);
-        }
-        else{
-          resolve(true);
-        }
-      },error => reject(error));
-        
-    });
+      // return this.confirm1('Do you want to save changes?', 'for attachments', 'YES', 'NO');
+      return new Promise<boolean>((resolve, reject) => {
+        this.dialogService.open("Info", " Do you want to save changes for Attachments?", true, "Yes", "No")
+          .then((result) => {
+            if (result) {
+              this.saveAttachments();
+              resolve(false);
+            }
+            else {
+              resolve(true);
+            }
+          }, error => reject(error));
 
-  }
-  else{
-  return true;
-  }
+      });
 
-    
+    }
+    else {
+      return true;
+    }
+
+
 
   }
 

@@ -29,9 +29,12 @@ declare var swal: any; ''
 
 
 export class EditSolutionComponent implements OnInit {
-  @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('editForm') solutionsForm: NgForm;
   @ViewChild('content') content: TemplateRef<any>;
+  @ViewChild('fileInput') inputEl: ElementRef;
+  @ViewChild('fileInput1') inputEl1: ElementRef;
+  @ViewChild('fileInput2') inputEl2: ElementRef;
+  @ViewChild('fileInput3') inputEl3: ElementRef;
   color: String;
   solution: Solution;
 
@@ -162,6 +165,20 @@ export class EditSolutionComponent implements OnInit {
       this.certDocDTO.activeFlag = true;
       this.files.push(fileInput.target.files[0]);
       this.solution.certDocDTOs.push(this.certDocDTO);
+      if(section === "hosting"){
+        this.inputEl.nativeElement.value = "";
+        }
+        else if(section === "standard")
+        {
+          this.inputEl1.nativeElement.value = "";
+        }
+        else if(section === "patches")
+        {
+          this.inputEl2.nativeElement.value = "";
+        }
+        else{
+          this.inputEl3.nativeElement.value = "";
+        }
     }
   }
 
@@ -217,10 +234,10 @@ export class EditSolutionComponent implements OnInit {
         else {
           let d = new Date(this.solution.certDt);
           let year = d.getFullYear();
-         let month = d.getMonth() + 1;
+          let month = d.getMonth() + 1;
           let day = d.getDate();
           this.approveDate = {
-            date: { month: month, day: day, year: year}
+            date: { month: month, day: day, year: year }
           };
         }
         if (this.solution.certRenewalDueDt === null) {
@@ -228,10 +245,10 @@ export class EditSolutionComponent implements OnInit {
         }
         else {
           let rd = new Date(this.solution.certRenewalDueDt);
-          let  year = rd.getFullYear();
-           let month = rd.getMonth() + 1;
-            let day = rd.getDate();
-          this.dueDate = { date: {month: month, day: day, year: year } };
+          let year = rd.getFullYear();
+          let month = rd.getMonth() + 1;
+          let day = rd.getDate();
+          this.dueDate = { date: { month: month, day: day, year: year } };
         }
         var utcSeconds = this.solution.certDt;
         var dt = new Date(0);
