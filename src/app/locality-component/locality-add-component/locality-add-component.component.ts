@@ -213,7 +213,7 @@ export class LocalityAddComponentComponent implements OnInit {
       "county_seat": "Winchester",
       "county_code": "69",
       "year_founded": "1743",
-      "county_name": "Frederick"
+      "county_name": "Fredrickburg"
     }
     , {
       "county_seat": "Pearisburg",

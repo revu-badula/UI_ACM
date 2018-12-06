@@ -135,18 +135,19 @@
 						<div class="form-group col-md-3">
 							<label for="poll">Central Absentee Perceived(CAP)</label>
 						</div>
-						<div class="can-toggle form-group col-md-3">
+						<!-- <div class="can-toggle form-group col-md-3">
 
 							<input id="o" type="checkbox" name="o" [(ngModel)]="locality.capInd" [checked]="locality.capInd">
 							<label for="o">
 								<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
 								<div class="can-toggle__label-text"></div>
 							</label>
-						</div>
+						</div> -->
+					
 
 
-						<div class="form-group col-md-3">
-							<label for="poll">PollBook</label>
+						<!-- <div class="form-group col-md-3">
+							<label for="poll"></label>
 						</div>
 						<div class="can-toggle form-group col-md-3">
 							<input id="g" type="checkbox" name="g" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
@@ -154,7 +155,16 @@
 								<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
 								<div class="can-toggle__label-text"></div>
 							</label>
-						</div>
+						</div> -->
+						<ul class="tg-list">
+
+  
+							<li class="tg-list-item">
+							  <h4>PollBook</h4>
+							  <input class="tgl tgl-flip" id="cb5" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd" type="checkbox"/>
+							  <label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb5"></label>
+							</li>
+						  </ul>
 					</div>
 					<hr />
 					<br>
