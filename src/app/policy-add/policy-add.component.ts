@@ -9,6 +9,8 @@ import { UtilService } from '../util.service';
 import { Location } from '@angular/common';
 import { DialogService } from '../dialog.service';
 import { Cookie } from 'ng2-cookies';
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-policy-add',
   templateUrl: './policy-add.component.html',
@@ -61,7 +63,7 @@ export class PolicyAddComponent implements OnInit {
   constructor(private router: Router,
     private http: Http, private modalService: NgbModal,
     private _apiservice: ApiserviceService, private _location: Location, 
-    private utilService: UtilService, private dialogService: DialogService) {
+    private utilService: UtilService, private dialogService: DialogService, private datepipe: DatePipe) {
     this.policyPost = new Policy();
     this.policyPost.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     this.files = [] as File[];
@@ -95,12 +97,21 @@ export class PolicyAddComponent implements OnInit {
       this.policyPost.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     }
     this.policyPost.policyDocumentsDTOs.push(this.policyDocumentDTO);
+    this.inputEl.nativeElement.value="";
 
   }
 
-  dateSubmit() {
-    let date = this.endDate.formatted;
-    this.policyPost.endDate = Date.parse(date);
+  getEndDate(value)
+  {
+    if (value.formatted === "") {
+      this.policyPost.endDate = null;
+    }
+    else {
+      let d = value.formatted;
+
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.policyPost.endDate = moment(latest_date).format();
+    }
   }
 
   addPolicy() {
@@ -110,13 +121,9 @@ export class PolicyAddComponent implements OnInit {
       keyboard: false
     };
     let url = APP_CONFIG.savePolicy;
-    this.policyPost.createdBy = Cookie.get('username');
+    this.policyPost.createdBy = Cookie.get('userName');
     this.policyPost.policyGrpId = UtilService.policyGrpId;
     var formData = new FormData();
-    if (this.endDate != null) {
-      this.dateSubmit();
-    }
-
     formData.append('policy', JSON.stringify(this.policyPost));
     for (let i = 0; i < this.files.length; i++) {
       formData.append('files', this.files[i]);

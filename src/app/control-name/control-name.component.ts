@@ -13,6 +13,8 @@ import { UtilService } from '../util.service';
 declare var swal: any; ''
 import { DialogService } from '../dialog.service';
 import { Cookie } from 'ng2-cookies';
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-control-name',
   templateUrl: './control-name.component.html',
@@ -75,7 +77,8 @@ export class ControlNameComponent implements OnInit {
   constructor(private _location: Location, private activatedRoute: ActivatedRoute,
     private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal,
-    private utilService: UtilService, private router: Router, private dialogService: DialogService) {
+    private utilService: UtilService, private router: Router, private dialogService: DialogService
+    ,private datepipe: DatePipe) {
     this.policyAccess = new Policy();
     this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     this.files = [] as File[];
@@ -111,10 +114,21 @@ export class ControlNameComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.policyAccess = data;
-        this.policyAccess.policyDocumentsDTOs = data.policyDocumentsDTOs;
-        this.subPolicyDTOs = data.subPolicyDTOs;
-        if (this.policyAccess.endDate != null) {
-          this.dateRetreive();
+        //this.policyAccess.policyDocumentsDTOs = data.policyDocumentsDTOs;
+        //this.subPolicyDTOs = data.subPolicyDTOs;
+        // if (this.policyAccess.endDate != null) {
+        //   this.dateRetreive();
+        // }
+
+        if (this.policyAccess.endDate === null) {
+          this.endDate = { date: null };
+        }
+        else {
+          let d = new Date(this.policyAccess.endDate);
+          let day = d.getDate();
+          let month = d.getMonth() + 1;
+          let year = d.getFullYear();
+          this.endDate = { date: { year: year, month: month, day: day } };
         }
       }, error => {
         this.loading = false;
@@ -143,6 +157,7 @@ export class ControlNameComponent implements OnInit {
       this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     }
     this.policyAccess.policyDocumentsDTOs.push(this.policyDocumentDTO);
+    this.inputEl.nativeElement.value="";
   }
 
   deleteFile(id, index) {
@@ -219,30 +234,22 @@ export class ControlNameComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
   goToSubControl() {
     localStorage.setItem('policyId', this.policyUrlId);
     this.router.navigate(['/subcontrol']);
 
   }
 
+  getEndDate(value)
+  {
+    if (value.formatted === "") {
+      this.policyAccess.endDate = null;
+    }
+    else {
+      let d = value.formatted;
 
-  dateSubmit() {
-    let date = this.endDate.formatted;
-    this.policyAccess.endDate = Date.parse(date);
-  }
-
-  dateRetreive() {
-    let d = new Date(this.policyAccess.endDate);
-    this.displayEndDate = {
-      year: d.getFullYear(),
-      month: d.getMonth() + 1,
-      day: d.getDate()
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.policyAccess.endDate = moment(latest_date).format();
     }
   }
 
@@ -254,9 +261,9 @@ export class ControlNameComponent implements OnInit {
     };
     let url = APP_CONFIG.updatePolicy;
     var formData = new FormData();
-    if (this.endDate != null) {
-      this.dateSubmit();
-    }
+    // if (this.endDate != null) {
+    //   this.dateSubmit();
+    // }
     this.policyAccess.updatedBy = Cookie.get('userName');
     formData.append('policy', JSON.stringify(this.policyAccess));
     for (let i = 0; i < this.files.length; i++) {

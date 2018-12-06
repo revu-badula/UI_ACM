@@ -1,20 +1,10 @@
-<ng-template #content let-c="close" let-d="dismiss">
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Success</h4>
-	</div>
-	<div class="modal-body">
-		<p>Policy Added</p>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="c();redirect()">Close</button>
-	</div>
-</ng-template>
-
-<app-navigation-component></app-navigation-component>
-<!-- <app-option-list></app-option-list> -->
 <div class="my-container">
 	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
+
+<app-navigation-component></app-navigation-component>
+<!-- <app-option-list></app-option-list> -->
+
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
 	<div class="form-options">
 		<div class="home-back">
@@ -29,6 +19,17 @@
 		</div>
 	</div>
 </div>
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Success</h4>
+	</div>
+	<div class="modal-body">
+		<p>Policy Added</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Close</button>
+	</div>
+</ng-template>
 
 <div *ngIf="!showDiv">
 
@@ -45,33 +46,34 @@
 						<input type="text" class="form-control" id="familyName" ngModel name="familyName" [(ngModel)]="policyPost.familyName"
 						 [name]="'family_name'" required>
 					</div>
-				
-						<div class="form-group col-md-6">
-							<label for="assignTo">Assign To</label>
-							<!-- <input type="text" class="form-control" id="assignTo" [(ngModel)]="policyPost.assignedTo" [name]="'assi_to'"> -->
-							<select name="assignTo" style="width:50%;" [(ngModel)]="policyPost.assignTo" class="form-control" id="searchUsers" (change)="policyPost.assignTo=$event.target.value">
-									<option selected>Choose...</option>
-									<option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
-										getUser.firstName}} {{getUser.lastName }} </option>
-								</select>
-						</div>
+
+					<div class="form-group col-md-6">
+						<label for="assignTo">Assign To</label>
+						<!-- <input type="text" class="form-control" id="assignTo" [(ngModel)]="policyPost.assignedTo" [name]="'assi_to'"> -->
+						<select name="assignTo" style="width:50%;" [(ngModel)]="policyPost.assignedTo" class="form-control" id="searchUsers"
+						 (change)="policyPost.assignedTo=$event.target.value">
+							<option selected>Choose...</option>
+							<option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+								getUser.firstName}} {{getUser.lastName }} </option>
+						</select>
 					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="endDate">End Date</label>
-							<my-date-picker name="myname" class="inputState1" [(ngModel)]="endDate"></my-date-picker>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="status">Status<span class="asterisk">*</span></label>
-							<select style="width: 50%;" class="form-control" id="status" name="status" ngModel  (change)="policyPost.status = $event.target.value" required>
-								<option value="">Choose</option>
-								<option value="true">Open</option>
-								<option value="false">Close</option>
-							</select>
-						</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="endDate">End Date</label>
+						<my-date-picker name="myname" class="inputState1" [(ngModel)]="endDate" (dateChanged)="getEndDate($event)"></my-date-picker>
 					</div>
+					<div class="form-group col-md-6">
+						<label for="status">Status<span class="asterisk">*</span></label>
+						<select style="width: 50%;" class="form-control" id="status" name="status" ngModel (change)="policyPost.status = $event.target.value"
+						 required>
+							<option value="">Choose</option>
+							<option value="true">Open</option>
+							<option value="false">Close</option>
+						</select>
+					</div>
+				</div>
 			</div>
-			<br>
 			<br><br>
 			<div class="infoBox">
 				<div class="headerOfBox">
@@ -114,7 +116,7 @@
 					<textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" [(ngModel)]="policyPost.guidelines" [name]="'policy_guidelines'"></textarea>
 				</div>
 			</div>
-			<br><br><br>
+			<br><br>
 			<div class='infoBox'>
 				<div class="headerOfBox">
 					<h4>Other Information</h4>
@@ -122,7 +124,8 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="priority">Priority<span class="asterisk">*</span></label>
-						<select style="width: 50%;" class="form-control" name="priority" ngModel id="priority" (change)="policyPost.priority = $event.target.value" required>
+						<select style="width: 50%;" class="form-control" name="priority" ngModel id="priority" (change)="policyPost.priority = $event.target.value"
+						 required>
 							<option value="">Choose</option>
 							<option value="High">High</option>
 							<option value="Medium">Medium</option>
@@ -146,7 +149,8 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="informationSystemConfigurationSettings" style="line-height: 1em;">Information System Configuration Settings</label>
+						<label for="informationSystemConfigurationSettings" style="line-height: 1em;">Information System Configuration
+							Settings</label>
 						<input type="text" class="form-control" name="systemconfiguration" [(ngModel)]="policyPost.isConfigSettings" id="informationSystemConfigurationSettings">
 					</div>
 					<div class="form-group col-md-6">
@@ -161,51 +165,51 @@
 					</div>
 				</div>
 			</div>
-			<br><br><br>
+			<br><br>
 			<div class="infoBox">
 				<div class="headerOfBox">
 					<h4>Artifacts</h4>
 				</div>
-				<textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="policyPost.artifacts"  cols="156" rows="7" id="patches"></textarea>
+				<textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="policyPost.artifacts" cols="156" rows="7" id="patches"></textarea>
 			</div>
-			<br><br><br>
+			<br><br>
 			<div class="infoBox">
 				<div class="headerOfBox">
 					<h4>Non-Cov</h4>
 				</div>
 				<textarea [ngxSummernote]="config" cols="156" name="noncov" [(ngModel)]="policyPost.nonCov" rows="7" id="patches"></textarea>
 			</div>
-			<br><br><br>
-			
-					<div class="infoBox">
-						<div class="headerOfBox">
-							<h4>Documents</h4>
-						</div>
-						<input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
-						<br><br><br>
-						<div class="col-md-6">
-								<div class="form-row">
-									<table border="1">
-										<tr>
-											<th>File Name</th>
-											<th *ngIf="!showFrm">Action</th>
-										</tr>
-										<tr *ngFor=" let policyDocument of policyPost.policyDocumentsDTOs let i = index">
-											<td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
-											<td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
-												style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
-										</tr>
-		
-		
-		
-									</table>
-								</div>
-							</div>
+			<br><br>
+
+			<div class="infoBox">
+				<div class="headerOfBox">
+					<h4>Documents</h4>
+				</div>
+				<input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
+				<br><br><br>
+				<div class="col-md-6">
+					<div class="form-row">
+						<table border="1">
+							<tr>
+								<th>File Name</th>
+								<th *ngIf="!showFrm">Action</th>
+							</tr>
+							<tr *ngFor=" let policyDocument of policyPost.policyDocumentsDTOs let i = index">
+								<td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+								<td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)" style="cursor: pointer;"><i
+									 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+							</tr>
+
+
+
+						</table>
 					</div>
-				
+				</div>
+			</div>
+
 		</div>
 
 	</form>
-	<button type="submit" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+	<button type="submit" style="margin-right: 9vw;" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
 	<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
 </div>

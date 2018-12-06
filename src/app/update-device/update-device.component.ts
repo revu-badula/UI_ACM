@@ -60,7 +60,8 @@ export class UpdateDeviceComponent implements OnInit {
   //public renewalDate: IMyDate = null;
   public licenceStartDate: IMyDate = null;
 
-  constructor(private phone: PhonePipe, private _apiservice: ApiserviceService, private activatedRoute: ActivatedRoute, private datepipe: DatePipe, private http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) {
+  constructor(private phone: PhonePipe, private _apiservice: ApiserviceService, 
+    private activatedRoute: ActivatedRoute, private datepipe: DatePipe, private http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) {
     this.device = new Device();
     this.serverContact = new Server();
     this.serverContact1 = new Server();
