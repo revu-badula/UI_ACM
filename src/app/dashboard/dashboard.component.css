@@ -51,6 +51,8 @@ h1{
     float: left;
     margin-left: 5px;
     margin-bottom: 15px;
+    width:18rem;
+    height:14rem;
 }
 
 .card-heading{
