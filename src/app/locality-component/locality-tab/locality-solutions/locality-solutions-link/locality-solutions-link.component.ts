@@ -19,9 +19,10 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   public p: number = 1;
   public acronym: any;
   public updatedTime: any;
-  public updatedBy:any;
-  public updtBy:boolean=false;
-  public updt:boolean=false;
+  public updatedBy: any;
+  public updtBy: boolean = false;
+  public updt: boolean = false;
+  public showSigned: boolean = false;
   public showPagination: boolean = true;
   constructor(private _apiservice: ApiserviceService, private router: Router, private utilService: UtilService) {
     this.viewApplication(localStorage.getItem('localityName'));
@@ -171,7 +172,7 @@ export class LocalitySolutionsLinkComponent implements OnInit {
     this.router.navigate(['/locality/tab/solutions/solutionForm']);
   }
 
- 
+
   handleSorting1() {
 
     if (!this.precinctType) {
@@ -207,7 +208,7 @@ export class LocalitySolutionsLinkComponent implements OnInit {
 
 
   handleSort2(value) {
-  
+
     if (!this.updtBy) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
@@ -242,7 +243,7 @@ export class LocalitySolutionsLinkComponent implements OnInit {
 
 
   handleSort3(value) {
-  
+
     if (!this.updt) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
@@ -273,6 +274,11 @@ export class LocalitySolutionsLinkComponent implements OnInit {
     }
 
 
+  }
+
+
+  editClick() {
+    this.showSigned = true;
   }
 
 

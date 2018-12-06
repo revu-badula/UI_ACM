@@ -1,6 +1,12 @@
 <div class="my-container">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
+<div class="plus">
+        <div class="save-edit" style="float: right" *ngIf="!showSigned">
+      
+          <fa class="edit-icon icons" [name]="'edit'" (click)="editClick()"></fa>
+        </div>
+      </div>
 <div>
     <div class="former">
         <div id=form1>
@@ -41,7 +47,7 @@
 
             <div class="plus">
 
-                <i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="selectLocality()"></i>
+                <i class="fa fa-plus-square-o" *ngIf="showSigned" aria-hidden="true" style="font-size: 24px;" (click)="selectLocality()"></i>
             </div>
             <br><br>
             <div class="infoBox clear-right">

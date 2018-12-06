@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lastName">Response date</label>
-                        <my-date-picker name="resDate" class="inputState1" id="resDate" (dateChanged)="getResDate($event)" [(ngModel)]="resDate"></my-date-picker>
+                        <my-date-picker name="resDate" [disabled]='showForm' class="inputState1" id="resDate" (dateChanged)="getResDate($event)" [(ngModel)]="resDate"></my-date-picker>
                     </div>
                 </div>
                 <div class="form-row">

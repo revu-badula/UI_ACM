@@ -63,7 +63,7 @@
 				<div class="form-group col-md-6">
 
 					<label for="inputState">Entered date</label>
-					<my-date-picker name="startDate"  (dateChanged)="getEnteredDate($event)" [(ngModel)]="endDate"></my-date-picker>
+					<my-date-picker name="startDate" [disabled]='showForm'  (dateChanged)="getEnteredDate($event)" [(ngModel)]="endDate"></my-date-picker>
 				</div>
 
 			</div>

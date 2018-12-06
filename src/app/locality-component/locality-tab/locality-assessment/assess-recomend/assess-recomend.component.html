@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lastName">Estimated <br> completion date</label>
-                        <my-date-picker  id="estCDate" (dateChanged)="getEstDate($event)" class="inputState1" [(ngModel)]="estDate" name="estCDate"></my-date-picker>
+                        <my-date-picker  id="estCDate" [disabled]='showForm' (dateChanged)="getEstDate($event)" class="inputState1" [(ngModel)]="estDate" name="estCDate"></my-date-picker>
                     </div>
                 </div>
             </fieldset>
