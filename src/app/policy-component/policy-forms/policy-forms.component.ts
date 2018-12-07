@@ -13,7 +13,7 @@ import { Http, RequestOptions, Headers } from '@angular/http';
     providers: [ApiserviceService]
 })
 export class PolicyFormsComponent implements OnInit {
-  public policyEntity: boolean = false;
+  public policyEntity: boolean = true;
   public auditTypes: any;
   public auditTypeId: number;
   public  policyGroupForm: FormGroup;
@@ -38,16 +38,18 @@ export class PolicyFormsComponent implements OnInit {
       policyDescription: ['', Validators.required]
       
     });
+    this.policyGroupForm.disable();
   }
   
   policy(policyName) {
       this.auditTypeId = policyName;
       if(policyName === 'Choose...')
       {
-       this.policyEntity = false;;
+        this.policyGroupForm.disable();
+        this.policyGroupForm.reset();
       }
       else{
-      this.policyEntity = true;
+       this.policyGroupForm.enable();
       }
     }
   

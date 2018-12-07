@@ -18,6 +18,17 @@ body.modal-open {
   color: #ffffff;
 }
 
+.asterisk {
+  display: inline;
+  color: red;
+  margin-left: 2px;
+}
+
+.confbtn{
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .btn-primary.disabled, .btn-primary:disabled {
   background-color: #A9A9A9 !important;
   border-color: #A9A9A9 !important;
@@ -50,6 +61,7 @@ body.modal-open {
   margin-right: 0.0625rem;
   border-radius: 0;
 }
+
 
 .ngx-pagination li {
   display: inline-block;

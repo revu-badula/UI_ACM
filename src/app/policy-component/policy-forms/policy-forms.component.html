@@ -1,76 +1,90 @@
 <ng-template #content let-c="close" let-d="dismiss">
-<div class="modal-header">
-  <h4 class="modal-title">Success</h4>
-<!--   <button type="button" class="close" aria-label="Close" (click)="d()"> -->
-<!--     <span aria-hidden="true">&times;</span> -->
-<!--   </button> -->
-</div>
-<div class="modal-body">
-  <p>The record has been successfully Saved</p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="c();redirect()">Ok</button>
-</div>
+	<div class="modal-header">
+		<h4 class="modal-title">Success</h4>
+		<!--   <button type="button" class="close" aria-label="Close" (click)="d()"> -->
+		<!--     <span aria-hidden="true">&times;</span> -->
+		<!--   </button> -->
+	</div>
+	<div class="modal-body">
+		<p>The record has been successfully Saved</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Ok</button>
+	</div>
 </ng-template>
 <ng-template #policyEntity let-c="close" let-d="dismiss">
-<div class="modal-header">
-  <h4 class="modal-title">Policy Entity</h4>
-</div>
-<div class="modal-body">
-  <form class="forms">
-  	<div class="form-row">
-  		<div class="col-12">
-  			<input class="form-control" type="text" [(ngModel)] = "audit.auditTypeName" [name]="'audit_type'">
-  		</div>
-  	</div>
-  	<hr />
-  	<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
-			    <button type="submit" class="btn btn-outline-dark" (click)="c('Save click');addAuditType()">Save</button>
-</div>
-  	  </form>
-</div>
+	<div class="modal-header">
+		<h4 class="modal-title">Policy Entity</h4>
+	</div>
+	<div class="modal-body">
+		<form class="forms" #policyForm="ngForm">
+			<div class="form-row">
+				<div class="col-12">
+					<input class="form-control" type="text" required [(ngModel)]="audit.auditTypeName" [name]="'audit_type'">
+				</div>
+			</div>
+			<hr />
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+				<button type="submit" [disabled]="!policyForm.valid" class="btn btn-outline-dark" (click)="c();addAuditType()">Save</button>
+			</div>
+		</form>
+	</div>
 </ng-template>
+<div>
+	<div id="form1">
+		<div class="infoBox">
+			<div class="headerOfBox">
+				<h4>Overview</h4>
+			</div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="policyEntity"><b>Policy Entity</b></label><span>
+							<fa class="plus-icon" (click)="display(policyEntity)" [name]="'plus'"></fa>
+						</span>
+						<select class="form-control" id="inputState" required (change)="policy($event.target.value)">
+							<option selected>Choose...</option>
+							<option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName }}</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</div><br><br><br>
+		<div class="infoBox">
+			<div class="headerOfBox">
+				<h4>Overview</h4>
+			</div>
+			<form [formGroup]="policyGroupForm" id="myForm" (ngSubmit)="createPolicyGroup(policyGroupForm.value)">
+				<div class="policy-add">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="policyName"><b>Policy Name</b><span class="asterisk">*</span>
+							</label>
+							<input type="text" class="display form-control" id="inputState" formControlName="policyName" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label class="hosting-notes" for="policyDescription"><b>Policy Description</b><span class="asterisk">*</span>
+							</label>
+							</div>
+						</div>
+						<div class="form-row">
+							
+							<textarea cols="100" style="margin-top:1vw;" rows="7" id="policyDescription" required formControlName="policyDescription"></textarea>
+						
+					</div>
+				</div>
+			</form>
+			<div class="buttons">
 
+				<button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!policyGroupForm.valid">Submit</button>
+				<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
+			</div>
 
-
-
-<form class="forms">
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<label for="policyEntity"><b>Policy Entity</b></label><span class="asterisk"><fa class="plus-icon" (click)="display(policyEntity)" [name]="'plus'"></fa></span>
-              <select class="form-control" id="inputState" required (change)="policy($event.target.value)">
-                <option selected>Choose...</option>
-                <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName  }}</option>
-              </select>
 		</div>
+
 	</div>
-</form>
-<form [formGroup]="policyGroupForm" (ngSubmit)="createPolicyGroup(policyGroupForm.value)">
-<div class="policy-add" *ngIf="policyEntity">
-	<div class="forms">
-		<div class="form-row">
-		<div class="form-group col-md-6">
-			<label for="policyName"><b>Policy Name</b><div class="asterisk" style="color:red">*</div></label>
-			
-            <input type="text" class="display form-control" id="inputState" formControlName="policyName"  required>
-           </div>
+
 </div>
-            <div class="form-row">
-		<div class="form-group col-md-6">
-            <label class="hosting-notes" for="policyDescription"><b>Policy Description</b><div class="asterisk" style="color:red">*</div></label>
-            </div> 
-            <textarea cols="156" rows="7" id="policyDescription" required formControlName="policyDescription"></textarea>
-          </div>
-          
-          <div class="buttons">
-         	
-        	<button type="submit" class="submit btn btn-primary" [disabled]="policyGroupForm.invalid">Submit</button>
-        	<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
-        </div>
-          
-		</div>
-	
-	</div>
-</form>
-
