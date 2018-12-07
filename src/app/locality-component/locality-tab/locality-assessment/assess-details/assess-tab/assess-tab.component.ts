@@ -21,6 +21,9 @@ export class AssessTabComponent implements OnInit {
   public name:boolean=false;
   public assessmentDt:boolean=false;
   public nextAssessmentDt:boolean=false;
+  public sts:boolean=false;
+  public updtBy:boolean=false;
+  public updt:boolean=false;
   public updatedBy:any;
   public showPagination:boolean=true;
 
@@ -205,6 +208,104 @@ export class AssessTabComponent implements OnInit {
       });
       //this.policies.sort(this.doDsc);
       this.nextAssessmentDt = false;
+    }
+
+
+  }
+
+  handleSort4(value) {
+    if (!this.sts) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.sts = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.sts = false;
+    }
+
+
+  }
+  handleSort5(value) {
+    if (!this.updtBy) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updtBy = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updtBy = false;
+    }
+
+
+  }
+
+  handleSort6(value) {
+    if (!this.updt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.assessmentDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updt = false;
     }
 
 

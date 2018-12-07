@@ -4,12 +4,6 @@
     white-space: nowrap;
 }
 
-   .primary {
-  color: green !important;
-}
-.secondary {
-  color: red !important;
-}
 
 .plus{
 			color:#3A539B;
@@ -60,7 +54,7 @@ th{
     font-weight: bold;
     color: black;
    
-    text-align: left;
+    text-align: center;
 }
 
 
@@ -137,7 +131,26 @@ margin-left: 10px;
 /*    padding: 2px; */
 
 /* } */
-#form {
+  
+
+   .primary {
+  color: green !important;
+}
+.secondary {
+  color: red !important;
+}
+
+.former {
+    padding: 15px;
+    border-radius: 10px;
+     border: none; 
+    margin: 20px;
+    background-color: inherit;
+     box-shadow: none;
+  }
+
+
+  #form {
     background-color: #FFF;
     height: 600px;
     width: 600px;
@@ -167,8 +180,6 @@ margin-left: 10px;
     border: 1px solid #000;
     margin-top: 10px;
     float: left;
-   
-   
     box-sizing: border-box;
     width: 50%;
     line-height: 2em;
@@ -201,7 +212,7 @@ margin-left: 10px;
    
    
    .line {
-   margin: 0.5rem 0 0.5em;
+   margin:  0.5rem 0 0.5em;
     line-height:1.5em;
     padding:0;
     color:rgb(0, 0, 0);
@@ -220,7 +231,7 @@ margin-left: 10px;
     width:998em;
     border-top:1px solid rgb(0, 0, 17);
     background:rgba(0,0,0,0.2);
-    
+   
    }
    .line:after {
     left:auto;
@@ -231,75 +242,3 @@ margin-left: 10px;
    #colorWhite{
     color:white;
    }
-   
-   #form1{
-   
-    border-radius: 10px;
-    border: 1px solid;
-    margin: -1% 7% 0% 5%;
-    /* background-color:rgba(221,221, 221, 0.4); */
-    overflow: hidden;
-    /* background-image: url(/../assets/img/whitecrumple.jpg); */
-    /* background-color:rgba(211, 211, 211, 0.5); */
-    background-repeat: no-repeat;
-    background-size: cover;
-   
-   
-   }
-   
-   .line1 {
-    margin: 0.5rem 0 0.5em;
-    line-height:1.5em;
-    padding:0;
-    color:rgb(0, 0, 0);
-    text-shadow:1px 1px 1px #000;
-    font-size:27px;
-    position:relative;
-    overflow:hidden;
-    text-align:center;
-    }
-    .line1:before,.line1:after {
-    content:" ";
-    position:absolute;
-    top:50%;
-    margin-left:-999em;
-    height:2px;
-    width:998em;
-    border-top:1px solid rgb(0, 0, 17);
-    background:rgba(0,0,0,0.2);
-    }
-    .line1:after {
-    left:auto;
-    width:999em;
-    margin:0 0 0 1em;
-    }
-   
-    .infoBox{
-    padding:3%;
-    border: 2px solid;
-    margin:-1%;
-    min-width:100%;
-    display: inline-block;
-   
-   }
-   
-   .headerOfBox{
-    margin-top:-3%;
-    border-bottom: 2px solid;
-    margin-bottom:2%;
-    margin-left:-3%;
-    margin-right:-3%;
-    background-color:antiquewhite;
-    
-   }
-  
-   .former {
-    padding: 15px;
-    border-radius: 10px;
-     border: none; 
-    margin: 20px;
-    background-color: inherit;
-     box-shadow: none;
-  }
-
-

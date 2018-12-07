@@ -42,14 +42,14 @@
 
             </div>
             <hr />
-            <br><br>
+            <br>
 
 
-            <div class="plus">
-
+            <span class="plusbtn">
                 <i class="fa fa-plus-square-o" *ngIf="showSigned" aria-hidden="true" style="font-size: 24px;" (click)="selectLocality()"></i>
-            </div>
-            <br><br>
+            </span>
+            
+            <br>
             <div class="infoBox clear-right">
                 <div class="headerOfBox">
                     <h4>Overview</h4>
@@ -68,10 +68,10 @@
                                 <i class="fa fa-arrow-down" *ngIf="!precinctType"></i>
                                 <i class="fa fa-arrow-up" *ngIf="precinctType"></i>
                             </th>
-                            <th style="width:14%;" (click)="handleSort2('updatedBy')">Last UpdatedBy
+                            <th style="width:16%;" (click)="handleSort2('updatedBy')">Last UpdatedBy
                                     <i class="fa fa-arrow-down" *ngIf="!updtBy"></i>
                                     <i class="fa fa-arrow-up" *ngIf="updtBy"></i></th>
-                            <th style="width:15%;" (click)="handleSort3('updatedTs')">Last Updated Date
+                            <th style="width:18%;" (click)="handleSort3('updatedTs')">Last Updated Date
                                     <i class="fa fa-arrow-down" *ngIf="!updt"></i>
                                     <i class="fa fa-arrow-up" *ngIf="updt"></i></th>
                         </tr>

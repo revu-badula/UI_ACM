@@ -23,6 +23,8 @@ export class LegalmainComponent implements OnInit {
    public showPagination:boolean=true;
    public signed:boolean=false;
   public recertificationDt:boolean=false;
+  public updtBy:boolean=false;
+  public updt:boolean=false;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
@@ -195,6 +197,74 @@ export class LegalmainComponent implements OnInit {
         });
         //this.policies.sort(this.doDsc);
         this.recertificationDt = false;
+      }
+  
+  
+    }
+
+
+    handleSort3(value) {
+  
+      if (!this.updtBy) {
+        //this.policies.sort(this.doAsc);
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] > b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] < b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        this.updtBy = true;
+      }
+      else {
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] < b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] > b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        //this.policies.sort(this.doDsc);
+        this.updtBy = false;
+      }
+  
+  
+    }
+    handleSort4(value) {
+  
+      if (!this.updt) {
+        //this.policies.sort(this.doAsc);
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] > b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] < b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        this.updt = true;
+      }
+      else {
+        let orderByValue = value;
+        this.appMOUs.sort((a: any, b: any) => {
+          if (a[orderByValue] < b[orderByValue]) {
+            return -1;
+          } else if (a[orderByValue] > b[orderByValue]) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        //this.policies.sort(this.doDsc);
+        this.updt = false;
       }
   
   

@@ -18,15 +18,15 @@
 
 
 
-<div class="plus" *ngIf="!showSigned">
-  <div class="save-edit" style="float: right">
+<div class="plus">
+  <div class="save-edit" style="float: right" *ngIf="!showSigned">
 
     <fa class="edit-icon icons" [name]="'edit'" (click)="editClick()"></fa>
   </div>
 </div>
-<br>
-<div id="form1">
-  <div class="form-div">
+
+<div class="former">
+  <div id="form1">
 
     <div class="infoBox">
       <div class="headerOfBox">
@@ -61,14 +61,11 @@
         </div>
       </div>
     </div>
-
+    <hr />
     <br>
-    <br>
-    <div class="plus">
+    <span class="plusbtn">
       <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right;" *ngIf="showSigned" (click)="createMOU()"></i>
-    </div>
-
-    <br>
+    </span>
     <br>
 
     <div class="infoBox">
@@ -87,8 +84,12 @@
               <i class="fa fa-arrow-down" *ngIf="!recertificationDt"></i>
               <i class="fa fa-arrow-up" *ngIf="recertificationDt"></i></th>
             <th scope="col">Notify</th>
-            <th scope="col">Last UpdatedBy</th>
-            <th scope="col">Last Updated Date</th>
+            <th scope="col" (click)="handleSort3('updatedBy')">Last UpdatedBy<i class="fa fa-arrow-down"
+              *ngIf="!updtBy"></i>
+            <i class="fa fa-arrow-up" *ngIf="updtBy"></i></th>
+            <th scope="col" (click)="handleSort4('updatedTs')">Last Updated Date<i class="fa fa-arrow-down"
+              *ngIf="!updt"></i>
+            <i class="fa fa-arrow-up" *ngIf="updt"></i></th>
           </tr>
 
 

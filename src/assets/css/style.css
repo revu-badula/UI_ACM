@@ -29,6 +29,10 @@ body.modal-open {
   margin-right: auto;
 }
 
+.plusbtn{
+  float: right;
+  padding-bottom: 1vw;
+}
 .btn-primary.disabled, .btn-primary:disabled {
   background-color: #A9A9A9 !important;
   border-color: #A9A9A9 !important;

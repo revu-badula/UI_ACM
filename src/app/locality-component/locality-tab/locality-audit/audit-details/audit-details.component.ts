@@ -32,6 +32,9 @@ export class AuditDetailsComponent implements OnInit {
   public auditType: boolean = false;
   public auditDate:boolean=false;
   public nextAuditDate:boolean=false;
+  public sts:boolean=false;
+  public updtBy:boolean=false;
+  public updt:boolean=false;
   public updatedBy:any;
   public showPagination: boolean = true;
   constructor(private modalService: NgbModal, private http: Http,
@@ -222,6 +225,107 @@ export class AuditDetailsComponent implements OnInit {
       });
       //this.policies.sort(this.doDsc);
       this.nextAuditDate = false;
+    }
+
+
+  }
+
+
+  handleSort4(value) {
+    if (!this.sts) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.sts = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.sts = false;
+    }
+
+
+  }
+
+
+  handleSort5(value) {
+    if (!this.updtBy) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updtBy = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updtBy = false;
+    }
+
+
+  }
+
+  handleSort6(value) {
+    if (!this.updt) {
+      //this.policies.sort(this.doAsc);
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.updt = true;
+    }
+    else {
+      let orderByValue = value;
+      this.appAuditDTOs.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      //this.policies.sort(this.doDsc);
+      this.updt = false;
     }
 
 
