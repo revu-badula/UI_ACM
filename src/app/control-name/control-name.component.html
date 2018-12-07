@@ -93,8 +93,10 @@
 
                         <div class="form-group col-md-6">
                             <label for="assignTo">Assign To</label>
-                             <input *ngIf="showEli" type="text" class="form-control" name="assignTo" id="assignTo" [(ngModel)]="policyAccess.assignedTo" readonly> 
-                            <select *ngIf="!showEli" name="assignTo" style="width:50%;" [(ngModel)]="policyAccess.assignedTo" class="form-control" id="searchUsers" (change)="policyAccess.assignedTo=$event.target.value">
+                            <input *ngIf="showEli" type="text" class="form-control" name="assignTo" id="assignTo"
+                                [(ngModel)]="policyAccess.assignedTo" readonly>
+                            <select *ngIf="!showEli" name="assignTo" style="width:50%;" [(ngModel)]="policyAccess.assignedTo"
+                                class="form-control" id="searchUsers" (change)="policyAccess.assignedTo=$event.target.value">
                                 <option selected>Choose...</option>
                                 <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
                                     getUser.firstName}} {{getUser.lastName }} </option>
@@ -105,7 +107,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="endDate">End Date</label>
-                            <my-date-picker name="myname" [(ngModel)]="endDate" [disabled]='showForm' (dateChanged)="getEndDate($event)" class="inputState1"></my-date-picker>
+                            <my-date-picker name="myname" [(ngModel)]="endDate" [disabled]='showForm' (dateChanged)="getEndDate($event)"
+                                class="inputState1"></my-date-picker>
                         </div>
 
                         <div class="form-group col-md-6">
@@ -242,7 +245,8 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let subPol of policyAccess.subPolicyDTOs">
-                                <td><a *ngIf="showEli">{{ subPol.subControlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.subPolicyId)" style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
+                                <td><a *ngIf="showEli">{{ subPol.subControlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.subPolicyId)"
+                                        style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
                                 <td>{{subPol.subPolicyName}}</td>
                                 <td>{{subPol.assignedTo}}</td>
                                 <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
@@ -378,18 +382,30 @@
 </div>
 <div *ngIf="showDiv">
     <form class="form">
-        <div style="text-align:center">
+        <!-- <div style="text-align:center">
             <label style="padding-left:10px">Link from Internal</label>
             <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">
 
             <label style="padding-right:10px">Link from External</label>
             <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">
+        </div> -->
+        <div>
+            <table>
+                <tr>
+            <td><input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">Link
+            from Internal
+            </td>
+            <td>
+            <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">Link
+            from External</td>
+            </tr>
+                </table>
         </div>
+
         <br>
         <div *ngIf="displayField===1" class="form-row">
             <div class="form-group col-md-6">
-                <label class="label-form" for="definitiveSource"><b>Definitive Source</b></label>
-                <div class="asterisk">*</div>
+                <label class="label-form" for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
                 <select class="form-control" id="definitiveSource" required (change)="selectDefinitive($event.target.value)">
                     <option selected>Choose...</option>
                     <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{
@@ -397,8 +413,7 @@
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label class="label-form" for="typePolicy"><b>Type/Policy</b></label>
-                <div class="asterisk">*</div>
+                <label class="label-form" for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
                 <select class="form-control" id="typePolicy" required (change)="selectType($event.target.value)">
                     <option selected>Choose...</option>
                     <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{

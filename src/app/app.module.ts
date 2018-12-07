@@ -176,7 +176,7 @@ import { CustomHashLocationStrategy } from './custom-hash-location';
   entryComponents: [
     DialogBoxComponent, DialogComponent
   ],
-  providers: [RegisterService, UtilService,{provide:APP_BASE_HREF, useValue:'/UIApp/'}, ApiserviceService, AlertService, OktaAuthService,
+  providers: [RegisterService, UtilService,{provide:APP_BASE_HREF, useValue:'/Integra/'}, ApiserviceService, AlertService, OktaAuthService,
     AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe],
   bootstrap: [AppComponent]
 })

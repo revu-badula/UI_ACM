@@ -144,11 +144,12 @@ import { SystemauditlandingComponent } from './system-component/system-tab/syste
 import { CallbackComponent } from './callback/callback.component';
 import { enableDebugTools } from '@angular/platform-browser';
 import { CallGuard } from './callguard';
+import { AuthGuardLogin } from './loginpageguard';
 
 const appRoutes: Routes = [
 
-  { path: '', component: LoginPageComponent },
-  { path: 'login', component: LoginPageComponent },
+  { path: '', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
+  { path: 'login', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent },
   { path: 'devicetab', component: DevicetabComponent, canActivate: [AuthGuard] },
@@ -614,7 +615,7 @@ const appRoutes: Routes = [
   exports: [RouterModule],
   providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard, 
     WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard,
-     SystemGuardAssess, CallGuard]
+     SystemGuardAssess, CallGuard, AuthGuardLogin]
 
 })
 //export class SystemComponentRoutingModule {}

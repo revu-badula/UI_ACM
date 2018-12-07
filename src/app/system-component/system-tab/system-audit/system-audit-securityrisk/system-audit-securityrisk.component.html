@@ -1,58 +1,61 @@
 <div class="my-container">
 	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-  </div>
-  <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title">Info</h4>
-    </div>
-    <div class="modal-body">
-      <p>{{info}}</p>
-    </div>
-    <div class="modal-footer">
-      <button  type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
-    </div>
-    </ng-template>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title">Info</h4>
+	</div>
+	<div class="modal-body">
+		<p>{{info}}</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+	</div>
+</ng-template>
 <div class="form-div">
 	<form #myForm="ngForm">
 
-			<div class="plus">
-					<span class=" title elipsis pull-right" *ngIf="showEdit">
-							<a><fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa></a>
-					</span>
-				<span class=" title elipsis pull-right">
-					<a *ngIf="!showForm" (click)="saveSecurityRisk()" title="Save Audit" class="ng-hide">
-						<i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
-					</a>
-				</span>
-				<!-- <span class=" title elipsis pull-right">
+		<div class="plus">
+			<span class=" title elipsis pull-right" *ngIf="showEdit">
+				<a>
+					<fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+				</a>
+			</span>
+			<span class=" title elipsis pull-right">
+				<a *ngIf="!showForm" (click)="saveSecurityRisk()" title="Save Audit" class="ng-hide">
+					<i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
+				</a>
+			</span>
+			<!-- <span class=" title elipsis pull-right">
 					<a>
 						<fa class="edit-icon icons" [name]="'edit'"></fa>
 					</a>
 				</span> -->
-				<span class=" title elipsis pull-right">
-					<a title="Application audit history">
-						<i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
-					</a>
-				</span>
-				<span class=" title elipsis pull-right">
-					<a (click)="showAudit()" title="Change to view mode. This reverts the changes">
-						<i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
-					</a>
-					<a (click)="showAudit()" title="Go back to audit section.">
-						<i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
-					</a>
-				</span>
+			<span class=" title elipsis pull-right">
+				<a title="Application audit history">
+					<i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
+				</a>
+			</span>
+			<span class=" title elipsis pull-right">
+				<a (click)="showAudit()" title="Change to view mode. This reverts the changes">
+					<i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
+				</a>
+				<a (click)="showAudit()" title="Go back to audit section.">
+					<i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+				</a>
+			</span>
 
 
+		</div>
+		<div class="infoBox">
+			<div class="headerOfBox">
+				<h4>Security Risk</h4>
 			</div>
 
-			<br>
-			<br>
-		<fieldset [disabled]="showForm">
+			<fieldset [disabled]="showForm">
 
-				<div class="infoBox">
-				<div class="headerOfBox"><h4>Security Risk</h4></div>
-			<div class="form-row">
+
+				<div class="form-row">
 
 
 					<label for="inputState">Description</label>
@@ -60,11 +63,11 @@
 					<textarea name="description" id="" rows="10" class="form-control" [(ngModel)]="appAudit.securityRisks"></textarea>
 				</div>
 
-			</div>
-		</fieldset>
+
+			</fieldset>
 
 
-
+		</div>
 
 
 
