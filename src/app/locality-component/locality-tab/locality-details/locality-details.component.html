@@ -107,8 +107,8 @@
 						<div class="form-group col-md-6">
 							<label for="url">Website Address <span class="asterisk">*</span></label>
 
-							<input type="url" class="form-control" pattern="^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$" id="url" name="url" #url="ngModel" [(ngModel)]="locality.website"
-							 required><br><br>
+							<input type="url" class="form-control" pattern="^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$"
+							 id="url" name="url" #url="ngModel" [(ngModel)]="locality.website" required><br><br>
 							<div>
 								<div *ngIf="url.errors?.required && url.touched" style="color:red;padding-left: 43%;">
 									URL is required!
@@ -132,8 +132,17 @@
 						<h4>Other Information</h4>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-3">
-							<label for="poll">Central Absentee Perceived(CAP)</label>
+						<div class="form-group col-md-6">
+							<!-- <label for="poll">Central Absentee Perceived(CAP)</label> -->
+							<ul class="tg-list">
+
+  
+									<li class="tg-list-item">
+									  <h4>Central Absentee Perceived(CAP)</h4>
+									  <input class="tgl tgl-flip" id="c" name="capInd" [(ngModel)]="locality.capInd" [checked]="locality.capInd" type="checkbox"/>
+									  <label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="c"></label>
+									</li>
+								  </ul>
 						</div>
 						<!-- <div class="can-toggle form-group col-md-3">
 
@@ -143,11 +152,11 @@
 								<div class="can-toggle__label-text"></div>
 							</label>
 						</div> -->
-					
+
 
 
 						<!-- <div class="form-group col-md-3">
-							<label for="poll"></label>
+							<label for="poll">Bail out</label>
 						</div>
 						<div class="can-toggle form-group col-md-3">
 							<input id="g" type="checkbox" name="g" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd">
@@ -156,15 +165,16 @@
 								<div class="can-toggle__label-text"></div>
 							</label>
 						</div> -->
-						<ul class="tg-list">
-
-  
-							<li class="tg-list-item">
-							  <h4>PollBook</h4>
-							  <input class="tgl tgl-flip" id="cb5" name="pollbook" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd" type="checkbox"/>
-							  <label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb5"></label>
-							</li>
-						  </ul>
+						<div class="form-group col-md-6">
+							<ul class="tg-list">
+								<li class="tg-list-item">
+									<h4>Bail Out</h4>
+									<input class="tgl tgl-flip" id="cb5" name="bailout" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd"
+									 type="checkbox" />
+									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb5"></label>
+								</li>
+							</ul>
+						</div>
 					</div>
 					<hr />
 					<br>
@@ -182,39 +192,55 @@
 
 					<hr>
 					<div class="form-row">
-						<div class="form-group col-md-3">
+						<!-- <div class="form-group col-md-6">
 							<label>PollBook</label>
-						</div>
+						</div> -->
 
 
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-6">
 
-							<div class="can-toggle">
+							<!-- <div class="can-toggle">
 								<input id="e" type="checkbox" name="e" [(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook">
 								<label for="e">
 									<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
 									<div class="can-toggle__label-text"></div>
 								</label>
-							</div>
+							</div> -->
+							<ul class="tg-list">
+									<li class="tg-list-item">
+										<h4>PollBook</h4>
+										<input class="tgl tgl-flip" id="cb6" name="pollbook" [(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook"
+										 type="checkbox" />
+										<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb6"></label>
+									</li>
+								</ul>
 
 
 						</div>
 
 
-						<div class="form-group col-md-3">
+						<!-- <div class="form-group col-md-3">
 
 							<label for="email">Electronic PollBook</label>
 
-						</div>
-						<div class="form-group col-md-3">
+						</div> -->
+						<div class="form-group col-md-6">
 
-							<div class="can-toggle">
+							<!-- <div class="can-toggle">
 								<input id="l" type="checkbox" name="l" [(ngModel)]="locality.electronicPollbook" [checked]="locality.electronicPollbook">
 								<label for="l">
 									<div class="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
 									<div class="can-toggle__label-text"></div>
 								</label>
-							</div>
+							</div> -->
+							<ul class="tg-list">
+									<li class="tg-list-item">
+										<h4>Electronic PollBook</h4>
+										<input class="tgl tgl-flip" id="cb7" name="electronicPollbook" [(ngModel)]="locality.electronicPollbook" [checked]="locality.electronicPollbook"
+										 type="checkbox" />
+										<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb7"></label>
+									</li>
+								</ul>
 
 						</div>
 
