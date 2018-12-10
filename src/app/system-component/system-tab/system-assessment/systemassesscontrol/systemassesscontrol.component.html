@@ -206,7 +206,7 @@
           <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
 
             <td>
-              <a routerLink="/accessControl/{{ policy.policyDTO.policyId }}" style="cursor:pointer;color:blue;">{{
+              <a routerLink="/accessCntrl/{{ policy.assessmentPolicyId }}" style="cursor:pointer;color:blue;">{{
                 policy.policyDTO.controlNumber
                 }}</a>
             </td>
@@ -220,7 +220,7 @@
           <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
 
             <td>
-              <a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
+              <a routerLink="/accessCntrl/{{ policy.assessmentPolicyId }}" style="cursor:pointer;color:blue;">{{
                 policy.controlNumber
                 }}</a>
             </td>

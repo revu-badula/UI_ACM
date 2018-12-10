@@ -145,6 +145,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { enableDebugTools } from '@angular/platform-browser';
 import { CallGuard } from './callguard';
 import { AuthGuardLogin } from './loginpageguard';
+import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component';
 
 const appRoutes: Routes = [
 
@@ -157,6 +158,7 @@ const appRoutes: Routes = [
   { path: 'solutions', component: SolutionsComponent, canActivate: [AuthGuard] },
   { path: 'vendorsView', component: VendorsViewComponent, canActivate: [AuthGuard] },
   { path: 'accessControl/:id', component: ControlNameComponent, canActivate: [AuthGuard] },
+  { path: 'accessCntrl/:id', component: AccesscontrolComponent, canActivate: [AuthGuard] },
   { path: 'policy', component: PolicyComponentComponent, canActivate: [AuthGuard] },
   { path: 'policyAdd', component: PolicyAddComponent, canActivate: [AuthGuard] },
   { path: 'deviceInventory', component: DeviceComponent, canActivate: [AuthGuard] },
