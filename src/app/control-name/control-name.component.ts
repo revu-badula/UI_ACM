@@ -114,6 +114,7 @@ export class ControlNameComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.policyAccess = data;
+        //console.log(this.policyAccess.linkedPolicies);
         //this.policyAccess.policyDocumentsDTOs = data.policyDocumentsDTOs;
         //this.subPolicyDTOs = data.subPolicyDTOs;
         // if (this.policyAccess.endDate != null) {
@@ -481,6 +482,17 @@ export class ControlNameComponent implements OnInit {
       this.displayField = 0;
 
     }
+  }
+
+  deletePolicy(id)
+  {
+    this.policyAccess.linkedPolicies.forEach(element => {
+      if(element.policyId === id)
+      {
+        element.status=false;
+        element.linkType="update";
+      }
+    });
   }
 
   goTo(event) {

@@ -34,7 +34,7 @@
     </div>
 </ng-template>
 <div *ngIf="!showDiv">
-    <form (ngSubmit)="addPolicy()" enctype="multipart/form-data" #editForm="ngForm">
+    <form (ngSubmit)="addPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
         <fieldset [disabled]='showForm'>
             <div id="form1">
                 <div class="infoBox">
@@ -297,16 +297,20 @@
                         <div class="form-group col-md-6">
 
                             <label for="internalPolicyLinks">Internal Policy Links</label>
-                            <div *ngIf="showForm">
+                            <div>
                                 <table>
                                     <tbody>
-                                        <tr *ngFor="let getLinkedPolicy of getLinkedPolicies">
+                                        <tr *ngFor="let getLinkedPolicy of policyAccess.linkedPolicies">
 
-
-
-                                            <td><a routerLink="/accessControl/{{ getLinkedPolicy.policyId }}" style="cursor:pointer;color:blue;">{{
-                                                    getLinkedpolicy.controlNumber }}</a><i class="fa fa-minus-circle"
-                                                    style="color: red"></i></td>
+                                            <td *ngIf="getLinkedPolicy.status"><a routerLink="/accessControl/{{ getLinkedPolicy.policyId }}"
+                                                    style="cursor:pointer;color:blue;">
+                                                    {{ getLinkedPolicy.controlNumber }}</a>
+                                                <!-- <i class="fa fa-minus-circle"
+                                                    style="color: red"></i>-->
+                                            </td>
+                                            <td *ngIf="getLinkedPolicy.status && !showForm" (click)="deletePolicy(getLinkedPolicy.policyId)">
+                                                    <i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i>
+                                            </td>
 
 
 
@@ -314,7 +318,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div *ngIf="!showForm" class="display-file">
+                            <!-- <div *ngIf="!showForm" class="display-file">
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr *ngFor="let link of links">
@@ -324,13 +328,8 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <!--                <ul -->
-                                <!--                                *ngFor=" let certDocDTO of solution.certDocDTOs "> -->
-                                <!--                                <li -->
-                                <!--                                    *ngIf="certDocDTO.section == 'patches'"> -->
-                                <!--                                    <a href="#">{{certDocDTO.fileName}}</a><fa *ngIf="!editSolution.disabled" class="download-icon icons" [name]="'trash'"></fa></li> -->
-                                <!--                            </ul> -->
-                            </div>
+                               
+                            </div> -->
                         </div>
                         <div class="form-group col-md-6">
                             <label for="externalPolicyLinks">External Policy Links</label>
@@ -373,99 +372,107 @@
 
             </div>
         </fieldset>
-        <hr />
+
         <!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
-        <button type="submit" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
-        <button type="cancel" class="cancel btn btn-primary" (click)="goTo($event)">Cancel</button>
+
         <!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
     </form>
+    <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
+    <button type="cancel" class="cancel btn btn-primary" (click)="goTo($event)">Cancel</button>
 </div>
 <div *ngIf="showDiv">
-    <form class="form">
-        <!-- <div style="text-align:center">
+    <div id="form1">
+        <form>
+            <!-- <div style="text-align:center">
             <label style="padding-left:10px">Link from Internal</label>
             <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">
 
             <label style="padding-right:10px">Link from External</label>
             <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">
         </div> -->
-        <div>
-            <table>
-                <tr>
-            <td><input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">Link
-            from Internal
-            </td>
-            <td>
-            <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">Link
-            from External</td>
-            </tr>
-                </table>
-        </div>
-
-        <br>
-        <div *ngIf="displayField===1" class="form-row">
-            <div class="form-group col-md-6">
-                <label class="label-form" for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
-                <select class="form-control" id="definitiveSource" required (change)="selectDefinitive($event.target.value)">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{
-                        auditType.auditTypeName }}</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label class="label-form" for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
-                <select class="form-control" id="typePolicy" required (change)="selectType($event.target.value)">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{
-                        policyType.policyGrpName
-                        }}</option>
-                </select>
-            </div>
-        </div>
-        <div *ngIf="displayField===0" class="form-row">
-            <h4>Artifacts</h4>
-            <textarea cols="156" rows="7" id="patches"></textarea>
-        </div>
-        <div *ngIf="showDef">
-            <h5>CONTROLS</h5>
-            <table class="table table-bordered">
-                <thead>
+            <div>
+                <table style="border: none;">
                     <tr>
-                        <th scope="col">Link</th>
-                        <th scope="col" (click)="handleSort()">Control Number <i class="fa fa-arrow-down" *ngIf="!desc"></i>
-                            <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-                        <th scope="col">Policy Name</th>
-                        <th scope="col">Priority</th>
-                        <th scope="col">Policy Value</th>
-                        <th scope="col">Assigned To</th>
-                        <th scope="col">Assigned By</th>
-                        <th scope="col">Assigned On</th>
-                        <th scope="col">Target Date</th>
-                        <th scope="col">Status</th>
+                        <td><input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">Link
+                            from Internal
+                        </td>
+                        <td>
+                            <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">Link
+                            from External</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let policy of policies |paginate: { itemsPerPage: 10, currentPage: p }">
+                </table>
+            </div>
 
-                        <td><input type="checkbox" (change)="viewEvent(policy,$event.target.checked)"></td>
-                        <td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
-                                policy.controlNumber }}</a></td>
-                        <td>{{ policy.policyName }}</td>
-                        <td>{{ policy.priority }}</td>
-                        <td>{{ policy.policyVal }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+            <br>
+            <div *ngIf="displayField===1" class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="label-form" for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
+                    <select class="form-control" style="width: 50%;" id="definitiveSource" required (change)="selectDefinitive($event.target.value)">
+                        <option selected>Choose...</option>
+                        <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{
+                            auditType.auditTypeName }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="label-form" for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
+                    <select class="form-control" style="width: 50%;" id="typePolicy" required (change)="selectType($event.target.value)">
+                        <option selected>Choose...</option>
+                        <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{
+                            policyType.policyGrpName
+                            }}</option>
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="displayField===0" class="form-row">
+                <h4>Artifacts</h4>
+                <textarea cols="156" rows="7" id="patches"></textarea>
+            </div>
+            <br>
+            <div *ngIf="showDef">
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h5>CONTROLS</h5>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Link</th>
+                                <th scope="col" (click)="handleSort()">Control Number <i class="fa fa-arrow-down testColor"
+                                        *ngIf="!desc"></i>
+                                    <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
+                                <th scope="col">Policy Name</th>
+                                <th scope="col">Priority</th>
+                                <th scope="col">Policy Value</th>
+                                <th scope="col">Assigned To</th>
+                                <th scope="col">Assigned By</th>
+                                <th scope="col">Assigned On</th>
+                                <th scope="col">Target Date</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let policy of policies |paginate: { itemsPerPage: 10, currentPage: p }">
 
-                        <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr />
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        </div>
+                                <td><input type="checkbox" (change)="viewEvent(policy,$event.target.checked)"></td>
+                                <td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
+                                        policy.controlNumber }}</a></td>
+                                <td>{{ policy.policyName }}</td>
+                                <td>{{ policy.priority }}</td>
+                                <td>{{ policy.policyVal }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
 
-        <button *ngIf="showBt" class="btn btn-primary" (click)="saveLink()">Link</button>
-    </form>
+                                <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+
+            <button *ngIf="showBt" class="btn btn-primary" (click)="saveLink()">Link</button>
+        </form>
+    </div>
 </div>
