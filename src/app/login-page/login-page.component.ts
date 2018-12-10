@@ -156,8 +156,8 @@ export class LoginPageComponent implements OnInit {
         //const child = root.firstChild;
         // let url = this.route.snapshot.queryParams['returnUrl'] || '/';
         // console.log(url);
-        this.router.navigate(['/dashboard']);
-        //this.getUserRoles(res);
+        //this.router.navigate(['/dashboard']);
+        this.getUserRoles(res);
       }, error => {
         this.loading = false;
         console.log(error);
@@ -166,11 +166,16 @@ export class LoginPageComponent implements OnInit {
 
   getUserRoles(res) {
     //console.log(res);
+    this.loading=true;
     let url = "http://172.24.16.56:8080/UAMWebservices/fetchRoleNamesSVC?userId=" + res.emailId;
     this.httpClient.get(url)
       .subscribe((res: any) => {
-        console.log(res);
+        //console.log(res);
+        this.loading=false;
         this.router.navigate(['/dashboard']);
+      },error => {
+        this.loading=false;
+        console.log(error);
       });
   }
 

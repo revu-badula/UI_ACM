@@ -16,7 +16,7 @@ import { UtilService } from "../../../../../util.service";
     constructor(private _apiservice: ApiserviceService, 
       private utilService: UtilService, private route: ActivatedRoute) {
         this.disabled=UtilService.disabled;
-      this.getAppId();
+      //this.getAppId();
       }
 
       ngOnInit()

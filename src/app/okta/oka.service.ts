@@ -10,12 +10,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class OktaAuthService {
 
   oktaAuth = new OktaAuth({
-    issuer: 'https://dev-453625.oktapreview.com/oauth2/default',
-    redirectUri: 'http://localhost:8080/Integra/callback',
-    clientId: '0oai1582ptdSfti3f0h7',
     // issuer: 'https://dev-453625.oktapreview.com/oauth2/default',
-    // redirectUri: 'http://172.24.16.56:8080/Integra/callback',
-    // clientId: '0oahpllrzzFIIJmIU0h7',
+    // redirectUri: 'http://localhost:8080/Integra/callback',
+    // clientId: '0oai1582ptdSfti3f0h7',
+    issuer: 'https://dev-453625.oktapreview.com/oauth2/default',
+    redirectUri: 'http://172.24.16.56:8080/Integra/callback',
+    clientId: '0oahpllrzzFIIJmIU0h7',
     //  issuer: 'https://dev-453625.oktapreview.com/oauth2/default',
     //  redirectUri: 'http://23.96.86.203:8080/UIApp/callback',
     //  clientId: '0oai1buswsL7zAE7w0h7',

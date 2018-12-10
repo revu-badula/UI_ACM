@@ -18,7 +18,7 @@ export class SystemAssessDowntabsComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private route: ActivatedRoute, private router: Router) {
     this.disabled = UtilService.disabled;
-    this.getAppId();
+    //this.getAppId();
   }
 
   ngOnInit() {
