@@ -45,6 +45,15 @@
           <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
         </a>
       </span>
+      <span class=" title elipsis pull-right">
+
+          <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
+            <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
+          </a>
+          <a (click)="showAudit()" title="Go back to audit section.">
+            <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+          </a>
+        </span>
     </div>
     <!-- <hr class=htag/> -->
     <div class="infoBox">
@@ -53,11 +62,11 @@
       </div>
       <table class="table table-striped table-hover table-bordered">
         <thead>
-          <th scope="col" (click)="handleSort('controlNumber')">Control Number and Description<i class="fa fa-arrow-down"
+          <th scope="col" (click)="handleSort('controlNumber')">Control Number and Description<i class="fa fa-arrow-down testColor"
               *ngIf="!desc"></i>
-            <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-          <th scope="col" (click)="handleSortPol('policyName')">Policy Name<i class="fa fa-arrow-down" *ngIf="!descpolname"></i>
-            <i class="fa fa-arrow-up" *ngIf="descpolname"></i></th>
+            <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
+          <th scope="col" (click)="handleSortPol('policyName')">Policy Name<i class="fa fa-arrow-down testColor" *ngIf="!descpolname"></i>
+            <i class="fa fa-arrow-up testColor" *ngIf="descpolname"></i></th>
           <th scope="col">Priority</th>
           <th scope="col">Source Value</th>
           <th scope="col">Status</th>
@@ -75,7 +84,7 @@
             <td>{{ policy.policyDTO.policyName }}</td>
             <td>{{ policy.policyDTO.priority }}</td>
             <td>{{ policy.policyDTO.policyVal }}</td>
-            <td>{{policy.status}}</td>
+            <td><i [ngClass]=" policy.policyDTO.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
           </tr>
         </tbody>
         <tbody *ngIf="showRow">

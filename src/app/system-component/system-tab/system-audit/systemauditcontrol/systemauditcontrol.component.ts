@@ -91,7 +91,7 @@ export class SystemauditcontrolComponent implements OnInit {
 
   ngOnInit() {
 
-    this.showDropdown();
+    //this.showDropdown();
   }
   getAppId() {
     this.loading = true;
@@ -135,7 +135,7 @@ export class SystemauditcontrolComponent implements OnInit {
       }
       this.policies = this.appAudit.auditPolicyDTOs;
       this.showTable = true;
-      this.getPolicyName(this.appAudit.auditName)
+      //this.getPolicyName(this.appAudit.auditName)
       let d = new Date(this.appAudit.auditDate);
       let day = d.getDate();
       let month = d.getMonth() + 1;

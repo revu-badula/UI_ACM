@@ -96,7 +96,7 @@ export class AuditControlComponent implements OnInit {
 
   ngOnInit() {
 
-    this.showDropdown();
+    //this.showDropdown();
   }
 
   getAppId() {
@@ -141,7 +141,7 @@ export class AuditControlComponent implements OnInit {
       }
       this.policies = this.appAudit.auditPolicyDTOs;
       this.showTable = true;
-      this.getPolicyName(this.appAudit.auditName)
+      //this.getPolicyName(this.appAudit.auditName)
       let d = new Date(this.appAudit.auditDate);
       
       let day = d.getDate();

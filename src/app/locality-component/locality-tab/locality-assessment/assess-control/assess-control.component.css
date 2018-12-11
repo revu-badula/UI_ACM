@@ -9,11 +9,11 @@
     box-shadow: 5px 10px 20px 1px rgba(125, 122, 118, 1);
 }
 
-i.fa {
+/* i.fa {
     text-decoration: none !important;
     padding: 5px 4px;
     color: inherit !important;
-}
+} */
 
 .fa {
     display: inline-block;

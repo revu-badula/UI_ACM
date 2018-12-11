@@ -198,7 +198,7 @@ export class AssessControlComponent implements OnInit {
           this.loading = false;
           this.appAssess = data;
           this.showTable = true;
-          this.getPolicyName(this.appAssess.auditId);
+          //this.getPolicyName(this.appAssess.auditId);
           //this.getPolicyDTOs(assesid);
           this.showRow = false;
           this.policies = data.assessmentPolicyDTOs;
