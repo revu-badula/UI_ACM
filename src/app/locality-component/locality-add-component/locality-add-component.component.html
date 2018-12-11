@@ -128,7 +128,7 @@
    
     <div class="form-row">
        
-            <select class="form-control" (change)="selectLocal($event.target.value)" style="width: 100%">
+            <select #locInput class="form-control" (change)="selectLocal($event.target.value)" style="width: 100%">
           <option selected>Choose a locality</option>
           <option  *ngFor="let county of counties">
           {{county.county_name}}

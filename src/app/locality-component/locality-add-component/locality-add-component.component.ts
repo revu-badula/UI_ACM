@@ -587,6 +587,7 @@ export class LocalityAddComponentComponent implements OnInit {
   public locality: any;
   public loading: boolean = false;
   @ViewChild('content') content: TemplateRef<any>;
+  @ViewChild('locInput') inputEl: ElementRef;
   constructor(private router: Router, private _apiservice: ApiserviceService, private modalService: NgbModal, private utilService: UtilService) {
     UtilService.active = false;
 
@@ -618,6 +619,7 @@ export class LocalityAddComponentComponent implements OnInit {
         .subscribe((data: any) => {
           this.loading = false;
           if (data.applicationViewDTO === null) {
+            this.inputEl.nativeElement.value="";
             this.modalService.open(this.content, ngbModalOptions);
           }
           else {
