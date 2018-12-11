@@ -101,6 +101,8 @@ export class PolicyDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.fetchPolicies(UtilService.policyGrpId);
     this.policyDropDownId = UtilService.policyGrpId;
     this.getFamilies(UtilService.policyGrpId);

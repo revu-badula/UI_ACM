@@ -87,6 +87,8 @@ export class LocalitysolutionsformComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.showPrecinctType();
     if (this.utilservice.isLocalitySolutionAdd) {
       this.isAddNewSolution = true;
