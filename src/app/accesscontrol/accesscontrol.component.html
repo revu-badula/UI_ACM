@@ -1,393 +1,303 @@
-<!-- <div class="my-container">
-        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-    </div>
-    <app-navigation-component></app-navigation-component>
-    <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}" style="padding-top: 1vw;">
-    
-        <div class="form-options">
-            <div class="home-back">
-                <a routerLink="/dashboard">
-                    <fa class="left-icons home-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Home"
-                        data-animation="true" data-delay="0" [name]="'home'"></fa>
-                </a>
-                <a href="javascript:void(0)" (click)="backClicked()">
-                    <fa class="left-icons left-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Back"
-                        data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
-                </a>
-            </div>
-            <div class="save-edit" *ngIf="showEli">
-                <fa class="edit-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Save"
-                    data-animation="true" data-delay="0" (click)="editorGroup()" [name]="'edit'"></fa>
-            </div>
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<app-navigation-component></app-navigation-component>
+<div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}" style="padding-top: 1vw;">
+
+    <div class="form-options">
+        <div class="home-back">
+            <a routerLink="/dashboard">
+                <fa class="left-icons home-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Home"
+                    data-animation="true" data-delay="0" [name]="'home'"></fa>
+            </a>
+            <a href="javascript:void(0)" (click)="backClicked()">
+                <fa class="left-icons left-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Back"
+                    data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+            </a>
+        </div>
+        <div class="save-edit" *ngIf="showEli">
+            <fa class="edit-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Save"
+                data-animation="true" data-delay="0" (click)="editorGroup()" [name]="'edit'"></fa>
         </div>
     </div>
-    <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title">Success</h4>
-        </div>
-        <div class="modal-body">
-            <p>The policy has been updated</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
-        </div>
-    </ng-template>
-    <div *ngIf="!showDiv">
-        <form (ngSubmit)="addPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
-            <fieldset [disabled]='showForm'>
-                <div id="form1">
-                    <div class="infoBox">
-                        <div class="headerOfBox">
-                            <h4>Policy</h4>
-                        </div>
-                        <div class=" form-row">
-                            <div class="form-group col-md-12">
-                                <label for="familyName">Policy Name</label>
-                                <input type="text" class="form-control" id="familyName" ngModel name="familyName"
-                                    [(ngModel)]="policyAccess.familyName" [name]="'family_name'">
-                            </div>
-                        </div>
-    
-                        <div class=" form-row">
-                            <div class="form-group col-md-6">
-                                <label for="familyName">Last Updated By</label>
-                                <input type="text" class="form-control" id="updatedBy" ngModel name="updatedBy" [(ngModel)]="policyAccess.updatedBy"
-                                    readonly>
-                            </div>
-    
-                            <div class="form-group col-md-6">
-                                <label for="familyName">Last Updated Date</label>
-                                <input type="text" class="form-control" id="updatedTs" ngModel name="updatedTs" [ngModel]="policyAccess.updatedTs | filter"
-                                    readonly>
-                            </div>
-                        </div>
-    
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Success</h4>
+    </div>
+    <div class="modal-body">
+        <p>The policy has been updated</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
+    </div>
+</ng-template>
+
+<div>
+    <form (ngSubmit)="addPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
+        <fieldset [disabled]='showForm'>
+            <div id="form1">
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Policy</h4>
                     </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="infoBox">
-                        <div class="headerOfBox">
-                            <h4>Control Information</h4>
-                        </div>
-                        <div class=" form-row">
-                            <div class="form-group col-md-6">
-                                <label for="controlNumber">Control Number<div class="asterisk">*</div></label>
-                                <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
-                                    [(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="controlName">Control Name<div class="asterisk">*</div></label>
-                                <input type="text" class="form-control" id="controlName" ngModel name="controlName"
-                                    [(ngModel)]="policyAccess.classType" [name]="'class_type'" required>
-                            </div>
-                        </div>
-    
-                        <div class=" form-row">
-                            <div class="form-group col-md-6">
-                                <label for="policyValue">Policy Value<div class="asterisk">*</div></label>
-                                <input type="text" class="form-control" id="policyValue" ngModel name="policyValue"
-                                    [(ngModel)]="policyAccess.policyVal" [name]="'policy_val'" required>
-                            </div>
-    
-                            <div class="form-group col-md-6">
-                                <label for="assignTo">Assign To</label>
-                                <input *ngIf="showEli" type="text" class="form-control" name="assignTo" id="assignTo"
-                                    [(ngModel)]="policyAccess.assignedTo" readonly>
-                                <select *ngIf="!showEli" name="assignTo" style="width:50%;" [(ngModel)]="policyAccess.assignedTo"
-                                    class="form-control" id="searchUsers" (change)="policyAccess.assignedTo=$event.target.value">
-                                    <option selected>Choose...</option>
-                                    <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
-                                        getUser.firstName}} {{getUser.lastName }} </option>
-                                </select>
-                            </div>
-                        </div>
-    
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="endDate">End Date</label>
-                                <my-date-picker name="myname" [(ngModel)]="endDate" [disabled]='showForm' (dateChanged)="getEndDate($event)"
-                                    class="inputState1"></my-date-picker>
-                            </div>
-    
-                            <div class="form-group col-md-6">
-                                <label for="status">Status</label>
-                                <input *ngIf="showForm" type="text" name="status" class="form-control" id="status"
-                                    [ngModel]="policyAccess.status | controlPipe">
-                                <select class="form-control" id="inputState" name="status" [(ngModel)]="policyAccess.status"
-                                    (change)="policyAccess.status = $event.target.value" *ngIf="!showForm">
-                                    <option value="true">Open</option>
-                                    <option value="false">Close</option>
-                                </select>
-                            </div>
-    
-                            <label for="description">Description</label>
-                            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
-                                [(ngModel)]="policyAccess.description" [name]="'policy_description'"></textarea>
-                        </div>
-                    </div>
-    
-    
-                    <div class="form-row">
+                    <div class=" form-row">
                         <div class="form-group col-md-12">
-                            <br>
-                            <br>
-                            <div class="infoBox">
-                                <div class="headerOfBox">
-                                    <h4>Procedures <div class="asterisk">*</div>
-                                    </h4>
-                                </div>
-                                <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
-                                    id="patches" ngModel name="policyProcedures" [(ngModel)]="policyAccess.procedures"
-                                    [name]="'policy_procedures'" required></textarea>
-    
-                            </div>
+                            <label for="familyName">Policy Name</label>
+                            <input type="text" class="form-control" id="familyName" ngModel name="familyName"
+                                [(ngModel)]="policyAccess.familyName" [name]="'family_name'">
                         </div>
                     </div>
+
+                    <div class=" form-row">
+                        <div class="form-group col-md-6">
+                            <label for="familyName">Last Updated By</label>
+                            <input type="text" class="form-control" id="updatedBy" ngModel name="updatedBy" [(ngModel)]="policyAccess.updatedBy"
+                                readonly>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="familyName">Last Updated Date</label>
+                            <input type="text" class="form-control" id="updatedTs" ngModel name="updatedTs" [ngModel]="policyAccess.updatedTs | filter"
+                                readonly>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Control Information</h4>
+                    </div>
+                    <div class=" form-row">
+                        <div class="form-group col-md-6">
+                            <label for="controlNumber">Control Number<div class="asterisk">*</div></label>
+                            <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
+                                [(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="controlName">Control Name<div class="asterisk">*</div></label>
+                            <input type="text" class="form-control" id="controlName" ngModel name="controlName"
+                                [(ngModel)]="policyAccess.classType" [name]="'class_type'" required>
+                        </div>
+                    </div>
+
+                    <div class=" form-row">
+                        <div class="form-group col-md-6">
+                            <label for="policyValue">Policy Value<div class="asterisk">*</div></label>
+                            <input type="text" class="form-control" id="policyValue" ngModel name="policyValue"
+                                [(ngModel)]="policyAccess.policyVal" [name]="'policy_val'" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="assignTo">Assign To</label>
+                            <input *ngIf="showEli" type="text" class="form-control" name="assignTo" id="assignTo"
+                                [(ngModel)]="policyAccess.assignedTo" readonly>
+                            <select *ngIf="!showEli" name="assignTo" style="width:50%;" [(ngModel)]="policyAccess.assignedTo"
+                                class="form-control" id="searchUsers" (change)="policyAccess.assignedTo=$event.target.value">
+                                <option selected>Choose...</option>
+                                <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+                                    getUser.firstName}} {{getUser.lastName }} </option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <br>
-                            <br>
-                            <div class="infoBox">
-                                <div class="headerOfBox">
-                                    <h4>Guidelines</h4>
-                                </div>
-                                <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
-                                    id="patches" [(ngModel)]="policyAccess.guidelines" [name]="'policy_guidelines'"></textarea>
+                        <div class="form-group col-md-6">
+                            <label for="endDate">End Date</label>
+                            <my-date-picker name="myname" [(ngModel)]="endDate" [disabled]='showForm' (dateChanged)="getEndDate($event)"
+                                class="inputState1"></my-date-picker>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="status">Status</label>
+                            <input *ngIf="showForm" type="text" name="status" class="form-control" id="status"
+                                [ngModel]="policyAccess.status | controlPipe">
+                            <select class="form-control" id="inputState" name="status" [(ngModel)]="policyAccess.status"
+                                (change)="policyAccess.status = $event.target.value" *ngIf="!showForm">
+                                <option value="true">Open</option>
+                                <option value="false">Close</option>
+                            </select>
+                        </div>
+
+                        <label for="description">Description</label>
+                        <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
+                            [(ngModel)]="policyAccess.description" [name]="'policy_description'"></textarea>
+                    </div>
+                </div>
+
+                <br><br><br>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                       
+                        <div class="infoBox">
+                            <div class="headerOfBox">
+                                <h4>Procedures <div class="asterisk">*</div>
+                                </h4>
                             </div>
+                            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
+                                id="patches" ngModel name="policyProcedures" [(ngModel)]="policyAccess.procedures"
+                                [name]="'policy_procedures'" required></textarea>
+
                         </div>
                     </div>
-    
-                    
-                    <br>
-    
-                    <div class="infoBox">
-                        <div class="headerOfBox">
-                            <h4>Sub Control</h4>
-                        </div>
-                        <div style="float:right" *ngIf="!showEli">
-                            <fa class="plus-icon" (click)="goToSubControl()" [name]="'plus'"></fa>
-                        </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-    
-                                    <th id="colorWhite">Sub Control Number</th>
-                                    <th id="colorWhite">Sub Control Name</th>
-                                    <th id="colorWhite">Assigned To</th>
-                                    <th id="colorWhite">End Date</th>
-                                    <th id="colorWhite">Status</th>
-    
-    
-    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let subPol of policyAccess.subPolicyDTOs">
-                                    <td><a *ngIf="showEli">{{ subPol.subControlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.subPolicyId)"
-                                            style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
-                                    <td>{{subPol.subPolicyName}}</td>
-                                    <td>{{subPol.assignedTo}}</td>
-                                    <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
-                                    <td>{{subPol.substatus | subControlPipe }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-    
-                    </div>
-    
-                    <br>
-                    <br>
-                    <br>
-    
-                    <div class="infoBox">
-                        <div class="headerOfBox">
-                            <h4>Artifacts</h4>
-                        </div>
-                        <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="policyAccess.artifacts"
-                            [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
-                    </div>
-    
-                    <br>
-                    <br>
-                    <br>
-    
-                    <div class="infoBox">
-                        <div class="headerOfBox">
-                            <h4>Non-COV</h4>
-    
-                        </div>
-                        <textarea [ngxSummernote]="config" name="noncov" [(ngModel)]="policyAccess.nonCov"
-                            [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
-                    </div>
-    
-                    <br>
-                    <br>
-                    <br>
-    
-                    <div class="infoBox">
-                        <div class="headerOfBox">
-                            <h4>Policy Links</h4>
-                        </div>
-                        <button class="policy-links btn btn-primary" (click)="changeDiv()">Add Policy Links</button>
-    
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-    
-                                <label for="internalPolicyLinks">Internal Policy Links</label>
-                                <div>
-                                    <table>
-                                        <tbody>
-                                            <tr *ngFor="let getLinkedPolicy of policyAccess.linkedPolicies">
-    
-                                                <td *ngIf="getLinkedPolicy.status"><a routerLink="/accessControl/{{ getLinkedPolicy.policyId }}"
-                                                        style="cursor:pointer;color:blue;">
-                                                        {{ getLinkedPolicy.controlNumber }}</a>
-                                                  
-                                                </td>
-                                                <td *ngIf="getLinkedPolicy.status && !showForm" (click)="deletePolicy(getLinkedPolicy.policyId)">
-                                                        <i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i>
-                                                </td>
-    
-    
-    
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
+                </div>
+                <br><br>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="infoBox">
+                            <div class="headerOfBox">
+                                <h4>Guidelines</h4>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="externalPolicyLinks">External Policy Links</label>
-                            </div>
+                            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
+                                id="patches" [(ngModel)]="policyAccess.guidelines" [name]="'policy_guidelines'"></textarea>
                         </div>
-    
                     </div>
-                    <br>
-                    <br>
-                    <br>
-    
-                    <div class="infoBox">
-                        <div class="headerOfBox">
-                            <h4>Documents</h4>
-                        </div>
-    
-                        <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
-    
-                        <br><br><br>
-                        <div class="col-md-6">
-                            <div class="form-row">
-                                <table border="1">
-                                    <tr>
-                                        <th>File Name</th>
-                                        <th *ngIf="!showFrm">Action</th>
-                                    </tr>
-                                    <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
-                                        <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
-                                        <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
-                                            style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
-                                    </tr>
-    
-    
-    
+                </div>
+
+
+                <br>
+<!-- 
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Sub Control</h4>
+                    </div>
+                    <div style="float:right" *ngIf="!showEli">
+                        <fa class="plus-icon" (click)="goToSubControl()" [name]="'plus'"></fa>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+
+                                <th id="colorWhite">Sub Control Number</th>
+                                <th id="colorWhite">Sub Control Name</th>
+                                <th id="colorWhite">Assigned To</th>
+                                <th id="colorWhite">End Date</th>
+                                <th id="colorWhite">Status</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let subPol of policyAccess.subPolicyDTOs">
+                                <td><a *ngIf="showEli">{{ subPol.subControlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.subPolicyId)"
+                                        style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
+                                <td>{{subPol.subPolicyName}}</td>
+                                <td>{{subPol.assignedTo}}</td>
+                                <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
+                                <td>{{subPol.substatus | subControlPipe }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div> -->
+
+                <br>
+                <!-- <br>
+                <br> -->
+
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Artifacts</h4>
+                    </div>
+                    <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="policyAccess.artifacts"
+                        [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
+                </div>
+
+                <br>
+                <br><br>
+                <!-- <br> -->
+
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Non-COV</h4>
+
+                    </div>
+                    <textarea [ngxSummernote]="config" name="noncov" [(ngModel)]="policyAccess.nonCov"
+                        [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
+                </div>
+
+                <!-- <br>
+                <br>
+                <br> -->
+
+                <!-- <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Policy Links</h4>
+                    </div>
+                    <button class="policy-links btn btn-primary" (click)="changeDiv()">Add Policy Links</button>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+
+                            <label for="internalPolicyLinks">Internal Policy Links</label>
+                            <div>
+                                <table>
+                                    <tbody>
+                                        <tr *ngFor="let getLinkedPolicy of policyAccess.linkedPolicies">
+
+                                            <td *ngIf="getLinkedPolicy.status"><a routerLink="/accessControl/{{ getLinkedPolicy.policyId }}"
+                                                    style="cursor:pointer;color:blue;">
+                                                    {{ getLinkedPolicy.controlNumber }}</a>
+
+                                            </td>
+                                            <td *ngIf="getLinkedPolicy.status && !showForm" (click)="deletePolicy(getLinkedPolicy.policyId)">
+                                                <i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i>
+                                            </td>
+
+
+
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
+
                         </div>
-    
-                    </div>
-    
-                </div>
-            </fieldset>
-    </form>
-        <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
-        <button type="cancel" class="cancel btn btn-primary" (click)="goTo($event)">Cancel</button>
-    </div>
-    <div *ngIf="showDiv">
-        <div id="form1">
-            <form>
-                <div>
-                    <table style="border: none;">
-                        <tr>
-                            <td><input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">Link
-                                from Internal
-                            </td>
-                            <td>
-                                <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">Link
-                                from External</td>
-                        </tr>
-                    </table>
-                </div>
-    
-                <br>
-                <div *ngIf="displayField===1" class="form-row">
-                    <div class="form-group col-md-6">
-                        <label class="label-form" for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
-                        <select class="form-control" style="width: 50%;" id="definitiveSource" required (change)="selectDefinitive($event.target.value)">
-                            <option selected>Choose...</option>
-                            <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{
-                                auditType.auditTypeName }}</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="label-form" for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
-                        <select class="form-control" style="width: 50%;" id="typePolicy" required (change)="selectType($event.target.value)">
-                            <option selected>Choose...</option>
-                            <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{
-                                policyType.policyGrpName
-                                }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div *ngIf="displayField===0" class="form-row">
-                    <h4>Artifacts</h4>
-                    <textarea cols="156" rows="7" id="patches"></textarea>
-                </div>
-                <br>
-                <div *ngIf="showDef">
-                    <div class="infoBox">
-                        <div class="headerOfBox">
-                            <h5>CONTROLS</h5>
+                        <div class="form-group col-md-6">
+                            <label for="externalPolicyLinks">External Policy Links</label>
                         </div>
-                        <table class="table table-bordered">
-                            <thead>
+                    </div>
+
+                </div> -->
+                <!-- <br>
+                <br>
+                <br> -->
+<!-- 
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Documents</h4>
+                    </div>
+
+                    <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
+
+                    <br><br><br>
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            <table border="1">
                                 <tr>
-                                    <th scope="col">Link</th>
-                                    <th scope="col" (click)="handleSort()">Control Number <i class="fa fa-arrow-down testColor"
-                                            *ngIf="!desc"></i>
-                                        <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
-                                    <th scope="col">Policy Name</th>
-                                    <th scope="col">Priority</th>
-                                    <th scope="col">Policy Value</th>
-                                    <th scope="col">Assigned To</th>
-                                    <th scope="col">Assigned By</th>
-                                    <th scope="col">Assigned On</th>
-                                    <th scope="col">Target Date</th>
-                                    <th scope="col">Status</th>
+                                    <th>File Name</th>
+                                    <th *ngIf="!showFrm">Action</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let policy of policies |paginate: { itemsPerPage: 10, currentPage: p }">
-    
-                                    <td><input type="checkbox" (change)="viewEvent(policy,$event.target.checked)"></td>
-                                    <td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
-                                            policy.controlNumber }}</a></td>
-                                    <td>{{ policy.policyName }}</td>
-                                    <td>{{ policy.priority }}</td>
-                                    <td>{{ policy.policyVal }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-    
-                                    <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
+                                <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
+                                    <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+                                    <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
+                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
                                 </tr>
-                            </tbody>
-                        </table>
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+
+                            </table>
+                        </div>
                     </div>
-                </div>
-    
-                <button *ngIf="showBt" class="btn btn-primary" (click)="saveLink()">Link</button>
-            </form>
-        </div>
-    </div> -->
+
+                </div> -->
+
+            </div>
+        </fieldset>
+    </form>
+    <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
+    <button type="cancel" class="cancel btn btn-primary" (click)=" backClicked()">Cancel</button>
+</div>
