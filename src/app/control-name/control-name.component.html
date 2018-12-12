@@ -309,7 +309,7 @@
                                                     style="color: red"></i>-->
                                             </td>
                                             <td *ngIf="getLinkedPolicy.status && !showForm" (click)="deletePolicy(getLinkedPolicy.policyId)">
-                                                    <i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i>
+                                                <i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i>
                                             </td>
 
 
@@ -390,17 +390,19 @@
             <label style="padding-right:10px">Link from External</label>
             <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">
         </div> -->
-            <div>
-                <table style="border: none;">
-                    <tr>
-                        <td><input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">Link
-                            from Internal
-                        </td>
-                        <td>
-                            <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">Link
-                            from External</td>
-                    </tr>
-                </table>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">
+                    <p style="margin-left: -22%;
+                    margin-top: 0.2em;"> Link from Internal</p>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">
+                    <p style="margin-left: -22%;
+                    margin-top: 0.2em;">Link from External</p>
+                </div>
+
+
             </div>
 
             <br>

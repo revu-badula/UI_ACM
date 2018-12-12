@@ -3,7 +3,7 @@
 </div>
 <div class="plus">
 
-    <fa class="edit-icon icons" [name]="'edit'" style="float:right;" (click)="showPlus()"></fa>
+    <fa class="edit-icon icons" *ngIf="!showPlusButton" [name]="'edit'" style="float:right;" (click)="showPlus()"></fa>
 
 </div>
 

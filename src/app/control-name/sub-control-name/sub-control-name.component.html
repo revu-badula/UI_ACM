@@ -53,12 +53,12 @@
                         <div class="form-group col-md-6">
                             <label for="controlNumber">Sub Control Number<div class="asterisk">*</div></label>
                             <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
-                                [(ngModel)]="subControl1.subControlNumber" [name]="'control_number'" required>
+                                [(ngModel)]="subControl1.ControlNumber" [name]="'control_number'" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="controlName"> Sub Control Name<div class="asterisk">*</div></label>
                             <input type="text" class="form-control" id="controlName" ngModel name="controlName"
-                                [(ngModel)]="subControl1.subPolicyName" [name]="'class_type'" required>
+                                [(ngModel)]="subControl1.PolicyName" [name]="'class_type'" required>
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@
                             <label for="status">Status</label>
                             <input *ngIf="showBtt" type="text" name="substatus" class="form-control" id="substatus"
                                 [ngModel]="subControl1.substatus | subControlPipe">
-                            <select *ngIf="!showBtt" class="form-control" name="status"  [(ngModel)]="subControl1.substatus" id="inputState" (change)="subControl1.substatus = $event.target.value">
+                            <select *ngIf="!showBtt" class="form-control" name="status"  [(ngModel)]="subControl1.status" id="inputState" (change)="subControl1.substatus = $event.target.value">
                                 <option value="true">Open</option>
                                 <option value="false">Close</option>
                             </select>
@@ -101,7 +101,7 @@
                     </div>
 
                     <textarea cols="156" rows="7" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" id="patches"
-                        ngModel name="policyProcedure" [(ngModel)]="subControl1.subprocedure" [name]="'policy_procedures'"
+                        ngModel name="policyProcedure" [(ngModel)]="subControl1.procedures" [name]="'policy_procedures'"
                         required></textarea>
 
                 </div>

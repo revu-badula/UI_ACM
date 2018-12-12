@@ -1,31 +1,34 @@
 
-export class PolicyGrp {
-	policyGrpId: number;
-	policyGrpName: string;
-	description: string;
-	createdBy: string;
-	createdTs: any;
-	auditTypeId: number;
-	reviewDate: any;
-	status: string;
-	auditTypeName: string;
-	definitiveSource: string;
-	owner: string;
-	policyReviewTerm: string;
-	policyReviewTermId: number;
-	policyReviewDate: any;
-	lastReviewDate: any;
-	updatedBy: string;
-	updatedTs: any;
-	resourceLinks: string;
-	policyDTOs: Policy;
-	//DocumentDTOs: Documents;
-	//policyDocumentsDTOs: Array<PolicyDocumentsDTO> = [];	
+export class AppAuditPolicyDTO {
+
+    appAuditPolicyId: any
+    defaultVal: string
+    status: string
+    createdBy: any;
+    createdTs: any;
+    updatedBy: any;
+    updatedTs: any;
+    policyId: number;
+    policyDTO: Policy;
+    description: string;
+    priority: string;
+    procedures: string;
+    guidelines: string;
+    assignedTo: string;
+    assignedBy: string;
+    startDate: any;
+    endDate: any;
+    artifacts: string;
+    nonCov: string;
+    securityPlan: string;
+
+    ///
+
+
+
 }
 
-
 export class Policy {
-	parentPolicyId:any;
 	policyId: number;
 	controlNumber: string;
 	policyName: string;
@@ -48,9 +51,7 @@ export class Policy {
 	status: boolean;
 	linked: boolean;
 	subPolicyDTOs: any = [];
-
 	linkType: string;
-
 	isDesignDocument: string;
 	configBaseline: string;
 	auditRecords: string;
@@ -68,11 +69,10 @@ export class Policy {
 
 	linkedPoliciesString: string;
 
-	//	policyDocumentsDTOs: any;
+	//policyDocumentsDTOs: any;
 	policyDocumentsDTOs: Array<PolicyDocumentsDTO> = [];
 
 }
-
 export class PolicyDocumentsDTO {
 
 	policyDocId: number;
@@ -87,20 +87,4 @@ export class PolicyDocumentsDTO {
 	fileContent: any;
 }
 
-export class PolicyReviewTerm {
-	policyReviewTermId: number;
-	policyReviewTerm: string;
-}
 
-export class subControl {
-
-	subPolicyId: number;
-	subControlNumber: any;
-	subPolicyName: any;
-	assignedTo: any;
-	endDate: any;
-	subprocedure: any;
-	guidelines: any;
-	substatus: any;
-
-}

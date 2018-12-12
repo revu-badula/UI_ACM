@@ -413,7 +413,7 @@ export class ApiserviceService {
   }
   getFamilies(id) {
     let url = APP_CONFIG.fetchFamilies;
-    return this._httpService.get(url + '?' + 'policyGrpId' + '=' +id)
+    return this._httpService.get(url + '?' + 'policyGrpId' + '=' + id)
       .map(res => <Response>res.json());
   }
 
@@ -421,5 +421,19 @@ export class ApiserviceService {
     let url = APP_CONFIG.getPoliciesByFam;
     return this._httpService.get(url + '?' + 'familyName' + '=' + value)
       .map(res => <Response>res.json())
+  }
+
+  getAppPolicies(id) {
+    let url = APP_CONFIG.getAppPolicy;
+    return this._httpService.get(url + '?' + 'appAuditPolicyId' + '=' + id)
+      .map(res => <Response>res.json())
+  }
+
+  updateAppPolicies(data) {
+    let url = APP_CONFIG.updateAppPolicy
+
+    return this._httpService.post(url, data).map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+
   }
 }

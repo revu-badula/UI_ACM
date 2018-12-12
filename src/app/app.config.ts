@@ -1,10 +1,10 @@
 
-//const baseUrl = 'http://localhost:8080/ApplicationPortfolioManager/services/';
+const baseUrl = 'http://localhost:8080/ApplicationPortfolioManager/services/';
 
 //const baseUrl = 'http://ec2-54-86-177-206.compute-1.amazonaws.com/ApplicationPortfolioManager/services/';
 
 
-const baseUrl='http://172.24.16.56:8080/ApplicationPortfolioManager/services/';
+//const baseUrl='http://172.24.16.56:8080/ApplicationPortfolioManager/services/';
 
 //const baseUrl = 'http://23.96.86.203:8080/ApplicationPortfolioManager/services/';
 
@@ -88,7 +88,9 @@ export const APP_CONFIG = {
   getLocForMous:apiBaseUrl+'getLocForMous',
   getSysForMous:apiBaseUrl + 'getSysForMous',
   fetchFamilies:apiBaseUrl + 'fetchFamilies',
-  getPoliciesByFam:apiBaseUrl + 'getPoliciesByFam'
+  getPoliciesByFam:apiBaseUrl + 'getPoliciesByFam',
+  getAppPolicy:apiBaseUrl + 'getAppAuditPolicyDetails',
+  updateAppPolicy:apiBaseUrl + 'updateAppAuditPolicyDetails',
 }
 
 
