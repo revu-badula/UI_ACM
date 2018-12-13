@@ -147,6 +147,7 @@ export class AccesscontrolComponent implements OnInit {
     };
     this.loading=true;
     this.appPolicy.updatedBy=Cookie.get("userName");
+    this.appPolicy.assignedBy=Cookie.get("userName");
     this.policyAccess.updatedBy=Cookie.get("userName");
     let url = APP_CONFIG.updateAppPolicy;
     const headers = new Headers();

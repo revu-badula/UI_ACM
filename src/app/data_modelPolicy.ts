@@ -47,7 +47,7 @@ export class Policy {
 	reviewDate: any;
 	status: boolean;
 	linked: boolean;
-	subPolicyDTOs: any = [];
+	subpolicies: any = [];
 
 	linkType: string;
 

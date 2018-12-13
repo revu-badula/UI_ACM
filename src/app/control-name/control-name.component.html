@@ -244,13 +244,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let subPol of policyAccess.subPolicyDTOs">
-                                <td><a *ngIf="showEli">{{ subPol.subControlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.subPolicyId)"
-                                        style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
-                                <td>{{subPol.subPolicyName}}</td>
+                            <tr *ngFor="let subPol of policyAccess.subpolicies">
+                                <td><a *ngIf="showEli">{{ subPol.controlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.policyId)"
+                                        style="cursor: pointer;color: blue;">{{subPol.controlNumber}}</a></td>
+                                <td>{{subPol.policyVal}}</td>
                                 <td>{{subPol.assignedTo}}</td>
                                 <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
-                                <td>{{subPol.substatus | subControlPipe }}</td>
+                                <td>{{subPol.status | subControlPipe }}</td>
                             </tr>
                         </tbody>
                     </table>
