@@ -98,6 +98,7 @@ export class PolicyDetailsComponent implements OnInit {
 
   close() {
     this.plus = true;
+    this.showForm = true;
   }
 
   ngOnInit() {

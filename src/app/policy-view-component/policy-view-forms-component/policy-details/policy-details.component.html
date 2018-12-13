@@ -56,7 +56,9 @@
 		<fa *ngIf="!plus" [name]="'plus'" class="plus-icon icons"></fa>
 	</a>
 	<!-- <button type="submit"><fa *ngIf="!plus" class="save-icon icons" [name]="'save'"></fa></button> -->
-	<fa *ngIf="!plus" (click)="updatePolicyGrp()" class="save-icon icons" [name]="'save'"></fa>
+	<a *ngIf="myForm.valid">
+	<fa *ngIf="!plus" (click)="updatePolicyGrp()"  class="save-icon icons" [name]="'save'"></fa>
+	</a>
 	<fa (click)="close()" *ngIf="!plus" class="close-icon icons" [name]="'times-circle'"></fa>
 </div>
 <div class="form1">
@@ -97,7 +99,7 @@
 	<br>
 	<br>
 </div>
-<form (ngSubmit)="updatePolicyGrp()">
+<form (ngSubmit)="updatePolicyGrp()" #myForm ="ngForm">
 
 	<fieldset [disabled]='showForm'>
 		<div class="infoBox">
@@ -109,18 +111,18 @@
 			<div class="model-solution-row form-row">
 				<div class="model form-group col-md-6">
 					<label class="label-form" for="lastReviewDate">Last Review Date<span class="asterisk">*</span></label>
-					<my-date-picker name="myname" class="inputState1" [(ngModel)]="lastReviewDate" [selDate]="displayLastReviewDate"></my-date-picker>
+					<my-date-picker name="myname" class="inputState1" [(ngModel)]="lastReviewDate" ngModel [selDate]="displayLastReviewDate" required></my-date-picker>
 				</div>
 				<div class="version form-group col-md-6">
 					<label class="label-form" for="nextReviewDate">Next Review Date<span class="asterisk">*</span></label>
-					<my-date-picker name="myname" class="inputState1" [(ngModel)]="nextReviewDate" [selDate]="displayNextReviewDate"></my-date-picker>
+					<my-date-picker name="myname" class="inputState1" [(ngModel)]="nextReviewDate" ngModel [selDate]="displayNextReviewDate" required></my-date-picker>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label class="label-form" for="owner">Owner<span class="asterisk">*</span></label>
-					<select type="text" style="width: 50%;" class="edit-disable form-control" [(ngModel)]="policyDisplay.owner" (change)="policyDisplay.owner = $event.target.value" [name]="'policy_owner'">
-						<option selected>Choose...</option>
+					<select type="text" style="width: 50%;" class="edit-disable form-control" [(ngModel)]="policyDisplay.owner" (change)="policyDisplay.owner = $event.target.value" [name]="'policy_owner'" required>
+						<option value="" selected>Choose...</option>
 						<option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
 							getUser.firstName}} {{getUser.lastName }} </option>
 					</select>
@@ -128,10 +130,10 @@
 				<div class="form-group col-md-6">
 					<label class="label-form" for="policyReviewTerm">Policy Review Term<span class="asterisk">*</span></label>
 					<input type="text" id="inputState" class="edit-disable form-control" *ngIf="showForm" [(ngModel)]="policyDisplay.policyReviewTerm"
-					 [name]="'review_term'">
+					 [name]="'review_term'" readonly>
 					<select class="form-control" style="width:50%;" id="priority" *ngIf="!showForm" [(ngModel)]="policyDisplay.policyReviewTermId"
 					 [name]="'review_term'" (change)="displayReview($event)" required>
-						<option>Select</option>
+						<option value="" selected>Select</option>
 						<option *ngFor="let review of policyReviewTerm" [value]="review.id">{{review.reviewTerm}}</option>
 						<!-- <option value="2">Half-Yearly</option>
 		                <option value="3">Quarterly</option> -->
@@ -143,9 +145,9 @@
 				<div class="form-group col-md-6">
 					<label class="label-form" for="status">Status<span class="asterisk">*</span></label>
 					<input type="text" id="inputState" class="form-control" [ngModel]="policyDisplay.status | subControlPipe" [name]="'policy_status'"
-					 *ngIf="showForm">
+					 *ngIf="showForm" readonly>
 					<select class="form-control" style="width:50%;" name="selectstatus" [(ngModel)]="policyDisplay.status" id="priority"
-					 (change)="policyDisplay.status = $event.target.value" *ngIf="!showForm">
+					 (change)="policyDisplay.status = $event.target.value" *ngIf="!showForm" required>
 						<option value="true">Open</option>
 						<option value="false">Close</option>
 					</select>

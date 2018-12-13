@@ -26,6 +26,7 @@ export class AccesscontrolComponent implements OnInit {
   public endDate: any;
   public showEli: boolean = true;
   policyDocumentDTO: PolicyDocumentsDTO;
+  public showFrm:boolean=false;
   public appAuditPolicyId: any;
   config = {
     placeholder: '',
@@ -95,6 +96,7 @@ export class AccesscontrolComponent implements OnInit {
   }
 
   editorGroup(): void {
+    this.showFrm=true;
     this.showForm = false;
     this.showEli = false;
   }
@@ -106,6 +108,18 @@ export class AccesscontrolComponent implements OnInit {
         this.loading = false;
         this.policyAccess = data.policyDTO;
         this.appPolicy = data;
+        if (this.appPolicy.endDate === null) {
+          this.endDate = { date: null };
+        }
+        else {
+          let d = new Date(this.appPolicy.endDate);
+          let year = d.getFullYear();
+          let month = d.getMonth() + 1;
+          let day = d.getDate();
+          this.endDate = {
+            date: { month: month, day: day, year: year }
+          };
+        }
       }, error => {
         this.loading = false;
         console.log(error);
@@ -115,13 +129,13 @@ export class AccesscontrolComponent implements OnInit {
   getEndDate(value)
   {
     if (value.formatted === "") {
-      this.policyAccess.endDate = null;
+      this.appPolicy.endDate = null;
     }
     else {
       let d = value.formatted;
 
       let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
-      this.policyAccess.endDate = moment(latest_date).format();
+      this.appPolicy.endDate = moment(latest_date).format();
     }
   }
 
@@ -131,7 +145,6 @@ export class AccesscontrolComponent implements OnInit {
       backdrop: 'static',
       keyboard: false
     };
-    console.log(this.appPolicy);
     this.loading=true;
     this.appPolicy.updatedBy=Cookie.get("userName");
     this.policyAccess.updatedBy=Cookie.get("userName");
