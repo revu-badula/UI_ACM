@@ -6,7 +6,7 @@
                         <li class="StepProgress-item current">
                             <a style="color:black"  routerLinkActive="active" routerLink="/system/tab2/Audit/Tab/first" [routerLinkActiveOptions]="{exact: true}">Details</a>
                         </li>
-                        <li class="StepProgress-item current">
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
                                 <a style="color:black"  routerLinkActive="active" routerLink="/system/tab2/Audit/Tab/auditControl" [routerLinkActiveOptions]="{exact: true}">Access Controls</a>
                             </li>
                         <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
