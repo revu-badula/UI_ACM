@@ -151,6 +151,9 @@ export class SubControlNameComponent implements OnInit {
   showInfo(value) {
     if (localStorage.getItem('subPol') === null) {
       this.policyAccess.parentPolicyId = value;
+      this.showForm=false;
+      this.showEli=false;
+      
     }
     else {
       //this.showBtt = true;
