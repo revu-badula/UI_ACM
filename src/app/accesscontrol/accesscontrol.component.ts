@@ -44,10 +44,12 @@ export class AccesscontrolComponent implements OnInit {
 
   };
   constructor(private _location: Location,private http: Http, private datepipe: DatePipe,
-    private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, private modalService: NgbModal) {
+    private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, 
+    private modalService: NgbModal, private router:Router) {
     this.policyAccess = new Policy();
     this.appPolicy = new AppAuditPolicyDTO();
     this.policyDocumentDTO = new PolicyDocumentsDTO();
+    localStorage.removeItem("appParentPolicyId");
   }
 
   ngOnInit() {
@@ -180,7 +182,11 @@ export class AccesscontrolComponent implements OnInit {
   //   this.inputEl.nativeElement.value="";
   // }
 
+  goToSubControl() {
+    localStorage.setItem('appParentPolicyId', this.appAuditPolicyId);
+    this.router.navigate(['/auditPolAdd']);
 
+  }
 
 
 }

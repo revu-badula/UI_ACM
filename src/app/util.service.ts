@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { APP_CONFIG } from './app.config';
 @Injectable()
 export class UtilService{
 static localityName:string;
@@ -43,6 +44,11 @@ setEditTrue(val : boolean) {
 
   getSave(): Observable<any> {
     return this.subject1.asObservable();
+  }
+
+  getFile(id)
+  {
+    window.open(APP_CONFIG.getFile + '?' + 'fileId' + '=' + id)
   }
 
 

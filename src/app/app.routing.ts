@@ -146,6 +146,7 @@ import { enableDebugTools } from '@angular/platform-browser';
 import { CallGuard } from './callguard';
 import { AuthGuardLogin } from './loginpageguard';
 import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component';
+import { AuditpolicyaddComponent } from './auditpolicyadd/auditpolicyadd.component';
 
 const appRoutes: Routes = [
 
@@ -171,6 +172,7 @@ const appRoutes: Routes = [
   { path: 'rdevice', component: ReportDeviceComponent, canActivate: [AuthGuard] },
   { path: 'rsystems', component: ReportlegalsystemComponent, canActivate: [AuthGuard] },
   { path: 'subcontrol/:id', component: SubControlNameComponent, canActivate: [AuthGuard] },
+  { path: 'auditPolAdd', component: AuditpolicyaddComponent, canActivate: [AuthGuard] },
   {
     path: 'callback', component: CallbackComponent, canActivate:[CallGuard]
   },

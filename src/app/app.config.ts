@@ -91,6 +91,7 @@ export const APP_CONFIG = {
   getPoliciesByFam:apiBaseUrl + 'getPoliciesByFam',
   getAppPolicy:apiBaseUrl + 'getAppAuditPolicyDetails',
   updateAppPolicy:apiBaseUrl + 'updateAppAuditPolicyDetails',
+  getFile:apiBaseUrl + 'getfile',
 }
 
 

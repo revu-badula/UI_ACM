@@ -1,12 +1,15 @@
-import { Component, OnInit, TemplateRef, ViewChild, OnDestroy, ChangeDetectorRef, 
-  ChangeDetectionStrategy, Renderer2 } from '@angular/core';
+import {
+  Component, OnInit, TemplateRef, ViewChild, OnDestroy, ChangeDetectorRef,
+  ChangeDetectionStrategy, Renderer2
+} from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { UserIdleService } from 'angular-user-idle';
 import { Cookie } from 'ng2-cookies';
-import { Observable, Subject, BehaviorSubject, Subscription} from 'rxjs';
+import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
 import { IdleTimeoutService } from '../idleTimeOutService';
 import { DialogService } from '../dialog.service';
+import { UtilService } from '../util.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -22,8 +25,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // private _timerSubscription: Subscription;
   // private _idleTimerSubscription: Subscription;
   constructor(private modalService: NgbModal, private router: Router,
-     private changeRef: ChangeDetectorRef, private idleTimeoutSvc: IdleTimeoutService, 
-     private dialogSvc: DialogService, private renderer: Renderer2) {
+    private changeRef: ChangeDetectorRef, private idleTimeoutSvc: IdleTimeoutService,
+    private dialogSvc: DialogService, private renderer: Renderer2, private utilService: UtilService) {
+    UtilService.backClicked = false;
     localStorage.removeItem('localityName');
     localStorage.removeItem('appAuditId');
     localStorage.removeItem('appMouId');
@@ -49,14 +53,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //   newObservable.subscribe(
     //       (res) => {
     //           if (res === true) {
-                  
+
     //               // this.idleTimeoutSvc.resetTimer();
     //               // this.startCounter();
     //               //this.changeRef.markForCheck();
     //               this.deleteCookie();
-                  
+
     //           } else {
-                 
+
     //               //this.changeRef.markForCheck();
     //               this.deleteCookie();
     //           }
@@ -66,7 +70,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //       }
     //   );
     // });
-    
+
   }
 
   open(content) {
@@ -93,20 +97,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   //       this.changeRef.markForCheck();
   //   });
   // }
-  
+
   // public reset() {
   //   this.startCounter();
   //   this._status = "Initialized.";
   //   this.idleTimeoutSvc.resetTimer();
   // }
 
-  ngOnDestroy()
-  {
-     //this._idleTimerSubscription.unsubscribe(); 
+  ngOnDestroy() {
+    //this._idleTimerSubscription.unsubscribe(); 
   }
 
-  deleteCookie()
-  {
+  deleteCookie() {
     Cookie.delete('access_token');
     this.router.navigate(['/login']);
   }

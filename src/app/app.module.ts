@@ -85,6 +85,7 @@ import { OktaAuthService } from './okta/oka.service';
 import { SampleComponent } from './sample/sample.component';
 import { CustomHashLocationStrategy } from './custom-hash-location';
 import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component';
+import { AuditpolicyaddComponent } from './auditpolicyadd/auditpolicyadd.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,7 +139,8 @@ import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component'
     ControlPipe,
     CallbackComponent,
     SampleComponent,
-    AccesscontrolComponent
+    AccesscontrolComponent,
+    AuditpolicyaddComponent
 
 
 

@@ -25,7 +25,6 @@ export class NavigationComponentComponent implements OnInit {
    signOut()
   {
     //localStorage.clear();
-    this.okta.logout();
     Cookie.delete('access_token');
     Cookie.delete('userName');
     UtilService.calback=true;
@@ -45,6 +44,7 @@ export class NavigationComponentComponent implements OnInit {
     localStorage.removeItem('appSolId');
     localStorage.removeItem('systemMouId');
     localStorage.removeItem('fipscode');
+    this.okta.logout();
     this.router.navigate(['/logout']);
   }
 

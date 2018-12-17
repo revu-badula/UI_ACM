@@ -423,7 +423,8 @@ export class ControlNameComponent implements OnInit {
 
 
   getPolicyDocumentAttch(id) {
-    window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
+    //window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
+    this.utilService.getFile(id);
   }
 
 

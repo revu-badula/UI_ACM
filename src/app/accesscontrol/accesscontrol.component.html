@@ -88,15 +88,15 @@
                         <div class="form-group col-md-6">
                             <label for="policyValue">Value<div class="asterisk">*</div></label>
                             <input type="text" class="form-control" id="policyValue" ngModel name="defaultValue"
-                                [(ngModel)]="appPolicy.defaultVal"  required>
+                                [(ngModel)]="appPolicy.defaultVal" required>
                         </div>
                         <div class="form-group col-md-6">
-                                <label for="policyValue">Default Value<div class="asterisk">*</div></label>
-                                <input type="text" class="form-control" id="policyValue" ngModel name="policyVal"
-                                    [(ngModel)]="policyAccess.policyVal"  readonly>
-                            </div>
+                            <label for="policyValue">Default Value<div class="asterisk">*</div></label>
+                            <input type="text" class="form-control" id="policyValue" ngModel name="policyVal"
+                                [(ngModel)]="policyAccess.policyVal" readonly>
+                        </div>
 
-                      
+
                     </div>
 
                     <div class="form-row">
@@ -118,60 +118,60 @@
                         </div>
                     </div>
                     <div class=" form-row">
-                            <div class="form-group col-md-6">
-                                    <label for="assignTo">Assign To</label>
-                                    <input *ngIf="showEli" type="text" class="form-control" name="assignTo" id="assignTo"
-                                        [(ngModel)]="appPolicy.assignedTo" readonly>
-                                    <select *ngIf="!showEli" name="assignTo" style="width:50%;" [(ngModel)]="appPolicy.assignedTo"
-                                        class="form-control" id="searchUsers" (change)="appPolicy.assignedTo=$event.target.value">
-                                        <option selected>Choose...</option>
-                                        <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
-                                            getUser.firstName}} {{getUser.lastName }} </option>
-                                    </select>
-                                </div>
+                        <div class="form-group col-md-6">
+                            <label for="assignTo">Assign To</label>
+                            <input *ngIf="showEli" type="text" class="form-control" name="assignTo" id="assignTo"
+                                [(ngModel)]="appPolicy.assignedTo" readonly>
+                            <select *ngIf="!showEli" name="assignTo" style="width:50%;" [(ngModel)]="appPolicy.assignedTo"
+                                class="form-control" id="searchUsers" (change)="appPolicy.assignedTo=$event.target.value">
+                                <option selected>Choose...</option>
+                                <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+                                    getUser.firstName}} {{getUser.lastName }} </option>
+                            </select>
                         </div>
-                        
-                            <div class="form-row">
-                                    <label for="description">Description</label>
-                                    <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm"
-                                        rows="7" id="patches" [(ngModel)]="appPolicy.description" [name]="'policy_description'"></textarea>
-                                
+                    </div>
+
+                    <div class="form-row">
+                        <label for="description">Description</label>
+                        <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
+                            [(ngModel)]="appPolicy.description" [name]="'policy_description'"></textarea>
+
+                    </div>
+
+                </div>
+
+                <br><br><br>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+
+                        <div class="infoBox">
+                            <div class="headerOfBox">
+                                <h4>Procedures <div class="asterisk">*</div>
+                                </h4>
                             </div>
+                            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
+                                id="patches" ngModel name="policyProcedures" [(ngModel)]="appPolicy.procedures" [name]="'policy_procedures'"
+                                required></textarea>
 
                         </div>
-
-                        <br><br><br>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-
-                                <div class="infoBox">
-                                    <div class="headerOfBox">
-                                        <h4>Procedures <div class="asterisk">*</div>
-                                        </h4>
-                                    </div>
-                                    <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm"
-                                        rows="7" id="patches" ngModel name="policyProcedures" [(ngModel)]="appPolicy.procedures"
-                                        [name]="'policy_procedures'" required></textarea>
-
-                                </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="infoBox">
+                            <div class="headerOfBox">
+                                <h4>Guidelines</h4>
                             </div>
+                            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
+                                id="patches" [(ngModel)]="appPolicy.guidelines" [name]="'policy_guidelines'"></textarea>
                         </div>
-                        <br><br>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <div class="infoBox">
-                                    <div class="headerOfBox">
-                                        <h4>Guidelines</h4>
-                                    </div>
-                                    <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm"
-                                        rows="7" id="patches" [(ngModel)]="appPolicy.guidelines" [name]="'policy_guidelines'"></textarea>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
 
 
-                        <br>
-                        <!-- 
+                <br><br>
+
                 <div class="infoBox">
                     <div class="headerOfBox">
                         <h4>Sub Control</h4>
@@ -194,49 +194,49 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let subPol of policyAccess.subPolicyDTOs">
-                                <td><a *ngIf="showEli">{{ subPol.subControlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.subPolicyId)"
-                                        style="cursor: pointer;color: blue;">{{subPol.subControlNumber}}</a></td>
-                                <td>{{subPol.subPolicyName}}</td>
+                            <tr *ngFor="let subPol of appPolicy.appAuditPolicies">
+                                <td><a *ngIf="showEli">{{ subPol.appAuditPolicyId }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.appAuditPolicyId)"
+                                        style="cursor: pointer;color: blue;">{{subPol.appAuditPolicyId}}</a></td>
+                                <td>{{subPol.policyName}}</td>
                                 <td>{{subPol.assignedTo}}</td>
                                 <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
-                                <td>{{subPol.substatus | subControlPipe }}</td>
+                                <td>{{subPol.status}}</td>
                             </tr>
                         </tbody>
                     </table>
 
-                </div> -->
+                </div>
 
-                        <br>
-                        <!-- <br>
-                <br> -->
+                <br>
+                <br>
+                <br>
 
-                        <div class="infoBox">
-                            <div class="headerOfBox">
-                                <h4>Artifacts</h4>
-                            </div>
-                            <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="appPolicy.artifacts"
-                                [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
-                        </div>
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Artifacts</h4>
+                    </div>
+                    <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="appPolicy.artifacts"
+                        [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
+                </div>
 
-                        <br>
-                        <br><br>
-                        <!-- <br> -->
+                <br>
+                <br><br>
+                <!-- <br> -->
 
-                        <div class="infoBox">
-                            <div class="headerOfBox">
-                                <h4>Non-COV</h4>
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Non-COV</h4>
 
-                            </div>
-                            <textarea [ngxSummernote]="config" name="noncov" [(ngModel)]="appPolicy.nonCov"
-                                [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
-                        </div>
+                    </div>
+                    <textarea [ngxSummernote]="config" name="noncov" [(ngModel)]="appPolicy.nonCov"
+                        [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
+                </div>
 
-                        <!-- <br>
+                <!-- <br>
                 <br>
                 <br> -->
 
-                        <!-- <div class="infoBox">
+                <!-- <div class="infoBox">
                     <div class="headerOfBox">
                         <h4>Policy Links</h4>
                     </div>
@@ -274,70 +274,67 @@
                     </div>
 
                 </div> -->
-                        <br>
-                        <br>
-                        <br>
+                <br>
+                <br>
+                <br>
 
-                        <div class="infoBox">
-                            <div class="headerOfBox">
-                                <h4>Documents</h4>
-                            </div>
-
-                            <!-- <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)"> -->
-                            <div class="col-md-6">
-                                <div class="form-row">
-                                    <table border="1">
-                                        <tr>
-                                            <th>File Name</th>
-                                            <!-- <th *ngIf="!showFrm">Action</th> -->
-                                        </tr>
-                                        <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
-                                            <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;"
-                                                (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
-                                            <!-- <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
-                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td> -->
-                                        </tr>
-
-
-
-                                    </table>
-                                </div>
-                            </div>
-
-                        </div>
-                        <br><br><br>
-                        <div class="infoBox">
-                            <div class="headerOfBox">
-                                <h4>Evidences</h4>
-                            </div>
-                            <!-- <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)"> -->
-                            <input type="file">
-
-                            <br><br><br>
-                            <div class="col-md-6">
-                                <div class="form-row">
-                                    <table border="1">
-                                        <tr>
-                                            <th>File Name</th>
-                                            <th *ngIf="!showFrm">Action</th>
-                                        </tr>
-                                        <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
-                                            <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;"
-                                                (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
-                                            <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
-                                                style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true"
-                                                    style="font-size: 24px;color: #3A539B;"></i></td>
-                                        </tr>
-
-
-
-                                    </table>
-                                </div>
-                            </div>
-
-                        </div>
-
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Documents</h4>
                     </div>
+
+                    <!-- <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)"> -->
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            <table border="1">
+                                <tr>
+                                    <th>File Name</th>
+                                    <!-- <th *ngIf="!showFrm">Action</th> -->
+                                </tr>
+                                <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
+                                    <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+                                    <!-- <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
+                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td> -->
+                                </tr>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <br><br><br>
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Evidences</h4>
+                    </div>
+                    <!-- <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)"> -->
+                    <input type="file">
+
+                    <br><br><br>
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            <table border="1">
+                                <tr>
+                                    <th>File Name</th>
+                                    <th *ngIf="!showFrm">Action</th>
+                                </tr>
+                                <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
+                                    <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+                                    <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
+                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+                                </tr>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </fieldset>
     </form>
     <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>

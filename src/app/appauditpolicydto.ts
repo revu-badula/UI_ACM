@@ -21,8 +21,9 @@ export class AppAuditPolicyDTO {
     artifacts: string;
     nonCov: string;
     securityPlan: string;
-
-    ///
+	appParentPolicyId:any
+	//private AppAuditPolicyDTO appAuditParentPolicyDTO;
+	appAuditPolicies:any=[];
 
 
 
