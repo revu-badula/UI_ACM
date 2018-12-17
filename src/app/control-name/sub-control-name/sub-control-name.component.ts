@@ -79,6 +79,7 @@ export class SubControlNameComponent implements OnInit {
     this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     this.files = [] as File[];
     this.policies = [];
+    localStorage.removeItem("parentPolicyId");
     //this.linkedPolicy = new Policy();
   }
 
@@ -86,11 +87,11 @@ export class SubControlNameComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
-    // this.activatedRoute.params.subscribe(params => {
-    //   this.policyUrlId = params['id'];
-    //   this.policyAccess.policyId = params['id'];
-    // });
-    this.getPolicy();
+    this.activatedRoute.params.subscribe(params => {
+      this.policyUrlId = params['id'];
+      this.policyAccess.policyId = params['id'];
+    });
+    this.getPolicy(this.policyUrlId);
     this.showDropdown();
     this.fetchPolicies(1);
     this.getUsers();
@@ -133,14 +134,14 @@ export class SubControlNameComponent implements OnInit {
 
 
 
-  getPolicy() {
+  getPolicy(id) {
     //this.loading = true;
-    let polId = localStorage.getItem('policyId');
-    let poId = +polId;
+    // let polId = localStorage.getItem('policyId');
+    // let poId = +polId;
     // this._apiservice.getPolicy(poId)
     //   .subscribe((data: any) => {
     //     this.loading = false;
-    this.showInfo(poId);
+    this.showInfo(id);
 
     //   }, error => {
     //     this.loading = false;
@@ -149,22 +150,15 @@ export class SubControlNameComponent implements OnInit {
     //this.subControl1.parentPolicyId=poId;
   }
   showInfo(value) {
-    if (localStorage.getItem('subPol') === null) {
-      this.policyAccess.parentPolicyId = value;
-      this.showForm=false;
-      this.showEli=false;
-      
-    }
-    else {
       //this.showBtt = true;
       this.showForm = true;
       //this.showClose = true;
-      let id = localStorage.getItem('subPol');
-      let poId = +id;
-      this.policyAccess.parentPolicyId = value;
+      // let id = localStorage.getItem('subPol');
+      // let poId = +id;
+      this.policyAccess.policyId = value;
       //this.policyAccess.policyId = poId;
       this.loading = true;
-      this._apiservice.getPolicy(id)
+      this._apiservice.getPolicy(value)
         .subscribe((data: any) => {
           this.loading = false;
           this.policyAccess = data;
@@ -185,7 +179,7 @@ export class SubControlNameComponent implements OnInit {
 
 
 
-    }
+    
     // })
   }
 
@@ -286,8 +280,11 @@ export class SubControlNameComponent implements OnInit {
 
 
   goToSubControl() {
-    localStorage.setItem('policyId', this.policyUrlId);
-    this.router.navigate(['/subcontrol']);
+    //let id = localStorage.getItem('subPol');
+    //let poId:any = +id;
+    let id:any=this.policyAccess.policyId;
+    localStorage.setItem('parentPolicyId', id);
+    this.router.navigate(['/policyAdd']);
 
   }
 
@@ -315,22 +312,7 @@ export class SubControlNameComponent implements OnInit {
     // if (this.endDate != null) {
     //   this.dateSubmit();
     // }
-    if (localStorage.getItem('subPol') === null) { 
-      let url = APP_CONFIG.savePolicy;
-      this.policyAccess.createdBy = Cookie.get('userName');
-      formData.append('policy', JSON.stringify(this.policyAccess));
-      for (let i = 0; i < this.files.length; i++) {
-        formData.append('files', this.files[i]);
-      }
-      this.http.post(url, formData).subscribe((data: any) => {
-        this.loading = false;
-        this.modalService.open(this.content, ngbModalOptions);
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
-    }
-    else {
+  
       let url = APP_CONFIG.updatePolicy;
       this.policyAccess.updatedBy = Cookie.get('userName');
       formData.append('policy', JSON.stringify(this.policyAccess));
@@ -344,7 +326,7 @@ export class SubControlNameComponent implements OnInit {
         this.loading = false;
         console.log(error);
       });
-    }
+    
   }
 
   changeDiv() {
@@ -519,6 +501,14 @@ export class SubControlNameComponent implements OnInit {
         element.linkType = "update";
       }
     });
+  }
+
+  getSubpolicy(id) {
+    //localStorage.setItem('policyId', this.policyUrlId);
+    //localStorage.setItem('subPol', id);
+    let url ="accessControl/"+id;
+    //this.router.navigate(['/subcontrol'])
+    this.router.navigateByUrl(url);
   }
 
 

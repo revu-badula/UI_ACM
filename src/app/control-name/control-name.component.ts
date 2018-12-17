@@ -85,6 +85,7 @@ export class ControlNameComponent implements OnInit {
     this.policies = [];
     localStorage.removeItem('policyId');
     localStorage.removeItem('subPol');
+    localStorage.removeItem('parentPolicyId');
     //this.linkedPolicy = new Policy();
   }
 
@@ -236,8 +237,8 @@ export class ControlNameComponent implements OnInit {
 
 
   goToSubControl() {
-    localStorage.setItem('policyId', this.policyUrlId);
-    this.router.navigate(['/subcontrol']);
+    localStorage.setItem('parentPolicyId', this.policyUrlId);
+    this.router.navigate(['/policyAdd']);
 
   }
 
@@ -502,9 +503,11 @@ export class ControlNameComponent implements OnInit {
   }
 
   getSubpolicy(id) {
-    localStorage.setItem('policyId', this.policyUrlId);
-    localStorage.setItem('subPol', id);
-    this.router.navigate(['/subcontrol'])
+    //localStorage.setItem('policyId', this.policyUrlId);
+    //localStorage.setItem('subPol', id);
+    let url ="subcontrol/"+id;
+    //this.router.navigate(['/subcontrol'])
+    this.router.navigateByUrl(url);
   }
 
 

@@ -170,7 +170,7 @@ const appRoutes: Routes = [
   { path: 'rvendor', component: ReportVendorComponent, canActivate: [AuthGuard] },
   { path: 'rdevice', component: ReportDeviceComponent, canActivate: [AuthGuard] },
   { path: 'rsystems', component: ReportlegalsystemComponent, canActivate: [AuthGuard] },
-  { path: 'subcontrol', component: SubControlNameComponent, canActivate: [AuthGuard] },
+  { path: 'subcontrol/:id', component: SubControlNameComponent, canActivate: [AuthGuard] },
   {
     path: 'callback', component: CallbackComponent, canActivate:[CallGuard]
   },

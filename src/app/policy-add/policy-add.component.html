@@ -27,7 +27,7 @@
 		<p>Policy Added</p>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Close</button>
+		<button type="button" class="btn btn-outline-dark confbtn" (click)="c();backClicked()">Close</button>
 	</div>
 </ng-template>
 
@@ -74,7 +74,7 @@
 					</div>
 				</div>
 			</div>
-			<br><br>
+			<br><br><br>
 			<div class="infoBox">
 				<div class="headerOfBox">
 					<h4>Policy Information</h4>
@@ -104,19 +104,29 @@
 						 [name]="'policy_val'" required>
 					</div>
 				</div>
+			</div>
+			<br><br><br>
+			<div class="infoBox">
+					<div class="headerOfBox">
+						<h4>Procedures</h4>
+					</div>
 				<div class="form-row">
-
-					<label for="procedures">Procedures<span class="asterisk">*</span></label>
 					<textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" ngModel name="policyProcedures" [(ngModel)]="policyPost.procedures"
 					 [name]="'policy_procedures'" required></textarea>
 
 				</div>
+			</div>
+			<br><br><br>
+			<div class="infoBox">
+					<div class="headerOfBox">
+						<h4>Guidelines</h4>
+					</div>
 				<div class="form-row">
-					<label for="guidelines">Guidelines</label>
+					
 					<textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" [(ngModel)]="policyPost.guidelines" [name]="'policy_guidelines'"></textarea>
 				</div>
 			</div>
-			<br><br>
+			<br><br><br>
 			<div class='infoBox'>
 				<div class="headerOfBox">
 					<h4>Other Information</h4>
@@ -165,7 +175,7 @@
 					</div>
 				</div>
 			</div>
-			<br><br>
+			<br><br><br>
 			<div class="infoBox">
 				<div class="headerOfBox">
 					<h4>Artifacts</h4>
@@ -179,7 +189,7 @@
 				</div>
 				<textarea [ngxSummernote]="config" cols="156" name="noncov" [(ngModel)]="policyPost.nonCov" rows="7" id="patches"></textarea>
 			</div>
-			<br><br>
+			<br><br><br>
 
 			<div class="infoBox">
 				<div class="headerOfBox">
@@ -211,5 +221,5 @@
 
 	</form>
 	<button type="submit" style="margin-right: 9vw;" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
-	<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
+	<button type="cancel" class="cancel btn btn-primary" (click)="backClicked()">Cancel</button>
 </div>

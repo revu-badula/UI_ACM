@@ -75,6 +75,14 @@ export class PolicyAddComponent implements OnInit {
   ngOnInit() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    if(localStorage.getItem('parentPolicyId') === null){
+
+    }
+    else{
+      let id = localStorage.getItem('parentPolicyId');
+      let poId = +id;
+      this.policyPost.parentPolicyId=poId;
+    }
   }
 
   open(content) {
