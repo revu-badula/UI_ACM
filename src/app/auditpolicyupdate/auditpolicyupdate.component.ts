@@ -155,11 +155,17 @@ export class AuditpolicyupdateComponent implements OnInit {
     this.appPolicy.assignedBy=Cookie.get("userName");
     this.policyAccess.updatedBy=Cookie.get("userName");
     let url = APP_CONFIG.updateAppPolicy;
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({ headers: headers });
-    let data = JSON.stringify(this.appPolicy);
-    this.http.post(url, data, options).subscribe((data: any) => {
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    // let options = new RequestOptions({ headers: headers });
+    // let data = JSON.stringify(this.appPolicy);
+    var formData = new FormData();
+    formData.append('appAuditPolicyString', JSON.stringify(this.appPolicy));
+    for (let i = 0; i < this.files.length; i++) {
+      formData.append('file', this.files[i]);
+
+    }
+    this.http.post(url,formData).subscribe((data: any) => {
         this.loading=false;
         this.modalService.open(this.content, ngbModalOptions);
       }, error => { 

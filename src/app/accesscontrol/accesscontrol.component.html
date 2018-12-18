@@ -75,12 +75,12 @@
                         <div class="form-group col-md-6">
                             <label for="controlNumber">Control Number<div class="asterisk">*</div></label>
                             <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
-                                [(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" readonly>
+                                [(ngModel)]="appPolicy.controlNumber" [name]="'control_number'">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="controlName">Control Name<div class="asterisk">*</div></label>
                             <input type="text" class="form-control" id="controlName" ngModel name="controlName"
-                                [(ngModel)]="policyAccess.classType" [name]="'class_type'" readonly>
+                                [(ngModel)]="appPolicy.controlName" [name]="'class_type'">
                         </div>
                     </div>
 
@@ -309,8 +309,8 @@
                     <div class="headerOfBox">
                         <h4>Evidences</h4>
                     </div>
-                    <!-- <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)"> -->
-                    <input type="file">
+                    <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
+                    
 
                     <br><br><br>
                     <div class="col-md-6">
@@ -318,11 +318,11 @@
                             <table border="1">
                                 <tr>
                                     <th>File Name</th>
-                                    <th *ngIf="!showFrm">Action</th>
+                                    <th *ngIf="showFrm">Action</th>
                                 </tr>
-                                <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
+                                <tr *ngFor=" let policyDocument of appPolicy.policyDocumentsDTOs let i = index">
                                     <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
-                                    <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
+                                    <td *ngIf="policyDocument.activeFlag && showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
                                         style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
                                 </tr>
 
