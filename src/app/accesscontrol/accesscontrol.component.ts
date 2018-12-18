@@ -10,6 +10,7 @@ import { APP_CONFIG } from '../app.config';
 import { ApiserviceService } from '../apiservice.service';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { DialogService } from '../dialog.service';
+import { UtilService } from '../util.service';
 @Component({
   selector: 'app-accesscontrol',
   templateUrl: './accesscontrol.component.html',
@@ -48,7 +49,8 @@ export class AccesscontrolComponent implements OnInit {
   };
   constructor(private _location: Location,private http: Http, private datepipe: DatePipe,
     private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, 
-    private modalService: NgbModal, private router:Router, private dialogService: DialogService) {
+    private modalService: NgbModal, private router:Router, private dialogService: DialogService,
+    private utilService:UtilService) {
     this.policyAccess = new Policy();
     this.appPolicy = new AppAuditPolicyDTO();
     this.policyDocumentDTO = new PolicyDocumentsDTO();
@@ -174,22 +176,11 @@ export class AccesscontrolComponent implements OnInit {
   }
 
   getPolicyDocumentAttch(id) {
-    window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
+    //window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
+    this.utilService.getFile(id);
   }
 
-  // createPolicyDocumentDTO(fileInput: any) {
-  //   //this.policyDocumentDTO.activeFlag = true;
-  //   this.policyDocumentDTO = new PolicyDocumentsDTO();
-  //   this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
-  //   this.policyDocumentDTO.activeFlag = true;
-  //   this.files.push(fileInput.target.files[0]);
-  //   if (this.policyAccess.policyDocumentsDTOs == null) {
-
-  //     this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
-  //   }
-  //   this.policyAccess.policyDocumentsDTOs.push(this.policyDocumentDTO);
-  //   this.inputEl.nativeElement.value="";
-  // }
+  
 
   goToSubControl() {
     localStorage.setItem('appParentPolicyId', this.appAuditPolicyId);
