@@ -286,7 +286,8 @@ export class PolicyAddComponent implements OnInit {
           if (id === undefined) {
             let length = this.policyPost.policyDocumentsDTOs.length;
             if (length === 1) {
-              this.policyPost.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
+              this.policyPost.policyDocumentsDTOs = [];
+              this.files=[]; //a,b,c,d,f = [2] =[3]
             }
             else {
 

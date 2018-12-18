@@ -118,13 +118,13 @@ export class AuditpolicyaddComponent implements OnInit {
     let options = new RequestOptions({ headers: headers });
     //let data = JSON.stringify(this.policyPost);
     var formData = new FormData();
-    formData.append('policy', JSON.stringify(this.policyPost));
+    formData.append('appAuditPolicyString', JSON.stringify(this.policyPost));
     for (let i = 0; i < this.files.length; i++) {
-      formData.append('files', this.files[i]);
+      formData.append('file', this.files[i]);
 
     }
 
-    this.http.post(url, formData, options).subscribe((data: any) => {
+    this.http.post(url, formData).subscribe((data: any) => {
       this.loading = false;
       this.modalService.open(this.content, ngbModalOptions);
     }, error => {
@@ -155,6 +155,7 @@ export class AuditpolicyaddComponent implements OnInit {
             let length = this.policyPost.policyDocumentsDTOs.length;
             if (length === 1) {
               this.policyPost.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
+              this.files=[];
             }
             else {
 
