@@ -16,7 +16,9 @@ export class AppAuditPolicyDTO {
     guidelines: string;
     assignedTo: string;
     assignedBy: string;
-    startDate: any;
+	startDate: any;
+	controlNumber:string;
+	 controlName:string;
     endDate: any;
     artifacts: string;
     nonCov: string;
@@ -24,6 +26,7 @@ export class AppAuditPolicyDTO {
 	appParentPolicyId:any
 	//private AppAuditPolicyDTO appAuditParentPolicyDTO;
 	appAuditPolicies:any=[];
+	policyDocumentsDTOs:any;
 
 
 

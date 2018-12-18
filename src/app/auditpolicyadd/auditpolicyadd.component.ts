@@ -24,9 +24,9 @@ export class AuditpolicyaddComponent implements OnInit {
   color: String;
   policyDocumentDTO: PolicyDocumentsDTO;
   files: File[] = [];
-  public users:any;
+  public users: any;
   policyPost: AppAuditPolicyDTO
-  public loading:boolean=false;
+  public loading: boolean = false;
   public endDate: any;
   config = {
     placeholder: '',
@@ -43,12 +43,11 @@ export class AuditpolicyaddComponent implements OnInit {
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
 
   };
-  constructor(private _location: Location,private http: Http, private datepipe: DatePipe,
-    private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, 
-    private modalService: NgbModal, private router:Router) {
-
+  constructor(private _location: Location, private http: Http, private datepipe: DatePipe,
+    private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService,
+    private modalService: NgbModal, private router: Router,  private dialogService: DialogService) {
     this.policyPost = new AppAuditPolicyDTO();
-   }
+  }
 
   ngOnInit() {
     document.body.scrollTop = 0;
@@ -88,8 +87,7 @@ export class AuditpolicyaddComponent implements OnInit {
 
   }
 
-  getEndDate(value)
-  {
+  getEndDate(value) {
     if (value.formatted === "") {
       this.policyPost.endDate = null;
     }
@@ -107,39 +105,87 @@ export class AuditpolicyaddComponent implements OnInit {
       backdrop: 'static',
       keyboard: false
     };
-    this.loading=true;
-   let appParId=localStorage.getItem("appParentPolicyId")
+    this.loading = true;
+    let appParId = localStorage.getItem("appParentPolicyId")
     this.policyPost.appParentPolicyId = +appParId;
-    this.policyPost.updatedBy=Cookie.get("userName");
-    this.policyPost.assignedBy=Cookie.get("userName");
-    this.policyPost.updatedBy=Cookie.get("userName");
+    this.policyPost.createdBy = Cookie.get("userName");
+    this.policyPost.updatedBy = Cookie.get("userName");
+    this.policyPost.assignedBy = Cookie.get("userName");
+    this.policyPost.updatedBy = Cookie.get("userName");
     let url = APP_CONFIG.updateAppPolicy;
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
-    let data = JSON.stringify(this.policyPost);
-    console.log(data);
-    this.http.post(url, data, options).subscribe((data: any) => {
-        this.loading=false;
-        this.modalService.open(this.content, ngbModalOptions);
-      }, error => { 
-        this.loading=false;
-        console.log(error) });
+    //let data = JSON.stringify(this.policyPost);
+    var formData = new FormData();
+    formData.append('policy', JSON.stringify(this.policyPost));
+    for (let i = 0; i < this.files.length; i++) {
+      formData.append('files', this.files[i]);
+
+    }
+
+    this.http.post(url, formData, options).subscribe((data: any) => {
+      this.loading = false;
+      this.modalService.open(this.content, ngbModalOptions);
+    }, error => {
+      this.loading = false;
+      console.log(error)
+    });
   }
 
-  // createPolicyDocumentDTO(fileInput: any) {
-  //   this.policyDocumentDTO = new PolicyDocumentsDTO();
-  //   this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
-  //   this.policyDocumentDTO.activeFlag=true;
-  //   this.files.push(fileInput.target.files[0]);
+  createPolicyDocumentDTO(fileInput: any) {
+    this.policyDocumentDTO = new PolicyDocumentsDTO();
+    this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
+    this.policyDocumentDTO.activeFlag = true;
+    this.files.push(fileInput.target.files[0]);
 
-  //   if (this.policyPost.policyDocumentsDTOs == null) {
-  //     this.policyPost.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
-  //   }
-  //   this.policyPost.policyDocumentsDTOs.push(this.policyDocumentDTO);
-  //   this.inputEl.nativeElement.value="";
+    if (this.policyPost.policyDocumentsDTOs == null) {
+      this.policyPost.policyDocumentsDTOs = [];
+    }
+    this.policyPost.policyDocumentsDTOs.push(this.policyDocumentDTO);
+    this.inputEl.nativeElement.value = "";
 
-  // }
+  }
+  deleteFile(id, index) {
+    //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
+    this.dialogService.open("Info", "Do you want to delete the file?", true, "Yes", "No")
+      .then((result: any) => {
+        if (result) {
+          if (id === undefined) {
+            let length = this.policyPost.policyDocumentsDTOs.length;
+            if (length === 1) {
+              this.policyPost.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
+            }
+            else {
+
+              for(let j=0;j<this.files.length;j++)
+              {
+                if(this.files[j].name === this.policyPost.policyDocumentsDTOs[index].documentName)
+                {
+                  this.files.splice(j,1);
+                }
+              }
+              for (let i = index; i < length; i++) {
+                this.policyPost.policyDocumentsDTOs[i] = this.policyPost.policyDocumentsDTOs[i + 1];
+              }
+              this.policyPost.policyDocumentsDTOs.splice(length - 1, 1);
+            }
+
+          }
+          else {
+            for (let i = 0; i < this.policyPost.policyDocumentsDTOs.length; i++) {
+              if (this.policyPost.policyDocumentsDTOs[i].policyDocId === id) {
+                this.policyPost.policyDocumentsDTOs[i].activeFlag = false;
+              }
+            }
+          }
+
+        }
+      }, error => {
+        console.log(error);
+      });
+  }
+
 
 
 
