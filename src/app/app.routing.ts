@@ -147,6 +147,7 @@ import { CallGuard } from './callguard';
 import { AuthGuardLogin } from './loginpageguard';
 import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component';
 import { AuditpolicyaddComponent } from './auditpolicyadd/auditpolicyadd.component';
+import { AuditpolicyupdateComponent } from './auditpolicyupdate/auditpolicyupdate.component';
 
 const appRoutes: Routes = [
 
@@ -160,6 +161,7 @@ const appRoutes: Routes = [
   { path: 'vendorsView', component: VendorsViewComponent, canActivate: [AuthGuard] },
   { path: 'accessControl/:id', component: ControlNameComponent, canActivate: [AuthGuard] },
   { path: 'accessCntrl/:id', component: AccesscontrolComponent, canActivate: [AuthGuard] },
+  { path: 'accessUpdate/:id', component: AuditpolicyupdateComponent, canActivate: [AuthGuard] },
   { path: 'policy', component: PolicyComponentComponent, canActivate: [AuthGuard] },
   { path: 'policyAdd', component: PolicyAddComponent, canActivate: [AuthGuard] },
   { path: 'deviceInventory', component: DeviceComponent, canActivate: [AuthGuard] },

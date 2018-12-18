@@ -9,13 +9,14 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { APP_CONFIG } from '../app.config';
 import { ApiserviceService } from '../apiservice.service';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
+
 @Component({
-  selector: 'app-accesscontrol',
-  templateUrl: './accesscontrol.component.html',
-  styleUrls: ['./accesscontrol.component.css'],
-  providers: [ApiserviceService],
+  selector: 'app-auditpolicyupdate',
+  templateUrl: './auditpolicyupdate.component.html',
+  styleUrls: ['./auditpolicyupdate.component.css']
 })
-export class AccesscontrolComponent implements OnInit {
+export class AuditpolicyupdateComponent implements OnInit {
+
   color: String;
   public loading: boolean = false;
   @ViewChild('content') content: TemplateRef<any>;
@@ -26,7 +27,7 @@ export class AccesscontrolComponent implements OnInit {
   public endDate: any;
   public showEli: boolean = true;
   policyDocumentDTO: PolicyDocumentsDTO;
-  public showFrm:boolean=false;
+  public showFrm: boolean = false;
   public appAuditPolicyId: any;
   config = {
     placeholder: '',
@@ -43,13 +44,12 @@ export class AccesscontrolComponent implements OnInit {
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
 
   };
-  constructor(private _location: Location,private http: Http, private datepipe: DatePipe,
-    private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, 
-    private modalService: NgbModal, private router:Router) {
+  constructor(private _location: Location, private http: Http, private datepipe: DatePipe,
+    private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService,
+    private modalService: NgbModal, private router: Router) {
     this.policyAccess = new Policy();
     this.appPolicy = new AppAuditPolicyDTO();
     this.policyDocumentDTO = new PolicyDocumentsDTO();
-    localStorage.removeItem("appParentPolicyId");
   }
 
   ngOnInit() {
@@ -168,20 +168,6 @@ export class AccesscontrolComponent implements OnInit {
     window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
   }
 
-  // createPolicyDocumentDTO(fileInput: any) {
-  //   //this.policyDocumentDTO.activeFlag = true;
-  //   this.policyDocumentDTO = new PolicyDocumentsDTO();
-  //   this.policyDocumentDTO.documentName = fileInput.target.files[0].name;
-  //   this.policyDocumentDTO.activeFlag = true;
-  //   this.files.push(fileInput.target.files[0]);
-  //   if (this.policyAccess.policyDocumentsDTOs == null) {
-
-  //     this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
-  //   }
-  //   this.policyAccess.policyDocumentsDTOs.push(this.policyDocumentDTO);
-  //   this.inputEl.nativeElement.value="";
-  // }
-
   goToSubControl() {
     localStorage.setItem('appParentPolicyId', this.appAuditPolicyId);
     this.router.navigate(['/auditPolAdd']);
@@ -190,7 +176,7 @@ export class AccesscontrolComponent implements OnInit {
 
   getSubpolicy(id)
   {
-    let url="accessUpdate/"+id;
+    let url="accessCntrl/"+id;
     this.router.navigateByUrl(url);
   }
 

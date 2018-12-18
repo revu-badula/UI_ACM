@@ -86,6 +86,7 @@ import { SampleComponent } from './sample/sample.component';
 import { CustomHashLocationStrategy } from './custom-hash-location';
 import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component';
 import { AuditpolicyaddComponent } from './auditpolicyadd/auditpolicyadd.component';
+import { AuditpolicyupdateComponent } from './auditpolicyupdate/auditpolicyupdate.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -140,7 +141,8 @@ import { AuditpolicyaddComponent } from './auditpolicyadd/auditpolicyadd.compone
     CallbackComponent,
     SampleComponent,
     AccesscontrolComponent,
-    AuditpolicyaddComponent
+    AuditpolicyaddComponent,
+    AuditpolicyupdateComponent
 
 
 
