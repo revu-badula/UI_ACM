@@ -87,6 +87,11 @@ import { CustomHashLocationStrategy } from './custom-hash-location';
 import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component';
 import { AuditpolicyaddComponent } from './auditpolicyadd/auditpolicyadd.component';
 import { AuditpolicyupdateComponent } from './auditpolicyupdate/auditpolicyupdate.component';
+import { AssessmentpolicyupdateComponent } from './assessmentpolicyupdate/assessmentpolicyupdate.component';
+import { Accesscontrol1Component } from './accesscontrol1/accesscontrol1.component';
+import { AssessmentpolicyaddComponent } from './assessmentpolicyadd/assessmentpolicyadd.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -142,8 +147,11 @@ import { AuditpolicyupdateComponent } from './auditpolicyupdate/auditpolicyupdat
     SampleComponent,
     AccesscontrolComponent,
     AuditpolicyaddComponent,
-    AuditpolicyupdateComponent
-
+    AuditpolicyupdateComponent,
+    AssessmentpolicyupdateComponent,
+    Accesscontrol1Component,
+    AssessmentpolicyaddComponent,
+    AssessmentpolicyupdateComponent,
 
 
   ],

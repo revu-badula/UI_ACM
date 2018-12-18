@@ -148,6 +148,9 @@ import { AuthGuardLogin } from './loginpageguard';
 import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component';
 import { AuditpolicyaddComponent } from './auditpolicyadd/auditpolicyadd.component';
 import { AuditpolicyupdateComponent } from './auditpolicyupdate/auditpolicyupdate.component';
+import { AssessmentpolicyaddComponent } from './assessmentpolicyadd/assessmentpolicyadd.component';
+import { AssessmentpolicyupdateComponent } from './assessmentpolicyupdate/assessmentpolicyupdate.component';
+import { Accesscontrol1Component } from './accesscontrol1/accesscontrol1.component';
 
 const appRoutes: Routes = [
 
@@ -175,6 +178,11 @@ const appRoutes: Routes = [
   { path: 'rsystems', component: ReportlegalsystemComponent, canActivate: [AuthGuard] },
   { path: 'subcontrol/:id', component: SubControlNameComponent, canActivate: [AuthGuard] },
   { path: 'auditPolAdd', component: AuditpolicyaddComponent, canActivate: [AuthGuard] },
+  { path: 'assessmentPolicyAdd', component: AssessmentpolicyaddComponent, canActivate: [AuthGuard] },
+  { path: 'accessCntrl1/:id', component: Accesscontrol1Component, canActivate: [AuthGuard] },
+  { path: 'accessUpdate1/:id', component: AssessmentpolicyupdateComponent, canActivate: [AuthGuard] },
+  
+ 
   {
     path: 'callback', component: CallbackComponent, canActivate:[CallGuard]
   },

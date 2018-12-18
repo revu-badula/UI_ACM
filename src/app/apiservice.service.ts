@@ -436,4 +436,18 @@ export class ApiserviceService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
+
+  getAssessmentPolicyDetails(id) {
+    let url = APP_CONFIG.getAssessmentPolicyDetails;
+    return this._httpService.get(url + '?' + 'assessmentPolicyId' + '=' + id)
+      .map(res => <Response>res.json())
+  }
+
+  updateAssessmentPolicyDetails(data) {
+    let url = APP_CONFIG.updateAssessmentPolicyDetails
+
+    return this._httpService.post(url, data).map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
 }

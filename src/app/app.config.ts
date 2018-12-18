@@ -89,9 +89,11 @@ export const APP_CONFIG = {
   getSysForMous:apiBaseUrl + 'getSysForMous',
   fetchFamilies:apiBaseUrl + 'fetchFamilies',
   getPoliciesByFam:apiBaseUrl + 'getPoliciesByFam',
-  getAppPolicy:apiBaseUrl + 'getAppAuditPolicyDetails',
-  updateAppPolicy:apiBaseUrl + 'updateAppAuditPolicyDetails',
+   getAppPolicy:apiBaseUrl + 'getAppAuditPolicyDetails',
+   updateAppPolicy:apiBaseUrl + 'updateAppAuditPolicyDetails',
   getFile:apiBaseUrl + 'getfile',
+  getAssessmentPolicyDetails:apiBaseUrl + 'getAssessmentPolicyDetails',
+  updateAssessmentPolicyDetails:apiBaseUrl + 'updateAssessmentPolicyDetails',
 }
 
 
