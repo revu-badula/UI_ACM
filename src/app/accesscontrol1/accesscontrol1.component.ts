@@ -193,13 +193,13 @@ export class Accesscontrol1Component implements OnInit {
 
   goToSubControl() {
     localStorage.setItem('appParentPolicyId', this.assessmentPolicyId);
-    this.router.navigate(['/auditPolAdd']);
+    this.router.navigate(['/assessmentPolicyAdd']);
 
   }
 
   getSubpolicy(id)
   {
-    let url="accessUpdate/"+id;
+    let url="accessUpdate1/"+id;
     this.router.navigateByUrl(url);
   }
 

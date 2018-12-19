@@ -1,7 +1,7 @@
 
 export class AssessmentPolicyDTO {
 
-    appAuditPolicyId: any
+    assessmentPolicyId: any
     defaultVal: string
     status: string
     createdBy: any;
@@ -25,7 +25,7 @@ export class AssessmentPolicyDTO {
     securityPlan: string;
 	appParentPolicyId:any
 	//private AppAuditPolicyDTO appAuditParentPolicyDTO;
-	appAuditPolicies:any=[];
+	assessmentPolicies:any=[];
 	policyDocumentsDTOs:any;
 
 

@@ -34,7 +34,7 @@
 </ng-template>
 
 <div>
-  <form (ngSubmit)="addappPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
+  <form (ngSubmit)="addAppPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
       <fieldset [disabled]='showForm'>
           <div id="form1">
               <div class="infoBox">
@@ -194,9 +194,9 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr *ngFor="let subPol of appPolicy.appAuditPolicies">
-                              <td><a *ngIf="showEli">{{ subPol.appAuditPolicyId }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.appAuditPolicyId)"
-                                      style="cursor: pointer;color: blue;">{{subPol.appAuditPolicyId}}</a></td>
+                          <tr *ngFor="let subPol of appPolicy.assessmentPolicies">
+                              <td><a *ngIf="showEli">{{ subPol.assessmentPolicyId }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.assessmentPolicyId)"
+                                      style="cursor: pointer;color: blue;">{{subPol.assessmentPolicyId}}</a></td>
                               <td>{{subPol.policyName}}</td>
                               <td>{{subPol.assignedTo}}</td>
                               <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
