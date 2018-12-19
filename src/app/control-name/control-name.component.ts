@@ -78,7 +78,7 @@ export class ControlNameComponent implements OnInit {
     private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal,
     private utilService: UtilService, private router: Router, private dialogService: DialogService
-    ,private datepipe: DatePipe) {
+    , private datepipe: DatePipe) {
     this.policyAccess = new Policy();
     this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     this.files = [] as File[];
@@ -107,6 +107,12 @@ export class ControlNameComponent implements OnInit {
   backClicked() {
     UtilService.backClicked = true;
     this._location.back();
+  }
+
+  backClick(event) {
+  UtilService.backClicked = true;
+    this._location.back();
+    event.preventDefault();
   }
 
   getPolicy(id) {
@@ -159,7 +165,7 @@ export class ControlNameComponent implements OnInit {
       this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     }
     this.policyAccess.policyDocumentsDTOs.push(this.policyDocumentDTO);
-    this.inputEl.nativeElement.value="";
+    this.inputEl.nativeElement.value = "";
   }
 
   deleteFile(id, index) {
@@ -173,11 +179,9 @@ export class ControlNameComponent implements OnInit {
               this.policyAccess.policyDocumentsDTOs = []; //a,b,c,d,f = [2] =[3]
             }
             else {
-              for(let j=0;j<this.files.length;j++)
-              {
-                if(this.files[j].name === this.policyAccess.policyDocumentsDTOs[index].documentName)
-                {
-                  this.files.splice(j,1);
+              for (let j = 0; j < this.files.length; j++) {
+                if (this.files[j].name === this.policyAccess.policyDocumentsDTOs[index].documentName) {
+                  this.files.splice(j, 1);
                 }
               }
               for (let i = index; i < length; i++) {
@@ -242,8 +246,7 @@ export class ControlNameComponent implements OnInit {
 
   }
 
-  getEndDate(value)
-  {
+  getEndDate(value) {
     if (value.formatted === "") {
       this.policyAccess.endDate = null;
     }
@@ -486,13 +489,11 @@ export class ControlNameComponent implements OnInit {
     }
   }
 
-  deletePolicy(id)
-  {
+  deletePolicy(id) {
     this.policyAccess.linkedPolicies.forEach(element => {
-      if(element.policyId === id)
-      {
-        element.status=false;
-        element.linkType="update";
+      if (element.policyId === id) {
+        element.status = false;
+        element.linkType = "update";
       }
     });
   }
@@ -506,7 +507,7 @@ export class ControlNameComponent implements OnInit {
   getSubpolicy(id) {
     //localStorage.setItem('policyId', this.policyUrlId);
     //localStorage.setItem('subPol', id);
-    let url ="subcontrol/"+id;
+    let url = "subcontrol/" + id;
     //this.router.navigate(['/subcontrol'])
     this.router.navigateByUrl(url);
   }

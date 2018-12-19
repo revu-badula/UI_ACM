@@ -103,6 +103,12 @@ export class SubControlNameComponent implements OnInit {
     this._location.back();
   }
 
+  backClick(event)
+  {
+    event.preventDefault();
+    this._location.back();
+  }
+
   // getPolicy() {
   //   this.loading = true;
   //   this._apiservice.getPolicy(id)

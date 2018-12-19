@@ -378,7 +378,7 @@
         <!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
     </form>
     <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
-    <button type="cancel" class="cancel btn btn-primary" (click)="goTo($event)">Cancel</button>
+    <button type="cancel" class="cancel btn btn-primary" (click)="backClick($event)">Cancel</button>
 </div>
 <div *ngIf="showDiv">
     <div id="form1">
