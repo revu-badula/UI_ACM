@@ -243,6 +243,7 @@ export class SystemLegalformComponent implements OnInit {
             let length = this.mou.mouDocDTOs.length;
             if (length === 1) {
               this.mou.mouDocDTOs = [];
+              this.files=[];
             }
             else {
               for(let j=0;j<this.files.length;j++)
