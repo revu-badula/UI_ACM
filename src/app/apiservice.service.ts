@@ -444,8 +444,7 @@ export class ApiserviceService {
   }
 
   updateAssessmentPolicyDetails(data) {
-    let url = APP_CONFIG.updateAssessmentPolicyDetails
-
+    let url = APP_CONFIG.updateAssessmentPolicyDetails;
     return this._httpService.post(url, data).map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
