@@ -10,6 +10,7 @@ import { APP_CONFIG } from '../app.config';
 import { ApiserviceService } from '../apiservice.service';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { DialogService } from '../dialog.service';
+import { UtilService } from '../util.service';
 @Component({
   selector: 'app-accesscontrol1',
   templateUrl: './accesscontrol1.component.html',
@@ -48,7 +49,8 @@ export class Accesscontrol1Component implements OnInit {
   };
   constructor(private _location: Location,private http: Http, private datepipe: DatePipe,
     private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, 
-    private modalService: NgbModal, private router:Router, private dialogService: DialogService) {
+    private modalService: NgbModal, private router:Router, private dialogService: DialogService,
+    private utilService:UtilService) {
     this.policyAccess = new Policy();
     this.appPolicy = new AssessmentPolicyDTO();
     this.policyDocumentDTO = new PolicyDocumentsDTO();
@@ -174,7 +176,8 @@ export class Accesscontrol1Component implements OnInit {
   }
 
   getPolicyDocumentAttch(id) {
-    window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
+    //window.open(APP_CONFIG.getPolicyDocumentAttch + '?' + 'policyDocId' + '=' + id)
+    this.utilService.getFile(id);
   }
 
   // createPolicyDocumentDTO(fileInput: any) {
