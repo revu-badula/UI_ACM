@@ -195,12 +195,12 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let subPol of appPolicy.appAuditPolicies">
-                                    <td><a *ngIf="showEli">{{ subPol.appAuditPolicyId }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.appAuditPolicyId)"
-                                            style="cursor: pointer;color: blue;">{{subPol.appAuditPolicyId}}</a></td>
-                                    <td>{{subPol.policyName}}</td>
+                                    <td><a *ngIf="showEli">{{ subPol.controlNumber }}</a><a *ngIf="!showEli" (click)="getSubpolicy(subPol.appAuditPolicyId)"
+                                            style="cursor: pointer;color: blue;">{{subPol.controlNumber}}</a></td>
+                                    <td>{{subPol.controlName}}</td>
                                     <td>{{subPol.assignedTo}}</td>
                                     <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
-                                    <td>{{subPol.status}}</td>
+                                    <td>{{subPol.status | subControlPipe}}</td>
                                 </tr>
                             </tbody>
                         </table>
