@@ -230,12 +230,15 @@ export class SystemAuditFirstComponent implements OnInit {
     else {
 
       //this.appAudit.policyDTOs.policyGrpId = policy;
+      this.loading=true;
       this.appAudit.policyGrpId = policy;
       this._apiservice.fetchPolicies(policy)
         .subscribe((data: any) => {
           this.showTable = true;
+          this.loading=false;
           this.policies = data.policyDTOs;
         }, error => {
+          this.loading=false;
           console.log(error);
         });
 
