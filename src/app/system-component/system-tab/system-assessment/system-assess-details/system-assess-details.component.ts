@@ -378,12 +378,15 @@ export class SystemAssessDetailsComponent implements OnInit {
       this.policies = [];
     }
     else {
+      this.loading=true;
       this.appAssess.policyGrpId = policy;
       this._apiservice.fetchPolicies(policy)
         .subscribe((data: any) => {
+          this.loading=false;
           this.showTable = true;
           this.policies = data.policyDTOs;
         }, error => {
+          this.loading=false;
           console.log(error);
         });
 

@@ -1,112 +1,12 @@
-i.fa {
-    text-decoration: none !important;
-    padding: 5px 4px;
-    color: #3A539B;
-}
-
-.fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    color: inherit !important;
-}
-
-.plus {
-    float: right;
-    vertical-align: middle;
-    font-size: 20px;
-    padding: 0px 12px 4px 0px;
-    margin-left: 20px;
-    color: #3A539B;
-    margin-top: 15px;
-}
-
-.policies {
-    margin-top: 15px;
-}
-
-.policy-edit {
-    float: right;
-}
-
-.icons {
-    vertical-align: middle;
-    font-size: 20px;
-    margin-top: -20px;
-    padding: 2px;
-    font-size: 20px;
-}
-
-.table-bordered td, .table-bordered th {
-    border: 1px solid #e9ecef;
-}
-
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-}
-
-.nav-link {
-    color: black;
-    margin-left: 10px;
-}
-
-/* .icons{ */
-
-/* 	color:#3A539B; */
-
-/*    vertical-align: middle; */
-
-/*    font-size: 20px; */
-
-/*    margin-bottom: 20px; */
-
-/*    padding: 2px; */
-
-/*    margin-right: 20px; */
-
-/* } */
-
-input[readonly] {
-    background-color: #ffffff;
-}
-
-table {
-    background-color: #ffffff;
-    text-align: center;
-}
-
-table thead tr th {
-    font-weight: 500;
-}
-
-.modal-header {
-    background-color: #3A539B;
-    color: #ffffff;
-}
-
-.btn {
-    background-color: #3A539B;
-    border-color: #3A539B;
-}
-
-.confbtn {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-table {
-    background-color: #ffffff;
-    text-align: center;
-}
-
-table thead tr th {
-    font-weight: 500;
-    color: black;
-}
-
-table thead tr td {
-    color: black;
+#former {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid;
+    margin: 20px;
+    margin-right: -2%;
+    /* background-color:rgba(#eee, #eee, #eee, 0.2); */
+    background-color: #fff;
+    box-shadow: 5px 10px 20px 1px rgba(125, 122, 118, 1);
 }
 
 i.fa {
@@ -153,30 +53,10 @@ i.fa {
     border: 1px solid #e9ecef;
 }
 
-.form-control:disabled, .form-control[readonly] {
-    background-color: #ffffff;
-}
-
 .nav-link {
     color: black;
     margin-left: 10px;
 }
-
-/* .icons{ */
-
-/* 	color:#3A539B; */
-
-/*    vertical-align: middle; */
-
-/*    font-size: 20px; */
-
-/*    margin-bottom: 20px; */
-
-/*    padding: 2px; */
-
-/*    margin-right: 20px; */
-
-/* } */
 
 input[readonly] {
     background-color: #ffffff;
@@ -342,16 +222,6 @@ table thead tr td {
     margin-right: auto;
 }
 
-.former {
-    padding: 15px;
-    padding-top: 0;
-    border-radius: 10px;
-    border: none;
-    margin: 20px;
-    background-color: inherit;
-    box-shadow: none;
-}
-
 #form {
     background-color: #FFF;
     height: 600px;
@@ -396,7 +266,7 @@ input[type=button] {
     float: none;
 }
 
-#inputState {
+.inputState {
     border: 1px solid #000;
     margin-top: 10px;
     float: left;
@@ -461,6 +331,16 @@ input[type=button] {
     display: inline-block;
 }
 
+.infoBox2 {
+    padding: 1%;
+    border: 2px solid;
+    margin: 0%;
+    min-width: 100%;
+    display: inline-block;
+    color: black;
+    border-radius: 2%;
+}
+
 .headerOfBox {
     margin-top: -3%;
     border-bottom: 2px solid;
@@ -468,4 +348,13 @@ input[type=button] {
     margin-left: -3%;
     margin-right: -3%;
     background-color: antiquewhite;
+}
+
+.former {
+    padding: 15px;
+    border-radius: inherit;
+    border: none;
+    margin: inherit;
+    background-color: inherit;
+    box-shadow: none;
 }

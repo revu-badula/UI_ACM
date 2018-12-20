@@ -21,23 +21,29 @@
 </div>
 
 <div class=" clear-right">
-		<div>
-				<h3 class="line" style="width:100%">Devices</h3>
-			  
-			</div>
-			<br>
-			<br>
+	<div>
+		<h3>Devices</h3>
+
+	</div>
+
 	<form class="former">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th scope="col" (click)="handleSort('appName')" style="color:white !important">Localities<i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-					<th scope="col" (click)="handleSort1('modelNumber')" style="color:white !important">Model Number <i class="fa fa-arrow-down" *ngIf="!mNum"></i> <i class="fa fa-arrow-up" *ngIf="mNum"></i></th>
-					<th scope="col" (click)="handleSort2('serialNumber')" style="color:white !important">Serial Number <i class="fa fa-arrow-down" *ngIf="!sNum"></i> <i class="fa fa-arrow-up" *ngIf="sNum"></i></th>
-					<th scope="col" (click)="handleSort3('currentScanningDt')" style="color:white !important">Current Scanning Date <i class="fa fa-arrow-down" *ngIf="!curScan"></i> <i class="fa fa-arrow-up" *ngIf="curScan"></i></th>
-					<th scope="col" (click)="handleSort4('nextScanningDt')" style="color:white !important">Next Scanning Date <i class="fa fa-arrow-down" *ngIf="!nextScan"></i> <i class="fa fa-arrow-up" *ngIf="nextScan"></i></th>
-					<th scope="col" (click)="handleSort5('solutionName')" style="color:white !important">Solution Name <i class="fa fa-arrow-down" *ngIf="!sName"></i> <i class="fa fa-arrow-up" *ngIf="sName"></i></th>
-					<th scope="col" (click)="handleSort6('overallStatus')" style="color:white !important">OverAll Status <i class="fa fa-arrow-down" *ngIf="!overall"></i> <i class="fa fa-arrow-up" *ngIf="overall"></i></th>
+					<th scope="col" (click)="handleSort('appName')" style="color:white !important">Localities<i class="fa fa-arrow-down"
+						 *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+					<th scope="col" (click)="handleSort1('modelNumber')" style="color:white !important">Model Number <i class="fa fa-arrow-down"
+						 *ngIf="!mNum"></i> <i class="fa fa-arrow-up" *ngIf="mNum"></i></th>
+					<th scope="col" (click)="handleSort2('serialNumber')" style="color:white !important">Serial Number <i class="fa fa-arrow-down"
+						 *ngIf="!sNum"></i> <i class="fa fa-arrow-up" *ngIf="sNum"></i></th>
+					<th scope="col" (click)="handleSort3('currentScanningDt')" style="color:white !important">Current Scanning Date <i
+						 class="fa fa-arrow-down" *ngIf="!curScan"></i> <i class="fa fa-arrow-up" *ngIf="curScan"></i></th>
+					<th scope="col" (click)="handleSort4('nextScanningDt')" style="color:white !important">Next Scanning Date <i class="fa fa-arrow-down"
+						 *ngIf="!nextScan"></i> <i class="fa fa-arrow-up" *ngIf="nextScan"></i></th>
+					<th scope="col" (click)="handleSort5('solutionName')" style="color:white !important">Solution Name <i class="fa fa-arrow-down"
+						 *ngIf="!sName"></i> <i class="fa fa-arrow-up" *ngIf="sName"></i></th>
+					<th scope="col" (click)="handleSort6('overallStatus')" style="color:white !important">OverAll Status <i class="fa fa-arrow-down"
+						 *ngIf="!overall"></i> <i class="fa fa-arrow-up" *ngIf="overall"></i></th>
 				</tr>
 
 			</thead>
