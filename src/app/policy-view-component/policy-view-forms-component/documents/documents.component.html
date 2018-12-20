@@ -6,7 +6,7 @@
   <fa class="edit-icon icons" (click)="changeButton()" *ngIf="plus" data-toggle="tooltip" data-placement="right" title="Save"
     data-animation="true" data-delay="0" [name]="'edit'"></fa>
   <fa (click)="display(upload)" *ngIf="!plus" [name]="'upload'" class="download-icon icons"></fa>
-  <fa *ngIf="!plus" class="save-icon icons" [name]="'save'"></fa>
+  <!-- <fa *ngIf="!plus" class="save-icon icons" [name]="'save'"></fa> -->
   <fa (click)=close() *ngIf="!plus" class="close-icon icons" [name]="'times-circle'"></fa>
 </div>
 <ng-template #upload let-c="close" let-d="dismiss">

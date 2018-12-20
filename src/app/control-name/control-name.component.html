@@ -390,6 +390,9 @@
             <label style="padding-right:10px">Link from External</label>
             <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">
         </div> -->
+            <!-- <a (click)="getBack()">Go Back</a> -->
+            <fa (click)="getBack()" class="left-icons left-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Back"
+                    data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">

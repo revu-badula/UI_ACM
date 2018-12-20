@@ -99,7 +99,7 @@ export class ControlNameComponent implements OnInit {
     });
     this.getPolicy(this.policyUrlId);
     this.showDropdown();
-    this.fetchPolicies(1);
+    //this.fetchPolicies(1);
     this.getUsers();
 
   }
@@ -110,7 +110,7 @@ export class ControlNameComponent implements OnInit {
   }
 
   backClick(event) {
-  UtilService.backClicked = true;
+    UtilService.backClicked = true;
     this._location.back();
     event.preventDefault();
   }
@@ -286,6 +286,10 @@ export class ControlNameComponent implements OnInit {
   changeDiv() {
     this.showDiv = true;
   }
+  getBack()
+  {
+    this.showDiv=false;
+  }
 
   selectType(policy) {
     if (policy === 'Choose...') {
@@ -293,6 +297,7 @@ export class ControlNameComponent implements OnInit {
     }
     else {
       this.policy = true;
+      this.fetchPolicies(policy);
     }
   }
 
@@ -325,10 +330,14 @@ export class ControlNameComponent implements OnInit {
   }
 
   fetchPolicies(id) {
+    this.loading = true;
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
+        this.loading = false;
         this.policies = data.policyDTOs;
-      }, error => console.log(error));
+      }, error => {
+        console.log(error);
+      });
 
   }
 
@@ -511,6 +520,7 @@ export class ControlNameComponent implements OnInit {
     //this.router.navigate(['/subcontrol'])
     this.router.navigateByUrl(url);
   }
+
 
 
 }

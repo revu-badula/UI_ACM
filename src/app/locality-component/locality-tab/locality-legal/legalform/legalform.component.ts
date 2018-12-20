@@ -233,7 +233,8 @@ export class LegalformComponent implements OnInit {
     this.mou.recertificationDt = Date.parse(value.formatted);
   }
   getFile(id) {
-    window.open(APP_CONFIG.getMOUFile + '?' + 'mouDocId' + '=' + id)
+    //window.open(APP_CONFIG.getMOUFile + '?' + 'mouDocId' + '=' + id)
+    this.utilservice.getFile(id);
   }
 
 

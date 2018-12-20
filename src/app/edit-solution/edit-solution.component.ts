@@ -16,6 +16,7 @@ import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { finalize } from 'rxjs/operators';
 import { DialogService } from '../dialog.service';
+import { UtilService } from '../util.service';
 
 declare var swal: any; ''
 
@@ -80,7 +81,7 @@ export class EditSolutionComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
     , private http: Http, private _location: Location, private modalService: NgbModal,
-    private router: Router, private dialogService: DialogService, private datepipe: DatePipe) {
+    private router: Router, private dialogService: DialogService, private datepipe: DatePipe,private utilService:UtilService) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
     this.solution.hostingTypeDTO = new HostingType();
@@ -371,7 +372,8 @@ export class EditSolutionComponent implements OnInit {
 
 
   showFile(id) {
-    window.open(APP_CONFIG.getSolutionFile + '?' + 'fileID' + '=' + id)
+    //window.open(APP_CONFIG.getSolutionFile + '?' + 'fileID' + '=' + id)
+    this.utilService.getFile(id);
 
   }
 

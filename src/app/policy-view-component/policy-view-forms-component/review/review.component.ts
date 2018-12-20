@@ -77,7 +77,7 @@ export class ReviewComponent implements OnInit {
     this.getUsers();
     this.fetchPolicies(UtilService.policyGrpId);
     this.loading = true;
-    this.getPolicyReviewDetails(UtilService.policyGrpId);
+    //this.getPolicyReviewDetails(UtilService.policyGrpId);
   }
 
   open(content) {

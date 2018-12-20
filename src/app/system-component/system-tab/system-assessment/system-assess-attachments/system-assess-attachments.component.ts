@@ -215,8 +215,8 @@ export class SystemAssessAttachmentsComponent implements OnInit {
 
   }
   getFile(id) {
-
-    window.open(APP_CONFIG.getAssessmentFile + '?' + 'id' + '=' + id);
+    this.utilService.getFile(id);
+    //window.open(APP_CONFIG.getAssessmentFile + '?' + 'id' + '=' + id);
 
     // if (id === undefined) {
 

@@ -220,71 +220,72 @@ export class AuditAttachmentsComponent implements OnInit {
 
     }
     else {
-      this.loading = true;
-      this.http.get(APP_CONFIG.getAppAuditFile + '?' + 'fileId' + '=' + id)
-        .map((res: any) => {
-          return res.json();
-        })
-        .subscribe((res: any) => {
-          this.loading = false;
-          let isChrome = !!window.chrome && !!window.chrome.webstore;
-          let isIE = /*@cc_on!@*/false || !!document.documentMode;
-          let isEdge = !isIE && !!window.StyleMedia;
-          let url = window.URL || window.webkitURL;
-          let file;
-          if (isChrome) {
+      this.utilService.getFile(id);
+    //   this.loading = true;
+    //   this.http.get(APP_CONFIG.getAppAuditFile + '?' + 'fileId' + '=' + id)
+    //     .map((res: any) => {
+    //       return res.json();
+    //     })
+    //     .subscribe((res: any) => {
+    //       this.loading = false;
+    //       let isChrome = !!window.chrome && !!window.chrome.webstore;
+    //       let isIE = /*@cc_on!@*/false || !!document.documentMode;
+    //       let isEdge = !isIE && !!window.StyleMedia;
+    //       let url = window.URL || window.webkitURL;
+    //       let file;
+    //       if (isChrome) {
 
-            let url = window.URL || window.webkitURL;
-            var link = document.createElement("a");
-            if (res.fileName.includes(".doc") || res.fileName.includes(".docx")) {
-              link.href = "data:" + "application/msword" + ";base64," + res.fileContent;
-            }
-            else {
-              link.href = "data:" + "application/pdf" + ";base64," + res.fileContent;
-            }
-            link.download = res.fileName;
-            link.click();
-          }
-          else if (isEdge || isIE) {
-            var byteCharacters = atob(res.fileContent);
-            var byteNumbers = new Array(byteCharacters.length);
-            for (var i = 0; i < byteCharacters.length; i++) {
-              byteNumbers[i] = byteCharacters.charCodeAt(i);
-            }
-            var byteArray = new Uint8Array(byteNumbers);
+    //         let url = window.URL || window.webkitURL;
+    //         var link = document.createElement("a");
+    //         if (res.fileName.includes(".doc") || res.fileName.includes(".docx")) {
+    //           link.href = "data:" + "application/msword" + ";base64," + res.fileContent;
+    //         }
+    //         else {
+    //           link.href = "data:" + "application/pdf" + ";base64," + res.fileContent;
+    //         }
+    //         link.download = res.fileName;
+    //         link.click();
+    //       }
+    //       else if (isEdge || isIE) {
+    //         var byteCharacters = atob(res.fileContent);
+    //         var byteNumbers = new Array(byteCharacters.length);
+    //         for (var i = 0; i < byteCharacters.length; i++) {
+    //           byteNumbers[i] = byteCharacters.charCodeAt(i);
+    //         }
+    //         var byteArray = new Uint8Array(byteNumbers);
 
-            if (res.fileName.includes(".doc") || res.fileName.includes(".docx")) {
-              file = new Blob([byteArray], { type: 'application/msword' });
-              window.navigator.msSaveOrOpenBlob(file, res.fileName);
-            }
-            else {
-              file = new Blob([byteArray], { type: 'application/pdf' });
-              window.navigator.msSaveOrOpenBlob(file, res.fileName);
-            }
+    //         if (res.fileName.includes(".doc") || res.fileName.includes(".docx")) {
+    //           file = new Blob([byteArray], { type: 'application/msword' });
+    //           window.navigator.msSaveOrOpenBlob(file, res.fileName);
+    //         }
+    //         else {
+    //           file = new Blob([byteArray], { type: 'application/pdf' });
+    //           window.navigator.msSaveOrOpenBlob(file, res.fileName);
+    //         }
 
-          }
-          else {
-            var link = document.createElement('a');
-            if (res.fileName.includes(".doc") || res.fileName.includes(".docx")) {
-              link.href = "data:" + "application/msword" + ";base64," + res.fileContent;
-            }
-            else {
-              link.href = "data:" + "application/pdf" + ";base64," + res.fileContent;
-            }
-            link.setAttribute('download', res.fileName);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          }
+    //       }
+    //       else {
+    //         var link = document.createElement('a');
+    //         if (res.fileName.includes(".doc") || res.fileName.includes(".docx")) {
+    //           link.href = "data:" + "application/msword" + ";base64," + res.fileContent;
+    //         }
+    //         else {
+    //           link.href = "data:" + "application/pdf" + ";base64," + res.fileContent;
+    //         }
+    //         link.setAttribute('download', res.fileName);
+    //         document.body.appendChild(link);
+    //         link.click();
+    //         document.body.removeChild(link);
+    //       }
 
 
-        },
-          error => {
-            this.loading = false;
-            console.log(error)
-          });
+    //     },
+    //       error => {
+    //         this.loading = false;
+    //         console.log(error)
+    //       });
 
-    }
+     }
   }
   showAudit() {
     this.router.navigate(['/locality/tab/Audit']);

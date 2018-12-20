@@ -232,7 +232,8 @@ export class SystemLegalformComponent implements OnInit {
     this.mou.recertificationDt = Date.parse(value.formatted);
   }
   getFile(id) {
-    window.open(APP_CONFIG.getMOUFile + '?' + 'mouDocId' + '=' + id)
+    //window.open(APP_CONFIG.getMOUFile + '?' + 'mouDocId' + '=' + id)
+    this.utilservice.getFile(id);
   }
   deleteFile(id, index) {
     //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
