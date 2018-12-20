@@ -1,6 +1,6 @@
 export  class AppAudit {
     public appAuditId:number;
-    public auditName:number;
+    public auditName:string;
     public  auditBy:string;
     public  auditDate:any;
     public  auditType:string;

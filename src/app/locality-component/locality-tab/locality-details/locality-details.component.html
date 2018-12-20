@@ -98,7 +98,7 @@
 							 [ngModel]="locality.phoneNumber" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
 							 onlyInteger autocomplete="off">
 							<span class="help-block" style="color:red;padding-left:43%;" *ngIf="phoneNumber.errors?.required && phoneNumber.dirty">
-								phoneNo is required
+								phone # is required
 							</span>
 
 						</div>

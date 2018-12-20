@@ -40,7 +40,7 @@ import { DialogService } from '../../../dialog.service';
 				<input type="text" class="form-control" id="modelNumber"
 					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="5" maxlength="10" appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('modelNumber').errors && modalForm.get('modelNumber').dirty">
-                    modelNumber 5 to 10 numbers
+                    Please enter between 5-10 numbers
                    </div>
 			</div>
 			<div class="form-group col-md-6">
@@ -49,7 +49,7 @@ import { DialogService } from '../../../dialog.service';
 					placeholder="Equipment Serial Number"
                     formControlName="serialNumber" minlength="5" maxlength="10" appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('serialNumber').errors && modalForm.get('serialNumber').dirty">
-                    serialNumber 5 to 10 numbers
+                    Please enter between 5-10 numbers
                    </div>
 			</div>
 		</div>
@@ -63,7 +63,7 @@ import { DialogService } from '../../../dialog.service';
 					placeholder="enter here" formControlName="street1">
 			</div>
 			<div class="form-group col-md-6">
-				Street 2<span class="asterisk">*</span>
+				Street 2
 				<input type="text" class="form-control" id="street2"
 					placeholder="enter here" formControlName="street2">
 			</div>
@@ -354,7 +354,7 @@ export class NgbdModalContent implements OnInit {
             modelNumber: ['', Validators.required],
             serialNumber: ['', Validators.required],
             street1: ['', Validators.required],
-            street2: ['', Validators.required],
+            street2: [''],
             city: ['', Validators.required],
             state: ['', Validators.required],
             zipCode: ['', Validators.required],
