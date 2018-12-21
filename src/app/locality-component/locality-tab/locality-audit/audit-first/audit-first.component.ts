@@ -259,7 +259,7 @@ export class AuditFirstComponent implements OnInit {
     
     }
     else {
- 
+      this.nextDate = null;
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAudit.auditDate = moment(latest_date).format();
       let d=new Date(value.formatted);

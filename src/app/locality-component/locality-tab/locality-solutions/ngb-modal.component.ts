@@ -128,12 +128,12 @@ import { DialogService } from '../../../dialog.service';
 	<option value="TN">Tennessee (TN)</option>
 	<option value="TX">Texas (TX)</option>
 	<option value="UT">Utah (UT)</option>
-	<option value="VT">Vermont</option>
-	<option value="VA">Virginia</option>
-	<option value="WA">Washington</option>
-	<option value="WV">West Virginia</option>
-	<option value="WI">Wisconsin</option>
-	<option value="WY">Wyoming</option>
+	<option value="VT">Vermont(VT)</option>
+	<option value="VA">Virginia(VA)</option>
+	<option value="WA">Washington(WA)</option>
+	<option value="WV">West Virginia(WV)</option>
+	<option value="WI">Wisconsin(WI)</option>
+	<option value="WY">Wyoming(WY)</option>
 
 				</select>
 			</div>
@@ -468,7 +468,8 @@ export class NgbdModalContent implements OnInit {
     }
 
     getFile(id) {
-        window.open(APP_CONFIG.getDeviceFile + '?' + 'deviceId' + '=' + id)
+        //window.open(APP_CONFIG.getDeviceFile + '?' + 'deviceId' + '=' + id)
+        this.utilService.getFile(id);
 
     }
 
@@ -559,11 +560,11 @@ export class NgbdModalContent implements OnInit {
             this.modalForm.controls['nextScanningDt1'].setValue(null);
         }
         else {
+            this.modalForm.controls['nextScanningDt1'].setValue(null);
             let d = new Date(event.formatted);
             let year = d.getFullYear();
             let month = d.getMonth() + 1;
             let day = d.getDate();
-
             this.myDatePickerOptions.disableUntil.day = day;
             this.myDatePickerOptions.disableUntil.month = month;
             this.myDatePickerOptions.disableUntil.year = year;

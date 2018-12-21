@@ -145,7 +145,7 @@ export class AssessActionComponent implements OnInit {
       this.appAssess.actionPlanStartDt = null;
     }
     else {
-     
+      this.endDate = null;
       //this.audate = Date.parse(d);
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAssess.actionPlanStartDt = moment(latest_date).format();
