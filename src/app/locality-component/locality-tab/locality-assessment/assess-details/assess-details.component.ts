@@ -281,7 +281,7 @@ export class AssessDetailsComponent implements OnInit {
      
     }
     else {
-    
+      this.nextAssessmentDt = null;
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAssess.assessmentDt = moment(latest_date).format();
       let d = new Date(value.formatted);

@@ -146,6 +146,8 @@ export class AuditActionComponent implements OnInit {
     else {
       
       //this.audate = Date.parse(d);
+      //console.log(value.formatted);
+      this.endDate = null;
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAudit.actionPlanStartDt = moment(latest_date).format();
       let d = new Date(value.formatted);
