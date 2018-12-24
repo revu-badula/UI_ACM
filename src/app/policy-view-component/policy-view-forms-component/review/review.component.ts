@@ -72,7 +72,7 @@ export class ReviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUseronName("Harish");
+    //this.getUseronName("Harish");
     this.createForm();
     this.getUsers();
     this.fetchPolicies(UtilService.policyGrpId);
