@@ -139,7 +139,7 @@
 
 
           <div class="form-group col-md-6">
-            <label for="dueDate">Upcoming Date<span class="asterisk">*</span></label>
+            <label for="dueDate">Next Assessment Date<span class="asterisk">*</span></label>
             <my-date-picker name="nextDate" class="inputState1" ngModel [options]="myDatePickerOptions" (dateChanged)="getDate($event)"
               [(ngModel)]="nextAssessmentDt" required></my-date-picker>
             <p style="color: red;font-weight: bold;">{{err}}</p>
