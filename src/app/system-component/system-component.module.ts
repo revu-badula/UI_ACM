@@ -59,7 +59,7 @@ import { SystemassesslandingComponent } from './system-tab/system-assessment/sys
 import { SystemauditlandingComponent } from './system-tab/system-audit/systemauditlanding/systemauditlanding.component';
 import { SystemauditcontrolComponent } from './system-tab/system-audit/systemauditcontrol/systemauditcontrol.component';
 import { ClickOutsideModule } from 'ng-click-outside';
-
+import { NgxCurrencyModule } from "ngx-currency";
 @NgModule({
   imports: [
     CommonModule,
@@ -70,6 +70,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
     FormsModule,
     BrowserModule,
     ClickOutsideModule,
+    NgxCurrencyModule,
     LocalityComponentModule,
    // SystemComponentRoutingModule,
    LocalityComponentRoutingModule,

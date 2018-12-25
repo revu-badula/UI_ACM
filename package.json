@@ -38,6 +38,7 @@
     "ng-click-outside": "^4.0.0",
     "ng2-cookies": "^1.0.12",
     "ngx-cookie-service": "^1.0.10",
+    "ngx-currency": "^1.5.1",
     "ngx-loading": "^1.0.14",
     "ngx-pagination": "^3.2.0",
     "ngx-summernote": "^0.5.5",

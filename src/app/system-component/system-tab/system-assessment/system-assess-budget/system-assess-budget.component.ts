@@ -196,4 +196,11 @@ export class SystemAssessBudgetComponent implements OnInit {
     console.log(url);
     this.router.navigateByUrl(url);
   }
+
+  getValue(event){
+    const key = event.which || event.keyCode || 0;
+    if(key !== 46 && key >31 && (key < 48 || key >57)){
+      event.preventDefault();
+    }
+  }
 }
