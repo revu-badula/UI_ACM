@@ -8,14 +8,14 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
-					<select id="inputState" name="definiteSource" [(ngModel)]="auditTypeId" required (change)="selectDefinitive($event.target.value)">
+					<select class="form-control" style="width:50%;" name="definiteSource" [(ngModel)]="auditTypeId" required (change)="selectDefinitive($event.target.value)">
 						<option value="">Choose...</option>
 						<option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName }}</option>
 					</select>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
-					<select id="inputState" name="type" required [(ngModel)]="policyGrpId" (change)="selectType($event.target.value)">
+					<select class="form-control" style="width:50%;" name="type" required [(ngModel)]="policyGrpId" (change)="selectType($event.target.value)">
 						<option value="">Choose...</option>
 						<option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{ policyType.policyGrpName
 							}}</option>

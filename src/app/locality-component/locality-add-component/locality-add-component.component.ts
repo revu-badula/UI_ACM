@@ -601,7 +601,7 @@ export class LocalityAddComponentComponent implements OnInit {
   }
 
   selectLocal(locality) {
-    if (locality === 'Choose...') {
+    if (locality === 'Choose a locality') {
 
     }
     else {
@@ -619,7 +619,7 @@ export class LocalityAddComponentComponent implements OnInit {
         .subscribe((data: any) => {
           this.loading = false;
           if (data.applicationViewDTO === null) {
-            this.inputEl.nativeElement.value="";
+            this.inputEl.nativeElement.value="Choose a locality";
             this.modalService.open(this.content, ngbModalOptions);
           }
           else {
