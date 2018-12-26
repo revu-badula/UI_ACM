@@ -126,8 +126,9 @@ export class ReviewComponent implements OnInit {
     });
   }
 
-  displayReviewDetails() {
-    this.showDetails = true;
+  displayReviewDetails(id) {
+    
+    this.getPolicyReviewDetails(id)
   }
 
   displayPolicy(policy: number) {
@@ -207,9 +208,11 @@ export class ReviewComponent implements OnInit {
   }
 
   getPolicyReviewDetails(id) {
-
+    this.loading=true;
     this._apiservice.getPolicyReviewDetails(id)
       .subscribe((data: any) => {
+        this.showDetails = true;
+        this.loading=false;
         this.reviewDTO = data.policyReviewDTO;
         let d = new Date(this.reviewDTO.dueDate);
         this.displayDueDate = {
@@ -218,6 +221,10 @@ export class ReviewComponent implements OnInit {
           day: d.getDate()
         }
 
+
+      },error => {
+        this.loading=false;
+        console.log(error);
 
       });
 

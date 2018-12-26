@@ -103,7 +103,7 @@
 		</thead>
 		<tbody>
 			<tr *ngFor="let tableData of policyData | paginate: { itemsPerPage: 10, currentPage: p }">
-				<td (click)="displayReviewDetails()" style="cursor:pointer;color:blue;">{{ tableData.policyGrpName }}</td>
+				<td (click)="displayReviewDetails(tableData.policyReview)" style="cursor:pointer;color:blue;">{{ tableData.policyGrpName }}</td>
 				<td>{{ tableData.assignedTo }}</td>
 				<td>{{ tableData.createdTs | filter }}</td>
 				<td>{{ tableData.dueDate | filter }}</td>
