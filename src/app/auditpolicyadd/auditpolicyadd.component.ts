@@ -25,6 +25,7 @@ export class AuditpolicyaddComponent implements OnInit {
   policyDocumentDTO: PolicyDocumentsDTO;
   files: File[] = [];
   public users: any;
+  policyAccess:Policy;
   policyPost: AppAuditPolicyDTO
   public loading: boolean = false;
   public endDate: any;
@@ -47,16 +48,32 @@ export class AuditpolicyaddComponent implements OnInit {
     private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService,
     private modalService: NgbModal, private router: Router,  private dialogService: DialogService) {
     this.policyPost = new AppAuditPolicyDTO();
+    this.policyAccess = new Policy();
   }
 
   ngOnInit() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.getUsers();
+    this.getPolicy();
   }
   backClicked() {
     this._location.back();
   }
+
+  getPolicy() {
+    this.loading = true;
+    let appParId = localStorage.getItem("appParentPolicyId")
+    this._apiservice.getAppPolicies(+appParId)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.policyAccess = data.policyDTO;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
+  }
+
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -112,6 +129,7 @@ export class AuditpolicyaddComponent implements OnInit {
     this.policyPost.updatedBy = Cookie.get("userName");
     this.policyPost.assignedBy = Cookie.get("userName");
     this.policyPost.updatedBy = Cookie.get("userName");
+    this.policyPost.policyDTO = this.policyAccess;
     let url = APP_CONFIG.updateAppPolicy;
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

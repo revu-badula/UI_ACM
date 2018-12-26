@@ -16,6 +16,11 @@ a{
   cursor: pointer;
 }
 
+.edit-icon{
+  /*margin-left: 10px;*/
+  color: #3A539B;
+}
+
 .modal-header {
   background-color: #3A539B;
   color: #ffffff;

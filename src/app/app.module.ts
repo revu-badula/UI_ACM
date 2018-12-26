@@ -90,6 +90,7 @@ import { AuditpolicyupdateComponent } from './auditpolicyupdate/auditpolicyupdat
 import { AssessmentpolicyupdateComponent } from './assessmentpolicyupdate/assessmentpolicyupdate.component';
 import { Accesscontrol1Component } from './accesscontrol1/accesscontrol1.component';
 import { AssessmentpolicyaddComponent } from './assessmentpolicyadd/assessmentpolicyadd.component';
+import { NgxCurrencyModule } from "ngx-currency";
 
 
 @NgModule({
@@ -164,6 +165,7 @@ import { AssessmentpolicyaddComponent } from './assessmentpolicyadd/assessmentpo
     HttpClientModule,
     CoreModule,
     FormsModule,
+    NgxCurrencyModule,
     LocalityComponentRoutingModule,
     LocalityComponentModule,
     //SystemComponentRoutingModule,

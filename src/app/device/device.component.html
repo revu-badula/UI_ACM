@@ -180,7 +180,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text dol">$</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="serverContact.cost" ngModel name="cost" required onlyDollar>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="serverContact.cost" ngModel name="cost" required currencyMask [options]="{ prefix:'', thousands:',', decimal:'.',align:'left',allowNegative:false,nullable:true}">
                       </div>
       
       
