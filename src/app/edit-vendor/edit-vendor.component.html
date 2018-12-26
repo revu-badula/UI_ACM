@@ -13,8 +13,24 @@
         <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
     </div>
 </ng-template>
-<app-edit-navigation (editClick)="editClicked($event)" (cancelClick)="cancelButton($event)"></app-edit-navigation>
-
+<!-- <app-edit-navigation (editClick)="editClicked($event)" (cancelClick)="cancelButton($event)"></app-edit-navigation> -->
+<div class="navigate sticky-top">
+    <div class="form-options">
+        <div class="home-back">
+            <a routerLink="/dashboard">
+                <fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home"
+                    data-animation="true" data-delay="0" [name]="'home'"></fa>
+            </a> <a (click)="backClicked()">
+                <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+                    data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+            </a>
+        </div>
+        <div class="save-edit">
+            <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+                data-delay="0" *ngIf="editVendorForm.disabled" (click)="editClicked()" [name]="'edit'"></fa>
+        </div>
+    </div>
+</div>
 <div>
     <div class="page-description">
         <h3>Vendors</h3>

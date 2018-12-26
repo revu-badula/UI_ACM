@@ -12,6 +12,9 @@ html {
 body.modal-open {
   overflow: hidden;
 }
+a{
+  cursor: pointer;
+}
 
 .modal-header {
   background-color: #3A539B;

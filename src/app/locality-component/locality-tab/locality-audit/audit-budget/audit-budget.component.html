@@ -53,7 +53,7 @@
 
     <div class="infoBox">
       <div class="headerOfBox">
-        <h4>BUDGET</h4>
+        <h4>Budget</h4>
       </div>
       <fieldset [disabled]="showForm">
         <div class="form-row">
@@ -87,7 +87,7 @@
                 <span class="input-group-text dol">$</span>
               </div>
               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="overallEstimates"
-               [(ngModel)]="appAudit.budget" onlyDollar>
+               [(ngModel)]="appAudit.budget" currencyMask [options]="{ prefix:'', thousands:',', decimal:'.',align:'left',allowNegative:false,nullable:true}">
             </div>
         </div>
       </fieldset>

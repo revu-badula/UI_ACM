@@ -57,6 +57,7 @@ import { PhonePipe } from './phone-pipe';
 import { DialogComponent } from '../dialog.service';
 import { OnlyIntegerDirective } from './only-integer.directive';
 import { OnlyInteger } from '../integer';
+import { NgxCurrencyModule } from "ngx-currency";
 import { OnlyDollar } from 'app/dollar-validation';
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { AuditControlComponent } from './locality-tab/locality-audit/audit-control/audit-control.component';
@@ -73,6 +74,7 @@ import { AssesslandingComponent } from './locality-tab/locality-assessment/asses
     FormsModule,
     NgxSummernoteModule,
     BrowserModule,
+    NgxCurrencyModule,
     LocalityComponentRoutingModule,
     MyDatePickerModule,
     NgxPaginationModule,

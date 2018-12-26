@@ -104,7 +104,7 @@
                 <span class="input-group-text dol">$</span>
               </div>
               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="overallEstimates"
-              id="lastName" [(ngModel)]="appAssess.budget" onlyDollar>
+              id="lastName" [(ngModel)]="appAssess.budget" currencyMask [options]="{ prefix:'', thousands:',', decimal:'.',align:'left',allowNegative:false,nullable:true}">
             </div>
         </div>
       </fieldset>

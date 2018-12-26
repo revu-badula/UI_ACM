@@ -199,11 +199,11 @@
 					<table border="1">
 						<tr>
 							<th>File Name</th>
-							<th *ngIf="!showFrm">Action</th>
+							<th>Action</th>
 						</tr>
 						<tr *ngFor=" let policyDocument of policyPost.policyDocumentsDTOs let i = index">
 							<td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
-							<td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)" style="cursor: pointer;"><i
+							<td *ngIf="policyDocument.activeFlag" (click)="deleteFile(policyDocument.policyDocId,i)" style="cursor: pointer;"><i
 								 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
 						</tr>
 

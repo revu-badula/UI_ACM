@@ -6,6 +6,8 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { PhonePipe } from '../locality-component/phone-pipe';
 import { Cookie } from 'ng2-cookies';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-edit-vendor',
   templateUrl: './edit-vendor.component.html',
@@ -38,7 +40,7 @@ export class EditVendorComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any>;
   constructor(private router: Router, private route: ActivatedRoute,
     private _apiservice: ApiserviceService, private fb: FormBuilder,
-    private modalService: NgbModal, private phone: PhonePipe) {
+    private modalService: NgbModal, private phone: PhonePipe, private _location: Location) {
   }
 
 
@@ -64,6 +66,10 @@ export class EditVendorComponent implements OnInit {
     });
     this.onDisplayVendors();
 
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
   open(content) {
