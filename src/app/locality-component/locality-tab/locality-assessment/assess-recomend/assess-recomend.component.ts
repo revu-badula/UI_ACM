@@ -118,7 +118,7 @@ saveRecommendations()
           this.loading=false;
           const { myForm: { value: formValueSnap } } = this;
         this.myForm.reset(formValueSnap);
-          this.info="Recomendations has been updated.";
+          this.info="Recommendations has been updated.";
           this.modalService.open(this.content,ngbModalOptions);
         }, error => {
           this.loading=false;

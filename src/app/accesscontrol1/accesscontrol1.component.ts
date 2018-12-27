@@ -115,6 +115,8 @@ export class Accesscontrol1Component implements OnInit {
         this.loading = false;
         this.policyAccess = data.policyDTO;
         this.appPolicy = data;
+        // this.appPolicy.controlNumber = this.policyAccess.controlNumber;
+        // this.appPolicy.controlName = this.policyAccess.policyName;
         if (this.appPolicy.endDate === null) {
           this.endDate = { date: null };
         }

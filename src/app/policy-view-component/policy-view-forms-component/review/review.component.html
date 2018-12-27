@@ -177,8 +177,8 @@
 				</thead>
 				<tbody>
 					<tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-						<!-- <td>{{ policy.controlNumber }}</td> -->
-						<td (click)="displayPolicy(policy.policyId)" style="cursor:pointer;color:blue;">{{ policy.controlNumber }}</td>
+						<td>{{ policy.controlNumber }}</td>
+						<!-- <td (click)="displayPolicy(policy.policyId)" style="cursor:pointer;color:blue;">{{ policy.controlNumber }}</td> -->
 						<td>{{ policy.policyName }}</td>
 						<td>{{ policy.priority }}</td>
 						<td>{{ policy.policyVal }}</td>

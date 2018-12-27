@@ -80,12 +80,12 @@
         <div class=" form-row">
           <div class="form-group col-md-6">
             <label for="controlNumber">Control Number<span class="asterisk">*</span></label>
-            <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber" [(ngModel)]="policyAccess.controlNumber"
-             [name]="'control_number'" readonly>
+            <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber" [(ngModel)]="policyPost.controlNumber"
+             [name]="'control_number'" required>
           </div>
           <div class="form-group col-md-6">
             <label for="controlName">Control Name<span class="asterisk">*</span></label>
-            <input type="text" class="form-control" id="controlName" [(ngModel)]="policyAccess.policyName" [name]="'class_type'"
+            <input type="text" class="form-control" id="controlName" [(ngModel)]="policyPost.controlName" [name]="'class_type'"
              required>
           </div>
         </div>
@@ -105,7 +105,7 @@
       <br><br><br>
       <div class="infoBox">
           <div class="headerOfBox">
-            <h4>Procedures</h4>
+            <h4>Procedures<span class="asterisk">*</span></h4>
           </div>
         <div class="form-row">
           <textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" ngModel name="policyProcedures" [(ngModel)]="policyPost.procedures"
@@ -116,7 +116,7 @@
       <br><br><br>
       <div class="infoBox">
           <div class="headerOfBox">
-            <h4>Guidelines</h4>
+            <h4>Guidelines<span class="asterisk">*</span></h4>
           </div>
         <div class="form-row">
           
