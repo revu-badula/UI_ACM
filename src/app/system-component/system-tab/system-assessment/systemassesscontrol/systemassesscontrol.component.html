@@ -200,17 +200,17 @@
         <thead>
           <tr>
 
-            <th scope="col" (click)="handleSort('controlNumber')">Control Number and Description<i class="fa fa-arrow-down testColor"
+            <th scope="col" (click)="handleSort('controlNumber')">Control Number<i class="fa fa-arrow-down testColor"
                 *ngIf="!desc"></i>
               <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
-            <th scope="col" (click)="handleSortPol('policyName')">Policy Name<i class="fa fa-arrow-down testColor" *ngIf="!descpolname"></i>
+            <th scope="col" (click)="handleSortPol('policyName')">Control Name<i class="fa fa-arrow-down testColor" *ngIf="!descpolname"></i>
               <i class="fa fa-arrow-up testColor" *ngIf="descpolname"></i></th>
             <th scope="col">Priority</th>
-            <th scope="col">Source Value</th>
+            <th scope="col">Value</th>
             <th scope="col">Status</th>
           </tr>
         </thead>
-        <tbody *ngIf="!showRow">
+        <!-- <tbody *ngIf="showRow">
 
           <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
 
@@ -224,8 +224,8 @@
             <td>{{ policy.policyDTO.policyVal }}</td>
             <td><i [ngClass]=" policy.policyDTO.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
           </tr>
-        </tbody>
-        <tbody *ngIf="showRow">
+        </tbody> -->
+        <tbody *ngIf="!showRow">
           <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
 
             <td>
@@ -233,11 +233,12 @@
                 policy.controlNumber
                 }}</a>
             </td>
-            <td>{{ policy.policyName }}</td>
+            <td>{{ policy.controlName }}</td>
             <td>{{ policy.priority }}</td>
-            <td>{{ policy.policyVal }}</td>
-            <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
-
+            <td>{{ policy.defaultVal }}</td>
+            <!-- <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
+            <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
           </tr>
         </tbody>
       </table>

@@ -72,10 +72,9 @@
           <th scope="col">Status</th>
 
         </thead>
-        <tbody *ngIf="!showRow">
+        <!-- <tbody *ngIf="!showRow">
 
           <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-            <!-- <td>{{ policy.controlNumber }}</td> -->
             <td>
               <a routerLink="/accessCntrl1/{{ policy.assessmentPolicyId }}" style="cursor:pointer;color:blue;">{{
                 policy.policyDTO.controlNumber
@@ -86,8 +85,8 @@
             <td>{{ policy.policyDTO.policyVal }}</td>
             <td><i [ngClass]=" policy.policyDTO.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
           </tr>
-        </tbody>
-        <tbody *ngIf="showRow">
+        </tbody> -->
+        <tbody *ngIf="!showRow">
           <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
             <!-- <td>{{ policy.controlNumber }}</td> -->
             <td>
@@ -95,10 +94,12 @@
                 policy.controlNumber
                 }}</a>
             </td>
-            <td>{{ policy.policyName }}</td>
+            <td>{{ policy.controlName }}</td>
             <td>{{ policy.priority }}</td>
-            <td>{{ policy.policyVal }}</td>
-            <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
+            <td>{{ policy.defaultVal }}</td>
+            <!-- <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
+            <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
 
           </tr>
         </tbody>

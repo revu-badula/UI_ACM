@@ -84,7 +84,7 @@ table thead tr th {
 i.fa {
     text-decoration: none !important;
     padding: 5px 4px;
-    color: #3A539B;
+    /* color: #3A539B; */
 }
 
 .fa {
@@ -92,7 +92,7 @@ i.fa {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-    color: #3A539B;
+    /* color: #3A539B; */
 }
 
 .primary {
