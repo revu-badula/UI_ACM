@@ -101,7 +101,7 @@ export class AuditControlComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAudit.applicationID = data.applicationViewDTO.applicationId;
@@ -121,18 +121,18 @@ export class AuditControlComponent implements OnInit {
   }
 
   showOnPageLoad() {
-    if (localStorage.getItem('appAuditId') === null) {
+    if (sessionStorage.getItem('appAuditId') === null) {
       this.myForm.controls['nextDate'].disable();
     }
     else {
       UtilService.auditActive = true;
-      localStorage.setItem('auditActive', 'true');
+      sessionStorage.setItem('auditActive', 'true');
       this.showOriginal = false;
       this.showButton = true;
       this.showInitial = true;
       this.showLegalBox=false;
       this.showEdit = true;
-      let id = localStorage.getItem('appAuditId');
+      let id = sessionStorage.getItem('appAuditId');
       let appauid: number = +id;
       this.editData = this.appAuditDTOs.filter(item => item.appAuditId === appauid);
 

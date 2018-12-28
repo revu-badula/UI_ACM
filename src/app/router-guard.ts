@@ -19,7 +19,7 @@ canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean 
 
 if(Cookie.get('access_token'))
 {
-if(localStorage.getItem('active'))
+if(sessionStorage.getItem('active'))
 {
 
 return true;

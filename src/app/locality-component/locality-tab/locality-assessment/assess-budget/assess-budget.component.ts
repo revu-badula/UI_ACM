@@ -59,7 +59,7 @@ export class AssessBudgetComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAssess.applicationID = data.applicationViewDTO.applicationId;
@@ -71,11 +71,11 @@ export class AssessBudgetComponent implements OnInit {
   }
 
   showOnPageLoad() {
-    if (localStorage.getItem('assesId') === null) {
+    if (sessionStorage.getItem('assesId') === null) {
       console.log('Not edit mode');
     }
     else {
-      let id = localStorage.getItem('assesId');
+      let id = sessionStorage.getItem('assesId');
       let auid = +id;
       this.showEdit = true;
       this.loading = true;

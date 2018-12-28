@@ -591,9 +591,9 @@ export class LocalityAddComponentComponent implements OnInit {
   constructor(private router: Router, private _apiservice: ApiserviceService, private modalService: NgbModal, private utilService: UtilService) {
     UtilService.active = false;
 
-    localStorage.removeItem('localityName');
+    sessionStorage.removeItem('localityName');
     localStorage.removeItem('active');
-    localStorage.removeItem('fipscode');
+    sessionStorage.removeItem('fipscode');
 
   }
 
@@ -613,7 +613,7 @@ export class LocalityAddComponentComponent implements OnInit {
       this.loading = true;
       let countyarray = this.counties.filter(item => item.county_name === locality);
       for (let i = 0; i < countyarray.length; i++) {
-        localStorage.setItem('fipscode', countyarray[i].county_code);
+        sessionStorage.setItem('fipscode', countyarray[i].county_code);
       }
       this._apiservice.viewApplication(locality)
         .subscribe((data: any) => {
@@ -623,7 +623,7 @@ export class LocalityAddComponentComponent implements OnInit {
             this.modalService.open(this.content, ngbModalOptions);
           }
           else {
-            localStorage.setItem('localityName', locality);
+            sessionStorage.setItem('localityName', locality);
             this.router.navigate(['/locality/tab/info']);
 
           }
@@ -639,7 +639,7 @@ export class LocalityAddComponentComponent implements OnInit {
   redirect(condition) {
 
     if (condition === 'yes') {
-      localStorage.setItem('localityName', this.locality);
+      sessionStorage.setItem('localityName', this.locality);
       this.router.navigate(['/locality/tab/info']);
     }
 
@@ -660,7 +660,7 @@ export class LocalityAddComponentComponent implements OnInit {
     this.loading = true;
     let countyarray = this.counties.filter(item => item.county_name === locality);
     for (let i = 0; i < countyarray.length; i++) {
-      localStorage.setItem('fipscode', countyarray[i].county_code);
+      sessionStorage.setItem('fipscode', countyarray[i].county_code);
     }
     this._apiservice.viewApplication(locality)
       .subscribe((data: any) => {
@@ -669,7 +669,7 @@ export class LocalityAddComponentComponent implements OnInit {
           this.modalService.open(this.content, ngbModalOptions);
         }
         else {
-          localStorage.setItem('localityName', locality);
+          sessionStorage.setItem('localityName', locality);
           this.router.navigate(['/locality/tab/info']);
 
         }

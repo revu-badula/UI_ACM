@@ -31,7 +31,7 @@ export class AuditDetailsTab implements OnInit {
 
   getAppId() {
 
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         //this.appAudit.applicationID = data.applicationViewDTO.applicationId;
         this.mainData = data.applicationViewDTO.acronym;

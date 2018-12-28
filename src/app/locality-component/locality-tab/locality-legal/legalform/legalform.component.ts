@@ -60,7 +60,7 @@ export class LegalformComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
@@ -72,7 +72,7 @@ export class LegalformComponent implements OnInit {
         this.updatedTime = month + "/" + day + "/" + year;
         this.appId = data.applicationViewDTO.applicationId;
         this.mou.applicationID = data.applicationViewDTO.applicationId;
-        if (localStorage.getItem('appMouId') === null) {
+        if (sessionStorage.getItem('appMouId') === null) {
           this.showLegalBox = false;
           this.showForm = false;
         }
@@ -147,7 +147,7 @@ export class LegalformComponent implements OnInit {
     this._apiservice.getAppMOUs(id)
       .subscribe((data: any) => {
         this.loading = false;
-        let id = localStorage.getItem('appMouId');
+        let id = sessionStorage.getItem('appMouId');
         let appMouid = +id;
         let moudata = data.filter(item => item.mouId === appMouid);
         for (let i = 0; i < moudata.length; i++) {

@@ -46,8 +46,8 @@ export class AuditDetailsComponent implements OnInit {
     UtilService.appAuditId = '';
     UtilService.auditActive = false;
     UtilService.disabled = true;
-    localStorage.removeItem('appAuditId');
-    localStorage.removeItem('auditActive');
+    sessionStorage.removeItem('appAuditId');
+    sessionStorage.removeItem('auditActive');
     this.utilService.setEditTrue(false);
 
   }
@@ -58,7 +58,7 @@ export class AuditDetailsComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.mainData = data.applicationViewDTO.acronym;
@@ -95,7 +95,7 @@ export class AuditDetailsComponent implements OnInit {
 
   getAudit(id) {
     UtilService.appAuditId = id;
-    localStorage.setItem('appAuditId', id);
+    sessionStorage.setItem('appAuditId', id);
     UtilService.disabled = false;
     this.router.navigate(['/locality/tab/Audit/Tab/first']);
   }

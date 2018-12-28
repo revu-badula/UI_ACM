@@ -31,8 +31,8 @@ export class AssessTabComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private route: ActivatedRoute, private router: Router) {
     this.getAppId();
-    localStorage.removeItem('assesId');
-    localStorage.removeItem('assessActive');
+    sessionStorage.removeItem('assesId');
+    sessionStorage.removeItem('assessActive');
     UtilService.disabled=true;
   }
   ngOnInit() {
@@ -41,7 +41,7 @@ export class AssessTabComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.updatedBy=data.applicationViewDTO.updatedBy;
@@ -77,7 +77,7 @@ export class AssessTabComponent implements OnInit {
   }
 
   getAudit(id) {
-    localStorage.setItem('assesId', id);
+    sessionStorage.setItem('assesId', id);
     UtilService.disabled=false;
     this.router.navigate(['/locality/tab/assessment/Tabs/first1']);
   }

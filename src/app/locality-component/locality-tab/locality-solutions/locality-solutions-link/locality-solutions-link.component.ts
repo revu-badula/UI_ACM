@@ -25,8 +25,8 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   public showSigned: boolean = false;
   public showPagination: boolean = true;
   constructor(private _apiservice: ApiserviceService, private router: Router, private utilService: UtilService) {
-    this.viewApplication(localStorage.getItem('localityName'));
-    localStorage.removeItem('appSolId');
+    this.viewApplication(sessionStorage.getItem('localityName'));
+    sessionStorage.removeItem('appSolId');
   }
 
   ngOnInit() {
@@ -163,7 +163,7 @@ export class LocalitySolutionsLinkComponent implements OnInit {
 
   showSolutionsPage(appSolutionId) {
     this.utilService.isLocalitySolutionAdd = false;
-    localStorage.setItem('appSolId', appSolutionId);
+    sessionStorage.setItem('appSolId', appSolutionId);
     this.router.navigate(['/locality/tab/solutions/solutionForm']);
   }
 

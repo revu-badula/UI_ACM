@@ -67,7 +67,7 @@ export class LocalityDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.viewApplication(localStorage.getItem('localityName'));
+    this.viewApplication(sessionStorage.getItem('localityName'));
 
   }
 
@@ -137,7 +137,7 @@ export class LocalityDetailsComponent implements OnInit {
           this.isShow = true;
           this.editableForm = false;
           this.locality.acronym = local;
-          this.locality.fipsCd = localStorage.getItem('fipscode');
+          this.locality.fipsCd = sessionStorage.getItem('fipscode');
           this.locality.workHoursDTOs = []
           for (let day in this.daysArray) {
             this.workHours = new WorkHours();
@@ -152,7 +152,7 @@ export class LocalityDetailsComponent implements OnInit {
           this.showEditButton = true;
           this.showBtn = false;
           UtilService.active = true;
-          localStorage.setItem('active', 'true');
+          sessionStorage.setItem('active', 'true');
           //this.locality.fipsCd = localStorage.getItem('fipscode');
           this.appId = data.applicationViewDTO.applicationId;
           this.locality = data.applicationViewDTO;

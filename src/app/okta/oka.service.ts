@@ -139,8 +139,7 @@ export class OktaAuthService {
     //console.log(Cookie.get("accessToken"));
     let user = await this.oktaAuth.token.getUserInfo(token);
     // .then(function (user) {
-
-    Cookie.set("userName", user.name);
+    Cookie.set("userName", user.name, now);
     //console.log(user.email);
     //   //console.log(Cookie.get('userName'));
     // let reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic RG9lbDpzZWNyZXQ=' });

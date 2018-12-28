@@ -28,20 +28,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private changeRef: ChangeDetectorRef, private idleTimeoutSvc: IdleTimeoutService,
     private dialogSvc: DialogService, private renderer: Renderer2, private utilService: UtilService) {
     UtilService.backClicked = false;
-    localStorage.removeItem('localityName');
-    localStorage.removeItem('appAuditId');
-    localStorage.removeItem('appMouId');
-    localStorage.removeItem('auditActive');
-    localStorage.removeItem('active');
-    localStorage.removeItem('systemName');
-    localStorage.removeItem('systemActive');
-    localStorage.removeItem('fipscode');
-    localStorage.removeItem('appSolId');
+    //localStorage.removeItem('localityName');
+    //localStorage.removeItem('appAuditId');
+    //localStorage.removeItem('appMouId');
+    //localStorage.removeItem('auditActive');
+    sessionStorage.removeItem('active');
+    //localStorage.removeItem('systemName');
+    //localStorage.removeItem('systemActive');
+    //localStorage.removeItem('fipscode');
+    //localStorage.removeItem('appSolId');
     localStorage.removeItem('systemAssessActive');
     localStorage.removeItem('systemAuditActive');
     localStorage.removeItem('systemAppAuditId');
     localStorage.removeItem('sysassesId');
-    localStorage.removeItem('appSolId');
+    //localStorage.removeItem('appSolId');
     localStorage.removeItem('systemMouId');
     //this.renderer.setStyle(document.body, 'background-color', 'yellow');
   }

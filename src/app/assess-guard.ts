@@ -17,7 +17,7 @@ constructor(private router: Router, private utilService: UtilService) { }
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 //let path: string = route.routeConfig.path;
 if(Cookie.get('access_token')){
-if(localStorage.getItem('assessActive'))
+if(sessionStorage.getItem('assessActive'))
 {
 return true;
 }

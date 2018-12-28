@@ -92,7 +92,7 @@ export class AssessControlComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAssess.applicationID = data.applicationViewDTO.applicationId;
@@ -180,18 +180,18 @@ export class AssessControlComponent implements OnInit {
 
 
   showOnPageLoad() {
-    if (localStorage.getItem('assesId') === null) {
+    if (sessionStorage.getItem('assesId') === null) {
       this.myForm.controls['nextDate'].disable();
     }
     else {
       this.loading = true;
-      localStorage.setItem('assessActive', 'true');
+      sessionStorage.setItem('assessActive', 'true');
       this.showOriginal = false;
       this.showButton = true;
       this.showInitial = true;
       this.showEdit = true;
       this.showLegalBox=false;
-      let id = localStorage.getItem('assesId');
+      let id = sessionStorage.getItem('assesId');
       let assesid = +id;
       this._apiservice.getAssessData(assesid)
         .subscribe((data: any) => {

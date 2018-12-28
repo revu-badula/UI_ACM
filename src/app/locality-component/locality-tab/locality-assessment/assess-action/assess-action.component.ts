@@ -50,7 +50,7 @@ export class AssessActionComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAssess.applicationID = data.applicationViewDTO.applicationId;
@@ -63,11 +63,11 @@ export class AssessActionComponent implements OnInit {
 
 
   showOnPageLoad() {
-    if (localStorage.getItem('assesId') === null) {
+    if (sessionStorage.getItem('assesId') === null) {
 
     }
     else {
-      let id = localStorage.getItem('assesId');
+      let id = sessionStorage.getItem('assesId');
       let auid = +id;
       this.loading = true;
       this.showEdit = true;

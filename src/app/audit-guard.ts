@@ -18,7 +18,7 @@ export class WorkflowGuardAudit implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         //let path: string = route.routeConfig.path;
         if (Cookie.get('access_token')) {
-            if (localStorage.getItem('auditActive')) {
+            if (sessionStorage.getItem('auditActive')) {
                 return true;
             }
             else {

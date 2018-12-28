@@ -46,7 +46,7 @@ appAudit: AppAudit;
 
   getAppId() {
   this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('localityName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAudit.applicationID = data.applicationViewDTO.applicationId;
@@ -62,13 +62,13 @@ appAudit: AppAudit;
 
     showOnPageLoad()
     {
-      if(localStorage.getItem('appAuditId') === null)
+      if(sessionStorage.getItem('appAuditId') === null)
       {
        
       }
       else{
         this.showEdit=true;
-        let id =localStorage.getItem('appAuditId');
+        let id =sessionStorage.getItem('appAuditId');
         let auid = +id;
       this.editData = this.appAuditDTOs.filter(item => item.appAuditId === auid);
       
