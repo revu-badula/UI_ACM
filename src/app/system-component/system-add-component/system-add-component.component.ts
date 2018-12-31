@@ -27,8 +27,8 @@ export class SystemAddComponentComponent implements OnInit {
   public showPagination:boolean=true;
   @ViewChild('content') content: TemplateRef<any>;
   constructor(private router: Router, private _apiservice: ApiserviceService, private modalService: NgbModal, private utilService: UtilService) {
-    localStorage.removeItem('systemName');
-    localStorage.removeItem('systemActive');
+    sessionStorage.removeItem('systemName');
+    sessionStorage.removeItem('systemActive');
 
   }
 
@@ -63,7 +63,7 @@ export class SystemAddComponentComponent implements OnInit {
   }
 
   viewApplication(system) {
-    localStorage.setItem('systemName', system);
+    sessionStorage.setItem('systemName', system);
     this.router.navigate(['/system/tab2/info']);
   }
 

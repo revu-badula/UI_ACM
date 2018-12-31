@@ -30,7 +30,7 @@ export class SystemLegalmainComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
-    localStorage.removeItem('systemMouId');
+    sessionStorage.removeItem('systemMouId');
     this.getAppId();
 
   }
@@ -40,7 +40,7 @@ export class SystemLegalmainComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('systemName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.acronym = data.applicationViewDTO.acronym;
@@ -88,7 +88,7 @@ export class SystemLegalmainComponent implements OnInit {
   }
 
   getAppMOU(id) {
-    localStorage.setItem('systemMouId', id);
+    sessionStorage.setItem('systemMouId', id);
     this.router.navigate(['/system/tab2/legal/legalform']);
   }
 

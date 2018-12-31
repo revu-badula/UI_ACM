@@ -43,7 +43,7 @@ export class SystemAuditBusinessriskComponent implements OnInit {
 
   getAppId() {
   this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('systemName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAudit.applicationID = data.applicationViewDTO.applicationId;
@@ -57,13 +57,13 @@ export class SystemAuditBusinessriskComponent implements OnInit {
 
     showOnPageLoad()
     {
-      if(localStorage.getItem('systemAppAuditId') === null)
+      if(sessionStorage.getItem('systemAppAuditId') === null)
       {
         
       }
       else{
         this.showEdit=true;
-        let id = localStorage.getItem('systemAppAuditId');
+        let id = sessionStorage.getItem('systemAppAuditId');
         let auid = +id;
       this.editData = this.appAuditDTOs.filter(item => item.appAuditId === auid);
       

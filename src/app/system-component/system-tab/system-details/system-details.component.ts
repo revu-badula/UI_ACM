@@ -57,13 +57,13 @@ export class SystemDetailsComponent implements OnInit {
   }
 
   showData() {
-    if (localStorage.getItem('systemName') === null) {
+    if (sessionStorage.getItem('systemName') === null) {
       this.editableForm = false;
       this.isShow=true;
     }
     else {
       this.loading = true;
-      this._apiservice.viewApplication(localStorage.getItem('systemName'))
+      this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
         .subscribe((data: any) => {
           this.showSource = false;
           this.loading = false;
@@ -76,7 +76,7 @@ export class SystemDetailsComponent implements OnInit {
           let month = d.getMonth() + 1;
           let year = d.getFullYear();
           this.updatedTime = month + "/" + day + "/" + year;
-          localStorage.setItem('systemActive', 'true');
+          sessionStorage.setItem('systemActive', 'true');
         }, error => {
           this.loading = false;
           console.log(error);
@@ -103,8 +103,8 @@ export class SystemDetailsComponent implements OnInit {
           this.loading = false;
           this.appId = data.applicationViewDTO.applicationId;
           this.contentData = "System has been created.";
-          localStorage.setItem('systemName', data.applicationViewDTO.acronym);
-          localStorage.setItem('systemActive', 'true');
+          sessionStorage.setItem('systemName', data.applicationViewDTO.acronym);
+          sessionStorage.setItem('systemActive', 'true');
           this.modalService.open(this.content, ngbModalOptions);
         }, error => {
           this.loading = false;

@@ -39,7 +39,7 @@ export class SystemAuditFindingsComponent implements OnInit {
 
   getAppId() {
   this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('systemName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAudit.applicationID = data.applicationViewDTO.applicationId;
@@ -52,13 +52,13 @@ export class SystemAuditFindingsComponent implements OnInit {
 
     showOnPageLoad()
     {
-      if(localStorage.getItem('systemAppAuditId') === null)
+      if(sessionStorage.getItem('systemAppAuditId') === null)
       {
         console.log('Not edit mode');
       }
       else{
         this.showEdit = true;
-        let id = localStorage.getItem('systemAppAuditId');
+        let id = sessionStorage.getItem('systemAppAuditId');
         let auid = +id;
       this.editData = this.appAuditDTOs.filter(item => item.appAuditId === auid);
       

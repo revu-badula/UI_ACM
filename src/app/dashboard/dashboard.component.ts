@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //localStorage.removeItem('auditActive');
     sessionStorage.removeItem('active');
     //localStorage.removeItem('systemName');
-    //localStorage.removeItem('systemActive');
+    localStorage.removeItem('systemActive');
     //localStorage.removeItem('fipscode');
     //localStorage.removeItem('appSolId');
     localStorage.removeItem('systemAssessActive');
@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     localStorage.removeItem('systemAppAuditId');
     localStorage.removeItem('sysassesId');
     //localStorage.removeItem('appSolId');
-    localStorage.removeItem('systemMouId');
+    //localStorage.removeItem('systemMouId');
     //this.renderer.setStyle(document.body, 'background-color', 'yellow');
   }
 

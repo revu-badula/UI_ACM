@@ -573,7 +573,7 @@ const appRoutes: Routes = [
                 },
                 {
                 path: 'auditControl',
-                component: SystemauditcontrolComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
+                component: SystemauditcontrolComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
               },
                 {
                   path: 'find',

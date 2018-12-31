@@ -20,7 +20,7 @@ export class SystemGuardAudit implements CanActivate {
         //let path: string = route.routeConfig.path;
         if (Cookie.get('access_token')) {
 
-            if (localStorage.getItem('systemAuditActive')) {
+            if (sessionStorage.getItem('systemAuditActive')) {
                 return true;
             }
             else {

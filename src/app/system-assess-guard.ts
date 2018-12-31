@@ -20,7 +20,7 @@ export class SystemGuardAssess implements CanActivate {
         //let path: string = route.routeConfig.path;
         if (Cookie.get('access_token')) {
 
-            if (localStorage.getItem('systemAssessActive')) {
+            if (sessionStorage.getItem('systemAssessActive')) {
                 return true;
             }
             else {

@@ -132,7 +132,7 @@
 
                             <div class="form-group col-md-6">
                                     <label for="priority">Priority<span class="asterisk">*</span></label>
-                                    <select style="width: 50%;" class="form-control" name="priority" ngModel id="priority" (change)="appPolicy.priority = $event.target.value"
+                                    <select style="width: 50%;" class="form-control" name="priority" [(ngModel)]="appPolicy.priority" id="priority" (change)="appPolicy.priority = $event.target.value"
                                      required>
                                       <option value="">Choose</option>
                                       <option value="High">High</option>

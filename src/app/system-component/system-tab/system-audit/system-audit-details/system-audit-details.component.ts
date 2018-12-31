@@ -42,8 +42,8 @@ export class SystemAuditDetailsComponent implements OnInit {
     this.getAppId();
 
     UtilService.disabled = true;
-    localStorage.removeItem('systemAppAuditId');
-    localStorage.removeItem('systemAuditActive');
+    sessionStorage.removeItem('systemAppAuditId');
+    sessionStorage.removeItem('systemAuditActive');
 
 
   }
@@ -54,7 +54,7 @@ export class SystemAuditDetailsComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('systemName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.updatedBy = data.applicationViewDTO.updatedBy;
@@ -90,7 +90,7 @@ export class SystemAuditDetailsComponent implements OnInit {
 
   getAudit(id) {
     UtilService.appAuditId = id;
-    localStorage.setItem('systemAppAuditId', id);
+    sessionStorage.setItem('systemAppAuditId', id);
     UtilService.disabled = false;
     this.router.navigate(['/system/tab2/Audit/Tab/first']);
   }
