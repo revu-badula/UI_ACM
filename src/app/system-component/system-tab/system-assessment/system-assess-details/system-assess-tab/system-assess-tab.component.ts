@@ -33,8 +33,8 @@ export class SystemAssessTabComponent implements OnInit {
     private utilService: UtilService, private route: ActivatedRoute, private router: Router,
     private dialogService: DialogService) {
     this.getAppId();
-    localStorage.removeItem('sysassesId');
-    localStorage.removeItem('systemAssessActive');
+    sessionStorage.removeItem('sysassesId');
+    sessionStorage.removeItem('systemAssessActive');
     UtilService.disabled=true;
   }
   ngOnInit() {
@@ -43,7 +43,7 @@ export class SystemAssessTabComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('systemName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.mainData = data.applicationViewDTO.acronym;
@@ -79,7 +79,7 @@ export class SystemAssessTabComponent implements OnInit {
   }
 
   getAudit(id) {
-    localStorage.setItem('sysassesId', id);
+    sessionStorage.setItem('sysassesId', id);
     UtilService.disabled=false;
     this.router.navigate(['/system/tab2/assessment/Tabs2/first2']);
   }

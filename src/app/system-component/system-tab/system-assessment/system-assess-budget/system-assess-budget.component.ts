@@ -60,7 +60,7 @@ export class SystemAssessBudgetComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('systemName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAssess.applicationID = data.applicationViewDTO.applicationId;
@@ -72,10 +72,10 @@ export class SystemAssessBudgetComponent implements OnInit {
   }
 
   showOnPageLoad() {
-    if (localStorage.getItem('sysassesId') === null) {
+    if (sessionStorage.getItem('sysassesId') === null) {
     }
     else {
-      let id = localStorage.getItem('sysassesId');
+      let id = sessionStorage.getItem('sysassesId');
       let auid = +id;
       this.showEdit = true;
       this.loading = true;

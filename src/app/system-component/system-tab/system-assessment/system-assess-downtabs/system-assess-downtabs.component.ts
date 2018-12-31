@@ -27,7 +27,7 @@ export class SystemAssessDowntabsComponent implements OnInit {
 
   getAppId() {
 
-    this._apiservice.viewApplication(localStorage.getItem('systemName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         //this.appAudit.applicationID = data.applicationViewDTO.applicationId;
         this.updatedBy=data.applicationViewDTO.updatedBy;

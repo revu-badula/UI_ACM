@@ -90,7 +90,7 @@ export class SystemAssessDetailsComponent implements OnInit {
 
   getAppId() {
     this.loading = true;
-    this._apiservice.viewApplication(localStorage.getItem('systemName'))
+    this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
         this.appAssess.applicationID = data.applicationViewDTO.applicationId;
@@ -178,18 +178,18 @@ export class SystemAssessDetailsComponent implements OnInit {
 
 
   showOnPageLoad() {
-    if (localStorage.getItem('sysassesId') === null) {
+    if (sessionStorage.getItem('sysassesId') === null) {
       this.myForm.controls['nextDate'].disable();
     }
     else {
       this.loading = true;
-      localStorage.setItem('systemAssessActive', 'true');
+      sessionStorage.setItem('systemAssessActive', 'true');
       this.showOriginal = false;
       this.showButton = true;
       this.showInitial = true;
       this.showEdit = true;
       this.showLegalBox=false;
-      let id = localStorage.getItem('sysassesId');
+      let id = sessionStorage.getItem('sysassesId');
       let assesid = +id;
       this._apiservice.getAssessData(assesid)
         .subscribe((data: any) => {

@@ -592,7 +592,7 @@ export class LocalityAddComponentComponent implements OnInit {
     UtilService.active = false;
 
     sessionStorage.removeItem('localityName');
-    localStorage.removeItem('active');
+    sessionStorage.removeItem('active');
     sessionStorage.removeItem('fipscode');
 
   }
