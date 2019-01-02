@@ -128,12 +128,12 @@ import { DialogService } from '../../../dialog.service';
 	<option value="TN">Tennessee (TN)</option>
 	<option value="TX">Texas (TX)</option>
 	<option value="UT">Utah (UT)</option>
-	<option value="VT">Vermont(VT)</option>
-	<option value="VA">Virginia(VA)</option>
-	<option value="WA">Washington(WA)</option>
-	<option value="WV">West Virginia(WV)</option>
-	<option value="WI">Wisconsin(WI)</option>
-	<option value="WY">Wyoming(WY)</option>
+	<option value="VT">Vermont (VT)</option>
+	<option value="VA">Virginia (VA)</option>
+	<option value="WA">Washington (WA)</option>
+	<option value="WV">West Virginia (WV)</option>
+	<option value="WI">Wisconsin (WI)</option>
+	<option value="WY">Wyoming (WY)</option>
 
 				</select>
 			</div>
