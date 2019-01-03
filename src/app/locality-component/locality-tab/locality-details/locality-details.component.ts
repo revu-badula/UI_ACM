@@ -98,7 +98,7 @@ export class LocalityDetailsComponent implements OnInit {
         .map(res => res.json())
         .subscribe((data: any) => {
           this.loading = false;
-          this.contentData = "locality has been created.";
+          this.contentData = "Locality has been created.";
           this.appId = data.applicationViewDTO.applicationId;
           localStorage.setItem('localityName', data.applicationViewDTO.acronym);
           localStorage.setItem('active', 'true');
@@ -117,7 +117,7 @@ export class LocalityDetailsComponent implements OnInit {
       formData.append('application', JSON.stringify(this.locality));
       this.http.post(APP_CONFIG.updateLocality, formData).subscribe((data: any) => {
         this.loading = false;
-        this.contentData = "locality has been updated.";
+        this.contentData = "Locality has been updated.";
         this.modalService.open(this.content, ngbModalOptions);
       }, error => {
         this.loading = false;

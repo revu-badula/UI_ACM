@@ -32,7 +32,7 @@
 		<h4 class="modal-title" id="modal-basic-title">Success</h4>
 	</div>
 	<div class="modal-body">
-		<p>Solution Added</p>
+		<p>Solution is Added</p>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Close</button>
@@ -109,7 +109,9 @@
 
 				</div>
 				<div class="form-group col-md-6">
-					<label for="modelSolution">Precinct Type</label> <select id="inputState" class="form-control" ngModel name="precinct"
+					<label for="modelSolution">Precinct Type</label>
+					<span class="asterisk">*</span>
+					 <select id="inputState" class="form-control" ngModel name="precinct"
 					 (change)="solution.precinctTypeId = $event.target.value" required>
 						<option value="" selected>Choose...</option>
 						<option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{ precinct.typeName }}</option>

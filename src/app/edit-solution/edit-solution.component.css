@@ -152,7 +152,7 @@ label {
 	margin-right: 5px;
 }*/
 
-input[readonly], select[readonly] {
+input [readonly], select[readonly] {
     background-color: #ffffff;
 }
 

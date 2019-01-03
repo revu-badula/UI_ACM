@@ -25,9 +25,7 @@ th, td {
     opacity: 1;
 }
 
-.form-control[_ngcontent-c7]:disabled, .form-control[readonly][_ngcontent-c7] {
-    background-color: #e9ecef;
-}
+
 
 .btn {
     float: right;
