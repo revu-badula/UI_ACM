@@ -27,6 +27,7 @@ export class AuditControlComponent implements OnInit {
 
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('content1') content: TemplateRef<any>;
+  @ViewChild('content2') content2: TemplateRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
   public showSection: boolean = false;
   policies: Policy[];
@@ -460,7 +461,15 @@ export class AuditControlComponent implements OnInit {
 
 
   downloadFile() {
+    if(this.policies.length > 0)
     window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAudit.policyGrpId);
+    else{
+      let ngbModalOptions: NgbModalOptions = {
+        backdrop: 'static',
+        keyboard: false
+      };
+      this.modalService.open(this.content2,ngbModalOptions);
+    }
 
   }
 
