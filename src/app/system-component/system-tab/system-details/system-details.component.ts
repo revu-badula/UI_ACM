@@ -36,13 +36,13 @@ export class SystemDetailsComponent implements OnInit {
   public loading: boolean = false;
   public showBox: boolean = true;
   public isShow:boolean=false;
-
+  public users:any;
 
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService,
     private fb: FormBuilder, private http: Http, private _location: Location, private modalService: NgbModal, private router: Router, private utilservice: UtilService) {
-
     this.system = new System();
     this.showData();
+    this.getUsers();
   }
 
   ngOnInit() {
@@ -160,6 +160,14 @@ export class SystemDetailsComponent implements OnInit {
   goBack(event) {
     event.preventDefault();
     this.router.navigate(['/system/map']);
+  }
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+
+      }, error => console.log(error));
+
   }
 
 

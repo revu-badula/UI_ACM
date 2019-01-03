@@ -66,15 +66,22 @@
 				<div class="headerOfBox"><h4>Contact Information</h4></div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-
 					<label for="inputState">Business Owner <span class="asterisk">*</span></label>
-					
-					<input type="text" class="form-control" name="firstName" [(ngModel)]="system.businessOwnerNameDoe" required>
+					<!-- <input type="text" class="form-control" name="firstName" [(ngModel)]="system.businessOwnerNameDoe" required> -->
+					<select name="businessOwner" style="width:50%;" [(ngModel)]="system.businessOwnerNameDoe" class="form-control" id="searchUsers"
+					(change)="system.businessOwnerNameDoe=$event.target.value" required>
+						<option value="" selected>Choose...</option>
+						<option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
+					</select>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="lastName">System Owner <span class="asterisk">*</span></label>
-					
-					<input type="text" class="form-control"  name="lastName" [(ngModel)]="system.systemOwnerNameDoe" required>
+					<!-- <input type="text" class="form-control"  name="lastName" [(ngModel)]="system.systemOwnerNameDoe" required> -->
+					<select name="systemOwner" style="width:50%;" [(ngModel)]="system.systemOwnerNameDoe" class="form-control" id="searchUsers"
+					(change)="system.systemOwnerNameDoe=$event.target.value" required>
+						<option value="" selected>Choose...</option>
+						<option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
+					</select>
 				</div>
 			</div>
 

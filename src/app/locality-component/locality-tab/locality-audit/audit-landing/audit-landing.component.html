@@ -1,3 +1,14 @@
+<ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">Info</h4>
+        </div>
+        <div class="modal-body">
+            <p>Coming Soon...</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+        </div>
+    </ng-template>
 <div>
     <form class="former">
         <div id="form1">
@@ -9,8 +20,8 @@
                     <div style="display: inline-block;">
 
 
-                        <button type="button" class="btn btn-outline-dark" style="width:20vw;">Sample questions</button>
-                        <button type="button" class="btn btn-outline-dark" style="width:20vw;">Create your own questions</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="Show()" style="width:20vw;">Sample questions</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="Show()" style="width:20vw;">Create your own questions</button>
                         <button type="button" class="btn btn-outline-dark" (click)="goToAudit()" style="width:20vw;">Policy</button>
 
                     </div>

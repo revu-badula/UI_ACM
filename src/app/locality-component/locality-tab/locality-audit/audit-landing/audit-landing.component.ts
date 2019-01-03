@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild,TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-audit-landing',
   templateUrl: './audit-landing.component.html',
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuditLandingComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  @ViewChild('content') content: TemplateRef<any>;
+  constructor(private router:Router, private modalService: NgbModal) { }
 
   ngOnInit() {
   }
@@ -16,6 +17,16 @@ export class AuditLandingComponent implements OnInit {
   goToAudit()
   {
     this.router.navigate(['/locality/tab/Audit/auditOverview']);
+  }
+
+  Show()
+  {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.modalService.open(this.content,ngbModalOptions);
+
   }
 
 }

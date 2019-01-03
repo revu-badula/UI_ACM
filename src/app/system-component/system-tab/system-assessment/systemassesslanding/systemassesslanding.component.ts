@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-systemassesslanding',
   templateUrl: './systemassesslanding.component.html',
@@ -8,12 +8,22 @@ import { Router } from '@angular/router';
 })
 export class SystemassesslandingComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  @ViewChild('content') content: TemplateRef<any>;
+  constructor(private router:Router, private modalService: NgbModal) { }
 
   ngOnInit() {
   }
   goToAudit() {
     this.router.navigate(['/system/tab2/assessment/sysassessoverview']);
+  }
+  Show()
+  {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.modalService.open(this.content,ngbModalOptions);
+
   }
 
 }

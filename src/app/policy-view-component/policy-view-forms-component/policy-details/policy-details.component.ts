@@ -216,11 +216,19 @@ export class PolicyDetailsComponent implements OnInit {
       policyDocumentsData.append('file', this.files[i]);
     }
     this.policyDocumentsSubmit.policyGrpId = UtilService.policyGrpId;
-    this.policyDocumentsSubmit.createdBy = "testing";
-    this.policyDocumentsSubmit.updatedBy = "testing";
+    this.policyDocumentsSubmit.createdBy = Cookie.get("userName");
+    this.policyDocumentsSubmit.updatedBy = Cookie.get("userName");
     policyDocumentsData.append('policy', JSON.stringify(this.policyDocumentsSubmit));
-    this.http.post(url, policyDocumentsData).subscribe((data: any) => {
-    }, error => console.log(error));
+    this.loading=true;
+    this.http.post(url, policyDocumentsData)
+    .map(res => res.json())
+    .subscribe((data: any) => {
+      this.loading=false;
+      this.policies=data.policyDTOs;
+    }, error => {
+      this.loading=false;
+      console.log(error);
+    });
   }
 
   handleSort(value) {
