@@ -131,7 +131,7 @@ export class AuditControlComponent implements OnInit {
       this.showOriginal = false;
       this.showButton = true;
       this.showInitial = true;
-      this.showLegalBox=false;
+      this.showLegalBox = false;
       this.showEdit = true;
       let id = sessionStorage.getItem('appAuditId');
       let appauid: number = +id;
@@ -144,7 +144,7 @@ export class AuditControlComponent implements OnInit {
       this.showTable = true;
       //this.getPolicyName(this.appAudit.auditName)
       let d = new Date(this.appAudit.auditDate);
-      
+
       let day = d.getDate();
       let month = d.getMonth() + 1;
       let year = d.getFullYear();
@@ -152,12 +152,12 @@ export class AuditControlComponent implements OnInit {
       this.auditDate = { date: { year: year, month: month, day: day } };
 
       let d1 = new Date(this.appAudit.nextAuditDate);
-     
+
       let day1 = d1.getDate();
       let month1 = d1.getMonth() + 1;
       let year1 = d1.getFullYear();
       this.nextDate = { date: { year: year1, month: month1, day: day1 } };
-     
+
 
       this.myDatePickerOptions.disableUntil.day = day;
       this.myDatePickerOptions.disableUntil.month = month;
@@ -213,11 +213,11 @@ export class AuditControlComponent implements OnInit {
     if (auditID === 'Choose...' || auditID === "") {
       this.definitive = false
       this.showTable = false;
-   
+
       this.policyTypes = [];
     }
     else {
-      
+
       this.definitive = true;
       this.auditTypeId = auditID;
       this.appAudit.auditName = auditID;
@@ -232,12 +232,12 @@ export class AuditControlComponent implements OnInit {
   selectType(policy) {
     if (policy === 'Choose...' || policy === "") {
       this.showTable = false;
-      
+
       this.policies = [];
 
     }
     else {
-     
+
       //this.appAudit.policyDTOs.policyGrpId = policy;
       this.appAudit.policyGrpId = policy;
       this._apiservice.fetchPolicies(policy)
@@ -256,23 +256,23 @@ export class AuditControlComponent implements OnInit {
     this.myForm.controls['nextDate'].disable();
     this.nextDate = null;
     if (value.formatted === "") {
-    
+
     }
     else {
- 
+
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAudit.auditDate = moment(latest_date).format();
-      let d=new Date(value.formatted);
-      let year=d.getFullYear();
-      let month=d.getMonth()+1;
-      let day=d.getDate();
+      let d = new Date(value.formatted);
+      let year = d.getFullYear();
+      let month = d.getMonth() + 1;
+      let day = d.getDate();
       this.myDatePickerOptions.disableUntil.day = day;
       this.myDatePickerOptions.disableUntil.month = month;
       this.myDatePickerOptions.disableUntil.year = year;
       this.myDatePickerOptions.showTodayBtn = false;
-     
+
       this.myForm.controls['nextDate'].enable();
-     
+
 
     }
   }
@@ -280,14 +280,14 @@ export class AuditControlComponent implements OnInit {
   getDate(value) {
 
     if (value.formatted === "") {
-      
+
     }
     else {
-      
+
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
-      
+
       this.appAudit.nextAuditDate = moment(latest_date).format();
-      
+
     }
 
   }
@@ -304,7 +304,7 @@ export class AuditControlComponent implements OnInit {
       this.showLegalBox = true;
 
 
-     
+
 
     }
 
@@ -392,7 +392,7 @@ export class AuditControlComponent implements OnInit {
     this.showOriginal = false;
     this.showStatus = true;
     this.showStatus1 = false;
-    this.showLegalBox=true;
+    this.showLegalBox = true;
 
   }
 
@@ -461,14 +461,15 @@ export class AuditControlComponent implements OnInit {
 
 
   downloadFile() {
-    if(this.policies.length > 0)
-    window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAudit.policyGrpId);
-    else{
+    if (this.appAudit.auditPolicyDTOs === null || this.appAudit.auditPolicyDTOs === []) {
       let ngbModalOptions: NgbModalOptions = {
         backdrop: 'static',
         keyboard: false
       };
-      this.modalService.open(this.content2,ngbModalOptions);
+      this.modalService.open(this.content2, ngbModalOptions);
+    }
+    else {
+      window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAudit.policyGrpId);
     }
 
   }
@@ -572,34 +573,33 @@ export class AuditControlComponent implements OnInit {
 
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    let test:boolean=false;
+    let test: boolean = false;
     // console.log(this.myForm);
     // console.log(this.myForm.dirty);
     //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
     // if (this.changeOverallStatus && this.showButton) {
-      if(test){
+    if (test) {
       //return this.dialogService.confirm('Discard changes for Budget?');
       //const modal=this.modalService.open(this.content1, ngbModalOptions);
 
       //return this.confirm1('Do you want to save changes?', 'for details', 'YES', 'NO');
       return new Promise<boolean>((resolve, reject) => {
         this.dialogService.open("Info", " Do you want to save changes for Details?", true, "Yes", "No")
-        .then((result) =>{
-          if(result)
-          {
-            this.saveAudit();
-            resolve(false);
-          }
-          else{
-            resolve(true);
-          }
-        },error => reject(error));
-          
+          .then((result) => {
+            if (result) {
+              this.saveAudit();
+              resolve(false);
+            }
+            else {
+              resolve(true);
+            }
+          }, error => reject(error));
+
       });
 
     }
-    else{
-    return true;
+    else {
+      return true;
     }
 
   }

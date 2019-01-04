@@ -57,15 +57,13 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label class="label-form" for="modelSolution"><b>Model/Solution</b>
-								<font color="red">*</font>
+							<label class="label-form" for="modelSolution"><b>Model/Solution</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="modelSolution" ngModel name="modelSolution" [(ngModel)]="solution.name"
 							 required>
 						</div>
-						<label class="label-form" for="version"><b>Version</b>
 						<div class="form-group col-md-6">
-								<font color="red">*</font>
+								<label class="label-form" for="version"><b>Version</b><span class="asterisk">*</span>
 							</label> <input type="text" class="form-control" id="version" ngModel name="version" [(ngModel)]="solution.versionNumber"
 							 required>
 
@@ -74,8 +72,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label class="label-form" for="systemType"><b>System
-									Type</b>
-								<font color="red">*</font>
+									Type</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="systemType" *ngIf="showForm" [(ngModel)]="solution.systemTypeDTO.name"
 							 [name]="'system_name'"> <select style="width: 50%;" class="form-control" id="systemType" ngModel name="systemType"
@@ -88,8 +85,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label class="label-form" for="equipmentType"><b>Equipment
-									Type</b>
-								<font color="red">*</font>
+									Type</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="equipmentType" *ngIf="showForm" [(ngModel)]="solution.solutionTypeName"
 							 [name]="'solution_type'"> <select style="width: 50%;" class="form-control" id="equipmentType" ngModel name="equipmentType"
@@ -103,8 +99,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label class="label-form" for="vendor"><b>Vendor</b>
-								<font color="red">*</font>
+							<label class="label-form" for="vendor"><b>Vendor</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="vendor" *ngIf="showForm" [(ngModel)]="solution.vendor.name" [name]="'vendor_details'">
 							<select class="form-control" style="width: 50%;" id="vendor" ngModel name="vendor" *ngIf="!showForm" [(ngModel)]="solution.vendorId"
@@ -114,8 +109,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label class="label-form" for="modelSolution"><b>Precinct
-									Type</b>
-								<font color="red">*</font>
+									Type</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="modelSolution" *ngIf="showForm" [(ngModel)]="solution.precinctTypeName"
 							 [name]="'precinct_type'"> <select style="width: 50%;" class="form-control" id="vendor" ngModel name="precinctType"
@@ -145,8 +139,7 @@
 						<h4>Installation and Hosting</h4>
 					</div>
 					<div class="installation form-group col-md-12">
-						<label for="hostingType"><b>Hosting Type</b>
-							<font color="red">*</font>
+						<label for="hostingType"><b>Hosting Type</b><span class="asterisk">*</span>
 						</label>
 						<!-- <input type="text" class="form-control" id="hostingType" *ngIf="showForm" [(ngModel)]="solution.hostingTypeDTO.name"
 						 [name]="'hosting_name'">  -->
@@ -360,8 +353,6 @@
 					</div>
 				</div>
 			</fieldset>
-			<hr />
-
 
 		</div>
 	</form>

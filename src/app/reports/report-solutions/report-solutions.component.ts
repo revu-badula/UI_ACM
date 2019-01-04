@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiserviceService } from '../../apiservice.service';
 import { Http } from '@angular/http';
 import { UtilService } from '../../util.service';
@@ -32,13 +32,17 @@ export class ReportSolutionsComponent implements OnInit {
   public mSolution: boolean = false;
   public venName: boolean = false;
   public verNum: boolean = false;
-  public showPage:boolean=false;
+  public showPage: boolean = false;
+  @ViewChild('systyp') inputEl: ElementRef;
+  @ViewChild('modsol') inputEl1: ElementRef;
+  @ViewChild('pcnt') inputEl2: ElementRef;
+  @ViewChild('pcntsol') inputEl3: ElementRef;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router, private _location: Location) {
-      localStorage.removeItem('localityName');
-      localStorage.removeItem('active');
-     }
+    localStorage.removeItem('localityName');
+    localStorage.removeItem('active');
+  }
 
   ngOnInit() {
     this.showDropdown();
@@ -88,6 +92,11 @@ export class ReportSolutionsComponent implements OnInit {
       this.sysTypes = [];
     }
     else {
+      if(this.inputEl2.nativeElement.value == ""){}
+      else{
+        this.inputEl2.nativeElement.value="";
+        this.inputEl3.nativeElement.value="";
+      }
       this._apiservice.getSolOnTypeForReports(systemTypeId)
         .subscribe((data: any) => {
           this.sysTypes = data.solutionsDTOs;
@@ -103,6 +112,8 @@ export class ReportSolutionsComponent implements OnInit {
       this.precitTypes = [];
     }
     else {
+      this.inputEl.nativeElement.value = "";
+      this.inputEl1.nativeElement.value = "";
       this._apiservice.getSolOnTypeForPrecinct(precinctTypeId)
         .subscribe((data: any) => {
           this.precitTypes = data.solutionsDTOs;
@@ -130,9 +141,8 @@ export class ReportSolutionsComponent implements OnInit {
           this.loading = false;
           this.showTable = true;
           this.Locals = data;
-          if(data.length > 0)
-          {
-            this.showPage=true;
+          if (data.length > 0) {
+            this.showPage = true;
           }
         }, error => {
           this.loading = false;
@@ -354,7 +364,7 @@ export class ReportSolutionsComponent implements OnInit {
 
   getLocality(value) {
     localStorage.setItem('localityName', value);
-    localStorage.setItem('active','true');
+    localStorage.setItem('active', 'true');
     this.router.navigate(['/locality/tab/solutions']);
   }
 

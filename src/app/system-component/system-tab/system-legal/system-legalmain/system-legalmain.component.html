@@ -101,7 +101,8 @@
             <td>
               <a class="box" (click)="getAppMOU(appsolution.mouId)" style="cursor: pointer;">{{ appsolution.name}}</a>
             </td>
-            <td><i [ngClass]=" appsolution.signed ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
+            <!-- <td><i [ngClass]=" appsolution.signed ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
+            <td><i [ngClass]=" appsolution.signed ? 'fa fa-check-circle primary' : 'fa fa-times secondary'"></i></td>
             <td>{{ appsolution.recertificationDt | filterDate }}</td>
             <td>
               <a>
