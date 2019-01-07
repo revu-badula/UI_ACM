@@ -27,6 +27,7 @@ export class SystemassesscontrolComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('content1') content: TemplateRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
+  @ViewChild('content2') content2: TemplateRef<any>;
   public loading: boolean = false;;
   appAssess: AppAssess;
   policies: Policy[];
@@ -343,8 +344,16 @@ export class SystemassesscontrolComponent implements OnInit {
 
 
   downloadFile() {
-    window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAssess.policyGrpId);
-
+    if (this.appAssess.assessmentPolicyDTOs === null || this.appAssess.assessmentPolicyDTOs === []) {
+      let ngbModalOptions: NgbModalOptions = {
+        backdrop: 'static',
+        keyboard: false
+      };
+      this.modalService.open(this.content2, ngbModalOptions);
+    }
+    else {
+      window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAssess.policyGrpId);
+    }
   }
 
 

@@ -1,6 +1,17 @@
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
+<ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Info</h4>
+    </div>
+    <div class="modal-body">
+        <p>No controls to download.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+    </div>
+</ng-template>
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Policy File</h4>

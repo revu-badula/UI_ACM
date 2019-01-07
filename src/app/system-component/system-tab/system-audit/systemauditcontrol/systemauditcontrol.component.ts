@@ -25,6 +25,7 @@ declare var swal: any; ''
 export class SystemauditcontrolComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('content1') content: TemplateRef<any>;
+  @ViewChild('content2') content2: TemplateRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
   public showSection: boolean = false;
   policies: Policy[];
@@ -76,7 +77,7 @@ export class SystemauditcontrolComponent implements OnInit {
   public policyName: boolean = false;
   public priority: boolean = false;
   public loading: boolean = false;
- 
+
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
     private router: Router, private route: ActivatedRoute, public datepipe: DatePipe, private dialogService: DialogService) {
@@ -125,7 +126,7 @@ export class SystemauditcontrolComponent implements OnInit {
       this.showButton = true;
       this.showInitial = true;
       this.showEdit = true;
-      this.showLegalBox=false;
+      this.showLegalBox = false;
       let id = sessionStorage.getItem('systemAppAuditId');
       let appauid: number = +id;
       this.editData = this.appAuditDTOs.filter(item => item.appAuditId === appauid);
@@ -244,10 +245,10 @@ export class SystemauditcontrolComponent implements OnInit {
     this.myForm.controls['nextDate'].disable();
     this.nextDate = null;
     if (value.formatted === "") {
-     
+
     }
     else {
-     
+
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAudit.auditDate = moment(latest_date).format();
       let d = new Date(value.formatted);
@@ -260,7 +261,7 @@ export class SystemauditcontrolComponent implements OnInit {
       this.myDatePickerOptions.showTodayBtn = false;
 
       this.myForm.controls['nextDate'].enable();
-     
+
 
     }
   }
@@ -268,14 +269,14 @@ export class SystemauditcontrolComponent implements OnInit {
   getDate(value) {
 
     if (value.formatted === "") {
-     
+
     }
     else {
-     
+
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
-      
+
       this.appAudit.nextAuditDate = moment(latest_date).format();
-      
+
     }
 
   }
@@ -284,15 +285,15 @@ export class SystemauditcontrolComponent implements OnInit {
   getNextDate(value) {
 
     if (value === 'Choose...' || value === "") {
-     
+
     }
     else {
       this.appAudit.status = value;
       this.changeOverallStatus = true;
-    
 
 
-      
+
+
 
     }
 
@@ -380,7 +381,7 @@ export class SystemauditcontrolComponent implements OnInit {
     this.showOriginal = false;
     this.showStatus = true;
     this.showStatus1 = false;
-    this.showLegalBox=true;
+    this.showLegalBox = true;
 
   }
 
@@ -449,8 +450,16 @@ export class SystemauditcontrolComponent implements OnInit {
 
 
   downloadFile() {
-    window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAudit.policyGrpId);
-
+    if (this.appAudit.auditPolicyDTOs === null || this.appAudit.auditPolicyDTOs === []) {
+      let ngbModalOptions: NgbModalOptions = {
+        backdrop: 'static',
+        keyboard: false
+      };
+      this.modalService.open(this.content2, ngbModalOptions);
+    }
+    else {
+      window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAudit.policyGrpId);
+    }
   }
 
 
@@ -557,7 +566,7 @@ export class SystemauditcontrolComponent implements OnInit {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     // console.log(this.myForm);
     // console.log(this.myForm.dirty);
-    let act:boolean=false;
+    let act: boolean = false;
     //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
     if (act) {
       //return this.dialogService.confirm('Discard changes for Budget?');
@@ -567,22 +576,21 @@ export class SystemauditcontrolComponent implements OnInit {
 
       return new Promise<boolean>((resolve, reject) => {
         this.dialogService.open("Info", " Do you want to save changes for Details?", true, "Yes", "No")
-        .then((result) =>{
-          if(result)
-          {
-            this.saveAudit();
-            resolve(false);
-          }
-          else{
-            resolve(true);
-          }
-        },error => reject(error));
-          
+          .then((result) => {
+            if (result) {
+              this.saveAudit();
+              resolve(false);
+            }
+            else {
+              resolve(true);
+            }
+          }, error => reject(error));
+
       });
-  
+
     }
-    else{
-    return true;
+    else {
+      return true;
     }
 
 

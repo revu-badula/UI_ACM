@@ -26,6 +26,7 @@ export class AssessControlComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('content1') content: TemplateRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
+  @ViewChild('content2') content2: TemplateRef<any>;
 
   public loading: boolean = false;;
   appAssess: AppAssess;
@@ -79,13 +80,13 @@ export class AssessControlComponent implements OnInit {
   public assessmentPolicyDto: AssessmentPolicyDTO;
   constructor(private router: Router, private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private datepipe: DatePipe,
-     private modalService: NgbModal, private dialogService: DialogService) {
+    private modalService: NgbModal, private dialogService: DialogService) {
 
     this.policies = [];
     this.policyDisplay = new Policy();
     this.getAppId();
     this.appAssess = new AppAssess();
-   }
+  }
 
   ngOnInit() {
   }
@@ -119,7 +120,7 @@ export class AssessControlComponent implements OnInit {
     this.showOriginal = false;
     this.showStatus = true;
     this.showStatus1 = false;
-    this.showLegalBox=true;
+    this.showLegalBox = true;
 
   }
   saveAudit() {
@@ -190,7 +191,7 @@ export class AssessControlComponent implements OnInit {
       this.showButton = true;
       this.showInitial = true;
       this.showEdit = true;
-      this.showLegalBox=false;
+      this.showLegalBox = false;
       let id = sessionStorage.getItem('assesId');
       let assesid = +id;
       this._apiservice.getAssessData(assesid)
@@ -216,7 +217,7 @@ export class AssessControlComponent implements OnInit {
           let year1 = d1.getFullYear();
           this.nextAssessmentDt = { date: { year: year1, month: month1, day: day1 } };
           //this.show3 = true;
-          
+
           this.myDatePickerOptions.disableUntil.day = day;
           this.myDatePickerOptions.disableUntil.month = month;
           this.myDatePickerOptions.disableUntil.year = year;
@@ -278,10 +279,10 @@ export class AssessControlComponent implements OnInit {
     this.myForm.controls['nextDate'].disable();
     this.nextAssessmentDt = null;
     if (value.formatted === "") {
-     
+
     }
     else {
-    
+
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       this.appAssess.assessmentDt = moment(latest_date).format();
       let d = new Date(value.formatted);
@@ -294,7 +295,7 @@ export class AssessControlComponent implements OnInit {
       this.myDatePickerOptions.showTodayBtn = false;
 
       this.myForm.controls['nextDate'].enable();
-      
+
 
     }
   }
@@ -306,14 +307,14 @@ export class AssessControlComponent implements OnInit {
   getDate(value) {
 
     if (value.formatted === "") {
-      
+
     }
     else {
-     
+
       let latest_date = this.datepipe.transform(value.formatted, 'yyyy-MM-dd');
       // if (this.compareDate(this.audate, this.naudt)) {
-       this.appAssess.nextAssessmentDt = moment(latest_date).format();
-      
+      this.appAssess.nextAssessmentDt = moment(latest_date).format();
+
     }
 
   }
@@ -345,8 +346,16 @@ export class AssessControlComponent implements OnInit {
 
 
   downloadFile() {
-    window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAssess.policyGrpId);
-
+    if (this.appAssess.assessmentPolicyDTOs === null || this.appAssess.assessmentPolicyDTOs === []) {
+      let ngbModalOptions: NgbModalOptions = {
+        backdrop: 'static',
+        keyboard: false
+      };
+      this.modalService.open(this.content2, ngbModalOptions);
+    }
+    else {
+      window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + this.appAssess.policyGrpId);
+    }
   }
 
 
@@ -620,7 +629,7 @@ export class AssessControlComponent implements OnInit {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     // console.log(this.myForm);
     // console.log(this.myForm.dirty);
-    let test:boolean=false;
+    let test: boolean = false;
     //if (this.myForm.classList[3] === 'ng-touched' || this.myForm.nativeElement.classList[3] === 'ng-dirty') {
     if (test) {
       //return this.dialogService.confirm('Discard changes for Budget?');
@@ -631,22 +640,21 @@ export class AssessControlComponent implements OnInit {
 
       return new Promise<boolean>((resolve, reject) => {
         this.dialogService.open("Info", " Do you want to save changes for Details?", true, "Yes", "No")
-        .then((result) =>{
-          if(result)
-          {
-            this.saveAudit();
-            resolve(false);
-          }
-          else{
-            resolve(true);
-          }
-        },error => reject(error));
-          
+          .then((result) => {
+            if (result) {
+              this.saveAudit();
+              resolve(false);
+            }
+            else {
+              resolve(true);
+            }
+          }, error => reject(error));
+
       });
 
     }
-    else{
-    return true;
+    else {
+      return true;
     }
 
   }
