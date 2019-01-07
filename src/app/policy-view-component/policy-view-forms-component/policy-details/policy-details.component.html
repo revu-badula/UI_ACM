@@ -155,14 +155,7 @@
 							<option value="false">Close</option>
 						</select>
 					</div>
-					<div class="form-group col-md-6">
-						<label class="label-form" for="status">Family</label>
-						<select class="form-control" style="width:50%;" id="priority" (change)="getFamily($event.target.value)">
-							<option value="" selected>Choose...</option>
-							<option value="all">All</option>
-							<option *ngFor="let fam of families" value="{{fam}}">{{fam}}</option>
-						</select>
-					</div>
+			
 				</div>
 			
 		</fieldset>
@@ -182,6 +175,15 @@
 	<div class="infoBox">
 		<div class="headerOfBox">
 			<h4>Controls</h4>
+		</div>
+
+		<div class="form-group col-md-6" *ngIf="showFamily">
+			<label class="label-form" for="status">Family</label>
+			<select class="form-control" style="width:50%;" id="priority" (change)="getFamily($event.target.value)">
+				<option value="" selected>Choose...</option>
+				<option value="all">All</option>
+				<option *ngFor="let fam of families" value="{{fam}}">{{fam}}</option>
+			</select>
 		</div>
 		<table class="table table-bordered">
 			<thead>

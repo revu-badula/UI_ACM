@@ -24,6 +24,7 @@ export class PolicyDetailsComponent implements OnInit {
   policies: Policy[];
   policyGrpData: PolicyGrp;
   policyFileobj: any;
+  public showFamily:boolean=true;
   policyDocumentDTO: PolicyDocumentsDTO[];
   files: File[] = [];
   public users: any;
@@ -94,11 +95,13 @@ export class PolicyDetailsComponent implements OnInit {
   changeButton() {
     this.plus = false;
     this.showForm = false;
+    this.showFamily=false;
   }
 
   close() {
     this.plus = true;
     this.showForm = true;
+    this.showFamily=true;
   }
 
   ngOnInit() {
