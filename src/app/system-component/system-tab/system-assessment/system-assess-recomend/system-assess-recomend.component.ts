@@ -42,6 +42,7 @@ export class SystemAssessRecomendComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUsers();
   }
   showAssess() {
     this.router.navigate(['system/tab2/assessment']);

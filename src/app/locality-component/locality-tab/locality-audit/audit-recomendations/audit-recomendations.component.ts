@@ -45,6 +45,7 @@ export class AuditRecomendationsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUsers();
   }
 
   getAppId() {
