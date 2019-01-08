@@ -25,7 +25,7 @@ export const APP_CONFIG = {
   getSolutionFile: apiBaseUrl + 'getSolutionFile',
   fetchPolicies: apiBaseUrl + 'fetchPolicies',
   getAuditTypes: apiBaseUrl + 'getAuditTypes',
-  getPolicyGroup: apiBaseUrl + 'fetchPolicyGroup',
+  getPolicyGroup: apiBaseUrl + 'fetchPolicyGroup',///
   addPolicyGroup: apiBaseUrl + 'addPolicyGrp',
   addLocality: apiBaseUrl + 'createApplication',
   addSystem: apiBaseUrl + 'createApplication',
@@ -64,6 +64,7 @@ export const APP_CONFIG = {
   updatePolicyGrp: apiBaseUrl + 'updatePolicyGrp',
   addPolicyGrp: apiBaseUrl + 'addPolicyGrp',
   fetchPolicyGroup: apiBaseUrl + 'fetchPolicyGroup',
+  fetchPolicyGroupForAA: apiBaseUrl + 'fetchPolicyGroupForAA',
   getAssessData: apiBaseUrl + 'getAppAssessment',
   getAssessmentFile: apiBaseUrl + 'getAssessmentFile',
   addAuditType: apiBaseUrl + 'addAuditType',

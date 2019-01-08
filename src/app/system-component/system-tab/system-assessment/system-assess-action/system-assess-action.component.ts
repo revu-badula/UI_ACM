@@ -33,6 +33,7 @@ export class SystemAssessActionComponent implements OnInit {
   public showForm: boolean = true;
   public endDate: any;
   public startDate: any;
+  public users:any;
   myDatePickerOptions: IMyDpOptions = {
     disableUntil: { year: 0, month: 0, day: 0 },
     showTodayBtn: false
@@ -46,6 +47,8 @@ export class SystemAssessActionComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.getUsers();
   }
 
   getAppId() {
@@ -239,6 +242,15 @@ export class SystemAssessActionComponent implements OnInit {
 
 
 
+
+  }
+
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+
+      }, error => console.log(error));
 
   }
 

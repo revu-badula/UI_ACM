@@ -362,7 +362,7 @@ export class SystemAssessDetailsComponent implements OnInit {
       this.definitive = true;
       this.auditTypeId = auditID;
       this.appAssess.auditName = auditID;
-      this._apiservice.getPolicyGroup(auditID)
+      this._apiservice.fetchPolicyGroupForAA(auditID)
         .subscribe((data: any) => {
           this.policyTypes = data;
         }, error => {

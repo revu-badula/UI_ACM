@@ -82,6 +82,7 @@ export class ReviewComponent implements OnInit {
 
   open(content) {
     this.addArray = [];
+    this.review=[];
     this.modalService.open(content);
     //this.plus=false;
   }

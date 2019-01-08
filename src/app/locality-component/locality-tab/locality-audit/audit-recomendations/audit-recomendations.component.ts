@@ -28,6 +28,7 @@ export class AuditRecomendationsComponent implements OnInit {
   public editData:any;
   public estDate:any;
   public info:string="";
+  public users:any;
   public showEdit:boolean=false;
   public showForm:boolean = true;
   public loading:boolean = false;
@@ -178,8 +179,6 @@ export class AuditRecomendationsComponent implements OnInit {
   }
 
 
-
-
   confirm1(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
     return new Promise<boolean>((resolve, reject) => {
       swal({
@@ -202,7 +201,14 @@ export class AuditRecomendationsComponent implements OnInit {
     });
 
 
+  }
 
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+
+      }, error => console.log(error));
 
   }
 

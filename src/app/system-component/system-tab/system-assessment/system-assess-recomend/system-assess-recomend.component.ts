@@ -33,6 +33,7 @@ export class SystemAssessRecomendComponent implements OnInit {
   public showEdit: boolean = false;
   public showForm: boolean = true;
   public estDate: any;
+  public users:any;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private http: Http, private router: Router,
     private route: ActivatedRoute, private modalService: NgbModal, private datepipe: DatePipe, private dialogService: DialogService) {
@@ -192,14 +193,16 @@ export class SystemAssessRecomendComponent implements OnInit {
       }, error => reject(error));
     });
 
-
-
-
   }
 
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
 
+      }, error => console.log(error));
 
-
+  }
 
 
 }

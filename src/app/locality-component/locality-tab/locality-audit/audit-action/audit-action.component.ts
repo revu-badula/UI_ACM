@@ -28,6 +28,7 @@ export class AuditActionComponent implements OnInit {
   public editData: any;
   public startDate: any;
   public endDate: any;
+  public users:any;
   public info: string = "";
   public loading: boolean = false;
   public showEdit: boolean = false;
@@ -246,7 +247,14 @@ export class AuditActionComponent implements OnInit {
   }
 
 
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
 
+      }, error => console.log(error));
+
+  }
 
 
 

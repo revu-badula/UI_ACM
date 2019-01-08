@@ -299,6 +299,12 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
+  fetchPolicyGroupForAA(id) {
+    let url = APP_CONFIG.fetchPolicyGroupForAA;
+    return this._httpService.get(url + '?' + 'auditTypeId' + '=' + id)
+      .map(res => <Response>res.json());
+  }
+
   getAssessData(id) {
     let url = APP_CONFIG.getAssessData;
     return this._httpService.get(url + '?' + 'assessmentID' + '=' + id)

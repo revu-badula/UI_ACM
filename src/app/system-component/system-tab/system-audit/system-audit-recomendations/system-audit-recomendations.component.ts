@@ -32,6 +32,7 @@ export class SystemAuditRecomendationsComponent implements OnInit {
   public showEdit:boolean=false;
   public showForm:boolean = true;
   public loading:boolean = false;
+  public users:any;
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'
   };
@@ -45,6 +46,7 @@ export class SystemAuditRecomendationsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUsers();
   }
 
   getAppId() {
@@ -206,6 +208,15 @@ export class SystemAuditRecomendationsComponent implements OnInit {
 
 
 
+
+  }
+
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+
+      }, error => console.log(error));
 
   }
 

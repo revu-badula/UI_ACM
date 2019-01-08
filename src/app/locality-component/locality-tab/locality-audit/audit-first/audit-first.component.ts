@@ -218,7 +218,7 @@ export class AuditFirstComponent implements OnInit {
       this.definitive = true;
       this.auditTypeId = auditID;
       this.appAudit.auditName = auditID;
-      this._apiservice.getPolicyGroup(auditID)
+      this._apiservice.fetchPolicyGroupForAA(auditID)
         .subscribe((data: any) => {
           this.policyTypes = data;
         }, error => { console.log(error) });

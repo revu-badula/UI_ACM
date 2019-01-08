@@ -76,7 +76,14 @@
 
                         <label for="inputState">Assigned to</label>
 
-                        <input type="text" name="assignedTo" class="form-control" id="assignedTo" [(ngModel)]="appAssess.actionPlanAssignedTo">
+                        <!-- <input type="text" name="assignedTo" class="form-control" id="assignedTo" [(ngModel)]="appAssess.actionPlanAssignedTo"> -->
+
+                        <select name="systemOwner" style="width:50%;" [(ngModel)]="appAssess.actionPlanAssignedTo" class="form-control" id="searchUsers"
+                        (change)="appAssess.actionPlanAssignedTo=$event.target.value" required>
+                            <option value="" selected>Choose...</option>
+                            <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
+                        </select>
+                        
                     </div>
 
                 </div>

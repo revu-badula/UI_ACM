@@ -32,6 +32,7 @@ export class SystemAuditActionComponent implements OnInit {
   public info: string = "";
   public loading: boolean = false;
   public showEdit: boolean = false;
+  public users:any;
   myDatePickerOptions: IMyDpOptions = {
     disableUntil: { year: 0, month: 0, day: 0 },
     showTodayBtn: false
@@ -49,6 +50,8 @@ export class SystemAuditActionComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.getUsers();
   }
 
   getAppId() {
@@ -238,20 +241,18 @@ export class SystemAuditActionComponent implements OnInit {
       }, error => reject(error));
     });
 
-
-
-
   }
 
 
 
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
 
+      }, error => console.log(error));
 
-
-
-
-
-
+  }
 
 
 
