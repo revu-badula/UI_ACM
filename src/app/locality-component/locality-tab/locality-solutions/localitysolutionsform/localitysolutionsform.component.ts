@@ -190,6 +190,7 @@ export class LocalitysolutionsformComponent implements OnInit {
           this.contentData = "Solution has been created.";
           this.modalService.open(this.insta, ngbModalOptions);
           this.appSolutionId = data.applicationSolutionDTO.appSolutionId;
+          this.applicationSolution.appSolutionId=this.appSolutionId;
         }, error => {
           this.loading = false;
           console.log(error);
