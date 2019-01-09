@@ -25,8 +25,6 @@
 
 <div class="page-description">
       <h3>Reports</h3>
-  <!-- <h5 style="text-align: center">Reports</h5> -->
-
 </div>
 <form>
     
@@ -38,75 +36,72 @@
         <td class="backGroundClass">
           <!-- <div class="card" style="width: 18rem;"> -->
           <div class="card-body">
-            <div class="card-heading">
-              <h5 class="card-title"> Legal Documents for Localities</h5>
-            </div>
-            <hr />
-            <!-- <a routerLink="/rlegal" class="card-link">
-              <h3 style="color: black">{{legal}}</h3>
-            </a>
-            <a class="card-link">
-              <h3 style="color: black">{{legal}}</h3>
-            </a> -->
             <table class="tableForSigned">
-        <th><u>Unsigned</u></th>
-        <th><u>Signed</u></th>
+        <!-- <th><u>Unsigned</u></th>
+        <th><u>Signed</u></th> -->
       <tr></tr>
       <tr></tr>
       <tr class="backGroundClass" id="backClass3">
         <td>
-          <h4><a routerLink="/rlegal" style="color:red;">{{unSignLocality}}</a></h4>
+          <!-- <h4><a routerLink="/rlegal" style="color:red;">{{unSignLocality}}</a></h4> -->
+         &nbsp; &nbsp;<span class="red"><a routerLink="/rlegal" style="color: azure ; font-size: 6ex">{{unSignLocality}}</a></span>
         </td>
         <td>
-          <h4><a (click)="goTo()" style="color: green;cursor: pointer;">{{signLocality}}</a></h4>
+          <!-- <h4><a (click)="goTo()" style="color: green;cursor: pointer;">{{signLocality}}</a></h4> -->
+          &nbsp; &nbsp;<span class="green"><a (click)="goTo()" style="color: azure ; font-size: 6ex">{{signLocality}}</a></span>
         </td>
       </tr>
+      <tr></tr>
+      <tr>
+        <td>Unsigned</td>
+        <td>Signed</td>
+      </tr>
     </table>
+  <br>
+      <h5 class="titleBg"> Legal Documents for Localities</h5>
+    
   </div>
   <!-- </div> -->
   </td>
   <td class="backGroundClass">
     <!-- <div class="card" style="width: 18rem;"> -->
     <div class="card-body">
-      <div class="card-heading">
-        <h5 class="card-title"> Legal Documents for Systems</h5>
-      </div>
-      <hr />
+
       <table class="tableForSigned">
-  <th><u>Unsigned</u></th>
+  <!-- <th><u>Unsigned</u></th>
   <th><u>Signed</u></th>
   <tr></tr>
-  <tr></tr>
+  <tr></tr> -->
   <tr class="center" id="backClass4">
     <td>
-      <h4><a routerLink="/rsystems" style="color: red;">{{unSignSystem}}</a></h4>
+        &nbsp; &nbsp;<span class="red"><a routerLink="/rsystems" style="color:white;font-size: 6ex">{{unSignSystem}}</a></span>
     </td>
     <td>
-      <h4><a (click)="goTo1()" style="color:green;cursor: pointer;">{{signSystem}}</a></h4>
+        &nbsp; &nbsp;<span class="green"><a (click)="goTo1()" style="color:white;cursor: pointer;font-size: 6ex">{{signSystem}}</a></span>
     </td>
   </tr>
+  <tr>
+    <td>Unsigned</td>
+    <td>Signed</td>
+  </tr>
   </table>
-  <!-- <a routerLink="/rlegal" class="card-link">
-              <h3 style="color: black">{{legal}}</h3>
-            </a>
-            <a class="card-link">
-              <h3 style="color: black">{{legal}}</h3>
-            </a> -->
+  <br>
+  <h5 class="titleBg"> Legal Documents for Systems</h5>
   </div>
   <!-- </div> -->
   </td>
   <td class="backGroundClass">
     <!-- <div class="card" style="width: 18rem;"> -->
     <div class="card-body">
-      <div class="card-heading">
-        <h5 class="card-title">Localities and Solutions</h5>
-      </div>
-      <hr />
+
       <div class="center">
-        <a routerLink="/rsolution">
-          <h3 style="color: black">{{solution}}</h3>
-        </a>
+        
+          &nbsp; &nbsp;<span class="gray"><a routerLink="/rsolution" style="text-decoration: none ; font-size: 6ex ; color:white">{{solution}} </a></span>
+       
       </div>
+      <br>
+      <br>
+      <h5 class="titleBg">Localities and Solutions</h5>
     </div>
     <!-- </div> -->
   </td>
@@ -117,29 +112,40 @@
     <td class="backGroundClass">
       <!-- <div class="card"> -->
       <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title"> Total Scanned Devices</h5>
-        </div>
-        <hr />
-        <table class="tableForSigned">
-            <th><u>Failed</u></th>
-            <th><u>Pending</u></th>
-            <th><u>Passed</u></th>
-            <tr></tr>
-            <tr></tr>
-            <tr class="center" id="backClass4">
-              <td>
-                <h4><a routerLink="/rdevice" style="color: red;">{{devFailed}}</a></h4>
-              </td>
-              <td>
-                <h4><a (click)="goTo3()" style="color:rgb(255, 153, 0);cursor: pointer;">{{devPending}}</a></h4>
-              </td>
 
-              <td>
-                  <h4><a (click)="goTo2()" style="color:green;cursor: pointer;">{{devPassed}}</a></h4>
+          <table class="tableForSigned">
+              <!-- <th><u>Failed</u></th>
+              <th><u>Pending</u></th>
+              <th><u>Passed</u></th> -->
+              <!-- <tr></tr>
+              <tr></tr> -->
+              <tr class="center" id="backClass4">
+                <td>
+                  <!-- <h4><a routerLink="/rdevice" style="color: red;">{{devFailed}}</a></h4> -->
+                  &nbsp; &nbsp;<span class="red"><a routerLink="/rdevice" style="color: azure ; font-size: 6ex">{{devFailed}}</a></span>
                 </td>
-            </tr>
-            </table>
+                <td>
+                  <!-- <h4><a (click)="goTo3()" style="color:rgb(255, 153, 0);cursor: pointer;">{{devPending}}</a></h4> -->
+                  &nbsp; &nbsp;<span class="orange"><a (click)="goTo3()"  style="color: azure ; font-size: 6ex">{{devPending}}</a></span>
+                </td>
+  
+                <td>
+                    <!-- <h4><a (click)="goTo2()" style="color:green;cursor: pointer;">{{devPassed}}</a></h4> -->
+                    &nbsp; &nbsp;<span class="green"><a (click)="goTo2()" style="color: azure ; font-size: 6ex">{{devPassed}}</a></span>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Failed </td>
+                  <td>Pending</td>
+                  <td>Passed</td>
+
+              </tr>
+              </table>
+              <br>
+          <h5 class="titleBg"> Total Scanned Devices</h5>
+        
+        
+    
       </div>
 
       <!-- </div> -->
@@ -147,30 +153,30 @@
     <td class="backGroundClass">
       <!-- <div class="card" style="width: 18rem;"> -->
       <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Localities and Vendors</h5>
-        </div>
-        <hr />
+   
         <div class="center">
-          <a routerLink="/rvendor">
-            <h3 style="color: black">{{vendor}}</h3>
-          </a>
+          
+            &nbsp; &nbsp;<span class="gray"><a routerLink="/rvendor" style="text-decoration: none ; font-size: 6ex ; color:white">{{vendor}}</a></span>
+          
         </div>
+        <br>
+        <br>
+        <h5 class="titleBg">Localities and Vendors</h5>
       </div>
       <!-- </div> -->
     </td>
     <td class="backGroundClass">
       <!-- <div class="card" style="width: 18rem;"> -->
       <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Overall Solutions</h5>
-        </div>
-        <hr />
+      
         <div class="center">
-          <a routerLink="/solutionsView">
-            <h3 style="color: black">{{solution}}</h3>
-          </a>
+          &nbsp; &nbsp;<span class="gray">  <a routerLink="/solutionsView" style="text-decoration: none ; font-size: 6ex ; color:white">
+            {{solution}}</a></span>
+          
         </div>
+        <br>
+        <br>
+        <h5 class="titleBg">Overall Solutions</h5>
       </div>
       <!-- </div> -->
     </td>
@@ -180,16 +186,18 @@
     <td class="backGroundClass">
 
       <!-- <div class="card" style="width: 18rem;"> -->
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Overall Vendors</h5>
-        </div>
-        <hr />
+      <div class="card-body"> 
+       
+         
+        
         <div class="center">
-          <a routerLink="/vendorsView">
-            <h3 style="color: black">{{vendor}}</h3>
-          </a>
+          &nbsp; &nbsp;<span class="gray"><a routerLink="/vendorsView" style="text-decoration: none ; font-size: 6ex ; color:white">
+            {{vendor}}</a></span>
+          
         </div>
+        <br>
+        <br>
+        <h5 class="titleBg">Overall Vendors</h5>
       </div>
       <!-- </div> -->
     </td>

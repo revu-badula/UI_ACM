@@ -67,6 +67,8 @@ h1 {
   /* Firefox 3.5 - 3.6 */
   box-shadow: 2px 2px 2px 2px #000;
   margin: 9%;
+  padding: 0%;
+  padding-top: 2em;
 }
 
 .card-link {
@@ -673,35 +675,7 @@ to fill in unsightly gaps.
   text-align: center;
 }
 
-table {
-  background-color: #ffffff;
-  text-align: center;
-  border: 1px solid black;
-}
 
-.table-bordered tbody tr:nth-of-type(odd) {
-  background-color: #EEEEEE !important;
-  border: 1px solid black;
-}
-
-tbody tr:nth-of-type(odd) {
-  background-color: #EEEEEE !important;
-}
-
-table thead tr th {
-  font-weight: 500;
-  color: black;
-  border: 1px solid black;
-  background-color: #cecfd5;
-}
-
-table thead tr td {
-  color: black;
-}
-
-.table-bordered td, .table-bordered th {
-  border: 1px solid black;
-}
 
 .forms {
   padding: 20px;
@@ -776,7 +750,7 @@ table thead tr td {
 .tableForSigned {
   width: 100%;
   text-align: center;
-  border: 0px solid black;
+
   background: transparent;
   padding: 10%;
 }
@@ -819,15 +793,76 @@ table thead tr td {
   padding: 2% 40% 0% 0%;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 70px;
-  margin-top: 7%;
+  margin:4ex;
+
   border: 1px solid;
 }
 
-tbody[_ngcontent-c1] tr[_ngcontent-c1]:nth-of-type(odd) {
-  background-color: transparent !important;
+span.red {
+  background: red;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 4.8em;
+  color: #ffffff;
+  display: inline-block;
+  line-height: 6.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 7.6em;
+  font-size: 13px;
 }
 
-tbody[_ngcontent-c6] tr[_ngcontent-c6]:nth-of-type(odd) {
-  background-color: transparent !important;
+span.orange {
+  background: orange;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 4.8em;
+  color: #ffffff;
+  display: inline-block;
+  line-height: 6.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 7.6em;
+  font-size: 13px;
 }
+
+
+span.green {
+  background: green;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 4.8em;
+  color: #ffffff;
+  display: inline-block;
+  line-height: 6.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 7.6em;
+  font-size: 13px;
+}
+
+span.gray {
+  background:#5d5e5f;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 4.8em;
+  color: #ffffff;
+  display: inline-block;
+  line-height: 6.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 7.6em;
+  font-size: 13px;
+}
+
+td{
+  background: snow;
+}
+.titleBg{
+  background: #5d5e5f;
+  bottom: 0;
+  margin-bottom: -2%;
+  color: white;
+  margin-top:-1%;
+}
+
