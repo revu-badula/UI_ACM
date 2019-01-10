@@ -59,14 +59,14 @@
                 
                 <div class="form-row">
                     <h5>Description</h5>
-                    <textarea id="description" rows="10" name="description" class="form-control" [(ngModel)]="appAssess.findingDescription"></textarea>
+                    <textarea id="description" rows="10" name="description" class="form-control" [(ngModel)]="appAssess.findingDescription" maxlength="50000"></textarea>
 
 
                 </div>
                 
                 <div class="form-row">
                     <h4>Comments</h4>
-                    <textarea name="comments"  id="comments" rows="10" class="form-control" [(ngModel)]="appAssess.findingComments"></textarea>
+                    <textarea name="comments"  id="comments" rows="10" class="form-control" [(ngModel)]="appAssess.findingComments" maxlength="50000"></textarea>
 
                 </div>
             

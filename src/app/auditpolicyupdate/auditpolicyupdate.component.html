@@ -145,7 +145,7 @@
                         <div class="form-row">
                             <label for="description">Description</label>
                             <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
-                                [(ngModel)]="appPolicy.description" [name]="'policy_description'"></textarea>
+                                [(ngModel)]="appPolicy.description" [name]="'policy_description'" maxlength="50000"></textarea>
     
                         </div>
     
@@ -161,7 +161,7 @@
                                     </h4>
                                 </div>
                                 <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
-                                    id="patches" ngModel name="policyProcedures" [(ngModel)]="appPolicy.procedures" [name]="'policy_procedures'"
+                                    id="patches" ngModel name="policyProcedures" [(ngModel)]="appPolicy.procedures" [name]="'policy_procedures'" maxlength="50000"
                                     required></textarea>
     
                             </div>
@@ -175,7 +175,7 @@
                                     <h4>Guidelines</h4>
                                 </div>
                                 <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
-                                    id="patches" [(ngModel)]="appPolicy.guidelines" [name]="'policy_guidelines'"></textarea>
+                                    id="patches" [(ngModel)]="appPolicy.guidelines" [name]="'policy_guidelines'" maxlength="50000"></textarea>
                             </div>
                         </div>
                     </div>
@@ -227,7 +227,7 @@
                             <h4>Artifacts</h4>
                         </div>
                         <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="appPolicy.artifacts"
-                            [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
+                            [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches" maxlength="50000"></textarea>
                     </div>
     
                     <br>
@@ -240,7 +240,7 @@
     
                         </div>
                         <textarea [ngxSummernote]="config" name="noncov" [(ngModel)]="appPolicy.nonCov"
-                            [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches"></textarea>
+                            [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches" maxlength="50000"></textarea>
                     </div>
     
                     <!-- <br>

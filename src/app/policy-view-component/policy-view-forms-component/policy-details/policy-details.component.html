@@ -107,7 +107,7 @@
 					<h4>Description</h4>
 				</div>
 				<textarea id="description" [ngxSummernote]="config" cols="156" rows="7" *ngIf="!showForm" [(ngModel)]="policyDisplay.description"
-				 [name]="'policy_description'"></textarea>
+				 [name]="'policy_description'" maxlength="50000"></textarea>
 				<div class="model-solution-row form-row">
 					<div class="model form-group col-md-6">
 						<label class="label-form" for="lastReviewDate">Last Review Date<span class="asterisk">*</span></label>

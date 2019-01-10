@@ -286,7 +286,7 @@
 						<h4>Notes</h4>
 					</div>
 					<textarea id="ngxSummernote" [ngxSummernote]="config" rows="10" [ngxSummernoteDisabled]="editableForm" class="form-control"
-					 name="notes" [(ngModel)]="locality.notes"></textarea>
+					 name="notes" [(ngModel)]="locality.notes" maxlength="50000"></textarea>
 				</div>
 			</fieldset>
 

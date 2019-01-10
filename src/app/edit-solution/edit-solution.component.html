@@ -156,7 +156,7 @@
 						<!-- <textarea *ngIf="!showForm" [ngxSummernote]="config" id="ngxSummernote" cols="156" rows="7" id="hostingNotes"
 						 [(ngModel)]="solution.hostingTypeNotes" [name]="'hosting_notes'"></textarea> -->
 						<textarea  [ngxSummernote]="config" id="ngxSummernote" cols="156" rows="7" id="hostingNotes"
-						 [(ngModel)]="solution.hostingTypeNotes" [name]="'hosting_notes'" [ngxSummernoteDisabled]="showForm"></textarea>
+						 [(ngModel)]="solution.hostingTypeNotes" [name]="'hosting_notes'" [ngxSummernoteDisabled]="showForm" maxlength="50000"></textarea>
 						<div class="attachments-div">
 							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'hosting')">
 
@@ -259,7 +259,7 @@
 					<div class="installation form-group">
 						<!-- <p *ngIf="showForm">{{ solution.certStadard }}</p> -->
 						<textarea  cols="156" [ngxSummernote]="config" id="ngxSummernote" rows="7" id="standard"
-						 [(ngModel)]="solution.certStadard" [ngxSummernoteDisabled]="showForm" name="standard Notes"></textarea>
+						 [(ngModel)]="solution.certStadard" [ngxSummernoteDisabled]="showForm" name="standard Notes" maxlength="50000"></textarea>
 						<div class="attachments-div">
 
 							<input type="file" #fileInput1 *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
@@ -294,7 +294,7 @@
 					<div class="installation form-group">
 						<!-- <p *ngIf="showForm">{{ solution.patches }}</p> -->
 						<textarea  cols="156" rows="7" id="patches" [ngxSummernote]="config" id="ngxSummernote"
-						 [(ngModel)]="solution.patches" [ngxSummernoteDisabled]="showForm" [name]="'solution_patches'"></textarea>
+						 [(ngModel)]="solution.patches" [ngxSummernoteDisabled]="showForm" [name]="'solution_patches'" maxlength="50000"></textarea>
 						<div class="attachments-div">
 							<input type="file" #fileInput2 *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
 							<div class="display-file">
@@ -325,7 +325,7 @@
 					</div>
 					<div class="installation form-group">
 						<!-- <p *ngIf="showForm">{{ solution.notes }}</p> -->
-						<textarea  cols="156" rows="7" [(ngModel)]="solution.notes" [ngxSummernoteDisabled]="showForm" [ngxSummernote]="config" id="ngxSummernote" [name]="'solution_notes'"></textarea>
+						<textarea  cols="156" rows="7" [(ngModel)]="solution.notes" [ngxSummernoteDisabled]="showForm" [ngxSummernote]="config" id="ngxSummernote" [name]="'solution_notes'" maxlength="50000"></textarea>
 						<div class="attachments-div">
 							
 							<input type="file" #fileInput3 *ngIf="!showForm" (change)="createCertDTO($event,'solution')">

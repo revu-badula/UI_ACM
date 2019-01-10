@@ -17,7 +17,9 @@ export class ApplicationsComponent implements OnInit {
   public businessOwner: boolean = false;
   public systemOwner: boolean = false;
 
-  constructor(private _apiservice: ApiserviceService,private router: Router) { }
+  constructor(private _apiservice: ApiserviceService,private router: Router) { 
+    sessionStorage.removeItem("systemName");
+  }
 
   ngOnInit() {
      this.getPendingApplications();
@@ -25,7 +27,7 @@ export class ApplicationsComponent implements OnInit {
 
   
   viewApplication(system) {
-    localStorage.setItem('systemName', system);
+    sessionStorage.setItem('systemName', system);
     this.router.navigate(['/system/tab2/info']);
   }
   

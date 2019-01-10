@@ -88,7 +88,7 @@
                 <div class="form-row">
 
                     <label for="inputState">Summary</label>
-                    <textarea name="summary" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanSummary"></textarea>
+                    <textarea name="summary" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanSummary" maxlength="50000"></textarea>
 
 
 
@@ -97,7 +97,7 @@
 
 
                     <label for="inputState">Tasks</label>
-                    <textarea name="tasks" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanTasks"></textarea>
+                    <textarea name="tasks" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanTasks" maxlength="50000"></textarea>
 
 
                 </div>
@@ -105,7 +105,7 @@
 
 
                     <label for="inputState">Closeout Comments</label>
-                    <textarea name="Comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanCloseoutComments"></textarea>
+                    <textarea name="Comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanCloseoutComments" maxlength="50000"></textarea>
 
 
 

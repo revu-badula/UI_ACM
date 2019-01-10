@@ -74,7 +74,7 @@
 
                     <label for="inputState">Description</label>
 
-                    <textarea id="" rows="10" name="description" class="form-control" [(ngModel)]="appAudit.auditFindings"></textarea>
+                    <textarea id="" rows="10" name="description" class="form-control" [(ngModel)]="appAudit.auditFindings" maxlength="50000"></textarea>
 
 
                 </div>
@@ -84,7 +84,7 @@
 
                     <label for="inputState">Comments</label>
 
-                    <textarea name="comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.findingComments"></textarea>
+                    <textarea name="comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.findingComments" maxlength="50000"></textarea>
 
 
                 </div>

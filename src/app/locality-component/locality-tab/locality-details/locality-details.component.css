@@ -839,5 +839,17 @@ h2 {
   background-color: inherit;
    box-shadow: none;
 }
+
+textarea{
+  overflow: hidden;
+}
+
+#ngxSummernote{
+  overflow: hidden;
+}
+
+#patches{
+  overflow: hidden;
+}
  
  

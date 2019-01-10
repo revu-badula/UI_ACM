@@ -62,7 +62,7 @@
 
                     <label for="inputState">Description</label>
 
-                    <textarea id="" rows="10" name="description" class="form-control" [(ngModel)]="appAssess.findingDescription"></textarea>
+                    <textarea id="" rows="10" name="description" class="form-control" [(ngModel)]="appAssess.findingDescription" maxlength="50000"></textarea>
 
 
                 </div>
@@ -72,7 +72,7 @@
 
                     <label for="inputState">Comments</label>
 
-                    <textarea name="comments" id="" rows="10" class="form-control" [(ngModel)]="appAssess.findingComments"></textarea>
+                    <textarea name="comments" id="" rows="10" class="form-control" [(ngModel)]="appAssess.findingComments" maxlength="50000"></textarea>
 
 
                 </div>

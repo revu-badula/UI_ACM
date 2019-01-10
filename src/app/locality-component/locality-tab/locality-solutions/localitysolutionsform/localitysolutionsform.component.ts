@@ -187,6 +187,7 @@ export class LocalitysolutionsformComponent implements OnInit {
         .subscribe((data: any) => {
           this.isVisible = true;
           this.loading = false;
+          this.isAddNewSolution=false;
           this.contentData = "Solution has been created.";
           this.modalService.open(this.insta, ngbModalOptions);
           this.appSolutionId = data.applicationSolutionDTO.appSolutionId;
@@ -343,7 +344,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   }
 
   editClicked() {
-    this.isAddNewSolution = true;
+    this.isAddNewSolution = false;
     this.isClick = true;
     this.editForm = false;
     this.editableForm = false;

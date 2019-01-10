@@ -189,7 +189,7 @@ import { DialogService } from '../../../dialog.service';
 		</p>
 		<div>
 			<textarea name=""  rows="5" class="form-control"
-				formControlName=notes id="ngxSummernote"  [ngxSummernote]="config" [ngxSummernoteDisabled]="textDisable"></textarea>
+				formControlName=notes id="ngxSummernote"  [ngxSummernote]="config" [ngxSummernoteDisabled]="textDisable" maxlength="50000"></textarea>
 		</div>
 		<hr />
 		<p>

@@ -86,7 +86,7 @@
 
 
                     <h5>Summary</h5>
-                    <textarea name="summary" id="" rows="10" class="form-control" [(ngModel)]="appAssess.actionPlanSummary"></textarea>
+                    <textarea name="summary" id="" rows="10" class="form-control" [(ngModel)]="appAssess.actionPlanSummary" maxlength="50000"></textarea>
 
 
 
@@ -95,7 +95,7 @@
 
 
                     <h5>Tasks</h5>
-                    <textarea name="tasks" id="" rows="10" class="form-control" [(ngModel)]="appAssess.actionPlanTasks"></textarea>
+                    <textarea name="tasks" id="" rows="10" class="form-control" [(ngModel)]="appAssess.actionPlanTasks" maxlength="50000"></textarea>
 
 
 
@@ -104,7 +104,7 @@
 
 
                     <h5>Closeout Comments</h5>
-                    <textarea name="Comments" id="" rows="10" class="form-control" [(ngModel)]="appAssess.actionPlanCloseoutComments"></textarea>
+                    <textarea name="Comments" id="" rows="10" class="form-control" [(ngModel)]="appAssess.actionPlanCloseoutComments" maxlength="50000"></textarea>
 
 
                 </div>

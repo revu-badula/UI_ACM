@@ -657,3 +657,13 @@ input[type=button] {
     margin-left: 13vw;
   }
 }
+
+.note-editor.note-frame .note-editing-area .note-editable {
+  padding: 10px;
+  overflow: auto;
+  color: #000;
+  word-wrap: break-word;
+  background-color: #fff;
+  /* overflow: hidden; */
+  width: 67vw;
+}
