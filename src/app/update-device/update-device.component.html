@@ -332,7 +332,7 @@
           </div>
           <div class="form-row">
             <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" name="purpose"
-              [(ngModel)]="device.purpose"></textarea>
+              [(ngModel)]="device.purpose" maxlength="50000"></textarea>
           </div>
         </div>
       </fieldset>
