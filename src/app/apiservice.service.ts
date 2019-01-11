@@ -455,4 +455,12 @@ export class ApiserviceService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
+
+  archiveAppSolution(data) {
+    let url = APP_CONFIG.archiveAppSolution;
+    return this._httpService.post(url, data).map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+
 }

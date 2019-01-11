@@ -95,6 +95,7 @@ export const APP_CONFIG = {
   getFile:apiBaseUrl + 'getfile',
   getAssessmentPolicyDetails:apiBaseUrl + 'getAssessmentPolicyDetails',
   updateAssessmentPolicyDetails:apiBaseUrl + 'updateAssessmentPolicyDetails',
+  archiveAppSolution: apiBaseUrl+ 'archiveAppSolution'
 }
 
 

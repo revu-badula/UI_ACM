@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { Router } from '@angular/router';
 import { UtilService } from '../../../../util.service';
+import { ApplicationSolution, SolutionsDTO, Vendor, Device, HostingType, SystemType } from '../../../../data_model_lsolutions';
+import { DialogService } from '../../../../dialog.service';
+import { APP_CONFIG } from 'app/app.config';
+import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 
 @Component({
   selector: 'app-locality-solutions-link',
@@ -13,6 +17,7 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   public appSolutions: any;
   public loading: boolean = false;
   public desc: boolean = false;
+  applicationSolution: ApplicationSolution;
   public des: boolean = false;
   public dec: boolean = false;
   public precinctType: boolean = false;
@@ -24,9 +29,12 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   public updt: boolean = false;
   public showSigned: boolean = false;
   public showPagination: boolean = true;
-  constructor(private _apiservice: ApiserviceService, private router: Router, private utilService: UtilService) {
+  public archived: number = 0;
+  constructor(private _apiservice: ApiserviceService, private router: Router,
+    private utilService: UtilService, private dialogService: DialogService, private http: Http) {
     this.viewApplication(sessionStorage.getItem('localityName'));
     sessionStorage.removeItem('appSolId');
+    this.applicationSolution = new ApplicationSolution();
   }
 
   ngOnInit() {
@@ -282,7 +290,41 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   }
 
 
+  archiveAppSolution(value) {
+    this.applicationSolution = value;
 
+
+    this.dialogService.open("Info", "Are you sure you want to delete this? You can still see the deleted solutions in the archive.", true, "YES", "NO")
+      .then((result: any) => {
+        if (result) {
+          const headers = new Headers();
+          headers.append('Content-Type', 'application/json');
+          let options = new RequestOptions({ headers: headers });
+          this.applicationSolution.archived = 1;
+          var formData = new FormData();
+          formData.append('appSolutionString', JSON.stringify(this.applicationSolution));
+          let url = APP_CONFIG.archiveAppSolution;
+          //this._apiservice.archiveAppSolution(data)
+          this.loading = true;
+          this.http.post(url, formData)
+            .subscribe((data: any) => {
+              this.loading = false;
+              this.appSolutions.forEach(element => {
+                if (element.appSolutionId === value.appSolutionId)
+                  element.archived = 1;
+
+              });
+            }, error => {
+              this.loading = false;
+              console.log(error);
+            });
+        }
+        else { }
+
+      }, error => {
+        console.log(error);
+      });
+  }
 
 
 }

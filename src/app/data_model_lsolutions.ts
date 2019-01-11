@@ -13,6 +13,7 @@ export class ApplicationSolution {
 	noOfUnits: number;
 	hostingTypeId: number;
 	hostingType: HostingType;
+	archived:number;
 
 }
 export class SolutionsDTO {
