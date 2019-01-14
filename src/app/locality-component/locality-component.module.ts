@@ -64,7 +64,7 @@ import { AuditControlComponent } from './locality-tab/locality-audit/audit-contr
 import { AssessControlComponent } from './locality-tab/locality-assessment/assess-control/assess-control.component';
 import { AuditLandingComponent } from './locality-tab/locality-audit/audit-landing/audit-landing.component';
 import { AssesslandingComponent } from './locality-tab/locality-assessment/assesslanding/assesslanding.component';
-import { InputCounterModule } from 'ng4-input-counter';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -89,7 +89,7 @@ import { InputCounterModule } from 'ng4-input-counter';
       tertiaryColour: '#fff',
       fullScreenBackdrop: true
     }),
-    InputCounterModule.forRoot()
+   
   ],
   declarations: [LocalityAddComponentComponent, LocalityTabComponent, LocalityComponentComponent, LocalityDetailsComponent, LocalitySolutionsComponent, LocalitySolutionsLinkComponent, LocalitySolutionstablelinkComponent, LocalityBusinessComponent, LocalityAuditComponent, AuditDetailsComponent, AuditFindingsComponent, AuditRecomendationsComponent, LocalityLegalComponent, AuditManagementComponent, LocalitySecurityComponent, AuditActionComponent, AuditBusinessriskComponent, AuditSecurityriskComponent, AuditBudgetComponent, AuditAttachmentsComponent, LocalityAssessmentComponent,
     LocalityTechnicalComponent, FilterPipeDate, FilterAuditName, AuditFirstComponent,

@@ -12,7 +12,7 @@ import { UtilService } from '../../../util.service';
 import { FilterPipeDate } from '../../locality-date-filter';
 import { Cookie } from 'ng2-cookies';
 import { PhonePipe } from '../../phone-pipe';
-import { InputCounterModule } from 'ng4-input-counter';
+
 
 @Component({
   selector: 'app-locality-details',
