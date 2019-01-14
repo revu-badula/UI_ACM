@@ -96,7 +96,7 @@
                 <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
             </div>
             <br>
-
+            <br>
             <div class="infoBox clear-right">
                 <div class="headerOfBox">
                     <h4>Archived Solutions</h4>
@@ -134,8 +134,7 @@
                             <td *ngIf="appsolution.archived === 1">{{ appsolution.solutionsDTO.solutionTypeName}}</td>
                             <td *ngIf="appsolution.archived === 1">{{ appsolution.solutionsDTO.precinctTypeName}}</td>
                             <td *ngIf="appsolution.archived === 1">{{ appsolution.updatedBy}}</td>
-                            <td *ngIf="appsolution.archived === 1">{{appsolution.updatedTs | filterDate | date:'MM/dd/yyyy'}}</td>
-                            
+                            <td *ngIf="appsolution.archived === 1">{{appsolution.updatedTs | filterDate | date:'MM/dd/yyyy'}}</td>  
                         </tr>
                     </tbody>
 

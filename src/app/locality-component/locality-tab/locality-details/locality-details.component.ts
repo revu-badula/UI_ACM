@@ -12,6 +12,7 @@ import { UtilService } from '../../../util.service';
 import { FilterPipeDate } from '../../locality-date-filter';
 import { Cookie } from 'ng2-cookies';
 import { PhonePipe } from '../../phone-pipe';
+import { InputCounterModule } from 'ng4-input-counter';
 
 @Component({
   selector: 'app-locality-details',
@@ -29,9 +30,12 @@ export class LocalityDetailsComponent implements OnInit {
   locality: Locality;
   loc: any;
   appId: number;
+  charactersLeft : number;
+  maxLength : number =48228;
   updatedTime: any;
   editableForm: boolean = true;
   viewType: any;
+  notes :any;
   contentData: string = "";
   showEditButton: boolean = false;
   time: any;
@@ -276,6 +280,19 @@ export class LocalityDetailsComponent implements OnInit {
 
   }
 
+
+  count(msg){
+
+  this.charactersLeft=this.maxLength;
+
+    if(this.maxLength>=msg.length){
+      this.charactersLeft=(this.maxLength)-(msg.length);
+    }
+    else{
+       this.notes = msg.substr(0, msg.length - 1);
+       console.log(msg);
+    }
+  }
 
 
 

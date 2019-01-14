@@ -156,8 +156,8 @@ export class LoginPageComponent implements OnInit {
         //const child = root.firstChild;
         // let url = this.route.snapshot.queryParams['returnUrl'] || '/';
         // console.log(url);
-        //this.router.navigate(['/dashboard']);
-        this.getUserRoles(res);
+        this.router.navigate(['/dashboard']);
+        //this.getUserRoles(res);
       }, error => {
         this.loading = false;
         console.log(error);
