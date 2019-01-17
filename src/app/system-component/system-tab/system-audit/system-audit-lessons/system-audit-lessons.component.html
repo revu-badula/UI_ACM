@@ -76,7 +76,11 @@
 
 					<label for="inputState">Description</label>
 
-					<textarea name="description" id="" rows="10" class="form-control" [(ngModel)]="appAudit.lessonsLearnedDescription" maxlength="50000"></textarea>
+					<textarea name="description" id="" rows="10" class="form-control" [(ngModel)]="appAudit.lessonsLearnedDescription" maxlength="50000" #lessonsLearnedDescription="ngModel"> </textarea><!--<div style="float:right">{{50000 - lessonsLearnedDescription.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="lessonsLearnedDescription.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 				</div>
 
 			</fieldset>

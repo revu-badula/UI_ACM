@@ -43,11 +43,11 @@
 
 
 
-      <span class=" title elipsis pull-right">
+      <!-- <span class=" title elipsis pull-right">
         <a title="Application audit history">
           <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
         </a>
-      </span>
+      </span> -->
 
       <span class=" title elipsis pull-right">
 
@@ -73,7 +73,11 @@
 
           <h5>Description</h5>
 
-          <textarea name="description" id="description" rows="10" class="form-control" [(ngModel)]="appAssess.budgetDescription" maxlength="50000"></textarea>
+          <textarea name="description" id="description" rows="10" class="form-control" [(ngModel)]="appAssess.budgetDescription" maxlength="50000" #budgetDescription="ngModel"> </textarea><!--<div style="float:right">{{50000 - budgetDescription.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="budgetDescription.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 
         </div>
         <!-- <div class="form-row">

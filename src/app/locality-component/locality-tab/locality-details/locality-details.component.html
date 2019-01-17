@@ -286,11 +286,13 @@
 						<h4>Notes</h4>
 					</div>
 					<textarea id="ngxSummernote" [ngxSummernote]="config" rows="10" [ngxSummernoteDisabled]="editableForm" class="form-control"
-					 name="notes" [(ngModel)]="locality.notes" maxlength="48228"  #notes="ngModel" (keyup)="count(notes)"></textarea>
-					 <div style="float:right">{{48228 - notes.value.length}} charcters left </div>
+					 name="notes" [(ngModel)]="locality.notes" maxlength="50000"  #notes="ngModel" (keyup)="count(notes)"> </textarea><!--
+ <div style="float:right">{{50000 - notes.value.length}} characters left </div> -->  
+					 <br>
 					 <div *ngIf="notes.errors?.maxlength" style="float:right">
-							Exceeded the character limit. Delete the number of characters shown above.
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
+					
 				</div>
 			</fieldset>
 

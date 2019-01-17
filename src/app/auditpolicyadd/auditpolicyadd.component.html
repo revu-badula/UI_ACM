@@ -91,7 +91,11 @@
           </div>
           <div class="form-row">
             <label for="description">Description</label>
-            <textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" [(ngModel)]="policyPost.description" [name]="'policy_description'" maxlength="50000"></textarea>
+            <textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" [(ngModel)]="policyPost.description" [name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea><!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="description.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
   
           </div>
           <div class=" form-row">
@@ -109,7 +113,11 @@
             </div>
           <div class="form-row">
             <textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" ngModel name="policyProcedures" [(ngModel)]="policyPost.procedures"
-             [name]="'policy_procedures'" maxlength="50000" required></textarea>
+             [name]="'policy_procedures'" maxlength="50000" required #procedures="ngModel"> </textarea><!--<div style="float:right">{{50000 - procedures.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="procedures.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
   
           </div>
         </div>
@@ -120,7 +128,11 @@
             </div>
           <div class="form-row">
             
-            <textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" [(ngModel)]="policyPost.guidelines" [name]="'policy_guidelines'" maxlength="50000"></textarea>
+            <textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" [(ngModel)]="policyPost.guidelines" [name]="'policy_guidelines'" maxlength="50000" #guidelines="ngModel"> </textarea><!--<div style="float:right">{{50000 - guidelines.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="guidelines.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
           </div>
         </div>
         <br><br><br>
@@ -177,14 +189,22 @@
           <div class="headerOfBox">
             <h4>Artifacts</h4>
           </div>
-          <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="policyPost.artifacts" cols="156" rows="7" id="patches" maxlength="50000"></textarea>
+          <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="policyPost.artifacts" cols="156" rows="7" id="patches" maxlength="50000" #artifacts="ngModel"> </textarea><!--<div style="float:right">{{50000 - artifacts.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="artifacts.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
         </div>
         <br><br><br>
         <div class="infoBox">
           <div class="headerOfBox">
             <h4>Non-Cov</h4>
           </div>
-          <textarea [ngxSummernote]="config" cols="156" name="noncov" [(ngModel)]="policyPost.nonCov" rows="7" id="patches" maxlength="50000"></textarea>
+          <textarea [ngxSummernote]="config" cols="156" name="noncov" [(ngModel)]="policyPost.nonCov" rows="7" id="patches" maxlength="50000" #nonCov="ngModel"> </textarea><!--<div style="float:right">{{50000 - nonCov.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="nonCov.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
         </div>
         <br><br><br>
   

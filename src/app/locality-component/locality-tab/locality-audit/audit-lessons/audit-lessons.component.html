@@ -33,11 +33,11 @@
 						<fa class="edit-icon icons" [name]="'edit'"></fa>
 					</a>
 				</span> -->
-			<span class=" title elipsis pull-right">
+			<!-- <span class=" title elipsis pull-right">
 				<a title="Application audit history">
 					<i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
 				</a>
-			</span>
+			</span> -->
 			<span class=" title elipsis pull-right">
 				<a (click)="showAudit()" title="Change to view mode. This reverts the changes">
 					<i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
@@ -75,7 +75,11 @@
 
 					<label for="inputState">Description</label>
 
-					<textarea name="description" id="" rows="10" class="form-control" [(ngModel)]="appAudit.lessonsLearnedDescription" maxlength="50000"></textarea>
+					<textarea name="description" id="" rows="10" class="form-control" [(ngModel)]="appAudit.lessonsLearnedDescription" maxlength="50000" #lessonsLearnedDescription="ngModel"> </textarea><!--<div style="float:right">{{50000 - lessonsLearnedDescription.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="lessonsLearnedDescription.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 
 				</div>
 			</fieldset>

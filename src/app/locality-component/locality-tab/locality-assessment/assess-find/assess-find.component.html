@@ -26,10 +26,12 @@
                         <fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
                     </a>
                 </span>
-                <span class=" title elipsis pull-right"> <a title="Application audit history"> <i class="fa fa-history"
+                <!-- <span class=" title elipsis pull-right"> <a title="Application audit history"> <i class="fa fa-history"
                             aria-hidden="true" style="font-size: 24px;"></i>
                     </a>
-                </span> <span class=" title elipsis pull-right"> <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
+                </span> -->
+                
+                <span class=" title elipsis pull-right"> <a (click)="showLeft()" title="Change to view mode. This reverts the changes"> 
                         <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
                     </a> <a (click)="showLeft()" title="Go back to audit section."> <i class="fa fa-arrow-circle-o-left"
                             aria-hidden="true" style="font-size: 24px;"></i>
@@ -59,14 +61,22 @@
                 
                 <div class="form-row">
                     <h5>Description</h5>
-                    <textarea id="description" rows="10" name="description" class="form-control" [(ngModel)]="appAssess.findingDescription" maxlength="50000"></textarea>
+                    <textarea id="description" rows="10" name="description" class="form-control" [(ngModel)]="appAssess.findingDescription" maxlength="50000" #findingDescription="ngModel"> </textarea><!--<div style="float:right">{{50000 - findingDescription.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="findingDescription.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 
 
                 </div>
                 
                 <div class="form-row">
                     <h4>Comments</h4>
-                    <textarea name="comments"  id="comments" rows="10" class="form-control" [(ngModel)]="appAssess.findingComments" maxlength="50000"></textarea>
+                    <textarea name="comments"  id="comments" rows="10" class="form-control" [(ngModel)]="appAssess.findingComments" maxlength="50000" #findingComments="ngModel"> </textarea><!--<div style="float:right">{{50000 - findingComments.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="findingComments.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 
                 </div>
             

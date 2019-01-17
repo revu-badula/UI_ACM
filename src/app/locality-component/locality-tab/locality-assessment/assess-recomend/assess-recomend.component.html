@@ -30,11 +30,11 @@
 
 
 
-                <span class=" title elipsis pull-right">
+                <!-- <span class=" title elipsis pull-right">
                     <a title="Application audit history">
                         <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
                     </a>
-                </span>
+                </span> -->
 
                 <span class=" title elipsis pull-right">
 
@@ -70,6 +70,16 @@
                         <label for="lastName">Estimated <br> completion date</label>
                         <my-date-picker  id="estCDate" [disabled]='showForm' (dateChanged)="getEstDate($event)" class="inputState1" [(ngModel)]="estDate" name="estCDate"></my-date-picker>
                     </div>
+                </div>
+
+                <div class="form-row">
+                    <h4>Recommendations</h4>
+                    <textarea name="comments"  id="comments" rows="10" class="form-control" [(ngModel)]="appAssess.recomendations" maxlength="50000" #recomendations="ngModel"> </textarea><!--<div style="float:right">{{50000 - findingComments.value.length}} characters left </div> -->
+                       <br>
+                      <div *ngIf="recomendations.errors?.maxlength" style="float:right">
+                      <span style="color:tomato"> 	Exceeded the character limit. </span>
+                      </div> 
+        
                 </div>
             </fieldset>
         </div>

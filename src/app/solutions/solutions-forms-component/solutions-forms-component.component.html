@@ -85,10 +85,18 @@
             </div>
             <div class="installation form-group">
             <label class="hosting-notes" for="hostingNotes"><b>Hosting Notes</b></label><!-- <div class="asterisk-inline asterisk">*</div> -->
-            <textarea cols="156" rows="7" id="hostingNotes" ngModel name="hostingNotes" required></textarea>
+            <textarea cols="156" rows="7" id="hostingNotes" ngModel name="hostingNotes" required #hostingNotes="ngModel"> </textarea><!--<div style="float:right">{{50000 - hostingNotes.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="hostingNotes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
           </div>
             <!-- <p><b>Hosting Notes</b></p>
-            <textarea cols="100" rows="7" id="hostingNotes"></textarea> -->
+            <textarea cols="100" rows="7" id="hostingNotes"> </textarea><div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <!-- <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div>  -->
             <hr />
             <h4>Certification Information</h4>
             <div class="certification-test form-row">

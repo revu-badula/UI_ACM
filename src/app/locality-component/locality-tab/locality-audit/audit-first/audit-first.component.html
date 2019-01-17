@@ -60,11 +60,11 @@
           </a>
         </span>
 
-        <span class=" title elipsis pull-right">
+        <!-- <span class=" title elipsis pull-right">
           <a (click)="showHist()" title="Application audit history">
             <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
           </a>
-        </span>
+        </span> -->
 
         <span class=" title elipsis pull-right">
 
@@ -185,10 +185,14 @@
     <div class="form-row">
       <label for="inputState">Audit</label>
       <hr/>
-      <textarea name="" id="" rows="5" class="form-control"><button type="close" class="submit">Close</button></textarea>
+      <textarea name="" id="" rows="5" class="form-control"><button type="close" class="submit">Close</button> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <!-- <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
     </div>
   </form>
-</div> -->
+</div> --> -->
 
 
 

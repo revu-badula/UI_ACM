@@ -139,7 +139,7 @@
 
 
           <div class="form-group col-md-6">
-            <label for="dueDate">Next Assessment Date<span class="asterisk">*</span></label>
+            <label for="dueDate">Assessment Date<span class="asterisk">*</span></label>
             <my-date-picker name="nextDate" class="inputState1" ngModel [options]="myDatePickerOptions" (dateChanged)="getDate($event)"
               [(ngModel)]="nextAssessmentDt" required></my-date-picker>
             <p style="color: red;font-weight: bold;">{{err}}</p>
@@ -184,7 +184,11 @@
 <!--           <div class="form-row"> -->
 <!--               <label for="inputState">AUDIT</label> -->
 <!--             <hr/> -->
-<!--             <textarea name="" id="" rows="5" class="form-control"><button type="close" class="submit">Close</button></textarea>  -->
+<!--             <textarea name="" id="" rows="5" class="form-control"><button type="close" class="submit">Close</button> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <!-- <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div>   --> 
 <!--             </div> -->
 <!--             </form> -->
 <!--             </div> -->

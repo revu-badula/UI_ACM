@@ -34,12 +34,12 @@
 
 
 
-            <span class=" title elipsis pull-right">
+            <!-- <span class=" title elipsis pull-right">
                 <a title="Application audit history">
                     <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
                 </a>
-            </span>
-
+            </span> -->
+ 
             <span class=" title elipsis pull-right">
 
                 <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
@@ -88,7 +88,11 @@
                 <div class="form-row">
 
                     <label for="inputState">Summary</label>
-                    <textarea name="summary" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanSummary" maxlength="50000"></textarea>
+                    <textarea name="summary" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanSummary" maxlength="50000" #actionPlanSummary="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanSummary.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="actionPlanSummary.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 
 
 
@@ -97,7 +101,11 @@
 
 
                     <label for="inputState">Tasks</label>
-                    <textarea name="tasks" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanTasks" maxlength="50000"></textarea>
+                    <textarea name="tasks" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanTasks" maxlength="50000" #actionPlanTasks=ngModel> </textarea><!--<div style="float:right">{{50000 - actionPlanTasks.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="actionPlanTasks.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 
 
                 </div>
@@ -105,7 +113,11 @@
 
 
                     <label for="inputState">Closeout Comments</label>
-                    <textarea name="Comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanCloseoutComments" maxlength="50000"></textarea>
+                    <textarea name="Comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanCloseoutComments" maxlength="50000" #actionPlanCloseoutComments=ngModel> </textarea><!--<div style="float:right">{{50000 - actionPlanCloseoutComments.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="actionPlanCloseoutComments.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 
 
 

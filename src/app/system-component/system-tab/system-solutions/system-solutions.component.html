@@ -139,7 +139,11 @@
 			<b>Notes</b>
 		</p>
 		<div>
-			<textarea name="" id="" rows="5" class="form-control" maxlength="50000"></textarea>
+			<textarea name="" id="" rows="5" class="form-control" maxlength="50000"> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 		</div>
 		<hr />
 		<p>

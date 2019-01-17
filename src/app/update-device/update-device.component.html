@@ -332,7 +332,11 @@
           </div>
           <div class="form-row">
             <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" name="purpose"
-              [(ngModel)]="device.purpose" maxlength="50000"></textarea>
+              [(ngModel)]="device.purpose" maxlength="50000" #purpose="ngModel"> </textarea><!--<div style="float:right">{{50000 - purpose.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="purpose.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
           </div>
         </div>
       </fieldset>

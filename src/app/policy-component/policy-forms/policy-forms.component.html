@@ -72,7 +72,12 @@
 						</div>
 						<div class="form-row">
 							
-							<textarea cols="100" style="margin-top:1vw;" rows="7" id="policyDescription" required formControlName="policyDescription" maxlength="50000"></textarea>
+							<textarea cols="100" style="margin-top:1vw;" rows="7" id="policyDescription" required formControlName="policyDescription" maxlength="50000" name="policyDescription"> </textarea><!--
+							<!-- <div style="float:right">{{50000 - policyDescription.value.length}} characters left </div> -->  
+					 <br>
+					 <!-- <div *ngIf="policyDescription.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div>  -->
 						
 					</div>
 				</div>

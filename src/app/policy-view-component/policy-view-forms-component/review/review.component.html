@@ -150,7 +150,11 @@
 			<div class="headerOfBox">
 				<h4>Comments</h4>
 			</div>
-			<textarea [(ngModel)]="reviewDTO.comments" [ngxSummernote]="config" cols="156" rows="7" [name]="'review_comments'" maxlength="50000"></textarea>
+			<textarea [(ngModel)]="reviewDTO.comments" [ngxSummernote]="config" cols="156" rows="7" [name]="'review_comments'" maxlength="50000"> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 		</div>
 		<br><br><br>
 		<div class="infoBox">
@@ -198,7 +202,7 @@
 <div *ngIf=showPolicy>
 	<form class="form">
 		<fieldset [disabled]='showForm'>
-			<h4>POLICY DETAILS</h4>
+			<h4>Policy Details</h4>
 			<div class=" form-row">
 				<div class="form-group col-md-6">
 					<label for="familyName">Family Name</label>
@@ -224,7 +228,11 @@
 			</div>
 			<label for="description">Description</label>
 			<p *ngIf="showForm">{{ policyAccess.description }}</p>
-			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.description" [name]="'policy_description'" maxlength="50000"></textarea>
+			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.description" [name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="description.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 			<div class=" form-row">
 				<div class="form-group col-md-6">
 					<label for="policyValue">Policy Value</label>
@@ -238,14 +246,22 @@
 					<label for="procedures">Procedures</label>
 					<div class="asterisk">*</div>
 					<p *ngIf="showForm">{{ policyAccess.procedures }}</p>
-					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.procedures" [name]="'policy_procedures'" maxlength="50000"></textarea>
+					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.procedures" [name]="'policy_procedures'" maxlength="50000"> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="guidelines">Guidelines</label>
 					<p *ngIf="showForm">{{ policyAccess.guidelines }}</p>
-					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.guidelines" [name]="'policy_guidelines'" maxlength="50000"></textarea>
+					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.guidelines" [name]="'policy_guidelines'" maxlength="50000" #guidelines="ngModel"> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="guidelines.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
 				</div>
 			</div>
 			<div class="form-row">
@@ -311,10 +327,18 @@
 				</div>
 			</div>
 			<h4>Artifacts</h4>
-			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" maxlength="50000"></textarea>
+			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" maxlength="50000" > </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <!-- <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div>  -->
 			<hr />
 			<h4>Non-COV</h4>
-			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" maxlength="50000"></textarea>
+			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" maxlength="50000"> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					 <!-- <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div>  -->
 			<hr />
 			<h4>Policy Links</h4>
 			<!-- <a routerLink="/linkedPolicies/{{ policyAccess.policyId }}"><button class="policy-links btn btn-primary">Add Policy Links</button></a> -->

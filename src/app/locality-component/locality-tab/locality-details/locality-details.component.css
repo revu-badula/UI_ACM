@@ -428,7 +428,7 @@ h2 {
           transform: rotateY(-180deg);
 }
 .tgl-flip + .tgl-btn:before {
-  background: #FF3A19;
+  background: gray;
   content: attr(data-tg-off);
 }
 .tgl-flip + .tgl-btn:active:before {

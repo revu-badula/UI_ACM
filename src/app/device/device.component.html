@@ -293,8 +293,12 @@
         </div>
         <div class="form-row">
 
-          <textarea cols="156" rows="7" id="ngxSummernote" name="purpose" [ngxSummernote]="config" [(ngModel)]="device.purpose" maxlength="50000"></textarea>
-          <hr />
+          <textarea cols="156" rows="7" id="ngxSummernote" name="purpose" [ngxSummernote]="config" [(ngModel)]="device.purpose" maxlength="500" #purpose="ngModel"> </textarea><!--<div style="float:right">{{50000 - purpose.value.length}} characters left </div> -->
+					 <br>
+					 <div style="float:right"  *ngIf="purpose.errors?.maxlength">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
+          
         </div>
 
         <hr />
