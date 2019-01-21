@@ -167,9 +167,9 @@
 										<tbody>
 
 											<tr *ngFor="let table of devices">
-												<td *ngIf="showPlus"><a class="box" (click)="open2(table)">{{
+												<td><a class="box" (click)="open2(table)">{{
 														table.modelNumber }}</a></td>
-												<td *ngIf="!showPlus">{{table.modelNumber }}</td>
+											
 												<td>{{ table.serialNumber }}</td>
 												<td>{{ table.nextScanningDt | filterDate }}</td>
 												<td>{{ table.currentScanningDt | filterDate }}</td>
