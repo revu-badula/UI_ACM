@@ -859,13 +859,13 @@ td{
   background: snow;
 }
 .titleBg{
-  background:aliceblue;
+  background:#ECF0F1;;
   bottom: 0;
   margin-bottom: -2%;
   color:black;
   margin-top:-1%;
   font-weight:350;
-  font-size: 2.20rem;
+  font-size: 1.6rem;
 }
 
 /* Homepage grid*/
@@ -901,9 +901,9 @@ td{
 .box{
 	width:100%; 
 	margin-bottom:12px; 
-	background:#999; 
+	background:#ECF0F1 ;
 	clear:both;
-  background-color:#EBEBEB;
+  background-color:#ECF0F1;
   align-self: flex-end;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -951,9 +951,9 @@ td{
 .box1 {
 	width:100%; 
 	margin-bottom:12px; 
-	background:#999; 
+	background:#ECF0F1;; 
 	clear:both;
-  background-color:#EBEBEB;
+  background-color:#ECF0F1;;
   align-self: flex-end;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -1111,5 +1111,12 @@ td{
 .row {
   margin-left:2%;
   margin-right:2%;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1);
 }
 

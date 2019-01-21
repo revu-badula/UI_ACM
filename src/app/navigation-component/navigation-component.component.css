@@ -4,9 +4,17 @@
 }
 
 nav{
-    background-color: #3A539B;
+    background-color: currentColor;
     text-align: center;
     position: relative;
+}
+
+.navbar{
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+padding: .1rem 1rem;
 }
 
 .sticky-top icons{

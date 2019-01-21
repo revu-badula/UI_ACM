@@ -56,13 +56,13 @@ h1{
 }
 
 .card-heading{
-    background-color: #3A539B;
+    background-color: #ECF0F1;
     border-radius: 6%;
 }
 
 .card-title{
-    padding: 4%;
-    color: white;
+  
+    color:black;
 }
 
 .card-body{

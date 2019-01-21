@@ -25,186 +25,16 @@
 <div class="page-description">
       <h3>Reports</h3>
 </div>
-<!-- <form>
-    
-  <div class="pageImg">
 
-    <table class="wholeDashboard">
-      <tr id="backClass">
-
-        <td class="backGroundClass">
-  
-          <div class="card-body">
-            <table class="tableForSigned">
-   
-      <tr></tr>
-      <tr></tr>
-      <tr class="backGroundClass" id="backClass3">
-        <td>
-
-         &nbsp; &nbsp;<span class="red"><a routerLink="/rlegal" style="text-decoration: none ; font-size: 6ex ; color:white">{{unSignLocality}}</a></span>
-        </td>
-        <td>
-
-          &nbsp; &nbsp;<span class="green"><a (click)="goTo()" style="text-decoration: none ; font-size: 6ex ; color:white">{{signLocality}}</a></span>
-        </td>
-      </tr>
-      <tr></tr>
-      <tr>
-        <td>Unsigned</td>
-        <td>Signed</td>
-      </tr>
-    </table>
-  <br>
-      <h5 class="titleBg"> Legal Documents for Localities</h5>
-    
-  </div>
-
-  </td>
-  <td class="backGroundClass">
-
-    <div class="card-body">
-
-      <table class="tableForSigned">
-
-  <tr class="center" id="backClass4">
-    <td>
-        &nbsp; &nbsp;<span class="red"><a routerLink="/rsystems" style="text-decoration: none ; font-size: 6ex ; color:white">{{unSignSystem}}</a></span>
-    </td>
-    <td>
-        &nbsp; &nbsp;<span class="green"><a (click)="goTo1()" style="text-decoration: none ; font-size: 6ex ; color:white">{{signSystem}}</a></span>
-    </td>
-  </tr>
-  <tr>
-    <td>Unsigned</td>
-    <td>Signed</td>
-  </tr>
-  </table>
-  <br>
-  <h5 class="titleBg"> Legal Documents for Systems</h5>
-  </div>
-
-  </td>
-  <td class="backGroundClass">
-
-    <div class="card-body">
-
-      <div class="center">
-        
-          &nbsp; &nbsp;<span class="gray"><a routerLink="/rsolution" style="text-decoration: none ; font-size: 6ex ; color:white">{{solution}} </a></span>
-       
-      </div>
-      <br>
-      <br>
-      <h5 class="titleBg">Localities and Solutions</h5>
-    </div>
-
-  </td>
-
-
-  </tr>
-  <tr class="backGroundClass">
-    <td class="backGroundClass">
-
-      <div class="card-body">
-
-          <table class="tableForSigned">
-       
-              <tr class="center" id="backClass4">
-                <td>
-            
-                  &nbsp; &nbsp;<span class="red"><a routerLink="/rdevice" style="text-decoration: none ; font-size: 6ex ; color:white">{{devFailed}}</a></span>
-                </td>
-                <td>
-                
-                  &nbsp; &nbsp;<span class="orange"><a (click)="goTo3()"  style="text-decoration: none ; font-size: 6ex ; color:white">{{devPending}}</a></span>
-                </td>
-  
-                <td>
-
-                    &nbsp; &nbsp;<span class="green"><a (click)="goTo2()" style="text-decoration: none ; font-size: 6ex ; color:white">{{devPassed}}</a></span>
-                  </td>
-              </tr>
-              <tr>
-                  <td>Failed </td>
-                  <td>Pending</td>
-                  <td>Passed</td>
-
-              </tr>
-              </table>
-              <br>
-          <h5 class="titleBg"> Total Scanned Devices</h5>
-        
-        
-    
-      </div>
-
-    </td>
-    <td class="backGroundClass">
-
-      <div class="card-body">
-   
-        <div class="center">
-          
-            &nbsp; &nbsp;<span class="gray"><a routerLink="/rvendor" style="text-decoration: none ; font-size: 6ex ; color:white">{{vendor}}</a></span>
-          
-        </div>
-        <br>
-        <br>
-        <h5 class="titleBg">Localities and Vendors</h5>
-      </div>
-  
-    </td>
-    <td class="backGroundClass">
-
-      <div class="card-body">
-      
-        <div class="center">
-          &nbsp; &nbsp;<span class="gray">  <a routerLink="/solutionsView" style="text-decoration: none ; font-size: 6ex ; color:white">
-            {{solution}}</a></span>
-           
-          
-        </div>
-        <br>
-        <br>
-        <h5 class="titleBg">Overall Solutions</h5>
-      </div>
-
-    </td>
-
-  </tr>
-  <tr id="backClass1">
-    <td class="backGroundClass">
-
-      <div class="card-body"> 
-       
-         
-        
-        <div class="center">
-          &nbsp; &nbsp;<span class="gray"><a routerLink="/vendorsView" style="text-decoration: none ; font-size: 6ex ; color:white">
-            {{vendor}}</a></span>
-          
-        </div>
-        <br>
-        <br>
-        <h5 class="titleBg">Overall Vendors</h5>
-      </div>
-
-    </td>
-
-  </tr>
-  </table>
- 
-  </div>
-</form> -->
 
 <div class="categoryGrid">
 
     <div class="clearfix wrap">
       <div class="row">
-        <div class="col-sm-4 boxGroup" >
+        <div class="col-sm-3 boxGroup" >
           <div class="box1 square">
-            <h5 class="titleBg">Legal Documents for Localities</h5>
+            <h5 class="titleBg">Localities</h5>
+            <hr>
             <div class="row">
               <div class="col-sm-6">
             <a routerLink="/rlegal" style="text-decoration: none ; font-size: 6ex ; color:tomato">{{unSignLocality}}</a> <br> Unsigned
@@ -215,9 +45,10 @@
           </div>
           </div>
         </div>
-        <div class="col-sm-4 boxGroup" >
+        <div class="col-sm-3 boxGroup" >
             <div class="box1 square">
-            <h5 class="titleBg"> Legal Documents for Systems</h5>
+            <h5 class="titleBg">Systems</h5>
+            <hr>
             <div class="row">
             <div class="col-sm-6">
             <a routerLink="/rsystems" style="text-decoration: none ; font-size: 6ex ; color:tomato">{{unSignSystem}}</a><br>Unsigned
@@ -228,9 +59,10 @@
         </div>
           </div>
         </div>
-        <div class="col-sm-4 boxGroup">
+        <div class="col-sm-3 boxGroup">
             <div class="box1 square">
-            <h5 class="titleBg">Localities and <br> Solutions</h5>
+            <h5 class="titleBg"> Solutions</h5>
+            <hr>
             <div class="row">
               <div class="col-sm-4"></div>
               <div class="col-sm-4">
@@ -240,11 +72,26 @@
             </div>
           </div>
       </div>
+      <div class="col-sm-3 boxGroup">
+          <div class="box1 square">
+          <h5 class="titleBg">Vendors</h5>
+          <hr>
+         <div class="row">
+           <div class="col-sm-4"></div>
+           <div class="col-sm-4">
+              <a routerLink="/rvendor" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">{{vendor}}</a> <br> Total
+
+           </div>
+           <div class="col-sm-4"></div>
+         </div>
+        </div>
+      </div>
         </div>
         <div class="row">
         <div class="col-sm-4 boxGroup">
             <div class="box1 square">
-            <h5 class="titleBg">Total Scanned <br> Devices</h5>
+            <h5 class="titleBg">Devices</h5>
+            <hr>
             <div class="row">
                 <div class="col-sm-4"><a routerLink="/rdevice" style="text-decoration: none ; font-size: 6ex ; color:tomato">{{devFailed}}</a> <br> Failed</div>
                 <div class="col-sm-4">
@@ -256,22 +103,11 @@
               </div>
           </div>
         </div>
-        <div class="col-sm-4 boxGroup">
-            <div class="box1 square">
-            <h5 class="titleBg">Localities and <br>Vendors</h5>
-           <div class="row">
-             <div class="col-sm-4"></div>
-             <div class="col-sm-4">
-                <a routerLink="/rvendor" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">{{vendor}}</a> <br> Total
-
-             </div>
-             <div class="col-sm-4"></div>
-           </div>
-          </div>
-        </div>
+       
         <div class="col-sm-4 boxGroup" >
             <div class="box1 square">
-            <h5 class="titleBg">Overall <br> Solutions</h5>
+            <h5 class="titleBg">Certified Solutions</h5>
+            <hr>
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
@@ -282,21 +118,23 @@
               </div>
           </div>
           </div>
-        </div>
-        <div class="row">
-        <div class="col-sm-4 boxGroup">
-            <div class="box1 square">
-            <h5 class="titleBg">Overall <br> Vendors</h5>
-            <div class="row">
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
-                    <a routerLink="/vendorsView" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">
-                      {{vendor}}</a> <br>Total
+          <div class="col-sm-4 boxGroup">
+              <div class="box1 square">
+              <h5 class="titleBg">Certified Vendors</h5>
+              <hr>
+              <div class="row">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4">
+                      <a routerLink="/vendorsView" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">
+                        {{vendor}}</a> <br>Total
+                  </div>
+                  <div class="col-sm-4"></div>
                 </div>
-                <div class="col-sm-4"></div>
               </div>
             </div>
-          </div>
+        </div>
+        <div class="row">
+      
         </div>
       </div>
     </div>
