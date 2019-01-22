@@ -70,30 +70,33 @@ h1{
 }
 
 .card-link{
-    color: black;
+    color: #3A539B;
 }
 .modal-header{
 	  background-color: #3A539B;
 }
 
 .card-link:hover{
-    color: white;
-    background-color: #00B16A;
-    padding: 3%;
+    color: black;
+  
 }
 
 .view-edit{
     margin-left: 20px;
+    color: #3A539B;
+}
+
+.onHover{
+content:Add;
 }
 
 a{
     cursor: pointer;
 }
 
-/*.second-row{
-    margin-top: 20px;
+a:hover a.view-edit{
+    content:Add;
+
 }
 
-.third-row{
-    
-}*/
+
