@@ -43,10 +43,7 @@ p{
    padding: 5px;
 }
 
-.sticky-top{
-   height:30px;
-   border-radius: 5px;
-}
+
 
 .form-options{
    margin-right: 15px;
@@ -459,7 +456,7 @@ margin:  0.5rem 0 0.5em;
  color:white;
 }
 
-#form1{
+/* #form1{
    
  border-radius: 10px;
  border: 1px solid;
@@ -467,16 +464,7 @@ margin:  0.5rem 0 0.5em;
  background-color: white;
  /* background-color:rgba(221,221, 221, 0.4); */
  /* background-image: url(./../../assets/img/greyjpg.jpg); */
- background-repeat: no-repeat;
- background-size: cover;
- overflow: hidden;
- padding: 6%;
- padding-top:3%;
- box-shadow: 5px 10px #888888;
- margin-top:2%
 
-
-}
 
 .line1 {
  margin:  0.5rem 0 0.5em;

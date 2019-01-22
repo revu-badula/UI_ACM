@@ -8,20 +8,6 @@
     box-shadow: 5px 10px #888888;
 }
 
-#form1 {
-    border-radius: 10px;
-    border: 1px solid;
-    margin: -1% 7% 0% 5%;
-    background-color: white;
-    /* background-color:rgba(221,221, 221, 0.4); */
-    /* background-image: url(./../../assets/img/greyjpg.jpg); */
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-    padding: 6%;
-    padding-top:3%;
-    box-shadow: 5px 10px #888888;
-  }
 
 .page-description{
     text-align: center;

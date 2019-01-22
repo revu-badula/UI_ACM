@@ -183,13 +183,13 @@ input[type=button] {
     -moz-border-radius: 0.4rem;
 }
 
-.infoBox {
+/* .infoBox {
     padding: 3%;
     border: 2px solid;
     margin: 0%;
     min-width: 100%;
     display: inline-block;
-}
+} */
 
 .headerOfBox {
     margin-top: -3%;

@@ -1,11 +1,16 @@
 <div class="pos-f-t">
           <nav class="navbar1">
             <img src="assets/img/logo1.png"  style="float: left">
+            &nbsp;
+            <a routerLink="/dashboard">
+              <fa class="left-icons home-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Home"
+                  data-animation="true" data-delay="0" [name]="'home'" class="homeButton"></fa>
+          </a>
+
             <a (click)="signOut()" style="cursor: pointer;">
                 <i class="fa fa-sign-out" aria-hidden="true" style="float: right; color:lightgrey; right: 0%;font-size: 1.5vw; margin-top:0.3rem "></i>
             </a>
             <h5 style="float: right"  class="logInName">Welcome {{userName}} &nbsp; </h5>
             
-
           </nav>
     </div>

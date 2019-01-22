@@ -52,10 +52,7 @@ tbody tr:nth-child(even) {
     padding: 5px;
 }
 
-.sticky-top{
-	height: 30px;
-	border-radius: 5px;
-}
+
 
 .form-options{
     margin-right: 15px;

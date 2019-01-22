@@ -18,9 +18,6 @@ padding: .1rem 1rem;
 overflow: hidden;
 }
 
-.sticky-top icons{
-	height: 10px;
-}
 
 .heading{
     color: white;
@@ -67,4 +64,11 @@ h1{
     font-weight: 400;
     font-size: 1.25rem;
     margin-top: 0.3rem;
+}
+
+.homeButton{
+    color: lightgrey;
+    float: left;
+    font-size: 1.5rem;
+    margin-left: 2%;
 }

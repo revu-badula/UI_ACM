@@ -31,7 +31,7 @@
 	</div>
 </ng-template>
 
-<div class="plus">
+<div class="plus" style="margin-right: 3%">
 	<i class="fa fa-edit" *ngIf="!isClick" (click)="editClicked()" aria-hidden="true" style="font-size: 24px;"></i> <a>
 		<fa (click)="backClicked()" class="left-icons left-icon icons" [name]="'arrow-left'"></fa>
 	</a>
@@ -55,11 +55,7 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<!-- <div class="form-group col-md-6">
-			<label for="lastName">Name</label>
-			<div class="asterisk">*</div>
-			<input type="text" class="form-control" id="lastName" value="enter here">
-		</div> -->
+				
 					<div class="form-group col-md-6">
 						<label for="updated At">Last updated at</label>
 						<input type="text" class="form-control" id="updatedAt" value="{{updatedTime}}" readonly>
@@ -197,5 +193,5 @@
 		</div>
 	</form>
 	<button type="submit" form="myForm" style="margin-right:8%;" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick">Submit</button>
-	<button type="cancel" class="btn btn-primary" (click)="close($event)">Cancel</button>
+	<button type="cancel" class="btn btn-primary" (click)="close($event)" style="margin-right:8%;">Cancel</button>
 </div>

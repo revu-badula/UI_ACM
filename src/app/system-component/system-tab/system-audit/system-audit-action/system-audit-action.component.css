@@ -181,7 +181,7 @@ input[type=button] {
     -moz-border-radius: 0.4rem;
 }
 
-.infoBox {
+/* .infoBox {
     padding: 3%;
     border: 2px solid;
     margin: 0%;
@@ -196,7 +196,7 @@ input[type=button] {
     margin-left: -3%;
     margin-right: -3%;
     background-color: antiquewhite;
-}
+} */
 
 .former {
     padding: 15px;

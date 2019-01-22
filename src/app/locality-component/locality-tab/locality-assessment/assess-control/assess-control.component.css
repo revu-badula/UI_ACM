@@ -278,13 +278,13 @@ input[type=button] {
     -moz-border-radius: 0.4rem;
 }
 
-.infoBox {
+/* .infoBox {
     padding: 3%;
     border: 2px solid;
     margin: 0%;
     min-width: 100%;
     display: inline-block;
-}
+} */
 
 .infoBox2 {
     padding: 1%;
@@ -300,8 +300,8 @@ input[type=button] {
     margin-top: -3%;
     border-bottom: 2px solid;
     margin-bottom: 2%;
-    margin-left: -3%;
-    margin-right: -3%;
+    margin-left: -3.2%;
+    margin-right: -3.2%;
     background-color: antiquewhite;
 }
 
@@ -406,22 +406,16 @@ input[type=button] {
     -moz-border-radius: 0.4rem;
 }
 
-.infoBox {
-    padding: 3%;
-    border: 2px solid;
-    margin: 0%;
-    min-width: 100%;
-    display: inline-block;
-}
 
-.headerOfBox {
+
+/* .headerOfBox {
     margin-top: -3%;
     border-bottom: 2px solid;
     margin-bottom: 2%;
     margin-left: -3%;
     margin-right: -3%;
     background-color: antiquewhite;
-}
+} */
 
 .former {
     padding: 15px;

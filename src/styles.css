@@ -6,8 +6,9 @@
     border: 1px solid;
     margin: 20px;
     /* background-color:rgba(#eee, #eee, #eee, 0.2); */
-    background-color: #fff;
-    box-shadow:5px 10px 20px 1px rgba(125, 122, 118, 1);
+    background-color:aliceblue;
+    /* box-shadow:5px 10px 20px 1px rgba(125, 122, 118, 1);
+} */
 }
 
 .asterisk {

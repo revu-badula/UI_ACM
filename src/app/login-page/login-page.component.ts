@@ -104,7 +104,7 @@ export class LoginPageComponent implements OnInit {
         this.saveToken(data);
       }, error => {
         this.loading = false;
-        let err = "username and password are incorrect";
+        let err = "User name or password is incorrect";
         this.alertService.error(err);
         console.log(error)
       });

@@ -289,21 +289,7 @@ margin-left: 10px;
     color:white;
    }
    
-   #form1{
-   
-    border-radius: 10px;
-    border: 1px solid;
-    margin: -1% 7% 0% 5%;
-    /* background-color:rgba(221,221, 221, 0.4); */
-    overflow: hidden;
-    /* background-image: url(/../assets/img/whitecrumple.jpg); */
-    /* background-color:rgba(211, 211, 211, 0.5); */
-    background-repeat: no-repeat;
-    background-size: cover;
-   
-   
-   }
-   
+ 
    .line1 {
     margin: 0.5rem 0 0.5em;
     line-height:1.5em;
@@ -331,24 +317,16 @@ margin-left: 10px;
     margin:0 0 0 1em;
     }
    
-    .infoBox{
+    /* .infoBox{
     padding:3%;
     border: 2px solid;
     margin:-1%;
     min-width:100%;
     display: inline-block;
    
-   }
+   } */
    
-   .headerOfBox{
-    margin-top:-3%;
-    border-bottom: 2px solid;
-    margin-bottom:2%;
-    margin-left:-3%;
-    margin-right:-3%;
-    background-color:antiquewhite;
-    
-   }
+
   
    .former {
     padding: 15px;
