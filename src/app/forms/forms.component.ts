@@ -149,7 +149,7 @@ export class FormsComponent implements OnInit {
       vendorContact: this.fb.group({
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        emailId: ['', Validators.email],
+        emailId: ['', Validators.required],
         phoneNumber: ['', Validators.required]
       }),
     });

@@ -151,10 +151,12 @@ import { AuditpolicyupdateComponent } from './auditpolicyupdate/auditpolicyupdat
 import { AssessmentpolicyaddComponent } from './assessmentpolicyadd/assessmentpolicyadd.component';
 import { AssessmentpolicyupdateComponent } from './assessmentpolicyupdate/assessmentpolicyupdate.component';
 import { Accesscontrol1Component } from './accesscontrol1/accesscontrol1.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 
 const appRoutes: Routes = [
 
-  { path: '', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
+  { path: '', component: DisclaimerComponent},
+  { path: 'log', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
   { path: 'login', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'logout', component: LogoutComponent },
