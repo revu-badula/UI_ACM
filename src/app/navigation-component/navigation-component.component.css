@@ -9,12 +9,13 @@ nav{
     position: relative;
 }
 
-.navbar{
-display: flex;
+.navbar1{
+
 flex-wrap: wrap;
 align-items: center;
 justify-content: space-between;
 padding: .1rem 1rem;
+overflow: hidden;
 }
 
 .sticky-top icons{
@@ -57,4 +58,13 @@ h1{
 
 .collapse-div{
     background-color: #59ABE3;
+}
+
+.logInName{
+    float: right;
+    color: lightgrey;
+    right: 0%;
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-top: 0.3rem;
 }

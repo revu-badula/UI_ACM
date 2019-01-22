@@ -31,34 +31,22 @@
 
     <div class="clearfix wrap">
       <div class="row">
-        <div class="col-sm-3 boxGroup" >
-          <div class="box1 square">
-            <h5 class="titleBg">Localities</h5>
-            <hr>
-            <div class="row">
-              <div class="col-sm-6">
-            <a routerLink="/rlegal" style="text-decoration: none ; font-size: 6ex ; color:tomato">{{unSignLocality}}</a> <br> Unsigned
-          </div>
-            <div class="col-sm-6">
-            <a (click)="goTo()" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">{{signLocality}}</a> <br> Signed
-          </div>
-          </div>
-          </div>
-        </div>
-        <div class="col-sm-3 boxGroup" >
-            <div class="box1 square">
-            <h5 class="titleBg">Systems</h5>
-            <hr>
-            <div class="row">
-            <div class="col-sm-6">
-            <a routerLink="/rsystems" style="text-decoration: none ; font-size: 6ex ; color:tomato">{{unSignSystem}}</a><br>Unsigned
-          </div>
-          <div class="col-sm-6">
-              <a (click)="goTo1()" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">{{signSystem}}</a><br>Signed
-          </div>
-        </div>
-          </div>
-        </div>
+          <div class="col-sm-3 boxGroup" >
+              <div class="box1 square">
+              <h5 class="titleBg">Certified Solutions</h5>
+              <hr>
+              <div class="row">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4">
+                      <a routerLink="/solutionsView" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">
+                        {{solution}}</a> <br> Total
+                  </div>
+                  <div class="col-sm-4"></div>
+                </div>
+            </div>
+            </div>
+       
+      
         <div class="col-sm-3 boxGroup">
             <div class="box1 square">
             <h5 class="titleBg"> Solutions</h5>
@@ -86,9 +74,23 @@
          </div>
         </div>
       </div>
+      <div class="col-sm-3 boxGroup">
+          <div class="box1 square">
+          <h5 class="titleBg">Certified Vendors</h5>
+          <hr>
+          <div class="row">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4">
+                  <a routerLink="/vendorsView" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">
+                    {{vendor}}</a> <br>Total
+              </div>
+              <div class="col-sm-4"></div>
+            </div>
+          </div>
+        </div>
         </div>
         <div class="row">
-        <div class="col-sm-4 boxGroup">
+        <div class="col-sm-3 boxGroup">
             <div class="box1 square">
             <h5 class="titleBg">Devices</h5>
             <hr>
@@ -103,39 +105,41 @@
               </div>
           </div>
         </div>
-       
-        <div class="col-sm-4 boxGroup" >
+
+        <div class="col-sm-3 boxGroup" >
             <div class="box1 square">
-            <h5 class="titleBg">Certified Solutions</h5>
-            <hr>
-            <div class="row">
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
-                    <a routerLink="/solutionsView" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">
-                      {{solution}}</a> <br> Total
-                </div>
-                <div class="col-sm-4"></div>
-              </div>
-          </div>
-          </div>
-          <div class="col-sm-4 boxGroup">
-              <div class="box1 square">
-              <h5 class="titleBg">Certified Vendors</h5>
+              <h5 class="titleBg">Localities</h5>
               <hr>
               <div class="row">
-                  <div class="col-sm-4"></div>
-                  <div class="col-sm-4">
-                      <a routerLink="/vendorsView" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">
-                        {{vendor}}</a> <br>Total
-                  </div>
-                  <div class="col-sm-4"></div>
-                </div>
-              </div>
+                <div class="col-sm-6">
+              <a routerLink="/rlegal" style="text-decoration: none ; font-size: 6ex ; color:tomato">{{unSignLocality}}</a> <br> Unsigned
             </div>
-        </div>
-        <div class="row">
+              <div class="col-sm-6">
+              <a (click)="goTo()" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">{{signLocality}}</a> <br> Signed
+            </div>
+            </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3 boxGroup" >
+              <div class="box1 square">
+              <h5 class="titleBg">Systems</h5>
+              <hr>
+              <div class="row">
+              <div class="col-sm-6">
+              <a routerLink="/rsystems" style="text-decoration: none ; font-size: 6ex ; color:tomato">{{unSignSystem}}</a><br>Unsigned
+            </div>
+            <div class="col-sm-6">
+                <a (click)="goTo1()" style="text-decoration: none ; font-size: 6ex ; color:lightseagreen">{{signSystem}}</a><br>Signed
+            </div>
+          </div>
+            </div>
+          </div>
+       
       
+        
         </div>
+        
       </div>
     </div>
 

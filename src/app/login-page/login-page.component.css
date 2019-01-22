@@ -1,10 +1,10 @@
 .p-4{
-    background-color: #2C3E50;
+    background-color: #212529;
     border-top: 1px solid #ECF0F1;
 }
 
 nav{
-    background-color: #3A539B;
+    background-color: #212529;
     text-align: center;
     position: relative;
 }
@@ -15,7 +15,7 @@ nav{
 }
 
 img{
-    width: 10%;
+    width: 21%;
 }
 
 .login{
@@ -77,17 +77,15 @@ h1{
     margin-left: 20px;
 }
 
-/*.second-row{
-    margin-top: 20px;
-}
 
-.third-row{
-    
-}*/
 
-.col-sm-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-    margin-right: auto !important;
-    margin-left: auto !important;
-}
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 3%;
+    border:darkgray, solid ;
+    background: aliceblue;
+  }

@@ -2,35 +2,33 @@
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <div class="pos-f-t">
-    <nav class="navbar">
-        <img src="assets/img/logo.png">
-        <h2 class="heading">INTEGRA</h2>
-        <!-- <div class="login"><p class="user">Sunny Singh<fa class="down-icon" [name]="'chevron-down'"></fa></p></div> -->
+    <nav class="navbar1">
+        <img src="assets/img/logo1.png">
     </nav>
 </div>
-<div id="form1" style="background:transparent;border: none;box-shadow: none;">
-    <div class="infoBox">
 
-        <div class="container">
+    
+        <div class="content">
             <div class="headerOfBox" style="text-align: center;">
                 <h2>Login</h2>
             </div>
             
 
-                <div class="col-sm-6 offset-sm-3">
+                <div class="col-sm-12">
                     <alert></alert>
 
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            Username<span class="asterisk">*</span>
-                            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                            <br>
+                            User Name
+                            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="User Name" />
                             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                                <div *ngIf="f.username.errors.required">Username is required</div>
+                                <div *ngIf="f.username.errors.required">User Name is required</div>
                             </div>
                         </div>
                         <div class="form-group">
-                            Password<span class="asterisk">*</span>
-                            <input type="password" #pass formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                           Password
+                            <input type="password" #pass formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
                             <div style="margin-left: -29%;"><input type="checkbox" (click)="showPassword()" style="margin-right: -23%;
                                 margin-top: .5vw;outline: none;">Show Password</div>
                             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
@@ -43,8 +41,7 @@
                             <button [disabled]="loading" class="btn btn-primary">Login</button>
                         </div>
                     </form>
-                    <div><a (click)="getLogin()" style="cursor: pointer;color: blue;">Sign in with Okta</a></div>
+                    <div><a (click)="getLogin()" style="cursor: pointer; width: 76% ; color:white" class="btn btn-primary">Sign in with Okta</a></div>
                 </div>
         </div>
-    </div>
-</div>
+    
