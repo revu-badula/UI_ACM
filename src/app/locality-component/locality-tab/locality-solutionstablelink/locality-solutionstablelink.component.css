@@ -34,7 +34,7 @@ tbody tr:nth-child(even) {
     margin-top: -15px;
     padding: 10px;
     margin-left: 50px;
-    color: #3A539B;
+    color: black;
 }
 
 
@@ -96,10 +96,10 @@ table {
 	float:right;
     font-size: 20px;
     margin-right: 20px;
-    color: #3A539B;
+    color: black;
 }
 .modal-header{
-	background-color:#3A539B !important;
+	background-color:black !important;
 	color:white;
 }
 

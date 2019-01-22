@@ -21,8 +21,8 @@ th{
 .btn {
   float:right;
   margin-top: 25px;
-  background-color: #3A539B;
-  border-color: #3A539B;
+  background-color: black;
+  border-color: black;
   color: white;
   padding: 10px 10px;
   width: auto;
@@ -75,7 +75,7 @@ th{
 }
 
 /* .icons{ */
-/* 	color:#3A539B; */
+/* 	color:black; */
 /*    vertical-align: middle; */
 /*    font-size: 20px; */
 /*    margin-bottom: 20px; */
@@ -99,13 +99,13 @@ table thead tr th{
 }
 
 .modal-header{
-	background-color: #3A539B;
+	background-color: black;
 	color: #ffffff;
 }
 
 .btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+	background-color: black;
+	border-color: black;
 }
 
 
@@ -130,14 +130,14 @@ table{
     	i.fa {
     text-decoration: none !important;
     
-     color: #3A539B;
+     color: black;
 }
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: larger;
     text-rendering: auto;
-     color: #3A539B;
+     color: black;
    }
    
    
@@ -158,7 +158,7 @@ table{
  
     padding: 6px;
   
-    color: #3A539B;
+    color: black;
     margin-right: 20px;
     
 }
@@ -197,7 +197,7 @@ table{
 }
 
 /* .icons{ */
-/* 	color:#3A539B; */
+/* 	color:black; */
 /*    vertical-align: middle; */
 /*    font-size: 20px; */
 /*    margin-bottom: 20px; */
@@ -242,13 +242,13 @@ table thead tr td{
 }
 
 .modal-header{
-	background-color: #3A539B;
+	background-color: black;
 	color: #ffffff;
 }
 
 .btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+	background-color: black;
+	border-color: black;
 }
 
 .confbtn{

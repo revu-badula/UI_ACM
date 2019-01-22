@@ -88,7 +88,7 @@
                             <td *ngIf="appsolution.archived === 0">{{ appsolution.solutionsDTO.precinctTypeName}}</td>
                             <td *ngIf="appsolution.archived === 0">{{ appsolution.updatedBy}}</td>
                             <td *ngIf="appsolution.archived === 0">{{appsolution.updatedTs | filterDate | date:'MM/dd/yyyy'}}</td>
-                            <td *ngIf="appsolution.archived === 0"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B; cursor: pointer;" (click)="archiveAppSolution(appsolution)"></i></td>
+                            <td *ngIf="appsolution.archived === 0"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black; cursor: pointer;" (click)="archiveAppSolution(appsolution)"></i></td>
                         </tr>
                     </tbody>
 

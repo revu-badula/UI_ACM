@@ -121,7 +121,7 @@
               <tr *ngFor="let file of mou.mouDocDTOs let i=index">
                 <td *ngIf="file.status" (click)="getFile(file.mouDocId)" style="cursor: pointer; color: blue;">{{file.fileName}}</td>
                 <td *ngIf="file.status && !showForm" (click)="deleteFile(file.mouDocId,i)" style="cursor: pointer;"><i
-                    class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+                    class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black;"></i></td>
 
 
               </tr>

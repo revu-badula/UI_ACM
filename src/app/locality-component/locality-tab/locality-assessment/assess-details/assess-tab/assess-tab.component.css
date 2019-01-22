@@ -3,7 +3,7 @@
     float: right!important;
      font-size: 20px;
     margin-right: 20px;
-    color: #3A539B;
+    color: black;
   
 }
 #middle div.panel-heading {
@@ -32,12 +32,12 @@ i.fa {
 }
 
 .modal-header{
-	background-color:#3A539B !important;
+	background-color:black !important;
 	color:white;
 }
 
 /* .icons{ */
-/* 		color:#3A539B; */
+/* 		color:black; */
 /*    vertical-align: middle; */
 /*    font-size: 20px; */
 /*    margin-bottom: 2px; */
@@ -47,7 +47,7 @@ i.fa {
   
 
 .plus{
-			color:#3A539B;
+			color:black;
    vertical-align: middle;
    font-size: 20px;
  

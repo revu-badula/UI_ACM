@@ -25,19 +25,19 @@ table{
 
 .edit-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .download-icon{
-	color: #3A539B;
+	color: black;
 }
 
 .save-icon{
-	color: #3A539B;
+	color: black;
 }
 
 .close-icon{
-	color: #3A539B;
+	color: black;
 }
 
 .installation{
@@ -50,13 +50,13 @@ table{
 }
 
 .modal-header{
-	background-color: #3A539B;
+	background-color: black;
 	color: #ffffff;
 }
 
 .btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+	background-color: black;
+	border-color: black;
 }
 table{
 	background-color: #ffffff;
@@ -86,13 +86,13 @@ table thead tr td{
 
 
 .modal-header{
-	background-color: #3A539B;
+	background-color: black;
 	color: #ffffff;
 }
 
 .btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+	background-color: black;
+	border-color: black;
 }
 
 .form-control:disabled, .form-control[readonly] {

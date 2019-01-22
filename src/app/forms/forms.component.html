@@ -13,15 +13,15 @@
     </div>
 </ng-template>
 <div>
-        <div class="pageHeader">
+        <div>
         <h3 class="pageTitle">Vendors</h3>
     </div>
     <hr>
-    <br>
     <form [formGroup]="editVendorForm" id="myForm" class="forms" (ngSubmit)="createVendor(editVendorForm.value)">
-
-        <div id="form1" style="padding-top: 3%;">
-               
+           
+        <div id="form1" >
+             <div class="disclaimer"><span>Please use this screen to add certified vendors only</span>&nbsp;&nbsp;&nbsp;
+                <span style="float:right"> <font color=red>*</font> marked fields are mandatory </span> </div> 
             <div class="infoBox">
                 <div class="form-row headerOfBox">
                     <h4>Vendor Information</h4>

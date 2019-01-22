@@ -12,7 +12,7 @@
 i.fa {
     text-decoration: none !important;
     padding: 5px 4px;
-    color: #3A539B;
+    color: black;
 }
 
 .fa {
@@ -20,7 +20,7 @@ i.fa {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-    color: #3A539B;
+    color: black;
 }
 
 .plus {
@@ -29,7 +29,7 @@ i.fa {
     font-size: 20px;
     padding: 2px;
     margin-left: 20px;
-    color: #3A539B;
+    color: black;
     margin-top: 15px;
 }
 
@@ -72,13 +72,13 @@ table thead tr th {
 }
 
 .modal-header {
-    background-color: #3A539B;
+    background-color: black;
     color: #ffffff;
 }
 
 .btn {
-    background-color: #3A539B;
-    border-color: #3A539B;
+    background-color: black;
+    border-color: black;
 }
 
 table {
@@ -98,7 +98,7 @@ table thead tr td {
 i.fa {
     text-decoration: none !important;
     padding: 5px 4px;
-    color: #3A539B;
+    color: black;
 }
 
 .fa {
@@ -106,7 +106,7 @@ i.fa {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-    color: #3A539B;
+    color: black;
 }
 
 .primary {
@@ -123,7 +123,7 @@ i.fa {
     font-size: 20px;
     padding: 2px;
     margin-left: 20px;
-    color: #3A539B;
+    color: black;
     margin-top: 15px;
 }
 
@@ -159,7 +159,7 @@ i.fa {
 
 /* .icons{ */
 
-/* 	color:#3A539B; */
+/* 	color:black; */
 
 /*    vertical-align: middle; */
 
@@ -208,13 +208,13 @@ table thead tr td {
 }
 
 .modal-header {
-    background-color: #3A539B;
+    background-color: black;
     color: #ffffff;
 }
 
 .btn {
-    background-color: #3A539B;
-    border-color: #3A539B;
+    background-color: black;
+    border-color: black;
 }
 
 .confbtn {

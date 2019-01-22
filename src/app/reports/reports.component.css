@@ -4,7 +4,7 @@
 }
 
 nav {
-  background-color: #3A539B;
+  background-color: black;
   text-align: center;
   position: relative;
 }
@@ -48,7 +48,7 @@ h1 {
 }
 
 .card-heading {
-  background-color: #3A539B;
+  background-color: black;
   border-radius: 6%;
 }
 
@@ -706,21 +706,21 @@ to fill in unsightly gaps.
 }
 
 .home-icon {
-  color: #3A539B;
+  color: black;
 }
 
 .edit-icon {
   /*margin-left: 10px;*/
-  color: #3A539B;
+  color: black;
 }
 
 .left-icon {
   /*margin-left: 10px;*/
-  color: #3A539B;
+  color: black;
 }
 
 .save-icon {
-  color: #3A539B;
+  color: black;
 }
 
 .center {

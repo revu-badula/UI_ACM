@@ -57,27 +57,27 @@ a{
 }*/
 
 .home-icon{
-    color: #3A539B;
+    color: black;
 }
 
 
 
 .edit-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .left-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .save-icon{
-    color: #3A539B;
+    color: black;
 }
 
 .times-icon{
-	color: #3A539B;
+	color: black;
 }
 
 
@@ -103,7 +103,7 @@ a{
 }*/
 
 .home-icon{
-    color: #3A539B;
+    color: black;
 }
 
 
@@ -123,11 +123,11 @@ a{
 
 .left-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .edit-icon{
-    color: #3A539B;
+    color: black;
 }
 
 
@@ -172,8 +172,8 @@ table thead tr th{
 }
 
 .btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+	background-color: black;
+	border-color: black;
 }
 
 .showList{
@@ -215,32 +215,32 @@ a{
 }
 
 .home-icon{
-    color: #3A539B;
+    color: black;
 }
 
 
 
 .edit-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
     
     
 }
 
 .left-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .save-edit{
 	float: right;
 }
 .download-icon{
-	 color: #3A539B;
+	 color: black;
 }
 
 .modal-header{
-	background-color: #3A539B;
+	background-color: black;
 	color: #ffffff;
 }
 

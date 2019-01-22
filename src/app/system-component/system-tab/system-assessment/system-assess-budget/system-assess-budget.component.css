@@ -15,14 +15,14 @@
 i.fa {
     text-decoration: none !important;
     padding: 5px 4px;
-     color: #3A539B;
+     color: black;
 }
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-     color: #3A539B;
+     color: black;
    }
 .plus{
 	float:right;
@@ -31,7 +31,7 @@ i.fa {
  
     padding: 2px;
     margin-left: 20px;
-    color: #3A539B;
+    color: black;
     margin-top: 15px;
     
 }
@@ -54,8 +54,8 @@ i.fa {
     font-size:20px;
 }
 .btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+	background-color: black;
+	border-color: black;
 }
 .confbtn{
     margin-left: auto;

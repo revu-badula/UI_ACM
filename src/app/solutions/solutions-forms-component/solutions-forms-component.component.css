@@ -26,9 +26,9 @@ form{
 .after-heading{
 	width: 10%;
 	margin: auto;
-	background-color: #3A539B;
+	background-color: black;
 	animation: 1s ease-out 0s 1 slideInFromCenter;
-	/*border-radius: 10px solid #3A539B;*/
+	/*border-radius: 10px solid black;*/
 	/*margin-bottom: 15px;*/
 }
 
@@ -41,14 +41,14 @@ form{
     padding: 5px;
     border-radius: 10px;
     margin-left: 5px;
-    color:  #3A539B;
+    color:  black;
 }
 
 .light-bulb{
     margin-right: 3px;
     padding: 2px;
     margin-left: 3px;
-    color:  #3A539B;
+    color:  black;
 }
 
 .buttons{
@@ -115,6 +115,6 @@ label{
 }
 
 .btn{
-	background-color: #3A539B;
-	border-color: #3A539B;
+	background-color: black;
+	border-color: black;
 }

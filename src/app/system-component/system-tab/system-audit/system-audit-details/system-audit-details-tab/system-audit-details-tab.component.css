@@ -1,6 +1,6 @@
 
 .icons{
-	color:#3A539B;
+	color:black;
    vertical-align: middle;
    font-size: 20px;
    margin-bottom: 20px;
@@ -15,7 +15,7 @@
     margin-top: -15px;
     padding: 10px;
     margin-left: 50px;
-    color: #3A539B;
+    color: black;
 }
 
 .disabled>a,

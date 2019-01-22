@@ -465,12 +465,12 @@ h2 {
    float:right;
   font-size: 20px;
   margin-right: 20px;
-  color: #3A539B;
+  color: black;
  }
  
  
  .modal-header{
-   background-color: #3A539B;
+   background-color: black;
    color: #ffffff;
  }
  
@@ -483,15 +483,15 @@ h2 {
  
  
  .modal-title{
-   background-color: #3A539B;
+   background-color: black;
    color: #ffffff;
  }
  
  .confbtn{
   margin-left: auto;
   margin-right: auto;
-  background-color: #3A539B;
-   border-color: #3A539B
+  background-color: black;
+   border-color: black
  }
  
  /* 
@@ -545,7 +545,7 @@ h2 {
  .after-heading{
    width: 10%;
    margin: auto;
-   background-color: #3A539B;
+   background-color: black;
    animation: 1s ease-out 0s 1 slideInFromCenter;
  }
  
@@ -563,14 +563,14 @@ h2 {
   padding: 5px;
   border-radius: 10px;
   margin-left: 5px;
-  color: #3A539B;
+  color: black;
  }
  
  .light-bulb{
   margin-right: 3px;
   padding: 2px;
   margin-left: 3px;
-  color: #3A539B;
+  color: black;
  }
  
  table{
@@ -667,7 +667,7 @@ h2 {
  margin-left: 10px;
  }
  .icons{
-   color:#3A539B;
+   color:black;
   vertical-align: middle;
   font-size: 20px;
   margin-bottom: 20px;

@@ -2,19 +2,19 @@
     float: right;
     font-size: 20px;
     margin-right: 20px;
-    color: #3A539B;
+    color: black;
 }
 
 .modal-header {
-    background-color: #3A539B !important;
+    background-color: black !important;
     color: white;
 }
 
 .confbtn {
     margin-left: auto;
     margin-right: auto;
-    background-color: #3A539B;
-    border-color: #3A539B
+    background-color: black;
+    border-color: black
 }
 
 i.fa {

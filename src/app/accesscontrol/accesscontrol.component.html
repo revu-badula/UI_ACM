@@ -287,7 +287,7 @@
 
                                             </td>
                                             <td *ngIf="getLinkedPolicy.status && !showForm" (click)="deletePolicy(getLinkedPolicy.policyId)">
-                                                <i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i>
+                                                <i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black;"></i>
                                             </td>
 
 
@@ -324,7 +324,7 @@
                                 <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
                                     <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
                                     <!-- <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
-                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td> -->
+                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black;"></i></td> -->
                                 </tr>
 
 
@@ -353,7 +353,7 @@
                                 <tr *ngFor=" let policyDocument of appPolicy.policyDocumentsDTOs let i = index">
                                     <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;" (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
                                     <td *ngIf="policyDocument.activeFlag && showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
-                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black;"></i></td>
                                 </tr>
 
 

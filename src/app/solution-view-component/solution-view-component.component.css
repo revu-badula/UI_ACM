@@ -81,7 +81,7 @@ a{
 }
 
 .home-icon{
-    color: #3A539B;
+    color: black;
 }
 
 .home-icon:hover{
@@ -90,15 +90,15 @@ a{
 
 .edit-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .left-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .save-icon{
-    color: #3A539B;
+    color: black;
 }
 

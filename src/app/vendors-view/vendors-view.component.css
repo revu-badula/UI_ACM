@@ -39,7 +39,7 @@ a{
 }*/
 
 .home-icon{
-    color: #3A539B;
+    color: black;
 }
 
 .home-icon:hover{
@@ -48,16 +48,16 @@ a{
 
 .edit-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .left-icon{
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .save-icon{
-    color: #3A539B;
+    color: black;
 }
 
 
@@ -128,21 +128,21 @@ background: aliceblue; /* IE6-9 */
 }
 
 .home-icon{
-  color: #3A539B;
+  color: black;
 }
 
 .edit-icon{
   /*margin-left: 10px;*/
-  color: #3A539B;
+  color: black;
 }
 
 .left-icon{
   /*margin-left: 10px;*/
-  color: #3A539B;
+  color: black;
 }
 
 .save-icon{
-  color: #3A539B;
+  color: black;
 }
 
 
@@ -197,7 +197,7 @@ background: aliceblue; /* IE6-9 */
 }
 
 nav{
-  background-color: #3A539B;
+  background-color: black;
   text-align: center;
   position: relative;
 }
@@ -253,7 +253,7 @@ span{
 
 
 .card-heading{
-  background-color: #3A539B;
+  background-color: black;
   border-radius: 6%;
 }
 

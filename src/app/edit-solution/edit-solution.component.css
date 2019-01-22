@@ -40,21 +40,21 @@ a {
 }*/
 
 .home-icon {
-    color: #3A539B;
+    color: black;
 }
 
 .edit-icon {
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .left-icon {
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .save-icon {
-    color: #3A539B;
+    color: black;
 }
 
 form {
@@ -84,9 +84,9 @@ form {
 .after-heading {
     width: 10%;
     margin: auto;
-    background-color: #3A539B;
+    background-color: black;
     animation: 1s ease-out 0s 1 slideInFromCenter;
-    /*border-radius: 10px solid #3A539B;*/
+    /*border-radius: 10px solid black;*/
     /*margin-bottom: 15px;*/
 }
 
@@ -99,7 +99,7 @@ form {
     padding: 5px;
     border-radius: 10px;
     margin-left: 5px;
-    color: #3A539B;
+    color: black;
 }
 
 th {
@@ -110,7 +110,7 @@ th {
     margin-right: 3px;
     padding: 2px;
     margin-left: 3px;
-    color: #3A539B;
+    color: black;
 }
 
 .buttons {
@@ -181,8 +181,8 @@ input [readonly], select[readonly] {
 }
 
 .btn {
-    background-color: #3A539B;
-    border-color: #3A539B;
+    background-color: black;
+    border-color: black;
 }
 
 .navigate {
@@ -227,25 +227,25 @@ a {
 }*/
 
 .home-icon {
-    color: #3A539B;
+    color: black;
 }
 
 .edit-icon {
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .left-icon {
     /*margin-left: 10px;*/
-    color: #3A539B;
+    color: black;
 }
 
 .save-icon {
-    color: #3A539B;
+    color: black;
 }
 
 .download-icon {
-    color: #3A539B;
+    color: black;
 }
 
 table {
@@ -253,7 +253,7 @@ table {
 }
 
 .modal-header {
-    background-color: #3A539B;
+    background-color: black;
     color: #ffffff;
 }
 
@@ -396,7 +396,7 @@ input[type=button] {
 .after-heading{
     width: 10%;
     margin: auto;
-    background-color: #3A539B;
+    background-color: black;
     animation: 1s ease-out 0s 1 slideInFromCenter;
 }
 
@@ -414,14 +414,14 @@ input[type=button] {
     padding: 5px;
     border-radius: 10px;
     margin-left: 5px;
-    color:  #3A539B;
+    color:  black;
 }
 
 .light-bulb{
     margin-right: 3px;
     padding: 2px;
     margin-left: 3px;
-    color:  #3A539B;
+    color:  black;
 }
 
 .buttons{
@@ -436,8 +436,8 @@ input[type=button] {
 
 .btn{
     margin-left: 3px;
-    background-color: #3A539B;
-    border-color: #3A539B;
+    background-color: black;
+    border-color: black;
 }
 
 /*hr{

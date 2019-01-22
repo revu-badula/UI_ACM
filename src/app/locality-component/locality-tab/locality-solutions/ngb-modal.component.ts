@@ -215,7 +215,7 @@ import { DialogService } from '../../../dialog.service';
 									style="cursor: pointer; color: blue;">{{file.fileName}}</td>
 								<td *ngIf="file.status && showUpbtn"
 									(click)="deleteFile(file.deviceDocId,i)"
-									style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: #3A539B;"></i></td>
+									style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black;"></i></td>
 
 							
 							</tr>
