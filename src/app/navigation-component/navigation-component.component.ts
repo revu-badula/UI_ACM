@@ -47,5 +47,9 @@ export class NavigationComponentComponent implements OnInit {
     this.okta.logout();
     this.router.navigate(['/logout']);
   }
+  goTo()
+  {
+    this.router.navigate(['/dashboard']);
+  }
 
 }
