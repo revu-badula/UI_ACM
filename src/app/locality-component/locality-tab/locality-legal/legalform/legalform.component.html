@@ -11,7 +11,7 @@
   </div>
   <div class="modal-footer">
     <button *ngIf="!showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();f()">Close</button>
-    <button *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+    <button *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();back();">Ok</button>
   </div>
 </ng-template>
 

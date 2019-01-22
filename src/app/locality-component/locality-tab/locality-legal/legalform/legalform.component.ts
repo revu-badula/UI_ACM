@@ -132,14 +132,19 @@ export class LegalformComponent implements OnInit {
       this.loading = true;
       this.http.post(url_update, formData).subscribe((data: any) => {
         this.loading = false;
+        this.files=[];
         this.contentData = "legal has been updated.";
-
         this.modalService.open(this.content, ngbModalOptions);
       }, error => {
         this.loading = false;
         console.log(error);
       });
     }
+  }
+
+  back()
+  {
+    this.getAppId();
   }
 
   getAppMOUs(id) {
