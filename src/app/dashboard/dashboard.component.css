@@ -61,12 +61,13 @@ h1{
 }
 
 .card-title{
-  
+    text-align: center;
     color:black;
 }
 
 .card-body{
     background-color: #ECF0F1;
+
 }
 
 .card-link{

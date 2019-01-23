@@ -188,6 +188,7 @@ h4{
   display: inline-block;
   font-size: 16px;
   margin-left: 3px;
+  margin-right:4px;
 }
 
 h3 {
@@ -314,7 +315,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
   border-color: black;
   border-radius: 20px;
   box-shadow: 5px 10px 20px 1px rgba(125, 122, 118, 1); */
-  margin-top: 25px;
+ 
   background-color: black;
   border-color: black;
   color: white;

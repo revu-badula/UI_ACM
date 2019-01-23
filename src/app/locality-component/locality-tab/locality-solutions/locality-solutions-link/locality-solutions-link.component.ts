@@ -30,6 +30,7 @@ export class LocalitySolutionsLinkComponent implements OnInit {
   public showSigned: boolean = false;
   public showPagination: boolean = true;
   public archived: number = 0;
+  public show: boolean = false;
   constructor(private _apiservice: ApiserviceService, private router: Router,
     private utilService: UtilService, private dialogService: DialogService, private http: Http) {
     this.viewApplication(sessionStorage.getItem('localityName'));
@@ -61,6 +62,11 @@ export class LocalitySolutionsLinkComponent implements OnInit {
         }
         else {
           this.appSolutions = data.applicationViewDTO.applicationSolutionDTOs;
+          this.appSolutions.forEach(element => {
+            if (element.archive === 1) {
+              this.show = true;
+            }
+          });
         }
       }, error => {
         this.loading = false;
