@@ -59,7 +59,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Email ID<font color=red>*</font></label>
-                            <input type="email" class="form-control" id="email" placeholder="Email ID" formControlName="emailId">
+                            <input type="email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  id="email" placeholder="Email ID" formControlName="emailId">
                             <!-- <div style="color:red;padding-left: 43%;" *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors && editVendorForm.controls.vendorContact.get('emailId').dirty">
 
                                 Please enter valid email
