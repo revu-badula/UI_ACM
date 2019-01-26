@@ -15,8 +15,6 @@
   </div>
 </ng-template>
 
-
-
 <div class="plus">
     <div class="panel-heading">
         <span class=" title elipsis pull-right"> <a (click)="goBack()" title="Go back to audit section.">
@@ -32,8 +30,6 @@
   
 </div>
 
-<div>
-  <div class="former">
     <div id="form1">
       <div class="infoBox">
         <div class="headerOfBox">
@@ -65,8 +61,7 @@
           </div>
         </div>
       </div>
-      <hr />
-      <br><br>
+     
       <div class="infoBox">
         <div class="headerOfBox">
           <h4>Legal Documents</h4>
@@ -113,7 +108,7 @@
             <br><br>
             <div class="col-md-6">
             <div class="form-row">
-            <table border="1">
+            <table id="myTable">
               <tr>
                 <th>File Name</th>
                 <th *ngIf="!showForm">Action</th>
@@ -132,5 +127,3 @@
         </form>
       </div>
     </div>
-  </div>
-</div>

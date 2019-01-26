@@ -24,8 +24,8 @@
   </div>
 </div>
 <div>
-
-  <div class="former">
+<!-- 
+  <div class="former"> -->
     <div id="form1">
       <div class="infoBox">
         <div class="headerOfBox">
@@ -43,25 +43,19 @@
           </div>
         </div>
         <div class="form-row">
-          <!-- <div class="form-group col-md-6">
-          <label for="lastName">Name</label>
-          <div class="asterisk">*</div>
-          <input type="text" class="form-control" id="lastName" value="enter here">
-        </div> -->
+       
           <div class="form-group col-md-6">
             <label for="lastUpdatedAt">Last updated at</label>
             <input type="text" class="form-control" id="email" value="{{updatedTime}}" readonly="readonly">
           </div>
         </div>
       </div>
-      <hr />
-      <br>
+    
       <span class="plusbtn">
 
         <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right;" *ngIf="showSigned" (click)="createMOU()"></i>
       </span>
     
-      <br>
       <div class="infoBox">
         <div class="headerOfBox">
           <h4>Overview</h4>
@@ -85,8 +79,6 @@
                   *ngIf="!updt"></i>
                 <i class="fa fa-arrow-up" *ngIf="updt"></i></th>
               </tr>
-
-
             </thead>
             <tbody>
 
@@ -111,7 +103,7 @@
           <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
-
-  </div>
+<!-- 
+  </div> -->
 </div>
 <!-- <router-outlet></router-outlet> -->

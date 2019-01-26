@@ -263,10 +263,9 @@ body {
 
 .infoBox {
   padding:3%;
- 
   border-radius: 7px;
   padding-top: 0;
-  margin: -2.5%;
+  margin: 1.5%;
   min-width: 102%;
   display: inline-block;
   background: rgb(255, 255, 255);
@@ -362,6 +361,7 @@ table {
   background-color: #ffffff;
   text-align: center;
   border: 1px solid black;
+  table-layout: fixed !important;
 }
 
 .table-bordered tbody tr:nth-of-type(odd) {
@@ -507,10 +507,12 @@ input[type=button] {
   float: none;
 }
 
-#inputState {
+
+
+#inputState{
+   
   border: 1px solid #000;
   margin-top: 10px;
-  float: left;
   box-sizing: border-box;
   width: 50%;
   line-height: 2em;
@@ -792,4 +794,52 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 
 .button_base:hover {
   cursor: pointer;
+}
+
+.forms{
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  margin: 20px;
+  background-color:#fff;
+  
+}
+
+td{
+  word-wrap: break-word !important;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+
+a{
+  word-wrap: break-word !important;
+}
+
+
+
+.disclaimer{
+  margin-top: -4%;
+ }
+
+
+
+ #myTable {
+  border: none;
+  width:50%;
+  table-layout: fixed !important;
+}
+
+#myTable tr td:first-child {
+  width: 78%;
+}
+#myTable tr td:nth-child(2) {
+  width: 22%;
+}
+
+#myTable tr th:first-child {
+  width: 78%;
+  table-layout: fixed !important;
+}
+#myTable tr th:nth-child(2) {
+  width: 22%;
 }

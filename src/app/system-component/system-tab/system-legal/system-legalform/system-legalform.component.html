@@ -123,9 +123,9 @@
             <br><br>
             <div class="col-md-6">
               <div class="form-row">
-                <table border="1">
+                <table id="myTable">
                   <tr>
-                    <th>Filename</th>
+                    <th>File Name</th>
                     <th *ngIf="!showLegalBox">Action</th>
                   </tr>
                   <tr *ngFor="let file of mou.mouDocDTOs let i=index">

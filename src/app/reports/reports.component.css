@@ -677,14 +677,6 @@ to fill in unsightly gaps.
 
 
 
-.forms {
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  margin: 20px;
-  background-color: #EEEEEE;
-}
-
 .navigate {
   margin: 15px;
   padding: 5px;
@@ -855,7 +847,7 @@ span.gray {
   font-size: 13px;
 }
 
-td{
+td{ word-wrap: break-word;
   background: snow;
 }
 .titleBg{

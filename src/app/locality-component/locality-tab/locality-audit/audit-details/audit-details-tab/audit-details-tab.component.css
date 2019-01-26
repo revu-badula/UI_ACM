@@ -171,7 +171,7 @@ border-color: #ddd; */
     text-align: center;
     padding: 0;
     padding-bottom: 10px;
-    white-space: nowrap;
+    white-space: pre-wrap;
     position: relative;
     border-left-width: 0;
     border-bottom-width: 4px;

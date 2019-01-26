@@ -4,29 +4,7 @@
 </div>
 
 <app-option-list></app-option-list>
-<!-- <div class="navigate sticky-top">
 
-	<div class="form-options">
-		<div class="home-back">
-			<a routerLink="/dashboard">
-				<fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
-				 data-delay="0" [name]="'home'"></fa>
-			</a>
-			<a href="javascript:void(0)" (click)="backClicked()">
-				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
-				 data-delay="0" [name]="'arrow-left'"></fa>
-			</a>
-		</div> -->
-
-<!--  <fa class="edit-icon icons" [name]="'edit'"></fa> -->
-<!-- </div>
-</div> -->
-<!--<div class="first-div">
-        <div class="model"><p><b>Model/Solution: Democracy Suite</b></p></div>
-        <div class="version"><p><b>Version: D-Suite 4.14-E System</b></p></div>
-        </div>
-        <hr />-->
-<!--  <app-solutions-forms-component></app-solutions-forms-component> -->
 <ng-template #content let-c="close" let-d="dismiss">
 	<div class="modal-header">
 		<h4 class="modal-title" id="modal-basic-title">Success</h4>
@@ -39,17 +17,16 @@
 	</div>
 </ng-template>
 <form (ngSubmit)="createSolution()" enctype="multipart/form-data" #f="ngForm">
-	<!-- <div class="page-description">
-		<h3 class="line">Solutions</h3>
-	</div> -->
-	<br>
-	<div id="form1">
-		<div>
-			<h3 class="">Solutions</h3>
-			<hr class="after-heading">
-		</div>
-		<br>
+	<div>
+		<h3 class="">Solutions</h3>
+		<hr>
+	</div>
 
+	<div id="form1">
+		<div class="disclaimer"><span>Please use this screen to add certified solutions only</span>&nbsp;&nbsp;&nbsp;
+			<span style="float:right">
+				<font color=red>*</font> marked fields are mandatory
+			</span> </div>
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>General Information</h4>
@@ -58,7 +35,7 @@
 				<div class="model form-group col-md-6">
 					<label class="label-form" for="modelSolution"><b>Model/Solution</b><span class="asterisk">*</span></label>
 
-					<!-- <input type="text" class="form-control" id="modelSolution" ngModel name="modelSolution" (change)="solution.name = $event.target.value" required> -->
+
 					<input type="text" id="inputState" ngModel name="modelSolution" [(ngModel)]="solution.name" required>
 				</div>
 				<div class="version form-group col-md-6">
@@ -66,7 +43,7 @@
 						<span class="asterisk">*</span>
 					</label>
 
-					<!-- <input type="text" class="form-control" name="versionNumber" id="version" ngModel name="version" (change)="solution.versionNumber = $event.target.value" required> -->
+
 					<input type="text" name="versionNumber" id="inputState" ngModel name="version" [(ngModel)]="solution.versionNumber"
 					 required>
 				</div>
@@ -77,7 +54,7 @@
 
 					<select id="inputState" class="form-control" ngModel name="systemType" (change)="solution.systemTypeDTO.systemTypeId = $event.target.value"
 					 required>
-					 <option value="" selected>Choose...</option>
+						<option value="" selected>Choose...</option>
 						<option *ngFor="let systemType of systemTypeDTO" value="{{ systemType.systemTypeId }}">
 							{{ systemType.name }}
 						</option>
@@ -88,7 +65,7 @@
 
 					<select id="inputState" class="form-control" ngModel name="equipmentType" (change)="solution.solutionType = $event.target.value"
 					 required>
-					 <option value="" selected>Choose...</option>
+						<option value="" selected>Choose...</option>
 						<option *ngFor="let equipmentType of solutionType" value="{{ equipmentType.solutionTypeId }}">
 							{{ equipmentType.typeName }}
 					</select>
@@ -100,7 +77,7 @@
 
 					<select id="inputState" class="form-control" ngModel name="vendor" (change)="solution.vendorId = $event.target.value"
 					 required>
-					 <option value="" selected>Choose...</option>
+						<option value="" selected>Choose...</option>
 						<option *ngFor="let vendor of vendorDTO" value="{{ vendor.vendorId }}">
 							{{ vendor.name }}
 
@@ -110,9 +87,9 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="modelSolution">Precinct Type<span class="asterisk">*</span></label>
-					
-					 <select id="inputState" class="form-control" ngModel name="precinct"
-					 (change)="solution.precinctTypeId = $event.target.value" required>
+
+					<select id="inputState" class="form-control" ngModel name="precinct" (change)="solution.precinctTypeId = $event.target.value"
+					 required>
 						<option value="" selected>Choose...</option>
 						<option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{ precinct.typeName }}</option>
 
@@ -121,39 +98,8 @@
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
-		<!-- <div class="second-row form-row">
-            	<div class="form-group col-md-6">
-            <label class="label-form" for="systemType"><b>System Type</b></label><div class="asterisk">*</div>
-              <select class="form-control" id="systemType" required>
-                <option selected>Choose...</option>
-                <option value="1">EVS</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            	</div>
-            	<div class="form-group col-md-6">
-            		<label class="label-form" for="equipmentType"><b>Equipment Type</b></label><div class="asterisk">*</div>
-		              <select class="form-control" id="equipmentType" required>
-		                <option selected>Choose...</option>
-		                <option value="1">Optical/Digital Scan</option>
-		                <option value="2">Two</option>
-		                <option value="3">Three</option>
-		              </select>
-            	</div>
-            	<div class="form-group col-md-6">
-            		<label class="label-form" for="vendor"><b>Vendor</b></label><div class="asterisk">*</div>
-		              <select class="form-control" id="vendor" required>
-		                <option selected>Choose...</option>
-		                <option value="1">Dominion Voting</option>
-		                <option value="2">Two</option>
-		                <option value="3">Three</option>
-		              </select>
-            		
-            	</div>
-            </div> -->
+
+
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Installation and Hosting</h4>
@@ -166,35 +112,36 @@
 
 				<select id="inputState" class="form-control" ngModel name="hostingType" (change)="solution.hostingTypeDTO.hostingTypeId = $event.target.value"
 				 required>
-				 <option value="" selected>Choose...</option>
+					<option value="" selected>Choose...</option>
 					<option *ngFor="let hostingType of hostingTypeDTO" value="{{ hostingType.hostingTypeId }}">
 						{{ hostingType.name }}
 					</option>
 				</select>
 			</div>
-			<br>
-			<br>
+
 			<div class="installation form-group">
 
-				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.hostingTypeNotes" name="hostingNotes" #hostingTypeNotes="ngModel" maxlength="50000"> </textarea><!--<div style="float:right">{{50000 - hostingTypeNotes.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="hostingTypeNotes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
+				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.hostingTypeNotes"
+				 name="hostingNotes" #hostingTypeNotes="ngModel" maxlength="50000"> </textarea>
+				<!--<div style="float:right">{{50000 - hostingTypeNotes.value.length}} characters left </div> -->
+				<br>
+				<div *ngIf="hostingTypeNotes.errors?.maxlength" style="float:right">
+					<span style="color:tomato"> Exceeded the character limit. </span>
+				</div>
 
 			</div>
-
+			
 			<div class="attachments-div">
 
 				<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'hosting')">
 				<div class="display-file">
-					<br>
-					<br>
-					<br>
-					<table border="1">
+						<br>
+						<br>
+						<br>
+					<table id="myTable">
 
 						<tr>
-							<th>FileName</th>
+							<th>File Name</th>
 							<th>Action</th>
 						</tr>
 						<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
@@ -202,21 +149,13 @@
 							<td *ngIf="certDocDTO.section == 'hosting'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
 								 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: black;"></i></td>
 
-
 						</tr>
 					</table>
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
-		<!-- <p><b>Hosting Notes</b></p>
-            <textarea cols="100" rows="7" id="hostingNotes"> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="notes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div>  -->
+
+
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Certification Information</h4>
@@ -225,21 +164,19 @@
 			<div class="certification-test form-row">
 				<div class="form-group col-md-6">
 					<label for="approvedDate"><b>DoEL Approved Date</b><span class="asterisk">*</span></label>
-					<my-date-picker name="myname" ngModel class="inputState1" [(ngModel)]="approveDate" (dateChanged)="getApproveDt($event)" required></my-date-picker>
-					<!-- <p style="color: red;font-weight: bold;">{{err1}}</p> -->
-					<!-- <input type="date" class="form-control" id="approvedDate"> -->
+					<my-date-picker name="myname" ngModel class="inputState1" [(ngModel)]="approveDate" (dateChanged)="getApproveDt($event)"
+					 required></my-date-picker>
+
 				</div>
 				<div class="form-group col-md-6">
 					<label for="dueDate"><b>Renewal Due Date</b><span class="asterisk">*</span></label>
-					<my-date-picker name="rename" ngModel class="inputState1" [(ngModel)]="renewalDate" (dateChanged)="getRenewDt($event)" required></my-date-picker>
-					<!-- <p style="color: red;font-weight: bold;">{{err}}</p> -->
-					<!-- <input type="date" class="form-control" id="dueDate"> -->
+					<my-date-picker name="rename" ngModel class="inputState1" [(ngModel)]="renewalDate" (dateChanged)="getRenewDt($event)"
+					 required></my-date-picker>
+
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
+
 
 		<div class="infoBox">
 			<div class="headerOfBox">
@@ -274,8 +211,7 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="email"><b>Email Id</b></label>
-						<input type="email" id="email inputState" name="email" [(ngModel)]="labVendorsemail" [name]="'emailId'"
-						 readonly>
+						<input type="email" id="email inputState" name="email" [(ngModel)]="labVendorsemail" [name]="'emailId'" readonly>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="phone"><b>Phone Number</b></label>
@@ -285,147 +221,138 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="certification-test form-row">
-            <div class="form-group col-md-6">
-                <label for="email"><b>Email Id</b></label><div class="asterisk">*</div>
-                <input type="email" class="asterisk form-control" id="email" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="phone"><b>Phone Number</b></label><div class="asterisk">*</div>
-                <input type="text" class="asterisk form-control" id="phone" required>
-            </div>
-         </div> -->
-	
-	<br>
-	<br>
-	<br>
-	<div class="infoBox">
-		<div class="headerOfBox">
-			<h4>Standard</h4>
-		</div>
-
-		<div class="installation form-group">
-
-			<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes" #certStadard="ngModel" maxlength="50000"> </textarea><!--<div style="float:right">{{50000 - certStadard.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="certStadard.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
-
-			<div class="attachments-div">
-				<input type="file" #fileInput1 *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
-				<div class="display-file">
-					<br>
-					<br>
-					<br>
-					<table border="1">
-						<tr>
-							<th>FileName</th>
-							<th>Action</th>
-						</tr>
-						<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
-							<td *ngIf="certDocDTO.section == 'standard'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
-							<td *ngIf="certDocDTO.section == 'standard'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
-								 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: black;"></i></td>
 
 
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
-	<br>
-	<br>
-	<div class="infoBox">
-		<div class="headerOfBox">
-			<h4>Patches</h4>
-		</div>
-
-		<div class="installation form-group">
-			<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.patches" [name]="'solution_patches'" #patches="ngModel" maxlength="50000"> </textarea><!--<div style="float:right">{{50000 - patches.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="patches.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
-			<div class="attachments-div">
-				<p class="attachments">
-					<b>Attachments</b>
-				</p>
-				<input type="file" #fileInput2 *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
-				<div class="display-file">
-					<br>
-					<br>
-					<br>
-					<table border="1">
-						<tr>
-							<th>FileName</th>
-							<th>Action</th>
-						</tr>
-						<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
-							<td *ngIf="certDocDTO.section == 'patches'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
-							<td *ngIf="certDocDTO.section == 'patches'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
-								 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: black;"></i></td>
-
-
-						</tr>
-
-
-
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
-	<br><br>
-	<div>
 		<div class="infoBox">
 			<div class="headerOfBox">
-				<h4>Notes</h4>
+				<h4>Standard</h4>
 			</div>
 
 			<div class="installation form-group">
-				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.notes" [name]="'solution_notes'" #notes="ngModel" maxlength="50000"> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="notes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
+
+				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"
+				 #certStadard="ngModel" maxlength="50000"> </textarea>
+				<!--<div style="float:right">{{50000 - certStadard.value.length}} characters left </div> -->
+				<br>
+				<div *ngIf="certStadard.errors?.maxlength" style="float:right">
+					<span style="color:tomato"> Exceeded the character limit. </span>
+				</div>
+
 				<div class="attachments-div">
-					<p class="attachments">
-						<b>Attachments</b>
-					</p>
-					<input type="file" #fileInput3 *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
+					<input type="file" #fileInput1 *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
 					<div class="display-file">
 						<br>
 						<br>
 						<br>
-						<table border="1">
+						<table id="myTable">
 							<tr>
-								<th>FileName</th>
+								<th>File Name</th>
 								<th>Action</th>
 							</tr>
 							<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
-								<td *ngIf="certDocDTO.section == 'solution'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
-								<td *ngIf="certDocDTO.section == 'solution'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
+								<td *ngIf="certDocDTO.section == 'standard'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
+								<td *ngIf="certDocDTO.section == 'standard'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
 									 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: black;"></i></td>
 
 
 							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="infoBox">
+			<div class="headerOfBox">
+				<h4>Patches</h4>
+			</div>
+
+			<div class="installation form-group">
+				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.patches" [name]="'solution_patches'"
+				 #patches="ngModel" maxlength="50000"> </textarea>
+				<!--<div style="float:right">{{50000 - patches.value.length}} characters left </div> -->
+				<br>
+				<div *ngIf="patches.errors?.maxlength" style="float:right">
+					<span style="color:tomato"> Exceeded the character limit. </span>
+				</div>
+				<div class="attachments-div">
+					<p class="attachments">
+						<b>Attachments</b>
+					</p>
+					<input type="file" #fileInput2 *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
+					<div class="display-file">
+						<br>
+						<br>
+						<br>
+						<table id="myTable">
+							<tr>
+								<th>File Name</th>
+								<th>Action</th>
+							</tr>
+							<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
+								<td *ngIf="certDocDTO.section == 'patches'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
+								<td *ngIf="certDocDTO.section == 'patches'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
+									 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: black;"></i></td>
+
+
+							</tr>
+
+
 
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
+		<div>
+			<div class="infoBox">
+				<div class="headerOfBox">
+					<h4>Notes</h4>
+				</div>
+
+				<div class="installation form-group">
+					<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.notes" [name]="'solution_notes'"
+					 #notes="ngModel" maxlength="50000"> </textarea>
+					<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+					<br>
+					<div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> Exceeded the character limit. </span>
+					</div>
+					<div class="attachments-div">
+						<p class="attachments">
+							<b>Attachments</b>
+						</p>
+						<input type="file" #fileInput3 *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
+						<div class="display-file">
+							<br>
+							<br>
+							<br>
+							<table id="myTable">
+								<tr>
+									<th>File Name</th>
+									<th>Action</th>
+								</tr>
+								<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
+									<td *ngIf="certDocDTO.section == 'solution'" (click)="showFile(certDocDTO.certDocId)" style="cursor: pointer; color: blue;">{{certDocDTO.fileName}}</td>
+									<td *ngIf="certDocDTO.section == 'solution'" (click)="deleteFile(certDocDTO.certDocId,i)" style="cursor: pointer;"><i
+										 class=" fa fa-trash" aria-hidden="true" style="font-size: 24px; color: black;"></i></td>
+
+
+								</tr>
+
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
-	<div class="buttons" style="margin-right:7%">
-		<!-- <button type="submit" (click)="open(content)" [disabled]="!f.valid" class="submit btn btn-primary">Submit</button> -->
+	<div class="buttons" style="margin-right:10%">
+
 		<button type="submit" class="submit btn btn-primary" [disabled]="!f.valid">Submit</button>
 		<button type="cancel" (click)="cancelButton($event)" class="cancel btn btn-primary">Cancel</button>
-		<!-- <button type="submit" class="submit btn btn-primary" [disabled]="!form.valid">Submit</button> -->
+
 	</div>
 </form>

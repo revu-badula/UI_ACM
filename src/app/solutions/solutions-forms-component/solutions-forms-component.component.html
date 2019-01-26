@@ -1,8 +1,12 @@
+
+<div class="page-description"><h3>Solutions</h3>
+</div>
 <form (ngSubmit)="onSubmit()" #form="ngForm">
-			<div class="page-description"><h3>Solutions</h3>
-    		<hr class="after-heading" />
-    		</div>
-        	<div class="tip"><p class="tip-text"><fa class="light-bulb" [name]="'lightbulb-o'"></fa>Tip:</p></div>
+    <div class="disclaimer"><span>Please use this screen to add certified solutions only</span>&nbsp;&nbsp;&nbsp;
+			<span style="float:right">
+				<font color=red>*</font> marked fields are mandatory
+			</span> </div>
+        
         	<h4>General Information</h4>
             <div class="model-solution-row form-row">
             	<div class="model form-group col-md-6">
@@ -42,37 +46,7 @@
             		
             	</div>
             </div>
-        	<!-- <div class="second-row form-row">
-            	<div class="form-group col-md-6">
-            <label class="label-form" for="systemType"><b>System Type</b></label><div class="asterisk">*</div>
-              <select class="form-control" id="systemType" required>
-                <option selected>Choose...</option>
-                <option value="1">EVS</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            	</div>
-            	<div class="form-group col-md-6">
-            		<label class="label-form" for="equipmentType"><b>Equipment Type</b></label><div class="asterisk">*</div>
-		              <select class="form-control" id="equipmentType" required>
-		                <option selected>Choose...</option>
-		                <option value="1">Optical/Digital Scan</option>
-		                <option value="2">Two</option>
-		                <option value="3">Three</option>
-		              </select>
-            	</div>
-            	<div class="form-group col-md-6">
-            		<label class="label-form" for="vendor"><b>Vendor</b></label><div class="asterisk">*</div>
-		              <select class="form-control" id="vendor" required>
-		                <option selected>Choose...</option>
-		                <option value="1">Dominion Voting</option>
-		                <option value="2">Two</option>
-		                <option value="3">Three</option>
-		              </select>
-            		
-            	</div>
-            </div> -->
-            <hr />
+        
            <h4>Installation and Hosting</h4>
             <div class="installation form-group col-md-6">
             <label for="hostingType"><b>Hosting Type</b></label><div class="asterisk">*</div>
@@ -91,12 +65,7 @@
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
           </div>
-            <!-- <p><b>Hosting Notes</b></p>
-            <textarea cols="100" rows="7" id="hostingNotes"> </textarea><div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-					 <!-- <br>
-					 <div *ngIf="notes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div>  -->
+           
             <hr />
             <h4>Certification Information</h4>
             <div class="certification-test form-row">
@@ -141,16 +110,7 @@
                 <input type="text" class="asterisk form-control" id="phone" ngModel name="phone" required>
             </div>
          </div>
-          <!-- <div class="certification-test form-row">
-            <div class="form-group col-md-6">
-                <label for="email"><b>Email Id</b></label><div class="asterisk">*</div>
-                <input type="email" class="asterisk form-control" id="email" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="phone"><b>Phone Number</b></label><div class="asterisk">*</div>
-                <input type="text" class="asterisk form-control" id="phone" required>
-            </div>
-         </div> -->
+     
           </div>
          <hr />
          <h4>Attachments</h4>

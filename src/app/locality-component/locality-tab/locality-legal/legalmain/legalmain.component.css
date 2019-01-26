@@ -1,7 +1,7 @@
 .elipsis {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-wrap;
 }
 
 
@@ -50,7 +50,7 @@
     margin: 20px;
     background-color: #EEEEEE;
 }
-th{
+th{  white-space: pre-wrap;
     font-weight: bold;
     color: black;
    
@@ -191,23 +191,7 @@ margin-left: 10px;
    input[type=button] {
     float:none;
    }
-   
-   #inputState{
-    
-    border: 1px solid #000;
-    margin-top: 10px;
-    float: left;
-   
-   
-    box-sizing: border-box;
-    width: 50%;
-    line-height: 2em;
-    border: 1px solid #AAA;
-    border-radius: 0.4rem;
-    -webkit-border-radius: 0.4rem;
-    -moz-border-radius: 0.4rem;
-   
-   }
+
    
    
    

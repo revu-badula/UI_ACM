@@ -45,9 +45,13 @@ width : 78%;
   width:22%;
   float: right;
   height:100%;
-  bottom:0px;
+  bottom:0px; 
+}
 
- 
+#checkBoxId{
+margin: 0;
+width:1%;
+
 }
 
 

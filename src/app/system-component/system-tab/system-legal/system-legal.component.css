@@ -1,7 +1,7 @@
 .elipsis {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-wrap;
 }
 
 .plus{
@@ -48,7 +48,7 @@
     margin: 20px;
     background-color: #EEEEEE;
 }
-th{
+th{  white-space: pre-wrap;
     font-weight: bold;
     color: black;
    

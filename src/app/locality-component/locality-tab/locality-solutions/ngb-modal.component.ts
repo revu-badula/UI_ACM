@@ -204,7 +204,7 @@ import { DialogService } from '../../../dialog.service';
 		<br>
         <div class="display-file">
         <br>
-						<table border="1">
+						<table id="myTable">
 							<tr>
 								<th id="colorWhite">FileName</th>
 								<th *ngIf="showUpbtn" id="colorWhite">Action</th>

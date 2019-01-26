@@ -62,7 +62,7 @@ color:white;
 
 
 
-th{
+th{  white-space: pre-wrap;
   font-weight: bold;
   color: black;
  
@@ -112,13 +112,7 @@ background-color:white;
 }
 
 
-.forms{
-padding: 20px;
-border-radius: 10px;
-border: 1px solid transparent;
-margin: 20px;
-background-color: #EEEEEE;
-}
+
 .clear-right {
 clear:right;
 overflow: hidden;
@@ -181,22 +175,7 @@ tbody tr:nth-of-type(odd) {
   float:none;
  }
  
- #inputState{
-  
-  border: 1px solid #000;
-  margin-top: 10px;
-  float: left;
- 
- 
-  box-sizing: border-box;
-  width: 50%;
-  line-height: 2em;
-  border: 1px solid #AAA;
-  border-radius: 0.4rem;
-  -webkit-border-radius: 0.4rem;
-  -moz-border-radius: 0.4rem;
- 
- }
+
  
  
  

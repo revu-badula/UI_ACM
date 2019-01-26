@@ -76,9 +76,9 @@
 
       </fieldset>
       <br>
-      <table border="1">
+      <table id="myTable">
         <tr>
-          <th>Filename</th>
+          <th>File Name</th>
           <th *ngIf="!showForm">Action</th>
         </tr>
         <tr *ngFor="let file of appAudit.appAuditFileDTOs let i = index">

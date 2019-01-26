@@ -1,15 +1,6 @@
-.forms{
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  margin: 20px;
-  background-color: #EEEEEE;
 
 
-
-}
-
-th{
+th{  white-space: pre-wrap;
 	text-align: center;
 }
 .table-fixed thead {

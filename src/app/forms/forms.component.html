@@ -17,7 +17,7 @@
         <h3 class="pageTitle">Vendors</h3>
     </div>
     <hr>
-    <form [formGroup]="editVendorForm" id="myForm" class="forms" (ngSubmit)="createVendor(editVendorForm.value)">
+    <form [formGroup]="editVendorForm" id="myForm" (ngSubmit)="createVendor(editVendorForm.value)">
            
         <div id="form1" >
              <div class="disclaimer"><span>Please use this screen to add certified vendors only</span>&nbsp;&nbsp;&nbsp;
@@ -36,9 +36,7 @@
                     </div>
                 </div>
             </div>
-            <hr />
-            <br><br>
-            <!-- <h3>Contact Information</h3> -->
+           
             <div class="infoBox">
                 <div formGroupName="vendorContact">
                     <div class="form-row headerOfBox">
@@ -60,12 +58,7 @@
                         <div class="form-group col-md-6">
                             <label for="email">Email ID<font color=red>*</font></label>
                             <input type="email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  id="email" placeholder="Email ID" formControlName="emailId">
-                            <!-- <div style="color:red;padding-left: 43%;" *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors && editVendorForm.controls.vendorContact.get('emailId').dirty">
-
-                                Please enter valid email
-
-                            </div> -->
-
+    
                             <div *ngIf="editVendorForm.controls.vendorContact.get('emailId').dirty">
                                 <div *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors?.required" style="color:red;padding-left: 43%;">
                                     Email is required
@@ -84,8 +77,6 @@
                     </div>
                 </div>
             </div>
-            <hr />
-            <br><br>
             <div class="infoBox">
                 <div formGroupName="vendorAddress">
                     <div class="form-row headerOfBox">
@@ -172,11 +163,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </form>
-    <div class="buttons" style="margin-right: 9%;">
+    <div class="buttons" style="margin-right:11%;">
         <button type="submit" class="btn btn-primary" form="myForm" [disabled]="editVendorForm.invalid">Submit</button>
         <button type="cancel" class="btn btn-primary" (click)="cancelButton($event)">Cancel</button>
 

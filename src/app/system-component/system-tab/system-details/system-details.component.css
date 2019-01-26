@@ -8,14 +8,7 @@
     color: black;
 }
 
-.forms{
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    margin: 20px;
-    background-color: #EEEEEE;
-    overflow: hidden;
-}
+
 
 .clear-right {
 	clear:right;
@@ -104,7 +97,7 @@ tr{
 
 
 
-th{
+th{  white-space: pre-wrap;
     font-weight: bold;
     color: black;
    
@@ -237,23 +230,7 @@ margin-left: 10px;
    input[type=button] {
     float:none;
    }
-   
-   #inputState{
-    
-    border: 1px solid #000;
-    margin-top: 10px;
-    float: left;
-   
-   
-    box-sizing: border-box;
-    width: 50%;
-    line-height: 2em;
-    border: 1px solid #AAA;
-    border-radius: 0.4rem;
-    -webkit-border-radius: 0.4rem;
-    -moz-border-radius: 0.4rem;
-   
-   }
+
    
    
    

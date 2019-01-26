@@ -21,7 +21,7 @@ i.fa[_ngcontent-c23] {
     color: black;
 }
 
-th{
+th{  white-space: pre-wrap;
     font-weight: bold;
     color: black;
    
@@ -66,13 +66,8 @@ tbody tr:nth-child(even) {
 }
 
 
-.forms{
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  margin: 20px;
-  background-color: #EEEEEE;
-}
+
+
 .clear-right {
 	clear:right;
 	overflow: hidden;

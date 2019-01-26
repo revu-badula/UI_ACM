@@ -3,10 +3,10 @@
 </div>
 
 
-
-
-
 <form class="forms">
+    <h3 class="pageTitle">Solutions</h3>
+    <hr>
+    <br>
   <table class="table table-bordered">
     <thead>
     <tr>
@@ -22,16 +22,16 @@
       <th (click)="handleSortc()" style="color:white">System Type<i
 					class="sorting fa fa-arrow-down" *ngIf="!de"></i> <i
 					class="sorting fa fa-arrow-up" *ngIf="de"></i></th>
-      <th style="color:white" (click)="handleSort1('certDt')">DoEL Approved Date<i
+      <th style="color:white" (click)="handleSort1('certDt')">Approved Date<i
         class="sorting fa fa-arrow-down" *ngIf="!signed"></i> <i
         class="sorting fa fa-arrow-up" *ngIf="signed"></i></th>
-      <th style="color:white" (click)="handleSort2('certRenewalDueDt')">Renewal Due Date<i
+      <th style="color:white" (click)="handleSort2('certRenewalDueDt')">Renewal Date<i
         class="sorting fa fa-arrow-down" *ngIf="!rendt"></i> <i
         class="sorting fa fa-arrow-up" *ngIf="rendt"></i></th> 
-      <th style="color:white" (click)="handleSort3('updatedBy')">Last UpdatedBy<i
+      <th style="color:white" (click)="handleSort3('updatedBy')"> UpdatedBy<i
         class="sorting fa fa-arrow-down" *ngIf="!updtBy"></i> <i
         class="sorting fa fa-arrow-up" *ngIf="updtBy"></i></th>
-      <th style="color:white" (click)="handleSort4('updatedTs')">Last Updated Date<i
+      <th style="color:white" (click)="handleSort4('updatedTs')"> Updated Date<i
         class="sorting fa fa-arrow-down" *ngIf="!updt"></i> <i
         class="sorting fa fa-arrow-up" *ngIf="updt"></i></th>
 

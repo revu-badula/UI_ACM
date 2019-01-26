@@ -722,14 +722,7 @@
   .table-bordered td, .table-bordered th {
     border: 1px solid black;
   }
-  
-  .forms {
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    margin: 20px;
-    background-color: #EEEEEE;
-  }
+ 
   
   .navigate {
     margin: 15px;
@@ -1503,14 +1496,7 @@
     border: 1px solid black;
   }
   
-  .forms {
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    margin: 20px;
-    background-color: #EEEEEE;
-  }
-  
+
   .navigate {
     margin: 15px;
     padding: 5px;
@@ -2283,13 +2269,7 @@
     border: 1px solid black;
   }
   
-  .forms {
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    margin: 20px;
-    background-color: #EEEEEE;
-  }
+
   
   .navigate {
     margin: 15px;

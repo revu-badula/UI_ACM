@@ -5,10 +5,7 @@
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
 	<div class="form-options">
 		<div class="home-back">
-			<a routerLink="/dashboard">
-				<fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
-				 data-delay="0" [name]="'home'"></fa>
-			</a> <a href="javascript:void(0)" routerLink="/solutionsView">
+			<a href="javascript:void(0)" routerLink="/solutionsView">
 				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
 				 data-delay="0" [name]="'arrow-left'"></fa>
 			</a>
@@ -19,15 +16,6 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
 
 <ng-template #content let-c="close" let-d="dismiss">
 	<div class="modal-header">
@@ -41,14 +29,19 @@
 	</div>
 </ng-template>
 <div>
+	
+		<div class="page-description">
+				<h3>Solutions</h3>
+				<hr >
+			</div>
 	<form  (ngSubmit)="createSolution()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
 		<br>
 		<div id="form1" style="padding-top: 3%;">
-			<div>
-				<h3 class="">Solutions</h3>
-				<hr class="after-heading">
-			</div>
-			<br>
+				<div class="disclaimer" *ngIf="!showForm"><span>Please use this screen to edit certified solutions only</span>&nbsp;&nbsp;&nbsp;
+					<span style="float:right">
+						<font color=red>*</font> marked fields are mandatory
+					</span> </div>
+			
 			<fieldset [disabled]='showForm'>
 
 				<div class="infoBox">
@@ -60,7 +53,7 @@
 							<label class="label-form" for="modelSolution"><b>Model/Solution</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="modelSolution" ngModel name="modelSolution" [(ngModel)]="solution.name"
-							 required>
+							 readonly>
 						</div>
 						<div class="form-group col-md-6">
 								<label class="label-form" for="version"><b>Version</b><span class="asterisk">*</span>
@@ -75,26 +68,26 @@
 									Type</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="systemType" *ngIf="showForm" [(ngModel)]="solution.systemTypeDTO.name"
-							 [name]="'system_name'"> <select style="width: 50%;" class="form-control" id="systemType" ngModel name="systemType"
+							 [name]="'system_name'">
+							 
+							 <input style="width: 50%;" class="form-control" id="systemType" ngModel name="systemType"
 							 *ngIf="!showForm" [(ngModel)]="solution.systemTypeDTO.systemTypeId" (change)="solution.systemTypeDTO.systemTypeId = $event.target.value"
-							 required>
+							 readonly>
 
-								<option *ngFor="let systemType of systemTypeDTO" value="{{ systemType.systemTypeId }}">{{ systemType.name
-									}}</option>
-							</select>
 						</div>
 						<div class="form-group col-md-6">
 							<label class="label-form" for="equipmentType"><b>Equipment
 									Type</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="equipmentType" *ngIf="showForm" [(ngModel)]="solution.solutionTypeName"
-							 [name]="'solution_type'"> <select style="width: 50%;" class="form-control" id="equipmentType" ngModel name="equipmentType"
+							 [name]="'solution_type'"> 
+							 
+							 <input style="width: 50%;" class="form-control" id="equipmentType" ngModel name="equipmentType"
 							 *ngIf="!showForm" [(ngModel)]="solution.solutionType" (change)="solution.solutionType = $event.target.value"
-							 required>
-								<option *ngFor="let equipmentType of solutionType" value="{{ equipmentType.solutionTypeId }}">{{
-									equipmentType.typeName }}</option>
+							 readonly>
+								<!-- <option *ngFor="let equipmentType of solutionType" value="{{ equipmentType.solutionTypeId }}">{{
+									equipmentType.typeName }}</option> -->
 
-							</select>
 						</div>
 					</div>
 					<div class="form-row">
@@ -102,22 +95,24 @@
 							<label class="label-form" for="vendor"><b>Vendor</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="vendor" *ngIf="showForm" [(ngModel)]="solution.vendor.name" [name]="'vendor_details'">
-							<select class="form-control" style="width: 50%;" id="vendor" ngModel name="vendor" *ngIf="!showForm" [(ngModel)]="solution.vendorId"
-							 (change)="solution.vendorId = $event.target.value" required>
-								<option *ngFor="let vendor of vendorDTO" value="{{ vendor.vendorId }}">{{ vendor.name }}</option>
-							</select>
+							<input class="form-control" style="width: 50%;" id="vendor" ngModel name="vendor" *ngIf="!showForm" [(ngModel)]="solution.vendorId"
+							 (change)="solution.vendorId = $event.target.value" readonly>
+								<!-- <option *ngFor="let vendor of vendorDTO" value="{{ vendor.vendorId }}">{{ vendor.name }}</option> -->
+							
 						</div>
 						<div class="form-group col-md-6">
 							<label class="label-form" for="modelSolution"><b>Precinct
 									Type</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="modelSolution" *ngIf="showForm" [(ngModel)]="solution.precinctTypeName"
-							 [name]="'precinct_type'"> <select style="width: 50%;" class="form-control" id="vendor" ngModel name="precinctType"
+							 [name]="'precinct_type'"> 
+							 
+							 <input style="width: 50%;" class="form-control" id="vendor" ngModel name="precinctType"
 							 *ngIf="!showForm" [(ngModel)]="solution.precinctTypeId" (change)="solution.precinctTypeId = $event.target.value"
-							 required>
-								<option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{
-									precinct.typeName }}</option>
-							</select>
+							 readonly>
+								<!-- <option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{
+									precinct.typeName }}</option> -->
+							
 						</div>
 					</div>
 					<div class="form-row">
@@ -132,8 +127,7 @@
 						</div>
 					</div>
 				</div>
-				<hr />
-				<br><br>
+				
 				<div class="infoBox">
 					<div class="headerOfBox">
 						<h4>Installation and Hosting</h4>
@@ -166,16 +160,16 @@
 					 <div *ngIf="hostingTypeNotes.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
-						<div class="attachments-div">
-							<input type="file" #fileInput *ngIf="!showForm" (change)="createCertDTO($event,'hosting')">
+						<div class="attachments-div" *ngIf="!showForm">
+							<input type="file" #fileInput  (change)="createCertDTO($event,'hosting')">
 
 							<div class="display-file">
 								<br>
 								<br>
 								<br>
-								<table border="1">
+								<table id="myTable">
 									<tr>
-										<th>FileName</th>
+										<th>File Name</th>
 										<th *ngIf="!showFrm">Action</th>
 									</tr>
 									<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
@@ -192,8 +186,7 @@
 						</div>
 					</div>
 				</div>
-				<hr />
-				<br><br>
+				
 				<div class="infoBox">
 					<div class="headerOfBox">
 						<h4>Certification Information</h4>
@@ -210,8 +203,7 @@
 						</div>
 					</div>
 				</div>
-				<hr />
-				<br><br>
+				
 				<div class="infoBox">
 					<div class="headerOfBox">
 						<h4>Voting System Test Laboratory - VSTL</h4>
@@ -259,8 +251,6 @@
 					</div>
 				</div>
 
-				<hr />
-				<br><br>
 				<div class="infoBox">
 					<div class="headerOfBox">
 						<h4>Standard</h4>
@@ -273,16 +263,16 @@
 					 <div *ngIf="certStadard.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
-						<div class="attachments-div">
+						<div class="attachments-div"  >
 
-							<input type="file" #fileInput1 *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
+							<input type="file" #fileInput1 (change)="createCertDTO($event,'standard')" *ngIf="!showForm">
 							<div class="display-file">
 								<br>
 								<br>
 								<br>
-								<table border="1">
+								<table id="myTable">
 									<tr>
-										<th>FileName</th>
+										<th>File Name</th>
 										<th *ngIf="!showFrm">Action</th>
 									</tr>
 									<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
@@ -298,8 +288,7 @@
 						</div>
 					</div>
 				</div>
-				<hr />
-				<br><br>
+				
 				<div class="infoBox">
 					<div class="headerOfBox">
 						<h4>Patches</h4>
@@ -312,13 +301,13 @@
 					 <div *ngIf="patches.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
-						<div class="attachments-div">
-							<input type="file" #fileInput2 *ngIf="!showForm" (change)="createCertDTO($event,'patches')">
+						<div class="attachments-div"  >
+							<input type="file" #fileInput2 (change)="createCertDTO($event,'patches')" *ngIf="!showForm">
 							<div class="display-file">
 								<br><br><br>
-								<table border="1">
+								<table id="myTable">
 									<tr>
-										<th>FileName</th>
+										<th>File Name</th>
 										<th *ngIf=!showFrm>Action</th>
 									</tr>
 									<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
@@ -334,8 +323,7 @@
 						</div>
 					</div>
 				</div>
-				<hr />
-				<br><br>
+			
 				<div class="infoBox">
 					<div class="headerOfBox">
 					<h4>Notes</h4>
@@ -347,16 +335,16 @@
 					 <div *ngIf="notes.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
-						<div class="attachments-div">
+						<div class="attachments-div"  >
 							
-							<input type="file" #fileInput3 *ngIf="!showForm" (change)="createCertDTO($event,'solution')">
+							<input type="file" #fileInput3 (change)="createCertDTO($event,'solution')" *ngIf="!showForm">
 							<div class="display-file">
 								<br>
 								<br>
 								<br>
-								<table border="1">
+								<table id="myTable">
 									<tr>
-										<th>FileName</th>
+										<th>File Name</th>
 										<th *ngIf=!showFrm>Action</th>
 									</tr>
 									<tr *ngFor=" let certDocDTO of solution.certDocDTOs let i=index ">
@@ -377,8 +365,8 @@
 
 		</div>
 	</form>
-	<div class="buttons">
-		<button type="submit" style="margin-right: 9em;" class="cancel btn btn-primary" form="myForm" [disabled]="!editForm.valid">Submit</button>
+	<div class="buttons " style="margin-right: 10%" >
+		<button type="submit" class="cancel btn btn-primary" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" >Submit</button>
 		<button type="cancel" class="cancel btn btn-primary" (click)="backClicked($event)">Cancel</button>
 	</div>
 </div>

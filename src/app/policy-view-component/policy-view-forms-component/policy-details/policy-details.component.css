@@ -85,14 +85,14 @@ tbody tr:nth-of-type(odd){
 	background-color: #EEEEEE !important;
 }
 
-table thead tr th{
+table thead tr th{  white-space: pre-wrap;
 	font-weight: 500;
 	color: black;
 	border: 1px solid black;
 	background-color: #cecfd5;
 }
 
-table thead tr td{
+table thead tr td{ word-wrap: break-word;
 	color: black;
 }
 
