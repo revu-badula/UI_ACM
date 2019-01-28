@@ -68,6 +68,7 @@ export class AuditFirstComponent implements OnInit {
   public mainData: any;
   public showButton: boolean = false;
   public updatedTime: any;
+  public policyErr:any;
   public desc: boolean = false;
   public appAuditDTOs: any;
   public editData: any;
@@ -221,6 +222,14 @@ export class AuditFirstComponent implements OnInit {
       this._apiservice.fetchPolicyGroupForAA(auditID)
         .subscribe((data: any) => {
           this.policyTypes = data;
+          if(data.length > 0)
+          {
+            this.policyErr="";
+          }
+          else{
+            this.policyErr ="select source with controls."
+          }
+         
         }, error => { console.log(error) });
     }
   }

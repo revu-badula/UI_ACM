@@ -42,7 +42,8 @@ export class AssessDetailsComponent implements OnInit {
   public auditTypes: any;
   public policyTypes: any;
   public policy: boolean;
-  public info: any
+  public info: any;
+  public policyErr:any;
   public errorfile: string = "";
   public policyData: any;
   public p: number = 1;
@@ -368,6 +369,13 @@ export class AssessDetailsComponent implements OnInit {
       this._apiservice.fetchPolicyGroupForAA(auditID)
         .subscribe((data: any) => {
           this.policyTypes = data;
+          if(data.length > 0)
+          {
+            this.policyErr="";
+          }
+          else{
+            this.policyErr ="select source with controls."
+          }
         }, error => {
           console.log(error)
         });

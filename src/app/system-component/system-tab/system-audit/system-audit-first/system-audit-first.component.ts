@@ -68,6 +68,7 @@ export class SystemAuditFirstComponent implements OnInit {
   public updatedTime: any;
   public desc: boolean = false;
   public appAuditDTOs: any;
+  public policyErr:any;
   public editData: any;
   public showOriginal: boolean = true;
   public showEdit: boolean = false;
@@ -215,6 +216,13 @@ export class SystemAuditFirstComponent implements OnInit {
       this._apiservice.fetchPolicyGroupForAA(auditID)
         .subscribe((data: any) => {
           this.policyTypes = data;
+          if(data.length > 0)
+          {
+            this.policyErr="";
+          }
+          else{
+            this.policyErr ="select source with controls."
+          }
         }, error => { console.log(error) });
     }
   }

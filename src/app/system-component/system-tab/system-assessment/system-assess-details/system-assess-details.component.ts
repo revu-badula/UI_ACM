@@ -51,6 +51,7 @@ export class SystemAssessDetailsComponent implements OnInit {
   public errorfile: string = "";
   public policyData: any;
   public p: number = 1;
+  public policyErr:any;
   public showButton: boolean = false;
   public showStatus: boolean = false;
   public showStatus1: boolean = true;
@@ -365,6 +366,13 @@ export class SystemAssessDetailsComponent implements OnInit {
       this._apiservice.fetchPolicyGroupForAA(auditID)
         .subscribe((data: any) => {
           this.policyTypes = data;
+          if(data.length > 0)
+          {
+            this.policyErr="";
+          }
+          else{
+            this.policyErr ="select source with controls."
+          }
         }, error => {
           console.log(error)
         });
