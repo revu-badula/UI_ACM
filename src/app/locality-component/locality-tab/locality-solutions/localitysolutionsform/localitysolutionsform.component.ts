@@ -331,6 +331,7 @@ export class LocalitysolutionsformComponent implements OnInit {
     modalRef.componentInstance.appSolutionId = this.appSolutionId;
     modalRef.componentInstance.deviceData = table;
     modalRef.componentInstance.isEdit = true;
+    modalRef.componentInstance.archived = this.applicationSolution.archived;
     modalRef.result.then(result => {
       if (UtilService.popModal) {
         this.getDevices(this.appSolutionId);

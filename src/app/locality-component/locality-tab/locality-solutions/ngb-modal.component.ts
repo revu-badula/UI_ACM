@@ -227,7 +227,7 @@ import { DialogService } from '../../../dialog.service';
 			<button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
 			<button *ngIf="!showButton"  type="submit" class="submit btn btn-primary"
                 [disabled]="modalForm.invalid">Save</button>
-                <button *ngIf="showButton && showUpbtn" type="submit" class="submit btn btn-primary"
+                <button *ngIf="showButton && showUpbtn && archive" type="submit" class="submit btn btn-primary"
 				[disabled]="modalForm.invalid">Update</button>
 					
 
@@ -255,10 +255,12 @@ export class NgbdModalContent implements OnInit {
     public nextSelectDate: any;
     public myFiles: any;
     public files = [] as File[];
+    public archive:boolean=true;
     @ViewChild("fileInput") inputEl: ElementRef;
     @Input() appSolutionId;
     @Input() deviceData;
     @Input() isEdit;
+    @Input() archived;
     // @Input() screenID;
     public loading: boolean = false;
     public isRequired: boolean = true;
@@ -301,6 +303,10 @@ export class NgbdModalContent implements OnInit {
         if (this.isEdit) {
             this.createForm();
             this.showButton = true;
+            if(this.archived === 1){
+            this.showUpbtn=true;
+            this.archive=false;
+            }
             this.textDisable = true;
             this.modalForm.controls['modelNumber'].setValue(this.deviceData.modelNumber);
             this.modalForm.controls['serialNumber'].setValue(this.deviceData.serialNumber);
