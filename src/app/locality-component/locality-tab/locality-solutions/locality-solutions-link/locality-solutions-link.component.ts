@@ -63,7 +63,7 @@ export class LocalitySolutionsLinkComponent implements OnInit {
         else {
           this.appSolutions = data.applicationViewDTO.applicationSolutionDTOs;
           this.appSolutions.forEach(element => {
-            if (element.archive === 1) {
+            if (element.archived === 1) {
               this.show = true;
             }
           });
@@ -298,9 +298,7 @@ export class LocalitySolutionsLinkComponent implements OnInit {
 
   archiveAppSolution(value) {
     this.applicationSolution = value;
-
-
-    this.dialogService.open("Info", "Are you sure you want to delete this? You can still see the deleted solutions in the archive.", true, "YES", "NO")
+    this.dialogService.open("Info", "Are you sure you want to delete? Note: Once you delete, this record will be available in an archive section.", true, "YES", "NO")
       .then((result: any) => {
         if (result) {
           const headers = new Headers();
@@ -315,11 +313,12 @@ export class LocalitySolutionsLinkComponent implements OnInit {
           this.http.post(url, formData)
             .subscribe((data: any) => {
               this.loading = false;
-              this.appSolutions.forEach(element => {
-                if (element.appSolutionId === value.appSolutionId)
-                  element.archived = 1;
+              // this.appSolutions.forEach(element => {
+              //   if (element.appSolutionId === value.appSolutionId)
+              //     element.archived = 1;
 
-              });
+              // });
+              this.show=true;
             }, error => {
               this.loading = false;
               console.log(error);
