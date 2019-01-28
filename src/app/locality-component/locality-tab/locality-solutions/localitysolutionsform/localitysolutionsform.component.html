@@ -187,6 +187,6 @@
 			</div>
 		</div>
 	</form>
-	<button type="submit" form="myForm" style="margin-right:8%;" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick">Submit</button>
+	<button type="submit" form="myForm" style="margin-right:8%;" class="btn btn-primary" [disabled]="!formName.valid" *ngIf="isClick && archive">Submit</button>
 	<button type="cancel" class="btn btn-primary" (click)="close($event)" style="margin-right:8%;">Cancel</button>
 </div>

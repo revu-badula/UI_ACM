@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Review } from '../../../review_DataModel';
 import { ApiserviceService } from '../../../apiservice.service';
@@ -11,6 +10,9 @@ import { UtilService } from '../../../util.service';
 import { FilterPipe } from '../../../convertDate.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PolicyGrp, Policy, PolicyDocumentsDTO } from '../../../data_modelPolicy';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-review',
@@ -19,6 +21,8 @@ import { PolicyGrp, Policy, PolicyDocumentsDTO } from '../../../data_modelPolicy
 })
 export class ReviewComponent implements OnInit {
   @ViewChild('form') popUpForm: NgForm;
+  @ViewChild('content') content: TemplateRef<any>;
+
   plus = true;
   review: Review[];
   assignTo: string;
@@ -26,7 +30,7 @@ export class ReviewComponent implements OnInit {
   policyGrpId: number;
   reviewData = [];
   addArray = [];
-  private reviewForm: FormGroup;
+  public reviewForm: FormGroup;
   firstName: string;
   dueDate: any;
   public users: any;
@@ -53,7 +57,7 @@ export class ReviewComponent implements OnInit {
     placeholder: '',
     tabsize: 2,
     height: 200,
-    width:"100%",
+    width: "100%",
     toolbar: [
       // [groupName, [list of button]]
       ['misc', ['undo', 'redo']],
@@ -62,9 +66,11 @@ export class ReviewComponent implements OnInit {
       ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-    
+
   };
-  constructor(private modalService: NgbModal, private _apiservice: ApiserviceService, private http: Http, private fb: FormBuilder, private utilservice: UtilService, private router: Router, private route: ActivatedRoute) {
+  constructor(private modalService: NgbModal, private _apiservice: ApiserviceService,
+     private http: Http, private fb: FormBuilder, private utilservice: UtilService, 
+     private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) {
     //this.review = new Review();
     this.review = [];
     this.policies = [];
@@ -82,14 +88,14 @@ export class ReviewComponent implements OnInit {
 
   open(content) {
     this.addArray = [];
-    this.review=[];
+    this.review = [];
     this.modalService.open(content);
     //this.plus=false;
   }
 
-  
 
-  
+
+
   changeButton() {
     this.plus = false;
   }
@@ -97,8 +103,8 @@ export class ReviewComponent implements OnInit {
   data(value) {
     this.createForm();
     this.assignTo = value.firstName;
-    this.reviewDueDate = value.dueDate.formatted;
-    let d = Date.parse(this.reviewDueDate);
+    let latest_date = this.datepipe.transform(value.dueDate.formatted, 'yyyy-MM-dd');
+    this.reviewDueDate = moment(latest_date).format();
     let tabarray = {
 
       assignedTo: this.assignTo,
@@ -106,13 +112,17 @@ export class ReviewComponent implements OnInit {
       status: value.status,
       policyGrpId: UtilService.policyGrpId
     }
+    let tabarray1 = {
 
-
+      assignedTo: this.assignTo,
+      dueDate: value.dueDate.formatted,
+      status: value.status,
+      policyGrpId: UtilService.policyGrpId
+    }
     this.reviewData.push(tabarray);
-
+    this.addArray.push(tabarray1);
     for (let i = 0; i < this.reviewData.length; i++) {
       this.review.push(this.reviewData[i]);
-      this.addArray.push(this.reviewData[i]);
       this.reviewData = [];
 
     }
@@ -128,7 +138,7 @@ export class ReviewComponent implements OnInit {
   }
 
   displayReviewDetails(id) {
-    
+
     this.getPolicyReviewDetails(id)
   }
 
@@ -162,15 +172,28 @@ export class ReviewComponent implements OnInit {
   }
 
   fetchPolicies(id) {
+    this.loading=true;
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
         this.loading = false;
         this.policyData = data.policyReviewDTOs;
         this.policies = data.policyDTOs;
-
-
+      },error => {
+        this.loading = false;
+        console.log(error);
       });
 
+  }
+
+
+  showPopup() {
+    this.addArray = [];
+    this.review = [];
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.modalService.open(this.content, ngbModalOptions);
   }
 
   dateRetreive() {
@@ -196,35 +219,38 @@ export class ReviewComponent implements OnInit {
   }
 
   postReview() {
-
-
+    this.loading=true;
     let url = APP_CONFIG.assignReviewers;
     this._apiservice.assignReviewers(this.review)
       .subscribe((data: any) => {
+        this.loading=false;
         this.fetchPolicies(UtilService.policyGrpId);
-        this.loading = true;
+      
       }, error => {
+        this.loading=false;
         console.log(error)
       });
   }
 
   getPolicyReviewDetails(id) {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getPolicyReviewDetails(id)
       .subscribe((data: any) => {
         this.showDetails = true;
-        this.loading=false;
+        this.loading = false;
         this.reviewDTO = data.policyReviewDTO;
         let d = new Date(this.reviewDTO.dueDate);
-        this.displayDueDate = {
-          year: d.getFullYear(),
-          month: d.getMonth() + 1,
-          day: d.getDate()
+        this.dueDate = {
+          date: {
+            year: d.getFullYear(),
+            month: d.getMonth() + 1,
+            day: d.getDate()
+          }
         }
 
 
-      },error => {
-        this.loading=false;
+      }, error => {
+        this.loading = false;
         console.log(error);
 
       });

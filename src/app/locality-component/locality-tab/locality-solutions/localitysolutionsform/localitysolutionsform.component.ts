@@ -40,6 +40,7 @@ export class LocalitysolutionsformComponent implements OnInit {
   public modelSname: string;
   public solutionId: number;
   public appId: any;
+  public archive:boolean=true;
   public modalForm: FormGroup;
   public appSolutions: any;
   public appSolutionId: any;
@@ -151,6 +152,11 @@ export class LocalitysolutionsformComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.applicationSolution = data;
+        if(this.applicationSolution.archived === 1)
+        {
+          this.isClick=true;
+          this.archive=false;
+        }
         this.applicationSolution.solutionsDTO = data.solutionsDTO;
         this.applicationSolution.solutionsDTO.vendor = data.solutionsDTO.vendor;
         this.devices = data.appSolutionDevices;
