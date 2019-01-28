@@ -9,10 +9,10 @@
 
   <div class="form-options">
     <div class="home-back">
-      <a routerLink="/dashboard">
+      <!-- <a routerLink="/dashboard">
         <fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
           data-delay="0" [name]="'home'"></fa>
-      </a>
+      </a> -->
       <a href="javascript:void(0)" routerLink="/devicetab">
         <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
           data-delay="0" [name]="'arrow-left'"></fa>
@@ -42,13 +42,17 @@
 </ng-template>
 
 <div>
+    <div>
+        <h3 class="pageTitle">Devices</h3>
+        <hr>
+    </div>
 
-  <form class="forms" (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
-    <div id="form1" style="padding-top: 3%;">
-        <div class="moveHeadingUp">
-            <h3>Devices</h3>
-            <hr class="after-heading" />
-        </div>
+  <form  (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
+    <div id="form1" >
+        <div class="disclaimer"><span>Please use this screen to update device information</span>&nbsp;&nbsp;&nbsp;
+          <span style="float:right">
+            <font color=red>*</font> marked fields are mandatory
+          </span> </div>
       <fieldset [disabled]='showForm'>
         <div class="infoBox">
           <div class="form-row headerOfBox">
@@ -83,9 +87,7 @@
             </div>
           </div>
         </div>
-        <hr />
-        <br><br>
-        <!-- <h4>Contact Details</h4> -->
+ 
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Primary Contact</h4>
@@ -124,8 +126,7 @@
           </div>
 
         </div>
-        <hr />
-        <br><br>
+      
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h5>Secondary Contact</h5>
@@ -162,8 +163,7 @@
             </div>
           </div>
         </div>
-        <hr />
-        <br><br>
+       
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h5>Licensed Information</h5>
@@ -219,8 +219,7 @@
               </div>
           </div>
         </div>
-        <hr />
-        <br><br>
+       
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Configuration</h4>
@@ -272,8 +271,7 @@
             </div>
           </div>
         </div>
-        <hr />
-        <br><br>
+      
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Operating System</h4>
@@ -289,8 +287,7 @@
             </div>
           </div>
         </div>
-        <hr />
-        <br><br>
+       
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Database Server</h4>
@@ -324,8 +321,6 @@
           </div>
         </div>
 
-        <hr />
-        <br><br>
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Purpose</h4>
@@ -340,12 +335,13 @@
           </div>
         </div>
       </fieldset>
-      <hr />
-
+     
     </div>
   </form>
-  <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark" style="margin-left: 6%;">Show
+  <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark" style="margin-left:10%;">Show
     List</button>
-  <button type="submit" class="submit btn btn-primary" form="myForm" style="margin-right: 9%;" [disabled]="!editForm.valid" *ngIf="isLol">Submit</button>
+    <div style="margin-right:10%;">
+  <button type="submit" class="submit btn btn-primary" form="myForm"  [disabled]="!editForm.valid" *ngIf="isLol">Submit</button>
   <button type="cancel" routerLink="/devicetab" class="cancel btn btn-primary">Cancel</button>
+</div>
 </div>

@@ -23,15 +23,7 @@
     color: inherit;
 }
 
-.plus {
-    float: right;
-    vertical-align: middle;
-    font-size: 20px;
-    padding: 2px;
-    margin-left: 20px;
-    color: black;
-    margin-top: 15px;
-}
+
 
 .policies {
     margin-top: 15px;
@@ -101,15 +93,7 @@ i.fa {
     color: green !important;
 }
 
-.plus {
-    float: right;
-    vertical-align: middle;
-    font-size: 20px;
-    padding: 2px;
-    margin-left: 20px;
-    color: black;
-    margin-top: 15px;
-}
+
 
 .policies {
     margin-top: 15px;

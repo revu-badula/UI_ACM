@@ -8,88 +8,13 @@
 </div>
 
 <div>
+    <div>
+        <h3>Assessment</h3>
+        <hr>
+    </div>
     <form class="former">
-        <div id="form1">
-            <!-- <div class="infoBox">
-                <div class="headerOfBox">
-                    <div class="form-row">
-                        <div class="form col-md-6">
-
-                            <h4>Security Audit</h4>
-                        </div>
-                        <div class="form col-md-6">
-                            <h4 style="text-align:right"> Next Assessment Date :11/16/2018</h4>
-
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="form-row">
-                <div class="form-group col-md-3">
-                        <div class="set-size charts-container">
-                            <h4>Assessment Name</h4>
-                            <br>
-                            <span></span>
-                                
-                   <label for="inputState">Name</label>
-                    <input type="text" class="form-control" id="lastName" value="{{ mainData }}" readonly> -->
-                <!-- </div>
-                <div class="form-group col-md-3">
-
-                    <h2>Overall Risk Level </h2>
-                    <br>
-                        <div class="pie-wrapper progress-95 style-2">
-                                <span class="label">95<span class="smaller">%</span></span>
-                                <div class="pie">
-                                  <div class="left-side half-circle"></div>
-                                  <div class="right-side half-circle"></div>
-                                </div>
-                                <div class="shadow"></div>
-                              </div>
-                            </div>
-                </div>
-                <div class="form-group col-md-3">
-                        <span class="badge">1</span>
-                    <label for="updatedAt">Last updated at</label>
-                    <input type="text" class="form-control" id="updatedAt" value="{{ updatedTime }}" readonly> -->
-                <!-- </div> -->
-                <!-- <div class="form-group col-md-3"> -->
-                <!-- <span class="badge">1</span> -->
-                <!-- <label for="updatedAt">Last updated at</label>
-                    <input type="text" class="form-control" id="updatedAt" value="{{ updatedTime }}" readonly> -->
-                <!-- </div>  -->
-                <!-- </div> -->
-                <!-- <div style="text-align: center">
-            <div class="set-size charts-container">
-                    <div class="pie-wrapper progress-30">
-                      <span class="label">30<span class="smaller">% <br> Risk Level</span></span>
-                      <div class="pie">
-                        <div class="left-side half-circle"></div>
-                        <div class="right-side half-circle"></div>
-                      </div>
-                    </div>
-                  
-                    <div class="pie-wrapper progress-60">
-                      <span class="label">60<span class="smaller">% <br> Overall Score</span></span>
-                      <div class="pie">
-                        <div class="left-side half-circle"></div>
-                        <div class="right-side half-circle"></div>
-                      </div>
-                    </div>
-                  
-                    <div class="pie-wrapper progress-90">
-                      <span class="label">90<span class="smaller">% <br> Status</span></span>
-                      <div class="pie">
-                        <div class="left-side half-circle"></div>
-                        <div class="right-side half-circle"></div>
-                      </div>
-                    </div>
-                  
-                   </div>
-                  </div> -->
-            <!-- </div> -->
-
-            <!-- <br> -->
+        <div id="form1" style="margin: 0;">
+        
             <span class="plusbtn" *ngIf="showPlusButton">
                 <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right;" (click)="goTo()"></i>
             </span>
@@ -105,7 +30,7 @@
                             <th scope="col" (click)="handleSort('auditName')">Audit Type <i class="fa fa-arrow-down"
                                     *ngIf="!desc"></i>
                                 <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-                            <th scope="col" (click)="handleSort1('name')">Assessment Name <i class="fa fa-arrow-down"
+                            <th scope="col" (click)="handleSort1('name')">Assessment <i class="fa fa-arrow-down"
                                     *ngIf="!name"></i>
                                 <i class="fa fa-arrow-up" *ngIf="name"></i></th>
                             <th scope="col" (click)="handleSort2('assessmentDt')">Assessment Date<i class="fa fa-arrow-down"
@@ -116,10 +41,10 @@
                             <th scope="col" (click)="handleSort4('status')">Status<i class="fa fa-arrow-down"
                                 *ngIf="!sts"></i>
                               <i class="fa fa-arrow-up" *ngIf="sts"></i></th>
-                            <th scope="col" (click)="handleSort5('updatedBy')">Last UpdatedBy<i class="fa fa-arrow-down"
+                            <th scope="col" (click)="handleSort5('updatedBy')"> Updated By<i class="fa fa-arrow-down"
                                 *ngIf="!updtBy"></i>
                               <i class="fa fa-arrow-up" *ngIf="updtBy"></i></th>
-                            <th scope="col" (click)="handleSort6('updatedTs')">Last Updated Date<i class="fa fa-arrow-down"
+                            <th scope="col" (click)="handleSort6('updatedTs')"> Updated Date<i class="fa fa-arrow-down"
                                 *ngIf="!updt"></i>
                               <i class="fa fa-arrow-up" *ngIf="updt"></i></th>
                         </tr>

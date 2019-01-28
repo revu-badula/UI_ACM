@@ -13,9 +13,9 @@
 	</div>
 </ng-template>
 <div class="form-div">
-	<form #myForm="ngForm" class="former">
+	<form #myForm="ngForm" >
 
-		<div class="plus">
+		<div class="plus1">
 			<span class=" title elipsis pull-right" *ngIf="showEdit">
 				<a>
 					<fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
@@ -26,16 +26,7 @@
 					<i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
 				</a>
 			</span>
-			<!-- <span class=" title elipsis pull-right">
-					<a>
-						<fa class="edit-icon icons" [name]="'edit'"></fa>
-					</a>
-				</span> -->
-			<!-- <span class=" title elipsis pull-right">
-				<a title="Application audit history">
-					<i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
-				</a>
-			</span> -->
+		
 			<span class=" title elipsis pull-right">
 				<a (click)="showAudit()" title="Change to view mode. This reverts the changes">
 					<i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
@@ -45,9 +36,8 @@
 				</a>
 			</span>
 
-
 		</div>
-
+	<br>
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Security Risk</h4>

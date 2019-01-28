@@ -18,11 +18,15 @@
 	 [name]="'edit'" (click)="editClick()"></fa>
 </div>
 
-<form #formName="ngForm"  (ngSubmit)="createSystem()" enctype="multipart/form-data">
-<br>
-<br>
+<form #formName="ngForm" class="former"  (ngSubmit)="createSystem()" enctype="multipart/form-data">
+
 
 	<div id="form1">
+			<div class="disclaimer"><span>Please use this screen to add system information.</span>&nbsp;&nbsp;&nbsp;
+				<span style="float:right">
+					<font color=red>*</font> marked fields are mandatory
+				</span> </div>
+
 		<fieldset [disabled]="editableForm">
 
 				<div class="infoBox">
@@ -59,9 +63,7 @@
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
+		
 		<div class="infoBox">
 				<div class="headerOfBox"><h4>Contact Information</h4></div>
 			<div class="form-row">
@@ -86,9 +88,7 @@
 			</div>
 
 		</div>
-		<br>
-		<br>
-		<br>
+		
 		<div class="infoBox">
 				<div class="headerOfBox"><h4>Other Information</h4></div>
 
@@ -111,7 +111,7 @@
 		</div>
 		</fieldset>
 	</div>
-		<div class="buttons">
+		<div class="buttons" style="margin-right: 10%">
 
 			<button *ngIf="isShow" type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
 			<button type="cancel" class="cancel btn btn-primary" (click)="goBack($event)">Cancel</button>

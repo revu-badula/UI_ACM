@@ -32,7 +32,13 @@
 	</div>
 </ng-template>
 <div>
+		<div>
+				<h3 class="pageTitle">Policies</h3>
+				<hr/>
+			</div>
 	<div id="form1">
+
+			
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Overview</h4>
@@ -50,7 +56,7 @@
 					</div>
 				</div>
 			</form>
-		</div><br><br><br>
+		</div>
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Overview</h4>
@@ -72,12 +78,8 @@
 						</div>
 						<div class="form-row">
 							
-							<textarea cols="100" style="margin-top:1vw;" rows="7" id="policyDescription" required formControlName="policyDescription" maxlength="50000" name="policyDescription"> </textarea><!--
-							<!-- <div style="float:right">{{50000 - policyDescription.value.length}} characters left </div> -->  
-					 <br>
-					 <!-- <div *ngIf="policyDescription.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div>  -->
+							<textarea cols="100" style="margin-top:1vw;" rows="7" id="policyDescription" required formControlName="policyDescription" maxlength="50000" name="policyDescription"> </textarea>
+					
 						
 					</div>
 				</div>

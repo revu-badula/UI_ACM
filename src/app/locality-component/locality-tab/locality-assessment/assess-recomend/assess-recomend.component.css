@@ -10,17 +10,7 @@ i.fa {
     text-rendering: auto;
      color: black;
    }
-.plus{
-	float:right;
-	 vertical-align: middle;
-    font-size: 20px;
- 
-    padding: 2px;
-    margin-left: 20px;
-    color: black;
-    margin-top: 15px;
-    
-}
+
 
 .policies{
 	margin-top: 15px;
@@ -136,14 +126,7 @@ i.fa {
     -moz-border-radius: 0.4rem;
 }
 
-.infoBox{
-    padding:3%;
-    border: 2px solid;
-    margin:0%;
-    min-width:100%;
-    display: inline-block;
-   
-   }
+
    
 
    .former {

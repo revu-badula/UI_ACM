@@ -21,15 +21,7 @@ i.fa {
     text-rendering: auto;
 }
 
-.plus {
-    float: right;
-    vertical-align: middle;
-    font-size: 20px;
-    padding: 2px;
-    margin-left: 20px;
-    color: black;
-    margin-top: 15px;
-}
+
 
 .policies {
     margin-top: 15px;

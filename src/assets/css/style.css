@@ -252,7 +252,7 @@ body {
 #form1 {
   border-radius: 10px;
  
-  margin: -1% 10% 0% 10%;
+  margin: 0% 10% 0% 10%;
   background-color: white;
  
   background-repeat: no-repeat;
@@ -842,4 +842,26 @@ a{
 }
 #myTable tr th:nth-child(2) {
   width: 22%;
+}
+
+.plus{
+  float:right;
+   vertical-align: middle;
+  font-size: 20px;
+  padding: 2px;
+  margin-left: 20px;
+  color: black;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.plus1{
+  float:right;
+   vertical-align: middle;
+  font-size: 20px;
+  padding: 2px;
+  margin-left: 20px;
+  color: black;
+  margin-top: 15px;
+  margin-bottom: -15px;
 }

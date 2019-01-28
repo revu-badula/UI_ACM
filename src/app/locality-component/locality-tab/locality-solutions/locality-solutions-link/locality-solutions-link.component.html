@@ -8,8 +8,10 @@
         </div>
       </div>
 <div>
-    <div class="former">
+    <div >
         <div id=form1>
+                <div class="disclaimer" ><span>Please use this screen to view solutions.</span>&nbsp;&nbsp;&nbsp;
+                    </div>
             <div class="infoBox">
                 <div class="headerOfBox">
                     <h4>General Information</h4>
@@ -41,15 +43,14 @@
                 </div>
 
             </div>
-            <hr />
-            <br>
+           
 
 
             <span class="plusbtn">
                 <i class="fa fa-plus-square-o" *ngIf="showSigned" aria-hidden="true" style="font-size: 24px;" (click)="selectLocality()"></i>
             </span>
             
-            <br>
+         
             <div class="infoBox clear-right">
                 <div class="headerOfBox">
                     <h4>Overview</h4>
@@ -95,9 +96,7 @@
                 </table>
                 <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
             </div>
-            <br>
-            <br>
-            <br>
+          
             <div class="infoBox clear-right" *ngIf="show">
                 <div class="headerOfBox">
                     <h4>Archived Solutions</h4>

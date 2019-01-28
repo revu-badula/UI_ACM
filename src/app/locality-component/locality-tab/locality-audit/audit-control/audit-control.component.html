@@ -1,16 +1,4 @@
-<!-- <div class="show" *ngIf="showHistory"> -->
-<!-- <form id="former">
-    <div class="form-row">
-      <label for="inputState">Audit</label>
-      <hr />
-      <textarea name="" id="" rows="5" class="form-control"><button type="close" class="submit">Close</button> </textarea>
-      <div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-					 <!-- <br>
-					 <div *ngIf="notes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
-    </div> -->
-  <!-- </form> --> 
+ 
   <ng-template #content2 let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title">Info</h4>
@@ -25,9 +13,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Policy File</h4>
-    <!-- <button type="button" class="close" aria-label="Close" (click)="d()">
-      <span aria-hidden="true" id="testColor">&times;</span>
-    </button> -->
+   
   </div>
   <div class="modal-body">
     <div class="form-row">
@@ -45,7 +31,7 @@
 
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer plus">
 
     <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
     <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark" (click)="compareFile();c()">Compare</button>
@@ -55,12 +41,13 @@
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
-<form class="former">
+<br>
+<form >
   <div class="form-row">
     <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
   </div>
   <div class="panel-heading">
-
+    <div class="plus">
     <span class="title elipsis pull-right">
       <a title="Compare policies">
         <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
@@ -82,6 +69,7 @@
         </a>
       </span>
   </div>
+  </div>
   <!-- <hr class=htag/> -->
   <div class="infoBox">
     <div class="headerOfBox">
@@ -92,7 +80,7 @@
       <thead>
         <tr>
 
-          <th scope="col" (click)="handleSort()">Control Number and Description
+          <th scope="col" (click)="handleSort()">Control Number
             <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor" *ngIf="desc"></i>
           </th>
           <th scope="col" (click)="handleSort1('policyName')">Policy Name
@@ -133,4 +121,3 @@
 </form>
 
 
-<!-- </div> -->
