@@ -15,13 +15,13 @@
 		<button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
 	</div>
 </ng-template>
-<div class="save-edit" style="float: right" *ngIf="showEditButton && !isShow">
+<div class="save-edit" style="float:right" *ngIf="showEditButton && !isShow">
 	<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0"
 	 [name]="'edit'" (click)="editClick()"></fa>
 </div>
 <div>
 	<form #formName="ngForm" id="myForm" class=" clear-right" (ngSubmit)="createLocality()" enctype="multipart/form-data" >
-		<br>
+		
 		<div id="form1">
 				<div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
 					<span style="float:right">
