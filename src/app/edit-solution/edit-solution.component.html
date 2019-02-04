@@ -193,13 +193,13 @@
 					</div>
 					<div class="certification-test form-row">
 						<div class="form-group col-md-6">
-							<label for="approvedDate"><b>DoEL Approved Date</b></label>
-							<my-date-picker name="myname" [disabled]='showForm' class="inputState1" [(ngModel)]="approveDate" placeholder="mm/dd/yyyy" (dateChanged)="getApprovalDate($event)"></my-date-picker>
+							<label for="approvedDate"><b>DoEL Approved Date</b><span class="asterisk">*</span></label>
+							<my-date-picker name="myname" [disabled]='showForm' class="inputState1" [(ngModel)]="approveDate" placeholder="mm/dd/yyyy" (dateChanged)="getApprovalDate($event)" required></my-date-picker>
 
 						</div>
 						<div class="form-group col-md-6" id="renname" (clickOutside)="closeDropdown()">
-							<label for="dueDate"><b>Renewal Due Date</b></label>
-							<my-date-picker name="renname" [disabled]='showForm' class="inputState1" [(ngModel)]="dueDate" placeholder="mm/dd/yyyy" (dateChanged)="getDueDate($event)"></my-date-picker>
+							<label for="dueDate"><b>Renewal Due Date</b><span class="asterisk">*</span></label>
+							<my-date-picker name="renname" [disabled]='showForm' class="inputState1" [(ngModel)]="dueDate" placeholder="mm/dd/yyyy" (dateChanged)="getDueDate($event)" required></my-date-picker>
 						</div>
 					</div>
 				</div>
