@@ -38,6 +38,7 @@ export class LocalityDetailsComponent implements OnInit {
   notes :any;
   contentData: string = "";
   showEditButton: boolean = false;
+
   time: any;
   config = {
     placeholder: '',
@@ -252,16 +253,15 @@ export class LocalityDetailsComponent implements OnInit {
 
     }
 
-    return (key == 8 || key == 9 || key == 17 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+    return (key == 8 || key == 9 || key == 16 || key == 37 || key == 39 || key == 35 || key == 17 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 
   }
 
   getNumber(value) {
-  
+    let val: any = +value;
+    let pattern = /^\d{10}$/;
+    let phnTest = pattern.test(val);
     if (value.length === 10) {
-      let val: any = +value;
-      let pattern = /[0-9\+\-\ ]/;
-      let phnTest = pattern.test(val);
       if(phnTest){
       let data = value.slice(0, 3);
       let pn = data + '-';
@@ -273,6 +273,7 @@ export class LocalityDetailsComponent implements OnInit {
       }
 
     }
+  
     else {
       this.locality.phoneNumber = value;
     }
