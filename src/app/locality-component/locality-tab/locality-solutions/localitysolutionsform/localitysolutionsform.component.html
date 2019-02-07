@@ -30,12 +30,11 @@
 </ng-template>
 
 <div class="plus" style="margin-right: 3%">
-	<i class="fa fa-edit" *ngIf="!isClick" (click)="editClicked()" aria-hidden="true" style="font-size: 24px;"></i> <a>
-		<fa (click)="backClicked()" class="left-icons left-icon icons" [name]="'arrow-left'"></fa>
-	</a>
+	<i class="fa fa-edit" *ngIf="!isClick" (click)="editClicked()" aria-hidden="true" style="font-size: 24px;"></i> 
+	
 </div>
 <div>
-	<form #formName="ngForm" id="myForm" class="clear-right" (ngSubmit)="saveAppSolution()">
+	<form #formName="ngForm" id="myForm"  (ngSubmit)="saveAppSolution()">
 		<div id="form1">
 			<div class="infoBox">
 				<div class="headerOfBox">

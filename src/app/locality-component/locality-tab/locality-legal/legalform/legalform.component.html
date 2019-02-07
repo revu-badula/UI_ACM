@@ -16,13 +16,13 @@
 </ng-template>
 
 <div class="plus">
-    <div class="panel-heading">
+    <!-- <div class="panel-heading">
         <span class=" title elipsis pull-right"> <a (click)="goBack()" title="Go back to audit section.">
             <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
           </a>
         </span>
     
-      </div>
+      </div> -->
   <div class="save-edit" style="float: right" *ngIf="showLegalBox">
 
     <fa class="edit-icon icons" [name]="'edit'" (click)="editClick()"></fa>
@@ -32,6 +32,8 @@
 
     <div id="form1">
       <div class="infoBox">
+          <div class="disclaimer"><span style="float:left">Please use this screen to view/ edit legal documents.</span>&nbsp;&nbsp;&nbsp;
+            <span style="float:right"> <font color=red>*</font> marked fields are mandatory </span> </div> 
         <div class="headerOfBox">
           <h4>General Information</h4>
         </div>

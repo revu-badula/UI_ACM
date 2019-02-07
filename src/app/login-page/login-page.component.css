@@ -1,3 +1,10 @@
+body {
+    /* background-image: url(../img/greyjpg.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background:gray !important;
+  }
+
 .p-4{
     background-color: #212529;
     border-top: 1px solid #ECF0F1;
@@ -89,3 +96,17 @@ h1{
     border:darkgray, solid ;
     background: aliceblue;
   }
+
+  .overlay{
+    opacity:1;
+    background-color:#ccc;
+    position:fixed;
+    width:100%;
+    height:100%;
+    bottom: 0;
+    left:0px;
+    z-index:-1;
+}
+
+
+

@@ -69,8 +69,6 @@
 		<div class="description">
 			<div class="model-solution-row form-row">
 
-				<br>
-				<br>
 				<div class="form-group col-md-6">
 					<label for="definitiveSource">Definitive Source</label>
 					<input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.definitiveSource" [name]="'definitive_source'"
@@ -96,7 +94,7 @@
 		</div>
 	</div>
 
-	<div class="infoBox">
+	<div class="infoBox" style="width: 80%">
 	<form (ngSubmit)="updatePolicyGrp()" #myForm="ngForm">
 
 		<fieldset [disabled]='showForm'>
@@ -104,8 +102,7 @@
 				<div class="headerOfBox">
 					<h4>Description</h4>
 				</div>
-				<textarea id="description" [ngxSummernote]="config" cols="156" rows="7" *ngIf="!showForm" [(ngModel)]="policyDisplay.description"
-				 [name]="'policy_description'" maxlength="50000"></textarea>
+				<textarea id="description" [ngxSummernote]="config" cols="156" rows="7"  [(ngModel)]="policyDisplay.description" [name]="'policy_description'" [ngxSummernoteDisabled]="showForm"></textarea>
 				<div class="model-solution-row form-row">
 					<div class="model form-group col-md-6">
 						<label class="label-form" for="lastReviewDate">Last Review Date<span class="asterisk">*</span></label>

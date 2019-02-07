@@ -3,8 +3,11 @@
             
             <div class="form-options">
                 <div class="home-back">
-                	<a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a>
-                	
+                	<!-- <a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a> -->
+                	<a href="javascript:void(0)" (click)="backClicked()">
+                            <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+                                data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+                        </a>
                 </div>
                 
             </div>

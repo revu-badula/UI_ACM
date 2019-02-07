@@ -8,10 +8,10 @@
 <div class="navigate sticky-top" style="padding-top: 1.5em;" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
   <div class="form-options">
     <div class="home-back">
-      <a routerLink="/dashboard">
+      <!-- <a routerLink="/dashboard">
         <fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
          data-delay="0" [name]="'home'"></fa>
-      </a>
+      </a> -->
       <a href="javascript:void(0)" (click)="backClicked()">
         <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
          data-delay="0" [name]="'arrow-left'"></fa>
@@ -71,7 +71,7 @@
           </div>
         </div>
       </div>
-      <br><br><br>
+     
       <div class="infoBox">
         <div class="headerOfBox">
           <h4>Policy Information</h4>
@@ -106,7 +106,7 @@
           </div>
         </div>
       </div>
-      <br><br><br>
+
       <div class="infoBox">
           <div class="headerOfBox">
             <h4>Procedures<span class="asterisk">*</span></h4>
@@ -121,7 +121,7 @@
 
         </div>
       </div>
-      <br><br><br>
+    
       <div class="infoBox">
           <div class="headerOfBox">
             <h4>Guidelines<span class="asterisk">*</span></h4>
@@ -135,7 +135,7 @@
 					   </div> 
         </div>
       </div>
-      <br><br><br>
+     
       <div class='infoBox'>
         <div class="headerOfBox">
           <h4>Other Information</h4>
@@ -184,7 +184,7 @@
           </div>
         </div> -->
       </div>
-      <br><br><br>
+      
       <div class="infoBox">
         <div class="headerOfBox">
           <h4>Artifacts</h4>
@@ -195,7 +195,7 @@
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
       </div>
-      <br><br><br>
+      
       <div class="infoBox">
         <div class="headerOfBox">
           <h4>Non-Cov</h4>
@@ -206,7 +206,7 @@
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
       </div>
-      <br><br><br>
+    
 
       <div class="infoBox">
         <div class="headerOfBox">
@@ -237,6 +237,8 @@
     </div>
 
   </form>
+  <div style="margin-right:10%">
   <button type="submit" style="margin-right: 9vw;" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
   <button type="cancel" class="cancel btn btn-primary" (click)="backClicked()">Cancel</button>
+</div>
 </div>

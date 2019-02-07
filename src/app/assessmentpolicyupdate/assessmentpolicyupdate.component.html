@@ -64,9 +64,7 @@
                   </div>
 
               </div>
-              <br>
-              <br>
-              <br>
+            
               <div class="infoBox">
                   <div class="headerOfBox">
                       <h4>Control Information</h4>
@@ -154,7 +152,7 @@
 
               </div>
 
-              <br><br><br>
+           
               <div class="form-row">
                   <div class="form-group col-md-12">
 
@@ -174,7 +172,7 @@
                       </div>
                   </div>
               </div>
-              <br><br>
+             
               <div class="form-row">
                   <div class="form-group col-md-12">
                       <div class="infoBox">
@@ -192,7 +190,7 @@
               </div>
 
 
-              <br><br>
+            
 
               <div class="infoBox">
                   <div class="headerOfBox">
@@ -229,9 +227,7 @@
 
               </div>
 
-              <br>
-              <br>
-              <br>
+             
 
               <div class="infoBox">
                   <div class="headerOfBox">
@@ -245,9 +241,7 @@
 					   </div> 
               </div>
 
-              <br>
-              <br><br>
-              <!-- <br> -->
+             
 
               <div class="infoBox">
                   <div class="headerOfBox">
@@ -262,51 +256,7 @@
 					   </div> 
               </div>
 
-              <!-- <br>
-              <br>
-              <br> -->
-
-              <!-- <div class="infoBox">
-                  <div class="headerOfBox">
-                      <h4>Policy Links</h4>
-                  </div>
-                  <button class="policy-links btn btn-primary" (click)="changeDiv()">Add Policy Links</button>
-
-                  <div class="form-row">
-                      <div class="form-group col-md-6">
-
-                          <label for="internalPolicyLinks">Internal Policy Links</label>
-                          <div>
-                              <table>
-                                  <tbody>
-                                      <tr *ngFor="let getLinkedPolicy of policyAccess.linkedPolicies">
-
-                                          <td *ngIf="getLinkedPolicy.status"><a routerLink="/accessControl/{{ getLinkedPolicy.policyId }}"
-                                                  style="cursor:pointer;color:blue;">
-                                                  {{ getLinkedPolicy.controlNumber }}</a>
-
-                                          </td>
-                                          <td *ngIf="getLinkedPolicy.status && !showForm" (click)="deletePolicy(getLinkedPolicy.policyId)">
-                                              <i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black;"></i>
-                                          </td>
-
-
-
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-
-                      </div>
-                      <div class="form-group col-md-6">
-                          <label for="externalPolicyLinks">External Policy Links</label>
-                      </div>
-                  </div>
-
-              </div> -->
-              <br>
-              <br>
-              <br>
+       
 
               <div class="infoBox">
                   <div class="headerOfBox">
@@ -334,7 +284,7 @@
                   </div>
 
               </div>
-              <br><br><br>
+             
               <div class="infoBox">
                   <div class="headerOfBox">
                       <h4>Evidences</h4>
@@ -367,6 +317,8 @@
           </div>
       </fieldset>
   </form>
+  <div style="margin-right: 10%">
   <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
   <button type="cancel" class="cancel btn btn-primary" (click)=" backClicked()">Cancel</button>
+</div>
 </div>

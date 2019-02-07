@@ -109,7 +109,7 @@ export class LegalformComponent implements OnInit {
       let url_update = APP_CONFIG.saveMOU;
       this.loading = true;
       this.http.post(url_update, formData).subscribe((data: any) => {
-        this.contentData = "legal has been created.";
+        this.contentData = "Legal has been created.";
 
         this.modalService.open(this.content, ngbModalOptions);
         this.loading = false;
@@ -133,7 +133,7 @@ export class LegalformComponent implements OnInit {
       this.http.post(url_update, formData).subscribe((data: any) => {
         this.loading = false;
         this.files=[];
-        this.contentData = "legal has been updated.";
+        this.contentData = "Legal has been updated.";
         this.modalService.open(this.content, ngbModalOptions);
       }, error => {
         this.loading = false;
