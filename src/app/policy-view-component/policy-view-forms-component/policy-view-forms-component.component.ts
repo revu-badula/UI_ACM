@@ -72,7 +72,7 @@ export class PolicyViewFormsComponentComponent implements OnInit {
   }
 
   selectDefinitive(auditID) {
-
+    this.policy = false;
     if (auditID === 'Choose...' || auditID === "") {
       this.definitive = false
       this.policyTypes = [];
@@ -95,10 +95,8 @@ export class PolicyViewFormsComponentComponent implements OnInit {
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
         this.policyDisplay = data.policyGrpDTO;
-
         var date = this.policyDisplay.updatedTs;
         var dt = new Date(0);
-
         let d = new Date(this.policyDisplay.updatedTs);
         this.selectDate = {
           year: d.getFullYear(),

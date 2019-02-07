@@ -129,10 +129,9 @@
 						<label class="label-form" for="policyReviewTerm">Policy Review Term<span class="asterisk">*</span></label>
 						<input type="text" id="inputState" class="edit-disable form-control" *ngIf="showForm" [(ngModel)]="policyDisplay.policyReviewTerm"
 						 [name]="'review_term'" readonly>
-						<select class="form-control" style="width:50%;" id="priority" *ngIf="!showForm" [(ngModel)]="policyDisplay.policyReviewTermId"
-						 [name]="'review_term'" (change)="displayReview($event)" required>
-							<option value="" selected>Select</option>
-							<option *ngFor="let review of policyReviewTerm" [value]="review.id">{{review.reviewTerm}}</option>
+						<select class="form-control" style="width:50%;" id="priority" *ngIf="!showForm" [(ngModel)]="policyDisplay.policyReviewTerm"
+						 [name]="'review_term'" (change)="displayReview($event.target.value)" required>
+							<option *ngFor="let review of policyReviewTerm" [value]="review.reviewTerm">{{review.reviewTerm}}</option>
 							<!-- <option value="2">Half-Yearly</option>
 		                <option value="3">Quarterly</option> -->
 						</select>

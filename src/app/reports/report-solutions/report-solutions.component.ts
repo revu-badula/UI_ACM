@@ -46,7 +46,7 @@ export class ReportSolutionsComponent implements OnInit {
 
   ngOnInit() {
     this.showDropdown();
-    this.showPrecinct();
+    //this.showPrecinct();
   }
 
 
@@ -64,6 +64,7 @@ export class ReportSolutionsComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.systemTypes = data.systemTypeDTOs;
+        this.precTypes = data.precinctTypeDTOs;
       }, error => {
         this.loading = false;
         console.log(error);
@@ -97,6 +98,7 @@ export class ReportSolutionsComponent implements OnInit {
         this.inputEl2.nativeElement.value="";
         this.inputEl3.nativeElement.value="";
       }
+      this.precitTypes=[];
       this._apiservice.getSolOnTypeForReports(systemTypeId)
         .subscribe((data: any) => {
           this.sysTypes = data.solutionsDTOs;
@@ -112,6 +114,7 @@ export class ReportSolutionsComponent implements OnInit {
       this.precitTypes = [];
     }
     else {
+      this.sysTypes=[];
       this.inputEl.nativeElement.value = "";
       this.inputEl1.nativeElement.value = "";
       this._apiservice.getSolOnTypeForPrecinct(precinctTypeId)

@@ -142,7 +142,7 @@ export class PolicyDetailsComponent implements OnInit {
   displayReview(val) {
 
     this.policyDisplay.policyReviewTermId = val.target.value;
-    this.policyDisplay.policyReviewTerm = val.target.options[val.target.selectedIndex].text;
+    this.policyDisplay.policyReviewTerm = val;
   }
 
 

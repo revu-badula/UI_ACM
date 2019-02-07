@@ -160,8 +160,8 @@
 					 <div *ngIf="hostingTypeNotes.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
-						<div class="attachments-div" *ngIf="!showForm">
-							<input type="file" #fileInput  (change)="createCertDTO($event,'hosting')">
+						<div class="attachments-div">
+							<input type="file" #fileInput  (change)="createCertDTO($event,'hosting')" *ngIf="!showForm">
 
 							<div class="display-file">
 								<br>
@@ -194,12 +194,12 @@
 					<div class="certification-test form-row">
 						<div class="form-group col-md-6">
 							<label for="approvedDate"><b>DoEL Approved Date</b><span class="asterisk">*</span></label>
-							<my-date-picker name="myname" [disabled]='showForm' class="inputState1" [(ngModel)]="approveDate" placeholder="mm/dd/yyyy" (dateChanged)="getApprovalDate($event)" required></my-date-picker>
+							<my-date-picker name="myname" ngModel [disabled]='showForm' class="inputState1" [(ngModel)]="approveDate" placeholder="mm/dd/yyyy" (dateChanged)="getApprovalDate($event)" required></my-date-picker>
 
 						</div>
 						<div class="form-group col-md-6" id="renname" (clickOutside)="closeDropdown()">
 							<label for="dueDate"><b>Renewal Due Date</b><span class="asterisk">*</span></label>
-							<my-date-picker name="renname" [disabled]='showForm' class="inputState1" [(ngModel)]="dueDate" placeholder="mm/dd/yyyy" (dateChanged)="getDueDate($event)" required></my-date-picker>
+							<my-date-picker name="renname" ngModel [disabled]='showForm' class="inputState1" [(ngModel)]="dueDate" placeholder="mm/dd/yyyy" (dateChanged)="getDueDate($event)" required></my-date-picker>
 						</div>
 					</div>
 				</div>
