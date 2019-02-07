@@ -35,8 +35,8 @@ export class ReportLegalComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
-    localStorage.removeItem('localityName');
-    localStorage.removeItem('active');
+    sessionStorage.removeItem('localityName');
+    sessionStorage.removeItem('active');
 
 
   }
@@ -257,8 +257,8 @@ export class ReportLegalComponent implements OnInit {
     // for (let i = 0; i < countyarray.length; i++) {
     //   localStorage.setItem('fipscode', countyarray[i].county_code);
     // }
-    localStorage.setItem('localityName', value);
-    localStorage.setItem('active', 'true');
+    sessionStorage.setItem('localityName', value);
+    sessionStorage.setItem('active', 'true');
     this.router.navigate(['/locality/tab/legal']);
   }
 

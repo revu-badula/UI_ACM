@@ -30,8 +30,8 @@ export class ReportlegalsystemComponent implements OnInit {
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
     private router: Router) {
-    localStorage.removeItem('systemName');
-    localStorage.removeItem('systemActive');
+    sessionStorage.removeItem('systemName');
+    sessionStorage.removeItem('systemActive');
 
   }
 
@@ -221,8 +221,8 @@ export class ReportlegalsystemComponent implements OnInit {
 
   getSystem(value)
   {
-    localStorage.setItem('systemName', value);
-    localStorage.setItem('systemActive','true');
+    sessionStorage.setItem('systemName', value);
+    sessionStorage.setItem('systemActive','true');
     this.router.navigate(['/system/tab2/legal']);
   }
 

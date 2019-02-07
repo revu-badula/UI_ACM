@@ -335,8 +335,8 @@ export class ReportDeviceComponent implements OnInit {
   }
 
   getLocality(value) {
-    localStorage.setItem('localityName', value);
-    localStorage.setItem('active','true');
+    sessionStorage.setItem('localityName', value);
+    sessionStorage.setItem('active','true');
     this.router.navigate(['/locality/tab/solutions']);
   }
 
