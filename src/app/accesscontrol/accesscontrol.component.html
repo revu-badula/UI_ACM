@@ -37,7 +37,7 @@
     <form (ngSubmit)="addAppPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
         <fieldset [disabled]='showForm'>
             <div id="form1">
-                <div class="infoBox">
+                <div class="infoBox" style="width: 80%">
                     <div class="headerOfBox">
                         <h4>Policy</h4>
                     </div>
@@ -65,7 +65,7 @@
 
                 </div>
               
-                <div class="infoBox">
+                <div class="infoBox" style="width: 80%">
                     <div class="headerOfBox">
                         <h4>Control Information</h4>
                     </div>
@@ -141,7 +141,7 @@
 
                     <div class="form-row">
                         <label for="description">Description</label>
-                        <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
+                        <textarea cols="156" [ngxSummernote]="config"  [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
                             [(ngModel)]="appPolicy.description" [name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea><!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="description.errors?.maxlength" style="float:right">
@@ -155,12 +155,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
 
-                        <div class="infoBox">
+                        <div class="infoBox" style="width: 80%">
                             <div class="headerOfBox">
                                 <h4>Procedures<span class="asterisk">*</span>
                                 </h4>
                             </div>
-                            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
+                            <textarea cols="156" [ngxSummernote]="config" style="width: 80%" [ngxSummernoteDisabled]="showForm" rows="7"
                                 id="patches" ngModel name="policyProcedures" [(ngModel)]="appPolicy.procedures" [name]="'policy_procedures'" maxlength="50000"
                                 required #procedures="ngModel"> </textarea><!--<div style="float:right">{{50000 - procedures.value.length}} characters left </div> -->
 					 <br>
@@ -174,11 +174,11 @@
              
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <div class="infoBox">
+                        <div class="infoBox" style="width: 80%">
                             <div class="headerOfBox">
                                 <h4>Guidelines</h4>
                             </div>
-                            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
+                            <textarea cols="156" [ngxSummernote]="config" style="width: 80%" [ngxSummernoteDisabled]="showForm" rows="7"
                                 id="patches" [(ngModel)]="appPolicy.guidelines" [name]="'policy_guidelines'" maxlength="50000" #guidelines="ngModel"> </textarea><!--<div style="float:right">{{50000 - guidelines.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="guidelines.errors?.maxlength" style="float:right">
@@ -227,11 +227,11 @@
 
               
 
-                <div class="infoBox">
+                <div class="infoBox" style="width: 80%">
                     <div class="headerOfBox">
                         <h4>Artifacts</h4>
                     </div>
-                    <textarea [ngxSummernote]="config" name="artifacts" [(ngModel)]="appPolicy.artifacts"
+                    <textarea [ngxSummernote]="config" name="artifacts" style="width: 80%" [(ngModel)]="appPolicy.artifacts"
                         [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches" maxlength="50000" #artifacts="ngModel"> </textarea><!--<div style="float:right">{{50000 - artifacts.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="artifacts.errors?.maxlength" style="float:right">
@@ -241,12 +241,12 @@
 
                 
 
-                <div class="infoBox">
+                <div class="infoBox" style="width: 80%">
                     <div class="headerOfBox">
                         <h4>Non-COV</h4>
 
                     </div>
-                    <textarea [ngxSummernote]="config" name="noncov" [(ngModel)]="appPolicy.nonCov"
+                    <textarea [ngxSummernote]="config" name="noncov" style="width: 80%" [(ngModel)]="appPolicy.nonCov"
                         [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches" maxlength="50000" #nonCov="ngModel"> </textarea><!--<div style="float:right">{{50000 - nonCov.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="nonCov.errors?.maxlength" style="float:right">
@@ -315,6 +315,8 @@
             </div>
         </fieldset>
     </form>
+    <div style="margin-right: 10%">
     <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
     <button type="cancel" class="cancel btn btn-primary" (click)=" backClicked()">Cancel</button>
 </div>
+</div> 
