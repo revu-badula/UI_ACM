@@ -15,13 +15,14 @@ import { DialogService } from '../dialog.service';
 import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
+
 @Component({
-  selector: 'app-control-name',
-  templateUrl: './control-name.component.html',
-  styleUrls: ['./control-name.component.css'],
-  providers: [ApiserviceService],
+  selector: 'app-policyreview-view',
+  templateUrl: './policyreview-view.component.html',
+  styleUrls: ['./policyreview-view.component.css']
 })
-export class ControlNameComponent implements OnInit {
+export class PolicyreviewViewComponent implements OnInit {
+
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('pol') pol: ElementRef;
   color: String;
@@ -105,12 +106,16 @@ export class ControlNameComponent implements OnInit {
 
   backClicked() {
     UtilService.backClicked = true;
+    UtilService.review=true;
     this._location.back();
+    //this.router.navigate(['/policyView/review']);
   }
 
   backClick(event) {
     UtilService.backClicked = true;
+    UtilService.review=true;
     this._location.back();
+    //this.router.navigate(['/policyView/review']);
     event.preventDefault();
   }
 
@@ -519,6 +524,7 @@ export class ControlNameComponent implements OnInit {
     //this.router.navigate(['/subcontrol'])
     this.router.navigateByUrl(url);
   }
+
 
 
 

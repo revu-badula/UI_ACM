@@ -40,6 +40,10 @@ export class PolicyViewFormsComponentComponent implements OnInit {
       this.selectDefinitive(UtilService.auditId);
       this.auditTypeId=UtilService.auditId;
       this.policyGrpId=UtilService.policyGrpId;
+      if(UtilService.review)
+      {
+        this.router.navigate(['dummy'], { relativeTo: this.route });
+      }
     }
   }
 
@@ -72,9 +76,8 @@ export class PolicyViewFormsComponentComponent implements OnInit {
   }
 
   selectDefinitive(auditID) {
-    this.policy = false;
     if (auditID === 'Choose...' || auditID === "") {
-      this.definitive = false
+      this.definitive = false;
       this.policyTypes = [];
     }
     else {

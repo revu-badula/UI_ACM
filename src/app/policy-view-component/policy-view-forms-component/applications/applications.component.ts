@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../../../apiservice.service';
 import { Router} from '@angular/router';
+import { UtilService } from 'app/util.service';
 
 @Component({
   selector: 'app-applications',
@@ -17,7 +18,7 @@ export class ApplicationsComponent implements OnInit {
   public businessOwner: boolean = false;
   public systemOwner: boolean = false;
 
-  constructor(private _apiservice: ApiserviceService,private router: Router) { 
+  constructor(private _apiservice: ApiserviceService,private router: Router,private utilService: UtilService) { 
     sessionStorage.removeItem("systemName");
   }
 
@@ -26,25 +27,43 @@ export class ApplicationsComponent implements OnInit {
   }
 
   
-  viewApplication(system) {
-    sessionStorage.setItem('systemName', system);
+  viewApplication(system:any,id:any) {
+  
+    if(id === 1)
+    {
+      sessionStorage.setItem('localityName', system);
+      this.router.navigate(['/locality/tab/info']);
+    }
+    else{
+      sessionStorage.setItem('systemName', system);
     this.router.navigate(['/system/tab2/info']);
+    }
   }
   
   
    getPendingApplications() {
-    this.loading = true;
-    this._apiservice.getPendingApplications()
+    // this.loading = true;
+    // this._apiservice.getPendingApplications()
+    //   .subscribe((data: any) => {
+    //     this.loading = false;
+    //     if (data.length === 0) {
+    //       this.pendingApplications = [];
+    //       this.showPagination = false;
+    //     }
+    //     else {
+    //       this.pendingApplications = data;
+    //     }
+    //   }, error => {
+    //     this.loading = false;
+    //     console.log(error);
+    //   });
+
+    this.loading=true;
+    this._apiservice.fetchPolicies(UtilService.policyGrpId)
       .subscribe((data: any) => {
         this.loading = false;
-        if (data.length === 0) {
-          this.pendingApplications = [];
-          this.showPagination = false;
-        }
-        else {
-          this.pendingApplications = data;
-        }
-      }, error => {
+        this.pendingApplications = data.applicationDTOs;
+      },error => {
         this.loading = false;
         console.log(error);
       });

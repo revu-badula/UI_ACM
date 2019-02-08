@@ -6,7 +6,7 @@ import { IMyDate } from 'mydatepicker';
 import { APP_CONFIG } from '../../../app.config';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { UtilService } from '../../../util.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Cookie } from 'ng2-cookies';
 
@@ -69,7 +69,7 @@ export class PolicyDetailsComponent implements OnInit {
   public policyReview: PolicyReviewTerm;
 
   constructor(private modalService: NgbModal, private _apiservice: ApiserviceService, private http: Http,
-    private utilservice: UtilService, private activatedRoute: ActivatedRoute) {
+    private utilservice: UtilService, private activatedRoute: ActivatedRoute,private router: Router) {
     this.policyDisplay = new PolicyGrp();
     this.policies = [];
     this.policyDocumentsSubmit = new PolicyGrp();
@@ -80,7 +80,10 @@ export class PolicyDetailsComponent implements OnInit {
     if (UtilService.backClicked) {
       UtilService.backClicked = false;
       this.fetchPolicies(UtilService.policyGrpId);
-
+      if(UtilService.review)
+      {
+        this.router.navigate(['dummy']);
+      }
     }
   }
 

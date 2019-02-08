@@ -92,6 +92,7 @@ import { Accesscontrol1Component } from './accesscontrol1/accesscontrol1.compone
 import { AssessmentpolicyaddComponent } from './assessmentpolicyadd/assessmentpolicyadd.component';
 import { NgxCurrencyModule } from "ngx-currency";
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { PolicyreviewViewComponent } from './policyreview-view/policyreview-view.component';
 
 
 @NgModule({
@@ -155,6 +156,7 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
     AssessmentpolicyaddComponent,
     AssessmentpolicyupdateComponent,
     DisclaimerComponent,
+    PolicyreviewViewComponent,
 
 
   ],

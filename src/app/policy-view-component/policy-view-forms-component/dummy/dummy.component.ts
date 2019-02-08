@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd, RoutesRecognized } from '@angular/router';
 import { filter, pairwise } from 'rxjs/operators';
+import { UtilService } from 'app/util.service';
 
 @Component({
   selector: 'app-dummy',
@@ -11,8 +12,14 @@ export class DummyComponent implements OnInit {
   public previousUrl: string;
 
   constructor(private router: Router, private route: ActivatedRoute) { 
+    if(UtilService.review)
+    {
+      UtilService.review=false;
+      this.router.navigate(['policyView/review']);
+    }
+    else{
   this.router.navigate(['policyView/policyDetails']);
-
+    }
     }
 
   ngOnInit() {

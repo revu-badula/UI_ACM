@@ -31,7 +31,7 @@
 
 		</form>
 	</div>
-		<div class="forms" *ngIf="definitive == true && policy == true ">
+		<div class="forms" *ngIf="definitive && policy">
 			<div class="policy-section">
 				<div>
 					<ul class="nav nav-tabs">
@@ -51,11 +51,11 @@
 								<fa class="file-alt help" [name]="'book'"></fa>Documents
 							</a>
 						</li>
-						<!-- <li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" routerLinkActive="active" routerLink="applications">
 								<fa class="mobile-android help" [name]="'cubes'"></fa>Applications
 							</a>
-						</li> -->
+						</li>
 					</ul>
 				</div>
 				<router-outlet></router-outlet>

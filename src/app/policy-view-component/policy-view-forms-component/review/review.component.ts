@@ -9,10 +9,12 @@ import { IMyDpOptions, IMyDate } from 'mydatepicker';
 import { UtilService } from '../../../util.service';
 import { FilterPipe } from '../../../convertDate.pipe';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PolicyGrp, Policy, PolicyDocumentsDTO } from '../../../data_modelPolicy';
+import { PolicyGrp, Policy, PolicyDocumentsDTO, policyRevieDTO } from '../../../data_modelPolicy';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { DialogService } from 'app/dialog.service';
 
 @Component({
   selector: 'app-review',
@@ -34,7 +36,7 @@ export class ReviewComponent implements OnInit {
   firstName: string;
   dueDate: any;
   public users: any;
-  public reviewDTO: any;
+  public reviewDTO: policyRevieDTO;
   public policyData: any;
   public desc = false;
   public desc2 = false;
@@ -70,11 +72,13 @@ export class ReviewComponent implements OnInit {
   };
   constructor(private modalService: NgbModal, private _apiservice: ApiserviceService,
      private http: Http, private fb: FormBuilder, private utilservice: UtilService, 
-     private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) {
+     private router: Router, private route: ActivatedRoute, 
+     private datepipe: DatePipe, private httpClient:HttpClient, private dialogService: DialogService) {
     //this.review = new Review();
     this.review = [];
     this.policies = [];
     this.policyAccess = new Policy();
+    this.reviewDTO = new policyRevieDTO();
   }
 
   ngOnInit() {
@@ -91,6 +95,23 @@ export class ReviewComponent implements OnInit {
     this.review = [];
     this.modalService.open(content);
     //this.plus=false;
+  }
+
+  updateReview()
+  {
+    //console.log(this.reviewDTO);
+    this.loading=true;
+    let url= APP_CONFIG.savePolicyReview;
+    // let data = JSON.stringify(this.reviewDTO);
+    this.httpClient.post(url,this.reviewDTO)
+    .subscribe((data:any) => {
+      this.loading=false;
+      this.dialogService.open("Info","review Section has been updated.",false,"OK","OK");
+    },error => {
+      this.loading=false;
+      console.log(error);
+    })
+
   }
 
 
@@ -143,10 +164,11 @@ export class ReviewComponent implements OnInit {
   }
 
   displayPolicy(policy: number) {
-    this.showPolicy = true;
-    this.pId = policy;
-
-    this.getPolicy(this.pId);
+    // this.showPolicy = true;
+    // this.pId = policy;
+    // this.getPolicy(this.pId);
+    let url = "policyreviewview"+"/"+policy;
+    this.router.navigateByUrl(url);
   }
 
   onSubmit() {

@@ -25,7 +25,7 @@ export class PolicyGrp {
 
 
 export class Policy {
-	parentPolicyId:any;
+	parentPolicyId: any;
 	policyId: number;
 	controlNumber: string;
 	policyName: string;
@@ -103,4 +103,18 @@ export class subControl {
 	guidelines: any;
 	substatus: any;
 
+}
+
+export class policyRevieDTO {
+	policyReview: any;
+	policyGrpId: any;
+	policyGrpName: any;
+	assignedTo: any;
+	comments: any;
+	createdBy: any;
+	createdTs: any;
+	updatedBy:any;
+	updatedTs:any;
+	status:any;
+	dueDate:any;
 }

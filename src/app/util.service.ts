@@ -17,6 +17,7 @@ static preId:number;
 static disabled: boolean = true;
 static popModal:boolean = false;
 static active:boolean;
+static review:boolean=false;
 static loginstate:boolean = false;
 static onEdit:boolean=false;
 static auditActive:boolean;

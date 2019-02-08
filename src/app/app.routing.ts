@@ -152,6 +152,7 @@ import { AssessmentpolicyaddComponent } from './assessmentpolicyadd/assessmentpo
 import { AssessmentpolicyupdateComponent } from './assessmentpolicyupdate/assessmentpolicyupdate.component';
 import { Accesscontrol1Component } from './accesscontrol1/accesscontrol1.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { PolicyreviewViewComponent } from './policyreview-view/policyreview-view.component';
 
 const appRoutes: Routes = [
 
@@ -168,6 +169,7 @@ const appRoutes: Routes = [
   { path: 'accessCntrl/:id', component: AccesscontrolComponent, canActivate: [AuthGuard] },
   { path: 'accessUpdate/:id', component: AuditpolicyupdateComponent, canActivate: [AuthGuard] },
   { path: 'policy', component: PolicyComponentComponent, canActivate: [AuthGuard] },
+  { path:'policyreviewview/:id', component:PolicyreviewViewComponent, canActivate: [AuthGuard]},
   { path: 'policyAdd', component: PolicyAddComponent, canActivate: [AuthGuard] },
   { path: 'deviceInventory', component: DeviceComponent, canActivate: [AuthGuard] },
   { path: 'updateDevice/:id', component: UpdateDeviceComponent, canActivate: [AuthGuard] },
