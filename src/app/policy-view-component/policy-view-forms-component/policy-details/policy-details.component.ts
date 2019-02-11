@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef, AfterViewInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { PolicyGrp, Policy, PolicyDocumentsDTO, PolicyReviewTerm } from '../../../data_modelPolicy';
 import { ApiserviceService } from '../../../apiservice.service';
@@ -17,7 +17,7 @@ import { Cookie } from 'ng2-cookies';
   styleUrls: ['./policy-details.component.css'],
   providers: [ApiserviceService]
 })
-export class PolicyDetailsComponent implements OnInit {
+export class PolicyDetailsComponent implements OnInit{
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('content1') content1: TemplateRef<any>;
   policyDisplay: PolicyGrp;
@@ -85,6 +85,12 @@ export class PolicyDetailsComponent implements OnInit {
     //     console.log("test");
     //   }
     // }
+    if(UtilService.review){
+      UtilService.review=false;
+      this.router.navigate(['policyView/review']);
+    }
+
+    
   }
 
   open(content:any) {
@@ -115,6 +121,7 @@ export class PolicyDetailsComponent implements OnInit {
     this.getFamilies(UtilService.policyGrpId);
     this.getUsers();
   }
+ 
 
   fetchPolicies(id) {
     this.loading = true;

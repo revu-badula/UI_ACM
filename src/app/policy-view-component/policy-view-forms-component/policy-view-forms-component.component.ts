@@ -40,10 +40,6 @@ export class PolicyViewFormsComponentComponent implements OnInit {
       this.selectDefinitive(UtilService.auditId);
       this.auditTypeId=UtilService.auditId;
       this.policyGrpId=UtilService.policyGrpId;
-      if(UtilService.review)
-      {
-        UtilService.review=false;
-      }
     }
   }
 
