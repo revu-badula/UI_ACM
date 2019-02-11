@@ -1,9 +1,8 @@
 import { APP_CONFIG } from '../../../app.config';
 import { Location } from '@angular/common';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
-import { File } from 'babel-types';
 import { Locality, applicationView, WorkHours } from '../../../data_model_locality';
-import { Component, OnInit, HostListener, ViewChild, ElementRef, TemplateRef, NgModule } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, TemplateRef } from '@angular/core';
 import { ApiserviceService } from '../../../apiservice.service';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm, PatternValidator } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -12,13 +11,14 @@ import { UtilService } from '../../../util.service';
 import { FilterPipeDate } from '../../locality-date-filter';
 import { Cookie } from 'ng2-cookies';
 import { PhonePipe } from '../../phone-pipe';
+import { LocalityTabComponent } from '../locality-tab.component';
 
 
 @Component({
   selector: 'app-locality-details',
   templateUrl: './locality-details.component.html',
   styleUrls: ['./locality-details.component.css'],
-  providers: [ApiserviceService, PhonePipe]
+  providers: [ApiserviceService, PhonePipe, LocalityTabComponent]
 })
 export class LocalityDetailsComponent implements OnInit {
   daysArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -62,11 +62,8 @@ export class LocalityDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
     , private http: Http, private _location: Location, private modalService: NgbModal,
-    private router: Router, private utilservice: UtilService, private phone: PhonePipe) {
-
-
+    private router: Router, private utilservice: UtilService, private phone: PhonePipe, private tab:LocalityTabComponent) {
     this.locality = new Locality();
-
     this.workHours = new WorkHours();
 
   }
@@ -76,7 +73,7 @@ export class LocalityDetailsComponent implements OnInit {
 
   }
 
-  editClick(event): void {
+  editClick(event:any): void {
     this.editableForm = false;
     this.showBtn = true;
     this.isShow = true;
@@ -132,7 +129,7 @@ export class LocalityDetailsComponent implements OnInit {
 
   }
 
-  viewApplication(local) {
+  viewApplication(local:any) {
 
     this.loading = true;
     this._apiservice.viewApplication(local)
@@ -147,7 +144,6 @@ export class LocalityDetailsComponent implements OnInit {
           for (let day in this.daysArray) {
             this.workHours = new WorkHours();
             this.workHours.day = this.daysArray[day];
-
             this.locality.workHoursDTOs.push(this.workHours);
 
           }

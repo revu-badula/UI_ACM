@@ -11,16 +11,11 @@ import { UtilService } from 'app/util.service';
 export class DummyComponent implements OnInit {
   public previousUrl: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) { 
-    if(UtilService.review)
-    {
-      UtilService.review=false;
-      this.router.navigate(['policyView/review']);
-    }
-    else{
-  this.router.navigate(['policyView/policyDetails']);
-    }
-    }
+  constructor(private router: Router, private route: ActivatedRoute) {
+   
+      this.router.navigate(['policyView/policyDetails']);
+    
+  }
 
   ngOnInit() {
   }

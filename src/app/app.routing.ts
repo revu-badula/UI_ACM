@@ -159,7 +159,7 @@ const appRoutes: Routes = [
   { path: '', component: DisclaimerComponent},
   { path: 'log', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
   { path: 'login', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { title: 'home' } },
   { path: 'logout', component: LogoutComponent },
   { path: 'devicetab', component: DevicetabComponent, canActivate: [AuthGuard] },
   { path: 'vendors', component: VendorsComponentComponent, canActivate: [AuthGuard] },

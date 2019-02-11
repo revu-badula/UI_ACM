@@ -42,7 +42,7 @@ export class PolicyViewFormsComponentComponent implements OnInit {
       this.policyGrpId=UtilService.policyGrpId;
       if(UtilService.review)
       {
-        this.router.navigate(['dummy'], { relativeTo: this.route });
+        UtilService.review=false;
       }
     }
   }

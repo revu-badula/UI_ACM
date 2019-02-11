@@ -360,11 +360,13 @@ export class SystemAssessDetailsComponent implements OnInit {
       this.policyTypes = [];
     }
     else {
+      this.loading=true;
       this.definitive = true;
       this.auditTypeId = auditID;
       this.appAssess.auditName = auditID;
       this._apiservice.fetchPolicyGroupForAA(auditID)
         .subscribe((data: any) => {
+          this.loading=false;
           this.policyTypes = data;
           if(data.length > 0)
           {
@@ -374,6 +376,7 @@ export class SystemAssessDetailsComponent implements OnInit {
             this.policyErr ="select source with controls."
           }
         }, error => {
+          this.loading=false;
           console.log(error)
         });
     }

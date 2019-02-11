@@ -215,12 +215,13 @@ export class AuditFirstComponent implements OnInit {
       this.policyTypes = [];
     }
     else {
-      
+      this.loading=true;
       this.definitive = true;
       this.auditTypeId = auditID;
       this.appAudit.auditName = auditID;
       this._apiservice.fetchPolicyGroupForAA(auditID)
         .subscribe((data: any) => {
+          this.loading=false;
           this.policyTypes = data;
           if(data.length > 0)
           {
@@ -230,7 +231,9 @@ export class AuditFirstComponent implements OnInit {
             this.policyErr ="select source with controls."
           }
          
-        }, error => { console.log(error) });
+        }, error => { 
+          this.loading=false;
+          console.log(error) });
     }
   }
 

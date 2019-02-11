@@ -20,6 +20,7 @@ export class ApplicationsComponent implements OnInit {
 
   constructor(private _apiservice: ApiserviceService,private router: Router,private utilService: UtilService) { 
     sessionStorage.removeItem("systemName");
+    sessionStorage.removeItem("localityName");
   }
 
   ngOnInit() {

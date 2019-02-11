@@ -77,17 +77,17 @@ export class PolicyDetailsComponent implements OnInit {
     this.policyDocumentDTO = [];
     this.files = [] as File[];
     this.policyReview = new PolicyReviewTerm();
-    if (UtilService.backClicked) {
-      UtilService.backClicked = false;
-      this.fetchPolicies(UtilService.policyGrpId);
-      if(UtilService.review)
-      {
-        this.router.navigate(['dummy']);
-      }
-    }
+    // if (UtilService.backClicked) {
+    //   UtilService.backClicked = false;
+    //   this.fetchPolicies(UtilService.policyGrpId);
+    //   if(UtilService.review)
+    //   {
+    //     console.log("test");
+    //   }
+    // }
   }
 
-  open(content) {
+  open(content:any) {
     this.modalService.open(content);
   }
 

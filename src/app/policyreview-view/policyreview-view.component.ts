@@ -107,15 +107,15 @@ export class PolicyreviewViewComponent implements OnInit {
   backClicked() {
     UtilService.backClicked = true;
     UtilService.review=true;
-    this._location.back();
-    //this.router.navigate(['/policyView/review']);
+    //this._location.back();
+    this.router.navigate(['/policyView/policyDetails']);
   }
 
-  backClick(event) {
+  backClick(event:any) {
     UtilService.backClicked = true;
     UtilService.review=true;
-    this._location.back();
-    //this.router.navigate(['/policyView/review']);
+    //this._location.back();
+    this.router.navigate(['/policyView/policyDetails']);
     event.preventDefault();
   }
 
@@ -154,7 +154,7 @@ export class PolicyreviewViewComponent implements OnInit {
     this.showEli = false;
   }
 
-  open(content) {
+  open(content:any) {
     this.modalService.open(content);
   }
 
@@ -172,7 +172,7 @@ export class PolicyreviewViewComponent implements OnInit {
     this.inputEl.nativeElement.value = "";
   }
 
-  deleteFile(id, index) {
+  deleteFile(id:any, index:any) {
     //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
     this.dialogService.open("Info", "Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
