@@ -17,13 +17,6 @@ export class LocalityTabComponent implements OnInit {
   ngOnInit() {
   }
 
-  showTab1() {
-    this.showTab = false;
-    this.ref.detectChanges();
-  }
-  showTab2() {
-    this.showTab = true;
-  }
 
  
 
