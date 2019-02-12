@@ -62,7 +62,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="status">Status<span class="asterisk">*</span></label>
-            <select style="width: 50%;" class="form-control" id="status" name="status" ngModel (change)="policyPost.status = $event.target.value"
+            <select  class="form-control" id="status" name="status" ngModel (change)="policyPost.status = $event.target.value"
              required>
               <option value="">Choose</option>
               <option value="true">Open</option>
@@ -143,7 +143,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="priority">Priority<span class="asterisk">*</span></label>
-            <select style="width: 50%;" class="form-control" name="priority" ngModel id="priority" (change)="policyPost.priority = $event.target.value"
+            <select  class="form-control" name="priority" ngModel id="priority" (change)="policyPost.priority = $event.target.value"
              required>
               <option value="">Choose</option>
               <option value="High">High</option>
@@ -237,8 +237,8 @@
     </div>
 
   </form>
-  <div style="margin-right:10%">
-  <button type="submit" style="margin-right: 9vw;" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+  <div style="margin-right:5%">
+  <button type="submit"  form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
   <button type="cancel" class="cancel btn btn-primary" (click)="backClicked()">Cancel</button>
 </div>
 </div>

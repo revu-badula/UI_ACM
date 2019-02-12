@@ -118,7 +118,7 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label class="label-form" for="owner">Owner<span class="asterisk">*</span></label>
-						<select type="text" style="width: 50%;" class="edit-disable form-control" [(ngModel)]="policyDisplay.owner"
+						<select type="text"  class="edit-disable form-control" [(ngModel)]="policyDisplay.owner"
 						 (change)="policyDisplay.owner = $event.target.value" [name]="'policy_owner'" required>
 							<option value="" selected>Choose...</option>
 							<option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{

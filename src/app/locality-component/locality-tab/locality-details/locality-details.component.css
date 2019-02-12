@@ -384,7 +384,7 @@ h2 {
   position: relative;
   display: block;
   content: "";
-  width: 50%;
+ width:44%;
   height: 100%;
 }
 .tgl + .tgl-btn:after {
@@ -699,7 +699,7 @@ h2 {
  
  
   box-sizing: border-box;
-  width: 50%;
+ width:44%;
   line-height: 2em;
   border: 1px solid #AAA;
   border-radius: 0.4rem;

@@ -164,7 +164,7 @@ tbody tr:nth-of-type(odd) {
   margin-top: 10px;
   float: left;
   box-sizing: border-box;
-  width: 50%;
+ width:44%;
   line-height: 2em;
   border: 1px solid #AAA;
   border-radius: 0.4rem;

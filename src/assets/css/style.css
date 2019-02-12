@@ -243,16 +243,17 @@ h3 {
 }
 
 body {
-  /* background-image: url(../img/greyjpg.jpg); */
+  background-image: url(../img/greyjpg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background: linear-gradient(to bottom, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
+ 
+  /* background: linear-gradient(to bottom, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); */
 }
 
 #form1 {
   border-radius: 10px;
  
-  margin: 0% 10% 0% 10%;
+  margin: 0% 5% 0% 5%;
   background-color: white;
  
   background-repeat: no-repeat;
@@ -442,7 +443,7 @@ table thead tr td {
   margin-top: 10px;
   float: left;
   box-sizing: border-box;
-  width: 50%;
+  width: 44%;
   line-height: 2em;
   border-radius: 0.4rem;
   -webkit-border-radius: 0.4rem;
@@ -495,7 +496,7 @@ input {
   margin-top: 10px;
   float: left;
   box-sizing: border-box;
-  width: 50%;
+ width:44%;
   line-height: 2em;
   border: 1px solid #AAA;
   border-radius: 0.4rem;
@@ -514,7 +515,7 @@ input[type=button] {
   border: 1px solid #000;
   margin-top: 10px;
   box-sizing: border-box;
-  width: 50%;
+  width: 44%;
   line-height: 2em;
   border: 1px solid #AAA;
   border-radius: 0.4rem;
@@ -626,7 +627,7 @@ input[type=button] {
   margin-top: 10px;
   float: left;
   box-sizing: border-box;
-  width: 50%;
+  width: 44%;
   line-height: 2em;
   border-radius: 0.4rem;
   -webkit-border-radius: 0.4rem;
@@ -864,4 +865,35 @@ a{
   color: black;
   margin-top: 15px;
   margin-bottom: -15px;
+}
+
+.form-control{
+  width: 44% !important;
+}
+
+.form-control1{display:block;
+  width:100%;
+  padding:.375rem .75rem;
+  font-size:1rem;
+  line-height:1.5;
+  color:#495057;
+  background-color:#fff;
+  background-clip:padding-box;
+  border:1px solid #ced4da;border-radius:.25rem;
+  transition:border-color .15s ease-in-out,
+  box-shadow .15s ease-in-out
+}
+
+
+input {
+  border: 1px solid #000;
+  margin-top: 10px;
+  float: left;
+  box-sizing: border-box;
+  width: 44%;
+  line-height: 2em;
+  border: 1px solid #AAA;
+  border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
 }

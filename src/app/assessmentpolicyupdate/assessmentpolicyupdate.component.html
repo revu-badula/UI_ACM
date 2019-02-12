@@ -129,7 +129,7 @@
                       </div>
                       <div class="form-group col-md-6">
                             <label for="priority">Priority<span class="asterisk">*</span></label>
-                            <select style="width: 50%;" class="form-control" name="priority" [(ngModel)]="appPolicy.priority" id="priority" (change)="appPolicy.priority = $event.target.value"
+                            <select  class="form-control" name="priority" [(ngModel)]="appPolicy.priority" id="priority" (change)="appPolicy.priority = $event.target.value"
                              required>
                               <option value="">Choose</option>
                               <option value="High">High</option>
@@ -317,7 +317,7 @@
           </div>
       </fieldset>
   </form>
-  <div style="margin-right: 10%">
+  <div style="margin-right:5%">
   <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
   <button type="cancel" class="cancel btn btn-primary" (click)=" backClicked()">Cancel</button>
 </div>

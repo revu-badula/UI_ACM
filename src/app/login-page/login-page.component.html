@@ -17,17 +17,22 @@
 
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <br>
+                       
                             User Name
-                            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="User Name" />
+                         
+                            
+                            <input type="text" formControlName="username" style="width: 100%" class="form-control1" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="User Name" />
                             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                                 <div *ngIf="f.username.errors.required">User Name is required</div>
                             </div>
                         </div>
                         <div class="form-group">
+                            
                            Password
-                            <input type="password" #pass formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
-                            <div style="margin-left: -29%;"><input type="checkbox" (click)="showPassword()" style="margin-right: -23%;
+                           
+                            <input type="password" style="width: 100%" #pass formControlName="password" class="form-control1" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
+                           
+                            <div ><input type="checkbox" (click)="showPassword()" style="width:10%;
                                 margin-top: .5vw;outline: none;">Show Password</div>
                             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                 <div *ngIf="f.password.errors.required">Password is required</div>

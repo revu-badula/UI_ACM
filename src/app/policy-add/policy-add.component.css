@@ -11,7 +11,6 @@
 .btn{
    background-color: black;
    border-color: black;
-   border-radius: 20px;
    box-shadow: 5px 10px 20px 1px rgba(125,122,118,1);
 }
 
@@ -373,7 +372,7 @@ input {
 
 
  box-sizing: border-box;
- width: 50%;
+ width: 44%;
  line-height: 2em;
  border: 1px solid #AAA;
  border-radius: 0.4rem;

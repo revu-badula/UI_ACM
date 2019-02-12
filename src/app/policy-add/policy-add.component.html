@@ -18,10 +18,7 @@
 <div class="navigate sticky-top" style="padding-top: 1.5em;" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
 	<div class="form-options">
 		<div class="home-back">
-			<a routerLink="/dashboard">
-				<fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
-				 data-delay="0" [name]="'home'"></fa>
-			</a>
+			
 			<a href="javascript:void(0)" (click)="backClicked()">
 				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
 				 data-delay="0" [name]="'arrow-left'"></fa>
@@ -33,7 +30,7 @@
 <div>
 <form (ngSubmit)="addPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
 	<div id="form1">
-		<div class="infoBox">
+		<div class="infoBox" style="width: 80%">
 			<div class="headerOfBox">
 				<h4>Policy Details</h4>
 			</div>
@@ -62,7 +59,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="status">Status<span class="asterisk">*</span></label>
-					<select style="width: 50%;" class="form-control" id="status" name="status" ngModel (change)="policyPost.status = $event.target.value"
+					<select  class="form-control" id="status" name="status" ngModel (change)="policyPost.status = $event.target.value"
 					 required>
 						<option value="">Choose</option>
 						<option value="true">Open</option>
@@ -71,8 +68,8 @@
 				</div>
 			</div>
 		</div>
-		<br><br><br>
-		<div class="infoBox">
+
+		<div class="infoBox" style="width: 80%">
 			<div class="headerOfBox">
 				<h4>Policy Information</h4>
 			</div>
@@ -106,12 +103,13 @@
 				</div>
 			</div>
 		</div>
-		<br><br><br>
+		
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Procedures<span class="asterisk">*</span></h4>
 			</div>
 			<div class="form-row">
+				<label>Procedures</label>
 				<textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" ngModel name="policyProcedures" [(ngModel)]="policyPost.procedures"
 				 [name]="'policy_procedures'" maxlength="50000" required #procedures="ngModel"> </textarea><!--<div style="float:right">{{50000 - procedures.value.length}} characters left </div> -->
 					 <br>
@@ -121,7 +119,7 @@
 
 			</div>
 		</div>
-		<br><br><br>
+	
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Guidelines</h4>
@@ -135,7 +133,7 @@
 					   </div> 
 			</div>
 		</div>
-		<br><br><br>
+		
 		<div class='infoBox'>
 			<div class="headerOfBox">
 				<h4>Other Information</h4>
@@ -143,7 +141,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="priority">Priority<span class="asterisk">*</span></label>
-					<select style="width: 50%;" class="form-control" name="priority" ngModel id="priority" (change)="policyPost.priority = $event.target.value"
+					<select  class="form-control" name="priority" ngModel id="priority" (change)="policyPost.priority = $event.target.value"
 					 required>
 						<option value="">Choose</option>
 						<option value="High">High</option>
@@ -158,7 +156,7 @@
 			</div>
 		
 		</div>
-		<br><br><br>
+		
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Artifacts</h4>
@@ -169,7 +167,7 @@
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
 		</div>
-		<br><br><br>
+		
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Non-Cov</h4>
@@ -180,7 +178,7 @@
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
 		</div>
-		<br><br><br>
+	
 
 		<div class="infoBox">
 			<div class="headerOfBox">
@@ -211,6 +209,8 @@
 	</div>
 
 </form>
-<button type="submit" style="margin-right: 9vw;" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+<div style="margin-right: 5%">
+<button type="submit"  form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>
 <button type="cancel" class="cancel btn btn-primary" (click)="backClicked()">Cancel</button>
 <div>
+	</div>

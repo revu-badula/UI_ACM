@@ -86,7 +86,7 @@
 
             <input *ngIf="!showOriginal" type="text" class="inputState" name="auditName" [(ngModel)]="appAudit.auditTypeName"
               readonly>
-            <select *ngIf="showOriginal" style="width: 50%;" class="form-control" ngModel required name="auditName" (change)="selectDefinitive($event.target.value)"
+            <select *ngIf="showOriginal"  class="form-control" ngModel required name="auditName" (change)="selectDefinitive($event.target.value)"
               required>
               <option value="">Choose...</option>
               <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{
@@ -99,7 +99,7 @@
             <label for="lastName">Type/Policy <span class="asterisk">*</span></label>
 
             <input *ngIf="!showOriginal" type="text" class="inputState" name="policyId" [(ngModel)]="polName" readonly>
-            <select *ngIf="showOriginal" class="form-control" ngModel style="width: 50%;" id="typePolicy" name="policyId" required (change)="selectType($event.target.value)"
+            <select *ngIf="showOriginal" class="form-control" ngModel  id="typePolicy" name="policyId" required (change)="selectType($event.target.value)"
               required>
               <option value="">Choose...</option>
               <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{
@@ -140,7 +140,7 @@
 
             <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus"
               [(ngModel)]="appAudit.status">
-            <select style="width: 50%;" *ngIf="showOriginal || showStatus" [(ngModel)]="appAudit.status" id="modelSolution"
+            <select  *ngIf="showOriginal || showStatus" [(ngModel)]="appAudit.status" id="modelSolution"
               ngModel name="overallStatus" class="form-control" (change)="getNextDate($event.target.value)" required>
               <option value="">Choose...</option>
               <option value="Open">Open</option>

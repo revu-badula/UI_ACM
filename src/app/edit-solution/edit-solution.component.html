@@ -70,7 +70,7 @@
 							<input type="text" class="form-control" id="systemType" *ngIf="showForm" [(ngModel)]="solution.systemTypeDTO.name"
 							 [name]="'system_name'">
 							 
-							 <input style="width: 50%;" class="form-control" id="systemType" ngModel name="systemType"
+							 <input  class="form-control" id="systemType" ngModel name="systemType"
 							 *ngIf="!showForm" [(ngModel)]="solution.systemTypeDTO.systemTypeId" (change)="solution.systemTypeDTO.systemTypeId = $event.target.value"
 							 readonly>
 
@@ -82,7 +82,7 @@
 							<input type="text" class="form-control" id="equipmentType" *ngIf="showForm" [(ngModel)]="solution.solutionTypeName"
 							 [name]="'solution_type'"> 
 							 
-							 <input style="width: 50%;" class="form-control" id="equipmentType" ngModel name="equipmentType"
+							 <input  class="form-control" id="equipmentType" ngModel name="equipmentType"
 							 *ngIf="!showForm" [(ngModel)]="solution.solutionType" (change)="solution.solutionType = $event.target.value"
 							 readonly>
 								<!-- <option *ngFor="let equipmentType of solutionType" value="{{ equipmentType.solutionTypeId }}">{{
@@ -95,7 +95,7 @@
 							<label class="label-form" for="vendor"><b>Vendor</b><span class="asterisk">*</span>
 							</label>
 							<input type="text" class="form-control" id="vendor" *ngIf="showForm" [(ngModel)]="solution.vendor.name" [name]="'vendor_details'">
-							<input class="form-control" style="width: 50%;" id="vendor" ngModel name="vendor" *ngIf="!showForm" [(ngModel)]="solution.vendorId"
+							<input class="form-control"  id="vendor" ngModel name="vendor" *ngIf="!showForm" [(ngModel)]="solution.vendorId"
 							 (change)="solution.vendorId = $event.target.value" readonly>
 								<!-- <option *ngFor="let vendor of vendorDTO" value="{{ vendor.vendorId }}">{{ vendor.name }}</option> -->
 							
@@ -107,7 +107,7 @@
 							<input type="text" class="form-control" id="modelSolution" *ngIf="showForm" [(ngModel)]="solution.precinctTypeName"
 							 [name]="'precinct_type'"> 
 							 
-							 <input style="width: 50%;" class="form-control" id="vendor" ngModel name="precinctType"
+							 <input  class="form-control" id="vendor" ngModel name="precinctType"
 							 *ngIf="!showForm" [(ngModel)]="solution.precinctTypeId" (change)="solution.precinctTypeId = $event.target.value"
 							 readonly>
 								<!-- <option *ngFor="let precinct of precinctTypes" value="{{ precinct.precinctTypeId }}">{{
@@ -137,7 +137,7 @@
 						</label>
 						<!-- <input type="text" class="form-control" id="hostingType" *ngIf="showForm" [(ngModel)]="solution.hostingTypeDTO.name"
 						 [name]="'hosting_name'">  -->
-						 <select style="width: 50%;" class="form-control" id="hostingType" ngModel name="hostingType"
+						 <select  class="form-control" id="hostingType" ngModel name="hostingType"
 						  [(ngModel)]="solution.hostingTypeDTO.hostingTypeId" (change)="solution.hostingTypeDTO.hostingTypeId = $event.target.value"
 						 required>
 							<option *ngFor="let hostingType of hostingTypeDTO" value="{{ hostingType.hostingTypeId }}">{{
@@ -215,7 +215,7 @@
 							</label>
 							<input type="text" class="form-control" id="labVendor"  [(ngModel)]="solution.labVendorsDTO.name"
 							 [name]="'lab_name'" readonly>
-							<!-- <select class="form-control" style="width: 50%;" id="labVendor" ngModel name="labVendor" *ngIf="!showForm"
+							<!-- <select class="form-control"  id="labVendor" ngModel name="labVendor" *ngIf="!showForm"
 							 [(ngModel)]="solution.labVendorsDTO.labVendorId" (change)="solution.labVendorsDTO.labVendorId = $event.target.value"
 							 required>
 								<option *ngFor="let lab of labVendorsDTO" value="{{ lab.labVendorId }}">{{ lab.name }}</option>
@@ -365,7 +365,7 @@
 
 		</div>
 	</form>
-	<div class="buttons " style="margin-right: 10%" >
+	<div class="buttons " style="margin-right:5%" >
 		<button type="submit" class="cancel btn btn-primary" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm" >Submit</button>
 		<button type="cancel" class="cancel btn btn-primary" (click)="backClicked($event)">Cancel</button>
 	</div>
