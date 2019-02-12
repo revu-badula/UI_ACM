@@ -93,7 +93,7 @@ export class EditVendorComponent implements OnInit {
       vendorContact: this.fb.group({
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        emailId: ['', Validators.email],
+        emailId: ['', Validators.required],
         phoneNumber: ['', Validators.required]
       }),
     });
@@ -133,20 +133,13 @@ export class EditVendorComponent implements OnInit {
 
     }
 
-    return (key == 8 || key == 9 || key == 17 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+    return (key == 8 || key == 9 || key == 16 || key == 37 || key == 39 || key == 35 || key == 17 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 
   }
 
 
   getNumber(value) {
-    if (value.length === 12) {
-      this.editVendorForm.patchValue({
-        vendorContact: {
-          phoneNumber: value
-        }
-      });
-    }
-    else {
+    if (value.length === 10) {
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -158,7 +151,16 @@ export class EditVendorComponent implements OnInit {
           phoneNumber: phm
         }
       });
+
     }
+    else {
+      this.editVendorForm.patchValue({
+        vendorContact: {
+          phoneNumber: value
+        }
+      });
+    }
+
 
   }
 

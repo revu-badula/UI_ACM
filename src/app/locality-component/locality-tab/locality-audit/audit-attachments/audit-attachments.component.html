@@ -49,20 +49,18 @@
       <fieldset [disabled]="showForm">
         <div class="form-row">
           <div class="form-group col-md-6">
-
-            <label for="inputState">Audit Attachments</label>
-
-
+            <b>Audit Attachments</b>
           </div>
 
         </div>
-        <div class="col-sm-5 col-md-5 col-lg-5">
+      <div class="form-row">
+        <div class="form-group col-md-6">
           <input type="file" #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
-
-
         </div>
+      </div>
       </fieldset>
       <br>
+      <div class="form-row">
       <table id="myTable">
         <tr>
           <th>File Name</th>
@@ -77,6 +75,7 @@
           </td>
         </tr>
       </table>
+      </div>
     </div>
   </form>
 </div>

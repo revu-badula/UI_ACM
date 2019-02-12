@@ -57,14 +57,18 @@
         <div class="form-row">
           <div class="form-group col-md-6">
 
-            <label for="inputState">Assessment Attachments</label>
-            <input type="file" name="file" ngModel #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
-
+            <b>Assessment Attachments</b>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+              <input type="file" name="file" ngModel #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
 
           </div>
         </div>
       </fieldset>
       <br>
+      <div class="form-row">
       <table id="myTable">
         <tr>
           <th>File Name</th>
@@ -79,6 +83,7 @@
           </td>
         </tr>
       </table>
+      </div>
     </div>
   </form>
 </div>

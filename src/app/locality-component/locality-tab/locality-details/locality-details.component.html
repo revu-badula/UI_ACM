@@ -15,18 +15,21 @@
 		<button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
 	</div>
 </ng-template>
-<div class="save-edit" style="float:right" *ngIf="showEditButton && !isShow">
-	<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0"
-	 [name]="'edit'" (click)="editClick()"></fa>
+<div>
+	<div class="save-edit" style="float:right" *ngIf="showEditButton && !isShow">
+		<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+			data-delay="0" [name]="'edit'" (click)="editClick()"></fa>
+	</div>
 </div>
 <div>
-	<form #formName="ngForm" id="myForm" class=" clear-right" (ngSubmit)="createLocality()" enctype="multipart/form-data" >
-		
+	<form #formName="ngForm" id="myForm" class=" clear-right" (ngSubmit)="createLocality()"
+		enctype="multipart/form-data">
+
 		<div id="form1">
-				<div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
-					<span style="float:right">
-						<font color=red>*</font> marked fields are mandatory
-					</span> </div>
+			<div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
+				<span style="float:right">
+					<font color=red>*</font> marked fields are mandatory
+				</span> </div>
 			<fieldset [disabled]="editableForm">
 				<div class="infoBox">
 					<div class="form-row headerOfBox">
@@ -38,12 +41,14 @@
 
 							<label for="inputState">Last Updated By</label>
 
-							<input type="text" class="form-control" name="updatedBy" [(ngModel)]="locality.updatedBy" readonly>
+							<input type="text" class="form-control" name="updatedBy" [(ngModel)]="locality.updatedBy"
+								readonly>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastName">Updated At</label>
+							<label for="lastName">Last Updated At</label>
 
-							<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime" readonly>
+							<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime"
+								readonly>
 						</div>
 					</div>
 					<div class="form-row">
@@ -51,19 +56,20 @@
 
 							<label for="inputState">Locality Name <span class="asterisk">*</span></label>
 
-							<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym" readonly="readonly"
-							 required>
+							<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym"
+								readonly="readonly" required>
 						</div>
 
 						<div class="form-group col-md-6">
 							<label for="lastName">FIPS Code</label>
-							<input type="text" class="form-control" ngModel name="fipsCd" [(ngModel)]="locality.fipsCd" readonly>
+							<input type="text" class="form-control" ngModel name="fipsCd" [(ngModel)]="locality.fipsCd"
+								readonly>
 						</div>
 
 					</div>
 
 				</div>
-				
+
 				<div class="infoBox">
 					<div class="form-row headerOfBox">
 						<h4>Contact Information</h4>
@@ -74,46 +80,47 @@
 
 							<label for="inputState">First Name <span class="asterisk">*</span></label>
 
-							<input type="text" class="form-control" ngModel name="firstName" [(ngModel)]="locality.firstName" required>
+							<input type="text" class="form-control" ngModel name="firstName"
+								[(ngModel)]="locality.firstName" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="lastName">Last Name<span class="asterisk">*</span></label>
 
-							<input type="text" class="form-control" ngModel name="lastName" [(ngModel)]="locality.lastName" required>
+							<input type="text" class="form-control" ngModel name="lastName"
+								[(ngModel)]="locality.lastName" required>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="lastName">Email Id <span class="asterisk">*</span></label>
-
-							<input type="email" class="form-control" [email]="locality.emailId!==''" name="email" [(ngModel)]="locality.emailId"
-							 #email="ngModel" required>
-							<span class="help-block" style="color:red;padding-left:43%;" *ngIf="email.errors?.required && email.touched">
+							<input type="email" class="form-control"
+								pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email"
+								[(ngModel)]="locality.emailId" #email="ngModel" required>
+							<span class="help-block" style="color:red;padding-left:43%;"
+								*ngIf="email.errors?.required && email.dirty">
 								Email is required
 							</span>
-							<span class="help-block" style="color:red;padding-left:43%;" *ngIf="email.errors?.email && email.touched">
-								Email is invalid
-							</span>
+							<span class="help-block" style="color:red;padding-left:43%;" *ngIf="email.errors?.pattern">
+								format: example@email.com</span>
 							<!-- <input type="text" class="form-control" ngModel name="emailId" [(ngModel)]="locality.emailId" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"> -->
 						</div>
 						<div class="form-group col-md-6">
-							<label for="email">Phone No <span class="asterisk">*</span></label>
-							<input type="tel" class="form-control" name="phoneNumber" #phoneNumber="ngModel" (keydown)="getPhoneNumber($event,$event.target.value)"
-							 [ngModel]="locality.phoneNumber" pattern="^\d{3}[-]\d{3}[-]\d{4}$" placeholder="xxx-xxx-xxxx" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
-							 onlyInteger autocomplete="off">
-							<!-- <span class="help-block" style="color:red;padding-left:43%;" *ngIf="phoneNumber.errors?.req && phoneNumber.dirty">
-								phone # is required
-							</span> -->
+							<label for="email">Phone Number<span class="asterisk">*</span></label>
+							<input type="tel" class="form-control" name="phoneNumber" #phoneNumber="ngModel"
+								(keydown)="getPhoneNumber($event,$event.target.value)" [ngModel]="locality.phoneNumber"
+								pattern="^\d{3}[-]\d{3}[-]\d{4}$" placeholder="xxx-xxx-xxxx" required maxlength="12"
+								minlength="12" (change)="getNumber($event.target.value)" onlyInteger  autocomplete="off">
+							
 							<div *ngIf="phoneNumber.touched" style="color:red">
 								<div style="padding-left:43%;" *ngIf="phoneNumber.errors?.required">
-								  Phone Number is required
+									Phone Number is required
 								</div>
-							  </div>
-							  <div *ngIf="phoneNumber.dirty" style="color:red">
-								<div style="padding-left:43%;"  *ngIf="phoneNumber.errors?.pattern">
-								  Please enter 10 digit phone number. Example: 123-456-7890
+							</div>
+							<div *ngIf="phoneNumber.dirty" style="color:red">
+								<div style="padding-left:43%;" *ngIf="phoneNumber.errors?.pattern">
+									Please enter 10 digit phone number. Example: 123-456-7890
 								</div>
-							  </div>
+							</div>
 
 						</div>
 					</div>
@@ -121,8 +128,9 @@
 						<div class="form-group col-md-6">
 							<label for="url">Website Address <span class="asterisk">*</span></label>
 
-							<input type="url" class="form-control" pattern="^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$"
-							 id="url" name="url" #url="ngModel" [(ngModel)]="locality.website" required><br><br>
+							<input type="url" class="form-control"
+								pattern="^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$"
+								id="url" name="url" #url="ngModel" [(ngModel)]="locality.website" required><br><br>
 							<div>
 								<div *ngIf="url.errors?.required && url.touched" style="color:red;padding-left: 43%;">
 									URL is required!
@@ -134,12 +142,12 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="email">Veris Id<span class="asterisk">*</span></label>
-							<input type="text" class="form-control" maxlength="10" ngModel name="verisId" [(ngModel)]="locality.verisId"
-							 required>
+							<input type="text" class="form-control" maxlength="10" ngModel name="verisId"
+								[(ngModel)]="locality.verisId" required>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="infoBox">
 					<div class="form-row headerOfBox">
 						<h4>Other Information</h4>
@@ -148,20 +156,22 @@
 						<div class="form-group col-md-6">
 							<ul class="tg-list">
 
-									<li class="tg-list-item">
-									  <h4>Central Absentee Perceived(CAP)</h4>
-									  <input class="tgl tgl-flip" id="c" name="capInd" [(ngModel)]="locality.capInd" [checked]="locality.capInd" type="checkbox"/>
-									  <label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="c"></label>
-									</li>
-								  </ul>
+								<li class="tg-list-item">
+									<h4>Central Absentee Perceived(CAP)</h4>
+									<input class="tgl tgl-flip" id="c" name="capInd" [(ngModel)]="locality.capInd"
+										[checked]="locality.capInd" type="checkbox" />
+									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="c"></label>
+								</li>
+							</ul>
 						</div>
-					
+
 						<div class="form-group col-md-6">
 							<ul class="tg-list">
 								<li class="tg-list-item">
 									<h4>Bail Out</h4>
-									<input class="tgl tgl-flip" id="cb5" name="bailout" [(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd"
-									 type="checkbox" />
+									<input class="tgl tgl-flip" id="cb5" name="bailout"
+										[(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd"
+										type="checkbox" />
 									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb5"></label>
 								</li>
 							</ul>
@@ -169,43 +179,47 @@
 					</div>
 					<hr />
 					<div class="form-row">
-					
-							<div class="form-group col-md-6">
-	
-							
-								<ul class="tg-list">
-										<li class="tg-list-item">
-											<h4>Poll Book</h4>
-											<input class="tgl tgl-flip" id="cb6" name="pollbook" [(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook"
-											 type="checkbox" />
-											<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb6"></label>
-										</li>
-									</ul>
-							</div>
-	
-							<div class="form-group col-md-6">
-							
-								<ul class="tg-list">
-										<li class="tg-list-item">
-											<h4>Electronic Poll Book</h4>
-											<input class="tgl tgl-flip" id="cb7" name="electronicPollbook" [(ngModel)]="locality.electronicPollbook" [checked]="locality.electronicPollbook"
-											 type="checkbox" />
-											<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb7"></label>
-										</li>
-									</ul>
-							</div>
+
+						<div class="form-group col-md-6">
+
+
+							<ul class="tg-list">
+								<li class="tg-list-item">
+									<h4>Poll Book</h4>
+									<input class="tgl tgl-flip" id="cb6" name="pollbook"
+										[(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook"
+										type="checkbox" />
+									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb6"></label>
+								</li>
+							</ul>
 						</div>
-						<hr>
-					<div class="form-row">
-					
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<h4>Region</h4>
-							<input type="checkbox" name="vebaRegion" [(ngModel)]="locality.vebaRegion" id="checkBoxId">VEBA region  &nbsp;&nbsp;
-							<input type="checkbox" name="vravRegion" [(ngModel)]="locality.vravRegion" id="checkBoxId">VRAV region
-						
+
+						<div class="form-group col-md-6">
+
+							<ul class="tg-list">
+								<li class="tg-list-item">
+									<h4>Electronic Poll Book</h4>
+									<input class="tgl tgl-flip" id="cb7" name="electronicPollbook"
+										[(ngModel)]="locality.electronicPollbook"
+										[checked]="locality.electronicPollbook" type="checkbox" />
+									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb7"></label>
+								</li>
+							</ul>
+						</div>
 					</div>
-	
+					<hr>
+					<div class="form-row">
+
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h4>Region</h4>
+						<input type="checkbox" name="vebaRegion" [(ngModel)]="locality.vebaRegion" id="checkBoxId">VEBA
+						region &nbsp;&nbsp;
+						<input type="checkbox" name="vravRegion" [(ngModel)]="locality.vravRegion" id="checkBoxId">VRAV
+						region
+
+					</div>
+
 				</div>
-				
+
 
 				<div class="infoBox">
 					<div class="form-row headerOfBox">
@@ -223,29 +237,35 @@
 						<tbody>
 							<tr *ngFor="let day of locality.workHoursDTOs;let i = index;">
 								<td>{{day.day}}</td>
-								<td><input type="time" id="{{day.openTm}}" name="{{day.openTm}}" [(ngModel)]="day.openTm" [ngModelOptions]="{standalone:true}"
-									 min="9:00" max="18:00" required (input)="time = $event.target.value" [attr.disabled]="day.day === 'Sunday'? '' : null" />
+								<td><input type="time" id="{{day.openTm}}" name="{{day.openTm}}"
+										[(ngModel)]="day.openTm" [ngModelOptions]="{standalone:true}" min="9:00"
+										max="18:00" required (input)="time = $event.target.value"
+										[attr.disabled]="day.day === 'Sunday'? '' : null" />
 									To </td>
-								<td><input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00" max="18:00" [(ngModel)]="day.closeTm"
-									 [ngModelOptions]="{standalone:true}" required (input)="time = $event.target.value" [attr.disabled]="day.day === 'Sunday'? '' : null" /></td>
+								<td><input type="time" id="{{day.closeTm}}" name="{{day.closeTm}}" min="9:00"
+										max="18:00" [(ngModel)]="day.closeTm" [ngModelOptions]="{standalone:true}"
+										required (input)="time = $event.target.value"
+										[attr.disabled]="day.day === 'Sunday'? '' : null" /></td>
 							</tr>
 						</tbody>
 					</table>
 					<!-- <button type="submit" class="btn btn-primary" (click)="setTime()">Submit</button> -->
 				</div>
-				
+
 
 				<div class="infoBox">
 					<div class="form-row headerOfBox">
 						<h4>Notes</h4>
 					</div>
-					<textarea id="ngxSummernote" [ngxSummernote]="config" rows="10" [ngxSummernoteDisabled]="editableForm" class="form-control"
-					 name="notes" [(ngModel)]="locality.notes" maxlength="50000"  #notes="ngModel" (keyup)="count(notes)"> </textarea>
-					 <br>
-					 <div *ngIf="notes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
-					
+					<textarea id="ngxSummernote" [ngxSummernote]="config" rows="10"
+						[ngxSummernoteDisabled]="editableForm" class="form-control" name="notes"
+						[(ngModel)]="locality.notes" maxlength="50000" #notes="ngModel"
+						(keyup)="count(notes)"> </textarea>
+					<br>
+					<div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> Exceeded the character limit. </span>
+					</div>
+
 				</div>
 			</fieldset>
 
@@ -253,7 +273,7 @@
 	</form>
 	<div class="buttons" style="margin-right:5%;">
 		<button type="submit" form="myForm" class="submit btn btn-primary" [disabled]="!formName.valid"
-		 *ngIf="isShow">Submit</button>
+			*ngIf="isShow">Submit</button>
 		<button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
 	</div>
 </div>

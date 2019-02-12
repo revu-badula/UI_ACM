@@ -13,16 +13,19 @@
     </div>
 </ng-template>
 <div>
-        <div>
+    <div>
         <h3 class="pageTitle">Vendors</h3>
         <hr>
     </div>
-   
+
     <form [formGroup]="editVendorForm" id="myForm" (ngSubmit)="createVendor(editVendorForm.value)">
-           
-        <div id="form1" >
-             <div class="disclaimer"><span style="float:left">Please use this screen to add certified vendors only</span>&nbsp;&nbsp;&nbsp;
-                <span style="float:right"> <font color=red>*</font> marked fields are mandatory </span> </div> 
+
+        <div id="form1">
+            <div class="disclaimer"><span style="float:left">Please use this screen to add certified vendors
+                    only</span>&nbsp;&nbsp;&nbsp;
+                <span style="float:right">
+                    <font color=red>*</font> marked fields are mandatory
+                </span> </div>
             <div class="infoBox">
                 <div class="form-row headerOfBox">
                     <h4>Vendor Information</h4>
@@ -37,7 +40,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="infoBox">
                 <div formGroupName="vendorContact">
                     <div class="form-row headerOfBox">
@@ -58,22 +61,40 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Email ID<font color=red>*</font></label>
-                            <input type="email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  id="email" placeholder="Email ID" formControlName="emailId">
-    
+                            <input type="email" class="form-control"
+                                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="email"
+                                placeholder="Email ID" formControlName="emailId">
+
                             <div *ngIf="editVendorForm.controls.vendorContact.get('emailId').dirty">
-                                <div *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors?.required" style="color:red;padding-left: 43%;">
+                                <div *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors?.required"
+                                    style="color:red;padding-left: 43%;">
                                     Email is required
                                 </div>
                             </div>
-                                <div class="help-block" style="color:red;padding-left: 43%;" *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors?.pattern">
-                                    format: example@email.com
-                                </div>
+                            <div class="help-block" style="color:red;padding-left: 43%;"
+                                *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors?.pattern">
+                                format: example@email.com
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone">Phone Number<font color=red>*</font></label>
-                            <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
-                                minlength="12" maxlength="12" id="phonenumber" (change)="getNumber($event.target.value)"
-                                required formControlName="phoneNumber" onlyInteger>
+                            <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx"
+                                (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12"
+                                pattern="^\d{3}[-]\d{3}[-]\d{4}$" id="phonenumber"
+                                (change)="getNumber($event.target.value)" required formControlName="phoneNumber"
+                                onlyInteger autocomplete="off">
+                        </div>
+                        <div *ngIf="editVendorForm.controls.vendorContact.get('phoneNumber').dirty" style="color:red">
+                            <div style="padding-left:43%;"
+                                *ngIf="editVendorForm.controls.vendorContact.get('phoneNumber').errors?.required">
+                                Phone Number is required
+                            </div>
+                        </div>
+                        <div style="color:red">
+                            <div style="padding-left:43%;"
+                                *ngIf="editVendorForm.controls.vendorContact.get('phoneNumber').errors?.pattern">
+                                Please enter 10 digit phone number. Example: 123-456-7890
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,10 +175,11 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputZip">Zip Code<font color=red>*</font></label>
-                            <input type="text" class="form-control" maxlength=5 minlength=5 placeholder="00000" id="inputZip"
-                                formControlName="zipcode" appOnlyInteger>
+                            <input type="text" class="form-control" maxlength=5 minlength=5 placeholder="00000"
+                                id="inputZip" formControlName="zipcode" appOnlyInteger>
 
-                            <div style="color:red;padding-left: 43%;" *ngIf="editVendorForm.controls.vendorAddress.get('zipcode').errors && editVendorForm.controls.vendorAddress.get('zipcode').dirty">
+                            <div style="color:red;padding-left: 43%;"
+                                *ngIf="editVendorForm.controls.vendorAddress.get('zipcode').errors && editVendorForm.controls.vendorAddress.get('zipcode').dirty">
                                 Enter 5 digit valid zip code
                             </div>
                         </div>
