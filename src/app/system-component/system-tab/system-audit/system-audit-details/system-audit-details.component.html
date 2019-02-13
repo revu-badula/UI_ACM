@@ -12,7 +12,7 @@
         <div id="form1">
                 <div class="disclaimer"></div>
             <span class="plusbtn" *ngIf="showPlusButton">
-                <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right;" (click)="goTo()"></i>
+                <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right; font-size: 24px;" (click)="goTo()"></i>
             </span>
             <br>
             <div class="infoBox">
@@ -39,7 +39,7 @@
                             <th scope="col" (click)="handleSort4('status')">Status<i class="fa fa-arrow-down"
                                 *ngIf="!sts"></i>
                               <i class="fa fa-arrow-up" *ngIf="sts"></i></th>
-                            <th scope="col" (click)="handleSort5('updatedBy')">Last UpdatedBy<i class="fa fa-arrow-down"
+                            <th scope="col" (click)="handleSort5('updatedBy')">Last Updated By<i class="fa fa-arrow-down"
                                 *ngIf="!updtBy"></i>
                               <i class="fa fa-arrow-up" *ngIf="updtBy"></i></th>
                             <th scope="col" (click)="handleSort6('upadateTs')">Last Updated Date<i class="fa fa-arrow-down"
