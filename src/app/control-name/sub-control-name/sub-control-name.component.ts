@@ -93,7 +93,7 @@ export class SubControlNameComponent implements OnInit {
     });
     this.getPolicy(this.policyUrlId);
     this.showDropdown();
-    this.fetchPolicies(1);
+    //this.fetchPolicies(1);
     this.getUsers();
 
   }

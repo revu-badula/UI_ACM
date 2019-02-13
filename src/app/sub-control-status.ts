@@ -8,7 +8,7 @@ export class SubControlPipe implements PipeTransform {
     transform(data): any {
         if (data === null) { return ''; }
         else {
-            if (data === "true") {
+            if (data === true) {
                 return 'Open';
             }
             else {

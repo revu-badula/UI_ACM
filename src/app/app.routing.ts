@@ -153,6 +153,7 @@ import { AssessmentpolicyupdateComponent } from './assessmentpolicyupdate/assess
 import { Accesscontrol1Component } from './accesscontrol1/accesscontrol1.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PolicyreviewViewComponent } from './policyreview-view/policyreview-view.component';
+import { AccesscontroldetailsComponent } from './accesscontroldetails/accesscontroldetails.component';
 
 const appRoutes: Routes = [
 
@@ -166,6 +167,7 @@ const appRoutes: Routes = [
   { path: 'solutions', component: SolutionsComponent, canActivate: [AuthGuard] },
   { path: 'vendorsView', component: VendorsViewComponent, canActivate: [AuthGuard] },
   { path: 'accessControl/:id', component: ControlNameComponent, canActivate: [AuthGuard] },
+  { path: 'accessControlDetails/:id', component: AccesscontroldetailsComponent, canActivate: [AuthGuard] },
   { path: 'accessCntrl/:id', component: AccesscontrolComponent, canActivate: [AuthGuard] },
   { path: 'accessUpdate/:id', component: AuditpolicyupdateComponent, canActivate: [AuthGuard] },
   { path: 'policy', component: PolicyComponentComponent, canActivate: [AuthGuard] },

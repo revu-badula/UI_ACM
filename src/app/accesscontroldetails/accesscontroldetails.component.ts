@@ -16,12 +16,12 @@ import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 @Component({
-  selector: 'app-control-name',
-  templateUrl: './control-name.component.html',
-  styleUrls: ['./control-name.component.css'],
-  providers: [ApiserviceService],
+  selector: 'app-accesscontroldetails',
+  templateUrl: './accesscontroldetails.component.html',
+  styleUrls: ['./accesscontroldetails.component.css']
 })
-export class ControlNameComponent implements OnInit {
+export class AccesscontroldetailsComponent implements OnInit {
+
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('pol') pol: ElementRef;
   color: String;
@@ -42,7 +42,7 @@ export class ControlNameComponent implements OnInit {
   addNewPolicy: any = [];
   linkedPolicy: Policy;
   showLink: boolean = true;
-  public links: any=[];
+  public links: any;
   public showBt: boolean = false;
   public accountnum: any[] = [];
   public list: any;
@@ -104,12 +104,12 @@ export class ControlNameComponent implements OnInit {
   }
 
   backClicked() {
-    UtilService.backClicked = true;
+    //UtilService.backClicked = true;
     this._location.back();
   }
 
   backClick(event) {
-    UtilService.backClicked = true;
+    //UtilService.backClicked = true;
     this._location.back();
     event.preventDefault();
   }
@@ -289,7 +289,6 @@ export class ControlNameComponent implements OnInit {
   {
     this.displayField = 2;
     this.showDiv=false;
-    this.showDef=false;
   }
 
   selectType(policy) {
@@ -393,12 +392,11 @@ export class ControlNameComponent implements OnInit {
     this.showDiv = false;
     this.showLink = false;
     this.links = this.policyAccess.linkedPolicies;
-    if(this.links != undefined){
+
     for (let i = 0; i < this.links.length; i++) {
       this.other.push(this.links[i].controlNumber);
 
     }
-  }
 
 
   }
@@ -499,19 +497,12 @@ export class ControlNameComponent implements OnInit {
   }
 
   deletePolicy(id) {
-    this.dialogService.open("Info","Do you want to delete the control",true,"Yes","No")
-    .then((result:any) => {
-      if(result)
-      {
-        this.policyAccess.linkedPolicies.forEach(element => {
-          if (element.policyId === id) {
-            element.status = false;
-            element.linkType = "update";
-          }
-        });
+    this.policyAccess.linkedPolicies.forEach(element => {
+      if (element.policyId === id) {
+        element.status = false;
+        element.linkType = "update";
       }
     });
-  
   }
 
   goTo(event) {
@@ -527,7 +518,6 @@ export class ControlNameComponent implements OnInit {
     //this.router.navigate(['/subcontrol'])
     this.router.navigateByUrl(url);
   }
-
 
 
 }
