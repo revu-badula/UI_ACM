@@ -33,9 +33,9 @@
         <div class="row">
           <div class="col-sm-3">
             <i class="fa fa-map-marker fa-3x" style="color:red" aria-hidden="true"></i></div>
-          <div class="col-sm-9">
-            <span class="card-text">Choose a county / city in the state of Virginia for more information.</span>
-            <br>
+          <div class="col-sm-9 text">
+            Choose a county / city in the state of Virginia for more information.
+            <hr id="lineSpace">
         <a routerLink="/locality/map" class="view-edit card-link" title="Create or View or Edit">
           <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
         </a>
@@ -54,10 +54,10 @@
           <div class="col-sm-3">
             <i class="fa fa-user fa-3x" style="color:blue"></i>
           </div>
-          <div class="col-sm-9">
-            <span class="card-text">To add or update an existing vendor information.</span>
-            <br>
-            <a routerLink="/vendors" class="card-link" title="Create New">
+          <div class="col-sm-9 text">
+            To add or update an existing vendor information.
+            <hr id="lineSpace">
+            <a routerLink="/vendors" class="view-Edit card-link" title="Create New">
               <fa [name]="'plus-circle'" title="Create New"></fa>
             </a>
             <a title="View or Edit" [routerLink]="['/vendorsView']" class="view-Edit card-link">
@@ -78,10 +78,10 @@
             <div class="col-sm-3">
         <i class="fa fa-paper-plane fa-3x" aria-hidden="true" style="color:green"></i>
         </div>
-        <div class="col-sm-9">
-        <span class="card-text">Add or view solutions provided by the different vendors. </span>
-        <br>
-        <a routerLink="/solutions" class="card-link onHover" title="Create New">
+        <div class="col-sm-9 text">
+        Add or view solutions provided by the different vendors.
+        <hr id="lineSpace">
+        <a routerLink="/solutions" class="view-edit card-link onHover" title="Create New">
           <fa [name]="'plus-circle'"></fa>
         </a>
    
@@ -103,11 +103,10 @@
             <div class="col-sm-3">
         <i class="fa fa-suitcase fa-3x" aria-hidden="true" style="color:brown"></i>
         </div>
-        <div class="col-sm-9">
-        <span class="card-text">Audits for different localities or systems</span>
-        <br>
-       <br>
-        <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit" style="color:black;">
+        <div class="col-sm-9 text">
+        Audits for different localities or systems
+        <hr id="lineSpace">
+        <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit">
           <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
         </a>
       </div>
@@ -127,10 +126,10 @@
             <div class="col-sm-3">
         <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:black"></i>
         </div>
-        <div class="col-sm-9">
-        <span class="card-text">Assessments for different localities or systems.</span>
-        <br>
-        <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit" style="color:black;">
+        <div class="col-sm-9 text">
+        Assessments for different localities or systems.
+        <hr id="lineSpace">
+        <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit">
           <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
         </a>
       </div>
@@ -149,10 +148,9 @@
             <div class="col-sm-3">
         <i class="fa fa-area-chart fa-3x" aria-hidden="true" style="color:blueviolet"></i>
               </div>
-              <div class="col-sm-9">
-                       <span class="card-text">Compiled reports for overview.</span>
-                       <br>
-                       <br>
+              <div class="col-sm-9 text">
+                      Compiled reports for overview.
+                      <hr id="lineSpace">
                        <a routerLink="/reports" class="view-edit card-link" title="View">
                          <fa [name]="'eye'"></fa>
                        </a>
@@ -173,11 +171,10 @@
             <div class="col-sm-3">
         <i class="fa fa-cogs fa-3x" aria-hidden="true" style="color:cadetblue"></i>
         </div>
-        <div class="col-sm-9">
-        <span class="card-text">Systems residing at localities.</span>
-        <br>
-        <br>
-        <a routerLink="/system/tab2/info" class="card-link" title="Create New">
+        <div class="col-sm-9 text">
+        Systems residing at localities.
+      <hr id="lineSpace">
+        <a routerLink="/system/tab2/info" class="view-edit card-link" title="Create New">
           <fa [name]="'plus-circle'"></fa>
         </a>
         <a routerLink="/system/map" class="view-edit card-link" title="View or Edit">
@@ -202,11 +199,11 @@
             <div class="col-sm-3">
         <i class="fa fa-file-text fa-3x" aria-hidden="true" style="color:cornflowerblue"></i>
         </div>
-        <div class="col-sm-9">
-        <span class="card-text">Create/ Upload or view policies and related controls.</span>
-        <br>
+        <div class="col-sm-9 text">
+        Create/ Upload or view policies and related controls.
+        <hr id="lineSpace">
      
-        <a routerLink="/policy" class="card-link" title="Create New">
+        <a routerLink="/policy" class="view-edit card-link" title="Create New">
           <fa [name]="'plus-circle'"></fa>
         </a>
         <a routerLink="/policyView" class="view-edit card-link" title="View or Edit">
@@ -228,11 +225,10 @@
             <div class="col-sm-3">
         <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color:slategray"></i>
         </div>
-        <div class="col-sm-9">
-        <span class="card-text">List of Devices present at different localities.</span>
-        <br>
-        <br>
-        <a routerLink="/deviceInventory" class="card-link" title="Create New">
+        <div class="col-sm-9 text">
+        List of Devices present at different localities.
+        <hr id="lineSpace">
+        <a routerLink="/deviceInventory" class="view-edit card-link" title="Create New">
           <fa [name]="'plus-circle'"></fa>
         </a>
         <a routerLink="/devicetab" class="view-edit card-link" title="View or Edit">

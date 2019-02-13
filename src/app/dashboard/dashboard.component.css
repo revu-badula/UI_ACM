@@ -1,43 +1,42 @@
-.p-4{
+.p-4 {
     background-color: #2C3E50;
     border-top: 1px solid #ECF0F1;
 }
 
-.confbtn{
+.confbtn {
     margin-left: auto;
     margin-right: auto;
     background-color: black;
-	border-color: black
+    border-color: black
 }
 
-
-nav{
+nav {
     background-color: black;
     text-align: center;
     position: relative;
 }
 
-.heading{
+.heading {
     color: white;
     text-align: center;
 }
 
-img{
+img {
     width: 10%;
 }
 
-.login{
+.login {
     color: white;
     font-size: 10px;
     margin-top: 15px;
     margin-right: 8px;
 }
 
-h1{
+h1 {
     color: white;
 }
 
-.dashboard{
+.dashboard {
     width: 100%;
     margin-top: 24px;
     margin-left: 24px;
@@ -47,64 +46,62 @@ h1{
     left: 5%;*/
 }
 
-.card{
+.card {
     float: left;
     margin-left: 5px;
     margin-bottom: 15px;
-    width:18rem;
-    height:14rem;
+    width: 18rem;
+    height: 14rem;
 }
 
-.card-heading{
+.card-heading {
     background-color: #ECF0F1;
     border-radius: 6%;
 }
 
-.card-title{
+.card-title {
     text-align: center;
-    color:black;
+    color: black;
 }
 
-.card-body{
+.card-body {
     background-color: #ECF0F1;
-
 }
 
-.card-link{
-    color: black;
-}
-.modal-header{
-	  background-color: black;
+.card-link {
+    color: darkblue;
 }
 
-.card-link:hover{
-    color: black;
-  
-}
-
-.view-edit{
+.view-edit {
     margin-left: 20px;
+    color: darkblue !important;
+}
+
+.modal-header {
+    background-color: black;
+}
+
+.card-link:hover {
     color: black;
 }
 
-.onHover{
-content:Add;
+.onHover {
+    content: Add;
 }
 
-a{
+a {
     cursor: pointer;
 }
 
-a:hover a.view-edit{
-    content:Add;
-
+a:hover a.view-edit {
+    content: Add;
 }
 
 hr {
     margin-top: 0rem;
     margin-bottom: 1rem;
     border: 0;
-    border-top: 1px solid rgba(0,0,0,.1);
+    border-top: 1px solid rgba(0, 0, 0, .1);
 }
 
 #form2 {
@@ -118,5 +115,3 @@ hr {
     text-align: center;
     padding-left: 6%;
 }
-
-

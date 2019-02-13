@@ -133,7 +133,7 @@ export class EditVendorComponent implements OnInit {
 
     }
 
-    return (key == 8 || key == 9 || key == 16 || key == 37 || key == 39 || key == 35 || key == 17 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+    return (key == 8 || key == 9 || key == 189 || key == 16 || key == 37 || key == 39 || key == 35 || key == 17 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 
   }
 

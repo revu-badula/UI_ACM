@@ -93,43 +93,53 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="familyName">Email ID<font color=red>*</font></label>
-                        <input type="text" class="form-control" id="email" title='Email Id (Format: @example.com)'
-                            placeholder="Enter your email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" formControlName="emailId">
-                        <div *ngIf="editVendorForm.controls.vendorContact.get('emailId').dirty">
-                            <div *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors?.required"
-                                style="color:red;padding-left: 43%;">
+                        <div class="form-row">
+                            <label for="familyName">Email ID<font color=red>*</font></label>
+                            <input type="text" class="form-control" id="email" title='Email Id (Format: @example.com)'
+                                placeholder="Enter your email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                formControlName="emailId">
+                        </div>
+                        <div class="form-row">
+                            <div style="color:red;padding-left: 43%;"
+                                *ngIf="editVendorForm.controls.vendorContact.get('emailId').dirty && editVendorForm.controls.vendorContact.get('emailId').errors?.required">
+
                                 Email is required
+
                             </div>
                         </div>
-                        <div class="help-block" style="color:red;padding-left: 43%;"
-                            *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors?.pattern">
-                            format: example@email.com
+                        <div class="form-row">
+                            <div class="help-block" style="color:red;padding-left: 43%;"
+                                *ngIf="editVendorForm.controls.vendorContact.get('emailId').errors?.pattern">
+                                format: example@email.com
+                            </div>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="familyName">Phone Number<font color=red>*</font></label>
-                        <input type="text" class="form-control" placeholder="xxx-xxx-xxxx"
-                            (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12"
-                            id="phonenumber" required formControlName="phoneNumber"
-                            (change)="getNumber($event.target.value)" onlyInteger  pattern="^\d{3}[-]\d{3}[-]\d{4}$"  autocomplete="off">
-                    </div>
-                    <div *ngIf="editVendorForm.controls.vendorContact.get('phoneNumber').dirty" style="color:red">
-                            <div style="padding-left:43%;"
-                                *ngIf="editVendorForm.controls.vendorContact.get('phoneNumber').errors?.required">
+                        <div class="form-row">
+                            <label for="familyName">Phone Number<font color=red>*</font></label>
+                            <input type="text" class="form-control" placeholder="xxx-xxx-xxxx"
+                                (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12"
+                                id="phonenumber" required formControlName="phoneNumber"
+                                (change)="getNumber($event.target.value)" onlyInteger pattern="^\d{3}[-]\d{3}[-]\d{4}$"
+                                autocomplete="off">
+
+                        </div>
+                        <div class="form-row">
+                            <div *ngIf="editVendorForm.controls.vendorContact.get('phoneNumber').dirty && editVendorForm.controls.vendorContact.get('phoneNumber').errors?.required"
+                                style="color:red;padding-left:43%">
+
                                 Phone Number is required
+
                             </div>
                         </div>
-                        <div style="color:red">
-                            <div style="padding-left:43%;"
+                        <div class="form-row">
+                            <div style="color:red;padding-left:43%"
                                 *ngIf="editVendorForm.controls.vendorContact.get('phoneNumber').errors?.pattern">
-                                Please enter 10 digit phone number. Example: 123-456-7890
+                                Example: 123-456-7890
+
                             </div>
                         </div>
-
-
-
-
+                    </div>
                 </div>
             </div>
         </div>
