@@ -32,9 +32,10 @@
             
             <span class=" title elipsis pull-right"> <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
                     <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
-                </a> <a (click)="showLeft()" title="Go back to audit section."> <i class="fa fa-arrow-circle-o-left"
-                        aria-hidden="true" style="font-size: 24px;"></i>
-                </a>
+                </a> 
+               <!--   <a (click)="showLeft()" title="Go back to audit section.">
+                    <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+                </a> -->
             </span>
 
 
@@ -77,7 +78,7 @@
 
 
                     <label for="inputState">Comments</label>
-
+                    <br>
                     <textarea name="comments" id="" rows="10" class="form-control1" [(ngModel)]="appAssess.findingComments" maxlength="50000" #findingComments="ngModel"> </textarea><!--<div style="float:right">{{50000 - findingComments.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="findingComments.errors?.maxlength" style="float:right">

@@ -42,9 +42,9 @@
                 <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
                     <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
                 </a>
-                <a title="Go back to audit section." (click)="showLeft()">
+                <!-- <a title="Go back to audit section." (click)="showLeft()">
                     <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
-                </a>
+                </a> -->
             </span>
 
 
@@ -59,13 +59,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
 
-                        <label for="inputState">Start date</label>
+                        <label for="inputState">Start Date</label>
 
                         <my-date-picker name="startDate" class="inputState1" [disabled]='showForm' ngModel (dateChanged)="getStartDate($event)" [(ngModel)]="startDate"
                             required></my-date-picker>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="lastName">End date</label>
+                        <label for="lastName">End Date</label>
 
                         <my-date-picker name="endDate" class="inputState1" [disabled]='showForm' ngModel (dateChanged)="getEndDate($event)" [options]="myDatePickerOptions"
                             [(ngModel)]="endDate" required></my-date-picker>
@@ -74,7 +74,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
 
-                        <label for="inputState">Assigned to <span class="asterisk">*</span></label>
+                        <label for="inputState">Assigned To <span class="asterisk">*</span></label>
 
                         <!-- <input type="text" name="assignedTo" class="form-control" id="assignedTo" [(ngModel)]="appAssess.actionPlanAssignedTo"> -->
 
@@ -91,7 +91,8 @@
 
 
                     <label for="inputState">Summary</label>
-                    <textarea name="summary" id="" rows="10" class="form-control" [(ngModel)]="appAssess.actionPlanSummary" maxlength="50000" #actionPlanSummary="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanSummary.value.length}} characters left </div> -->
+                    <br>
+                    <textarea name="summary" id="" rows="10" class="form-control1" [(ngModel)]="appAssess.actionPlanSummary" maxlength="50000" #actionPlanSummary="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanSummary.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="actionPlanSummary.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
@@ -104,7 +105,7 @@
 
 
                     <label for="inputState">Tasks</label>
-                    <textarea name="tasks" id="" rows="10" class="form-control" [(ngModel)]="appAssess.actionPlanTasks" maxlength="50000" #actionPlanTasks="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanTasks.value.length}} characters left </div> -->
+                    <textarea name="tasks" id="" rows="10" class="form-control1" [(ngModel)]="appAssess.actionPlanTasks" maxlength="50000" #actionPlanTasks="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanTasks.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="actionPlanTasks.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
