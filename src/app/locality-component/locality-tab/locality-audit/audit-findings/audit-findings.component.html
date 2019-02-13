@@ -71,7 +71,7 @@
 
                     <h4>Description</h4>
 
-                    <textarea id="" rows="10" name="description" class="form-control" [(ngModel)]="appAudit.auditFindings" maxlength="50000" #auditFindings="ngModel"> </textarea><!--<div style="float:right">{{50000 - auditFindings.value.length}} characters left </div> -->
+                    <textarea id="" rows="10" name="description" class="form-control1" [(ngModel)]="appAudit.auditFindings" maxlength="50000" #auditFindings="ngModel"> </textarea><!--<div style="float:right">{{50000 - auditFindings.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="auditFindings.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>

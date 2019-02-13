@@ -74,7 +74,7 @@
 
                     <label for="inputState">Description</label>
 
-                    <textarea id="" rows="10" name="description" class="form-control" [(ngModel)]="appAudit.auditFindings" maxlength="50000" #auditFindings="ngModel"> </textarea><!--<div style="float:right">{{50000 - auditFindings.value.length}} characters left </div> -->
+                    <textarea id="" rows="10" name="description" class="form-control1" [(ngModel)]="appAudit.auditFindings" maxlength="50000" #auditFindings="ngModel"> </textarea><!--<div style="float:right">{{50000 - auditFindings.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="auditFindings.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
@@ -88,7 +88,7 @@
 
                     <label for="inputState">Comments</label>
 
-                    <textarea name="comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.findingComments" maxlength="50000" #findingComments="ngModel"> </textarea><!--<div style="float:right">{{50000 - findingComments.value.length}} characters left </div> -->
+                    <textarea name="comments" id="" rows="10" class="form-control1" [(ngModel)]="appAudit.findingComments" maxlength="50000" #findingComments="ngModel"> </textarea><!--<div style="float:right">{{50000 - findingComments.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="findingComments.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>

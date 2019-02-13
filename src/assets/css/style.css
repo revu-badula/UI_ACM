@@ -842,7 +842,7 @@ a{
   table-layout: fixed !important;
 }
 #myTable tr th:nth-child(2) {
-  width: 22%;
+  width: 34%;
 }
 
 .plus{
