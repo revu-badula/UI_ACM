@@ -168,7 +168,7 @@ export class SubControlNameComponent implements OnInit {
         .subscribe((data: any) => {
           this.loading = false;
           this.policyAccess = data;
-          if (this.policyAccess.endDate === null) {
+          if (this.policyAccess.endDate === null || this.policyAccess.endDate === undefined ) {
             this.endDate = { date: null };
           }
           else {
@@ -345,6 +345,7 @@ export class SubControlNameComponent implements OnInit {
     }
     else {
       this.policy = true;
+      this.fetchPolicies(policy);
     }
   }
 
@@ -365,11 +366,15 @@ export class SubControlNameComponent implements OnInit {
       this.policyTypes = [];
     }
     else {
+      this.loading=true;
       this.definitive = true;
       this._apiservice.getPolicyGroup(auditID)
         .subscribe((data: any) => {
+          this.loading=false;
           this.policyTypes = data;
-        }, error => { console.log(error) });
+        }, error => { 
+          this.loading=false;
+          console.log(error) });
     }
 
 
@@ -377,10 +382,17 @@ export class SubControlNameComponent implements OnInit {
   }
 
   fetchPolicies(id) {
+    this.loading=true;
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
+        this.loading=false;
         this.policies = data.policyDTOs;
-      }, error => console.log(error));
+        this.showBt=true;
+        this.showDef=true;
+      }, error =>{
+        this.loading=false;
+       console.log(error);
+      });
 
   }
 
@@ -431,17 +443,18 @@ export class SubControlNameComponent implements OnInit {
   }
 
   saveLink() {
-
-
-
     this.showDiv = false;
     this.showLink = false;
+    this.showDef=false;
+    this.showBt=false;
+    this.displayField = 2;
     this.links = this.policyAccess.linkedPolicies;
-
+    if(this.links != undefined){
     for (let i = 0; i < this.links.length; i++) {
       this.other.push(this.links[i].controlNumber);
 
     }
+  }
 
 
   }
@@ -487,8 +500,8 @@ export class SubControlNameComponent implements OnInit {
     //console.log(event);
     if (event.target.defaultValue === "Link from Internal") {
       this.displayField = 1;
-      this.showDef = true;
-      this.showBt = true;
+      // this.showDef = true;
+      // this.showBt = true;
     }
     else {
       this.definitive = false;
@@ -498,6 +511,13 @@ export class SubControlNameComponent implements OnInit {
       this.displayField = 0;
 
     }
+  }
+
+  getBack()
+  {
+    this.displayField = 2;
+    this.showDiv=false;
+    this.showDef=false;
   }
 
   deletePolicy(id) {

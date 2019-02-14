@@ -25,10 +25,10 @@
 </div>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title">Success</h4>
+        <h4 class="modal-title">Info</h4>
     </div>
     <div class="modal-body">
-        <p>The policy has been updated</p>
+        <p>The policy has been updated.</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
@@ -52,13 +52,13 @@
 
                     <div class=" form-row">
                         <div class="form-group col-md-6">
-                            <label for="familyName">Last Updated By</label>
+                            <label for="familyName">Updated By</label>
                             <input type="text" class="form-control" id="updatedBy" ngModel name="updatedBy"
                                 [(ngModel)]="policyAccess.updatedBy" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="familyName">Last Updated Date</label>
+                            <label for="familyName">Updated Date</label>
                             <input type="text" class="form-control" id="updatedTs" ngModel name="updatedTs"
                                 [ngModel]="policyAccess.updatedTs | filter" readonly>
                         </div>
@@ -122,7 +122,6 @@
                                 <option value="false">Close</option>
                             </select>
                         </div>
-
                         <label for="description">Description</label>
                         <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
                             id="patches" [(ngModel)]="policyAccess.description" [name]="'policy_description'"
@@ -131,6 +130,20 @@
                         <br>
                         <div *ngIf="description.errors?.maxlength" style="float:right">
                             <span style="color:tomato"> Exceeded the character limit. </span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        
+                        <div class="form-group col-md-6">
+                            <label for="priority">Priority<span class="asterisk">*</span></label>
+                            <select class="form-control" name="priority" ngModel [(ngModel)]="policyAccess.priority"
+                                (change)="policyAccess.priority = $event.target.value" required>
+                                <option value="">Choose...</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -321,7 +334,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <div class="form-row">
-                            <label for="internalPolicyLinks">Internal Policy Links</label>
+                                <label for="internalPolicyLinks">Internal Policy Links</label>
                             </div>
                             <div class="form-row">
                                 <table id="myTable">
@@ -329,28 +342,28 @@
                                         <th>Control Name</th>
                                         <th *ngIf="!showFrm">Action</th>
                                     </tr>
-                                    
-                                        <tr *ngFor="let getLinkedPolicy of policyAccess.linkedPolicies">
 
-                                            <td><a *ngIf="getLinkedPolicy.status && showForm"
-                                                    routerLink="/accessControlDetails/{{ getLinkedPolicy.policyId }}"
-                                                    style="cursor:pointer;color:blue;">
-                                                    {{ getLinkedPolicy.controlNumber }}</a>
-                                                <!-- <i class="fa fa-minus-circle"
+                                    <tr *ngFor="let getLinkedPolicy of policyAccess.linkedPolicies">
+
+                                        <td><a *ngIf="getLinkedPolicy.status && showForm"
+                                                routerLink="/accessControlDetails/{{ getLinkedPolicy.policyId }}"
+                                                style="cursor:pointer;color:blue;">
+                                                {{ getLinkedPolicy.controlNumber }}</a>
+                                            <!-- <i class="fa fa-minus-circle"
                                                     style="color: red"></i>-->
-                                                <a *ngIf="getLinkedPolicy.status && !showForm">
-                                                    {{ getLinkedPolicy.controlNumber }}</a>
-                                            </td>
-                                            <td *ngIf="getLinkedPolicy.status && !showForm"
-                                                (click)="deletePolicy(getLinkedPolicy.policyId)">
-                                                <i class=" fa fa-trash" aria-hidden="true"
-                                                    style="font-size: 24px;color: black;"></i>
-                                            </td>
+                                            <a *ngIf="getLinkedPolicy.status && !showForm">
+                                                {{ getLinkedPolicy.controlNumber }}</a>
+                                        </td>
+                                        <td *ngIf="getLinkedPolicy.status && !showForm"
+                                            (click)="deletePolicy(getLinkedPolicy.policyId)">
+                                            <i class=" fa fa-trash" aria-hidden="true"
+                                                style="font-size: 24px;color: black;"></i>
+                                        </td>
 
 
 
-                                        </tr>
-                                    
+                                    </tr>
+
                                 </table>
                             </div>
                             <!-- <div *ngIf="!showForm" class="display-file">
@@ -476,8 +489,22 @@
             </div>
             <div *ngIf="displayField===0" class="form-row">
                 <!-- <h4>Artifacts</h4>-->
-                <textarea cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.linkedPoliciesString"
-                    maxlength="50000" name="artifacts"> </textarea>
+                <div class="col-md-12">
+                    <div class="form-row">
+                        <b>External Link</b>
+                    </div>
+                    <div class="form-row">
+                        <textarea cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.linkedPoliciesString"
+                            maxlength="50000" name="artifacts"> </textarea>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12" style="margin-top: 1%;">
+                            <button class="btn btn-primary" (click)="getBack()">Link</button>
+                        </div>
+
+                    </div>
+                </div>
                 <!--<div style="float:right">{{50000 - artifacts.value.length}} characters left </div> -->
                 <!-- <br>
 					 <div *ngIf="artifacts.errors?.maxlength" style="float:right">

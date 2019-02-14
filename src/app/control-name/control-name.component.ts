@@ -127,7 +127,7 @@ export class ControlNameComponent implements OnInit {
         //   this.dateRetreive();
         // }
 
-        if (this.policyAccess.endDate === null) {
+        if (this.policyAccess.endDate === null || this.policyAccess.endDate === undefined) {
           this.endDate = { date: null };
         }
         else {
@@ -319,11 +319,15 @@ export class ControlNameComponent implements OnInit {
       this.policyTypes = [];
     }
     else {
+      this.loading=true;
       this.definitive = true;
       this._apiservice.getPolicyGroup(auditID)
         .subscribe((data: any) => {
+          this.loading=false;
           this.policyTypes = data;
-        }, error => { console.log(error) });
+        }, error => {
+          this.loading=false;
+          console.log(error) });
     }
 
 
@@ -336,6 +340,8 @@ export class ControlNameComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.policies = data.policyDTOs;
+        this.showBt=true;
+        this.showDef=true;
       }, error => {
         console.log(error);
       });
@@ -392,6 +398,9 @@ export class ControlNameComponent implements OnInit {
 
     this.showDiv = false;
     this.showLink = false;
+    this.showDef=false;
+    this.showBt=false;
+    this.displayField = 2;
     this.links = this.policyAccess.linkedPolicies;
     if(this.links != undefined){
     for (let i = 0; i < this.links.length; i++) {
@@ -485,8 +494,8 @@ export class ControlNameComponent implements OnInit {
     //console.log(event);
     if (event.target.defaultValue === "Link from Internal") {
       this.displayField = 1;
-      this.showDef = true;
-      this.showBt = true;
+      //this.showDef = true;
+      //this.showBt = true;
     }
     else {
       this.definitive = false;
@@ -498,7 +507,7 @@ export class ControlNameComponent implements OnInit {
     }
   }
 
-  deletePolicy(id) {
+  deletePolicy(id:any) {
     this.dialogService.open("Info","Do you want to delete the control",true,"Yes","No")
     .then((result:any) => {
       if(result)
@@ -514,13 +523,13 @@ export class ControlNameComponent implements OnInit {
   
   }
 
-  goTo(event) {
+  goTo(event:any) {
     event.preventDefault();
     UtilService.backClicked = true;
     this.router.navigate(['/policyView/policyDetails'])
   }
 
-  getSubpolicy(id) {
+  getSubpolicy(id:any) {
     //localStorage.setItem('policyId', this.policyUrlId);
     //localStorage.setItem('subPol', id);
     let url = "subcontrol/" + id;
