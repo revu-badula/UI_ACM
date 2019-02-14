@@ -47,7 +47,7 @@
 </ng-template>
 
 <div class="policy-edit" style="padding-bottom: 1%;">
-	<fa (click)="downloadFile(policyDropDownId)" *ngIf="plus" [name]="'download'" class="download-icon icons"></fa>
+	<fa (click)="downloadFile(policyDropDownId)" *ngIf="plus && showDownload" [name]="'download'" class="download-icon icons"></fa>
 	<fa class="edit-icon icons" (click)="changeButton()" *ngIf="plus" data-toggle="tooltip" data-placement="right" title="Save"
 	 data-animation="true" data-delay="0" [name]="'edit'"></fa>
 	<fa (click)="open(content)" *ngIf="!plus" [name]="'upload'" class="upload-icon icons"></fa>

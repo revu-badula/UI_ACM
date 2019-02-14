@@ -62,6 +62,7 @@ export class PolicyDetailsComponent implements OnInit{
   public desc4: boolean = false;
   public desc5: boolean = false;
   public loading: boolean = false;
+  public showDownload:boolean=false;
   public policyReviewTerm: any[] = [{ id: 1, reviewTerm: "Yearly" },
   { id: 2, reviewTerm: "Half-Yearly" },
   { id: 3, reviewTerm: "Quarterly" }];
@@ -77,14 +78,7 @@ export class PolicyDetailsComponent implements OnInit{
     this.policyDocumentDTO = [];
     this.files = [] as File[];
     this.policyReview = new PolicyReviewTerm();
-    // if (UtilService.backClicked) {
-    //   UtilService.backClicked = false;
-    //   this.fetchPolicies(UtilService.policyGrpId);
-    //   if(UtilService.review)
-    //   {
-    //     console.log("test");
-    //   }
-    // }
+    
     if(UtilService.review){
       UtilService.review=false;
       this.router.navigate(['policyView/review']);
@@ -130,6 +124,10 @@ export class PolicyDetailsComponent implements OnInit{
         this.loading = false;
         this.policyDisplay = data.policyGrpDTO;
         this.policies = data.policyDTOs;
+        if(data.policyDTOs != undefined && data.policyDTOs.length > 0)
+        {
+          this.showDownload=true;
+        }
         this.policyGrpData = data.policyGrpDTO;
         let dt = new Date(this.policyGrpData.updatedTs);
         let month = dt.getMonth() + 1;

@@ -120,14 +120,9 @@ export class AccesscontroldetailsComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.policyAccess = data;
-        //console.log(this.policyAccess.linkedPolicies);
-        //this.policyAccess.policyDocumentsDTOs = data.policyDocumentsDTOs;
-        //this.subPolicyDTOs = data.subPolicyDTOs;
-        // if (this.policyAccess.endDate != null) {
-        //   this.dateRetreive();
-        // }
+      
 
-        if (this.policyAccess.endDate === null) {
+        if (this.policyAccess.endDate === null || this.policyAccess.endDate === undefined) {
           this.endDate = { date: null };
         }
         else {
