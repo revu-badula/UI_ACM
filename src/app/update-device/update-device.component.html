@@ -3,8 +3,6 @@
 </div>
 <app-navigation-component></app-navigation-component>
 
-
-
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
 
   <div class="form-options">
@@ -45,7 +43,7 @@
     <div>
         <h3 class="pageTitle">Devices</h3>
         <hr>
-    </div>
+</div>
 
   <form  (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
     <div id="form1" >
@@ -71,11 +69,11 @@
           <div class="form-row">
             <div class="form-group col-md-6">
 
-              <label for="inputState">Last Updated By</label>
+              <label for="inputState"> Updated By</label>
               <input type="text" class="form-control" id="lastName" value="{{device.updatedBy}}" readonly="readonly">
             </div>
             <div class="form-group col-md-6">
-              <label for="lastName">Last Updated Date</label>
+              <label for="lastName"> Updated Date</label>
               <input type="text" class="form-control" id="lastName" value="{{device.updatedTs | filterDate}}" readonly="readonly">
             </div>
           </div>
