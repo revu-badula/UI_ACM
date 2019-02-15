@@ -1,12 +1,12 @@
 <ng-template #content let-c="close" let-d="dismiss">
 	<div class="modal-header">
-		<h4 class="modal-title">Success</h4>
+		<h4 class="modal-title">Info</h4>
 		<!--   <button type="button" class="close" aria-label="Close" (click)="d()"> -->
 		<!--     <span aria-hidden="true">&times;</span> -->
 		<!--   </button> -->
 	</div>
 	<div class="modal-body">
-		<p>The record has been saved.</p>
+		<p>Record has been saved.</p>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Ok</button>
@@ -23,7 +23,7 @@
 					<input class="form-control" type="text" required [(ngModel)]="audit.auditTypeName" [name]="'audit_type'">
 				</div>
 			</div>
-			<hr />
+		
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
 				<button type="submit" [disabled]="!policyForm.valid" class="btn btn-outline-dark" (click)="c();addAuditType()">Save</button>

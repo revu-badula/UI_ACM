@@ -689,7 +689,7 @@ input[type=button] {
   word-wrap: break-word;
   background-color: #fff;
   /* overflow: hidden; */
-  width: 67vw;
+  width: 78vw;
 }
 
 .pageHeader {
@@ -871,7 +871,7 @@ a {
   margin-left: 20px;
   color: black;
   margin-top: 15px;
-  margin-bottom:15px;
+  margin-bottom:-15px;
 }
 
 .form-control {

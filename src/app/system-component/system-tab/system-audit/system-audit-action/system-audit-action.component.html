@@ -120,7 +120,7 @@
 
 
                     <label for="inputState">Closeout Comments</label>
-                    <textarea name="Comments" id="" rows="10" class="form-control" [(ngModel)]="appAudit.actionPlanCloseoutComments" maxlength="50000" #actionPlanCloseoutComments="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanCloseoutComments.value.length}} characters left </div> -->
+                    <textarea name="Comments" id="" rows="10" class="form-control1" [(ngModel)]="appAudit.actionPlanCloseoutComments" maxlength="50000" #actionPlanCloseoutComments="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanCloseoutComments.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="actionPlanCloseoutComments.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> 	Exceeded the character limit. </span>

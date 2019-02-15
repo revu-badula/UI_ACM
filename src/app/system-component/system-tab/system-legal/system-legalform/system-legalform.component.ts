@@ -119,7 +119,7 @@ export class SystemLegalformComponent implements OnInit {
       let url_update = APP_CONFIG.saveMOU;
       this.http.post(url_update, formData).subscribe((data: any) => {
         this.loading = false;
-        this.info="Legal has been Created";
+        this.info="Legal has been created";
         this.modalService.open(this.content,ngbModalOptions);
 
 

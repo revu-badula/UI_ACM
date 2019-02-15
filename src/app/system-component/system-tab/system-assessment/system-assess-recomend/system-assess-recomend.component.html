@@ -58,11 +58,11 @@
                 <div class="form-row">
                         <div class="form-group col-md-6">
 
-                    <label for="inputState">Recommended by</label>
+                    <label for="inputState" style="margin-top:10px">Recommended by</label>
 
                     <!-- <input type="text" class="form-control" name="recomendedBy" id="recomendedBy" [(ngModel)]="appAssess.recomendedBy"> -->
 
-                    <select name="systemOwner" style="width:50%;" [(ngModel)]="appAssess.recomendedBy" class="form-control" id="searchUsers"
+                    <select name="systemOwner" style="width:50%;margin-top:10px" [(ngModel)]="appAssess.recomendedBy" class="form-control" id="searchUsers"
 					(change)="appAssess.recomendedBy=$event.target.value">
 						<option value="" selected>Choose...</option>
 						<option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
