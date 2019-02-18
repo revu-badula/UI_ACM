@@ -37,9 +37,12 @@ export class PolicyViewFormsComponentComponent implements OnInit {
       UtilService.backClicked=false;
       this.definitive=true;
       this.policy=true;
-      this.selectDefinitive(UtilService.auditId);
-      this.auditTypeId=UtilService.auditId;
-      this.policyGrpId=UtilService.policyGrpId;
+      //this.selectDefinitive(UtilService.auditId);
+      this.selectDefinitive(+sessionStorage.getItem("auditId"));
+      //this.auditTypeId=UtilService.auditId;
+      this.auditTypeId=+sessionStorage.getItem("auditId");
+      //this.policyGrpId=UtilService.policyGrpId;
+      this.policyGrpId=+sessionStorage.getItem("policyGrpId");
     }
   }
 
@@ -48,13 +51,14 @@ export class PolicyViewFormsComponentComponent implements OnInit {
     this.showDropdown();
   }
 
-  selectType(policy) {
+  selectType(policy:any) {
     if (policy === 'Choose...' || policy === "") {
       this.policy = false;
     }
     else {
       this.policy = true;
       UtilService.policyGrpId = policy;
+      sessionStorage.setItem("policyGrpId",policy);
       //this.fetchPolicies(UtilService.policyGrpId);
       this.router.navigate(['dummy'], { relativeTo: this.route });
 
@@ -71,7 +75,7 @@ export class PolicyViewFormsComponentComponent implements OnInit {
 
   }
 
-  selectDefinitive(auditID) {
+  selectDefinitive(auditID:any) {
     if (auditID === 'Choose...' || auditID === "") {
       this.definitive = false;
       this.policyTypes = [];
@@ -79,6 +83,7 @@ export class PolicyViewFormsComponentComponent implements OnInit {
     else {
       this.definitive = true;
       UtilService.auditId = auditID;
+      sessionStorage.setItem("auditId",auditID);
       this._apiservice.getPolicyGroup(auditID)
         .subscribe((data: any) => {
           this.policyTypes = data;
@@ -90,7 +95,7 @@ export class PolicyViewFormsComponentComponent implements OnInit {
   }
 
 
-  fetchPolicies(id) {
+  fetchPolicies(id:any) {
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
         this.policyDisplay = data.policyGrpDTO;

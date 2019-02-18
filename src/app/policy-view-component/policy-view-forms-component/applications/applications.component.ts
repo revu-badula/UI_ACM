@@ -60,7 +60,7 @@ export class ApplicationsComponent implements OnInit {
     //   });
 
     this.loading=true;
-    this._apiservice.fetchPolicies(UtilService.policyGrpId)
+    this._apiservice.fetchPolicies(+sessionStorage.getItem("policyGrpId"))
       .subscribe((data: any) => {
         this.loading = false;
         this.pendingApplications = data.applicationDTOs;

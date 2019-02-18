@@ -85,12 +85,13 @@ export class ReviewComponent implements OnInit {
     //this.getUseronName("Harish");
     this.createForm();
     this.getUsers();
-    this.fetchPolicies(UtilService.policyGrpId);
+    //this.fetchPolicies(UtilService.policyGrpId);
+    this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
     this.loading = true;
     //this.getPolicyReviewDetails(UtilService.policyGrpId);
   }
 
-  open(content) {
+  open(content:any) {
     this.addArray = [];
     this.review = [];
     this.modalService.open(content);

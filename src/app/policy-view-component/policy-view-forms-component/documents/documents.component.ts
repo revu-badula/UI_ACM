@@ -55,24 +55,27 @@ export class DocumentsComponent implements OnInit {
     };
     this.policyDocumentDTO = new PolicyDocumentsDTO();
     const modalRef = this.modalService.open(upload, ngbModalOptions);
-    // modalRef.result.then((result) => {
-
-    // });
+  
 
   }
 
   ngOnInit() {
-    this.fetchPolicies(UtilService.policyGrpId);
-    this.loading = true;
+    //this.fetchPolicies(UtilService.policyGrpId);
+    this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
+    
   }
 
   fetchPolicies(id) {
+    this.loading = true;
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
         this.loading = false;
         this.policyDocumentsDTO = data.policyDocumentsDTOs;
 
-      }, error => console.log(error));
+      }, error => {
+        this.loading=false;
+        console.log(error);
+      });
 
   }
 

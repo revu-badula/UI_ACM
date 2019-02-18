@@ -91,7 +91,7 @@ export class PolicyDetailsComponent implements OnInit{
     this.modalService.open(content);
   }
 
-  show(control) {
+  show(control:any) {
     this.modalService.open(control);
   }
 
@@ -110,14 +110,16 @@ export class PolicyDetailsComponent implements OnInit{
   ngOnInit() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    this.fetchPolicies(UtilService.policyGrpId);
+    //this.fetchPolicies(UtilService.policyGrpId);
+    this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
     this.policyDropDownId = UtilService.policyGrpId;
-    this.getFamilies(UtilService.policyGrpId);
+    //this.getFamilies(UtilService.policyGrpId);
+    this.getFamilies(+sessionStorage.getItem("policyGrpId"));
     this.getUsers();
   }
  
 
-  fetchPolicies(id) {
+  fetchPolicies(id:any) {
     this.loading = true;
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
