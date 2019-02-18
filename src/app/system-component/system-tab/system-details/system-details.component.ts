@@ -41,6 +41,8 @@ export class SystemDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService,
     private fb: FormBuilder, private http: Http, private _location: Location, private modalService: NgbModal, private router: Router, private utilservice: UtilService) {
     this.system = new System();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.showData();
     this.getUsers();
   }

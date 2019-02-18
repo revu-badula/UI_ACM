@@ -414,7 +414,7 @@ export class PolicyDetailsComponent implements OnInit{
   }
 
 
-  getFamilies(id) {
+  getFamilies(id:any) {
     this.families = [];
     this._apiservice.getFamilies(id)
       .subscribe((data: any) => {
@@ -427,14 +427,14 @@ export class PolicyDetailsComponent implements OnInit{
 
   }
 
-  getFamily(value) {
+  getFamily(value:any) {
 
     //console.log(value);
     if (value === "") {
 
     }
     else if (value === "all") {
-      this.fetchPolicies(UtilService.policyGrpId);
+      this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
     }
     else {
       this.loading = true;

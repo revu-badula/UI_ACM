@@ -30,12 +30,12 @@ export class LocalityDetailsComponent implements OnInit {
   locality: Locality;
   loc: any;
   appId: number;
-  charactersLeft : number;
-  maxLength : number =48228;
+  charactersLeft: number;
+  maxLength: number = 48228;
   updatedTime: any;
   editableForm: boolean = true;
   viewType: any;
-  notes :any;
+  notes: any;
   contentData: string = "";
   showEditButton: boolean = false;
 
@@ -62,9 +62,11 @@ export class LocalityDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
     , private http: Http, private _location: Location, private modalService: NgbModal,
-    private router: Router, private utilservice: UtilService, private phone: PhonePipe, private tab:LocalityTabComponent) {
+    private router: Router, private utilservice: UtilService, private phone: PhonePipe, private tab: LocalityTabComponent) {
     this.locality = new Locality();
     this.workHours = new WorkHours();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
   }
 
@@ -73,7 +75,7 @@ export class LocalityDetailsComponent implements OnInit {
 
   }
 
-  editClick(event:any): void {
+  editClick(event: any): void {
     this.editableForm = false;
     this.showBtn = true;
     this.isShow = true;
@@ -129,7 +131,7 @@ export class LocalityDetailsComponent implements OnInit {
 
   }
 
-  viewApplication(local:any) {
+  viewApplication(local: any) {
 
     this.loading = true;
     this._apiservice.viewApplication(local)
@@ -258,18 +260,18 @@ export class LocalityDetailsComponent implements OnInit {
     let pattern = /^\d{10}$/;
     let phnTest = pattern.test(val);
     if (value.length === 10) {
-      if(phnTest){
-      let data = value.slice(0, 3);
-      let pn = data + '-';
-      let d2 = value.slice(3, 6);
-      let pn2 = d2 + '-';
-      let d3 = value.slice(6, 10);
-      let phm = pn + pn2 + d3;
-      this.locality.phoneNumber = phm;
+      if (phnTest) {
+        let data = value.slice(0, 3);
+        let pn = data + '-';
+        let d2 = value.slice(3, 6);
+        let pn2 = d2 + '-';
+        let d3 = value.slice(6, 10);
+        let phm = pn + pn2 + d3;
+        this.locality.phoneNumber = phm;
       }
 
     }
-  
+
     else {
       this.locality.phoneNumber = value;
     }
@@ -278,16 +280,16 @@ export class LocalityDetailsComponent implements OnInit {
   }
 
 
-  count(msg){
+  count(msg) {
 
-  this.charactersLeft=this.maxLength;
+    this.charactersLeft = this.maxLength;
 
-    if(this.maxLength>=msg.length){
-      this.charactersLeft=(this.maxLength)-(msg.length);
+    if (this.maxLength >= msg.length) {
+      this.charactersLeft = (this.maxLength) - (msg.length);
     }
-    else{
-       this.notes = msg.substr(0, msg.length - 1);
-       console.log(msg);
+    else {
+      this.notes = msg.substr(0, msg.length - 1);
+      console.log(msg);
     }
   }
 
