@@ -29,6 +29,7 @@ export class PolicyViewFormsComponentComponent implements OnInit {
   public policyReload: boolean;
   public navigationSubscription: any;
   public auditTypeId:any;
+  public loading:boolean=false;
   constructor(private _apiservice: ApiserviceService, private utilservice: UtilService,
     private router: Router, private route: ActivatedRoute) {
     this.policyDisplay = new PolicyGrp();
@@ -66,11 +67,14 @@ export class PolicyViewFormsComponentComponent implements OnInit {
   }
 
   showDropdown() {
-
+    this.loading=true;
     this._apiservice.getAuditTypes()
       .subscribe((data: any) => {
+        this.loading=false;
         this.auditTypes = data;
-      }, error => { console.log(error); });
+      }, error => { 
+        this.loading=false;
+        console.log(error); });
 
 
   }
@@ -81,13 +85,17 @@ export class PolicyViewFormsComponentComponent implements OnInit {
       this.policyTypes = [];
     }
     else {
+      this.loading=true;
       this.definitive = true;
       UtilService.auditId = auditID;
       sessionStorage.setItem("auditId",auditID);
       this._apiservice.getPolicyGroup(auditID)
         .subscribe((data: any) => {
+          this.loading=false;
           this.policyTypes = data;
-        }, error => { console.log(error) });
+        }, error => { 
+          this.loading=false;
+          console.log(error) });
     }
 
 
