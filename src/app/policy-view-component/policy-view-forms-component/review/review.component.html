@@ -9,29 +9,32 @@
 		<form #form="ngForm" [formGroup]="reviewForm">
 			<div class="form-row">
 				<div class="form-group col-12">
-					<label for="searchUser"><b>Search User</b><span class="asterisk">*</span></label>
-
-
+					<b>Search User</b><span class="asterisk">*</span>
 					<select class="form-control1" id="searchUsers" required formControlName="firstName">
 						<option selected>Choose...</option>
 						<option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
 							getUser.firstName}} {{getUser.lastName }} </option>
 					</select>
 				</div>
+			</div>
+			<div class="form-row">
 				<div class="form-group col-12">
-					<label for="dueDate"><b>Due Date</b><span class="asterisk">*</span></label>
-					<my-date-picker name="myname" class="form-control" formControlName="dueDate"></my-date-picker>
+					<b>Due Date</b><span class="asterisk">*</span>
+					<my-date-picker name="myname" formControlName="dueDate"></my-date-picker>
 				</div>
+			</div>
+			<div class="form-row">
 				<div class="form-group col-12">
-					<label for="dueDate"><b>Status</b> <span class="asterisk">*</span></label>
+					<b>Status</b><span class="asterisk">*</span>
 					<select class="form-control1" name="selectstatus" formControlName="status">
 						<option value="true">Open</option>
 						<option value="false">Close</option>
 					</select>
 				</div>
 			</div>
-			<button type="submit" class="add btn btn-primary" [disabled]="!form.valid" (click)="data(reviewForm.value)">Add</button>
-			
+			<button type="submit" class="add btn btn-primary" [disabled]="!form.valid"
+				(click)="data(reviewForm.value)">Add</button>
+
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -49,36 +52,40 @@
 			<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
-				<button type="button" class="btn btn-outline-dark"  (click)=" postReview();c('Save click')">Assign</button>
+				<button type="button" class="btn btn-outline-dark"
+					(click)=" postReview();c('Save click')">Assign</button>
 			</div>
 		</form>
 	</div>
 </ng-template>
-<div class="policy-edit" style="padding-bottom: 1%;">
-	<!-- <fa (click)="open(content)" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa> -->
-	<fa (click)="changeButton()" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save"
-	 data-animation="true" data-delay="0" [name]="'edit'"></fa>
-	<fa (click)="showPopup(content)" *ngIf="!plus" class="plus-icon" [name]="'plus'"></fa>
-</div>
+
 <div *ngIf="!showDetails" class="infoBox">
 	<div class="headerOfBox">
 		<h4>Policy Reviewers</h4>
 	</div>
 
-
+	<div class="policy-edit" style="padding-bottom: 1%;">
+		<!-- <fa (click)="open(content)" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa> -->
+		<fa (click)="changeButton()" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip" data-placement="right"
+			title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
+		<fa (click)="showPopup(content)" *ngIf="!plus" class="plus-icon" [name]="'plus'"></fa>
+	</div>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th (click)="handleSort('policyGrpName')" scope="col">Policy Name<i class="sorting fa fa-arrow-down" *ngIf="!desc"></i>
+				<th (click)="handleSort('policyGrpName')" scope="col">Policy Name<i class="sorting fa fa-arrow-down"
+						*ngIf="!desc"></i>
 					<i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
-				<th (click)="handleSort2('assignedTo')" scope="col">Assigned To<i class="sorting fa fa-arrow-down" *ngIf="!desc2"></i>
+				<th (click)="handleSort2('assignedTo')" scope="col">Assigned To<i class="sorting fa fa-arrow-down"
+						*ngIf="!desc2"></i>
 					<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
-				<th (click)="handleSort3('createdTs')" scope="col">Assigned On<i class="sorting fa fa-arrow-down" *ngIf="!desc3"></i>
+				<th (click)="handleSort3('createdTs')" scope="col">Assigned On<i class="sorting fa fa-arrow-down"
+						*ngIf="!desc3"></i>
 					<i class="sorting fa fa-arrow-up" *ngIf="desc3"></i></th>
-				<th (click)="handleSort4('dueDate')" scope="col">Due Date<i class="sorting fa fa-arrow-down" *ngIf="!desc4"></i> <i
-					 class="sorting fa fa-arrow-up" *ngIf="desc4"></i></th>
-				<th (click)="handleSort5('status')" scope="col">Status<i class="sorting fa fa-arrow-down" *ngIf="!desc5"></i> <i
-					 class="sorting fa fa-arrow-up" *ngIf="desc5"></i></th>
+				<th (click)="handleSort4('dueDate')" scope="col">Due Date<i class="sorting fa fa-arrow-down"
+						*ngIf="!desc4"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc4"></i></th>
+				<th (click)="handleSort5('status')" scope="col">Status<i class="sorting fa fa-arrow-down"
+						*ngIf="!desc5"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc5"></i></th>
 				<!-- <th scope="col">Notify</th> -->
 			</tr>
 		</thead>
@@ -105,40 +112,43 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="definitiveSource">Definitive Source</label>
-					<input type="text" id="definitiveSource" class="form-control" [(ngModel)]="reviewDTO.definitiveSourceName" [name]="'definitive_source'" readonly>
+					<input type="text" id="definitiveSource" class="form-control"
+						[(ngModel)]="reviewDTO.definitiveSourceName" [name]="'definitive_source'" readonly>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="typePolicy">Type/Policy</label>
-					<input type="text" id="typePolicy" class="form-control" [(ngModel)]="reviewDTO.policyGrpName" [name]="'policy_grpName'" readonly>
+					<input type="text" id="typePolicy" class="form-control" [(ngModel)]="reviewDTO.policyGrpName"
+						[name]="'policy_grpName'" readonly>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="status">Status</label>
 					<!-- <input type="text" id="status" class="form-control" [ngModel]="reviewDTO.status" [name]="'review_status'"> -->
-					<select class="form-control" style="width:50%;" ngModel name="status" [(ngModel)]="reviewDTO.status" 
-					(change)="reviewDTO.status = $event.target.value"  required>
+					<select class="form-control" style="width:50%;" ngModel name="status" [(ngModel)]="reviewDTO.status"
+						(change)="reviewDTO.status = $event.target.value" required>
 						<option value="" selected>Choose...</option>
-					   <option value="true">Open</option>
-					   <option value="false">Close</option>
-				   </select>
+						<option value="true">Open</option>
+						<option value="false">Close</option>
+					</select>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="dueDate">Due Date</label>
-					<my-date-picker name="myname" [disabled]="true" class="inputState1" [(ngModel)]="dueDate"></my-date-picker>
+					<my-date-picker name="myname" [disabled]="true" class="inputState1" [(ngModel)]="dueDate">
+					</my-date-picker>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="infoBox" style="width:80%">
 			<div class="headerOfBox">
 				<h4>Comments</h4>
 			</div>
-			<textarea [(ngModel)]="reviewDTO.comments" ngModel [ngxSummernote]="config" cols="156" rows="7" [name]="'review_comments'"
-			 maxlength="50000"> </textarea>
-			
+			<textarea [(ngModel)]="reviewDTO.comments" ngModel [ngxSummernote]="config" cols="156" rows="7"
+				[name]="'review_comments'" maxlength="50000"> </textarea>
+
 		</div>
-	
+
 		<div class="infoBox">
 			<div class="headerOfBox">
 				<h4>Policy Reviewers</h4>
@@ -146,21 +156,23 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th (click)="handleSort()" scope="col">Control Number<i class="sorting fa fa-arrow-down" *ngIf="!desc"></i>
+						<th (click)="handleSort()" scope="col">Control Number<i class="sorting fa fa-arrow-down"
+								*ngIf="!desc"></i>
 							<i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
-						<th (click)="handleSort()" scope="col">Policy Name<i class="sorting fa fa-arrow-down" *ngIf="!desc"></i> <i class="sorting fa fa-arrow-up"
-							 *ngIf="desc"></i></th>
-						<th (click)="handleSort()" scope="col">Priority<i class="second fa fa-arrow-down" *ngIf="!desc"></i> <i class="second fa fa-arrow-up"
-							 *ngIf="desc"></i></th>
-						<th (click)="handleSort()" scope="col">Policy Value<i class="second fa fa-arrow-down" *ngIf="!desc"></i> <i class="second fa fa-arrow-up"
-							 *ngIf="desc"></i></th>
+						<th (click)="handleSort()" scope="col">Policy Name<i class="sorting fa fa-arrow-down"
+								*ngIf="!desc"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
+						<th (click)="handleSort()" scope="col">Priority<i class="second fa fa-arrow-down"
+								*ngIf="!desc"></i> <i class="second fa fa-arrow-up" *ngIf="desc"></i></th>
+						<th (click)="handleSort()" scope="col">Policy Value<i class="second fa fa-arrow-down"
+								*ngIf="!desc"></i> <i class="second fa fa-arrow-up" *ngIf="desc"></i></th>
 						<th scope="col">Status</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
 						<!-- <td>{{ policy.controlNumber }}</td> -->
-						<td (click)="displayPolicy(policy.policyId)" style="cursor:pointer;color:blue;">{{ policy.controlNumber }}</td>
+						<td (click)="displayPolicy(policy.policyId)" style="cursor:pointer;color:blue;">
+							{{ policy.controlNumber }}</td>
 						<td>{{ policy.policyName }}</td>
 						<td>{{ policy.priority }}</td>
 						<td>{{ policy.policyVal }}</td>
@@ -169,8 +181,10 @@
 				</tbody>
 			</table>
 			<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
-			<button type="button" class="review-btn btn btn-primary" [disabled]="!myForm.valid" (click)="updateReview()">Submit</button>
-			<button type="button" class="review-btn btn btn-primary" (click)="showDetails=false">Go to Review Section</button>
+			<button type="button" class="review-btn btn btn-primary" [disabled]="!myForm.valid"
+				(click)="updateReview()">Submit</button>
+			<button type="button" class="review-btn btn btn-primary" (click)="showDetails=false">Go to Review
+				Section</button>
 		</div>
 	</form>
 </div>
@@ -181,30 +195,30 @@
 			<div class=" form-row">
 				<div class="form-group col-md-6">
 					<label for="familyName">Family Name</label>
-					<input type="text" class="form-control" id="familyName" ngModel name="familyName" [(ngModel)]="policyAccess.familyName"
-					 [name]="'family_name'">
+					<input type="text" class="form-control" id="familyName" ngModel name="familyName"
+						[(ngModel)]="policyAccess.familyName" [name]="'family_name'">
 				</div>
 			</div>
-			
+
 			<h4>Policy Information</h4>
 			<div class=" form-row">
 				<div class="form-group col-md-6">
 					<label for="controlNumber">Control Number</label>
 					<div class="asterisk">*</div>
-					<input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber" [(ngModel)]="policyAccess.controlNumber"
-					 [name]="'control_number'" required>
+					<input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
+						[(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" required>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="controlName">Control Name</label>
 					<div class="asterisk">*</div>
-					<input type="text" class="form-control" id="controlName" ngModel name="controlName" [(ngModel)]="policyAccess.classType"
-					 [name]="'class_type'" required>
+					<input type="text" class="form-control" id="controlName" ngModel name="controlName"
+						[(ngModel)]="policyAccess.classType" [name]="'class_type'" required>
 				</div>
 			</div>
 			<label for="description">Description</label>
 			<p *ngIf="showForm">{{ policyAccess.description }}</p>
-			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.description" [name]="'policy_description'"
-			 maxlength="50000" #description="ngModel"> </textarea>
+			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.description"
+				[name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea>
 			<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
 			<br>
 			<div *ngIf="description.errors?.maxlength" style="float:right">
@@ -214,8 +228,8 @@
 				<div class="form-group col-md-6">
 					<label for="policyValue">Policy Value</label>
 					<div class="asterisk">*</div>
-					<input type="text" class="form-control" id="policyValue" ngModel name="policyValue" [(ngModel)]="policyAccess.policyVal"
-					 [name]="'policy_val'" required>
+					<input type="text" class="form-control" id="policyValue" ngModel name="policyValue"
+						[(ngModel)]="policyAccess.policyVal" [name]="'policy_val'" required>
 				</div>
 			</div>
 			<div class="form-row">
@@ -223,8 +237,8 @@
 					<label for="procedures">Procedures</label>
 					<div class="asterisk">*</div>
 					<p *ngIf="showForm">{{ policyAccess.procedures }}</p>
-					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.procedures" [name]="'policy_procedures'"
-					 maxlength="50000"> </textarea>
+					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.procedures"
+						[name]="'policy_procedures'" maxlength="50000"> </textarea>
 					<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
 					<br>
 					<div *ngIf="notes.errors?.maxlength" style="float:right">
@@ -236,8 +250,8 @@
 				<div class="form-group col-md-6">
 					<label for="guidelines">Guidelines</label>
 					<p *ngIf="showForm">{{ policyAccess.guidelines }}</p>
-					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.guidelines" [name]="'policy_guidelines'"
-					 maxlength="50000" #guidelines="ngModel"> </textarea>
+					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.guidelines"
+						[name]="'policy_guidelines'" maxlength="50000" #guidelines="ngModel"> </textarea>
 					<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
 					<br>
 					<div *ngIf="guidelines.errors?.maxlength" style="float:right">
@@ -252,7 +266,8 @@
 					<select class="form-control" id="priority" *ngIf="showForm">
 						<option>{{ policyAccess.priority }}</option>
 					</select>
-					<select class="form-control" id="priority" (change)="policyAccess.priority = $event.target.value" *ngIf="!showForm">
+					<select class="form-control" id="priority" (change)="policyAccess.priority = $event.target.value"
+						*ngIf="!showForm">
 						<option value="High">High</option>
 						<option value="Medium">Medium</option>
 						<option value="Low">Low</option>
@@ -287,7 +302,8 @@
     </div> -->
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="informationSystemConfigurationSettings">Information System Configuration Settings</label>
+					<label for="informationSystemConfigurationSettings">Information System Configuration
+						Settings</label>
 					<input type="text" class="form-control" id="informationSystemConfigurationSettings">
 				</div>
 				<div class="form-group col-md-6">
@@ -359,7 +375,8 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="assignTo">Assign To</label>
-					<input type="text" class="form-control" id="assignTo" [(ngModel)]="policyAccess.assignedTo" [name]="'assi_to'">
+					<input type="text" class="form-control" id="assignTo" [(ngModel)]="policyAccess.assignedTo"
+						[name]="'assi_to'">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="endDate">End Date</label>
@@ -370,7 +387,8 @@
 					<select class="form-control" id="status" *ngIf="showForm">
 						<option>{{ policyAccess.status }}</option>
 					</select>
-					<select class="form-control" id="status" (change)="policyAccess.status = $event.target.value" *ngIf="!showForm">
+					<select class="form-control" id="status" (change)="policyAccess.status = $event.target.value"
+						*ngIf="!showForm">
 						<option value="false">Open</option>
 						<option value="true">Close</option>
 					</select>

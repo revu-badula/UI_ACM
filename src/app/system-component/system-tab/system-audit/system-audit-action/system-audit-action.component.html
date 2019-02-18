@@ -34,7 +34,7 @@
 
 
 
-          <!-- <span class=" title elipsis pull-right">
+            <!-- <span class=" title elipsis pull-right">
                 <a title="Application audit history">
                     <i class="fa fa-history" aria-hidden="true" style="font-size: 24px;"></i>
                 </a>
@@ -45,7 +45,7 @@
                 <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
                     <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
                 </a>
-              <!--   <a (click)="showAudit()" title="Go back to audit section.">
+                <!--   <a (click)="showAudit()" title="Go back to audit section.">
                     <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
                 </a> -->
             </span>
@@ -72,8 +72,9 @@
                     <div class="form-group col-md-6">
                         <label for="lastName">End Date </label>
 
-                        <my-date-picker name="endDate" [disabled]='showForm' class="inputState1" ngModel (dateChanged)="getEndDate($event)"
-                            [options]="myDatePickerOptions" [(ngModel)]="endDate" required></my-date-picker>
+                        <my-date-picker name="endDate" [disabled]='showForm' class="inputState1" ngModel
+                            (dateChanged)="getEndDate($event)" [options]="myDatePickerOptions" [(ngModel)]="endDate"
+                            required></my-date-picker>
                     </div>
                 </div>
                 <div class="form-row">
@@ -82,23 +83,28 @@
                         <label for="inputState">Assigned To <span class="asterisk">*</span></label>
 
                         <!-- <input type="text" name="assignedTo" class="form-control" id="assignedTo" [(ngModel)]="appAudit.actionPlanAssignedTo"> -->
-                        <select name="systemOwner" style="width:50%;" [(ngModel)]="appAudit.actionPlanAssignedTo" class="form-control" id="searchUsers"
-            (change)="appAudit.actionPlanAssignedTo=$event.target.value" required>
-                <option value="" selected>Choose...</option>
-                <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
-            </select>
+                        <select name="systemOwner" style="width:50%;" [(ngModel)]="appAudit.actionPlanAssignedTo"
+                            class="form-control" id="searchUsers"
+                            (change)="appAudit.actionPlanAssignedTo=$event.target.value" required>
+                            <option value="" selected>Choose...</option>
+                            <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">
+                                {{ getUser.firstName}} {{getUser.lastName }}</option>
+                        </select>
                     </div>
 
                 </div>
                 <div class="form-row">
 
-                    <label for="inputState">Summary</label>
+                    <h5>Summary</h5>
                     <br>
-                    <textarea name="summary" id="" rows="10" class="form-control1" [(ngModel)]="appAudit.actionPlanSummary" maxlength="50000" #actionPlanSummary="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanSummary.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="actionPlanSummary.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
+                    <textarea name="summary" id="" rows="10" class="form-control1"
+                        [(ngModel)]="appAudit.actionPlanSummary" maxlength="50000"
+                        #actionPlanSummary="ngModel"> </textarea>
+                    <!--<div style="float:right">{{50000 - actionPlanSummary.value.length}} characters left </div> -->
+                    <br>
+                    <div *ngIf="actionPlanSummary.errors?.maxlength" style="float:right">
+                        <span style="color:tomato"> Exceeded the character limit. </span>
+                    </div>
 
 
 
@@ -106,12 +112,14 @@
                 <div class="form-row">
 
 
-                    <label for="inputState">Tasks</label>
-                    <textarea name="tasks" id="" rows="10" class="form-control1" [(ngModel)]="appAudit.actionPlanTasks" maxlength="50000" #actionPlanTasks="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanTasks.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="actionPlanTasks.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
+                    <h5>Tasks</h5>
+                    <textarea name="tasks" id="" rows="10" class="form-control1" [(ngModel)]="appAudit.actionPlanTasks"
+                        maxlength="50000" #actionPlanTasks="ngModel"> </textarea>
+                    <!--<div style="float:right">{{50000 - actionPlanTasks.value.length}} characters left </div> -->
+                    <br>
+                    <div *ngIf="actionPlanTasks.errors?.maxlength" style="float:right">
+                        <span style="color:tomato"> Exceeded the character limit. </span>
+                    </div>
 
 
 
@@ -119,12 +127,15 @@
                 <div class="form-row">
 
 
-                    <label for="inputState">Closeout Comments</label>
-                    <textarea name="Comments" id="" rows="10" class="form-control1" [(ngModel)]="appAudit.actionPlanCloseoutComments" maxlength="50000" #actionPlanCloseoutComments="ngModel"> </textarea><!--<div style="float:right">{{50000 - actionPlanCloseoutComments.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="actionPlanCloseoutComments.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
+                    <h5>Closeout Comments</h5>
+                    <textarea name="Comments" id="" rows="10" class="form-control1"
+                        [(ngModel)]="appAudit.actionPlanCloseoutComments" maxlength="50000"
+                        #actionPlanCloseoutComments="ngModel"> </textarea>
+                    <!--<div style="float:right">{{50000 - actionPlanCloseoutComments.value.length}} characters left </div> -->
+                    <br>
+                    <div *ngIf="actionPlanCloseoutComments.errors?.maxlength" style="float:right">
+                        <span style="color:tomato"> Exceeded the character limit. </span>
+                    </div>
                 </div>
 
 

@@ -1,68 +1,64 @@
 <div class="my-container">
-        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-      </div>
-      <app-navigation-component></app-navigation-component>                         
-      <div class="navigate sticky-top">
-                
-                  <div class="form-options">
-                      <div class="home-back">
-                          <!-- <a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a> -->
-                          <a href="javascript:void(0)" (click)="backClicked()"><fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true" data-delay="0" [name]="'arrow-left'"></fa></a>
-                      </div>
-                     
-                
-                  </div>
-              </div> 
-              <!-- <div class="pageHeader">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<app-navigation-component></app-navigation-component>
+<div class="navigate sticky-top">
+
+  <div class="form-options">
+    <div class="home-back">
+      <!-- <a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a> -->
+      <a href="javascript:void(0)" (click)="backClicked()">
+        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+          data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+      </a>
+    </div>
+
+
+  </div>
+</div>
+<!-- <div class="pageHeader">
                   <h3 class="pageTitle">Vendor List</h3>
               </div> -->
 
-              <h3 class="pageTitle">Vendors</h3>
-              <hr>
-            \
-      
-      <form class="forms">
+<h3 class="pageTitle">Vendors</h3>
+<hr>
 
-          
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-           <th scope="col" (click)="handleSort()" style="color:white !important">Vendors
-           <i  class="fa fa-arrow-down" *ngIf="!desc"></i> <i
-                          class="fa fa-arrow-up" *ngIf="desc"></i></th>
-            <th scope="col" (click)="handleSort3('firstName')" style="color:white !important">Contact
-           <i            class="fa fa-arrow-down" *ngIf="!lname"></i> <i
-                          class="fa fa-arrow-up" *ngIf="lname"></i></th>
-            <th style="color:white !important" (click)="handleSort4('emailId')">Email Id
-                <i            class="fa fa-arrow-down" *ngIf="!email"></i> <i
-                class="fa fa-arrow-up" *ngIf="email"></i></th>
-            <th style="color:white !important" (click)="handleSort5('phoneNumber')">Phone 
-                <i            class="fa fa-arrow-down" *ngIf="!ph"></i> <i
-                class="fa fa-arrow-up" *ngIf="ph"></i></th>
-            <th style="color:white !important" (click)="handleSort6('updatedBy')">  Updated By
-                <i            class="fa fa-arrow-down" *ngIf="!updtBy"></i> <i
-                class="fa fa-arrow-up" *ngIf="updtBy"></i></th>
-            <th style="color:white !important" (click)="handleSort7('updatedTs')">  Updated Date
-                <i            class="fa fa-arrow-down" *ngIf="!updt"></i> <i
-                class="fa fa-arrow-up" *ngIf="updt"></i></th>
-      
-      
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let vendor of vendors | paginate: { itemsPerPage: 10, currentPage: p }">
-                             <td><a routerLink="/editVendors/{{ vendor.vendorId }}">{{ vendor.name }}</a></td>
-                               <td>{{ vendor.vendorContact.firstName +" "+ vendor.vendorContact.lastName }}
-                               <td>{{ vendor.vendorContact.emailId }}</td>
-                                <td>{{ vendor.vendorContact.phoneNumber }}</td>
-                                <td>{{ vendor.updatedBy}}</td>
-                                <td>{{ vendor.updatedTs | filterDate | date:'MM/dd/yyyy'}}</td>
-                                
-                               
-                          </tr>
-          </tbody>
-        </table>
-        <br>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        <!-- <a (click)="openVendorEdit(10)">click here...........</a> -->
-      </form>
+<form class="forms">
+
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" (click)="handleSort()" style="color:white !important">Vendors
+          <i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
+        <th scope="col" (click)="handleSort3('firstName')" style="color:white !important">Contact
+          <i class="fa fa-arrow-down" *ngIf="!lname"></i> <i class="fa fa-arrow-up" *ngIf="lname"></i></th>
+        <th style="color:white !important" (click)="handleSort4('emailId')">Email Id
+          <i class="fa fa-arrow-down" *ngIf="!email"></i> <i class="fa fa-arrow-up" *ngIf="email"></i></th>
+        <th style="color:white !important" (click)="handleSort5('phoneNumber')">Phone
+          <i class="fa fa-arrow-down" *ngIf="!ph"></i> <i class="fa fa-arrow-up" *ngIf="ph"></i></th>
+        <th style="color:white !important" (click)="handleSort6('updatedBy')"> Updated By
+          <i class="fa fa-arrow-down" *ngIf="!updtBy"></i> <i class="fa fa-arrow-up" *ngIf="updtBy"></i></th>
+        <th style="color:white !important" (click)="handleSort7('updatedTs')"> Updated Date
+          <i class="fa fa-arrow-down" *ngIf="!updt"></i> <i class="fa fa-arrow-up" *ngIf="updt"></i></th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vendor of vendors | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td><a routerLink="/editVendors/{{ vendor.vendorId }}">{{ vendor.name }}</a></td>
+        <td>{{ vendor.vendorContact.firstName +" "+ vendor.vendorContact.lastName }}
+        <td>{{ vendor.vendorContact.emailId }}</td>
+        <td>{{ vendor.vendorContact.phoneNumber }}</td>
+        <td>{{ vendor.updatedBy}}</td>
+        <td>{{ vendor.updatedTs | filterDate | date:'MM/dd/yyyy'}}</td>
+
+
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <!-- <a (click)="openVendorEdit(10)">click here...........</a> -->
+</form>

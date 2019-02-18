@@ -32,12 +32,12 @@ import { DialogService } from '../../../dialog.service';
     data-pla cement="right" title="Save" data-animation="true"
     data-delay="0" [name]="'edit'"></fa>
 </div>
-	<form class=form [formGroup]="modalForm"
+	<form class="form" [formGroup]="modalForm"
 		(ngSubmit)="addDevice(modalForm.value)">
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				Model Number<span class="asterisk">*</span>
-				<input type="text" class="form-control" id="modelNumber"
+				<input type="text" class="form-control" id="solPopup"
 					placeholder="Equipment Model Number" formControlName="modelNumber" minlength="5" maxlength="10" appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('modelNumber').errors && modalForm.get('modelNumber').dirty">
                     Please enter between 5-10 numbers
@@ -45,7 +45,7 @@ import { DialogService } from '../../../dialog.service';
 			</div>
 			<div class="form-group col-md-6">
 	            Serial Number<span class="asterisk">*</span>
-				<input type="text" class="form-control" id="serialNumber"
+				<input type="text" class="form-control" id="solPopup"
 					placeholder="Equipment Serial Number"
                     formControlName="serialNumber" minlength="5" maxlength="10" appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('serialNumber').errors && modalForm.get('serialNumber').dirty">
@@ -59,12 +59,12 @@ import { DialogService } from '../../../dialog.service';
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				Street 1<span class="asterisk">*</span>
-				<input type="text" class="form-control" id="street1"
+				<input type="text" class="form-control" id="solPopup"
 					placeholder="enter here" formControlName="street1">
 			</div>
 			<div class="form-group col-md-6">
 				Street 2
-				<input type="text" class="form-control" id="street2"
+				<input type="text" class="form-control" id="solPopup"
 					placeholder="enter here" formControlName="street2">
 			</div>
            
@@ -75,12 +75,12 @@ import { DialogService } from '../../../dialog.service';
         <div class="form-row">
         <div class="form-group col-md-6">
        City<span class="asterisk">*</span>
-        <input type="text" class="form-control" id="city"
+        <input type="text" class="form-control" id="solPopup"
             placeholder="enter here" formControlName="city">
          </div>
 			<div class="form-group col-md-6">
 			State<span class="asterisk">*</span>
-				<select id="inputState" class="form-control" id="state"
+				<select id="inputState" class="form-control" id="solPopup"
 					formControlName=state>
 					<option selected>Choose...</option>
 					  <option value="AL">Alabama (AL)</option>
@@ -144,8 +144,8 @@ import { DialogService } from '../../../dialog.service';
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				Zip Code<span class="asterisk">*</span>
-				<input type="text" class="form-control" maxlength=5 minlength=5
-					title='Zip Code (Format: 00000)' id="zipCode"
+				<input type="text" class="form-control" id="solPopup" maxlength=5 minlength=5
+					title='Zip Code (Format: 00000)'
                     formControlName=zipCode appOnlyInteger>
                     <div style="color:red;" *ngIf="modalForm.get('zipCode').errors && modalForm.get('zipCode').dirty">
                     zipCode must be 5 numbers
@@ -153,7 +153,7 @@ import { DialogService } from '../../../dialog.service';
             </div>
             <div class="form-group col-md-6">
 			Overall Scanning Status<span class="asterisk">*</span>
-			<select  class="form-control"
+			<select  class="form-control" id="solPopup"
 				formControlName=overallStatus>
 				<option selected>Choose...</option>
 				<option value="Passed">Passed</option>

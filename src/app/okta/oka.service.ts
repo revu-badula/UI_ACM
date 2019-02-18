@@ -4,18 +4,19 @@ import * as OktaAuth from '@okta/okta-auth-js';
 import { Cookie } from 'ng2-cookies';
 import { Http, RequestOptionsArgs, RequestOptions, Headers } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 //declare var require: any
 //var OktaAuth = require("@okta/okta-auth-js");
 @Injectable()
 export class OktaAuthService {
 
   oktaAuth = new OktaAuth({
-    // issuer: 'https://dev-453625.oktapreview.com/oauth2/default',
-    // redirectUri: 'http://localhost:8080/Integra/callback',
-    // clientId: '0oai1582ptdSfti3f0h7',
     issuer: 'https://dev-453625.oktapreview.com/oauth2/default',
-    redirectUri: 'http://172.24.16.56:8080/Integra/callback',
-    clientId: '0oahpllrzzFIIJmIU0h7',
+    redirectUri: environment.redirectURL,
+    clientId: environment.clientId,
+    // issuer: 'https://dev-453625.oktapreview.com/oauth2/default',
+    // redirectUri: 'http://172.24.16.56:8080/Integra/callback',
+    // clientId: '0oahpllrzzFIIJmIU0h7',
     //  issuer: 'https://dev-453625.oktapreview.com/oauth2/default',
     //  redirectUri: 'http://23.96.86.203:8080/UIApp/callback',
     //  clientId: '0oai1buswsL7zAE7w0h7',

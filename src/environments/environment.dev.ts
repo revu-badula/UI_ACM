@@ -5,6 +5,8 @@
 
 export const environment = {
     production: true,
-    url:'http://localhost:8080/ApplicationPortfolioManager/services/'
+    url:'http://localhost:8080/ApplicationPortfolioManager/services/',
+    redirectURL:'http://localhost:8080/Integra/callback',
+    clientId:'0oai1582ptdSfti3f0h7'
   };
   

@@ -14,25 +14,27 @@
 </ng-template>
 
 <div class="form-div">
-	<form #myForm="ngForm" >
+	<form #myForm="ngForm">
 
 		<div class="plus1">
 
-			<span *ngIf="showSave" class=" title elipsis pull-right"> <a (click)="saveLessons()" title="Save Audit" class="ng-hide">
+			<span *ngIf="showSave" class=" title elipsis pull-right"> <a (click)="saveLessons()" title="Save Audit"
+					class="ng-hide">
 					<i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
 				</a>
 			</span> <span *ngIf="showEdit" class=" title elipsis pull-right"> <a>
 					<fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
 				</a>
-			</span> 
+			</span>
 			<!-- <span class=" title elipsis pull-right"> <a title="Application audit history"> <i class="fa fa-history"
 					 aria-hidden="true" style="font-size: 24px;"></i>
 				</a>
 			</span>  -->
-			<span class=" title elipsis pull-right"> <a (click)="showLeft()" title="Change to view mode. This reverts the changes">
+			<span class=" title elipsis pull-right"> <a (click)="showLeft()"
+					title="Change to view mode. This reverts the changes">
 					<i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
 				</a>
-				 <!-- <a title="Go back to audit section." (click)="showLeft()"> 
+				<!-- <a title="Go back to audit section." (click)="showLeft()"> 
 					<i class="fa fa-arrow-circle-o-left" aria-hidden="true"
 					 style="font-size: 24px;"></i>
 				</a> -->
@@ -43,7 +45,7 @@
 
 		<div class="infoBox">
 			<div class="headerOfBox">
-			<h4>Lessons Learned</h4>
+				<h4>Lessons Learned</h4>
 			</div>
 			<fieldset [disabled]="showForm">
 				<div class="form-row">
@@ -51,12 +53,14 @@
 
 						<label for="inputState">Entered by</label>
 						<!-- <my-date-picker name="startDate"  (dateChanged)="getEnteredBy($event)" [(ngModel)]="startDate"></my-date-picker> -->
-						<input type="text" class="form-control" name="enteredBy" id="enteredBy" [(ngModel)]="appAssess.lessonsEnteredBy">
+						<input type="text" class="form-control" name="enteredBy" id="enteredBy"
+							[(ngModel)]="appAssess.lessonsEnteredBy">
 					</div>
 					<div class="form-group col-md-6">
 
 						<label for="inputState">Entered date</label>
-						<my-date-picker name="endDate" [disabled]='showForm' id="endDate" class="inputState1" (dateChanged)="getEnteredDate($event)" [(ngModel)]="endDate"></my-date-picker>
+						<my-date-picker name="endDate" [disabled]='showForm' id="endDate" class="inputState1"
+							(dateChanged)="getEnteredDate($event)" [(ngModel)]="endDate"></my-date-picker>
 					</div>
 
 				</div>
@@ -64,13 +68,16 @@
 				<div class="form-row">
 
 
-					<h5>Description</h5>
+					<b>Description</b>
 
-					<textarea name="description" id="" rows="10" class="form-control1" [(ngModel)]="appAssess.lessonsLearnedDescription" maxlength="50000" #lessonsLearnedDescription="ngModel"> </textarea><!--<div style="float:right">{{50000 - lessonsLearnedDescription.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="lessonsLearnedDescription.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
+					<textarea name="description" id="" rows="10" class="form-control1"
+						[(ngModel)]="appAssess.lessonsLearnedDescription" maxlength="50000"
+						#lessonsLearnedDescription="ngModel"> </textarea>
+					<!--<div style="float:right">{{50000 - lessonsLearnedDescription.value.length}} characters left </div> -->
+					<br>
+					<div *ngIf="lessonsLearnedDescription.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> Exceeded the character limit. </span>
+					</div>
 
 				</div>
 			</fieldset>
