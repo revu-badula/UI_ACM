@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SubControlPipe implements PipeTransform {
 
-    transform(data): any {
+    transform(data:any): any {
         if (data === null) { return ''; }
         else {
             if (data === true) {

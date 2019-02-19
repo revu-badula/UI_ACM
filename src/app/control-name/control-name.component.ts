@@ -42,7 +42,7 @@ export class ControlNameComponent implements OnInit {
   addNewPolicy: any = [];
   linkedPolicy: Policy;
   showLink: boolean = true;
-  public links: any=[];
+  public links: any = [];
   public showBt: boolean = false;
   public accountnum: any[] = [];
   public list: any;
@@ -108,24 +108,21 @@ export class ControlNameComponent implements OnInit {
     this._location.back();
   }
 
-  backClick(event) {
+  backClick(event: any) {
     UtilService.backClicked = true;
     this._location.back();
     event.preventDefault();
   }
 
-  getPolicy(id) {
+  getPolicy(id: any) {
     this.loading = true;
     this._apiservice.getPolicy(id)
       .subscribe((data: any) => {
         this.loading = false;
         this.policyAccess = data;
-        //console.log(this.policyAccess.linkedPolicies);
-        //this.policyAccess.policyDocumentsDTOs = data.policyDocumentsDTOs;
-        //this.subPolicyDTOs = data.subPolicyDTOs;
-        // if (this.policyAccess.endDate != null) {
-        //   this.dateRetreive();
-        // }
+        if (this.policyAccess === undefined) {
+          this.policyAccess.updatedTs = null;
+        }
 
         if (this.policyAccess.endDate === null || this.policyAccess.endDate === undefined) {
           this.endDate = { date: null };
@@ -285,11 +282,10 @@ export class ControlNameComponent implements OnInit {
   changeDiv() {
     this.showDiv = true;
   }
-  getBack()
-  {
+  getBack() {
     this.displayField = 2;
-    this.showDiv=false;
-    this.showDef=false;
+    this.showDiv = false;
+    this.showDef = false;
   }
 
   selectType(policy) {
@@ -319,15 +315,16 @@ export class ControlNameComponent implements OnInit {
       this.policyTypes = [];
     }
     else {
-      this.loading=true;
+      this.loading = true;
       this.definitive = true;
       this._apiservice.getPolicyGroup(auditID)
         .subscribe((data: any) => {
-          this.loading=false;
+          this.loading = false;
           this.policyTypes = data;
         }, error => {
-          this.loading=false;
-          console.log(error) });
+          this.loading = false;
+          console.log(error)
+        });
     }
 
 
@@ -340,15 +337,15 @@ export class ControlNameComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.policies = data.policyDTOs;
-        this.showBt=true;
-        this.showDef=true;
+        this.showBt = true;
+        this.showDef = true;
       }, error => {
         console.log(error);
       });
 
   }
 
-  viewEvent(addPolicies: any, event:any) {
+  viewEvent(addPolicies: any, event: any) {
 
 
 
@@ -398,16 +395,16 @@ export class ControlNameComponent implements OnInit {
 
     this.showDiv = false;
     this.showLink = false;
-    this.showDef=false;
-    this.showBt=false;
+    this.showDef = false;
+    this.showBt = false;
     this.displayField = 2;
     this.links = this.policyAccess.linkedPolicies;
-    if(this.links != undefined){
-    for (let i = 0; i < this.links.length; i++) {
-      this.other.push(this.links[i].controlNumber);
+    if (this.links != undefined) {
+      for (let i = 0; i < this.links.length; i++) {
+        this.other.push(this.links[i].controlNumber);
 
+      }
     }
-  }
 
 
   }
@@ -507,29 +504,28 @@ export class ControlNameComponent implements OnInit {
     }
   }
 
-  deletePolicy(id:any) {
-    this.dialogService.open("Info","Do you want to delete the control",true,"Yes","No")
-    .then((result:any) => {
-      if(result)
-      {
-        this.policyAccess.linkedPolicies.forEach(element => {
-          if (element.policyId === id) {
-            element.status = false;
-            element.linkType = "update";
-          }
-        });
-      }
-    });
-  
+  deletePolicy(id: any) {
+    this.dialogService.open("Info", "Do you want to delete the control", true, "Yes", "No")
+      .then((result: any) => {
+        if (result) {
+          this.policyAccess.linkedPolicies.forEach(element => {
+            if (element.policyId === id) {
+              element.status = false;
+              element.linkType = "update";
+            }
+          });
+        }
+      });
+
   }
 
-  goTo(event:any) {
+  goTo(event: any) {
     event.preventDefault();
     UtilService.backClicked = true;
     this.router.navigate(['/policyView/policyDetails'])
   }
 
-  getSubpolicy(id:any) {
+  getSubpolicy(id: any) {
     //localStorage.setItem('policyId', this.policyUrlId);
     //localStorage.setItem('subPol', id);
     let url = "subcontrol/" + id;
