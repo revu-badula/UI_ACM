@@ -33,7 +33,7 @@ export class NavigationComponentComponent implements OnInit {
 
 
 
-   signOut()
+   async signOut()
   {
     //localStorage.clear();
     Cookie.delete('access_token');
@@ -55,6 +55,8 @@ export class NavigationComponentComponent implements OnInit {
     sessionStorage.removeItem('appSolId');
     sessionStorage.removeItem('systemMouId');
     sessionStorage.removeItem('fipscode');
+    let result:any= await this.okta.isAuthenticated();
+    if(result)
     this.okta.logout();
     this.router.navigate(['/logout']);
   }
