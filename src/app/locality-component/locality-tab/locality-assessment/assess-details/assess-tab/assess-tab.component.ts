@@ -34,6 +34,7 @@ export class AssessTabComponent implements OnInit {
     sessionStorage.removeItem('assesId');
     sessionStorage.removeItem('assessActive');
     UtilService.disabled=true;
+    sessionStorage.removeItem("disabled");
   }
   ngOnInit() {
 
@@ -67,6 +68,7 @@ export class AssessTabComponent implements OnInit {
   }
 
   goTo() {
+    sessionStorage.setItem("disabled","true");
     this.router.navigate(['/locality/tab/assessment/Tabs/first1']);
 
   }
@@ -76,9 +78,10 @@ export class AssessTabComponent implements OnInit {
     this.showEdit = false;
   }
 
-  getAudit(id) {
+  getAudit(id:any) {
     sessionStorage.setItem('assesId', id);
     UtilService.disabled=false;
+    sessionStorage.setItem("disabled","false");
     this.router.navigate(['/locality/tab/assessment/Tabs/first1']);
   }
 

@@ -44,6 +44,7 @@ export class SystemAuditDetailsComponent implements OnInit {
     UtilService.disabled = true;
     sessionStorage.removeItem('systemAppAuditId');
     sessionStorage.removeItem('systemAuditActive');
+    sessionStorage.removeItem("disabled");
 
 
   }
@@ -80,6 +81,7 @@ export class SystemAuditDetailsComponent implements OnInit {
   }
 
   goTo() {
+    sessionStorage.setItem("disabled","true");
     this.router.navigate(['/system/tab2/Audit/Tab/first']);
 
   }
@@ -88,10 +90,11 @@ export class SystemAuditDetailsComponent implements OnInit {
     this.showPlusButton = true;
   }
 
-  getAudit(id) {
+  getAudit(id:any) {
     UtilService.appAuditId = id;
     sessionStorage.setItem('systemAppAuditId', id);
     UtilService.disabled = false;
+    sessionStorage.setItem("disabled","false");
     this.router.navigate(['/system/tab2/Audit/Tab/first']);
   }
 

@@ -2,15 +2,15 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <ng-template #content2 let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Info</h4>
-    </div>
-    <div class="modal-body">
-        <p>No controls to download.</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
-    </div>
+  <div class="modal-header">
+    <h4 class="modal-title">Info</h4>
+  </div>
+  <div class="modal-body">
+    <p>No controls to download.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+  </div>
 </ng-template>
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -21,8 +21,8 @@
       <div class="col-md-12">
         <form #myFileForm="ngForm">
           <label class="input">Attachment</label>
-          <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx"
-            #fileInput (change)="getFile($event)" required>
+          <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File"
+            accept=".pdf,.doc,.docx" #fileInput (change)="getFile($event)" required>
 
         </form>
       </div>
@@ -32,31 +32,33 @@
   <div class="modal-footer">
 
     <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
-    <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark" (click)="compareFile();c()">Compare</button>
+    <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark"
+      (click)="compareFile();c()">Compare</button>
   </div>
 </ng-template>
 
 
-<form class="former">
-  <div class="form-row">
+<div class="show">
+  <!-- <div class="form-row">
     <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
-  </div>
+  </div> -->
+  <form>
 
 
-  <div class="plus">
+    <div class="plus">
 
-    <span class="title elipsis pull-right">
-      <a title="Compare policies">
-        <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
-      </a>
-      <a title="Send notifications">
-        <i class="fa  fa-envelope-o" aria-hidden="true" style="font-size: 24px;"></i>
-      </a>
-      <a title="Download compared policies" (click)="downloadFile()">
-        <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
-      </a>
-    </span>
-    <span class=" title elipsis pull-right">
+      <span class="title elipsis pull-right">
+        <a title="Compare policies">
+          <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
+        </a>
+        <a title="Send notifications">
+          <i class="fa  fa-envelope-o" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+        <a title="Download compared policies" (click)="downloadFile()">
+          <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
+        </a>
+      </span>
+      <span class=" title elipsis pull-right">
 
         <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
           <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
@@ -65,50 +67,53 @@
           <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
         </a>
       </span>
-  </div>
-  <div class="infoBox">
-  <div class="headerOfBox">
-    <h4>Policies</h4>
-  </div>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
+    </div>
+    <div class="infoBox">
+      <div class="headerOfBox">
+        <h4>Policies</h4>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
 
-        <th scope="col" (click)="handleSort()">Control Number
-          <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor" *ngIf="desc"></i>
-        </th>
-        <th scope="col" (click)="handleSort1('policyName')">Policy Name
-          <i class="fa fa-arrow-down testColor" *ngIf="!policyName"></i> <i class="fa fa-arrow-up testColor" *ngIf="policyName"></i>
-        </th>
-        <th scope="col" (click)="handleSort2('priority')">Priority
-          <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor" *ngIf="priority"></i>
-        </th>
-        <th scope="col">Source Value</th>
+            <th scope="col" (click)="handleSort()">Control Number
+              <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor"
+                *ngIf="desc"></i>
+            </th>
+            <th scope="col" (click)="handleSort1('policyName')">Policy Name
+              <i class="fa fa-arrow-down testColor" *ngIf="!policyName"></i> <i class="fa fa-arrow-up testColor"
+                *ngIf="policyName"></i>
+            </th>
+            <th scope="col" (click)="handleSort2('priority')">Priority
+              <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
+                *ngIf="priority"></i>
+            </th>
+            <th scope="col">Source Value</th>
 
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
 
-        <td>
-          <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
+            <td>
+              <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
             policy.controlNumber
             }}</a>
-        </td>
-        <td>{{ policy.policyName }}</td>
-        <td>{{ policy.priority }}</td>
-        <td>{{ policy.policyVal }}</td>
-        <!-- <td><i [ngClass]=" policy.status  ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
-      <td><i [ngClass]="{'primary':policy.status === 'true',
+            </td>
+            <td>{{ policy.policyName }}</td>
+            <td>{{ policy.priority }}</td>
+            <td>{{ policy.policyVal }}</td>
+            <!-- <td><i [ngClass]=" policy.status  ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
+            <td><i [ngClass]="{'primary':policy.status === 'true',
         'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
-      </tr>
-    </tbody>
-  </table>
+          </tr>
+        </tbody>
+      </table>
 
 
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
+    </div>
+  </form>
 </div>
-
-</form>

@@ -61,7 +61,7 @@
                 </div>
                 
                 <div class="form-row">
-                    <h4>Description</h4>
+                    <h5>Description</h5>
                     <textarea id="description" rows="10" name="description" class="form-control1" [(ngModel)]="appAssess.findingDescription" maxlength="50000" #findingDescription="ngModel"> </textarea><!--<div style="float:right">{{50000 - findingDescription.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="findingDescription.errors?.maxlength" style="float:right">
@@ -72,7 +72,7 @@
                 </div>
                 <br>
                 <div class="form-row">
-                    <h4>Comments</h4>
+                    <h5>Comments</h5>
                     <br>
                     <textarea name="comments"  id="comments" rows="10" class="form-control1" [(ngModel)]="appAssess.findingComments" maxlength="50000" #findingComments="ngModel"> </textarea><!--<div style="float:right">{{50000 - findingComments.value.length}} characters left </div> -->
 					 <br>

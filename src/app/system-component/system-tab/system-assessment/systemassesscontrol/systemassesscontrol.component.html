@@ -179,7 +179,7 @@
         </p>
         <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
       </div> -->
-    <div class="plus1">
+    <div class="plus1" style="margin-bottom: 8px;">
 
       <span class="title elipsis pull-right">
         <a title="Compare policies">
@@ -247,8 +247,8 @@
             <td>{{ policy.priority }}</td>
             <td>{{ policy.defaultVal }}</td>
             <!-- <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
-            <td><i [ngClass]="{'primary':policy.status === 'true',
-              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+            <td><i [ngClass]="{'primary':policy.status === 'Open',
+              'secondary':policy.status === 'Close'}" class="fa fa-check-circle"></i></td>
           </tr>
         </tbody>
       </table>

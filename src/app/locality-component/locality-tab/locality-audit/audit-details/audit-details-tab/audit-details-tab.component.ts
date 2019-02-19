@@ -15,7 +15,7 @@ export class AuditDetailsTab implements OnInit {
   public updatedBy: any;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private route: ActivatedRoute, config: NgbProgressbarConfig) {
-    this.disabled = UtilService.disabled;
+    this.disabled = JSON.parse(sessionStorage.getItem("disabled"));
     //this.getAppId();
 
     config.max = 10;

@@ -17,7 +17,7 @@ export class SystemAssessDowntabsComponent implements OnInit {
   public updatedBy:any;
   constructor(private _apiservice: ApiserviceService,
     private utilService: UtilService, private route: ActivatedRoute, private router: Router) {
-    this.disabled = UtilService.disabled;
+    this.disabled = JSON.parse(sessionStorage.getItem("disabled"));
     //this.getAppId();
   }
 

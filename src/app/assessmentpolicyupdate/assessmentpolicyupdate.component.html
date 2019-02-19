@@ -65,7 +65,7 @@
 
               </div>
             
-              <div class="infoBox">
+              <div class="infoBox polwidth">
                   <div class="headerOfBox">
                       <h4>Control Information</h4>
                   </div>
@@ -107,11 +107,11 @@
                       <div class="form-group col-md-6">
                           <label for="status">Status</label>
                           <input *ngIf="showForm" type="text" name="status" class="form-control" id="status"
-                              [ngModel]="appPolicy.status | subControlPipe">
+                              [ngModel]="appPolicy.status">
                           <select class="form-control" id="inputState" name="status" [(ngModel)]="appPolicy.status"
                               (change)="appPolicy.status = $event.target.value" *ngIf="!showForm">
-                              <option value="true">Open</option>
-                              <option value="false">Close</option>
+                              <option value="Open">Open</option>
+                              <option value="Close">Close</option>
                           </select>
                       </div>
                   </div>
@@ -153,10 +153,9 @@
               </div>
 
            
-              <div class="form-row">
-                  <div class="form-group col-md-12">
+              
 
-                      <div class="infoBox">
+                      <div class="infoBox polwidth">
                           <div class="headerOfBox">
                               <h4>Procedures<span class="asterisk">*</span>
                               </h4>
@@ -170,12 +169,10 @@
 					   </div> 
 
                       </div>
-                  </div>
-              </div>
+                
              
-              <div class="form-row">
-                  <div class="form-group col-md-12">
-                      <div class="infoBox">
+        
+                      <div class="infoBox polwidth">
                           <div class="headerOfBox">
                               <h4>Guidelines</h4>
                           </div>
@@ -186,8 +183,7 @@
 						<span style="color:tomato"> 	Exceeded the character limit. </span>
 					   </div> 
                       </div>
-                  </div>
-              </div>
+                
 
 
             
@@ -229,7 +225,7 @@
 
              
 
-              <div class="infoBox">
+              <div class="infoBox polwidth">
                   <div class="headerOfBox">
                       <h4>Artifacts</h4>
                   </div>
@@ -243,7 +239,7 @@
 
              
 
-              <div class="infoBox">
+              <div class="infoBox polwidth">
                   <div class="headerOfBox">
                       <h4>Non-COV</h4>
 

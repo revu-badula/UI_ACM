@@ -1,105 +1,98 @@
 i.fa {
     text-decoration: none !important;
     padding: 5px 4px;
-     color: black;
+    color: black;
 }
+
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-     color: black;
-   }
-.plus{
-	float:right;
-	 vertical-align: middle;
+    color: black;
+}
+
+.plus {
+    float: right;
+    vertical-align: middle;
     font-size: 20px;
- 
     padding: 2px;
     margin-left: 20px;
     color: black;
     margin-top: 15px;
-    
+    margin-bottom: -3vh;
 }
 
-.policies{
-	margin-top: 15px;
+.policies {
+    margin-top: 15px;
 }
 
-.policy-edit{
-	float: right;
+.policy-edit {
+    float: right;
 }
 
-
-.icons{
+.icons {
     vertical-align: middle;
     font-size: 20px;
     margin-top: -20px;
     padding: 2px;
-   
-    font-size:20px;
+    font-size: 20px;
 }
-
-
 
 .table-bordered td, .table-bordered th {
     border: 1px solid #e9ecef;
 }
+
 th {
     text-align: center !important;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-.nav-link{
-	color: black;
-	margin-left: 10px;
+.nav-link {
+    color: black;
+    margin-left: 10px;
 }
 
 /* .icons{ */
+
 /* 	color:black; */
+
 /*    vertical-align: middle; */
+
 /*    font-size: 20px; */
+
 /*    margin-bottom: 20px; */
+
 /*    padding: 2px; */
+
 /*    margin-right: 20px; */
+
 /* } */
 
-
-
 input[readonly] {
-	background-color: #ffffff;
-	}
-
-table{
-	/* background-color: #ffffff; */
-	text-align: center;
+    background-color: #ffffff;
 }
 
-table thead tr th{  white-space: pre-wrap;
-	font-weight: 500;
+table {
+    /* background-color: #ffffff; */
+    text-align: center;
 }
 
-.modal-header{
-	background-color: black;
-	color: #ffffff;
+table thead tr th {
+    white-space: pre-wrap;
+    font-weight: 500;
 }
 
-.btn{
-	background-color: black;
-	border-color: black;
+.modal-header {
+    background-color: black;
+    color: #ffffff;
 }
-.confbtn{
+
+.btn {
+    background-color: black;
+    border-color: black;
+}
+
+.confbtn {
     margin-left: auto;
     margin-right: auto;
 }
@@ -147,8 +140,6 @@ input {
 input[type=button] {
     float: none;
 }
-
-
 
 .line {
     margin: 0.5rem 0 0.5em;
