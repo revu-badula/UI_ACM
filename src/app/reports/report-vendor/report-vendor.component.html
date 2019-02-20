@@ -69,14 +69,15 @@
 				</tr>
 
 			</thead>
-			<tbody *ngFor="let venType of venTypes">
+			<!-- <tbody *ngFor="let venType of venTypes"> -->
 				<!-- <ng-template ngFor let-venType [ngForOf]="venTypes"> -->
-				<tr *ngFor="let appSolution of venType.appSolutionDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
+					<tbody>
+				<tr *ngFor="let appSolution of vendors1 | paginate: config">
 
 					<td><a class="box" style="cursor: pointer;color: blue;" (click)="getVendor(venType.vendorId)">{{appSolution.vendorName}}</a></td>
-					<td>{{venType.vendorFirstName}} {{venType.vendorLastName}}</td>
-					<td>{{venType.solutionName}}</td>
-					<td>{{venType.solutionVersionName}}</td>
+					<td>{{appSolution.vendorFirstName}} {{appSolution.vendorLastName}}</td>
+					<td>{{appSolution.solutionName}}</td>
+					<td>{{appSolution.solutionVersionName}}</td>
 					<td>{{appSolution.applicationName}}</td>
 				</tr>
 
@@ -85,6 +86,6 @@
 
 		</table>
 		<!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-		<pagination-controls (pageChange)="p = $event"></pagination-controls>
+		<pagination-controls id="approve"  (pageChange)="pageChanged($event)"></pagination-controls>
 	</form>
 </div>

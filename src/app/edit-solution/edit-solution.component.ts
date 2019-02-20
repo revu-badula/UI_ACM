@@ -1,7 +1,7 @@
 import { ApiserviceService } from '../apiservice.service';
 import { Solution, SystemType, HostingType, LabVendors, CertDocDTO, Vendor } from '../data_model';
 import { APP_CONFIG } from '../app.config';
-import { Component, OnInit, HostListener, ViewChild, ElementRef, NgModule, TemplateRef } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, NgModule, TemplateRef, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
@@ -9,8 +9,8 @@ import { File } from 'babel-types';
 import { Location } from '@angular/common';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subject } from 'rxjs';
+import { IMyDate, IMyDpOptions } from 'mydatepicker';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { IMyDate } from 'mydatepicker';
 import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
@@ -77,11 +77,13 @@ export class EditSolutionComponent implements OnInit {
   public loading: boolean = false;
   public isClick: boolean = false;
   public showFrm: boolean = true;
-  //  public systemTyp:any
+  myDatePickerOptions: IMyDpOptions = {
+  };
 
   constructor(private activatedRoute: ActivatedRoute, private _apiservice: ApiserviceService, private fb: FormBuilder
     , private http: Http, private _location: Location, private modalService: NgbModal,
-    private router: Router, private dialogService: DialogService, private datepipe: DatePipe,private utilService:UtilService) {
+    private router: Router, private dialogService: DialogService, private datepipe: DatePipe,
+    private utilService:UtilService, private ref: ChangeDetectorRef) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
     this.solution.hostingTypeDTO = new HostingType();
@@ -355,7 +357,7 @@ export class EditSolutionComponent implements OnInit {
     this._location.back();
   }
 
-  open(content) {
+  open(content:any) {
     this.modalService.open(content);
     //this.plus=false;
 

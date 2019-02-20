@@ -5,6 +5,7 @@ import { UtilService } from '../../util.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { appSolutionReport } from '../../solutionData';
 @Component({
   selector: 'app-report-vendor',
   templateUrl: './report-vendor.component.html',
@@ -21,9 +22,21 @@ export class ReportVendorComponent implements OnInit {
   public firstName: boolean = false;
   public solutionName: boolean = false;
   public solutionVersionName: boolean = false;
+  public vendors: any;
+  public vendors1: any;
+  public appSol: appSolutionReport;
+  public config: any;
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router, private _location: Location) { }
+    private router: Router, private _location: Location) {
+    this.appSol = new appSolutionReport();
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 10,
+      id: "approve",
+      totalItems: ''
+    };
+  }
 
   ngOnInit() {
     this.showVendor();
@@ -49,7 +62,7 @@ export class ReportVendorComponent implements OnInit {
 
   }
 
-  someVendor(value) {
+  someVendor(value: any) {
 
     if (value === 'Choose...' || value === "") {
       this.venTypes = [];
@@ -61,10 +74,46 @@ export class ReportVendorComponent implements OnInit {
           this.loading = false;
           this.showTable = true;
           this.venTypes = data;
+          this.vendors = [];
+          this.vendors1 = [];
+          this.config.totalItems=0;
+          if (this.venTypes.length > 0) {
+            this.venTypes.forEach((element: any) => {
+              element.appSolutionDTOs.forEach((item: any) => {
+                this.appSol = new appSolutionReport();
+                this.appSol = item;
+                this.appSol.vendorFirstName = element.vendorFirstName;
+                this.appSol.vendorLastName = element.vendorLastName;
+                this.appSol.solutionVersionName = element.solutionVersionName;
+                this.vendors.push(this.appSol);
+              });
+              this.vendors1 = this.vendors;
+              let len: any = this.vendors1.length;
+              this.config.totalItems = len;
+            });
+          }
+          else{
+            this.vendors1=[];
+            this.config.totalItems=0;
+          }
         }, error => {
           this.loading = false;
           console.log(error)
         });
+    }
+  }
+
+  pageChanged(value: any) {
+    let data = this.vendors;
+    this.config.currentPage = value;
+    if (value) {
+      var spliceFrom = (value - 1) * 10;
+      var offset = spliceFrom + 10;
+      this.vendors1 = [];
+      for (let i = spliceFrom; i < offset; i++) {
+        if (i === data.length) return false;
+        this.vendors1.push(data[i]);
+      }
     }
   }
   backClicked() {
@@ -277,7 +326,7 @@ export class ReportVendorComponent implements OnInit {
   // }
 
   getVendor(id) {
-    let url ="editVendors"+"/"+id;
+    let url = "editVendors" + "/" + id;
     this.router.navigateByUrl(url);
 
   }
