@@ -120,14 +120,8 @@
 			</div>
 
 			<div class="installation form-group">
-
-				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.hostingTypeNotes"
-				 name="hostingNotes" #hostingTypeNotes="ngModel" maxlength="50000"> </textarea>
-				<!--<div style="float:right">{{50000 - hostingTypeNotes.value.length}} characters left </div> -->
-				<br>
-				<div *ngIf="hostingTypeNotes.errors?.maxlength" style="float:right">
-					<span style="color:tomato"> Exceeded the character limit. </span>
-				</div>
+			<tinymce name="hostingNotes" [(ngModel)]="solution.hostingTypeNotes" [config]="config"></tinymce>
+			remaining {{50000 -len}}
 
 			</div>
 			
@@ -230,13 +224,14 @@
 
 			<div class="installation form-group">
 
-				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"
-				 #certStadard="ngModel" maxlength="50000"> </textarea>
+				<!-- <textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.certStadard" name="standardNotes"
+				 #certStadard="ngModel" maxlength="50000"> </textarea> -->
+				 <tinymce name="standardNotes" [(ngModel)]="solution.certStadard" [config]="config"></tinymce>
 				<!--<div style="float:right">{{50000 - certStadard.value.length}} characters left </div> -->
-				<br>
+				<!-- <br>
 				<div *ngIf="certStadard.errors?.maxlength" style="float:right">
 					<span style="color:tomato"> Exceeded the character limit. </span>
-				</div>
+				</div> -->
 
 				<div class="attachments-div">
 					<input type="file" #fileInput1 *ngIf="!showForm" (change)="createCertDTO($event,'standard')">
@@ -268,13 +263,14 @@
 			</div>
 
 			<div class="installation form-group">
-				<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.patches" [name]="'solution_patches'"
-				 #patches="ngModel" maxlength="50000"> </textarea>
+				<!-- <textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.patches" [name]="'solution_patches'"
+				 #patches="ngModel" maxlength="50000"> </textarea> -->
+				 <tinymce name="solution_patches" [(ngModel)]="solution.patches" [config]="config"></tinymce>
 				<!--<div style="float:right">{{50000 - patches.value.length}} characters left </div> -->
-				<br>
+				<!-- <br>
 				<div *ngIf="patches.errors?.maxlength" style="float:right">
 					<span style="color:tomato"> Exceeded the character limit. </span>
-				</div>
+				</div> -->
 				<div class="attachments-div">
 					<p class="attachments">
 						<b>Attachments</b>
@@ -312,13 +308,14 @@
 				</div>
 
 				<div class="installation form-group">
-					<textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.notes" [name]="'solution_notes'"
-					 #notes="ngModel" maxlength="50000"> </textarea>
+					<!-- <textarea cols="156" rows="7" [ngxSummernote]="config" id="ngxSummernote" [(ngModel)]="solution.notes" [name]="'solution_notes'"
+					 #notes="ngModel" maxlength="50000"> </textarea> -->
+					 <tinymce name="solution_notes" [(ngModel)]="solution.notes" [config]="config"></tinymce>
 					<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
 					<br>
-					<div *ngIf="notes.errors?.maxlength" style="float:right">
+					<!-- <div *ngIf="notes.errors?.maxlength" style="float:right">
 						<span style="color:tomato"> Exceeded the character limit. </span>
-					</div>
+					</div> -->
 					<div class="attachments-div">
 						<p class="attachments">
 							<b>Attachments</b>

@@ -94,6 +94,7 @@ import { NgxCurrencyModule } from "ngx-currency";
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PolicyreviewViewComponent } from './policyreview-view/policyreview-view.component';
 import { AccesscontroldetailsComponent } from './accesscontroldetails/accesscontroldetails.component';
+import { NgxTinymceModule } from 'ngx-tinymce';
 
 
 @NgModule({
@@ -193,6 +194,9 @@ import { AccesscontroldetailsComponent } from './accesscontroldetails/accesscont
       tertiaryColour: '#fff',
       fullScreenBackdrop: true
     }),
+    NgxTinymceModule.forRoot({
+      //baseURL: './assets/tinymce/',
+    })
     // UserIdleModule.forRoot({idle: 60, timeout: 60, ping: 120})
   ],
   entryComponents: [

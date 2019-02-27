@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef, ChangeDetectorRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Solution, SystemType, HostingType, LabVendors, CertDocDTO, Vendor } from '../data_model';
 import { Http, HttpModule } from '@angular/http';
@@ -9,11 +9,11 @@ import { ApiserviceService } from '../apiservice.service';
 import { APP_CONFIG } from '../app.config';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
-declare var swal: any; ''
 import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { DialogService } from '../dialog.service';
+declare let tinymce:any;
 @Component({
   selector: 'app-solutions',
   templateUrl: './solutions.component.html',
@@ -28,7 +28,6 @@ export class SolutionsComponent implements OnInit {
   @ViewChild('f') solutionsForm: NgForm;
   @ViewChild('content') content: TemplateRef<any>;
   solution: Solution;
-
   public systemTypeDTO: any;
   approveDate: any;
   renewalDate: any;
@@ -37,6 +36,7 @@ export class SolutionsComponent implements OnInit {
   public labVendorsDTO: any;
   public solutionType: any;
   public labId: number;
+  public len: any = 0;
   public labVendorsfirstName: string;
   public labVendorslastName: string;
   public labVendorsphoneNumber: string;
@@ -48,22 +48,16 @@ export class SolutionsComponent implements OnInit {
   public showForm: boolean = false;
   certDocDTO: CertDocDTO;
   files: File[] = [];
-  config = {
-    placeholder: '',
-    tabsize: 2,
-    height: 200,
-    width: '100%',
-    toolbar: [
-      // [groupName, [list of button]]
-      ['misc', ['undo', 'redo']],
-      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-      ['fontsize', ['fontname', 'fontsize', 'color']],
-      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
-    ],
-    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-
+  config: any = {
+    height: 250,
+    width:1180,
+    theme: 'modern',
+    plugins: 'textcolor wordcount colorpicker textpattern',
+    toolbar: 'bold italic strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+    branding: false,
+    menubar:false,
+    statusbar:false
   };
-  //public labForm: string;
   public labForm: boolean = false;
   public loading: boolean = false;
   date: Date = new Date();
@@ -75,7 +69,8 @@ export class SolutionsComponent implements OnInit {
   }
   constructor(private activatedRoute: ActivatedRoute, private router: Router,
     private _location: Location, private _apiservice: ApiserviceService,
-    private http: Http, private modalService: NgbModal, private datepipe: DatePipe, private dialogService: DialogService) {
+    private http: Http, private modalService: NgbModal, private datepipe: DatePipe, 
+    private dialogService: DialogService, private ref: ChangeDetectorRef) {
     this.solution = new Solution();
     this.solution.systemTypeDTO = new SystemType();
     this.solution.hostingTypeDTO = new HostingType();
@@ -83,6 +78,11 @@ export class SolutionsComponent implements OnInit {
     this.solution.vendor = new Vendor();
     this.solution.certDocDTOs = [] as CertDocDTO[];
     this.files = [] as File[];
+    this.config.init_instance_callback = (editor: any)=> {
+      editor.on('keyup', () => {
+            this.getData(editor);
+      });
+    }
   }
 
   ngOnInit() {
@@ -141,8 +141,29 @@ export class SolutionsComponent implements OnInit {
 
   }
 
+  getData(editor:any)
+  {
+    this.len = 0;
+    if (tinymce.activeEditor.getContent({ format: 'text' }).length > 50000) {
+      let len: any = tinymce.activeEditor.getContent({ format: 'text' }).length;
+      let re = len - 50000;
+      let data: any = tinymce.activeEditor.getContent({ format: 'text' });
+      let dat = data.substring(0, 50000);
+      tinymce.activeEditor.setContent('<div id="idTextPanel" class="jqDnR" style="margin: 0px; padding: 0px; position: relative; color: #666666; font-family: Verdana, Geneva, Helvetica, sans-serif; font-size: 11px;"><p style="margin: 0px 0px 10px; padding: 0px; line-height: normal; font-family: Verdana, Geneva, sans-serif; font-size: 10px;">' + dat + '</p></div>');
+      this.ref.detectChanges();
+    }
+    else if (tinymce.activeEditor.getContent() === "") {
+      this.len = 0;
+      this.ref.detectChanges();
+    }
+    else {
+      this.len = tinymce.activeEditor.getContent({ format: 'text' }).length;
+      this.ref.detectChanges();
+    }
+  }
 
-  cancelButton(event) {
+
+  cancelButton(event:any) {
     event.preventDefault();
     this.router.navigate(['/dashboard']);
   }
@@ -178,7 +199,7 @@ export class SolutionsComponent implements OnInit {
     this.solution.certRenewalDueDt = this.renewalDate;
   }
 
-  getApproveDt(value) {
+  getApproveDt(value:any) {
     if (value.formatted === "") {
       this.solution.certDt = null;
     }
@@ -188,7 +209,7 @@ export class SolutionsComponent implements OnInit {
       this.solution.certDt = moment(latest_date).format();
     }
   }
-  getRenewDt(value) {
+  getRenewDt(value:any) {
     if (value.formatted === "") {
       this.solution.certRenewalDueDt = null;
     }
@@ -228,13 +249,13 @@ export class SolutionsComponent implements OnInit {
 
   }
 
-  open(content) {
+  open(content:any) {
     this.modalService.open(content);
 
 
   }
 
-  deleteFile(id, index) {
+  deleteFile(id:any, index:any) {
     //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
     this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
@@ -270,22 +291,7 @@ export class SolutionsComponent implements OnInit {
 
 
 
-  confirm(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
-    return new Promise((resolve, reject) => {
-      swal({
-        title: title,
-        text: text,
-        type: 'warning',
-        showCancelButton: showCancelButton,
-        confirmButtonText: confirmButtonText,
-        cancelButtonText: cancelButtonText,
-        allowOutsideClick: false,
-        allowEscapeKey: false
-      }).then((result) => {
-        resolve(result);
-      }, error => reject(error));
-    });
-  }
+  
 
   onSubmit() {
 
