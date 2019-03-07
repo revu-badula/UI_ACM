@@ -95,6 +95,9 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PolicyreviewViewComponent } from './policyreview-view/policyreview-view.component';
 import { AccesscontroldetailsComponent } from './accesscontroldetails/accesscontroldetails.component';
 import { NgxTinymceModule } from 'ngx-tinymce';
+import { ChartsModule } from 'ng2-charts';
+import { GraphComponent } from './graph/graph.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -160,6 +163,8 @@ import { NgxTinymceModule } from 'ngx-tinymce';
     DisclaimerComponent,
     PolicyreviewViewComponent,
     AccesscontroldetailsComponent,
+    GraphComponent,
+    NavbarComponent,
 
 
   ],
@@ -184,6 +189,7 @@ import { NgxTinymceModule } from 'ngx-tinymce';
     OptionListModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    ChartsModule,
     NgbModule.forRoot(),
     LoadingModule.forRoot({
       animationType: ANIMATION_TYPES.rotatingPlane,

@@ -30,7 +30,7 @@ return false;
 }
 }
 else{
-this.router.navigate(['/login'],{ queryParams: { returnUrl: state.url }});
+this.router.navigate([''],{ queryParams: { returnUrl: state.url }});
 }
 
 }

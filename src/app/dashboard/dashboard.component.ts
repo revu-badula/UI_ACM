@@ -19,61 +19,25 @@ import { UtilService } from '../util.service';
 export class DashboardComponent implements OnInit, OnDestroy {
   @ViewChild('content') content: TemplateRef<any>;
   @ViewChild('content1') content1: TemplateRef<any>;
-  // public _counter: number = 0;
-  // public _status: string = "Initialized.";
-  // private _timer: Observable<number>;
-  // private _timerSubscription: Subscription;
-  // private _idleTimerSubscription: Subscription;
+ 
   constructor(private modalService: NgbModal, private router: Router,
     private changeRef: ChangeDetectorRef, private idleTimeoutSvc: IdleTimeoutService,
     private dialogSvc: DialogService, private renderer: Renderer2, private utilService: UtilService) {
     UtilService.backClicked = false;
-    //localStorage.removeItem('localityName');
-    //localStorage.removeItem('appAuditId');
-    //localStorage.removeItem('appMouId');
-    //localStorage.removeItem('auditActive');
-    sessionStorage.removeItem('active');
-    sessionStorage.removeItem('systemName');
-    sessionStorage.removeItem('systemActive');
-    //localStorage.removeItem('fipscode');
-    //localStorage.removeItem('appSolId');
-    // localStorage.removeItem('systemAssessActive');
-    // localStorage.removeItem('systemAuditActive');
-    // localStorage.removeItem('systemAppAuditId');
-    // localStorage.removeItem('sysassesId');
-    //localStorage.removeItem('appSolId');
-    //localStorage.removeItem('systemMouId');
-    //this.renderer.setStyle(document.body, 'background-color', 'yellow');
+   
+    // sessionStorage.removeItem('active');
+    // sessionStorage.removeItem('systemName');
+    // sessionStorage.removeItem('systemActive');
+    
   }
 
   ngOnInit() {
-    // this._idleTimerSubscription = this.idleTimeoutSvc.timeoutExpired.subscribe(res => {
-    //   var modalPromise = this.dialogSvc.open("Session Expiring!", "Your session is about to expire. Do you need more time?", true, "Yes", "No");
-    //   var newObservable = Observable.fromPromise(modalPromise);
-    //   newObservable.subscribe(
-    //       (res) => {
-    //           if (res === true) {
-
-    //               // this.idleTimeoutSvc.resetTimer();
-    //               // this.startCounter();
-    //               //this.changeRef.markForCheck();
-    //               this.deleteCookie();
-
-    //           } else {
-
-    //               //this.changeRef.markForCheck();
-    //               this.deleteCookie();
-    //           }
-    //       },
-    //       (reason) => {
-    //           this.changeRef.markForCheck();
-    //       }
-    //   );
-    // });
-
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    
   }
 
-  open(content) {
+  open(content:any) {
     this.modalService.open(content);
 
   }
@@ -85,25 +49,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/system/map']);
   }
 
-  // public startCounter() {
-  //   if (this._timerSubscription) {
-  //       this._timerSubscription.unsubscribe();
-  //   }
-
-  //   this._counter = 0;
-  //   this._timer = Observable.timer(1000, 1000);
-  //   this._timerSubscription = this._timer.subscribe(n => {
-  //       this._counter++;
-  //       this.changeRef.markForCheck();
-  //   });
-  // }
-
-  // public reset() {
-  //   this.startCounter();
-  //   this._status = "Initialized.";
-  //   this.idleTimeoutSvc.resetTimer();
-  // }
-
+  
   ngOnDestroy() {
     //this._idleTimerSubscription.unsubscribe(); 
   }

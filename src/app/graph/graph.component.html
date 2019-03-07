@@ -1,0 +1,110 @@
+<app-navigation-component></app-navigation-component>
+<div>
+  <div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+    <app-navbar></app-navbar>
+  </div>
+  <div class="main-panel">
+    <div id="form2">
+      <div class="categoryGrid">
+
+        <div class="clearfix wrap">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="chart">
+
+                <div style="display: block;width: 70vh; height: 45vh;margin-left: 1vw;background-color: #fff;">
+                  <canvas baseChart [data]="lineChartDataLocalities" [labels]="lineChartLabelsLocalities"
+                    [legend]="false" chartType="bar" [options]="chartOption" [colors]="chartColorsLocalities"
+                    (chartClick)="getDataLocalities($event)"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div
+                style="display: block; width: 70vh; height: 45vh;background-color: #fff;margin-left: 1vw;padding-top: 3vh;">
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                  (chartClick)="chartClicked($event)" [options]="pieChartOptions" [colors]="pieChartColor"></canvas>
+               
+              </div>
+
+
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div
+                style="display: block; width: 70vh; height: 30vh;background-color: #fff;margin-left: 1vw;">
+                <canvas baseChart [data]="pieChartData2" [labels]="pieChartLabels2" [chartType]="pieChartType"
+                  (chartClick)="chartClicked2($event)" [options]="pieChartOptions2" [colors]="pieChartColor2"></canvas>
+              
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div
+                style="display: block; width: 70vh; height: 30vh;background-color: #fff;margin-left: 1vw;">
+
+                <canvas baseChart [data]="pieChartData3" [labels]="pieChartLabels3" chartType="pie"
+                  [options]="pieChartOptions3" [colors]="pieChartColor3" (chartClick)="chartClicked3($event)"></canvas>
+                
+              </div>
+
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+
+
+
+              <div class="chart">
+
+                <div style="display: block;width: 70vh; height: 45vh;margin-left: 1vw;background-color: #fff;">
+                  <canvas baseChart [data]="lineChartDataSystems" [labels]="lineChartLabelsSystems" [legend]="false"
+                    chartType="bar" [options]="chartOption1" [colors]="chartColorsSystems"></canvas>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div
+                style="display: block; width: 70vh; height: 45vh;background-color: #fff;margin-left: 1vw;padding-top: 3vh;">
+
+                <canvas baseChart [data]="pieChartData1" [labels]="pieChartLabels1" chartType="pie"
+                  [options]="pieChartOptions1" [colors]="pieChartColor1" (chartClick)="chartClicked1($event)"></canvas>
+                
+              </div>
+
+            </div>
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-md-6">
+                <div
+                  style="display: block; width: 70vh; height: 30vh;background-color: #fff;margin-left: 1vw;">
+                  <canvas baseChart [data]="pieChartData4" [labels]="pieChartLabels4" [chartType]="pieChartType"
+                    (chartClick)="chartClicked4($event)" [options]="pieChartOptions4" [colors]="pieChartColor4"></canvas>
+                
+                </div>
+  
+              </div>
+              <div class="col-md-6">
+                <div
+                  style="display: block; width: 70vh; height: 30vh;background-color: #fff;margin-left: 1vw;">
+  
+                  <canvas baseChart [data]="pieChartData5" [labels]="pieChartLabels5" chartType="pie"
+                    [options]="pieChartOptions5" [colors]="pieChartColor5" (chartClick)="chartClicked5($event)"></canvas>
+                  
+                </div>
+  
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -162,7 +162,8 @@ export class OktaAuthService {
     //console.log(user);
     // let url = this.route.snapshot.queryParams['returnUrl'] || '/';
     // console.log(url);
-    this.router.navigate(['/dashboard']);
+    //this.router.navigate(['/dashboard']);
+    this.router.navigate(['/graph']);
     //this.getUserRoles(user.email)
   }
 
@@ -177,6 +178,7 @@ export class OktaAuthService {
         //console.log(res);
         //this.loading=false;
         this.router.navigate(['/dashboard']);
+        
       },error => {
         //this.loading=false;
         console.log(error);

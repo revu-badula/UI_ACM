@@ -154,6 +154,8 @@ import { Accesscontrol1Component } from './accesscontrol1/accesscontrol1.compone
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PolicyreviewViewComponent } from './policyreview-view/policyreview-view.component';
 import { AccesscontroldetailsComponent } from './accesscontroldetails/accesscontroldetails.component';
+import { GraphComponent } from './graph/graph.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
 
@@ -187,6 +189,8 @@ const appRoutes: Routes = [
   { path: 'assessmentPolicyAdd', component: AssessmentpolicyaddComponent, canActivate: [AuthGuard] },
   { path: 'accessCntrl1/:id', component: Accesscontrol1Component, canActivate: [AuthGuard] },
   { path: 'accessUpdate1/:id', component: AssessmentpolicyupdateComponent, canActivate: [AuthGuard] },
+  { path: 'graph', component: GraphComponent, canActivate: [AuthGuard]},
+  { path: 'sidebar', component: NavbarComponent, canActivate: [AuthGuard]},
   
  
   {
