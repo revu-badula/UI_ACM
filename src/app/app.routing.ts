@@ -156,6 +156,8 @@ import { PolicyreviewViewComponent } from './policyreview-view/policyreview-view
 import { AccesscontroldetailsComponent } from './accesscontroldetails/accesscontroldetails.component';
 import { GraphComponent } from './graph/graph.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SampleQuestionComponent } from './sample-question/sample-question.component';
+import { CreateQuestionComponent } from './create-question/create-question.component';
 
 const appRoutes: Routes = [
 
@@ -191,6 +193,8 @@ const appRoutes: Routes = [
   { path: 'accessUpdate1/:id', component: AssessmentpolicyupdateComponent, canActivate: [AuthGuard] },
   { path: 'graph', component: GraphComponent, canActivate: [AuthGuard]},
   { path: 'sidebar', component: NavbarComponent, canActivate: [AuthGuard]},
+  { path: 'sample' , component: SampleQuestionComponent},
+  { path: 'createQuestion', component: CreateQuestionComponent},
   
  
   {

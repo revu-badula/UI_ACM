@@ -98,6 +98,8 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 import { ChartsModule } from 'ng2-charts';
 import { GraphComponent } from './graph/graph.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SampleQuestionComponent } from './sample-question/sample-question.component';
+import { CreateQuestionComponent } from './create-question/create-question.component';
 
 
 @NgModule({
@@ -165,6 +167,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AccesscontroldetailsComponent,
     GraphComponent,
     NavbarComponent,
+    SampleQuestionComponent,
+    CreateQuestionComponent
 
 
   ],
