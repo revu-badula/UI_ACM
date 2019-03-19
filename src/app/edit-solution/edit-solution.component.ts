@@ -285,7 +285,7 @@ export class EditSolutionComponent implements OnInit {
 
 
 
-  deleteFile(id, index) {
+  deleteFile(id:any, index:any) {
     //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
     this.dialogService.open("Info", " Do you want to delete the file?", true, "Yes", "No")
       .then((result: any) => {
@@ -352,7 +352,7 @@ export class EditSolutionComponent implements OnInit {
     });
   }
 
-  backClicked(event) {
+  backClicked(event:any) {
     event.preventDefault();
     this._location.back();
   }

@@ -56,9 +56,14 @@ export class NavigationComponentComponent implements OnInit {
     sessionStorage.removeItem('systemMouId');
     sessionStorage.removeItem('fipscode');
     let result:any= await this.okta.isAuthenticated();
-    if(result)
+    if(result){
     this.okta.logout();
     this.router.navigate(['/logout']);
+    }
+    else{
+      //this.okta.logout();
+      this.router.navigate(['/logout']);
+    }
   }
   goTo()
   {

@@ -4,8 +4,8 @@ import { Http } from '@angular/http';
 import { UtilService } from '../../util.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import {  county } from '../../county';
-
+import { county } from '../../county';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-report-legal',
   templateUrl: './report-legal.component.html',
@@ -33,8 +33,9 @@ export class ReportLegalComponent implements OnInit {
   public unsignedLocalities: any = [];
 
   constructor(private _apiservice: ApiserviceService,
-    private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router) {
+    private http: Http, private modalService: NgbModal, 
+    private utilservice: UtilService,
+    private router: Router,private _location: Location) {
     sessionStorage.removeItem('localityName');
     sessionStorage.removeItem('active');
 
@@ -51,6 +52,10 @@ export class ReportLegalComponent implements OnInit {
   }
   getOpacity() {
     // return this.color === 'online' ? 0.8 : 1;
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
 
@@ -115,7 +120,7 @@ export class ReportLegalComponent implements OnInit {
 
 
 
-  handleSort(value) {
+  handleSort(value:any) {
     if (!this.desc) {
       //this.policies.sort(this.doAsc);
       let orderByValue = value;
@@ -148,7 +153,7 @@ export class ReportLegalComponent implements OnInit {
 
   }
 
-  handleSort1(value) {
+  handleSort1(value:any) {
 
     if (!this.rcDt) {
       //this.policies.sort(this.doAsc);
@@ -183,7 +188,7 @@ export class ReportLegalComponent implements OnInit {
   }
 
 
-  handleSort2(value) {
+  handleSort2(value:any) {
 
     if (!this.dtrcpt) {
       //this.policies.sort(this.doAsc);
@@ -218,7 +223,7 @@ export class ReportLegalComponent implements OnInit {
   }
 
 
-  handleSort3(value) {
+  handleSort3(value:any) {
 
     if (!this.name) {
       //this.policies.sort(this.doAsc);
@@ -252,7 +257,7 @@ export class ReportLegalComponent implements OnInit {
 
   }
 
-  getLocality(value) {
+  getLocality(value:any) {
     // let countyarray = county.filter(item => item.county_name === value);
     // for (let i = 0; i < countyarray.length; i++) {
     //   localStorage.setItem('fipscode', countyarray[i].county_code);
