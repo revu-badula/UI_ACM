@@ -166,7 +166,7 @@ export class SystemDetailsComponent implements OnInit {
     this._apiservice.getUsers()
       .subscribe((data: any) => {
         this.users = data;
-
+console.log(this.users);
       }, error => console.log(error));
 
   }

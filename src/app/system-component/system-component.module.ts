@@ -40,6 +40,7 @@ import { SystemAuditDetailsTab1 } from './system-tab/system-audit/system-audit-d
 import { SystemLegalformComponent } from './system-tab/system-legal/system-legalform/system-legalform.component';
 import { SystemLegalmainComponent } from './system-tab/system-legal/system-legalmain/system-legalmain.component';
 import { KeysPipe } from './system-pipe';
+import { NgxTinymceModule } from 'ngx-tinymce';
 import { SystemAssessDowntabsComponent } from './system-tab/system-assessment/system-assess-downtabs/system-assess-downtabs.component';
 import { LocalityComponentRoutingModule } from '../app.routing';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
@@ -84,7 +85,11 @@ import { NgxCurrencyModule } from "ngx-currency";
       tertiaryColour: '#fff',
       fullScreenBackdrop:true
   }),
+ 
   NgxPaginationModule,
+  NgxTinymceModule.forRoot({
+    //baseURL: './assets/tinymce/',
+  })
   ],
   declarations: [SystemAddComponentComponent, SystemTabComponent,SystemComponentComponent, SystemDetailsComponent, SystemSolutionsComponent, SystemSolutionsLinkComponent, SystemSolutionstablelinkComponent, SystemBusinessComponent, SystemAuditComponent, SystemAuditDetailsComponent, SystemAuditFindingsComponent, SystemAuditRecomendationsComponent, SystemLegalComponent, SystemAuditManagementComponent, SystemSecurityComponent, SystemAuditActionComponent, SystemAuditBusinessriskComponent, SystemAuditSecurityriskComponent, 
   SystemAuditBudgetComponent, SystemAuditAttachmentsComponent, SystemAssessmentComponent, 

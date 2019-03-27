@@ -281,6 +281,11 @@ export class ApiserviceService {
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
+  getTechnologies(){
+    let url = APP_CONFIG.getTechnologies;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
 
   updatePolicyGrp(data) {
     console.log(data);

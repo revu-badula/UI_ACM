@@ -105,6 +105,7 @@ export const APP_CONFIG = {
   getISO:apiBaseUrl + 'getISO',
   addUser:apiBaseUrl+ 'addUser',
   appAudit: apiBaseUrl + 'appAuidt',
+  getTechnologies:apiBaseUrl + 'getTechnologies'
 }
 
 
