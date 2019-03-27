@@ -34,7 +34,7 @@ export class UpdateDeviceComponent implements OnInit {
     placeholder: '',
     tabsize: 2,
     height: 200,
-    width:"100%",
+    width: "100%",
     toolbar: [
       // [groupName, [list of button]]
       ['misc', ['undo', 'redo']],
@@ -43,7 +43,7 @@ export class UpdateDeviceComponent implements OnInit {
       ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
     ],
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-    
+
   };
   public startDate: any;
   public showBtt: boolean = true;
@@ -60,7 +60,7 @@ export class UpdateDeviceComponent implements OnInit {
   //public renewalDate: IMyDate = null;
   public licenceStartDate: IMyDate = null;
 
-  constructor(private phone: PhonePipe, private _apiservice: ApiserviceService, 
+  constructor(private phone: PhonePipe, private _apiservice: ApiserviceService,
     private activatedRoute: ActivatedRoute, private datepipe: DatePipe, private http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) {
     this.device = new Device();
     this.serverContact = new Server();
@@ -79,14 +79,16 @@ export class UpdateDeviceComponent implements OnInit {
     });
     this.getDBServer(this.deviceId);
   }
-  getPhoneNumbers(value) {
+  getPhoneNumbers(value: any) {
     this.serverContact.phoneNumber = this.phone.transform(value);
   }
 
+  
 
 
 
-  getPhoneNumber(e, value) {
+
+  getPhoneNumber(e:any, value:any) {
 
     let key = e.charCode || e.keyCode || 0;
     if (key !== 8 && key !== 9) {
@@ -106,7 +108,7 @@ export class UpdateDeviceComponent implements OnInit {
 
 
 
-  getPhoneNumber1(e, value) {
+  getPhoneNumber1(e:any, value:any) {
 
     let key = e.charCode || e.keyCode || 0;
     if (key !== 8 && key !== 9) {
@@ -230,7 +232,7 @@ export class UpdateDeviceComponent implements OnInit {
   }
 
 
-  getStartDate(value) {
+  getStartDate(value:any) {
     if (value.formatted === "") {
       this.device.licenseStartDt = null;
     }
@@ -243,7 +245,7 @@ export class UpdateDeviceComponent implements OnInit {
 
   }
 
-  getEndDate(value) {
+  getEndDate(value:any) {
     if (value.formatted === "") {
       this.device.licenseEndDt = null;
     }
@@ -278,7 +280,7 @@ export class UpdateDeviceComponent implements OnInit {
 
   getNumber(value) {
     if (value.length === 10) {
-     
+
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -287,15 +289,15 @@ export class UpdateDeviceComponent implements OnInit {
       let phm = pn + pn2 + d3;
       this.serverContact.phoneNumber = phm;
     }
-else{
-  this.serverContact.phoneNumber = value;
-}
+    else {
+      this.serverContact.phoneNumber = value;
+    }
   }
 
 
-  getNumber1(value) {
+  getNumber1(value:any) {
     if (value.length === 10) {
-    
+
       let data = value.slice(0, 3);
       let pn = data + '-';
       let d2 = value.slice(3, 6);
@@ -304,9 +306,9 @@ else{
       let phm = pn + pn2 + d3;
       this.serverContact1.phoneNumber = phm;
     }
-else{
-  this.serverContact1.phoneNumber = value;
-}
+    else {
+      this.serverContact1.phoneNumber = value;
+    }
   }
 
 
@@ -320,19 +322,19 @@ else{
       backdrop: 'static',
       keyboard: false
     };
-    this.loading=true;
+    this.loading = true;
     this.device.databaseId = this.deviceId;
     let url = APP_CONFIG.updateDBServerInfo;
     this.device.updatedBy = Cookie.get('userName');
-    this.serverContact.updatedBy=Cookie.get('userName');
-    this.serverContact1.updatedBy=Cookie.get('userName');
+    this.serverContact.updatedBy = Cookie.get('userName');
+    this.serverContact1.updatedBy = Cookie.get('userName');
     this.http.post(url, this.device).subscribe((data: any) => {
-      this.loading=false;
+      this.loading = false;
       this.modalService.open(this.content, ngbModalOptions);
 
 
     }, error => {
-      this.loading=false;
+      this.loading = false;
       console.log(error);
     });
 

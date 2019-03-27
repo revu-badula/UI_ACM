@@ -101,6 +101,15 @@ export class DeviceComponent implements OnInit {
     this.isLol = true;
   }
 
+  getServerData(value:any) {
+    if (value == "") {
+      this.device.serverTypeId = null;
+    }
+    else {
+      this.device.serverTypeId = value;
+    }
+  }
+
 
   redirect() {
     this.router.navigate(['/devicetab']);
@@ -322,8 +331,8 @@ export class DeviceComponent implements OnInit {
 
 }
  /*let d = new Date(this.solution.certDt);
-      this.selectDate = {
-         year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate()
-      }*/
+     this.selectDate = {
+        year: d.getFullYear(),
+       month: d.getMonth() + 1,
+       day: d.getDate()
+     }*/

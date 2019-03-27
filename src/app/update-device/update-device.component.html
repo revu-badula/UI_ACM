@@ -80,8 +80,13 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="responsibleDivision/unitName">Responsible Division/Unit Name<font color="red">*</font></label><br><br>
-              <input type="email" class="form-control" [(ngModel)]="serverContact.divisionName" ngModel name="division"
+              <input type="text" class="form-control" [(ngModel)]="serverContact.divisionName" ngModel name="division"
                 required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="responsibleDivision/unitName">Type of Server<font color="red">*</font></label><br><br>
+              <input type="text" class="form-control" [(ngModel)]="device.serverTypeName" ngModel name="serverName"
+                readonly>
             </div>
           </div>
         </div>
