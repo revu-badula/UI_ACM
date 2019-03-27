@@ -36,6 +36,16 @@
           <h4>Device Information</h4>
         </div>
         <div class=" form-row">
+          <div class="form-group col-md-12">
+            <label for="hostName">Type of Server<font color=red>*</font></label><br><br>
+           <select class="form-control" id="inputState" required (change)="device.serverTypeId = $event.target.value">
+							<!-- <option selected>Choose...</option> -->
+							<option *ngFor="let serverType of serverTypes" value="{{ serverType.serverTypeId }}">{{ serverType.name }}</option>
+						</select>
+          </div>
+          
+         </div>
+        <div class=" form-row">
           <div class="form-group col-md-6">
             <label for="hostName">Host Name<font color=red>*</font></label><br><br>
             <input type="text" class="form-control" [(ngModel)]="device.hostName" ngModel name="host" required>

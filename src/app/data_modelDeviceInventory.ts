@@ -38,6 +38,7 @@ export class Device {
   vendorName: string;
   productName: string;
   serverContactDTOs: any = [];
+  serverTypeId:any;
 }
 
 export class Server {

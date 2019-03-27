@@ -102,9 +102,12 @@ export const APP_CONFIG = {
   getBusinessOwnerB: apiBaseUrl + 'getBusinessOwner',
   getSystem_Site_Data_Owner: apiBaseUrl + 'getSystem_Site_Data_Owner',
   getProjectManager: apiBaseUrl + 'getProjectManager',
-  getISO:apiBaseUrl + 'getISO',
-  addUser:apiBaseUrl+ 'addUser',
-  appAudit: apiBaseUrl + 'appAuidt',
+  getISO: apiBaseUrl + 'getISO',
+  addUser: apiBaseUrl + 'addUser',
+  appAudit: apiBaseUrl + 'appAudit',
+  auditFamilyGroup: apiBaseUrl + 'auditFamilyGroup',
+  getPolicyFamilyDetails: apiBaseUrl + 'getPolicyFamilyDetails',
+  getServerTypes: apiBaseUrl + 'getServerTypes',
 }
 
 
