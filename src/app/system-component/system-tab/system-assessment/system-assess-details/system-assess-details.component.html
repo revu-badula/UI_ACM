@@ -17,7 +17,7 @@
             <input type="file" nmae="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx"
               #fileInput (change)="getFile($event)" required>
 
-          </label>
+          </label><br><br>
         </form>
       </div>
 
@@ -90,7 +90,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
 
-            <label for="inputState">Definitive Source<span class="asterisk">*</span></label>
+            <label for="inputState">Definitive Source<span class="asterisk">*</span></label><br><br>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="auditName" [(ngModel)]="appAssess.auditName"
               readonly>
             <select *ngIf="showOriginal" style="width:50%;" ngModel class="form-control" id="definitiveSource" required name="assessName"
@@ -104,7 +104,7 @@
             <span class="asterisk">{{policyErr}}</span>
           </div>
           <div class="form-group col-md-6">
-            <label for="lastName">Type/Policy<span class="asterisk">*</span></label>
+            <label for="lastName">Type/Policy<span class="asterisk">*</span></label><br><br>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="policyId" [(ngModel)]="polName"
               readonly>
             <select *ngIf="showOriginal" style="width:50%;" ngModel class="form-control" id="typePolicy" name="policyId" required (change)="selectType($event.target.value)">
@@ -116,7 +116,7 @@
             </select>
           </div>
           <div class="form-group col-md-6">
-            <label for="lastName">Assessment Name<span class="asterisk">*</span></label>
+            <label for="lastName">Assessment Name<span class="asterisk">*</span></label><br><br>
             <input *ngIf="!showOriginal" type="text" class="form-control" id="lastName" name="auditType" value=""
               [(ngModel)]="appAssess.name" readonly>
             <input *ngIf="showOriginal" ngModel type="text" class="form-control" id="lastName" name="auditType" value=""
@@ -124,7 +124,7 @@
           </div>
 
           <div class="form-group col-md-6">
-            <label for="lastName">Assessment Date<span class="asterisk">*</span></label>
+            <label for="lastName">Assessment Date<span class="asterisk">*</span></label><br><br>
             <input *ngIf="!showOriginal" type="text" class="form-control" name="vauditDate" [(ngModel)]="vassessDate"
               readonly>
             <my-date-picker *ngIf="showOriginal" id="assessmentDate" ngModel name="assessmentDate" class="inputState1" (dateChanged)="getAuditDate($event)"
@@ -137,14 +137,14 @@
 
 
           <div class="form-group col-md-6">
-            <label for="dueDate">Next Assessment Date<span class="asterisk">*</span></label>
+            <label for="dueDate">Next Assessment Date<span class="asterisk">*</span></label><br><br>
             <my-date-picker  name="nextDate" id="nextDate" [options]="myDatePickerOptions" class="inputState1" (dateChanged)="getDate($event)" ngModel
               [(ngModel)]="nextAssessmentDt" required></my-date-picker>
 
           </div>
           <div class="form-group col-md-6">
 
-            <label for="inputState">Overall Status<span class="asterisk">*</span></label>
+            <label for="inputState">Overall Status<span class="asterisk">*</span></label><br><br>
             <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus"
               [(ngModel)]="appAssess.status" readonly>
             <select *ngIf="showOriginal || showStatus" style="width:50%;" ngModel id="modelSolution" [(ngModel)]="appAssess.status" class="form-control"
@@ -180,7 +180,7 @@
 <!--     <div class="show"> -->
 <!--         <form class="former"> -->
 <!--           <div class="form-row"> -->
-<!--               <label for="inputState">AUDIT</label> -->
+<!--               <label for="inputState">AUDIT</label><br><br> -->
 <!--             <hr/> -->
 <!--             <textarea name="" id="" rows="5" class="form-control"><button type="close" class="submit">Close</button> </textarea><!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
 					 <!-- <br>

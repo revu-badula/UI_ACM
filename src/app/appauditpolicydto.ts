@@ -1,8 +1,8 @@
 
 export class AppAuditPolicyDTO {
 
-    appAuditPolicyId: any
-    defaultVal: string
+    appAuditPolicyId: any;
+    defaultVal: string;
     status: string
     createdBy: any;
     createdTs: any;
@@ -27,7 +27,7 @@ export class AppAuditPolicyDTO {
 	//private AppAuditPolicyDTO appAuditParentPolicyDTO;
 	appAuditPolicies:any=[];
 	policyDocumentsDTOs:any;
-
+	
 
 
 }

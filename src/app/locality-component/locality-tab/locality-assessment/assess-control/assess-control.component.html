@@ -20,7 +20,7 @@
       <div class="form-row">
        
         <div class="col-md-12">
-          <label>Attachment</label>
+          <label>Attachment</label><br><br>
           <form #myFileForm="ngForm">
               <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx"
                 #fileInput (change)="getFile($event)" required>
@@ -73,13 +73,15 @@
       </div>
       <table class="table table-striped table-hover table-bordered">
         <thead>
-          <th scope="col" (click)="handleSort('controlNumber')">Control Number<i class="fa fa-arrow-down testColor"
+          <th scope="col" (click)="handleSort('controlNumber')">Control <i class="fa fa-arrow-down testColor"
               *ngIf="!desc"></i>
             <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
-          <th scope="col" (click)="handleSortPol('policyName')">Policy Name<i class="fa fa-arrow-down testColor" *ngIf="!descpolname"></i>
+          <th scope="col" (click)="handleSortPol('policyName')">Policy<i class="fa fa-arrow-down testColor" *ngIf="!descpolname"></i>
             <i class="fa fa-arrow-up testColor" *ngIf="descpolname"></i></th>
           <th scope="col">Priority</th>
-          <th scope="col">Source Value</th>
+            <th  scope="col">Impact Analysis</th>
+            <th scope="col">Score</th>
+            
           <th scope="col">Status</th>
 
         </thead>
@@ -107,7 +109,9 @@
             </td>
             <td>{{ policy.controlName }}</td>
             <td>{{ policy.priority }}</td>
-            <td>{{ policy.defaultVal }}</td>
+            <td>Low</td>
+            <td>100/100</td>
+           
             <!-- <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
             <td><i [ngClass]="{'primary':policy.status === 'Open',
               'secondary':policy.status === 'Close'}" class="fa fa-check-circle"></i></td>

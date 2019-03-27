@@ -20,7 +20,7 @@
     <div class="form-row">
       <div class="col-md-12">
         <form #myFileForm="ngForm">
-          <label class="input">Attachment</label>
+          <label class="input">Attachment</label><br><br>
           <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File"
             accept=".pdf,.doc,.docx" #fileInput (change)="getFile($event)" required>
 
@@ -80,7 +80,7 @@
               <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="desc"></i>
             </th>
-            <th scope="col" (click)="handleSort1('policyName')">Policy Name
+            <th scope="col" (click)="handleSort1('policyName')">Policy 
               <i class="fa fa-arrow-down testColor" *ngIf="!policyName"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="policyName"></i>
             </th>
@@ -88,7 +88,16 @@
               <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="priority"></i>
             </th>
-            <th scope="col">Source Value</th>
+            <th scope="col" (click)="handleSort2('priority')">Impact Analysis
+                <i class="fa fa-arrow-down testColor" ></i> <i class="fa fa-arrow-up testColor"
+                  *ngIf="priority"></i>
+              </th>
+              <th scope="col" (click)="handleSort2('priority')">Score
+                <i class="fa fa-arrow-down testColor" ></i> <i class="fa fa-arrow-up testColor"
+                  *ngIf="priority"></i>
+              </th>
+             
+          
 
             <th scope="col">Status</th>
           </tr>
@@ -103,7 +112,9 @@
             </td>
             <td>{{ policy.policyName }}</td>
             <td>{{ policy.priority }}</td>
-            <td>{{ policy.policyVal }}</td>
+            <td>Low</td>
+            <td>100/100</td>
+           
             <!-- <td><i [ngClass]=" policy.status  ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
             <td><i [ngClass]="{'primary':policy.status === 'true',
         'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>

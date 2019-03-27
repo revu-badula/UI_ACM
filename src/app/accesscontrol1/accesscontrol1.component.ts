@@ -262,6 +262,34 @@ export class Accesscontrol1Component implements OnInit {
       });
   }
 
+  public scoreN:any;
+  public scoreD:any;
+  public weightageN:any;
+  public weightageD:any;
+  public result:any;
+  public realScore:any;
+
+  getNum()
+  {
+
+  }
+
+ 
+
+
+  getDem()
+  {
+    this.result=this.weightageN/this.weightageD;
+    console.log(this.result);
+  }
+
+  getRealScore()
+  {
+    let res = this.result*this.scoreN;
+    this.realScore=res;
+
+  }
+
 
 }
 

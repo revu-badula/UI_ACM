@@ -55,9 +55,9 @@ i.fa {
     color: #333;
     height: 20px;
     width: 200px;
-    margin-top: 10px;
+    margin-top: 2px;
     margin-left: 10px;
-    text-align: right;
+    /*  */
     clear: both;
     float:left;
     margin-right:15px;
@@ -65,7 +65,7 @@ i.fa {
    input {
     
     border: 1px solid #000;
-    margin-top: 10px;
+    margin-top: 2px;
     float: left;
     box-sizing: border-box;
     width: 44%;
@@ -115,7 +115,7 @@ i.fa {
    }
 
    .inputState1 {
-    margin-top: 10px;
+    margin-top: 2px;
     float: left;
     box-sizing: border-box;
     width: 44%;

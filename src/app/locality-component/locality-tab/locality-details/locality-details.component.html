@@ -35,13 +35,13 @@
 					<div class="form-row" *ngIf="showEditButton">
 						<div class="form-group col-md-6">
 
-							<label for="inputState"> Updated By</label>
+							<label for="inputState"> Updated By</label><br><br>
 
 							<input type="text" class="form-control" name="updatedBy" [(ngModel)]="locality.updatedBy"
 								readonly>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastName"> Updated At</label>
+							<label for="lastName"> Updated At</label><br><br>
 
 							<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime"
 								readonly>
@@ -50,14 +50,14 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 
-							<label for="inputState">Locality Name <span class="asterisk">*</span></label>
+							<label for="inputState">Locality Name <span class="asterisk">*</span></label><br><br>
 
 							<input type="text" class="form-control" name="acronym" [(ngModel)]="locality.acronym"
 								readonly="readonly" required>
 						</div>
 
 						<div class="form-group col-md-6">
-							<label for="lastName">FIPS Code</label>
+							<label for="lastName">FIPS Code</label><br><br>
 							<input type="text" class="form-control" ngModel name="fipsCd" [(ngModel)]="locality.fipsCd"
 								readonly>
 						</div>
@@ -74,13 +74,13 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 
-							<label for="inputState">First Name <span class="asterisk">*</span></label>
+							<label for="inputState">First Name <span class="asterisk">*</span></label><br><br>
 
 							<input type="text" class="form-control" ngModel name="firstName"
 								[(ngModel)]="locality.firstName" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastName">Last Name<span class="asterisk">*</span></label>
+							<label for="lastName">Last Name<span class="asterisk">*</span></label><br><br>
 
 							<input type="text" class="form-control" ngModel name="lastName"
 								[(ngModel)]="locality.lastName" required>
@@ -89,7 +89,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<div class="form-row">
-								<label for="lastName">Email Id <span class="asterisk">*</span></label>
+								<label for="lastName">Email Id <span class="asterisk">*</span></label><br><br>
 								<input type="email" class="form-control"
 									pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email"
 									[(ngModel)]="locality.emailId" #email="ngModel" required>
@@ -109,7 +109,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<div class="form-row">
-								<label for="email">Phone Number<span class="asterisk">*</span></label>
+								<label for="email">Phone Number<span class="asterisk">*</span></label><br><br>
 								<input type="tel" class="form-control" name="phoneNumber" #phoneNumber="ngModel"
 									(keydown)="getPhoneNumber($event,$event.target.value)"
 									[ngModel]="locality.phoneNumber" pattern="^\d{3}[-]\d{3}[-]\d{4}$"
@@ -137,7 +137,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<div class="form-row">
-								<label for="url">Website Address <span class="asterisk">*</span></label>
+								<label for="url">Website Address <span class="asterisk">*</span></label><br><br>
 								<input type="url" class="form-control"
 									pattern="^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$"
 									id="url" name="url" #url="ngModel" [(ngModel)]="locality.website" required>
@@ -155,7 +155,7 @@
 
 						</div>
 						<div class="form-group col-md-6">
-							<label for="email">Veris Id<span class="asterisk">*</span></label>
+							<label for="email">Veris Id<span class="asterisk">*</span></label><br><br>
 							<input type="text" class="form-control" maxlength="10" ngModel name="verisId"
 								[(ngModel)]="locality.verisId" required>
 						</div>
@@ -174,7 +174,7 @@
 									<h4>Central Absentee Perceived(CAP)</h4>
 									<input class="tgl tgl-flip" id="c" name="capInd" [(ngModel)]="locality.capInd"
 										[checked]="locality.capInd" type="checkbox" />
-									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="c"></label>
+									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="c"></label><br><br>
 								</li>
 							</ul>
 						</div>
@@ -186,7 +186,7 @@
 									<input class="tgl tgl-flip" id="cb5" name="bailout"
 										[(ngModel)]="locality.bailoutInd" [checked]="locality.bailoutInd"
 										type="checkbox" />
-									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb5"></label>
+									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb5"></label><br><br>
 								</li>
 							</ul>
 						</div>
@@ -203,7 +203,7 @@
 									<input class="tgl tgl-flip" id="cb6" name="pollbook"
 										[(ngModel)]="locality.paperPollbook" [checked]="locality.paperPollbook"
 										type="checkbox" />
-									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb6"></label>
+									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb6"></label><br><br>
 								</li>
 							</ul>
 						</div>
@@ -216,7 +216,7 @@
 									<input class="tgl tgl-flip" id="cb7" name="electronicPollbook"
 										[(ngModel)]="locality.electronicPollbook"
 										[checked]="locality.electronicPollbook" type="checkbox" />
-									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb7"></label>
+									<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb7"></label><br><br>
 								</li>
 							</ul>
 						</div>

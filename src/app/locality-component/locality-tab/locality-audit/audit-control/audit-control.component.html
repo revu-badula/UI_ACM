@@ -22,7 +22,7 @@
       <div class="col-md-12">
         <label>
           Attachment
-        </label>
+        </label><br><br>
         <form #myFileForm="ngForm">
           <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File"
             accept=".pdf,.doc,.docx" #fileInput (change)="getFile($event)" required>
@@ -76,6 +76,85 @@
         <h4>Policies</h4>
       </div>
 
+      <div class="row">
+          <div class="col-md-12">
+            <label class="label-form" for="status">  Family</label><br><br>
+            <select class="form-control" style="width:50%;" id="priority"
+              (change)="getFamily($event.target.value)">
+              <option value="" selected>Choose...</option>
+              <option value="all">All</option>
+              <option *ngFor="let fam of families" value="{{fam}}">{{fam}}</option>
+            </select>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+  
+        <div class="row">
+          <div class="col-md-4">
+  
+            <div class="form-group">
+              <label for="email">Assigned To</label><br><br>
+              <select class="form-control"></select>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="email">Assigned On</label><br><br>
+              <my-date-picker class="inputState1"></my-date-picker>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <label>Impact Analysis</label><br><br>
+            <select class="form-control">
+              <option>Very High</option>
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+              <option>Very Low</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-4">
+            <label>Priority</label><br><br>
+            <select class="form-control">
+  
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+  
+          <div class="col-md-4">
+  
+            <label>Weightage</label><br><br>
+            <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder=""
+                (change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
+  
+          </div>
+  
+          <div class="col-md-4">
+  
+            <label>Score</label><br><br>
+            <div class="col-md-3"><input type="number" class="form-control" name="test"
+                (change)="getRealScore()" placeholder="" [(ngModel)]="scoreN" id="first"
+                style="width:200% !important"></div>
+  
+          </div>
+        </div>
+  
+        
+  
+      
+      <br>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -84,7 +163,7 @@
               <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="desc"></i>
             </th>
-            <th scope="col" (click)="handleSort1('policyName')">Policy Name
+            <th scope="col" (click)="handleSort1('policyName')">Policy 
               <i class="fa fa-arrow-down testColor" *ngIf="!policyName"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="policyName"></i>
             </th>
@@ -92,7 +171,16 @@
               <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="priority"></i>
             </th>
-            <th scope="col">Source Value</th>
+            <th scope="col" (click)="handleSort2('priority')">Impact Analysis
+              <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
+                *ngIf="priority"></i>
+            </th>
+            <th scope="col" (click)="handleSort2('priority')">Score
+              <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
+                *ngIf="priority"></i>
+            </th>
+          
+          
 
             <th scope="col">Status</th>
           </tr>
@@ -107,7 +195,10 @@
             </td>
             <td>{{ policy.policyName }}</td>
             <td>{{ policy.priority }}</td>
-            <td>{{ policy.policyVal }}</td>
+            <td>High</td>
+            <td>70/100</td>
+          
+          
 
 
             <td><i [ngClass]="{'primary':policy.status === 'true',

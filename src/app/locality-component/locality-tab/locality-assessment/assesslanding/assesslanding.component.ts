@@ -17,6 +17,14 @@ export class AssesslandingComponent implements OnInit {
     this.router.navigate(['/locality/tab/assessment/assessmentOverview']);
   }
 
+  createYourQuestion(){
+    this.router.navigate(['/createYourQuestion']);
+  }
+
+  sampleQuestion(){
+    this.router.navigate(['/sampleQuestion']);
+  }
+
   Show()
   {
     let ngbModalOptions: NgbModalOptions = {

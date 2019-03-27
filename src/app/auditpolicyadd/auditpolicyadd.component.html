@@ -39,13 +39,13 @@
           </div>
           <div class=" form-row">
             <div class="form-group col-md-6">
-              <label for="familyName">Family Name<span class="asterisk">*</span></label>
+              <label for="familyName">Family Name<span class="asterisk">*</span></label><br><br>
               <input type="text" class="form-control" id="familyName" ngModel name="familyName" [(ngModel)]="policyAccess.familyName"
                [name]="'family_name'" readonly>
             </div>
   
             <div class="form-group col-md-6">
-              <label for="assignTo">Assign To</label>
+              <label for="assignTo">Assign To</label><br><br>
               <!-- <input type="text" class="form-control" id="assignTo" [(ngModel)]="policyPost.assignedTo" [name]="'assi_to'"> -->
               <select name="assignTo" style="width:50%;" [(ngModel)]="policyPost.assignedTo" class="form-control" id="searchUsers"
                (change)="policyPost.assignedTo=$event.target.value">
@@ -57,11 +57,11 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="endDate">End Date</label>
+              <label for="endDate">End Date</label><br><br>
               <my-date-picker name="myname" class="inputState1" [(ngModel)]="endDate" (dateChanged)="getEndDate($event)"></my-date-picker>
             </div>
             <div class="form-group col-md-6">
-              <label for="status">Status<span class="asterisk">*</span></label>
+              <label for="status">Status<span class="asterisk">*</span></label><br><br>
               <select  class="form-control" id="status" name="status" ngModel (change)="policyPost.status = $event.target.value"
                required>
                 <option value="">Choose</option>
@@ -79,18 +79,18 @@
   
           <div class=" form-row">
             <div class="form-group col-md-6">
-              <label for="controlNumber">Control Number<span class="asterisk">*</span></label>
+              <label for="controlNumber">Control Number<span class="asterisk">*</span></label><br><br>
               <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber" [(ngModel)]="policyPost.controlNumber"
                [name]="'control_number'" required>
             </div>
             <div class="form-group col-md-6">
-              <label for="controlName">Control Name<span class="asterisk">*</span></label>
+              <label for="controlName">Control Name<span class="asterisk">*</span></label><br><br>
               <input type="text" class="form-control" id="controlName" [(ngModel)]="policyPost.controlName" [name]="'class_type'"
                required>
             </div>
           </div>
           <div class="form-row">
-            <label for="description">Description</label>
+            <label for="description">Description</label><br><br>
             <textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" [(ngModel)]="policyPost.description" [name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea><!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="description.errors?.maxlength" style="float:right">
@@ -100,13 +100,107 @@
           </div>
           <div class=" form-row">
             <div class="form-group col-md-6">
-              <label for="policyValue">Policy Value<span class="asterisk">*</span></label>
+              <label for="policyValue">Policy Value<span class="asterisk">*</span></label><br><br>
               <input type="text" class="form-control" id="policyValue" ngModel name="policyValue" [(ngModel)]="policyPost.defaultVal"
                [name]="'policy_val'" required>
             </div>
           </div>
         </div>
-        <br><br><br>
+
+        <div class="infoBox">
+          <div class="form-row">
+            <label for="description">Audit Findings</label><br><br>
+            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="" rows="7" id="patches"
+              [name]="'policy_description'" maxlength="50000"
+           > </textarea>
+            <!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
+            <br>
+            <div *ngIf="description.errors?.maxlength" style="float:right">
+              <span style="color:tomato"> Exceeded the character limit. </span>
+            </div>
+  
+          </div>
+        </div>
+
+        <div class="infoBox">
+            <div class = "headerOfBox">Audit Findings</div>
+          <div class="form-row">
+      
+            <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="" rows="7" id="patches"
+               [name]="'policy_description'" maxlength="50000"
+             > </textarea>
+            <!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
+            <br>
+            <div *ngIf="description.errors?.maxlength" style="float:right">
+              <span style="color:tomato"> Exceeded the character limit. </span>
+            </div>
+  
+          </div>
+        </div>
+       
+        <div class="infoBox">
+            <div class="headerOfBox">Antecedence</div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Impact Analysis</label><br><br>
+                <select class="form-control">
+                <option>Very High</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+                <option>Very Low</option>
+              </select>
+              </div>
+  
+              <div class="col-md-6">
+                <label>Priority</label><br><br>
+                <select class="form-control">
+               
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+              </select>
+              </div>
+  
+            </div>
+          </div>
+  
+          <div class="infoBox">
+            <div class="headerOfBox">Score</div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+            <label>Weightage</label><br><br>
+            <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder="" (change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
+           
+          </div>
+              </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label>Score</label><br><br>
+              <div class="col-md-3"><input type="number" class="form-control" name="test" (change)="getRealScore()"  placeholder="" [(ngModel)]="scoreN" id="first" style="width:200% !important"></div>
+             
+            </div>
+          </div>
+          </div>
+  
+          <br>
+          <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+            <label>Net score</label><br><br>
+            <div class="col-md-3">
+               <input type="number" class="form-control" name="realScore" [(ngModel)]="realScore"   placeholder="" id="first" style="width:200% !important" > 
+             
+            </div>
+            
+              </div>
+          </div>
+              </div>
+        
+          </div>
+          </div>
+
         <div class="infoBox">
             <div class="headerOfBox">
               <h4>Procedures<span class="asterisk">*</span></h4>
@@ -142,7 +236,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="priority">Priority<span class="asterisk">*</span></label>
+              <label for="priority">Priority<span class="asterisk">*</span></label><br><br>
               <select  class="form-control" name="priority" ngModel id="priority" (change)="policyPost.priority = $event.target.value"
                required>
                 <option value="">Choose</option>
@@ -152,34 +246,34 @@
               </select>
             </div>
             <!-- <div class="form-group col-md-6">
-              <label for="policyAndProcedure" style="line-height: 1em;">Control Number (Policy and Procedure)</label>
+              <label for="policyAndProcedure" style="line-height: 1em;">Control Number (Policy and Procedure)</label><br><br>
               <input type="text" class="form-control" id="policyAndProcedure">
             </div> -->
           </div>
           <!-- <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="informationSystemDesignDocument">Information System Design Document</label>
+              <label for="informationSystemDesignDocument">Information System Design Document</label><br><br>
               <input type="text" class="form-control" name="designDocument" [(ngModel)]="policyPost.isDesignDocument" id="informationSystemDesignDocument">
             </div>
             <div class="form-group col-md-6">
-              <label for="securityPlan">Security Plan</label>
+              <label for="securityPlan">Security Plan</label><br><br>
               <input type="text" class="form-control" name="securityPlan" [(ngModel)]="policyPost.securityPlan" id="securityPlan">
             </div>
           </div> -->
           <!-- <div class="form-row">
             <div class="form-group col-md-6">
               <label for="informationSystemConfigurationSettings" style="line-height: 1em;">Information System Configuration
-                Settings</label>
+                Settings</label><br><br>
               <input type="text" class="form-control" name="systemconfiguration" [(ngModel)]="policyPost.isConfigSettings" id="informationSystemConfigurationSettings">
             </div>
             <div class="form-group col-md-6">
-              <label for="configurationBaseline">Configuration Baseline</label>
+              <label for="configurationBaseline">Configuration Baseline</label><br><br>
               <input type="text" class="form-control" name="configuration" [(ngModel)]="policyPost.configBaseline" id="configurationBaseline">
             </div>
           </div> -->
           <!-- <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="auditRecords">Audit Records</label>
+              <label for="auditRecords">Audit Records</label><br><br>
               <input type="text" class="form-control" name="auditRecords" [(ngModel)]="policyPost.auditRecords" id="auditRecords">
             </div>
           </div> -->
@@ -234,7 +328,6 @@
           </div>
         </div>
   
-      </div>
   
     </form>
     <button type="submit" style="margin-right: 9vw;" form="myForm" class="submit btn btn-primary" [disabled]="!editForm.valid">Submit</button>

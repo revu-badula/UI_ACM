@@ -26,7 +26,7 @@
 	<form class="former">
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label class="label-form" for="systemType"><b>Vendor Name</b></label>
+				<label class="label-form" for="systemType"><b>Vendor Name</b></label><br><br>
 				<select id="modelSolution" class="form-control" ngModel name="system" required (change)="someVendor($event.target.value)">>
 					<option>Choose...</option>
 					<option *ngFor="let vendorType of vendorTypes" value="{{vendorType.vendorId}}">{{vendorType.name}}</option>

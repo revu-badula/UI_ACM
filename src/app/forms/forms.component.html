@@ -34,7 +34,7 @@
                         <div class="form-group col-12">
                             <label for="vendorName"><b>Vendor Name</b>
                                 <font color=red>*</font>
-                            </label>
+                            </label><br><br>
                             <input type="text" class="form-control" id="vendorName" placeholder="Vendor Name"
                                 formControlName="name">
                         </div>
@@ -48,12 +48,12 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="firstName">First Name<font color=red>*</font></label>
+                                <label for="firstName">First Name<font color=red>*</font></label><br><br>
                                 <input type="text" class="form-control" id="firstName" placeholder="First Name"
                                     formControlName="firstName">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="lastName">Last Name<font color=red>*</font></label>
+                                <label for="lastName">Last Name<font color=red>*</font></label><br><br>
                                 <input type="text" class="form-control" id="lastName" placeholder="Last Name"
                                     formControlName="lastName">
                             </div>
@@ -61,7 +61,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <div class="form-row">
-                                    <label for="email">Email ID<font color=red>*</font></label>
+                                    <label for="email">Email ID<font color=red>*</font></label><br><br>
                                     <input type="email" class="form-control"
                                         pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="email"
                                         placeholder="Email ID" formControlName="emailId">
@@ -80,7 +80,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <div class="form-row">
-                                <label for="phone">Phone Number<font color=red>*</font></label>
+                                <label for="phone">Phone Number<font color=red>*</font></label><br><br>
                                 <input type="tel" class="form-control" placeholder="xxx-xxx-xxxx"
                                     (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12"
                                     pattern="^\d{3}[-]\d{3}[-]\d{4}$" id="phonenumber"
@@ -113,18 +113,18 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputAddress">Street Name<font color=red>*</font></label>
+                                <label for="inputAddress">Street Name<font color=red>*</font></label><br><br>
                                 <input type="text" class="form-control" id="inputAddress" placeholder="Street Name"
                                     formControlName="streetName">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="city">City<font color=red>*</font></label>
+                                <label for="city">City<font color=red>*</font></label><br><br>
                                 <input type="text" class="form-control" id="city" placeholder="City" formControlName="city">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputState">State<font color=red>*</font></label>
+                                <label for="inputState">State<font color=red>*</font></label><br><br>
                                 <select id="inputState" class="form-control" formControlName="state">
                                     <option value="" selected>Choose...</option>
                                     <option value="AL">Alabama (AL)</option>
@@ -181,7 +181,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputZip">Zip Code<font color=red>*</font></label>
+                                <label for="inputZip">Zip Code<font color=red>*</font></label><br><br>
                                 <input type="text" class="form-control" maxlength=5 minlength=5 placeholder="00000"
                                     id="inputZip" formControlName="zipcode" appOnlyInteger>
     

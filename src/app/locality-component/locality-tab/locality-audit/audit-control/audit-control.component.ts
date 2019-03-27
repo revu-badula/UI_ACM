@@ -167,6 +167,7 @@ export class AuditControlComponent implements OnInit {
     }
   }
 
+
   getPolicyName(auditId) {
     this.loading = true;
     this._apiservice.getPolicyGroup(auditId)
@@ -628,8 +629,71 @@ export class AuditControlComponent implements OnInit {
       }, error => reject(error));
     });
 
+  }
+
+  public families: any;
+
+  getFamilies(id:any) {
+    this.families = [];
+    this._apiservice.getFamilies(id)
+      .subscribe((data: any) => {
+        // data.forEach(contact => {
+        // this.families.push(contact);
+        // console.log(this.families);
+        //});
+        this.families = data;
+      }, error => { console.log(error) });
+
+  }
+
+  getFamily(value:any) {
+
+    //console.log(value);
+    if (value === "") {
+
+    }
+    // else if (value === "all") {
+    //   this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
+    // }
+    else {
+      this.loading = true;
+      this._apiservice.getPoliciesByFam(value)
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.policies = data;
+          //console.log(data);
+        }, error => {
+          this.loading = false;
+          console.log(error)
+        });
+    }
+  }
+
+  public scoreN:any;
+  public scoreD:any;
+  public weightageN:any;
+  public weightageD:any;
+  public result:any;
+  public realScore:any;
+
+  getNum()
+  {
+
+  }
+
+ 
 
 
+  getDem()
+  {
+    this.result=this.weightageN/this.weightageD;
+    console.log(this.result);
+  }
+
+  getRealScore()
+  {
+    let res = this.result*this.scoreN;
+    this.realScore=res;
 
   }
 

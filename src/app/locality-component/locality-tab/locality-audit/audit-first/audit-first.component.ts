@@ -49,7 +49,7 @@ export class AuditFirstComponent implements OnInit {
   };
   appAudit: AppAudit;
   public changeOverallStatus: boolean = false;
-
+  public overallScore :number;
   appId: any;
   auditDate: any;
   nextDate: any;

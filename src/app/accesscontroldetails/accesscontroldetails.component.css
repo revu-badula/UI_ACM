@@ -358,9 +358,9 @@ label {
  color: #333;
  height: 20px;
  width: 200px;
- margin-top: 10px;
+ margin-top: 2px;
  margin-left: 10px;
- text-align: right;
+ /*  */
  clear: both;
  float:left;
  margin-right:15px;
@@ -368,7 +368,7 @@ label {
 input {
  
  border: 1px solid #000;
- margin-top: 10px;
+ margin-top: 2px;
  float: left;
 
 

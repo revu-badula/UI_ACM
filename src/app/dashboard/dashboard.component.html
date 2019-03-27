@@ -1,7 +1,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" style="color:white">Info</h4>
-  
+
   </div>
   <div class="modal-body">
     <h3><b>Do you want to open:</b></h3>
@@ -17,254 +17,280 @@
 <app-navigation-component></app-navigation-component>
 <div class="pageHeader">
   <div class="pageTitle">
-   <h2>Welcome to Integra</h2> 
+    <h2>Welcome to Integra</h2>
   </div>
 </div>
 <hr>
 <div id="form2">
-<div class="dashboard">
-  <div class="first-row">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Localities</h5>
-        </div>
-        <hr />
-        <div class="row">
-          <div class="col-sm-3">
-            <i class="fa fa-map-marker fa-3x" style="color:red" aria-hidden="true"></i></div>
-          <div class="col-sm-9 text">
-            Choose a county / city in the state of Virginia for more information.
-            <hr id="lineSpace">
-        <a routerLink="/locality/map" class="view-edit card-link" title="Create or View or Edit">
-          <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
-        </a>
+  <div class="dashboard">
+    <div class="first-row">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Localities</h5>
           </div>
-        </div>
-        
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;height:14em;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title"> Certified Vendors</h5>
-        </div>
-        <hr />
-        <div class="row">
-          <div class="col-sm-3">
-            <i class="fa fa-user fa-3x" style="color:blue"></i>
+          <hr />
+          <div class="row">
+            <div class="col-sm-3">
+              <i class="fa fa-map-marker fa-3x" style="color:red" aria-hidden="true"></i></div>
+            <div class="col-sm-9 text">
+              Choose a county / city in the state of Virginia for more information.
+              <hr id="lineSpace">
+              <a routerLink="/locality/map" class="view-edit card-link" title="Create or View or Edit">
+                <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+              </a>
+            </div>
           </div>
-          <div class="col-sm-9 text">
-            To add or update an existing vendor information.
-            <hr id="lineSpace">
-            <a routerLink="/vendors" class="view-Edit card-link" title="Create New">
-              <fa [name]="'plus-circle'" title="Create New"></fa>
-            </a>
-            <a title="View or Edit" [routerLink]="['/vendorsView']" class="view-Edit card-link">
-              <fa [name]="'eye'" title="View or Edit"></fa>/ <fa [name]="'edit'" title="View or Edit"></fa>
-            </a>
+
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;height:14em;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title"> Certified Vendors</h5>
           </div>
-        </div>
-      
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title"> Certified Solutions</h5>
-        </div>
-        <hr />
-        <div class="row">
+          <hr />
+          <div class="row">
             <div class="col-sm-3">
-        <i class="fa fa-paper-plane fa-3x" aria-hidden="true" style="color:green"></i>
+              <i class="fa fa-user fa-3x" style="color:blue"></i>
+            </div>
+            <div class="col-sm-9 text">
+              To add or update an existing vendor information.
+              <hr id="lineSpace">
+              <a routerLink="/vendors" class="view-Edit card-link" title="Create New">
+                <fa [name]="'plus-circle'" title="Create New"></fa>
+              </a>
+              <a title="View or Edit" [routerLink]="['/vendorsView']" class="view-Edit card-link">
+                <fa [name]="'eye'" title="View or Edit"></fa>/ <fa [name]="'edit'" title="View or Edit"></fa>
+              </a>
+            </div>
+          </div>
+
         </div>
-        <div class="col-sm-9 text">
-        Add or view solutions provided by the different vendors.
-        <hr id="lineSpace">
-        <a routerLink="/solutions" class="view-edit card-link onHover" title="Create New">
-          <fa [name]="'plus-circle'"></fa>
-        </a>
-   
-        <a routerLink="/solutionsView" class="view-edit card-link" title="View or Edit">
-          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
-        </a>
       </div>
-      </div>
-    
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Audit</h5>
-        </div>
-        <hr />
-        <div class="row">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title"> Certified Solutions</h5>
+          </div>
+          <hr />
+          <div class="row">
             <div class="col-sm-3">
-        <i class="fa fa-suitcase fa-3x" aria-hidden="true" style="color:brown"></i>
+              <i class="fa fa-paper-plane fa-3x" aria-hidden="true" style="color:green"></i>
+            </div>
+            <div class="col-sm-9 text">
+              Add or view solutions provided by the different vendors.
+              <hr id="lineSpace">
+              <a routerLink="/solutions" class="view-edit card-link onHover" title="Create New">
+                <fa [name]="'plus-circle'"></fa>
+              </a>
+
+              <a routerLink="/solutionsView" class="view-edit card-link" title="View or Edit">
+                <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+              </a>
+            </div>
+          </div>
+
         </div>
-        <div class="col-sm-9 text">
-        Audits for different localities or systems
-        <hr id="lineSpace">
-        <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit">
-          <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
-        </a>
       </div>
-    </div>
-    
-      </div>
-    </div>
-  </div>
-  <div class="second-row">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Assessment</h5>
-        </div>
-        <hr />
-        <div class="row">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Audit</h5>
+          </div>
+          <hr />
+          <div class="row">
             <div class="col-sm-3">
-        <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:black"></i>
-        </div>
-        <div class="col-sm-9 text">
-        Assessments for different localities or systems.
-        <hr id="lineSpace">
-        <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit">
-          <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
-        </a>
-      </div>
-    </div>
-  
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Reports</h5>
-        </div>
-        <hr />
+              <i class="fa fa-suitcase fa-3x" aria-hidden="true" style="color:brown"></i>
+            </div>
+            <div class="col-sm-9 text">
+              Audits for different localities or systems
+              <hr id="lineSpace">
+              <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit">
+                <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+              </a>
+            </div>
+          </div>
 
-        <div class="row">
+        </div>
+      </div>
+    </div>
+    <div class="second-row">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Assessment</h5>
+          </div>
+          <hr />
+          <div class="row">
             <div class="col-sm-3">
-        <i class="fa fa-area-chart fa-3x" aria-hidden="true" style="color:blueviolet"></i>
-              </div>
-              <div class="col-sm-9 text">
-                      Compiled reports for overview.
-                      <hr id="lineSpace">
-                       <a routerLink="/reports" class="view-edit card-link" title="View">
-                         <fa [name]="'eye'"></fa>
-                       </a>
-                      </div>
-                    </div>
+              <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color:black"></i>
+            </div>
+            <div class="col-sm-9 text">
+              Assessments for different localities or systems.
+              <hr id="lineSpace">
+              <a (click)="open(content)" class="view-edit card-link" title="Create or View or Edit">
+                <fa [name]="'plus-circle'"></fa> / <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+              </a>
+            </div>
+          </div>
 
-      </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Systems</h5>
         </div>
-        <hr />
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Reports</h5>
+          </div>
+          <hr />
 
-        <div class="row">
+          <div class="row">
             <div class="col-sm-3">
-        <i class="fa fa-cogs fa-3x" aria-hidden="true" style="color:cadetblue"></i>
-        </div>
-        <div class="col-sm-9 text">
-        Systems residing at localities.
-      <hr id="lineSpace">
-        <a routerLink="/system/tab2/info" class="view-edit card-link" title="Create New">
-          <fa [name]="'plus-circle'"></fa>
-        </a>
-        <a routerLink="/system/map" class="view-edit card-link" title="View or Edit">
-          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
-        </a>
-      </div>
-    </div>
-   
-      </div>
-    </div>
-  </div>
-  <div class="third-row">
+              <i class="fa fa-area-chart fa-3x" aria-hidden="true" style="color:blueviolet"></i>
+            </div>
+            <div class="col-sm-9 text">
+              Compiled reports for overview.
+              <hr id="lineSpace">
+              <a routerLink="/reports" class="view-edit card-link" title="View">
+                <fa [name]="'eye'"></fa>
+              </a>
+            </div>
+          </div>
 
-
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Policies</h5>
         </div>
-        <hr />
-        <div class="row">
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Systems</h5>
+          </div>
+          <hr />
+
+          <div class="row">
             <div class="col-sm-3">
-        <i class="fa fa-file-text fa-3x" aria-hidden="true" style="color:cornflowerblue"></i>
+              <i class="fa fa-cogs fa-3x" aria-hidden="true" style="color:cadetblue"></i>
+            </div>
+            <div class="col-sm-9 text">
+              Systems residing at localities.
+              <hr id="lineSpace">
+              <a routerLink="/system/tab2/info" class="view-edit card-link" title="Create New">
+                <fa [name]="'plus-circle'"></fa>
+              </a>
+              <a routerLink="/system/map" class="view-edit card-link" title="View or Edit">
+                <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+              </a>
+            </div>
+          </div>
+
         </div>
-        <div class="col-sm-9 text">
-        Create/ Upload or view policies and related controls.
-        <hr id="lineSpace">
-     
-        <a routerLink="/policy" class="view-edit card-link" title="Create New">
-          <fa [name]="'plus-circle'"></fa>
-        </a>
-        <a routerLink="/policyView" class="view-edit card-link" title="View or Edit">
-          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
-        </a>
       </div>
     </div>
-   
-        
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="card-heading">
-          <h5 class="card-title">Device Inventory</h5>
-        </div>
-        <hr />
-        <div class="row">
+    <div class="third-row">
+
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Policies</h5>
+          </div>
+          <hr />
+          <div class="row">
             <div class="col-sm-3">
-        <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color:slategray"></i>
+              <i class="fa fa-file-text fa-3x" aria-hidden="true" style="color:cornflowerblue"></i>
+            </div>
+            <div class="col-sm-9 text">
+              Create/ Upload or view policies and related controls.
+              <hr id="lineSpace">
+
+              <a routerLink="/policy" class="view-edit card-link" title="Create New">
+                <fa [name]="'plus-circle'"></fa>
+              </a>
+              <a routerLink="/policyView" class="view-edit card-link" title="View or Edit">
+                <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+              </a>
+            </div>
+          </div>
+
+
         </div>
-        <div class="col-sm-9 text">
-        List of Devices present at different localities.
-        <hr id="lineSpace">
-        <a routerLink="/deviceInventory" class="view-edit card-link" title="Create New">
-          <fa [name]="'plus-circle'"></fa>
-        </a>
-        <a routerLink="/devicetab" class="view-edit card-link" title="View or Edit">
-          <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
-        </a>
       </div>
-    </div>
-  
-        
-      </div>
-    </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Device Inventory</h5>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-sm-3">
+              <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color:slategray"></i>
+            </div>
+            <div class="col-sm-9 text">
+              List of Devices present at different localities.
+              <hr id="lineSpace">
+              <a routerLink="/deviceInventory" class="view-edit card-link" title="Create New">
+                <fa [name]="'plus-circle'"></fa>
+              </a>
+              <a routerLink="/devicetab" class="view-edit card-link" title="View or Edit">
+                <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+              </a>
+            </div>
+          </div>
 
 
-    <div class="card" style="width: 18rem;">
+        </div>
+      </div>
+
+
+      <div class="card" style="width: 18rem;">
         <div class="card-body">
           <div class="card-heading">
             <h5 class="card-title">Graph</h5>
           </div>
           <hr />
           <div class="row">
-              <div class="col-sm-3">
-          <i class="fa fa-bar-chart fa-3x" aria-hidden="true" style="color:slategray"></i>
+            <div class="col-sm-3">
+              <i class="fa fa-bar-chart fa-3x" aria-hidden="true" style="color:slategray"></i>
+            </div>
+            <div class="col-sm-9 text">
+              List of graphs present at different localities.
+              <hr id="lineSpace">
+
+              <a routerLink="/graph" class="view-edit card-link" title="View">
+                <fa [name]="'eye'"></fa>
+              </a>
+            </div>
           </div>
-          <div class="col-sm-9 text">
-          List of graphs present at different localities.
-          <hr id="lineSpace">
-         
-          <a routerLink="/graph" class="view-edit card-link" title="View">
-            <fa [name]="'eye'"></fa>
-          </a>
         </div>
       </div>
-    
-          
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <div class="card-heading">
+            <h5 class="card-title">Questionnaire</h5>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-sm-3">
+              <i class="fa fa-question fa-3x" aria-hidden="true" style="color:black"></i>
+            </div>
+            <div class="col-sm-9 text">
+              List of Question and Answers
+              <hr id="lineSpace">
+              <a routerLink="/createQuestion" class="view-edit card-link" title="Create New">
+                <fa [name]="'plus-circle'"></fa>
+              </a>
+              <a routerLink="/sample" class="view-edit card-link" title="View or Edit">
+                <fa [name]="'eye'"></fa> / <fa [name]="'edit'"></fa>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+
+
+
+
+    </div>
   </div>
-</div>
 </div>

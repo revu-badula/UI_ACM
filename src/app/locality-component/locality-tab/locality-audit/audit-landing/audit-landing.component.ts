@@ -19,6 +19,14 @@ export class AuditLandingComponent implements OnInit {
     this.router.navigate(['/locality/tab/Audit/auditOverview']);
   }
 
+  createYourQuestion(){
+    this.router.navigate(['/createYourQuestion']);
+  }
+
+  sampleQuestion(){
+    this.router.navigate(['/sampleQuestion']);
+  }
+
   Show()
   {
     let ngbModalOptions: NgbModalOptions = {

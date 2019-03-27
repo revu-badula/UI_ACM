@@ -45,6 +45,8 @@ export  class AppAudit {
     public lessonsEnteredDate:any;
     public  lessonsLearnedDescription:string;
     public updatedBy:string;
+    public overallScore:number;
+    public riskLevel;
     
 }
 

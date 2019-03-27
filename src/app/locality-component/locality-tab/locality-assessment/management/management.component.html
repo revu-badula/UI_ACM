@@ -63,12 +63,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
 
-                        <label for="inputState">Response by</label>
+                        <label for="inputState">Response by</label><br><br>
 
                         <input type="text" name="responseBy" class="form-control" id="responseBy" [(ngModel)]="appAssess.responseBy">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="lastName">Response date</label>
+                        <label for="lastName">Response date</label><br><br>
                         <my-date-picker name="resDate" [disabled]='showForm' class="inputState1" id="resDate" (dateChanged)="getResDate($event)" [(ngModel)]="resDate"></my-date-picker>
                     </div>
                 </div>

@@ -8,17 +8,17 @@
 
 <div>
 
-    <form >
-        <div id="form1">
-                <div class="disclaimer"></div>
+    <form>
+        <div>
+            <div class="disclaimer"></div>
             <span class="plusbtn" *ngIf="showPlusButton">
-                <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right; font-size: 24px;" (click)="goTo()"></i>
+                <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right; font-size: 24px;"
+                    (click)="goTo()"></i>
             </span>
             <br>
+
             <div class="infoBox">
-                <div class="headerOfBox">
-                    <h4>Audit Table</h4>
-                </div>
+            <div class="headerOfBox">Audit Table</div>
                 <table class="table table-striped table-hover table-bordere">
                     <thead>
                         <tr>
@@ -37,10 +37,10 @@
                                 <i class="fa fa-arrow-up" *ngIf="nextAuditDate"></i></th>
                             <th scope="col" (click)="handleSort4('status')">Status<i class="fa fa-arrow-down" *ngIf="!sts"></i>
                                 <i class="fa fa-arrow-up" *ngIf="sts"></i></th>
-                            <th scope="col" (click)="handleSort5('updatedBy')"> Updated By <i class="fa fa-arrow-down"
+                            <th scope="col" (click)="handleSort5('updatedBy')"> Overall Score<i class="fa fa-arrow-down"
                                     *ngIf="!updtBy"></i>
                                 <i class="fa fa-arrow-up" *ngIf="updtBy"></i></th>
-                            <th scope="col" (click)="handleSort6('upadateTs')"> Updated Date<i class="fa fa-arrow-down"
+                            <th scope="col" (click)="handleSort6('upadateTs')"> Risk Level<i class="fa fa-arrow-down"
                                     *ngIf="!updt"></i>
                                 <i class="fa fa-arrow-up" *ngIf="updt"></i></th>
                         </tr>
@@ -51,18 +51,65 @@
                                 <a (click)="getAudit(audit.appAuditId)" style="cursor:pointer;color:blue;">{{
                                     audit.auditTypeName }}</a>
                             </td>
-                            <td>{{ audit.auditType }}</td>
-                            <td>{{ audit.auditDate | filterDate | date:'MM/dd/yyyy' }}</td>
+                            <td>{{audit.auditType}}</td>
+                            <td></td>
                             <td>{{ audit.nextAuditDate | filterDate | date:'MM/dd/yyyy' }}</td>
                             <td>{{ audit.status }}</td>
-                            <td>{{ audit.updatedBy}}</td>
-                            <td>{{ audit.upadateTs | filterDate | date:'MM/dd/yyyy'}}</td>
+                            <td>90</td>
+                            <td>Low</td>
                         </tr>
                     </tbody>
-                </table>
-                <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
+                </table> 
             </div>
+
+
+<!-- 
+                <div class="row" *ngFor="let  audit of appAuditDTOs" style="margin-top:11%">
+                    <div class="infoBox">
+                        <div class="headerOfBox"><a (click)="getAudit(audit.appAuditId)"
+                                style="cursor:pointer;color:white">{{
+                            audit.auditTypeName }}</a></div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <fusioncharts 
+                                [width]="width" 
+                                [height]="height" 
+                                [type]="type" 
+                                [dataFormat]="dataFormat"
+                                [dataSource]="dataSource">
+                                </fusioncharts>
+                            </div>
+
+                            <div class="col-md-4">
+                                    <fusioncharts 
+                                    [width]="width" 
+                                    [height]="height" 
+                                    [type]="type" 
+                                    [dataFormat]="dataFormat"
+                                    [dataSource]="dataSource1">
+                                    </fusioncharts>
+                                </div>
+
+                                <div class="col-md-4">
+                                        <fusioncharts 
+                                        [width]="width" 
+                                        [height]="height" 
+                                        [type]="type" 
+                                        [dataFormat]="dataFormat"
+                                        [dataSource]="dataSource2">
+                                        </fusioncharts>
+                                    </div>
+                        </div>
+                    </div>
+
+
+                </div> -->
+
         </div>
+
+
     </form>
 </div>
 <router-outlet></router-outlet>

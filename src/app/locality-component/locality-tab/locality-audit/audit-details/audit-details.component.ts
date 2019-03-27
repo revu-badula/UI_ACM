@@ -11,14 +11,171 @@ import { FilterPipeDate } from '../../../locality-date-filter';
 import { FilterAuditName } from '../../../locality-auditname-filter';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import { Chart, pattern } from 'chart.js';
+import { ChartsModule } from 'ng2-charts';
+
+
+import { Location } from '@angular/common';
+
+
+import { NgModule, enableProdMode } from '@angular/core'
+
+import { BrowserModule } from '@angular/platform-browser';
+import { FusionChartsModule } from 'angular-fusioncharts';
+
+// Load FusionCharts
+import * as FusionCharts from 'fusioncharts';
+// Load Charts module
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+// Load fusion theme
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+FusionChartsModule.fcRoot(FusionCharts, Charts)
+
+
+const data = {
+  "chart": {
+    "caption": "Evidence",
+    "subcaption": "",
+    "showvalues": "1",
+    "showpercentintooltip": "0",
+    "numberprefix": "",
+    "enablemultislicing": "1",
+    "theme": "fusion"
+  },
+  "data": [
+    {
+      "label": "Pending",
+      "value": "30"
+    },
+    {
+      "label": "Complete",
+      "value": "23"
+    },
+    
+  ]
+};
+
+
+const data1 = {
+  "chart": {
+    "caption": "Risk Level",
+    "subcaption": "",
+    "showvalues": "1",
+    "showpercentintooltip": "0",
+    "numberprefix": "",
+    "enablemultislicing": "1",
+    "theme": "fusion"
+  },
+  "data": [
+    {
+      "label": "Very Low",
+      "value": "30"
+    },
+    {
+      "label": "Low",
+      "value": "23"
+    },
+
+    {
+      "label": "Medium",
+      "value": "10"
+    },
+    {
+      "label": "High",
+      "value": "33"
+    },
+
+    {
+      "label": "Very High",
+      "value": "53"
+    },
+
+
+    
+  ]
+};
+
+
+const data2 = {
+  "chart": {
+    "caption": "Severity",
+    "subcaption": "",
+    "showvalues": "1",
+    "showpercentintooltip": "0",
+    "numberprefix": "",
+    "enablemultislicing": "1",
+    "theme": "fusion"
+  },
+  "data": [
+    {
+      "label": "Very Low",
+      "value": "20"
+    },
+    {
+      "label": "Low",
+      "value": "23"
+    },
+
+    {
+      "label": "Medium",
+      "value": "10"
+    },
+    {
+      "label": "High",
+      "value": "33"
+    },
+
+    {
+      "label": "Very High",
+      "value": "63"
+    },
+
+
+    
+  ]
+};
+
+
 @Component({
   selector: 'app-audit-details',
   templateUrl: './audit-details.component.html',
   styleUrls: ['./audit-details.component.css'],
   providers: [ApiserviceService]
 })
+
+@NgModule({
+  declarations: [
+  ],
+  imports: [
+    BrowserModule,
+    FusionChartsModule // Include in imports
+  ],
+  providers: [],
+  bootstrap: []
+  
+
+})
+
+
+
+
+
 export class AuditDetailsComponent implements OnInit {
+
+  public data: Object;
+  public  width = 400;
+  public height = 300;
+  public type = 'pie3d';
+  public dataFormat = 'json';
+  public dataSource = data;
+  public dataSource1 = data1;
+  public dataSource2 = data2;
+
+      
   public showPlusButton: boolean = false;
+
+
+
 
 
   public p: number = 1;
@@ -333,12 +490,6 @@ export class AuditDetailsComponent implements OnInit {
 
 
   }
-
-
-
-
-
-
 
 
 }

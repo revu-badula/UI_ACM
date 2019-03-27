@@ -48,26 +48,19 @@ export class OktaAuthService {
     tokens.forEach(token => {
       if (token.idToken) {
         this.oktaAuth.tokenManager.add('idToken', token);
-        // console.log(token.idToken);
-        // console.log(token.claims.name);
-        // console.log(token.claims.email);
+    
 
       }
       if (token.accessToken) {
         this.oktaAuth.tokenManager.add('accessToken', token);
-        //console.log(token.accessToken);
+  
         this.accesTok = token.accessToken;
-        //console.log(token);
-        //this.getInfo();
+ 
         this.getUsrInfo(token);
-        //console.log(this.accesTok);
+     
       }
 
     });
-    //     this.oktaAuth.token.getUserInfo()
-    // .then(function(user) {
-    //   // user has details about the user
-    // });
 
   }
 

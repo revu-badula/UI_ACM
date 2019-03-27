@@ -59,13 +59,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
 
-                        <label for="inputState">Start Date</label>
+                        <label for="inputState">Start Date</label><br><br>
 
                         <my-date-picker name="startDate" class="inputState1" [disabled]='showForm' ngModel
                             (dateChanged)="getStartDate($event)" [(ngModel)]="startDate" required></my-date-picker>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="lastName">End Date</label>
+                        <label for="lastName">End Date</label><br><br>
 
                         <my-date-picker name="endDate" class="inputState1" [disabled]='showForm' ngModel
                             (dateChanged)="getEndDate($event)" [options]="myDatePickerOptions" [(ngModel)]="endDate"
@@ -75,7 +75,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
 
-                        <label for="inputState">Assigned To <span class="asterisk">*</span></label>
+                        <label for="inputState">Assigned To <span class="asterisk">*</span></label><br><br>
 
                         <!-- <input type="text" name="assignedTo" class="form-control" id="assignedTo" [(ngModel)]="appAssess.actionPlanAssignedTo"> -->
 

@@ -17,6 +17,14 @@ export class SystemauditlandingComponent implements OnInit {
     this.router.navigate(['/system/tab2/Audit/sysauditoverview']);
   }
 
+  createYourQuestion(){
+    this.router.navigate(['/createYourQuestion']);
+  }
+
+  sampleQuestion(){
+    this.router.navigate(['/sampleQuestion']);
+  }
+
   Show()
   {
     let ngbModalOptions: NgbModalOptions = {

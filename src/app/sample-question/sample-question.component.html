@@ -1,5 +1,5 @@
 <div class="my-container">
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  
   </div>
   
   <app-navigation-component></app-navigation-component>
@@ -21,18 +21,33 @@
   </div>
 
 <br>
-<H3 style ="text-align: center" > Samle Questionnare</H3>
+<H3 style ="text-align: center" > Sample Questionnaire</H3>
 <hr>
 <div id="form1" style="padding: 1%">
 <div class="wrapper">
   <div >  
     <div class="tab">
       <input id="tab-one" type="checkbox" name="tabs">
-      <label for="tab-one" > This is a sample question One ? <span class="weightage">  5/ 10</span></label>
+      <label for="tab-one" > This is a sample question One ? <span class="weightage">  5/ 10</span></label><br><br>
       
       <div class="tab-content">
         <p ><b>Answer</b></p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+          <label>Weightage</label><br><br>
+          <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder="10" (change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
+         
+            </div>
+        <div class="col-md-6">
+          <div class="row">
+            <label>Score</label><br><br>
+            <div class="col-md-3"><input type="number" class="form-control" name="test" (change)="getRealScore()"  placeholder="5" [(ngModel)]="scoreN" id="first" style="width:200% !important"></div>
+            
+          </div>
+        </div>
+        </div>
         <p ><b>Comments</b></p>
         <textarea style="width: 100%"></textarea>
         <p ><b>Evidences</b></p>
@@ -43,10 +58,28 @@
     </div>
     <div class="tab">
       <input id="tab-two" type="checkbox" name="tabs">
-      <label for="tab-two" > This is a sample question two ? <span class="weightage">  5/ 10</span></label>
+      <label for="tab-two" > This is a sample question two ? <span class="weightage">  5/ 10</span></label><br><br>
         <div class="tab-content">
         <p ><b>Answer</b></p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+          <label>Weightage</label><br><br>
+          <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder="10" (change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
+          <span style="font-size:26px">/</span>
+          <div class="col-md-3"><input type="text" name="weightD" class="form-control" placeholder="10" (change)="getDem()" [(ngModel)]="weightageD" id="first" style="width:200% !important"></div>
+        </div>
+            </div>
+        <div class="col-md-6">
+          <div class="row">
+            <label>Score</label><br><br>
+            <div class="col-md-3"><input type="number" class="form-control" name="test" (change)="getRealScore()"  placeholder="5" [(ngModel)]="scoreN" id="first" style="width:200% !important"></div>
+            
+          </div>
+        </div>
+        </div>
+       
         <p ><b>Comments</b></p>
         <textarea style="width: 100%"></textarea>
         <p ><b>Evidences</b></p>
@@ -57,10 +90,28 @@
     </div>
     <div class="tab">
       <input id="tab-three" type="checkbox" name="tabs">
-      <label for="tab-three" > This is a sample question three ? <span class="weightage">  5/ 10</span></label>
+      <label for="tab-three" > This is a sample question three ? <span class="weightage">  5/ 10</span></label><br><br>
       <div class="tab-content">
           <p ><b>Answer</b></p>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
+          <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+            <p>Weightage</p>
+            <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder="10" (change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
+            <span style="font-size:26px">/</span>
+            <div class="col-md-3"><input type="text" name="weightD" class="form-control" placeholder="10" (change)="getDem()" [(ngModel)]="weightageD" id="first" style="width:200% !important"></div>
+          </div>
+              </div>
+          <div class="col-md-6">
+            <div class="row">
+              <p>Score</p>
+              <div class="col-md-3"><input type="number" class="form-control" name="test" (change)="getRealScore()"  placeholder="5" [(ngModel)]="scoreN" id="first" style="width:200% !important"></div>
+              <span style="font-size:26px">/</span>
+              <div class="col-md-3"><input type="number" name="score" class="form-control" placeholder="10" [(ngModel)]="scoreD" id="first" style="width:200% !important"></div>
+            </div>
+          </div>
+          </div>
           <p ><b>Comments</b></p>
           <textarea style="width: 100%"></textarea>
           <p ><b>Evidences</b></p>
@@ -69,5 +120,6 @@
     </div>
   </div>
 </div>
+
   
 </div>

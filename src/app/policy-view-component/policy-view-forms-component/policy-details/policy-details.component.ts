@@ -459,7 +459,44 @@ export class PolicyDetailsComponent implements OnInit{
 
   }
 
+  public scoreN:any;
+  public scoreD:any;
+  public weightageN:any;
+  public weightageD:any;
+  public result:any;
+  public realScore:any;
+
+  getNum()
+  {
+
+  }
+
+ 
 
 
+  getDem()
+  {
+  
+  }
+
+  getRealScore()
+  {
+    
+
+  }
+
+
+  addStaff(value){
+    if(value>=0&&value<=100){
+    this.scoreN=value;
+    }
+    else if(value<0){
+    this.scoreN=0;
+    }
+    else{
+    this.scoreN=100;
+    }
+    
+    }
 
 }

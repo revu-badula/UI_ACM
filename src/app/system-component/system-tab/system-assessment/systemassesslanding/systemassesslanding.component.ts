@@ -16,6 +16,14 @@ export class SystemassesslandingComponent implements OnInit {
   goToAudit() {
     this.router.navigate(['/system/tab2/assessment/sysassessoverview']);
   }
+
+  createYourQuestion(){
+    this.router.navigate(['/createYourQuestion']);
+  }
+
+  sampleQuestion(){
+    this.router.navigate(['/sampleQuestion']);
+  }
   Show()
   {
     let ngbModalOptions: NgbModalOptions = {

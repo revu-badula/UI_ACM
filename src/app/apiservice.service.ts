@@ -462,5 +462,11 @@ export class ApiserviceService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  appAudit(id){
+    let url = APP_CONFIG.appAudit;
+    return this._httpService.get(url + '?' + 'auditId' + '=' + id)
+      .map(res => <Response>res.json())
+  }
+
 
 }

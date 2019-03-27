@@ -44,7 +44,7 @@
                     </div>
                     <div class=" form-row">
                         <div class="form-group col-md-12">
-                            <label for="familyName">Policy Name</label>
+                            <label for="familyName">Policy Name</label><br><br>
                             <input type="text" class="form-control" id="familyName" ngModel name="familyName"
                                 [(ngModel)]="policyAccess.familyName" [name]="'family_name'">
                         </div>
@@ -52,13 +52,13 @@
 
                     <div class=" form-row">
                         <div class="form-group col-md-6">
-                            <label for="familyName"> Updated By</label>
+                            <label for="familyName"> Updated By</label><br><br>
                             <input type="text" class="form-control" id="updatedBy" ngModel name="updatedBy"
                                 [(ngModel)]="policyAccess.updatedBy" readonly>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="familyName"> Updated Date</label>
+                            <label for="familyName"> Updated Date</label><br><br>
                             <input type="text" class="form-control" id="updatedTs" ngModel name="updatedTs"
                                 [ngModel]="policyAccess.updatedTs | filter" readonly>
                         </div>
@@ -72,12 +72,12 @@
                     </div>
                     <div class=" form-row">
                         <div class="form-group col-md-6">
-                            <label for="controlNumber">Control Number<div class="asterisk">*</div></label>
+                            <label for="controlNumber">Control Number<div class="asterisk">*</div></label><br><br>
                             <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
                                 [(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="controlName">Control Name<div class="asterisk">*</div></label>
+                            <label for="controlName">Control Name<div class="asterisk">*</div></label><br><br>
                             <input type="text" class="form-control" id="controlName" ngModel name="controlName"
                                 [(ngModel)]="policyAccess.classType" [name]="'class_type'" required>
                         </div>
@@ -85,13 +85,13 @@
 
                     <div class=" form-row">
                         <div class="form-group col-md-6">
-                            <label for="policyValue">Policy Value<div class="asterisk">*</div></label>
+                            <label for="policyValue">Policy Value<div class="asterisk">*</div></label><br><br>
                             <input type="text" class="form-control" id="policyValue" ngModel name="policyValue"
                                 [(ngModel)]="policyAccess.policyVal" [name]="'policy_val'" required>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="assignTo">Assign To</label>
+                            <label for="assignTo">Assign To</label><br><br>
                             <input *ngIf="showEli" type="text" class="form-control" name="assignTo" id="assignTo"
                                 [(ngModel)]="policyAccess.assignedTo" readonly>
                             <select *ngIf="!showEli" name="assignTo" style="width:50%;"
@@ -107,13 +107,13 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="endDate">End Date</label>
+                            <label for="endDate">End Date</label><br><br>
                             <my-date-picker name="myname" [(ngModel)]="endDate" [disabled]='showForm'
                                 (dateChanged)="getEndDate($event)" class="inputState1"></my-date-picker>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="status">Status</label>
+                            <label for="status">Status</label><br><br>
                             <input *ngIf="showForm" type="text" name="status" class="form-control" id="status"
                                 [ngModel]="policyAccess.status | controlPipe">
                             <select class="form-control" id="inputState" name="status" [(ngModel)]="policyAccess.status"
@@ -123,7 +123,7 @@
                             </select>
                         </div>
 
-                        <label for="description">Description</label>
+                        <label for="description">Description</label><br><br>
                         <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
                             id="patches" [(ngModel)]="policyAccess.description" [name]="'policy_description'"
                             maxlength="50000" #description="ngModel"> </textarea>
@@ -135,11 +135,96 @@
                     </div>
                 </div>
 
-<!-- 
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <br>
-                        <br> -->
+                <div class="infoBox">
+                    <div class="form-row">
+                        <label for="description">Audit Findings</label><br><br>
+                        <textarea cols="156" [ngxSummernote]="config"  [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
+                            [(ngModel)]="appPolicy.description" [name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea><!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="description.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
+
+                    </div>
+                </div>
+
+                <div class="infoBox">
+                        <div class = "headerOfBox">Audit Findings</div>
+                    <div class="form-row">
+            
+                        <textarea cols="156" [ngxSummernote]="config"  [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
+                            [(ngModel)]="appPolicy.description" [name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea><!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
+					 <br>
+					 <div *ngIf="description.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div> 
+
+                    </div>
+                </div>
+
+                <div class="infoBox">
+                        <div class="headerOfBox">Antecedence</div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Impact Analysis</label><br><br>
+                            <select class="form-control">
+                            <option>Very High</option>
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                            <option>Very Low</option>
+                          </select>
+                          </div>
+              
+                          <div class="col-md-6">
+                            <label>Priority</label><br><br>
+                            <select class="form-control">
+                           
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                          </select>
+                          </div>
+              
+                        </div>
+                      </div>
+              
+                      <div class="infoBox">
+                        <div class="headerOfBox">Score</div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="row">
+                        <label>Weightage</label><br><br>
+                        <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder="" (change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
+                        
+                      </div>
+                          </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <label>Score</label><br><br>
+                          <div class="col-md-3"><input type="number" class="form-control" name="test" (change)="getRealScore()"  placeholder="" [(ngModel)]="scoreN" id="first" style="width:200% !important"></div>
+                         
+                        </div>
+                      </div>
+                      </div>
+              
+                      <br>
+                      <div class="row">
+                          <div class="col-md-6">
+                            <div class="row">
+                        <label>Net score</label><br><br>
+                        <div class="col-md-3">
+                           <input type="number" class="form-control" name="realScore" [(ngModel)]="realScore"   placeholder="" id="first" style="width:200% !important" > 
+                         
+                        </div>
+                      
+                      </div>
+                          </div>
+                    
+                      </div>
+                      </div>
+
+
                         <div class="infoBox polwidth">
                             <div class="headerOfBox">
                                 <h4>Procedures <div class="asterisk">*</div>
@@ -180,7 +265,7 @@
 
                 <!-- <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="priority">Priority</label><div class="asterisk">*</div>
+            <label for="priority">Priority</label><br><br><div class="asterisk">*</div>
             <select class="form-control" id="priority" *ngIf="showForm">
                         <option>{{ policyAccess.priority }}</option>
                       </select>
@@ -191,51 +276,51 @@
                       </select>
                 </div>
         <div class="form-group col-md-6">
-            <label for="policyAndProcedure">Control Number (Policy and Procedure)</label>
+            <label for="policyAndProcedure">Control Number (Policy and Procedure)</label><br><br>
               <input type="text" class="form-control" id="policyAndProcedure">
                 </div>
     </div> 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="policyAndProcedure">Control Number (Policy and Procedure)</label>
+            <label for="policyAndProcedure">Control Number (Policy and Procedure)</label><br><br>
               <input type="text" class="form-control" id="policyAndProcedure">
                 </div>
     </div> -->
                 <!-- <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="informationSystemDesignDocument">Information System Design Document</label>
+            <label for="informationSystemDesignDocument">Information System Design Document</label><br><br>
               <input type="text" class="form-control" id="informationSystemDesignDocument">
                 </div>
         <div class="form-group col-md-6">
-            <label for="securityPlan">Security Plan</label>
+            <label for="securityPlan">Security Plan</label><br><br>
               <input type="text" class="form-control" id="securityPlan">
                 </div>
     </div>
      <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="securityPlan">Security Plan</label>
+            <label for="securityPlan">Security Plan</label><br><br>
               <input type="text" class="form-control" id="securityPlan">
                 </div>
     </div> -->
                 <!-- <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="informationSystemConfigurationSettings">Information System Configuration Settings</label>
+            <label for="informationSystemConfigurationSettings">Information System Configuration Settings</label><br><br>
               <input type="text" class="form-control" id="informationSystemConfigurationSettings">
                 </div>
         <div class="form-group col-md-6">
-            <label for="configurationBaseline">Configuration Baseline</label>
+            <label for="configurationBaseline">Configuration Baseline</label><br><br>
               <input type="text" class="form-control" id="configurationBaseline">
                 </div>
     </div> -->
                 <!-- <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="configurationBaseline">Configuration Baseline</label>
+            <label for="configurationBaseline">Configuration Baseline</label><br><br>
               <input type="text" class="form-control" id="configurationBaseline">
                 </div>
     </div> -->
                 <!-- <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="auditRecords">Audit Records</label>
+            <label for="auditRecords">Audit Records</label><br><br>
               <input type="text" class="form-control" id="auditRecords">
                 </div>
         </div> -->
@@ -323,7 +408,7 @@
                         <div class="form-group col-md-6">
 
                             <div class="form-row">
-                            <label for="internalPolicyLinks">Internal Policy Links</label>
+                            <label for="internalPolicyLinks">Internal Policy Links</label><br><br>
                             </div>
                             <div class="form-row">
                                 <table id="myTable">
@@ -367,7 +452,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <div class="form-row">
-                            <label for="externalPolicyLinks">External Policy Links</label>
+                            <label for="externalPolicyLinks">External Policy Links</label><br><br>
                             </div>
                             <div class="form-row">
                             {{policyAccess.linkedPoliciesString}}
@@ -430,10 +515,10 @@
     <div id="form1">
         <form>
             <!-- <div style="text-align:center">
-            <label style="padding-left:10px">Link from Internal</label>
+            <label style="padding-left:10px">Link from Internal</label><br><br>
             <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link from Internal">
 
-            <label style="padding-right:10px">Link from External</label>
+            <label style="padding-right:10px">Link from External</label><br><br>
             <input type="radio" name="linkedPolicies" (change)="radioValue($event)" value="Link From  External">
         </div> -->
             <!-- <a (click)="getBack()">Go Back</a> -->
@@ -459,7 +544,7 @@
             <div *ngIf="displayField===1" class="form-row">
                 <div class="form-group col-md-6">
                     <label class="label-form" for="definitiveSource"><b>Definitive Source</b><span
-                            class="asterisk">*</span></label>
+                            class="asterisk">*</span></label><br><br>
                     <select class="form-control"  id="definitiveSource" required
                         (change)="selectDefinitive($event.target.value)">
                         <option selected>Choose...</option>
@@ -468,7 +553,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label class="label-form" for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
+                    <label class="label-form" for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label><br><br>
                     <select class="form-control"  id="typePolicy" required
                         (change)="selectType($event.target.value)">
                         <option selected>Choose...</option>

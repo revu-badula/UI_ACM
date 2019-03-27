@@ -57,7 +57,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
 
-                        <label for="inputState">Recommended by</label>
+                        <label for="inputState">Recommended by</label><br><br><br
 
                         <!-- <input type="text" class="form-control" name="recomendedBy" id="recomendedBy" [(ngModel)]="appAssess.recomendedBy"> -->
                         <select name="systemOwner" style="width:50%;" [(ngModel)]="appAssess.recomendedBy" class="form-control" id="searchUsers"
@@ -67,7 +67,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="lastName">Estimated <br> completion date</label>
+                        <label for="lastName">Estimated <br> completion date</label><br><br><br>
                         <my-date-picker  id="estCDate" [disabled]='showForm' (dateChanged)="getEstDate($event)" class="inputState1" [(ngModel)]="estDate" name="estCDate"></my-date-picker>
                     </div>
                 </div>

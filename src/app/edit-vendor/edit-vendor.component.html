@@ -50,7 +50,7 @@
                 <div class="form-group col-12">
                     <label for="familyName"><b>Vendor Name</b>
                         <font color=red>*</font>
-                    </label>
+                    </label><br><br>
 
                     <input type="text" class="form-control" id="vendorName" placeholder="Vendor Name"
                         formControlName="name" readonly>
@@ -59,11 +59,11 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
 
-                    <label for="familyName"> Updated By</label>
+                    <label for="familyName"> Updated By</label><br><br>
                     <input type="text" class="form-control" id="lastName" value="{{updatedBy}}" readonly="readonly">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="familyName"> Updated Date</label>
+                    <label for="familyName"> Updated Date</label><br><br>
                     <input type="text" class="form-control" id="lastName" value="{{ updatedTs | filterDate}}"
                         readonly="readonly">
                 </div>
@@ -81,12 +81,12 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="familyName">First Name<font color=red>*</font></label>
+                        <label for="familyName">First Name<font color=red>*</font></label><br><br>
                         <input type="text" class="form-control" id="firstName" placeholder="First Name"
                             formControlName="firstName">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="familyName">Last Name<font color=red>*</font></label>
+                        <label for="familyName">Last Name<font color=red>*</font></label><br><br>
                         <input type="text" class="form-control" id="lastName" placeholder="Last Name"
                             formControlName="lastName">
                     </div>
@@ -94,7 +94,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <div class="form-row">
-                            <label for="familyName">Email ID<font color=red>*</font></label>
+                            <label for="familyName">Email ID<font color=red>*</font></label><br><br>
                             <input type="text" class="form-control" id="email" title='Email Id (Format: @example.com)'
                                 placeholder="Enter your email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                                 formControlName="emailId">
@@ -116,7 +116,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <div class="form-row">
-                            <label for="familyName">Phone Number<font color=red>*</font></label>
+                            <label for="familyName">Phone Number<font color=red>*</font></label><br><br>
                             <input type="text" class="form-control" placeholder="xxx-xxx-xxxx"
                                 (keydown)="getPhoneNumber($event,$event.target.value)" minlength="12" maxlength="12"
                                 id="phonenumber" required formControlName="phoneNumber"
@@ -151,18 +151,18 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="familyName">Street Name<font color=red>*</font></label>
+                        <label for="familyName">Street Name<font color=red>*</font></label><br><br>
                         <input type="text" class="form-control" id="inputAddress" placeholder="Street Name"
                             formControlName="streetName">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="familyName">City<font color=red>*</font></label>
+                        <label for="familyName">City<font color=red>*</font></label><br><br>
                         <input type="text" class="form-control" id="city" placeholder="City" formControlName="city">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="familyName">State<font color=red>*</font></label>
+                        <label for="familyName">State<font color=red>*</font></label><br><br>
                         <select id="inputState" class="form-control" formControlName="state">
                             <option value="" selected>Choose...</option>
                             <option value="AL">Alabama (AL)</option>
@@ -219,7 +219,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="familyName">Zip Code<font color=red>*</font></label>
+                        <label for="familyName">Zip Code<font color=red>*</font></label><br><br>
                         <input type="text" class="form-control" maxlength=5 minlength=5 placeholder="00000"
                             id="inputZip" formControlName="zipcode" appOnlyInteger>
 
