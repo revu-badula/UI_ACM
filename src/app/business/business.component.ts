@@ -88,8 +88,8 @@ export class BusinessComponent implements OnInit {
       this.config1.width = 1050;
     }
     else if (w >= 1280 && w <= 1309) {
-      this.config.width = 1030;
-      this.config1.width = 1030;
+      this.config.width = 1020;
+      this.config1.width = 1020;
     }
   }
 
@@ -154,8 +154,10 @@ export class BusinessComponent implements OnInit {
         let year = d.getFullYear();
         this.updatedTime = month + "/" + day + "/" + year;
         this.system = data.applicationViewDTO;
+        if(this.system.description != undefined){
         let des = this.system.description.replace(/<[^>]+>/gm, '');
         this.len = des.length;
+        }
       }, error => {
         this.loading = false;
         console.log(error);
