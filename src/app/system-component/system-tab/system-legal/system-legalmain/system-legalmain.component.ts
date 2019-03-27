@@ -125,7 +125,7 @@ export class SystemLegalmainComponent implements OnInit {
 
   }
 
-  handleSort1(value) {
+  handleSort1(value:any) {
 
     if (!this.signed) {
       //this.policies.sort(this.doAsc);

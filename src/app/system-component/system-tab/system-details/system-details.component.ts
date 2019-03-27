@@ -1,7 +1,6 @@
 import { APP_CONFIG } from '../../../app.config';
 import { Location } from '@angular/common';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
-import { File } from 'babel-types';
 import { System, applicationView, WorkHours } from '../../../data_model_system';
 import { Component, OnInit, HostListener, ViewChild, ElementRef, TemplateRef, NgModule } from '@angular/core';
 import { ApiserviceService } from '../../../apiservice.service';
@@ -51,7 +50,7 @@ export class SystemDetailsComponent implements OnInit {
 
   }
 
-  editClick(event): void {
+  editClick(event:any): void {
     this.editableForm = false;
     this.isShow = true;
     this.showSource = true;
@@ -159,7 +158,7 @@ export class SystemDetailsComponent implements OnInit {
     return this.color === 'online' ? 0.8 : 1;
   }
 
-  goBack(event) {
+  goBack(event:any) {
     event.preventDefault();
     this.router.navigate(['/system/map']);
   }

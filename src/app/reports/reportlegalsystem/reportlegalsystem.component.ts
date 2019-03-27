@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { UtilService } from '../../util.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-reportlegalsystem',
   templateUrl: './reportlegalsystem.component.html',
@@ -29,7 +30,7 @@ export class ReportlegalsystemComponent implements OnInit {
 
   constructor(private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private router: Router) {
+    private router: Router,private _location: Location) {
     sessionStorage.removeItem('systemName');
     sessionStorage.removeItem('systemActive');
 
@@ -38,6 +39,9 @@ export class ReportlegalsystemComponent implements OnInit {
   ngOnInit() {
     this.getSysForMous();
 
+  }
+  backClicked() {
+    this._location.back();
   }
   getColor() {
     // return this.color === 'online' ? '#ffffff' : 'white';

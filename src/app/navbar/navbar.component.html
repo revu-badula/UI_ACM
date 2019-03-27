@@ -1,16 +1,122 @@
 <div class="logo">
     <a routerLink="/dashboard" class="simple-text">
-       
+
         Integra
     </a>
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a class="nav-link" [routerLink]="[menuItem.path]">
+        <!-- <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item"> -->
+        <!-- <a class="nav-link" [routerLink]="[menuItem.path]">
                 <i class="material-icons">{{menuItem.icon}}</i>
                 <p>{{menuItem.title}}</p>
+            </a> -->
+        <!-- </li> -->
+        <li class="nav-item">
+
+            <a class="nav-link" routerLink="/dashboard">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+            </a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/locality/map">
+                <!-- <i class="material-icons">person</i> -->
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                Localities
+            </a>
+            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkLoc">
+                <a class="" routerLink="/locality/map">Create</a>
+                <a class="" routerLink="/locality/map">View/Edit</a>
+            </div> -->
+        </li>
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkVen" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <!-- <i class="material-icons">content_paste</i> -->
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Certified Vendors
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkVen">
+                <a class="" routerLink="/vendors">Create</a>
+                <a class="" routerLink="/vendorsView">View/Edit</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <!-- <i class="material-icons">library_books</i> -->
+                <i class="fa fa-paper-plane fa-3x" aria-hidden="true"></i>
+                Certified Solutions
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="" routerLink="/solutions">Create</a>
+                <a class="" routerLink="/solutionsView">View/Edit</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">
+                <!-- <i class="material-icons">bubble_chart</i> -->
+                <i class="fa fa-suitcase fa-3x" aria-hidden="true"></i>
+                <p>Audit</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">
+                <!-- <i class="material-icons">location_on</i> -->
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <p>Assessmemt</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">
+                <!-- <i class="material-icons">notifications</i> -->
+                <i class="fa fa-area-chart fa-3x" aria-hidden="true"></i>
+                <p>Reports</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkSys" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <!-- <i class="material-icons">notifications</i> -->
+                <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
+                Systems
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSys">
+                <a class="" routerLink="/system/tab2/info">Create</a>
+                <a class="" routerLink="/system/map">View/Edit</a>
+            </div>
+        </li>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkPol" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <!-- <i class="material-icons">notifications</i> -->
+                <i class="fa fa-file-text fa-3x" aria-hidden="true"></i>
+                policies
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkPol">
+                <a class="" routerLink="/policy">Create</a>
+                <a class="" routerLink="/policyView">View/Edit</a>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkDev" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <!-- <i class="material-icons">laptop</i> -->
+                <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color:slategray"></i>
+                Device Inventory
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkDev">
+                <a class="" routerLink="/deviceInventory">Create</a>
+                <a class="" routerLink="/devicetab">View/Edit</a>
+            </div>
+        </li>
+      
+
     </ul>
 </div>

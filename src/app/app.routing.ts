@@ -158,6 +158,7 @@ import { GraphComponent } from './graph/graph.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SampleQuestionComponent } from './sample-question/sample-question.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
+import { BusinessComponent } from './business/business.component';
 
 const appRoutes: Routes = [
 
@@ -195,6 +196,7 @@ const appRoutes: Routes = [
   { path: 'sidebar', component: NavbarComponent, canActivate: [AuthGuard]},
   { path: 'sample' , component: SampleQuestionComponent},
   { path: 'createQuestion', component: CreateQuestionComponent},
+  // { path: 'bus', component: BusinessComponent},
   
  
   {
@@ -446,6 +448,9 @@ const appRoutes: Routes = [
             // canActivate: [SystemGuard]
           },
           {
+            path: 'business', component:BusinessComponent, canActivate:[SystemGuard]
+          },
+          {
             path: 'legal',
             component: SystemLegalComponent, canActivate: [SystemGuard],
             // canActivate: [SystemGuard],
@@ -557,7 +562,7 @@ const appRoutes: Routes = [
             // canActivate: [WorkflowGuard]
           },
           {
-            path: 'business',
+            path: 'business1',
             component: SystemBusinessComponent, canActivate: [SystemGuard]
             // canActivate: [WorkflowGuard]
           },
