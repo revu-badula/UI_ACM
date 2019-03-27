@@ -64,7 +64,6 @@ import { AuditControlComponent } from './locality-tab/locality-audit/audit-contr
 import { AssessControlComponent } from './locality-tab/locality-assessment/assess-control/assess-control.component';
 import { AuditLandingComponent } from './locality-tab/locality-audit/audit-landing/audit-landing.component';
 import { AssesslandingComponent } from './locality-tab/locality-assessment/assesslanding/assesslanding.component';
-import { FusionChartsModule } from 'angular-fusioncharts';
 
 @NgModule({
   imports: [
@@ -80,8 +79,6 @@ import { FusionChartsModule } from 'angular-fusioncharts';
     LocalityComponentRoutingModule,
     MyDatePickerModule,
     NgxPaginationModule,
-    FusionChartsModule,
-    
     LoadingModule.forRoot({
       animationType: ANIMATION_TYPES.rotatingPlane,
       backdropBackgroundColour: 'rgba(0,0,0,0.5)',

@@ -9,8 +9,8 @@ export class OnlyNumber1 {
 
   @Input() OnlyNumber1: boolean;
 
-  @HostListener('keydown', ['$event']) onKeyDown(event) {
-    let e = <KeyboardEvent> event;
+  @HostListener('keydown', ['$event']) onKeyDown(event:any) {
+    let e = <KeyboardEvent>event;
     if (this.OnlyNumber1) {
       if ([46, 8, 9, 27, 13, 110].indexOf(e.keyCode) !== -1 ||
         // Allow: Ctrl+A
@@ -23,13 +23,13 @@ export class OnlyNumber1 {
         (e.keyCode === 88 && (e.ctrlKey || e.metaKey)) ||
         // Allow: home, end, left, right
         (e.keyCode >= 35 && e.keyCode <= 39)) {
-          // let it happen, don't do anything
-          return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 49|| e.keyCode > 53)) && (e.keyCode < 97 || e.keyCode > 101)) {
-            e.preventDefault();
-        }
+        // let it happen, don't do anything
+        return;
       }
+      // Ensure that it is a number and stop the keypress
+      if ((e.shiftKey || (e.keyCode < 49 || e.keyCode > 53)) && (e.keyCode < 97 || e.keyCode > 101)) {
+        e.preventDefault();
+      }
+    }
   }
 }

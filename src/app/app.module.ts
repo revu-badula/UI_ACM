@@ -100,6 +100,10 @@ import { GraphComponent } from './graph/graph.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SampleQuestionComponent } from './sample-question/sample-question.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
+import { BusinessComponent } from './business/business.component';
+import { OnlyNumber } from './onlyNumber';
+import { OnlyNumber1 } from './onlyNumber1';
+
 
 
 @NgModule({
@@ -168,8 +172,10 @@ import { CreateQuestionComponent } from './create-question/create-question.compo
     GraphComponent,
     NavbarComponent,
     SampleQuestionComponent,
-    CreateQuestionComponent
-
+    CreateQuestionComponent,
+    BusinessComponent,
+    OnlyNumber,
+    OnlyNumber1
 
   ],
 
