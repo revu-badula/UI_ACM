@@ -200,8 +200,8 @@
                     </div>
                     <label for="yes_no_radio">Is evidence required?</label>
                     <p>
-                    <input type="radio" name="yes_no" checked />Yes
-                    <input type="radio" name="yes_no" />No
+                    <input type="radio" name="yes_no" [(ngModel)]="yes"/>Yes
+                    <input type="radio" name="yes_no" [(ngModel)]="no" />No
                     </p>
                     <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
     

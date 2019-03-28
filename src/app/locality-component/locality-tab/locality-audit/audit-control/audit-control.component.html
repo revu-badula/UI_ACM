@@ -113,7 +113,7 @@
 
 
         <div class="row" *ngIf="showTable">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <label>Priority</label><br><br>
             <select class="form-control">
   
@@ -123,15 +123,9 @@
             </select>
           </div>
   
-          <div class="col-md-4">
+          
   
-            <label>Weightage</label><br><br>
-            <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder=""
-                (change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
-  
-          </div>
-  
-          <div class="col-md-4">
+          <div class="col-md-6">
   
             <label>Score</label><br><br>
             <div class="col-md-3"><input type="number" class="form-control" name="test"
@@ -139,6 +133,7 @@
                 style="width:200% !important"></div>
   
           </div>
+          <button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="c()">Close</button>
         </div>
   
         
@@ -193,7 +188,7 @@
       </table>
 
 
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls *ngIf="showTable" (pageChange)="p = $event"></pagination-controls>
 
     </div>
   </form>
