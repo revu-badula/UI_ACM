@@ -24,7 +24,7 @@ export class AccesscontrolComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any>;
   policyAccess: Policy;
   files: File[] = [];
-  appPolicy: AppAuditPolicyDTO
+  appPolicy: AppAuditPolicyDTO;
   public users: any;
   public p: number = 1;
   showForm: boolean = true;
@@ -33,6 +33,7 @@ export class AccesscontrolComponent implements OnInit {
   policyDocumentDTO: PolicyDocumentsDTO;
   public showFrm:boolean=false;
   public appAuditPolicyId: any;
+  public isEvidenceRequired: string = 'Y';
   config = {
     placeholder: '',
     tabsize: 2,
@@ -278,9 +279,17 @@ export class AccesscontrolComponent implements OnInit {
     let res = this.result*this.scoreN;
     this.realScore=res;
 
+    if(this.isEvidenceRequired === 'Y') {
+      this.realScore = this.scoreN - 10 > 0 ? this.scoreN - 10 : 0;
+    }
+
   }
 
-
+  onEvidenceRequiredChange(selected: string) {
+    if (this.scoreN && selected === 'Y') {
+      this.realScore = this.scoreN - 10 > 0 ? this.scoreN - 10 : 0;
+    }
+  }
 
 
 }

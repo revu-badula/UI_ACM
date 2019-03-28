@@ -287,6 +287,11 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
+  getTechProjectManager(){
+    let url = APP_CONFIG. getTechProjectManager;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
   updatePolicyGrp(data) {
     console.log(data);
     let url = APP_CONFIG.updatePolicyGrp;
@@ -338,6 +343,31 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
+  getDbAdmin(){
+    let url = APP_CONFIG.getDbAdmin;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+  getTesters(){
+    let url = APP_CONFIG.getTesters;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+  getDataCustodian(){
+    let url = APP_CONFIG.getDataCustodian;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());  
+  }
+  getDevelopers(){
+    let url = APP_CONFIG.getDevelopers;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
+  getBusinessAnalyst(){
+    let url = APP_CONFIG.getBusinessAnalyst;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
   getSystemAdministrator() {
     let url = APP_CONFIG.getSystemAdministrator;
     return this._httpService.get(url)

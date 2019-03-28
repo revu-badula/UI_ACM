@@ -193,8 +193,8 @@
                             </div>
                             <label for="yes_no_radio">Is evidence required?</label>
                             <div class="row">
-                            <input type="radio" name="yes_no" checked />Yes
-                            <input type="radio" name="yes_no" />No
+                                    <input type="radio" value="Y" [(ngModel)]="isEvidenceRequired" (change)="onEvidenceRequiredChange($event.target.value)" name="yes_no" checked />Yes
+                                    <input type="radio" value="N" [(ngModel)]="isEvidenceRequired" (change)="onEvidenceRequiredChange($event.target.value)"name="yes_no" />No
                             </div>
                             <br>
                             <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
@@ -228,7 +228,7 @@
                           <div class="col-md-6">
                             <div class="row">
                         <label>Weightage</label><br><br>
-                        <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder="" (change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
+                        <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder=""  [(ngModel)]="weightageN" id="first" style="width:200% !important"></div>
                         
                       </div>
                           </div>
@@ -247,7 +247,7 @@
                             <div class="row">
                         <label>Net score</label><br><br>
                         <div class="col-md-3">
-                           <input type="number" class="form-control" name="realScore" [(ngModel)]="realScore"   placeholder="" id="first" style="width:200% !important" > 
+                           <input type="number" class="form-control"  (change)="getRealScore()" name="realScore" [(ngModel)]="realScore"   placeholder="" id="first" style="width:200% !important" > 
                          
                         </div>
                         

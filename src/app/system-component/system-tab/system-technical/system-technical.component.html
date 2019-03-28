@@ -1,4 +1,58 @@
-<form #formName="ngForm"  enctype="multipart/form-data">
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  </div>
+  <ng-template #user let-c="close" let-d="dismiss">
+      <form #myForm="ngForm">
+        <div class="modal-header">
+          <h4 class="modal-title">{{title}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="col-6">
+              FirstName<span class="asterisk">*</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12">
+              <input type="text" class="form-control" style="width: 100% !important;" ngModel name="firstName"
+                [(ngModel)]="applicationUserDTO.firstName" required>
+            </div>
+          </div>
+    
+          <div class="form-row">
+            <div class="col-6">
+              lastName<span class="asterisk">*</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12">
+              <input type="text" class="form-control" style="width: 100% !important;" ngModel name="lastName"
+                [(ngModel)]="applicationUserDTO.lastName" required>
+            </div>
+          </div>
+    
+          <div class="form-row">
+            <div class="col-6">
+              Email<span class="asterisk">*</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12">
+              <input type="text" class="form-control" style="width: 100% !important;" ngModel name="email"
+                [(ngModel)]="applicationUserDTO.emailId" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" [disabled]="!myForm.valid" class="btn btn-outline-dark"
+            (click)="createUser();c()">Add</button>
+          <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+    
+    
+        </div>
+      </form>
+    </ng-template>
+<form #formName="ngForm"  (ngSubmit)="createSystem()" enctype="multipart/form-data">
 
 
 	<div id="form1">
@@ -16,17 +70,17 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
         
-                  <label for="inputState">Application Acronym <span class="asterisk">*</span></label><br><br>
+                  <label for="inputState">System Acronym <span class="asterisk">*</span></label><br><br>
                   
-                  <input type="text" class="form-control" name="acronym" required>
+                  <input type="text" class="form-control" value="{{acronym}}" name="acronym" required>
                 
                
                 </div>
                 <div class="form-group col-md-6">
         
-                  <label for="inputState">Application  Name<span class="asterisk">*</span></label><br><br>
+                  <label for="inputState">System  Name<span class="asterisk">*</span></label><br><br>
                   
-                  <input type="text" class="form-control inputState"  name="systemName"  required>
+                  <input type="text" class="form-control inputState" value="{{sysName}}"  name="systemName"  required>
                 </div>
         
               </div>
@@ -35,9 +89,9 @@
                 <div class="headerOfBox"><h4>Technology Current State</h4></div>
   <div class="form-row">
     <div class="form-group col-md-12">
-   
-        <!-- <tinymce name="effort"  [config]="config1"></tinymce>
-        remaining {{50000 -len}} -->
+        <tinymce name="effort" name="description" [(ngModel)]="system.internalInterfaces" [config]="config3"></tinymce>
+        remaining {{50000 -len3}}
+     
     </div>
   </div>
             </div>
@@ -62,9 +116,9 @@
   <div class="form-row">
      <div class="form-group col-md-6">
         <label for="inputState">Programming Languages</label><br><br>
-       <select class="form-control">
+       <select class="form-control" name="tech" [(ngModel)]="system.technologiesDTOs">
          <option>Choose...</option>
-         <option *ngFor="let User of tech" ></option>
+         <option *ngFor="let User of tech" [ngValue]="User" >{{User.name}}{{User.technologyVersion}}</option>
        </select>
      </div>
    
@@ -75,13 +129,16 @@
    <div class="form-row">
      <div class="form-group col-md-6">
         <label for="inputState">Technical Manager</label><br><br>
-       <select class="form-control">
+       <select class="form-control" name="manag" [(ngModel)]="system.appTechnicalManagers">
          <option>Choose...</option>
+         <option *ngFor="let User of tech" [ngValue]="User" >{{User.firstName}}{{User.lastName}}</option>
        </select>
+       <span class="col-sm-2" (click)="addUser('appTechnicalManagers')"><i class="fa fa-plus-circle"
+        aria-hidden="true"></i></span>
      </div>
      <div class="form-group col-md-6">
         <label for="inputState">System Administrator</label><br><br>
-         <select class="form-control">
+         <select class="form-control" >
            <option>Choose...</option>
          </select>
        </div>
@@ -129,7 +186,7 @@
          <div class="form-row">
           <div class="form-group col-md-6">
               <label for="inputState">Description</label><br><br>
-              <tinymce name="effort" [config]="config1"></tinymce>
+              <tinymce name="effort" name="description" [(ngModel)]="system.internalInterfaces" [config]="config1"></tinymce>
               remaining {{50000 -len}}
             </div>
             </div>
@@ -139,8 +196,8 @@
             <div class="form-row">
              <div class="form-group col-md-6">
                 <label for="inputState">Description</label><br><br>
-                <!-- <tinymce name="effort"  [config]="config1"></tinymce>
-                remaining {{50000 -len}} -->
+                <tinymce name="effort1" [(ngModel)]="system.externalInterfaces" [config]="config2"></tinymce>
+                remaining {{50000 -len2}}
                </div>
                </div>
                </div>
@@ -149,7 +206,7 @@
                <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputState">Physical Location></label><br><br>
-                    <tinymce name="description"  [config]="config"></tinymce>
+                    <tinymce name="description" name="Physical" [(ngModel)]="system.physicalLocation"  [config]="config"></tinymce>
                     remaining {{50000 -len1}}
                   </div>
                   </div>
@@ -167,5 +224,10 @@
        
          </fieldset>
          </div>
+         <div class="buttons" style="margin-right:5%">
+
+            <button type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
+            <button type="button" class="cancel btn btn-primary">Cancel</button>
+          </div>
          </form>
          

@@ -15,6 +15,7 @@ import { DialogService } from '../dialog.service';
 import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { AppAuditPolicyDTO } from 'app/appauditpolicydto';
 @Component({
   selector: 'app-control-name',
   templateUrl: './control-name.component.html',
@@ -41,6 +42,8 @@ export class ControlNameComponent implements OnInit {
   policies: Policy[];
   addNewPolicy: any = [];
   linkedPolicy: Policy;
+   public isEvidenceRequired: string = 'Y';
+  appPolicy: AppAuditPolicyDTO;
   showLink: boolean = true;
   public links: any = [];
   public showBt: boolean = false;
@@ -82,6 +85,8 @@ export class ControlNameComponent implements OnInit {
     this.policyAccess.policyDocumentsDTOs = [] as PolicyDocumentsDTO[];
     this.files = [] as File[];
     this.policies = [];
+    
+    this.appPolicy = new AppAuditPolicyDTO();
     localStorage.removeItem('policyId');
     localStorage.removeItem('subPol');
     localStorage.removeItem('parentPolicyId');
@@ -112,6 +117,18 @@ export class ControlNameComponent implements OnInit {
     UtilService.backClicked = true;
     this._location.back();
     event.preventDefault();
+  }
+
+
+  getRealScore()
+  {
+    let res = this.result*this.scoreN;
+    this.realScore=res;
+
+    if(this.isEvidenceRequired === 'Y') {
+      this.realScore = this.scoreN - 10 > 0 ? this.scoreN - 10 : 0;
+    }
+
   }
 
   getPolicy(id: any) {
@@ -532,7 +549,19 @@ export class ControlNameComponent implements OnInit {
     //this.router.navigate(['/subcontrol'])
     this.router.navigateByUrl(url);
   }
-
+  public scoreN:any;
+  public scoreD:any;
+  public weightageN:any;
+  public weightageD:any;
+  public result:any;
+  public realScore:any;
+  
+  onEvidenceRequiredChange(selected: string) {
+    if (this.scoreN && selected === 'Y') {
+      this.realScore = this.scoreN - 10 > 0 ? this.scoreN - 10 : 0;
+      console.log( this.realScore);
+    }
+  }
 
 
 }

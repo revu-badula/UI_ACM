@@ -72,7 +72,12 @@ export const APP_CONFIG = {
   saveAppSolutionDevices: apiBaseUrl + 'saveAppSolutionDevices',
   getDevices: apiBaseUrl + 'getAppSolution',
   getBusinessOwner: apiBaseUrl + 'getBusinessOwnerNameDoe',
-  getSystemAdministrator: apiBaseUrl + 'getSystemOwnerNameDoe',
+  getSystemAdministrator: apiBaseUrl + 'getSystemAdministrator',
+  getDbAdmin:apiBaseUrl + 'getDbAdmin',
+  getDevelopers:apiBaseUrl + 'getDevelopers',
+  getDataCustodian:apiBaseUrl + 'getDataCustodian',
+  getTesters:apiBaseUrl +'getTesters',
+  getBusinessAnalyst:apiBaseUrl + 'getBusinessAnalyst',
   getDeviceFile: apiBaseUrl + 'getDeviceFile',
   getPolicyDocumentAttch: apiBaseUrl + 'getPolicyDocumentAttch',
   getDatabases: apiBaseUrl + 'getDatabases',
@@ -105,7 +110,8 @@ export const APP_CONFIG = {
   getISO:apiBaseUrl + 'getISO',
   addUser:apiBaseUrl+ 'addUser',
   appAudit: apiBaseUrl + 'appAuidt',
-  getTechnologies:apiBaseUrl + 'getTechnologies'
+  getTechnologies:apiBaseUrl + 'getTechnologies',
+  getTechProjectManager:apiBaseUrl + 'getTechProjectManager'
 }
 
 

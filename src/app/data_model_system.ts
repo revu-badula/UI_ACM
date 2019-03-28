@@ -2,13 +2,25 @@ export class System {
   updatedTime: any;
   acronym: string;
   name: any;
+   attachments:AttachmentDTO[] = [];
   createdBy: any;
+  internalInterfaces:string;
+  externalInterfaces:string;
+  physicalLocation:string;
   updatedBy: any;
   businessOwnerNameDoe: string;
   systemOwnerNameDoe: string;
   systemSensitivity: number;
   applicationId: number;
   systemSensitivityName: string;
+technologiesDTOs:TechnologiesDTO[] = [];
+ developers:ApplicationUserDTO[] = [];
+  testers:ApplicationUserDTO[] = [];
+ appDBAdmins:ApplicationUserDTO[] = [];
+appBusinessAnalysts:ApplicationUserDTO[] = [];
+  appDataCustodians:ApplicationUserDTO[] = [];
+  appSystemAdminsters:ApplicationUserDTO[] = [];
+  appTechnicalManagers:ApplicationUserDTO[] = [];
   businessOwner: any;
   dataOwner: any;
   iso: any;
@@ -20,6 +32,12 @@ export class System {
   estimatedCost:any
 
 
+}
+
+export class AttachmentDTO{
+  fileType:string;
+ fileName:string;
+ content:string;
 }
 export class WorkHours {
   workHoursId: number = 0;
@@ -57,3 +75,14 @@ export class ApplicationUserDTO {
   active: any;
   applicationUserId: any;
 }
+
+export class TechnologiesDTO{
+  
+technologyId: number;
+ name: string;
+technologyVersion: string;
+newEntry:any;
+ active: any;
+
+}
+
