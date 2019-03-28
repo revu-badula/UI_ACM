@@ -82,7 +82,7 @@ export class SystemTechnicalComponent {
     menubar: false,
     statusbar: false
   };
-  constructor(private ref: ChangeDetectorRef,private dialog: DialogService, private httpClient: HttpClient, private _apiservice: ApiserviceService) {
+  constructor(private ref: ChangeDetectorRef,private dialog: DialogService, private httpClient: HttpClient, private _apiservice: ApiserviceService,private modalService: NgbModal) {
     this.getTechnologies();
     this. getTechProjectManager();
     this.getBusinessAnalyst();
@@ -91,6 +91,7 @@ export class SystemTechnicalComponent {
     this.getDevelopers();
     this.getDevelopers();
     this.getDataCustodian();
+    this.applicationUserDTO = new ApplicationUserDTO();
     this.getTesters();
     this.system = new System();
     this.config.init_instance_callback = (editor: any) => {
@@ -388,22 +389,42 @@ export class SystemTechnicalComponent {
       this.title = "Create Technical Managers";
       this.applicationUserDTO.role = "TECHNICAL MANAGER";
     }
-    else if (value === 'projectManager') {
-      this.title = "Create Project Manager";
-      this.applicationUserDTO.role = "PROJECT MANAGER";
-    }
-    else if (value === 'dataOwner') {
-      this.title = "Create Data Owner";
-      this.applicationUserDTO.role = "DATA OWNER";
-    }
-    else if (value === 'iso') {
-      this.title = "Create Information Security officer";
-      this.applicationUserDTO.role = "ISO";
-    }
-    else if (value === 'systemSiteOwner') {
-      this.title = "Create Hosting System Site Owner";
-      this.applicationUserDTO.role = "SYSTEM OWNER";
-    }
+    // else if (value === 'projectManager') {
+    //   this.title = "Create Project Manager";
+    //   this.applicationUserDTO.role = "PROJECT MANAGER";
+    // }
+    // else if (value === 'dataOwner') {
+    //   this.title = "Create Data Owner";
+    //   this.applicationUserDTO.role = "DATA OWNER";
+    // }
+    // else if (value === 'iso') {
+    //   this.title = "Create Information Security officer";
+    //   this.applicationUserDTO.role = "ISO";
+    // }
+    // else if (value === 'systemSiteOwner') {
+    //   this.title = "Create Hosting System Site Owner";
+    //   this.applicationUserDTO.role = "SYSTEM OWNER";
+    // }
+    this.applicationUserDTO.active = true;
+    this.applicationUserDTO.newEntry = true;
+    this.modalService.open(this.addUserC, ngbModalOptions);
+  }
+  
+
+  createUser() {
+    this.loading = true;
+    let url = APP_CONFIG.addUser;
+    this.httpClient.post(url, this.applicationUserDTO)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.dialog.open("Info", "Data has been added.", false, "ok", "ok")
+          .then((result: any) => {
+            this.getBusinessOwner();
+          });
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
   }
 
 

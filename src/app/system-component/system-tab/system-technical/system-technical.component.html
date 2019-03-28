@@ -131,7 +131,7 @@
         <label for="inputState">Technical Manager</label><br><br>
        <select class="form-control" name="manag" [(ngModel)]="system.appTechnicalManagers">
          <option>Choose...</option>
-         <option *ngFor="let User of tech" [ngValue]="User" >{{User.firstName}}{{User.lastName}}</option>
+         <option *ngFor="let User of tech" [ngValue]="User.userId" >{{User.firstName}}{{User.lastName}}</option>
        </select>
        <span class="col-sm-2" (click)="addUser('appTechnicalManagers')"><i class="fa fa-plus-circle"
         aria-hidden="true"></i></span>
