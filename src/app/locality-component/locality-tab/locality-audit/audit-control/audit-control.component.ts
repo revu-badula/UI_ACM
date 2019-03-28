@@ -41,7 +41,8 @@ export class AuditControlComponent implements OnInit {
   public policyTypes: any;
   public yesfile: boolean = false;
   showInitial: boolean = false;
-  public info: any
+  public info: any;
+  public families: any;
   public showEditMode: boolean = false;
   public appAuditId: any;
   myDatePickerOptions: IMyDpOptions = {
@@ -49,6 +50,14 @@ export class AuditControlComponent implements OnInit {
     showTodayBtn: false
 
   };
+  public assignTo: any;
+  public assignOn: any;
+  public scoreN: any;
+  public scoreD: any;
+  public weightageN: any;
+  public weightageD: any;
+  public result: any;
+  public realScore: any;
   appAudit: AppAudit;
   public changeOverallStatus: boolean = false;
 
@@ -85,7 +94,8 @@ export class AuditControlComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
-    private router: Router, private route: ActivatedRoute, public datepipe: DatePipe, private dialogService: DialogService) {
+    private router: Router, public datepipe: DatePipe,
+    private dialogService: DialogService, private httpClient: HttpClient) {
     this.appAudit = new AppAudit();
     this.policyDisplay = new Policy();
     this.policies = [];
@@ -110,10 +120,10 @@ export class AuditControlComponent implements OnInit {
         let d = new Date(data.applicationViewDTO.updatedTime);
         this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
         this.showOnPageLoad();
-        let day = d.getDate();
-        let month = d.getMonth() + 1;
-        let year = d.getFullYear();
-        this.updatedTime = month + "/" + day + "/" + year;
+        // let day = d.getDate();
+        // let month = d.getMonth() + 1;
+        // let year = d.getFullYear();
+        // this.updatedTime = month + "/" + day + "/" + year;
       }, error => {
         this.loading = false;
         console.log(error);
@@ -123,11 +133,11 @@ export class AuditControlComponent implements OnInit {
 
   showOnPageLoad() {
     if (sessionStorage.getItem('appAuditId') === null) {
-      this.myForm.controls['nextDate'].disable();
+      //this.myForm.controls['nextDate'].disable();
     }
     else {
-      UtilService.auditActive = true;
-      sessionStorage.setItem('auditActive', 'true');
+      //UtilService.auditActive = true;
+      //sessionStorage.setItem('auditActive', 'true');
       this.showOriginal = false;
       this.showButton = true;
       this.showInitial = true;
@@ -135,45 +145,91 @@ export class AuditControlComponent implements OnInit {
       this.showEdit = true;
       let id = sessionStorage.getItem('appAuditId');
       let appauid: number = +id;
-      this.editData = this.appAuditDTOs.filter(item => item.appAuditId === appauid);
+      this.getFamilies()
+      // this.editData = this.appAuditDTOs.filter((item: any) => item.appAuditId === appauid);
 
-      for (let i = 0; i < this.editData.length; i++) {
-        this.appAudit = this.editData[i];
-      }
-      this.policies = this.appAudit.auditPolicyDTOs;
-      this.showTable = true;
+      // for (let i = 0; i < this.editData.length; i++) {
+      //   this.appAudit = this.editData[i];
+      // }
+      // this.policies = this.appAudit.auditPolicyDTOs;
+      // this.showTable = true;
       //this.getPolicyName(this.appAudit.auditName)
-      let d = new Date(this.appAudit.auditDate);
+      // let d = new Date(this.appAudit.auditDate);
 
-      let day = d.getDate();
-      let month = d.getMonth() + 1;
-      let year = d.getFullYear();
-      this.vauditDate = month + "/" + day + "/" + year;
-      this.auditDate = { date: { year: year, month: month, day: day } };
+      // let day = d.getDate();
+      // let month = d.getMonth() + 1;
+      // let year = d.getFullYear();
+      // this.vauditDate = month + "/" + day + "/" + year;
+      // this.auditDate = { date: { year: year, month: month, day: day } };
 
-      let d1 = new Date(this.appAudit.nextAuditDate);
+      // let d1 = new Date(this.appAudit.nextAuditDate);
 
-      let day1 = d1.getDate();
-      let month1 = d1.getMonth() + 1;
-      let year1 = d1.getFullYear();
-      this.nextDate = { date: { year: year1, month: month1, day: day1 } };
+      // let day1 = d1.getDate();
+      // let month1 = d1.getMonth() + 1;
+      // let year1 = d1.getFullYear();
+      // this.nextDate = { date: { year: year1, month: month1, day: day1 } };
 
 
-      this.myDatePickerOptions.disableUntil.day = day;
-      this.myDatePickerOptions.disableUntil.month = month;
-      this.myDatePickerOptions.disableUntil.year = year;
-      this.myDatePickerOptions.showTodayBtn = false;
+      // this.myDatePickerOptions.disableUntil.day = day;
+      // this.myDatePickerOptions.disableUntil.month = month;
+      // this.myDatePickerOptions.disableUntil.year = year;
+      // this.myDatePickerOptions.showTodayBtn = false;
 
     }
   }
 
+  getFamilies() {
+    this.loading = true;
+    let url = APP_CONFIG.auditFamilyGroup;
+    let id = sessionStorage.getItem('appAuditId');
+    let appauid: number = +id;
+    this.httpClient.get(url + "?" + "auditId=" + appauid)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.families = data;
+      }, error => {
+        this.loading = false;
+        console.log(error)
+      });
 
-  getPolicyName(auditId) {
+  }
+  getFamily(value: any) {
+
+    if (value === "") {
+
+    }
+    else {
+      let id = sessionStorage.getItem('appAuditId');
+      let appauid: number = +id;
+      let url = APP_CONFIG.getPolicyFamilyDetails;
+      this.loading = true;
+      this.httpClient.get(url + "?" + "auditId=" + appauid + "&" + "familyId=" + value)
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.showTable = true;
+          this.policies = data.auditPolicyDTOs;
+          this.assignTo = data.assignedTo;
+          let d1 = new Date(data.assignedDt);
+
+          let day1 = d1.getDate();
+          let month1 = d1.getMonth() + 1;
+          let year1 = d1.getFullYear();
+          this.assignOn = { date: { year: year1, month: month1, day: day1 } };
+        }, error => {
+          this.loading = false;
+          console.log(error);
+
+        })
+    }
+  }
+
+
+  getPolicyName(auditId: any) {
     this.loading = true;
     this._apiservice.getPolicyGroup(auditId)
       .subscribe((data: any) => {
         this.loading = false;
-        this.policyNameArray = data.filter(item => item.policyGrpId === this.appAudit.policyGrpId);
+        this.policyNameArray = data.filter((item: any) => item.policyGrpId === this.appAudit.policyGrpId);
         for (let i = 0; i < this.policyNameArray.length; i++) {
           this.comparePolicyDTO = this.policyNameArray[i];
           this.polName = this.policyNameArray[i].policyGrpName;
@@ -185,7 +241,7 @@ export class AuditControlComponent implements OnInit {
 
   }
 
-  open(content) {
+  open(content: any) {
     this.errorfile = "";
     this.modalService.open(content);
   }
@@ -209,7 +265,7 @@ export class AuditControlComponent implements OnInit {
 
   }
 
-  selectDefinitive(auditID) {
+  selectDefinitive(auditID: any) {
 
     if (auditID === 'Choose...' || auditID === "") {
       this.definitive = false
@@ -230,7 +286,7 @@ export class AuditControlComponent implements OnInit {
   }
 
 
-  selectType(policy) {
+  selectType(policy: any) {
     if (policy === 'Choose...' || policy === "") {
       this.showTable = false;
 
@@ -252,7 +308,7 @@ export class AuditControlComponent implements OnInit {
     }
   }
 
-  getAuditDate(value) {
+  getAuditDate(value: any) {
 
     this.myForm.controls['nextDate'].disable();
     this.nextDate = null;
@@ -278,7 +334,7 @@ export class AuditControlComponent implements OnInit {
     }
   }
 
-  getDate(value) {
+  getDate(value: any) {
 
     if (value.formatted === "") {
 
@@ -294,7 +350,7 @@ export class AuditControlComponent implements OnInit {
   }
 
 
-  getNextDate(value) {
+  getNextDate(value: any) {
 
     if (value === 'Choose...' || value === "") {
       this.showLegalBox = false;
@@ -309,12 +365,6 @@ export class AuditControlComponent implements OnInit {
 
     }
 
-  }
-
-
-
-  compareDate(d, ddt): boolean {
-    return new Date(ddt) > new Date(d);
   }
 
 
@@ -419,7 +469,7 @@ export class AuditControlComponent implements OnInit {
 
   }
 
-  getFileContent(file) {
+  getFileContent(file: any) {
     return new Promise((resolve, reject) => {
       let reader = new FileReader();
       reader.readAsDataURL(file);
@@ -608,92 +658,45 @@ export class AuditControlComponent implements OnInit {
 
 
 
-  confirm1(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
-    return new Promise<boolean>((resolve, reject) => {
-      swal({
-        title: title,
-        text: text,
-        type: 'warning',
-        showCancelButton: showCancelButton,
-        confirmButtonText: confirmButtonText,
-        cancelButtonText: cancelButtonText,
-        allowOutsideClick: false
-      }).then((result) => {
-        if (result.value !== undefined && result.value) {
-          this.saveAudit();
-          resolve(false);
-        }
-        else {
-          resolve(true);
-        }
-      }, error => reject(error));
-    });
+  // confirm1(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
+  //   return new Promise<boolean>((resolve, reject) => {
+  //     swal({
+  //       title: title,
+  //       text: text,
+  //       type: 'warning',
+  //       showCancelButton: showCancelButton,
+  //       confirmButtonText: confirmButtonText,
+  //       cancelButtonText: cancelButtonText,
+  //       allowOutsideClick: false
+  //     }).then((result) => {
+  //       if (result.value !== undefined && result.value) {
+  //         this.saveAudit();
+  //         resolve(false);
+  //       }
+  //       else {
+  //         resolve(true);
+  //       }
+  //     }, error => reject(error));
+  //   });
+
+  // }
+
+
+
+  getNum() {
 
   }
 
-  public families: any;
 
-  getFamilies(id:any) {
-    this.families = [];
-    this._apiservice.getFamilies(id)
-      .subscribe((data: any) => {
-        // data.forEach(contact => {
-        // this.families.push(contact);
-        // console.log(this.families);
-        //});
-        this.families = data;
-      }, error => { console.log(error) });
 
+
+  getDem() {
+    this.result = this.weightageN / this.weightageD;
   }
 
-  getFamily(value:any) {
-
-    //console.log(value);
-    if (value === "") {
-
-    }
-    // else if (value === "all") {
-    //   this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
-    // }
-    else {
-      this.loading = true;
-      this._apiservice.getPoliciesByFam(value)
-        .subscribe((data: any) => {
-          this.loading = false;
-          this.policies = data;
-          //console.log(data);
-        }, error => {
-          this.loading = false;
-          console.log(error)
-        });
-    }
-  }
-
-  public scoreN:any;
-  public scoreD:any;
-  public weightageN:any;
-  public weightageD:any;
-  public result:any;
-  public realScore:any;
-
-  getNum()
-  {
-
-  }
-
- 
-
-
-  getDem()
-  {
-    this.result=this.weightageN/this.weightageD;
-    console.log(this.result);
-  }
-
-  getRealScore()
-  {
-    let res = this.result*this.scoreN;
-    this.realScore=res;
+  getRealScore() {
+    let res = this.result * this.scoreN;
+    this.realScore = res;
 
   }
 

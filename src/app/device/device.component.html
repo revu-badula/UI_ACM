@@ -35,6 +35,7 @@
         <div class="form-row headerOfBox">
           <h4>Device Information</h4>
         </div>
+        
         <div class=" form-row">
           <div class="form-group col-md-6">
             <label for="hostName">Host Name<font color=red>*</font></label><br><br>
@@ -46,10 +47,18 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-6">
             <label for="responsibleDivision/unitName">Responsible Division/Unit Name<font color=red>*</font></label><br><br>
             <input type="text" class="form-control" [(ngModel)]="serverContact.divisionName" ngModel name="division"
               required>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="hostName">Type of Server<font color=red>*</font></label><br><br>
+           <select class="form-control" id="inputState" name="serverType" required  ngModel (change)="getServerData($event.target.value)" required>
+							<option value="" selected>Choose...</option>
+							<option *ngFor="let serverType of serverTypes" value="{{ serverType.serverTypeId }}">{{ serverType.name }}</option>
+						</select>
           </div>
         </div>
       </div>

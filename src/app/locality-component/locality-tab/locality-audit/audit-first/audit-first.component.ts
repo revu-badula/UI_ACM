@@ -83,7 +83,9 @@ export class AuditFirstComponent implements OnInit {
   public priority: boolean = false;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
-    private router: Router, private route: ActivatedRoute, public datepipe: DatePipe, private dialogService: DialogService) {
+    private router: Router, private route: ActivatedRoute,
+     public datepipe: DatePipe, private dialogService: DialogService,
+     private httpClient:HttpClient) {
     this.appAudit = new AppAudit();
     this.policyDisplay = new Policy();
     this.policies = [];
@@ -133,15 +135,21 @@ export class AuditFirstComponent implements OnInit {
       this.showEdit = true;
       let id = sessionStorage.getItem('appAuditId');
       let appauid: number = +id;
-      this.editData = this.appAuditDTOs.filter(item => item.appAuditId === appauid);
+      // this.editData = this.appAuditDTOs.filter(item => item.appAuditId === appauid);
 
-      for (let i = 0; i < this.editData.length; i++) {
-        this.appAudit = this.editData[i];
-      }
-      this.policies = this.appAudit.auditPolicyDTOs;
-      this.showTable = true;
-      this.getPolicyName(this.appAudit.auditName)
-      let d = new Date(this.appAudit.auditDate);
+      // for (let i = 0; i < this.editData.length; i++) {
+      //   this.appAudit = this.editData[i];
+      // }
+      //this.policies = this.appAudit.auditPolicyDTOs;
+      //this.showTable = true;
+      //this.getPolicyName(this.appAudit.auditName)
+      let url=APP_CONFIG.appAudit;
+      this.loading=true;
+      this.httpClient.get(url+"?"+"auditId="+appauid)
+      .subscribe((data:any)=> {
+        this.loading=false;
+        this.appAudit=data;
+        let d = new Date(this.appAudit.auditDate);
       
       let day = d.getDate();
       let month = d.getMonth() + 1;
@@ -161,16 +169,21 @@ export class AuditFirstComponent implements OnInit {
       this.myDatePickerOptions.disableUntil.month = month;
       this.myDatePickerOptions.disableUntil.year = year;
       this.myDatePickerOptions.showTodayBtn = false;
-
+      this.getPolicyName(this.appAudit.auditName)
+      },error =>{
+        this.loading=false;
+        console.log(error);
+      });
+      
     }
   }
 
-  getPolicyName(auditId) {
+  getPolicyName(auditId:any) {
     this.loading = true;
     this._apiservice.getPolicyGroup(auditId)
       .subscribe((data: any) => {
         this.loading = false;
-        this.policyNameArray = data.filter(item => item.policyGrpId === this.appAudit.policyGrpId);
+        this.policyNameArray = data.filter((item:any) => item.policyGrpId === this.appAudit.policyGrpId);
         for (let i = 0; i < this.policyNameArray.length; i++) {
           this.comparePolicyDTO = this.policyNameArray[i];
           this.polName = this.policyNameArray[i].policyGrpName;
@@ -182,7 +195,7 @@ export class AuditFirstComponent implements OnInit {
 
   }
 
-  open(content) {
+  open(content:any) {
     this.errorfile = "";
     this.modalService.open(content);
   }
@@ -206,7 +219,7 @@ export class AuditFirstComponent implements OnInit {
 
   }
 
-  selectDefinitive(auditID) {
+  selectDefinitive(auditID:any) {
 
     if (auditID === 'Choose...' || auditID === "") {
       this.definitive = false
@@ -238,7 +251,7 @@ export class AuditFirstComponent implements OnInit {
   }
 
 
-  selectType(policy) {
+  selectType(policy:any) {
     if (policy === 'Choose...' || policy === "") {
       this.showTable = false;
       
@@ -263,7 +276,7 @@ export class AuditFirstComponent implements OnInit {
     }
   }
 
-  getAuditDate(value) {
+  getAuditDate(value:any) {
 
     this.myForm.controls['nextDate'].disable();
     this.nextDate = null;
@@ -289,7 +302,7 @@ export class AuditFirstComponent implements OnInit {
     }
   }
 
-  getDate(value) {
+  getDate(value:any) {
 
     if (value.formatted === "") {
       
@@ -305,7 +318,7 @@ export class AuditFirstComponent implements OnInit {
   }
 
 
-  getNextDate(value) {
+  getNextDate(value:any) {
 
     if (value === 'Choose...' || value === "") {
       this.showLegalBox = false;
@@ -320,12 +333,6 @@ export class AuditFirstComponent implements OnInit {
 
     }
 
-  }
-
-
-
-  compareDate(d, ddt): boolean {
-    return new Date(ddt) > new Date(d);
   }
 
 
@@ -430,7 +437,7 @@ export class AuditFirstComponent implements OnInit {
 
   }
 
-  getFileContent(file) {
+  getFileContent(file:any) {
     return new Promise((resolve, reject) => {
       let reader = new FileReader();
       reader.readAsDataURL(file);

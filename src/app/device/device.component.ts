@@ -30,6 +30,7 @@ export class DeviceComponent implements OnInit {
   serverContact: Server;
   serverContact1: Server;
   public startDate: any;
+  public serverTypes: any;
   public test: any;
   public endDate: any;
   isLol: boolean = false;
@@ -66,6 +67,7 @@ export class DeviceComponent implements OnInit {
   ngOnInit() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    this.getServers();
   }
 
   changeForm() {
@@ -76,9 +78,20 @@ export class DeviceComponent implements OnInit {
       this.showForm = false;
     }
   }
+  getServers() {
+    this.loading = true;
+    this._apiservice.getServerTypes()
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.serverTypes = data;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+  }
 
 
-  open(content) {
+  open(content: any) {
     this.modalService.open(content);
   }
 
@@ -86,6 +99,15 @@ export class DeviceComponent implements OnInit {
   editorGroup(): void {
     this.showForm = false;
     this.isLol = true;
+  }
+
+  getServerData(value:any) {
+    if (value == "") {
+      this.device.serverTypeId = null;
+    }
+    else {
+      this.device.serverTypeId = value;
+    }
   }
 
 
@@ -309,8 +331,8 @@ export class DeviceComponent implements OnInit {
 
 }
  /*let d = new Date(this.solution.certDt);
-        this.selectDate = {
-           year: d.getFullYear(),
-          month: d.getMonth() + 1,
-          day: d.getDate()
-        }*/
+     this.selectDate = {
+        year: d.getFullYear(),
+       month: d.getMonth() + 1,
+       day: d.getDate()
+     }*/

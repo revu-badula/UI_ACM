@@ -142,6 +142,11 @@ export class ApiserviceService {
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
+  getServerTypes() {
+    let url = APP_CONFIG.getServerTypes;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+  }
   getPolicyGroup(auditId) {
     let url = APP_CONFIG.getPolicyGroup;
     return this._httpService.get(url + '?' + 'auditTypeId' + '=' + auditId)
