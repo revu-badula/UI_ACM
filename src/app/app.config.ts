@@ -111,7 +111,11 @@ export const APP_CONFIG = {
   addUser:apiBaseUrl+ 'addUser',
   appAudit: apiBaseUrl + 'appAuidt',
   getTechnologies:apiBaseUrl + 'getTechnologies',
-  getTechProjectManager:apiBaseUrl + 'getTechProjectManager'
+  getTechProjectManager:apiBaseUrl + 'getTechProjectManager',
+
+  auditFamilyGroup: apiBaseUrl + 'auditFamilyGroup',
+  getPolicyFamilyDetails: apiBaseUrl + 'getPolicyFamilyDetails',
+  getServerTypes: apiBaseUrl + 'getServerTypes',
 }
 
 
