@@ -1,4 +1,9 @@
-#requestInfo{
-    padding-bottom: 10px;
-    border-bottom: 1px solid black;
-  }
+.formOpt{
+  width:44%;
+}
+
+#spa{
+  float: right;
+    margin-right: 39%;
+    margin-top: -8%;
+}

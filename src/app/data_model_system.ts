@@ -12,9 +12,18 @@ export class System {
   systemOwnerNameDoe: string;
   systemSensitivity: number;
   applicationId: number;
+  programmingLanguages:any;
+  developer:any;da
+  tester:any;
+  systemAdministrator:any;
+  dataCustodian:any;
+  businessAnalyst:any;
+  technicalProjectManager:any;
   systemSensitivityName: string;
 technologiesDTOs:TechnologiesDTO[] = [];
- developers:ApplicationUserDTO[] = [];
+// databaseDTOs:DatabaseDTO[] = []; 
+applicationDatabaseDTOs :ApplicationDatabaseDTO[] = [];
+  developers:ApplicationUserDTO[] = [];
   testers:ApplicationUserDTO[] = [];
  appDBAdmins:ApplicationUserDTO[] = [];
 appBusinessAnalysts:ApplicationUserDTO[] = [];
@@ -86,3 +95,71 @@ newEntry:any;
 
 }
 
+// export class DatabaseDTO{
+//   databaseId: number;
+//         hostName: string;
+//         platform: string;
+//         dbVersion: string;
+//         hardware: string;
+//         updateLevel: string;
+//         addressLength: string;
+//         clockFrequency: string;
+//         memorySize: string;
+//         localDiskSpace: string;
+//         cpuCount: number;
+//         physicalCpuCount: number;
+//         logicalCpuCount: number;
+//         ipAddress: string;
+//         dbServer: string;
+//         serverName: string;
+//         archiveLogMode: string;
+//         sizeGb: string;
+//         purpose: string;
+//         osVersion: string;
+//         createdBy: string;
+//         createdTs: any;
+//         updatedBy: string;
+//         updatedTs: any;
+//         systemTag: string;
+//         newEntry: any;
+//         active: any;
+//         licenseStartDt: any;
+//         licenseEndDt:any;
+//         licenseRenewDt: any;
+//         vendorName: string;
+//         productName: string;
+//         serverContactDTOs:ServerContactDTO;
+//         operatingSystem: string;
+//         controlName: string;
+//         serverTypeId: number;
+//         serverTypeName: string;
+// }
+
+export class ServerContactDTO{
+ serverContactId:number;
+
+firstName:string;
+	 lastName:string;
+	 emailId:string;
+	 phoneNumber:string;
+	isPrimary:any;
+	 divisionName:string;
+	 cost:string;
+	createdBy:string;
+	 createdTs:any;
+	 updatedBy:string;
+	 updatedTs:any;
+}
+
+
+export class ApplicationDatabaseDTO{
+ applicationDatabaseId:number;
+	databaseName:string;
+	administratorName:string;
+	custodian:string;
+
+ databaseId:number;
+//	private UserTbl userTbl;
+	hostName:string;
+	
+}

@@ -61,6 +61,8 @@ import { SystemauditlandingComponent } from './system-tab/system-audit/systemaud
 import { SystemauditcontrolComponent } from './system-tab/system-audit/systemauditcontrol/systemauditcontrol.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxCurrencyModule } from "ngx-currency";
+import { NgSelectModule } from '@ng-select/ng-select';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -73,6 +75,7 @@ import { NgxCurrencyModule } from "ngx-currency";
     ClickOutsideModule,
     NgxCurrencyModule,
     LocalityComponentModule,
+    NgSelectModule,
    // SystemComponentRoutingModule,
    LocalityComponentRoutingModule,
     MyDatePickerModule,

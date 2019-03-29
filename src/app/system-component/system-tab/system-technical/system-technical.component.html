@@ -1,233 +1,329 @@
 <div class="my-container">
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-  </div>
-  <ng-template #user let-c="close" let-d="dismiss">
-      <form #myForm="ngForm">
-        <div class="modal-header">
-          <h4 class="modal-title">{{title}}</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-row">
-            <div class="col-6">
-              FirstName<span class="asterisk">*</span>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="col-md-12">
-              <input type="text" class="form-control" style="width: 100% !important;" ngModel name="firstName"
-                [(ngModel)]="applicationUserDTO.firstName" required>
-            </div>
-          </div>
-    
-          <div class="form-row">
-            <div class="col-6">
-              lastName<span class="asterisk">*</span>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="col-md-12">
-              <input type="text" class="form-control" style="width: 100% !important;" ngModel name="lastName"
-                [(ngModel)]="applicationUserDTO.lastName" required>
-            </div>
-          </div>
-    
-          <div class="form-row">
-            <div class="col-6">
-              Email<span class="asterisk">*</span>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="col-md-12">
-              <input type="text" class="form-control" style="width: 100% !important;" ngModel name="email"
-                [(ngModel)]="applicationUserDTO.emailId" required>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" [disabled]="!myForm.valid" class="btn btn-outline-dark"
-            (click)="createUser();c()">Add</button>
-          <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
-    
-    
-        </div>
-      </form>
-    </ng-template>
-<form #formName="ngForm"  (ngSubmit)="createSystem()" enctype="multipart/form-data">
-
-
-	<div id="form1">
-			<div class="disclaimer"><span style="float:left">Please use this screen to add system information.</span>&nbsp;&nbsp;&nbsp;
-				<span style="float:right">
-					<font color=red>*</font> marked fields are mandatory
-				</span> </div>
-
-		<fieldset [disabled]="editableForm">
-
-				<div class="infoBox">
-						<div class="headerOfBox"><h4>Technical</h4></div>
-   
-   
-            <div class="form-row">
-                <div class="form-group col-md-6">
-        
-                  <label for="inputState">System Acronym <span class="asterisk">*</span></label>
-                  
-                  <input type="text" class="form-control" value="{{acronym}}" name="acronym" required>
-                
-               
-                </div>
-                <div class="form-group col-md-6">
-        
-                  <label for="inputState">System  Name<span class="asterisk">*</span></label>
-                  
-                  <input type="text" class="form-control inputState" value="{{sysName}}"  name="systemName"  required>
-                </div>
-        
-              </div>
-            </div>
-            <div class="infoBox">
-                <div class="headerOfBox"><h4>Technology Current State</h4></div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-        <tinymce name="effort" name="description" [(ngModel)]="system.internalInterfaces" [config]="config3"></tinymce>
-        remaining {{50000 -len3}}
-     
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<ng-template #user let-c="close" let-d="dismiss">
+  <form #myForm="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
     </div>
-  </div>
-            </div>
-  <div class="infoBox">
-      <div class="headerOfBox"><h4>Technologies</h4></div>
-  <p>If you want add a new device.Please click on Add device from left panel</p>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="inputState">Databases(s) </label>
-      <select class="form-control" >
-        <option>Choose...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-6">
-        <label for="inputState">Server(s) </label>
-      <select class="form-control">
-        <option class="form-control">Choose...</option>
-      </select>
-    </div>
-  </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="col-6">
+          FirstName<span class="asterisk">*</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" style="width: 100% !important;" ngModel name="firstName"
+            [(ngModel)]="applicationUserDTO.firstName" required>
+        </div>
+      </div>
 
-  <div class="form-row">
-     <div class="form-group col-md-6">
-        <label for="inputState">Programming Languages</label>
-       <select class="form-control" name="tech" [(ngModel)]="system.technologiesDTOs">
-         <option>Choose...</option>
-         <option *ngFor="let User of tech" [ngValue]="User" >{{User.name}}{{User.technologyVersion}}</option>
-       </select>
-     </div>
-   
-   </div>
-  </div>
-  <div class="infoBox">
-      <div class="headerOfBox"><h4>Resources</h4></div>
-   <div class="form-row">
-     <div class="form-group col-md-6">
-        <label for="inputState">Technical Manager</label>
-       <select class="form-control" name="manag" [(ngModel)]="system.appTechnicalManagers">
-         <option>Choose...</option>
-         <option *ngFor="let User of tech" [ngValue]="User.userId" >{{User.firstName}}{{User.lastName}}</option>
-       </select>
-       <span class="col-sm-2" (click)="addUser('appTechnicalManagers')"><i class="fa fa-plus-circle"
-        aria-hidden="true"></i></span>
-     </div>
-     <div class="form-group col-md-6">
-        <label for="inputState">System Administrator</label>
-         <select class="form-control" >
-           <option>Choose...</option>
-         </select>
-       </div>
-   </div>
-   <div class="form-row">
-       <div class="form-group col-md-6">
-          <label for="inputState">Business Analysis</label>
-         <select class="form-control">
-           <option>Choose...</option>
-         </select>
-       </div>
-       <div class="form-group col-md-6">
-          <label for="inputState">DB Administrator</label>
-           <select class="form-control">
-             <option>Choose...</option>
-           </select>
-         </div>
-     </div>
-     <div class="form-row">
-         <div class="form-group col-md-6">
-            <label for="inputState">Developers</label>
-           <select class="form-control">
-             <option>Choose...</option>
-           </select>
-         </div>
-         <div class="form-group col-md-6">
-            <label for="inputState">Data Custodian</label>
-             <select class="form-control">
-               <option>Choose...</option>
-             </select>
-           </div>
-       </div>
-       <div class="form-row">
-           <div class="form-group col-md-6">
-              <label for="inputState">Testers </label>
-             <select class="form-control">
-               <option>Choose...</option>
-             </select>
-           </div>
-        
-         </div>
-         </div>
-         <div class="infoBox">
-            <div class="headerOfBox">Internal Interfaces</div>
-         <div class="form-row">
+      <div class="form-row">
+        <div class="col-6">
+          lastName<span class="asterisk">*</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" style="width: 100% !important;" ngModel name="lastName"
+            [(ngModel)]="applicationUserDTO.lastName" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-6">
+          Email<span class="asterisk">*</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" style="width: 100% !important;" ngModel name="email"
+            [(ngModel)]="applicationUserDTO.emailId" required>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" [disabled]="!myForm.valid" class="btn btn-outline-dark"
+        (click)="createUser();c()">Add</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+
+
+    </div>
+  </form>
+</ng-template>
+<form #formName="ngForm" (ngSubmit)="createSystem()" enctype="multipart/form-data">
+
+
+  <div id="form1">
+    <div class="disclaimer"><span style="float:left">Please use this screen to add system
+        information.</span>&nbsp;&nbsp;&nbsp;
+      <span style="float:right">
+        <font color=red>*</font> marked fields are mandatory
+      </span> </div>
+
+    <fieldset [disabled]="editableForm">
+
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Technical</h4>
+        </div>
+
+
+        <div class="form-row">
           <div class="form-group col-md-6">
-              <label for="inputState">Description</label>
-              <tinymce name="effort" name="description" [(ngModel)]="system.internalInterfaces" [config]="config1"></tinymce>
-              remaining {{50000 -len}}
-            </div>
-            </div>
-            </div>
-            <div class="infoBox">
-                <div class="headerOfBox">External Interfaces</div>
-            <div class="form-row">
-             <div class="form-group col-md-6">
-                <label for="inputState">Description</label>
-                <tinymce name="effort1" [(ngModel)]="system.externalInterfaces" [config]="config2"></tinymce>
-                remaining {{50000 -len2}}
-               </div>
-               </div>
-               </div>
-               <div class="infoBox">
-                  <div class="headerOfBox">Data Center Details</div>
-               <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputState">Physical Location></label>
-                    <tinymce name="description" name="Physical" [(ngModel)]="system.physicalLocation"  [config]="config"></tinymce>
-                    remaining {{50000 -len1}}
-                  </div>
-                  </div>
-                  </div>
-                  <div class="infoBox">
-                      <div class="headerOfBox">Documents</div>
-                  <input type="file" class="from-group" #myInput name="filename"
-                  accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint"
-                  required>
-                  </div>
-                <br>
-                <p>
-                  <button type="submit" class="btn btn-dark">Upload</button>
-                </p>
-       
-         </fieldset>
-         </div>
-         <div class="buttons" style="margin-right:5%">
 
-            <button type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
-            <button type="button" class="cancel btn btn-primary">Cancel</button>
+            <label for="inputState">System Acronym <span class="asterisk">*</span></label><br><br>
+
+            <input type="text" class="form-control" readonly value="{{acronym}}" name="acronym" required>
+
+
           </div>
-         </form>
-         
+          <div class="form-group col-md-6">
+
+            <label for="inputState">System Name<span class="asterisk">*</span></label><br><br>
+
+            <input type="text" class="form-control inputState" readonly value="{{sysName}}" name="systemName" required>
+          </div>
+
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Technology Current State</h4>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <tinymce name="effort" name="description" [config]="config3"></tinymce>
+            remaining {{50000 -len3}}
+
+          </div>
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Technologies</h4>
+        </div>
+        <p>If you want add a new device.Please click on Add device from left panel</p>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Databases(s) </label><br><br>
+            <!-- <select class="form-control" >
+      <option>Choose...</option>
+      <option *ngFor="let techUser2 of base" [ngValue]="techUser2.databaseId"  >{{techUser2.hostName}}</option>
+    </select> -->
+            <ng-select class="formOpt" [items]="base" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="hostName" placeholder="Choose..." [(ngModel)]="databaseServer" name="databaseServer"
+              (change)="onDatabaseSelection($event)" (open)="checkvalue($event)" (blur)="checkvalue1($event)">
+              <ng-template ng-option-tmp  let-item="item" let-index="index">
+                <div>{{ item.hostName }}</div>
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">Server(s) </label><br><br>
+            <!-- <select class="form-control">
+      <option class="form-control">Choose...</option>
+      <option *ngFor="let techUser1 of app" [ngValue]="techUser1.databaseId"  >{{techUser1.hostName}}</option>
+    </select> -->
+            <!-- <ng-select class="formOpt"
+    [items]="app"
+    [multiple]="true"
+    [closeOnSelect]="false"
+    [searchable]="false"
+    bindLabel="hostName"
+    placeholder="Choose..."
+    [(ngModel)]="system.databaseDTOs" name="databaseDTOs">
+    <ng-template ng-option-tmp let-item="item" let-index="index">
+      <div>{{ item.hostName }}</div>
+  </ng-template>
+  </ng-select> -->
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Programming Languages</label><br><br>
+            <ng-select class="formOpt" [items]="tech" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="name" placeholder="Choose..." [(ngModel)]="system.technologiesDTOs" name="technologiesDTOs">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div>{{ item.name + ' ' + item.technologyVersion }}</div>
+              </ng-template>
+            </ng-select>
+          </div>
+
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Resources</h4>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Technical Manager</label><br><br>
+            <ng-select class="formOpt" [items]="manager" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appTechnicalManagers"
+              name="appTechnicalManagers">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div>{{ item.firstName + ' ' + item.lastName }}</div>
+              </ng-template>
+            </ng-select>
+
+            <span class="col-sm-2" id="spa" (click)="addUser('appTechnicalManagers9')"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i></span>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">System Administrator</label><br><br>
+            <!-- <select class="form-control" name="sys" [(ngModel)]="sysID" (change)="selectSys()" >
+         <option>Choose...</option> 
+         <option *ngFor="let User1 of system1" [ngValue]="User1.userId" >{{User1.firstName}}{{User1.lastName}}</option>
+       </select> -->
+            <ng-select [items]="system1" class="formOpt" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appSystemAdminsters"
+              name="appSystemAdminsters">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div>{{ item.firstName + ' ' + item.lastName }}</div>
+              </ng-template>
+            </ng-select>
+            <span class="col-sm-2" id="spa" (click)="addUser('systemadmin')"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Business Analysis</label><br><br>
+
+            <ng-select [items]="business" class="formOpt" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appBusinessAnalysts"
+              name="appBusinessAnalysts">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div>{{ item.firstName + ' ' + item.lastName }}</div>
+              </ng-template>
+            </ng-select>
+            <!-- <select class="form-control" name="busin" [(ngModel)]="businessID" (change)="selectBusiness()">
+      <option>Choose...</option>
+      <option *ngFor="let User2 of business" [ngValue]="User2.userId" >{{User2.firstName}}{{User2.lastName}}</option>
+    </select> -->
+            <span class="col-sm-2" id="spa" (click)="addUser('businessanalyst')"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i></span>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">DB Administrator</label><br><br>
+            <!-- <select class="form-control" name="db" [(ngModel)]="dbID" (change)="selectDb()" >
+        <option>Choose...</option>
+        <option *ngFor="let User3 of admin" [ngValue]="User3.userId" >{{User3.firstName}}{{User3.lastName}}</option>
+      </select> -->
+            <ng-select [items]="business" class="formOpt" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appDBAdmins" name="appDBAdmins">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div>{{ item.firstName + ' ' + item.lastName }}</div>
+              </ng-template>
+            </ng-select>
+            <span class="col-sm-2" id="spa" (click)="addUser('dbAdministrator')"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Developers</label><br><br>
+            <!-- <select class="form-control" name="develope" [(ngModel)]="developerID" (change)="selectDeveloper()">
+      <option>Choose...</option>
+      <option *ngFor="let User4 of developer" [ngValue]="User4.userId" >{{User4.firstName}}{{User4.lastName}}</option>
+    </select> -->
+            <ng-select [items]="developer" class="formOpt" [multiple]="true" [closeOnSelect]="false"
+              [searchable]="false" bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.developers"
+              name="developers">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div>{{ item.firstName + ' ' + item.lastName }}</div>
+              </ng-template>
+            </ng-select>
+            <span class="col-sm-2" id="spa" (click)="addUser('developer')"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i></span>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">Data Custodian</label><br><br>
+            <!-- <select class="form-control" name="data" [(ngModel)]="dataID" (change)="selectData()">
+        <option>Choose...</option>
+        <option *ngFor="let User5 of data" [ngValue]="User5.userId" >{{User5.firstName}}{{User5.lastName}}</option>
+      </select> -->
+            <ng-select [items]="data" class="formOpt" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appDataCustodians"
+              name="appDataCustodians">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div>{{ item.firstName + ' ' + item.lastName }}</div>
+              </ng-template>
+            </ng-select>
+            <span class="col-sm-2" id="spa" (click)="addUser('datacustodian')"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Testers </label><br><br>
+            <!-- <select class="form-control" name="test" [(ngModel)]="testID" (change)="selectTester()" >
+             <option>Choose...</option>
+             <option *ngFor="let User6 of tester" [ngValue]="User6.userId" >{{User6.firstName}}{{User6.lastName}}</option>
+            </select> -->
+            <ng-select [items]="tester" class="formOpt" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.testers" name="testers">
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div>{{ item.firstName + ' ' + item.lastName }}</div>
+              </ng-template>
+            </ng-select>
+            <span class="col-sm-2" id="spa" (click)="addUser('tester')"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i></span>
+          </div>
+
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="headerOfBox">Internal Interfaces</div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Description</label><br><br>
+            <tinymce name="effort" name="description" [(ngModel)]="system.internalInterfaces" [config]="config1">
+            </tinymce>
+            remaining {{50000 -len}}
+          </div>
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="headerOfBox">External Interfaces</div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Description</label><br><br>
+            <tinymce name="effort1" [(ngModel)]="system.externalInterfaces" [config]="config2"></tinymce>
+            remaining {{50000 -len2}}
+          </div>
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="headerOfBox">Data Center Details</div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputState">Physical Location</label><br><br>
+            <tinymce name="description" name="Physical" [(ngModel)]="system.physicalLocation" [config]="config">
+            </tinymce>
+            remaining {{50000 -len1}}
+          </div>
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="headerOfBox">Documents</div>
+        <input type="file" class="from-group" #myInput name="filename"
+          accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint"
+          required>
+      </div>
+      <br>
+      <p>
+        <button type="submit" class="btn btn-dark">Upload</button>
+      </p>
+
+    </fieldset>
+  </div>
+  <div class="buttons" style="margin-right:5%">
+
+    <button type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
+    <button type="button" class="cancel btn btn-primary">Cancel</button>
+  </div>
+</form>

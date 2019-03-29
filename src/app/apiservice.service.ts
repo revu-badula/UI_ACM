@@ -441,6 +441,11 @@ export class ApiserviceService {
   }
 
 
+  getApplicationServers(){
+    let url = APP_CONFIG.getApplicationServers;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json())
+  }
   getLocOnVendors(vendorId) {
     let url = APP_CONFIG.getLocOnVendors;
     return this._httpService.get(url + '?' + 'vendorId' + '=' + vendorId)
