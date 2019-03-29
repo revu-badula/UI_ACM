@@ -2,51 +2,51 @@ export class System {
   updatedTime: any;
   acronym: string;
   name: any;
-   attachments:AttachmentDTO[] = [];
+  attachments: AttachmentDTO[] = [];
   createdBy: any;
-  internalInterfaces:string;
-  externalInterfaces:string;
-  physicalLocation:string;
+  internalInterfaces: string;
+  externalInterfaces: string;
+  physicalLocation: string;
   updatedBy: any;
   businessOwnerNameDoe: string;
   systemOwnerNameDoe: string;
   systemSensitivity: number;
   applicationId: number;
-  programmingLanguages:any;
-  developer:any;da
-  tester:any;
-  systemAdministrator:any;
-  dataCustodian:any;
-  businessAnalyst:any;
-  technicalProjectManager:any;
+  programmingLanguages: any;
+  developer: any;
+  tester: any;
+  systemAdministrator: any;
+  dataCustodian: any;
+  businessAnalyst: any;
+  technicalProjectManager: any;
   systemSensitivityName: string;
-technologiesDTOs:TechnologiesDTO[] = [];
-// databaseDTOs:DatabaseDTO[] = []; 
-applicationDatabaseDTOs :ApplicationDatabaseDTO[] = [];
-  developers:ApplicationUserDTO[] = [];
-  testers:ApplicationUserDTO[] = [];
- appDBAdmins:ApplicationUserDTO[] = [];
-appBusinessAnalysts:ApplicationUserDTO[] = [];
-  appDataCustodians:ApplicationUserDTO[] = [];
-  appSystemAdminsters:ApplicationUserDTO[] = [];
-  appTechnicalManagers:ApplicationUserDTO[] = [];
+  technologiesDTOs: TechnologiesDTO[] = [];
+  // databaseDTOs:DatabaseDTO[] = []; 
+  applicationDatabaseDTOs: ApplicationDatabaseDTO[] = [];
+  developers: ApplicationUserDTO[] = [];
+  testers: ApplicationUserDTO[] = [];
+  appDBAdmins: ApplicationUserDTO[] = [];
+  appBusinessAnalysts: ApplicationUserDTO[] = [];
+  appDataCustodians: ApplicationUserDTO[] = [];
+  appSystemAdminsters: ApplicationUserDTO[] = [];
+  appTechnicalManagers: ApplicationUserDTO[] = [];
   businessOwner: any;
   dataOwner: any;
   iso: any;
   projectManager: any;
   systemOwner: any;
-  levelOfEffort:any;
-  costType:any;
-  description:any;
-  estimatedCost:any
+  levelOfEffort: any;
+  costType: any;
+  description: any;
+  estimatedCost: any
 
 
 }
 
-export class AttachmentDTO{
-  fileType:string;
- fileName:string;
- content:string;
+export class AttachmentDTO {
+  fileType: string;
+  fileName: string;
+  content: string;
 }
 export class WorkHours {
   workHoursId: number = 0;
@@ -85,13 +85,13 @@ export class ApplicationUserDTO {
   applicationUserId: any;
 }
 
-export class TechnologiesDTO{
-  
-technologyId: number;
- name: string;
-technologyVersion: string;
-newEntry:any;
- active: any;
+export class TechnologiesDTO {
+
+  technologyId: number;
+  name: string;
+  technologyVersion: string;
+  newEntry: any;
+  active: any;
 
 }
 
@@ -135,31 +135,32 @@ newEntry:any;
 //         serverTypeName: string;
 // }
 
-export class ServerContactDTO{
- serverContactId:number;
+export class ServerContactDTO {
+  serverContactId: number;
 
-firstName:string;
-	 lastName:string;
-	 emailId:string;
-	 phoneNumber:string;
-	isPrimary:any;
-	 divisionName:string;
-	 cost:string;
-	createdBy:string;
-	 createdTs:any;
-	 updatedBy:string;
-	 updatedTs:any;
+  firstName: string;
+  lastName: string;
+  emailId: string;
+  phoneNumber: string;
+  isPrimary: any;
+  divisionName: string;
+  cost: string;
+  createdBy: string;
+  createdTs: any;
+  updatedBy: string;
+  updatedTs: any;
 }
 
 
-export class ApplicationDatabaseDTO{
- applicationDatabaseId:number;
-	databaseName:string;
-	administratorName:string;
-	custodian:string;
+export class ApplicationDatabaseDTO {
+  applicationDatabaseId: number;
+  databaseName: string;
+  administratorName: string;
+  custodian: string;
+  newEntry: any;
 
- databaseId:number;
-//	private UserTbl userTbl;
-	hostName:string;
-	
+  databaseId: number;
+  //	private UserTbl userTbl;
+  hostName: string;
+
 }

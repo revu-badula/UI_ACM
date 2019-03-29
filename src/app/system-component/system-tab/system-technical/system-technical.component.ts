@@ -334,32 +334,105 @@ export class SystemTechnicalComponent {
   checkvalue1(value){
     console.log(value);
   }
-  onDatabaseSelection(value:any) {
-    console.log(this.databaseServer);
-    console.log(value);
-    let applicationDto = new ApplicationDatabaseDTO();
-    console.log(value.hostName);
-    applicationDto.hostName=value.hostName;
-    let applicationList: Array<ApplicationDatabaseDTO> = [];
-    applicationList.push(applicationDto);
-    console.log(applicationList);
-    this.system.applicationDatabaseDTOs=applicationList;
-    // console.log(this.databaseServer);
-    // let appliactionDto = new ApplicationDatabaseDTO();
-    // let data = this.databaseServer;
-
-    // appliactionDto.hostName = data.hostName;
-    // let applicationList: Array<ApplicationDatabaseDTO> = [];
-    // applicationList.push(appliactionDto);
-    // this.system.applicationDatabaseDTOs = applicationList;
-    // console.log(this.system.applicationDatabaseDTOs);
+  setTrue(){
+    if(this.system.technologiesDTOs!=null){
+    for(let i=0;i<this.system.technologiesDTOs.length;i++){
+    this.system.technologiesDTOs[i].newEntry=true;
+    }
+  }
   }
 
+  setT(){
+    if(this.system.technologiesDTOs!=null){
+      for(let i=0;i<this.system.technologiesDTOs.length;i++){
+      this.system.technologiesDTOs[i].newEntry=true;
+      }
+    }
+  }
+  setTrue1(){
+    if(this.system.appTechnicalManagers!=null){
+      for(let i=0;i<this.system.appTechnicalManagers.length;i++){
+      this.system.appTechnicalManagers[i].newEntry=true;
+      }
+    }
+  }
+  setTrue2(){
+    if(this.system.appTechnicalManagers!=null){
+      for(let i=0;i<this.system.appSystemAdminsters.length;i++){
+      this.system.appSystemAdminsters[i].newEntry=true;
+      }
+    } 
+  }
+
+setTrue3(){
+  if(this.system.appBusinessAnalysts!=null){
+    for(let i=0;i<this.system.appBusinessAnalysts.length;i++){
+    this.system.appBusinessAnalysts[i].newEntry=true;
+    }
+  } 
+}
+
+setTrue4(){
+  if(this.system.appDBAdmins!=null){
+    for(let i=0;i<this.system.appDBAdmins.length;i++){
+    this.system.appDBAdmins[i].newEntry=true;
+    }
+  } 
+}
+
+setTrue5(){
+  if(this.system.developers!=null){
+    for(let i=0;i<this.system.developers.length;i++){
+    this.system.developers[i].newEntry=true;
+    }
+  } 
+}
+
+setTrue6(){
+  if(this.system.appDataCustodians!=null){
+    for(let i=0;i<this.system.appDataCustodians.length;i++){
+    this.system.appDataCustodians[i].newEntry=true;
+    }
+  } 
+  
+}
+
+setTrue7(){
+  if(this.system.testers!=null){
+    for(let i=0;i<this.system.testers.length;i++){
+    this.system.testers[i].newEntry=true;
+    }
+  } 
+}
+
+onDatabaseSelection(value: any) {
+
+  this.applicationDatabaseDTOs = new ApplicationDatabaseDTO();
+
+  for (let i = 0; i < value.length; i++) {
+    this.applicationDatabaseDTOs.databaseId = value[i].databaseId;
+    this.applicationDatabaseDTOs.hostName = value[i].hostName;
+    this.applicationDatabaseDTOs.newEntry = true;
+  }
+  if (this.system.applicationDatabaseDTOs != undefined && this.system.applicationDatabaseDTOs.length > 0) {
+    this.system.applicationDatabaseDTOs.push(this.applicationDatabaseDTOs);
+  }
+  else {
+    this.system.applicationDatabaseDTOs = [];
+    this.system.applicationDatabaseDTOs.push(this.applicationDatabaseDTOs);
+  }
+
+}
   createSystem() {
     this.system.updatedBy = Cookie.get('userName');
     let url = APP_CONFIG.updateSystem;
     var formData = new FormData();
     formData.append('application', JSON.stringify(this.system));
+    console.log(this.system.technologiesDTOs);
+    console.log(this.system.testers);
+    console.log(this.system.developers);
+    console.log(this.system.appDataCustodians);
+
     this.loading = true;
     this.httpClient.post(url, formData)
       .subscribe((data: any) => {
