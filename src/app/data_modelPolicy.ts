@@ -48,7 +48,7 @@ export class Policy {
 	status: boolean;
 	linked: boolean;
 	subpolicies: any = [];
-	isEvidenceRequired :any;
+	evidenceRequired :any;
 	linkType: string;
 	weightage:any;
 	

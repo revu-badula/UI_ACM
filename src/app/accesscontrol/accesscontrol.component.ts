@@ -209,7 +209,7 @@ export class AccesscontrolComponent implements OnInit {
     }
     this.appPolicy.policyDocumentsDTOs.push(this.policyDocumentDTO);
     this.inputEl.nativeElement.value = "";
-
+    this.onEvidenceRequiredChange();
   }
   deleteFile(id, index) {
     //this.confirm('Are You Sure?', 'delete the file', 'YES', 'NO')
@@ -247,6 +247,7 @@ export class AccesscontrolComponent implements OnInit {
           }
 
         }
+        this.onEvidenceRequiredChange();
       }, error => {
         console.log(error);
       });
@@ -285,11 +286,26 @@ export class AccesscontrolComponent implements OnInit {
 
   }
 
-  onEvidenceRequiredChange(selected: string) {
-    if (this.scoreN && selected === 'Y') {
-      this.realScore = this.scoreN - 10 > 0 ? this.scoreN - 10 : 0;
+  onEvidenceRequiredChange() {
+    if (this.scoreN && this.isEvidenceRequired === 'Y') {
+      if(this.appPolicy.policyDocumentsDTOs.length <= 0 ){
+        this.realScore = this.scoreN - 10 > 0 ? this.scoreN - 10 : 0;
+      }
+      else{
+        this.realScore = this.scoreN;
+      }
+    }
+    else{
+      this.realScore = this.scoreN;
     }
   }
+
+  
+
+
+
+
+
 
 
 }

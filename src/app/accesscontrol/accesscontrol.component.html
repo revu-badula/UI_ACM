@@ -154,43 +154,18 @@
                     <div class="form-row">
 
                         <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
-                            id="patches" [(ngModel)]="appPolicy.description" name="description"
+                            id="patches" [(ngModel)]="appPolicy.auditFindings" name="description"
                             maxlength="50000"> </textarea>
                         <!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
                         <br>
-                        <div *ngIf="description?.errors?.maxlength" style="float:right">
+                        <div *ngIf="auditFindings?.errors?.maxlength" style="float:right">
                             <span style="color:tomato"> Exceeded the character limit. </span>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="infoBox">
-                    <div class="headerOfBox">Antecedence</div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Impact Analysis</label>
-                            <select class="form-control">
-                                <option>Very High</option>
-                                <option>High</option>
-                                <option>Medium</option>
-                                <option>Low</option>
-                                <option>Very Low</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label>Priority</label>
-                            <select class="form-control">
-
-                                <option>High</option>
-                                <option>Medium</option>
-                                <option>Low</option>
-                            </select>
-                        </div>
-
-                    </div>
-                </div>
+            
 
 
                 
@@ -200,8 +175,8 @@
                     </div>
                     <label for="yes_no_radio">Is evidence required?</label>
                     <p>
-                    <input type="radio" value="Y" [(ngModel)]="isEvidenceRequired" (change)="onEvidenceRequiredChange($event.target.value)" name="yes_no" checked />Yes
-                    <input type="radio" value="N" [(ngModel)]="isEvidenceRequired" (change)="onEvidenceRequiredChange($event.target.value)"name="yes_no" />No
+                    <input type="radio" value="Y" [(ngModel)]="appPolicy.evidenceRequired" (change)="onEvidenceRequiredChange($event.target.value)" name="yes_no" readonly />Yes
+                    <input type="radio" value="N" [(ngModel)]="appPolicy.evidenceRequired" (change)="onEvidenceRequiredChange($event.target.value)"name="yes_no" readonly />No
                     </p>
                     <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
     
@@ -235,7 +210,7 @@
                             <div class="row">
                                 <label>Weightage</label>
                                 <div class="col-md-3"><input type="number" name="weightN" class="form-control"
-                                        placeholder=""  [(ngModel)]="appPolicy.weightageN" id="first"></div>
+                                        placeholder=""  [(ngModel)]="appPolicy.weightageN" id="first" readonly></div>
 
                             </div>
                         </div>

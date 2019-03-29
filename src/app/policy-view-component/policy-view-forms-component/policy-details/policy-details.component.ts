@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, TemplateRef, AfterViewInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { PolicyGrp, Policy, PolicyDocumentsDTO, PolicyReviewTerm } from '../../../data_modelPolicy';
+import { familyPOlicyDTO } from '../../../data.model.auditDTO';
 import { ApiserviceService } from '../../../apiservice.service';
 import { IMyDate } from 'mydatepicker';
 import { APP_CONFIG } from '../../../app.config';
@@ -9,6 +10,12 @@ import { UtilService } from '../../../util.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Cookie } from 'ng2-cookies';
+import { DialogService } from '../../../dialog.service';
+
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
+import { Observable, Subject } from 'rxjs';
+
 
 
 @Component({
@@ -30,6 +37,21 @@ export class PolicyDetailsComponent implements OnInit{
   public users: any;
   plus = true;
   public families: any;
+
+
+  public assignTo: any;
+  public assignOn: any;
+  public scoreN: any;
+  public scoreD: any;
+  public weightageN: any;
+  public weightageD: any;
+  public result: any;
+  public realScore: any;
+  
+ 
+  family: familyPOlicyDTO;
+  public changeOverallStatus: boolean = false;
+
   p: number = 1;
   config = {
     placeholder: '',
@@ -70,7 +92,7 @@ export class PolicyDetailsComponent implements OnInit{
   public policyReview: PolicyReviewTerm;
 
   constructor(private modalService: NgbModal, private _apiservice: ApiserviceService, private http: Http,
-    private utilservice: UtilService, private activatedRoute: ActivatedRoute,private router: Router) {
+    private utilservice: UtilService, private activatedRoute: ActivatedRoute,private router: Router,  private dialogService: DialogService, public datepipe: DatePipe,) {
     this.policyDisplay = new PolicyGrp();
     this.policies = [];
     this.policyDocumentsSubmit = new PolicyGrp();
@@ -78,7 +100,7 @@ export class PolicyDetailsComponent implements OnInit{
     this.policyDocumentDTO = [];
     this.files = [] as File[];
     this.policyReview = new PolicyReviewTerm();
-    
+    this.family = new familyPOlicyDTO();
     if(UtilService.review){
       UtilService.review=false;
       this.router.navigate(['policyView/review']);
@@ -114,7 +136,7 @@ export class PolicyDetailsComponent implements OnInit{
     this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
     this.policyDropDownId = UtilService.policyGrpId;
     //this.getFamilies(UtilService.policyGrpId);
-    this.getFamilies(+sessionStorage.getItem("policyGrpId"));
+    this.fetchPolicyFamily(+sessionStorage.getItem("policyGrpId"));
     this.getUsers();
   }
  
@@ -414,15 +436,22 @@ export class PolicyDetailsComponent implements OnInit{
   }
 
 
-  getFamilies(id:any) {
+  fetchPolicyFamily(id:any) {
     this.families = [];
-    this._apiservice.getFamilies(id)
+    this._apiservice.fetchPolicyFamily(id)
       .subscribe((data: any) => {
-        // data.forEach(contact => {
-        // this.families.push(contact);
-        // console.log(this.families);
-        //});
+        
         this.families = data;
+
+        if(data.length > 0)
+        {
+          this.families=[];
+          for(let i=0;i<data.length;i++)
+          {
+            this.families.push(data[i].familyName);
+          }
+        }
+
       }, error => { console.log(error) });
 
   }
@@ -459,12 +488,16 @@ export class PolicyDetailsComponent implements OnInit{
 
   }
 
-  public scoreN:any;
-  public scoreD:any;
-  public weightageN:any;
-  public weightageD:any;
-  public result:any;
-  public realScore:any;
+  getDateAssign(value: any) {
+    if (value.formatted === "") {
+      this.family.assignedDt = null;
+    }
+    else {
+      let d = value.formatted;
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.family.assignedDt = moment(latest_date).format();
+    }
+  }
 
   getNum()
   {
@@ -498,5 +531,40 @@ export class PolicyDetailsComponent implements OnInit{
     }
     
     }
+
+
+
+    overridePolicyFamily() {
+      this.loading = true;
+      let url = APP_CONFIG.overridePolicyFamily;
+      this.family.policyFamilyID = +sessionStorage.getItem('policyFamilyID');
+      let data = JSON.stringify(this.family);
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      this.http.post(url, data, options)
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.dialogService.open("Info", "family has been updated.", false, "OK", "OK");
+        }, error => {
+          this.loading = false;
+          console.log(error);
+        })
+    }
+
+
+    getEvi(value:any)
+    {
+      if(value === 'true')
+      {
+        this.family.evidenceRequired=true;
+      }
+      else if(value === 'false')
+      {
+        this.family.evidenceRequired=false;
+  
+      }
+    }
+  
 
 }

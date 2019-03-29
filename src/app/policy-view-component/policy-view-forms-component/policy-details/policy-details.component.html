@@ -197,41 +197,41 @@
 
 
 
-
+			<br>
 
 			<div class="row">
 				<div class="col-md-3">
 
 					<div class="form-group">
 						<label for="email">Assigned To</label>
-						<select class="form-control"></select>
+						<input type="text" name="assignTo" [(ngModel)]="family.assignedTo">
 					</div>
 				</div>
 
 				<div class="col-md-3">
 					<div class="form-group">
 						<label for="email">Assigned On</label>
-						<my-date-picker class="inputState1"></my-date-picker>
+						<my-date-picker class="inputState1" (dateChanged)="getDateAssign($event)" [(ngModel)]="assignOn" name="assignOn"></my-date-picker>
 					</div>
 				</div>
 
 		
 			
 				<div class="col-md-3">
-					<label>Priority</label>
-					<select class="form-control">
-
-						<option>High</option>
-						<option>Medium</option>
-						<option>Low</option>
-					</select>
+						<label>Priority</label>
+						<select class="form-control" name="priority" (change)="family.priority = $event.target.value" [(ngModel)]="family.priority">
+			  
+						  <option value="high">High</option>
+						  <option value="medium">Medium</option>
+						  <option value="low">Low</option>
+						</select>
 				</div>
 
 				<div class="col-md-3">
 
 					<label>Weightage</label>
-					<div class="col-md-3"><input type="number" name="weightN" class="form-control" 
-							(change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important" maxlength="1" OnlyNumber1="true"
+					<div class="col-md-3"><input type="number" name="Weightage" class="form-control" 
+							(change)="getNum()" [(ngModel)]="family.weightage" id="first" style="width:200% !important" maxlength="1" OnlyNumber1="true"
 							oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" ></div>
 
 				</div>
@@ -241,15 +241,13 @@
 				
 						<label for="yes_no_radio">Is evidence required?</label>
 						<div class="row">
-						<input type="radio" name="yes_no" checked />Yes
-						<input type="radio" name="yes_no" />No
-						<input type="radio" name="yes_no" />Custom
+						<input type="radio" name="yes_no" (click)="getEvi('true')" [(ngModel)]="family.evidenceRequired" checked />Yes
+						<input type="radio" name="yes_no" (click)="getEvi('false')" [(ngModel)]="family.evidenceRequired" />No
+				
 						</div>
-						<br>
-						
-					
+						<br>	
 		</div>
-
+		<button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="overridePolicyFamily()">Submit</button>
 		<br>
 		<br>
 
@@ -262,21 +260,19 @@
 					<th (click)="handleSort2('controlNumber')" scope="col">Control <i class="sorting fa fa-arrow-down"
 							*ngIf="!desc2"></i>
 						<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
+						<th (click)="handleSort2('controlNumber')" scope="col">Family <i class="sorting fa fa-arrow-down"
+							*ngIf="!desc2"></i>
+						<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
 					<th (click)="handleSort3('policyName')" scope="col">Policy <i class="sorting fa fa-arrow-down"
 							*ngIf="!desc3"></i>
 						<i class="sorting fa fa-arrow-up" *ngIf="desc3"></i></th>
 					<th (click)="handleSort4('priority')" scope="col">Priority<i class="second fa fa-arrow-down"
 							*ngIf="!desc4"></i>
 						<i class="second fa fa-arrow-up" *ngIf="desc4"></i></th>
-					<th (click)="handleSort4('priority')" scope="col">Impact Analysis<i class="second fa fa-arrow-down"
-							*ngIf="!desc4"></i>
-						<i class="second fa fa-arrow-up" *ngIf="desc4"></i></th>
-					<th (click)="handleSort4('priority')" scope="col">Score<i class="second fa fa-arrow-down"
-							*ngIf="!desc4"></i>
-						<i class="second fa fa-arrow-up" *ngIf="desc4"></i></th>
-				
-
-
+					<th (click)="handleSort5('priority')" scope="col">Weightage<i class="second fa fa-arrow-down"
+							*ngIf="!desc5"></i>
+						<i class="second fa fa-arrow-up" *ngIf="desc5"></i></th>
+					
 					<th scope="col">Status</th>
 				</tr>
 			</thead>
@@ -286,12 +282,10 @@
 					<td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
 							policy.controlNumber
 							}}</a></td>
+							<td>{{policy.familyName}}</td>
 					<td>{{ policy.policyName }}</td>
 					<td>{{ policy.priority }}</td>
-					<td>Low</td>
-					<td>70/100</td>
-					
-
+					<td>{{policy.weightageN}}</td>
 					<td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
 				</tr>
 			</tbody>

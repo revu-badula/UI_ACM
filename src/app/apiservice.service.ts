@@ -514,4 +514,10 @@ export class ApiserviceService {
   }
 
 
+  fetchPolicyFamily(id){
+    let url = APP_CONFIG.fetchPolicyFamily;
+    return this._httpService.get(url + '?' + 'policyGrpId' + '=' + id)
+      .map(res => <Response>res.json());
+  }
+
 }

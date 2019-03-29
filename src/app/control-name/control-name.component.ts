@@ -108,6 +108,19 @@ export class ControlNameComponent implements OnInit {
 
   }
 
+  getEvi(value:any)
+  {
+    if(value === 'true')
+    {
+      this.policyAccess.evidenceRequired=true;
+    }
+    else if(value === 'false')
+    {
+      this.policyAccess.evidenceRequired=false;
+
+    }
+  }
+
   backClicked() {
     UtilService.backClicked = true;
     this._location.back();

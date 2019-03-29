@@ -29,7 +29,8 @@ export class AppAuditPolicyDTO {
 	policyDocumentsDTOs:any;
 	weightageN:any;
     scoreN:any;
-    netScoreN:any
+	netScoreN:any;
+	auditFindings:any;
 	
 
 
