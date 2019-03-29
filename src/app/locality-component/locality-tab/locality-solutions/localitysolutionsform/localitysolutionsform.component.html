@@ -44,18 +44,18 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 
-						<label for="inputState">Name</label><br><br>
+						<label for="inputState">Name</label>
 						<input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
 					</div>
 					<div class="form-group col-md-6">
-						<label for="lastName"> Updated By</label><br><br>
+						<label for="lastName"> Updated By</label>
 						<input type="text" class="form-control" value={{updatedBy}} id="lastName" readonly="readonly">
 					</div>
 				</div>
 				<div class="form-row">
 				
 					<div class="form-group col-md-6">
-						<label for="Updated Date"> Updated Date</label><br><br>
+						<label for="Updated Date"> Updated Date</label>
 						<input type="text" class="form-control" id="updatedAt" value="{{updatedTime}}" readonly>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="modelSolution">Precinct Type<span class="asterisk">*</span></label><br><br>
+							<label for="modelSolution">Precinct Type<span class="asterisk">*</span></label>
 							<input type="text" [(ngModel)]="applicationSolution.solutionsDTO.precinctTypeName" class="form-control" *ngIf="!isAddNewSolution"
 							 name="name" required readonly>
 							<select id="modelSolution" style="width:50%;" [(ngModel)]="applicationSolution.solutionsDTO.precinctTypeId" *ngIf="isAddNewSolution"
@@ -80,7 +80,7 @@
 						</div>
 
 						<div class="form-group col-md-6">
-							<label for="modelSolution">System Type<span class="asterisk">*</span></label><br><br>
+							<label for="modelSolution">System Type<span class="asterisk">*</span></label>
 							<input type="text" class="form-control" name="system" *ngIf="!isAddNewSolution" [(ngModel)]="applicationSolution.solutionsDTO.systemTypeDTO.name"
 							 name="system" required readonly>
 							<select id="modelSolution" style="width:50%;" [(ngModel)]="applicationSolution.solutionsDTO.systemTypeDTO.systemTypeId" *ngIf="isAddNewSolution"
@@ -95,7 +95,7 @@
 					<div>
 						<div class="form-row">
 							<div class="form-group col-6">
-								<label for="lastName">Model/Solution<span class="asterisk">*</span></label><br><br>
+								<label for="lastName">Model/Solution<span class="asterisk">*</span></label>
 								<input type="text" class="form-control" *ngIf="!isAddNewSolution" ngModel name="modelSname" [(ngModel)]="applicationSolution.solutionsDTO.name"
 								 required readonly>
 								<select *ngIf="isAddNewSolution" style="width:50%;" [(ngModel)]="applicationSolution.solutionsDTO.solutionId" id="inputState"
@@ -111,25 +111,25 @@
 						<div *ngIf="showInnerForm">
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="lastName">Version<span class="asterisk">*</span></label><br><br>
+									<label for="lastName">Version<span class="asterisk">*</span></label>
 									<input type="text" class="form-control" ngModel name="versionNumber" required [(ngModel)]="applicationSolution.solutionsDTO.versionNumber"
 									 readonly>
 								</div>
 
 								<div class="form-group col-md-6">
-									<label for="lastName">Equipment Type<span class="asterisk">*</span></label><br><br>
+									<label for="lastName">Equipment Type<span class="asterisk">*</span></label>
 									 <input type="text" class="form-control" ngModel name="solutionTypeName" required
 									 [(ngModel)]="applicationSolution.solutionsDTO.solutionTypeName" readonly>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="lastName">Vendor<span class="asterisk">*</span></label><br><br>
+									<label for="lastName">Vendor<span class="asterisk">*</span></label>
 									<input type="text" class="form-control" ngModel name="vendors" required
 									 [(ngModel)]="applicationSolution.solutionsDTO.vendor.name" readonly>
 								</div>
 								<div class="form-group col-md-6">
-									<label for="lastName">Hosting Type<span class="asterisk">*</span></label><br><br>
+									<label for="lastName">Hosting Type<span class="asterisk">*</span></label>
 									<input type="text" class="form-control" name="hostingTypeId" required [(ngModel)]="hostType" readonly>
 
 
@@ -138,7 +138,7 @@
 							</div>
 							<div class="form-row" *ngIf="isVisible">
 								<div class="form-group col-md-12">
-									<label for="units">Add Unit</label><br><br>
+									<label for="units">Add Unit</label>
 									<div class="plus" *ngIf="showPlus && archive">
 										<i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="open1()"></i>
 

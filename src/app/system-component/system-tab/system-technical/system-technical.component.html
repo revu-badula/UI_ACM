@@ -70,7 +70,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
         
-                  <label for="inputState">System Acronym <span class="asterisk">*</span></label><br><br>
+                  <label for="inputState">System Acronym <span class="asterisk">*</span></label>
                   
                   <input type="text" class="form-control" value="{{acronym}}" name="acronym" required>
                 
@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group col-md-6">
         
-                  <label for="inputState">System  Name<span class="asterisk">*</span></label><br><br>
+                  <label for="inputState">System  Name<span class="asterisk">*</span></label>
                   
                   <input type="text" class="form-control inputState" value="{{sysName}}"  name="systemName"  required>
                 </div>
@@ -100,13 +100,13 @@
   <p>If you want add a new device.Please click on Add device from left panel</p>
   <div class="form-row">
     <div class="form-group col-md-6">
-        <label for="inputState">Databases(s) </label><br><br>
+        <label for="inputState">Databases(s) </label>
       <select class="form-control" >
         <option>Choose...</option>
       </select>
     </div>
     <div class="form-group col-md-6">
-        <label for="inputState">Server(s) </label><br><br>
+        <label for="inputState">Server(s) </label>
       <select class="form-control">
         <option class="form-control">Choose...</option>
       </select>
@@ -115,7 +115,7 @@
 
   <div class="form-row">
      <div class="form-group col-md-6">
-        <label for="inputState">Programming Languages</label><br><br>
+        <label for="inputState">Programming Languages</label>
        <select class="form-control" name="tech" [(ngModel)]="system.technologiesDTOs">
          <option>Choose...</option>
          <option *ngFor="let User of tech" [ngValue]="User" >{{User.name}}{{User.technologyVersion}}</option>
@@ -128,7 +128,7 @@
       <div class="headerOfBox"><h4>Resources</h4></div>
    <div class="form-row">
      <div class="form-group col-md-6">
-        <label for="inputState">Technical Manager</label><br><br>
+        <label for="inputState">Technical Manager</label>
        <select class="form-control" name="manag" [(ngModel)]="system.appTechnicalManagers">
          <option>Choose...</option>
          <option *ngFor="let User of tech" [ngValue]="User.userId" >{{User.firstName}}{{User.lastName}}</option>
@@ -137,7 +137,7 @@
         aria-hidden="true"></i></span>
      </div>
      <div class="form-group col-md-6">
-        <label for="inputState">System Administrator</label><br><br>
+        <label for="inputState">System Administrator</label>
          <select class="form-control" >
            <option>Choose...</option>
          </select>
@@ -145,13 +145,13 @@
    </div>
    <div class="form-row">
        <div class="form-group col-md-6">
-          <label for="inputState">Business Analysis</label><br><br>
+          <label for="inputState">Business Analysis</label>
          <select class="form-control">
            <option>Choose...</option>
          </select>
        </div>
        <div class="form-group col-md-6">
-          <label for="inputState">DB Administrator</label><br><br>
+          <label for="inputState">DB Administrator</label>
            <select class="form-control">
              <option>Choose...</option>
            </select>
@@ -159,13 +159,13 @@
      </div>
      <div class="form-row">
          <div class="form-group col-md-6">
-            <label for="inputState">Developers</label><br><br>
+            <label for="inputState">Developers</label>
            <select class="form-control">
              <option>Choose...</option>
            </select>
          </div>
          <div class="form-group col-md-6">
-            <label for="inputState">Data Custodian</label><br><br>
+            <label for="inputState">Data Custodian</label>
              <select class="form-control">
                <option>Choose...</option>
              </select>
@@ -173,7 +173,7 @@
        </div>
        <div class="form-row">
            <div class="form-group col-md-6">
-              <label for="inputState">Testers </label><br><br>
+              <label for="inputState">Testers </label>
              <select class="form-control">
                <option>Choose...</option>
              </select>
@@ -185,7 +185,7 @@
             <div class="headerOfBox">Internal Interfaces</div>
          <div class="form-row">
           <div class="form-group col-md-6">
-              <label for="inputState">Description</label><br><br>
+              <label for="inputState">Description</label>
               <tinymce name="effort" name="description" [(ngModel)]="system.internalInterfaces" [config]="config1"></tinymce>
               remaining {{50000 -len}}
             </div>
@@ -195,7 +195,7 @@
                 <div class="headerOfBox">External Interfaces</div>
             <div class="form-row">
              <div class="form-group col-md-6">
-                <label for="inputState">Description</label><br><br>
+                <label for="inputState">Description</label>
                 <tinymce name="effort1" [(ngModel)]="system.externalInterfaces" [config]="config2"></tinymce>
                 remaining {{50000 -len2}}
                </div>
@@ -205,7 +205,7 @@
                   <div class="headerOfBox">Data Center Details</div>
                <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputState">Physical Location></label><br><br>
+                    <label for="inputState">Physical Location></label>
                     <tinymce name="description" name="Physical" [(ngModel)]="system.physicalLocation"  [config]="config"></tinymce>
                     remaining {{50000 -len1}}
                   </div>

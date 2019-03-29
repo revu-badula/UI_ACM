@@ -77,3 +77,25 @@ export class AppAuditFileDTO {
   createdBy: string;
   createdTs: any;
 }
+
+export class familyPOlicyDTO{
+
+
+  assignedDt: any;
+	startDate: any;
+	endDate: any;
+
+	priority: any;
+	weightage: any;
+	score: any;
+	createdBy: any;
+	createdTs: any;
+  updatedBy: any;
+	 updatedTs: any;
+	policyFamilyID: any;
+	 familyName: any;
+  assignedTo: any;
+	appAuditId: any;
+	
+
+}

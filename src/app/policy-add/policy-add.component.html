@@ -37,13 +37,13 @@
 				</div>
 				<div class=" form-row">
 					<div class="form-group col-md-6">
-						<label for="familyName">Family Name<span class="asterisk">*</span></label><br><br>
+						<label for="familyName">Family Name<span class="asterisk">*</span></label>
 						<input type="text" class="form-control" id="familyName" ngModel name="familyName"
 							[(ngModel)]="policyPost.familyName" [name]="'family_name'" required>
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="assignTo">Assign To</label><br><br>
+						<label for="assignTo">Assign To</label>
 						<!-- <input type="text" class="form-control" id="assignTo" [(ngModel)]="policyPost.assignedTo" [name]="'assi_to'"> -->
 						<select name="assignTo" style="width:50%;" [(ngModel)]="policyPost.assignedTo"
 							class="form-control" id="searchUsers" (change)="policyPost.assignedTo=$event.target.value">
@@ -55,12 +55,12 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="endDate">End Date</label><br><br>
+						<label for="endDate">End Date</label>
 						<my-date-picker name="myname" class="inputState1" [(ngModel)]="endDate"
 							(dateChanged)="getEndDate($event)"></my-date-picker>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="status">Status<span class="asterisk">*</span></label><br><br>
+						<label for="status">Status<span class="asterisk">*</span></label>
 						<select class="form-control" id="status" name="status" ngModel
 							(change)="policyPost.status = $event.target.value" required>
 							<option value="">Choose</option>
@@ -78,18 +78,18 @@
 
 				<div class=" form-row">
 					<div class="form-group col-md-6">
-						<label for="controlNumber">Control Number<span class="asterisk">*</span></label><br><br>
+						<label for="controlNumber">Control Number<span class="asterisk">*</span></label>
 						<input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
 							[(ngModel)]="policyPost.controlNumber" [name]="'control_number'" required>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="controlName">Control Name<span class="asterisk">*</span></label><br><br>
+						<label for="controlName">Control Name<span class="asterisk">*</span></label>
 						<input type="text" class="form-control" id="controlName" [(ngModel)]="policyPost.classType"
 							[name]="'class_type'" required>
 					</div>
 				</div>
 				<div class="form-row">
-					<label for="description">Description</label><br><br>
+					<label for="description">Description</label>
 					<textarea cols="156" [ngxSummernote]="config" rows="7" id="patches"
 						[(ngModel)]="policyPost.description" [name]="'policy_description'" maxlength="50000"
 						#description="ngModel"> </textarea>
@@ -102,7 +102,7 @@
 				</div>
 				<div class=" form-row">
 					<div class="form-group col-md-6">
-						<label for="policyValue">Policy Value<span class="asterisk">*</span></label><br><br>
+						<label for="policyValue">Policy Value<span class="asterisk">*</span></label>
 						<input type="text" class="form-control" id="policyValue" ngModel name="policyValue"
 							[(ngModel)]="policyPost.policyVal" [name]="'policy_val'" required>
 					</div>
@@ -114,7 +114,7 @@
 					<h4>Procedures<span class="asterisk">*</span></h4>
 				</div>
 				<div class="form-row">
-					<label>Procedures</label><br><br>
+					<label>Procedures</label>
 					<textarea cols="156" [ngxSummernote]="config" rows="7" id="patches" ngModel name="policyProcedures"
 						[(ngModel)]="policyPost.procedures" [name]="'policy_procedures'" maxlength="50000" required
 						#procedures="ngModel"> </textarea>
@@ -150,7 +150,7 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="priority">Priority<span class="asterisk">*</span></label><br><br>
+						<label for="priority">Priority<span class="asterisk">*</span></label>
 						<select class="form-control" name="priority" ngModel id="priority"
 							(change)="policyPost.priority = $event.target.value" required>
 							<option value="">Choose</option>
@@ -160,7 +160,7 @@
 						</select>
 					</div>
 					<!-- <div class="form-group col-md-6">
-					<label for="policyAndProcedure" style="line-height: 1em;">Control Number (Policy and Procedure)</label><br><br>
+					<label for="policyAndProcedure" style="line-height: 1em;">Control Number (Policy and Procedure)</label>
 					<input type="text" class="form-control" id="policyAndProcedure">
 				</div> -->
 				</div>

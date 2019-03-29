@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
-import { AppAudit, Policy } from '../../../../data.model.auditDTO';
+import { AppAudit, Policy, familyPOlicyDTO } from '../../../../data.model.auditDTO';
 import { UtilService } from '../../../../util.service';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { APP_CONFIG } from '../../../../app.config';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { FilterPipeDate } from '../../../locality-date-filter';
 import { FilterAuditName } from '../../../locality-auditname-filter';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -59,6 +59,7 @@ export class AuditControlComponent implements OnInit {
   public result: any;
   public realScore: any;
   appAudit: AppAudit;
+  family: familyPOlicyDTO;
   public changeOverallStatus: boolean = false;
 
   appId: any;
@@ -98,6 +99,7 @@ export class AuditControlComponent implements OnInit {
     private dialogService: DialogService, private httpClient: HttpClient) {
     this.appAudit = new AppAudit();
     this.policyDisplay = new Policy();
+    this.family = new familyPOlicyDTO();
     this.policies = [];
     this.getAppId();
 
@@ -203,18 +205,25 @@ export class AuditControlComponent implements OnInit {
       let appauid: number = +id;
       let url = APP_CONFIG.getPolicyFamilyDetails;
       this.loading = true;
+      
       this.httpClient.get(url + "?" + "auditId=" + appauid + "&" + "familyId=" + value)
         .subscribe((data: any) => {
           this.loading = false;
           this.showTable = true;
           this.policies = data.auditPolicyDTOs;
-          this.assignTo = data.assignedTo;
-          let d1 = new Date(data.assignedDt);
-
-          let day1 = d1.getDate();
-          let month1 = d1.getMonth() + 1;
-          let year1 = d1.getFullYear();
-          this.assignOn = { date: { year: year1, month: month1, day: day1 } };
+          // this.assignTo = data.assignedTo;
+          this.family = data;
+          this.family.policyFamilyID=+value;
+          if (data.assignedDt != undefined && data.assignedDt != null) {
+            let d1 = new Date(data.assignedDt);
+            let day1 = d1.getDate();
+            let month1 = d1.getMonth() + 1;
+            let year1 = d1.getFullYear();
+            this.assignOn = { date: { year: year1, month: month1, day: day1 } };
+          }
+          else {
+            this.assignOn = null;
+          }
         }, error => {
           this.loading = false;
           console.log(error);
@@ -222,6 +231,36 @@ export class AuditControlComponent implements OnInit {
         })
     }
   }
+
+  getDateAssign(value: any) {
+    if (value.formatted === "") {
+      this.family.assignedDt = null;
+    }
+    else {
+      let d = value.formatted;
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.family.assignedDt = moment(latest_date).format();
+    }
+  }
+
+  postFamilyPolicy() {
+    this.loading = true;
+    let url = APP_CONFIG.familyOverride;
+    this.family.appAuditId = +sessionStorage.getItem('appAuditId');
+    let data = JSON.stringify(this.family);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    this.http.post(url, data, options)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.dialogService.open("Info", "family has been updated.", false, "OK", "OK");
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
+  }
+
 
 
   getPolicyName(auditId: any) {
@@ -658,28 +697,8 @@ export class AuditControlComponent implements OnInit {
 
 
 
-  // confirm1(title = 'Are you sure?', text, confirmButtonText, cancelButtonText, showCancelButton = true) {
-  //   return new Promise<boolean>((resolve, reject) => {
-  //     swal({
-  //       title: title,
-  //       text: text,
-  //       type: 'warning',
-  //       showCancelButton: showCancelButton,
-  //       confirmButtonText: confirmButtonText,
-  //       cancelButtonText: cancelButtonText,
-  //       allowOutsideClick: false
-  //     }).then((result) => {
-  //       if (result.value !== undefined && result.value) {
-  //         this.saveAudit();
-  //         resolve(false);
-  //       }
-  //       else {
-  //         resolve(true);
-  //       }
-  //     }, error => reject(error));
-  //   });
 
-  // }
+
 
 
 

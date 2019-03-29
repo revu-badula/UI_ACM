@@ -20,7 +20,7 @@
     <div class="form-row">
       <div class="col-md-12">
         <form #myFileForm="ngForm">
-          <label class="input">Attachment</label><br><br>
+          <label class="input">Attachment</label>
           <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File"
             accept=".pdf,.doc,.docx" #fileInput (change)="getFile($event)" required>
 

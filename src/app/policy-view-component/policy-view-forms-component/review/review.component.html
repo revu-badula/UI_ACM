@@ -111,19 +111,19 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="definitiveSource">Definitive Source</label><br><br>
+					<label for="definitiveSource">Definitive Source</label>
 					<input type="text" id="definitiveSource" class="form-control"
 						[(ngModel)]="reviewDTO.definitiveSourceName" [name]="'definitive_source'" readonly>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="typePolicy">Type/Policy</label><br><br>
+					<label for="typePolicy">Type/Policy</label>
 					<input type="text" id="typePolicy" class="form-control" [(ngModel)]="reviewDTO.policyGrpName"
 						[name]="'policy_grpName'" readonly>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="status">Status</label><br><br>
+					<label for="status">Status</label>
 					<!-- <input type="text" id="status" class="form-control" [ngModel]="reviewDTO.status" [name]="'review_status'"> -->
 					<select class="form-control" style="width:50%;" ngModel name="status" [(ngModel)]="reviewDTO.status"
 						(change)="reviewDTO.status = $event.target.value" required>
@@ -133,7 +133,7 @@
 					</select>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="dueDate">Due Date</label><br><br>
+					<label for="dueDate">Due Date</label>
 					<my-date-picker name="myname" [disabled]="true" class="inputState1" [(ngModel)]="dueDate">
 					</my-date-picker>
 				</div>
@@ -194,7 +194,7 @@
 			<h4>Policy Details</h4>
 			<div class=" form-row">
 				<div class="form-group col-md-6">
-					<label for="familyName">Family Name</label><br><br>
+					<label for="familyName">Family Name</label>
 					<input type="text" class="form-control" id="familyName" ngModel name="familyName"
 						[(ngModel)]="policyAccess.familyName" [name]="'family_name'">
 				</div>
@@ -203,19 +203,19 @@
 			<h4>Policy Information</h4>
 			<div class=" form-row">
 				<div class="form-group col-md-6">
-					<label for="controlNumber">Control Number</label><br><br>
+					<label for="controlNumber">Control Number</label>
 					<div class="asterisk">*</div>
 					<input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
 						[(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" required>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="controlName">Control Name</label><br><br>
+					<label for="controlName">Control Name</label>
 					<div class="asterisk">*</div>
 					<input type="text" class="form-control" id="controlName" ngModel name="controlName"
 						[(ngModel)]="policyAccess.classType" [name]="'class_type'" required>
 				</div>
 			</div>
-			<label for="description">Description</label><br><br>
+			<label for="description">Description</label>
 			<p *ngIf="showForm">{{ policyAccess.description }}</p>
 			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.description"
 				[name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea>
@@ -226,7 +226,7 @@
 			</div>
 			<div class=" form-row">
 				<div class="form-group col-md-6">
-					<label for="policyValue">Policy Value</label><br><br>
+					<label for="policyValue">Policy Value</label>
 					<div class="asterisk">*</div>
 					<input type="text" class="form-control" id="policyValue" ngModel name="policyValue"
 						[(ngModel)]="policyAccess.policyVal" [name]="'policy_val'" required>
@@ -234,7 +234,7 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="procedures">Procedures</label><br><br>
+					<label for="procedures">Procedures</label>
 					<div class="asterisk">*</div>
 					<p *ngIf="showForm">{{ policyAccess.procedures }}</p>
 					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.procedures"
@@ -248,7 +248,7 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="guidelines">Guidelines</label><br><br>
+					<label for="guidelines">Guidelines</label>
 					<p *ngIf="showForm">{{ policyAccess.guidelines }}</p>
 					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.guidelines"
 						[name]="'policy_guidelines'" maxlength="50000" #guidelines="ngModel"> </textarea>
@@ -261,7 +261,7 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="priority">Priority</label><br><br>
+					<label for="priority">Priority</label>
 					<div class="asterisk">*</div>
 					<select class="form-control" id="priority" *ngIf="showForm">
 						<option>{{ policyAccess.priority }}</option>
@@ -274,52 +274,52 @@
 					</select>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="policyAndProcedure">Control Number (Policy and Procedure)</label><br><br>
+					<label for="policyAndProcedure">Control Number (Policy and Procedure)</label>
 					<input type="text" class="form-control" id="policyAndProcedure">
 				</div>
 			</div>
 			<!-- <div class="form-row">
     	<div class="form-group col-md-6">
-            <label for="policyAndProcedure">Control Number (Policy and Procedure)</label><br><br>
+            <label for="policyAndProcedure">Control Number (Policy and Procedure)</label>
               <input type="text" class="form-control" id="policyAndProcedure">
             	</div>
     </div> -->
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="informationSystemDesignDocument">Information System Design Document</label><br><br>
+					<label for="informationSystemDesignDocument">Information System Design Document</label>
 					<input type="text" class="form-control" id="informationSystemDesignDocument">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="securityPlan">Security Plan</label><br><br>
+					<label for="securityPlan">Security Plan</label>
 					<input type="text" class="form-control" id="securityPlan">
 				</div>
 			</div>
 			<!--  <div class="form-row">
     	<div class="form-group col-md-6">
-            <label for="securityPlan">Security Plan</label><br><br>
+            <label for="securityPlan">Security Plan</label>
               <input type="text" class="form-control" id="securityPlan">
             	</div>
     </div> -->
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="informationSystemConfigurationSettings">Information System Configuration
-						Settings</label><br><br>
+						Settings</label>
 					<input type="text" class="form-control" id="informationSystemConfigurationSettings">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="configurationBaseline">Configuration Baseline</label><br><br>
+					<label for="configurationBaseline">Configuration Baseline</label>
 					<input type="text" class="form-control" id="configurationBaseline">
 				</div>
 			</div>
 			<!-- <div class="form-row">
     	<div class="form-group col-md-6">
-            <label for="configurationBaseline">Configuration Baseline</label><br><br>
+            <label for="configurationBaseline">Configuration Baseline</label>
               <input type="text" class="form-control" id="configurationBaseline">
             	</div>
     </div> -->
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="auditRecords">Audit Records</label><br><br>
+					<label for="auditRecords">Audit Records</label>
 					<input type="text" class="form-control" id="auditRecords">
 				</div>
 			</div>
@@ -343,7 +343,7 @@
 			<!-- <a routerLink="/linkedPolicies/{{ policyAccess.policyId }}"><button class="policy-links btn btn-primary">Add Policy Links</button></a> -->
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="internalPolicyLinks">Internal Policy Links</label><br><br>
+					<label for="internalPolicyLinks">Internal Policy Links</label>
 					<div class="display-file">
 						<table>
 							<tbody>
@@ -363,27 +363,27 @@
 					</div>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="externalPolicyLinks">External Policy Links</label><br><br>
+					<label for="externalPolicyLinks">External Policy Links</label>
 				</div>
 			</div>
 			<!-- <div class="form-row">
 		<div class="form-group col-md-6">
-            <label for="externalPolicyLinks">External Policy Links</label><br><br>
+            <label for="externalPolicyLinks">External Policy Links</label>
               <input type="text" class="form-control" id="externalPolicyLinks">
             	</div>
 	</div> -->
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="assignTo">Assign To</label><br><br>
+					<label for="assignTo">Assign To</label>
 					<input type="text" class="form-control" id="assignTo" [(ngModel)]="policyAccess.assignedTo"
 						[name]="'assi_to'">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="endDate">End Date</label><br><br>
+					<label for="endDate">End Date</label>
 					<my-date-picker name="myname" [(ngModel)]="endDate" [selDate]="displayEndDate"></my-date-picker>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="status">Status</label><br><br>
+					<label for="status">Status</label>
 					<select class="form-control" id="status" *ngIf="showForm">
 						<option>{{ policyAccess.status }}</option>
 					</select>

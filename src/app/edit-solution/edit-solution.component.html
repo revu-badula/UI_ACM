@@ -53,13 +53,13 @@
 						<div class="form-group col-md-6">
 							<label class="label-form" for="modelSolution"><b>Model/Solution</b><span
 									class="asterisk">*</span>
-							</label><br><br>
+							</label>
 							<input type="text" class="form-control" id="modelSolution" ngModel name="modelSolution"
 								[(ngModel)]="solution.name" readonly>
 						</div>
 						<div class="form-group col-md-6">
 							<label class="label-form" for="version"><b>Version</b><span class="asterisk">*</span>
-							</label><br><br> <input type="text" class="form-control" id="version" ngModel name="version"
+							</label> <input type="text" class="form-control" id="version" ngModel name="version"
 								[(ngModel)]="solution.versionNumber" required>
 
 						</div>
@@ -68,7 +68,7 @@
 						<div class="form-group col-md-6">
 							<label class="label-form" for="systemType"><b>System
 									Type</b><span class="asterisk">*</span>
-							</label><br><br>
+							</label>
 							<input type="text" class="form-control" id="systemType" *ngIf="showForm"
 								[(ngModel)]="solution.systemTypeDTO.name" [name]="'system_name'">
 
@@ -80,7 +80,7 @@
 						<div class="form-group col-md-6">
 							<label class="label-form" for="equipmentType"><b>Equipment
 									Type</b><span class="asterisk">*</span>
-							</label><br><br>
+							</label>
 							<input type="text" class="form-control" id="equipmentType" *ngIf="showForm"
 								[(ngModel)]="solution.solutionTypeName" [name]="'solution_type'">
 
@@ -95,7 +95,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label class="label-form" for="vendor"><b>Vendor</b><span class="asterisk">*</span>
-							</label><br><br>
+							</label>
 							<input type="text" class="form-control" id="vendor" *ngIf="showForm"
 								[(ngModel)]="solution.vendor.name" [name]="'vendor_details'">
 							<input class="form-control" id="vendor" ngModel name="vendor" *ngIf="!showForm"
@@ -107,7 +107,7 @@
 						<div class="form-group col-md-6">
 							<label class="label-form" for="modelSolution"><b>Precinct
 									Type</b><span class="asterisk">*</span>
-							</label><br><br>
+							</label>
 							<input type="text" class="form-control" id="modelSolution" *ngIf="showForm"
 								[(ngModel)]="solution.precinctTypeName" [name]="'precinct_type'">
 
@@ -122,12 +122,12 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 
-							<label for="inputState"> Updated By</label><br><br>
+							<label for="inputState"> Updated By</label>
 							<input type="text" class="form-control" style="    background-color: #e9ecef;" id="lastName"
 								value="{{solution.updatedBy}}" readonly="readonly">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastName">Created/Updated Date</label><br><br>
+							<label for="lastName">Created/Updated Date</label>
 							<input type="text" class="form-control" tyle="    background-color: #e9ecef;" id="lastName"
 								value="{{ solution.updatedTs | filterDate}}" readonly="readonly">
 						</div>
@@ -140,7 +140,7 @@
 					</div>
 					<div class="installation form-group col-md-12">
 						<label for="hostingType"><b>Hosting Type</b><span class="asterisk">*</span>
-						</label><br><br>
+						</label>
 						<!-- <input type="text" class="form-control" id="hostingType" *ngIf="showForm" [(ngModel)]="solution.hostingTypeDTO.name"
 						 [name]="'hosting_name'">  -->
 						<select class="form-control" id="hostingType" ngModel name="hostingType"
@@ -205,14 +205,14 @@
 					</div>
 					<div class="certification-test form-row">
 						<div class="form-group col-md-6">
-							<label for="approvedDate"><b>DoEL Approved Date</b><span class="asterisk">*</span></label><br><br>
+							<label for="approvedDate"><b>DoEL Approved Date</b><span class="asterisk">*</span></label>
 							<my-date-picker name="myname" ngModel [disabled]='showForm' class="inputState1"
 								[(ngModel)]="approveDate" [options]="myDatePickerOptions" (dateChanged)="getApprovalDate($event)" required>
 							</my-date-picker>
 
 						</div>
 						<div class="form-group col-md-6">
-							<label for="dueDate"><b>Renewal Due Date</b><span class="asterisk">*</span></label><br><br>
+							<label for="dueDate"><b>Renewal Due Date</b><span class="asterisk">*</span></label>
 							<my-date-picker name="renname" [options]="myDatePickerOptions" ngModel [disabled]='showForm' class="inputState1"
 								[(ngModel)]="dueDate" (dateChanged)="getDueDate($event)" required></my-date-picker>
 						</div>
@@ -227,7 +227,7 @@
 						<div class="certification-test form-group col-md-12">
 							<label for="label-form labVendor"><b>Lab Vendor</b>
 								<!-- <font color="red">*</font> -->
-							</label><br><br>
+							</label>
 							<input type="text" class="form-control" id="labVendor"
 								[(ngModel)]="solution.labVendorsDTO.name" [name]="'lab_name'" readonly>
 							<!-- <select class="form-control"  id="labVendor" ngModel name="labVendor" *ngIf="!showForm"
@@ -239,27 +239,27 @@
 					</div>
 					<div class="certification-test form-row">
 						<div class="form-group col-md-6">
-							<label for="firstName"><b>First Name</b></label><br><br>
+							<label for="firstName"><b>First Name</b></label>
 
 							<input type="text" class="form-control" id="firstName" name="firstName"
 								[(ngModel)]="solution.labVendorsDTO.firstName" [name]="'firstName'" readonly>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="lastName"><b>Last Name</b></label><br><br>
+							<label for="lastName"><b>Last Name</b></label>
 							<input type="text" class="form-control" id="lastName" name="lastName"
 								[(ngModel)]="solution.labVendorsDTO.lastName" [name]="'lastName'" readonly>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="email"><b>Email Id</b></label><br><br>
+							<label for="email"><b>Email Id</b></label>
 
 							<input type="email" class="form-control" title='Email Id (Format: @example.com)'
 								placeholder="Enter your email" id="email" name="emailId"
 								[(ngModel)]="solution.labVendorsDTO.emailId" [name]="'emailId'" readonly>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="phone"><b>Phone Number</b></label><br><br>
+							<label for="phone"><b>Phone Number</b></label>
 
 							<input type="text" class="form-control" id="phone" name="phoneNumber"
 								[(ngModel)]="solution.labVendorsDTO.phoneNumber" [name]="'phoneNumber'" readonly>

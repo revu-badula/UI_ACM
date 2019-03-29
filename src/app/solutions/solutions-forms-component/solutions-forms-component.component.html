@@ -10,15 +10,15 @@
         	<h4>General Information</h4>
             <div class="model-solution-row form-row">
             	<div class="model form-group col-md-6">
-            <label class="label-form" for="modelSolution"><b>Model/Solution</b></label><br><br><div class="asterisk">*</div>
+            <label class="label-form" for="modelSolution"><b>Model/Solution</b></label><div class="asterisk">*</div>
               <input type="text" class="asterisk form-control" id="modelSolution" ngModel name="modelSolution" required>
             	</div>
             	<div class="version form-group col-md-6">
-            		<label class="label-form" for="version"><b>Version</b></label><br><br><div class="asterisk">*</div>
+            		<label class="label-form" for="version"><b>Version</b></label><div class="asterisk">*</div>
 		              <input type="text" class="asterisk form-control" id="version" ngModel name="version" required>
             	</div>
             	<div class="form-group col-md-6">
-            <label class="label-form" for="systemType"><b>System Type</b></label><br><br><div class="asterisk">*</div>
+            <label class="label-form" for="systemType"><b>System Type</b></label><div class="asterisk">*</div>
               <select class="form-control" id="systemType" ngModel name="systemType" required>
                 <option selected>Choose...</option>
                 <option value="1">EVS</option>
@@ -27,7 +27,7 @@
               </select>
             	</div>
             	<div class="form-group col-md-6">
-            		<label class="label-form" for="equipmentType"><b>Equipment Type</b></label><br><br><div class="asterisk">*</div>
+            		<label class="label-form" for="equipmentType"><b>Equipment Type</b></label><div class="asterisk">*</div>
 		              <select class="form-control" id="equipmentType" ngModel name="equipmentType" required>
 		                <option selected>Choose...</option>
 		                <option value="1">Optical/Digital Scan</option>
@@ -36,7 +36,7 @@
 		              </select>
             	</div>
             	<div class="form-group col-md-6">
-            		<label class="label-form" for="vendor"><b>Vendor</b></label><br><br><div class="asterisk">*</div>
+            		<label class="label-form" for="vendor"><b>Vendor</b></label><div class="asterisk">*</div>
 		              <select class="form-control" id="vendor" ngModel name="vendor" required>
 		                <option selected>Choose...</option>
 		                <option value="1">Dominion Voting</option>
@@ -49,7 +49,7 @@
         
            <h4>Installation and Hosting</h4>
             <div class="installation form-group col-md-6">
-            <label for="hostingType"><b>Hosting Type</b></label><br><br><div class="asterisk">*</div>
+            <label for="hostingType"><b>Hosting Type</b></label><div class="asterisk">*</div>
             <select class="form-control" id="hostingType" ngModel name="hostingType" required>
 		                <option selected>Choose...</option>
 		                <option value="1">Not Applicable</option>
@@ -58,7 +58,7 @@
 		              </select>
             </div>
             <div class="installation form-group">
-            <label class="hosting-notes" for="hostingNotes"><b>Hosting Notes</b></label><br><br><!-- <div class="asterisk-inline asterisk">*</div> -->
+            <label class="hosting-notes" for="hostingNotes"><b>Hosting Notes</b></label><!-- <div class="asterisk-inline asterisk">*</div> -->
             <textarea cols="156" rows="7" id="hostingNotes" ngModel name="hostingNotes" required #hostingNotes="ngModel"> </textarea><!--<div style="float:right">{{50000 - hostingNotes.value.length}} characters left </div> -->
 					 <br>
 					 <div *ngIf="hostingNotes.errors?.maxlength" style="float:right">
@@ -70,12 +70,12 @@
             <h4>Certification Information</h4>
             <div class="certification-test form-row">
             <div class="form-group col-md-6">
-                <label for="approvedDate"><b>DoEL Approved Date</b></label><br><br>
+                <label for="approvedDate"><b>DoEL Approved Date</b></label>
                 <my-date-picker name="myname"></my-date-picker> 
                 <!-- <input type="date" class="form-control" id="approvedDate"> -->
             </div>
             <div class="form-group col-md-6">
-                <label for="dueDate"><b>Renewal Due Date</b></label><br><br>
+                <label for="dueDate"><b>Renewal Due Date</b></label>
                 <my-date-picker name="myname"></my-date-picker> 
                 <!-- <input type="date" class="form-control" id="dueDate"> -->
             </div>
@@ -83,7 +83,7 @@
          <hr />
           <h4>Voting System Test Laboratory - VSTL</h4>
           <div class="certification-test form-group col-md-6">
-            <label for="label-form labVendor"><b>Lab Vendor</b></label><br><br>
+            <label for="label-form labVendor"><b>Lab Vendor</b></label>
             <select class="form-control" id="labVendor" ngModel name="labVendor" (change)="labContact($event.target.value)">
 		                <option selected>Choose...</option>
 		                <option value="PROV&V">PROV&V</option>
@@ -94,19 +94,19 @@
           <div class="contact" *ngIf="labForm ==='PROV&V'">
           	<div class="certification-test form-row">
             <div class="form-group col-md-6">
-                <label for="firstName"><b>First Name</b></label><br><br><div class="asterisk">*</div>
+                <label for="firstName"><b>First Name</b></label><div class="asterisk">*</div>
                 <input type="text" class="asterisk form-control" id="firstName" ngModel name="firstName" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="lastName"><b>Last Name</b></label><br><br><div class="asterisk">*</div>
+                <label for="lastName"><b>Last Name</b></label><div class="asterisk">*</div>
                 <input type="text" class="asterisk form-control" id="lastName" ngModel name="lastName" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="email"><b>Email Id</b></label><br><br><div class="asterisk">*</div>
+                <label for="email"><b>Email Id</b></label><div class="asterisk">*</div>
                 <input type="email" class="asterisk form-control" id="email" ngModel name="email" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="phone"><b>Phone Number</b></label><br><br><div class="asterisk">*</div>
+                <label for="phone"><b>Phone Number</b></label><div class="asterisk">*</div>
                 <input type="text" class="asterisk form-control" id="phone" ngModel name="phone" required>
             </div>
          </div>

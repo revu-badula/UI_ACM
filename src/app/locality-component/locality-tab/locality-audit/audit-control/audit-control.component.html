@@ -1,195 +1,195 @@
 <div class="my-container">
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-</div>
-<ng-template #content2 let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Info</h4>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
   </div>
-  <div class="modal-body">
-    <p>No controls to download.</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
-  </div>
-</ng-template>
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Policy File</h4>
-
-  </div>
-  <div class="modal-body">
-    <div class="form-row">
-      <div class="col-md-12">
-        <label>
-          Attachment
-        </label><br><br>
-        <form #myFileForm="ngForm">
-          <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File"
-            accept=".pdf,.doc,.docx" #fileInput (change)="getFile($event)" required>
-
-
-        </form>
-      </div>
-
+  <ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Info</h4>
     </div>
-  </div>
-  <div class="modal-footer plus">
-
-    <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
-    <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark"
-      (click)="compareFile();c()">Compare</button>
-  </div>
-</ng-template>
-
-<div class="show">
-  <!-- <div class="form-row">
-    <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
-  </div> -->
-  <form>
-    <div class="panel-heading">
-      <div class="plus">
-        <span class="title elipsis pull-right">
-          <a title="Compare policies">
-            <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
-          </a>
-          <a title="Send notifications">
-            <i class="fa  fa-envelope-o" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-          <a title="Download compared policies" (click)="downloadFile()">
-            <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-        </span>
-        <span class=" title elipsis pull-right">
-
-          <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
-            <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-          <!-- <a (click)="showAudit()" title="Go back to audit section.">
-          <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
-        </a> -->
-        </span>
-      </div>
+    <div class="modal-body">
+      <p>No controls to download.</p>
     </div>
-    <!-- <hr class=htag/> -->
-    <div class="infoBox">
-      <div class="headerOfBox">
-        <h4>Policies</h4>
-      </div>
-
-      <div class="row">
-          <div class="col-md-12">
-            <label class="label-form" for="status">  Family</label><br><br>
-            <select class="form-control" style="width:50%;" id="priority"
-              (change)="getFamily($event.target.value)">
-              <option value="" selected>Choose...</option>
-              <option *ngFor="let fam of families" value="{{fam.policyFamilyID}}">{{fam.familyName}}</option>
-            </select>
-          </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+    </div>
+  </ng-template>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Policy File</h4>
+  
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="col-md-12">
+          <label>
+            Attachment
+          </label>
+          <form #myFileForm="ngForm">
+            <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File"
+              accept=".pdf,.doc,.docx" #fileInput (change)="getFile($event)" required>
+  
+  
+          </form>
         </div>
   
+      </div>
+    </div>
+    <div class="modal-footer plus">
   
+      <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+      <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark"
+        (click)="compareFile();c()">Compare</button>
+    </div>
+  </ng-template>
   
+  <div class="show">
+    <!-- <div class="form-row">
+      <span style="color: red; font-weight: bold;">&nbsp;{{errorfile}}</span>
+    </div> -->
+    <form>
+      <div class="panel-heading">
+        <div class="plus">
+          <span class="title elipsis pull-right">
+            <a title="Compare policies">
+              <i class="fa fa-exchange" aria-hidden="true" style="font-size: 24px;" (click)="open(content)"></i>
+            </a>
+            <a title="Send notifications">
+              <i class="fa  fa-envelope-o" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+            <a title="Download compared policies" (click)="downloadFile()">
+              <i class="fa  fa-download" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+          </span>
+          <span class=" title elipsis pull-right">
   
-  
-  
-        <div class="row" *ngIf="showTable">
-          <div class="col-md-6">
-  
-            <div class="form-group">
-              <label for="email">Assigned To</label><br><br>
-             <input type="text" name="assignTo" [(ngModel)]="assignTo" readonly>
-            </div>
-          </div>
-  
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="email">Assigned On</label><br><br>
-              <my-date-picker class="inputState1" [(ngModel)]="assignOn" name="assignOn"></my-date-picker>
-            </div>
-          </div>
-  
-         
+            <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
+              <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+            <!-- <a (click)="showAudit()" title="Go back to audit section.">
+            <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+          </a> -->
+          </span>
         </div>
-
-
-        <div class="row" *ngIf="showTable">
-          <div class="col-md-6">
-            <label>Priority</label><br><br>
-            <select class="form-control">
+      </div>
+      <!-- <hr class=htag/> -->
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Policies</h4>
+        </div>
   
-              <option>High</option>
-              <option>Medium</option>
-              <option>Low</option>
-            </select>
+        <div class="row">
+            <div class="col-md-12">
+              <label class="label-form" for="status">  Family</label>
+              <select class="form-control" style="width:50%;" id="priority"
+                (change)="getFamily($event.target.value)">
+                <option value="" selected>Choose...</option>
+                <option *ngFor="let fam of families" value="{{fam.policyFamilyID}}">{{fam.familyName}}</option>
+              </select>
+            </div>
+          </div>
+    
+    
+    
+    
+    
+    
+          <div class="row" *ngIf="showTable">
+            <div class="col-md-6">
+    
+              <div class="form-group">
+                <label for="email">Assigned To</label>
+               <input type="text" name="assignTo" [(ngModel)]="family.assignedTo">
+              </div>
+            </div>
+    
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email">Assigned On</label>
+                <my-date-picker class="inputState1" (dateChanged)="getDateAssign($event)" [(ngModel)]="assignOn" name="assignOn"></my-date-picker>
+              </div>
+            </div>
+    
+           
           </div>
   
+  
+          <div class="row" *ngIf="showTable">
+            <div class="col-md-6">
+              <label>Priority</label>
+              <select class="form-control" name="priority" (change)="family.priority = $event.target.value" [(ngModel)]="family.priority">
+    
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+    
+            
+    
+            <div class="col-md-6">
+    
+              <label>Score</label>
+              <div class="col-md-3"><input type="number" class="form-control" name="test"
+                 placeholder="" [(ngModel)]="family.score" id="first"
+                  style="width:200% !important"></div>
+    
+            </div>
+            <button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="postFamilyPolicy()">Submit</button>
+          </div>
+    
           
-  
-          <div class="col-md-6">
-  
-            <label>Score</label><br><br>
-            <div class="col-md-3"><input type="number" class="form-control" name="test"
-                (change)="getRealScore()" placeholder="" [(ngModel)]="scoreN" id="first"
-                style="width:200% !important"></div>
-  
-          </div>
-          <button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="c()">Close</button>
-        </div>
-  
+    
         
+        <br>
+        <table class="table table-bordered" *ngIf="showTable">
+          <thead>
+            <tr>
   
-      
-      <br>
-      <table class="table table-bordered" *ngIf="showTable">
-        <thead>
-          <tr>
-
-            <th scope="col" (click)="handleSort()">Control Number
-              <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor"
-                *ngIf="desc"></i>
-            </th>
-            <th scope="col" (click)="handleSort1('policyName')">Policy 
-              <i class="fa fa-arrow-down testColor" *ngIf="!policyName"></i> <i class="fa fa-arrow-up testColor"
-                *ngIf="policyName"></i>
-            </th>
-            <th scope="col" (click)="handleSort2('priority')">Priority
-              <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
-                *ngIf="priority"></i>
-            </th>
-            <th scope="col" (click)="handleSort2('priority')">Score
-              <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
-                *ngIf="priority"></i>
-            </th>
-          
-          
-
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-
-            <td>
-              <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
-              policy.controlNumber
-              }}</a>
-            </td>
-            <td>{{ policy.policyName }}</td>
-            <td>{{ policy.priority }}</td>
-            <td>70/100</td>
-          
-          
-
-
-            <td><i [ngClass]="{'primary':policy.status === 'true',
-            'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
-          </tr>
-        </tbody>
-      </table>
-
-
-      <pagination-controls *ngIf="showTable" (pageChange)="p = $event"></pagination-controls>
-
-    </div>
-  </form>
-</div>
+              <th scope="col" (click)="handleSort()">Control Number
+                <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor"
+                  *ngIf="desc"></i>
+              </th>
+              <th scope="col" (click)="handleSort1('policyName')">Policy 
+                <i class="fa fa-arrow-down testColor" *ngIf="!policyName"></i> <i class="fa fa-arrow-up testColor"
+                  *ngIf="policyName"></i>
+              </th>
+              <th scope="col" (click)="handleSort2('priority')">Priority
+                <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
+                  *ngIf="priority"></i>
+              </th>
+              <th scope="col" (click)="handleSort2('priority')">Score
+                <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
+                  *ngIf="priority"></i>
+              </th>
+            
+            
+  
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+  
+              <td>
+                <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a>
+              </td>
+              <td>{{ policy.policyName }}</td>
+              <td>{{ policy.priority }}</td>
+              <td>70/100</td>
+            
+            
+  
+  
+              <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <pagination-controls *ngIf="showTable" (pageChange)="p = $event"></pagination-controls>
+  
+      </div>
+    </form>
+  </div>

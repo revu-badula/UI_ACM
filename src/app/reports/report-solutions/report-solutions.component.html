@@ -30,7 +30,7 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label class="label-form" for="systemType"><b>System
-					Type</b></label><br><br>
+					Type</b></label>
 			<select #systyp id="modelSolution" class="form-control" ngModel name="system" required (change)="selectSystem($event.target.value)">
 				<option value="">Choose...</option>
 				<option *ngFor="let systemType of systemTypes" value="{{ systemType.systemTypeId }}">{{systemType.name}}</option>
@@ -38,7 +38,7 @@
 			</select>
 		</div>
 		<div class="model form-group col-md-6">
-			<label class="label-form" for="modelSolution"><b>Model/Solution</b></label><br><br>
+			<label class="label-form" for="modelSolution"><b>Model/Solution</b></label>
 			<select #modsol class="form-control" id="system" (change)="selectSolution($event.target.value)" name="system" required>
 				<option value="">Choose...</option>
 				<option *ngFor="let sysType of  sysTypes" value="{{ sysType.solutionId }}">{{ sysType.name }}</option>
@@ -51,7 +51,7 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label class="label-form" for="precinctType"><b>Precinct
-					Type</b></label><br><br>
+					Type</b></label>
 			<select #pcnt  id="modelSolution" class="form-control" ngModel name="precinct" required (change)="selectPrecinct($event.target.value)">
 				<option value="" selected>Choose...</option>
 				<option *ngFor="let precType of precTypes" value="{{ precType.precinctTypeId }}">{{precType.typeName}}</option>
@@ -59,7 +59,7 @@
 			</select>
 		</div>
 		<div class="model form-group col-md-6">
-			<label class="label-form" for="modelSolution"><b>Model/Solution</b></label><br><br>
+			<label class="label-form" for="modelSolution"><b>Model/Solution</b></label>
 			<select #pcntsol class="form-control" id="system" (change)="selectSolution($event.target.value)" name="system" required>
 				<option value="" selected>Choose...</option>
 				<option *ngFor="let precitType of  precitTypes" value="{{ precitType.solutionId }}">{{ precitType.name

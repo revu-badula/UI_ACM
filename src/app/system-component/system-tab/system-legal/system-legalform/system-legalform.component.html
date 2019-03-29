@@ -46,14 +46,14 @@
         <div class="form-row">
           <div class="form-group col-md-6">
 
-            <label for="inputState">System Acronym <span class="asterisk">*</span></label><br><br>
+            <label for="inputState">System Acronym <span class="asterisk">*</span></label>
 
             <input type="text" class="form-control" value="{{acronym}}" readonly="readonly">
           </div>
 
 
           <div class="form-group col-md-6">
-            <label for="lastName">System Name <span class="asterisk">*</span></label><br><br>
+            <label for="lastName">System Name <span class="asterisk">*</span></label>
 
             <input type="text" class="form-control" value="{{sysName}}" readonly>
           </div>
@@ -63,11 +63,11 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="lastName"> Updated By</label><br><br>
+            <label for="lastName"> Updated By</label>
             <input type="text" class="form-control" value={{updatedBy}} readonly="readonly" readonly>
           </div>
           <div class="form-group col-md-6">
-            <label for="email">Updated Date</label><br><br>
+            <label for="email">Updated Date</label>
             <input type="text" id="updatedTime" class="form-control" value="{{updatedTime}}" readonly>
           </div>
         </div>
@@ -89,12 +89,12 @@
 
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="inputState">Name <span class="asterisk">*</span></label><br><br>
+                <label for="inputState">Name <span class="asterisk">*</span></label>
                 <input type="text" name="name" [(ngModel)]="mou.name" required>
               </div>
 
               <div class="form-group col-md-6">
-                <label for="inputState">Signed <span class="asterisk">*</span></label><br><br>
+                <label for="inputState">Signed <span class="asterisk">*</span></label>
                 <select class="form-control" style="width:50%;" name="signed" [(ngModel)]="mou.signed" required>
                   <option value="" selected>Choose...</option>
                   <option [value]="true">Yes</option>
@@ -104,20 +104,20 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="inputState">Date of Receipt <span class="asterisk">*</span></label><br><br>
+                <label for="inputState">Date of Receipt <span class="asterisk">*</span></label>
                 <my-date-picker class="inputState1" [disabled]="showLegalBox" name="mydate" [options]="myDatePickerOptions"
                   (dateChanged)="getDate($event)" [(ngModel)]="moureceiptdt" required></my-date-picker>
               </div>
 
               <div class="form-group col-md-6">
-                <label for="inputState">Recertification Date<span class="asterisk">*</span></label><br><br>
+                <label for="inputState">Recertification Date<span class="asterisk">*</span></label>
 
                 <my-date-picker class="inputState1" [disabled]="showLegalBox" name="myname" [options]="myDatePickerOptions"
                   (dateChanged)="getNextDate($event)" [(ngModel)]="mourecertdt" required></my-date-picker>
               </div>
             </div>
             <div class="form-row">
-              <label>Attachments</label><br><br>
+              <label>Attachments</label>
               <div class="form-group col-md-6">
                 <input type="file" #fileInput (change)="createMOUDTO($event)">
               </div>

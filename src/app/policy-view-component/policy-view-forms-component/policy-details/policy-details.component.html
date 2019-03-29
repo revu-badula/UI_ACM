@@ -17,13 +17,13 @@
 		<form>
 			<div class="form-row">
 				<div class="col-md-6">
-					<!-- <label for="attachments"><b>Attachment</b></label><br><br> -->
+					<!-- <label for="attachments"><b>Attachment</b></label> -->
 					<input id="attachments" class="form-control1" type="file" (change)="createPolicyFile($event)" />
 				</div>
 			</div>
 			<!-- <div class="form-row">
 			    		<div class="form-group col-12">
-			    			<label for="fileList"><b>Attachment</b></label><br><br>
+			    			<label for="fileList"><b>Attachment</b></label>
 			    		</div>
 			    	</div> -->
 			<div class="modal-footer">
@@ -72,23 +72,23 @@
 			<div class="model-solution-row form-row">
 
 				<div class="form-group col-md-6">
-					<label for="definitiveSource">Definitive Source</label><br><br>
+					<label for="definitiveSource">Definitive Source</label>
 					<input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.definitiveSource"
 						[name]="'definitive_source'" readonly>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="typePolicy">Type/Policy</label><br><br>
+					<label for="typePolicy">Type/Policy</label>
 					<input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.policyGrpName"
 						[name]="'type_policy'" readonly>
 				</div>
 				<div class="version form-group col-md-6">
-					<label class="label-form" for="updatedBy">Updated By</label><br><br>
+					<label class="label-form" for="updatedBy">Updated By</label>
 					<!--  <input type="text" class="edit-disable form-control" id="updatedBy" readonly [(ngModel)] = "policyGrpData.updatedBy" [name] = "'updated_by'"> -->
 					<input type="text" class="edit-disable form-control" id="inputState" readonly
 						[(ngModel)]="policyGrpData.updatedBy" [name]="'updated_by'">
 				</div>
 				<div class="form-group col-md-6">
-					<label class="label-form" for="updtedAt">Updated Date</label><br><br>
+					<label class="label-form" for="updtedAt">Updated Date</label>
 					<input type="text" name="updatedAt" id="inputState" [ngModel]="updatedAt" readonly>
 					<!-- <my-date-picker name="myname" class="inputState1" [ngModel]="policyGrpData.updatedTs" [selDate]="displayUpdatedAt"></my-date-picker> -->
 				</div>
@@ -106,20 +106,20 @@
 					<div class="model-solution-row form-row">
 						<div class="model form-group col-md-6">
 							<label class="label-form" for="lastReviewDate">Last Review Date<span
-									class="asterisk">*</span></label><br><br>
+									class="asterisk">*</span></label>
 							<my-date-picker name="myname" class="inputState1" [(ngModel)]="lastReviewDate" ngModel
 								[selDate]="displayLastReviewDate" required></my-date-picker>
 						</div>
 						<div class="version form-group col-md-6">
 							<label class="label-form" for="nextReviewDate">Next Review Date<span
-									class="asterisk">*</span></label><br><br>
+									class="asterisk">*</span></label>
 							<my-date-picker name="myname" class="inputState1" [(ngModel)]="nextReviewDate" ngModel
 								[selDate]="displayNextReviewDate" required></my-date-picker>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label class="label-form" for="owner">Owner<span class="asterisk">*</span></label><br><br>
+							<label class="label-form" for="owner">Owner<span class="asterisk">*</span></label>
 							<select type="text" class="edit-disable form-control" [(ngModel)]="policyDisplay.owner"
 								(change)="policyDisplay.owner = $event.target.value" [name]="'policy_owner'" required>
 								<option value="" selected>Choose...</option>
@@ -130,7 +130,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label class="label-form" for="policyReviewTerm">Policy Review Term<span
-									class="asterisk">*</span></label><br><br>
+									class="asterisk">*</span></label>
 							<input type="text" id="inputState" class="edit-disable form-control" *ngIf="showForm"
 								[(ngModel)]="policyDisplay.policyReviewTerm" [name]="'review_term'" readonly>
 							<select class="form-control" style="width:50%;" id="priority" *ngIf="!showForm"
@@ -146,7 +146,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label class="label-form" for="status">Status<span class="asterisk">*</span></label><br><br>
+							<label class="label-form" for="status">Status<span class="asterisk">*</span></label>
 							<input type="text" id="inputState" class="form-control"
 								[ngModel]="policyDisplay.status | subControlPipe" [name]="'policy_status'"
 								*ngIf="showForm" readonly>
@@ -184,7 +184,7 @@
 		<div>
 			<div class="row">
 				<div class="col-md-12" *ngIf="showFamily">
-					<label class="label-form" for="status"> Please choose a Family</label><br><br>
+					<label class="label-form" for="status"> Please choose a Family</label>
 					<select class="form-control" style="width:50%;" id="priority"
 						(change)="getFamily($event.target.value)">
 						<option value="" selected>Choose...</option>
@@ -203,14 +203,14 @@
 				<div class="col-md-3">
 
 					<div class="form-group">
-						<label for="email">Assigned To</label><br><br>
+						<label for="email">Assigned To</label>
 						<select class="form-control"></select>
 					</div>
 				</div>
 
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="email">Assigned On</label><br><br>
+						<label for="email">Assigned On</label>
 						<my-date-picker class="inputState1"></my-date-picker>
 					</div>
 				</div>
@@ -218,7 +218,7 @@
 		
 			
 				<div class="col-md-3">
-					<label>Priority</label><br><br>
+					<label>Priority</label>
 					<select class="form-control">
 
 						<option>High</option>
@@ -229,7 +229,7 @@
 
 				<div class="col-md-3">
 
-					<label>Weightage</label><br><br>
+					<label>Weightage</label>
 					<div class="col-md-3"><input type="number" name="weightN" class="form-control" 
 							(change)="getNum()" [(ngModel)]="weightageN" id="first" style="width:200% !important" maxlength="1" OnlyNumber1="true"
 							oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" ></div>

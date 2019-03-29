@@ -48,9 +48,10 @@ export class Policy {
 	status: boolean;
 	linked: boolean;
 	subpolicies: any = [];
-
+	isEvidenceRequired :any;
 	linkType: string;
-
+	weightage:any;
+	
 	isDesignDocument: string;
 	configBaseline: string;
 	auditRecords: string;

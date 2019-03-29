@@ -33,7 +33,7 @@
 			</div>
 			<div class="model-solution-row form-row">
 				<div class="model form-group col-md-6">
-					<label class="label-form" for="modelSolution"><b>Model/Solution</b><span class="asterisk">*</span></label><br><br>
+					<label class="label-form" for="modelSolution"><b>Model/Solution</b><span class="asterisk">*</span></label>
 
 
 					<input type="text" id="inputState" ngModel name="modelSolution" [(ngModel)]="solution.name" required>
@@ -41,7 +41,7 @@
 				<div class="version form-group col-md-6">
 					<label class="label-form" for="version"><b>Version</b>
 						<span class="asterisk">*</span>
-					</label><br><br>
+					</label>
 
 
 					<input type="text" name="versionNumber" id="inputState" ngModel name="version" [(ngModel)]="solution.versionNumber"
@@ -50,7 +50,7 @@
 				<div class="form-group col-md-6">
 					<label class="label-form" for="systemType"><b>System Type</b>
 						<div class="asterisk">*</div>
-					</label><br><br>
+					</label>
 
 					<select id="inputState" class="form-control" ngModel name="systemType" (change)="solution.systemTypeDTO.systemTypeId = $event.target.value"
 					 required>
@@ -61,7 +61,7 @@
 					</select>
 				</div>
 				<div class="form-group col-md-6">
-					<label class="label-form" for="equipmentType"><b>Equipment Type</b><span class="asterisk">*</span></label><br><br>
+					<label class="label-form" for="equipmentType"><b>Equipment Type</b><span class="asterisk">*</span></label>
 
 					<select id="inputState" class="form-control" ngModel name="equipmentType" (change)="solution.solutionType = $event.target.value"
 					 required>
@@ -73,7 +73,7 @@
 				<div class="form-group col-md-6">
 					<label class="label-form" for="vendor"><b>Vendor</b>
 						<span class="asterisk">*</span>
-					</label><br><br>
+					</label>
 
 					<select id="inputState" class="form-control" ngModel name="vendor" (change)="solution.vendorId = $event.target.value"
 					 required>
@@ -86,7 +86,7 @@
 
 				</div>
 				<div class="form-group col-md-6">
-					<label for="modelSolution">Precinct Type<span class="asterisk">*</span></label><br><br>
+					<label for="modelSolution">Precinct Type<span class="asterisk">*</span></label>
 
 					<select id="inputState" class="form-control" ngModel name="precinct" (change)="solution.precinctTypeId = $event.target.value"
 					 required>
@@ -108,7 +108,7 @@
 			<div class="installation form-group col-md-12">
 				<label for="hostingType"><b>Hosting Type</b>
 					<span class="asterisk">*</span>
-				</label><br><br>
+				</label>
 
 				<select id="inputState" class="form-control" ngModel name="hostingType" (change)="solution.hostingTypeDTO.hostingTypeId = $event.target.value"
 				 required>
@@ -157,13 +157,13 @@
 
 			<div class="certification-test form-row">
 				<div class="form-group col-md-6">
-					<label for="approvedDate"><b>DoEL Approved Date</b><span class="asterisk">*</span></label><br><br>
+					<label for="approvedDate"><b>DoEL Approved Date</b><span class="asterisk">*</span></label>
 					<my-date-picker name="myname" ngModel class="inputState1" [(ngModel)]="approveDate" (dateChanged)="getApproveDt($event)"
 					 required></my-date-picker>
 
 				</div>
 				<div class="form-group col-md-6">
-					<label for="dueDate"><b>Renewal Due Date</b><span class="asterisk">*</span></label><br><br>
+					<label for="dueDate"><b>Renewal Due Date</b><span class="asterisk">*</span></label>
 					<my-date-picker name="rename" ngModel class="inputState1" [(ngModel)]="renewalDate" (dateChanged)="getRenewDt($event)"
 					 required></my-date-picker>
 
@@ -178,7 +178,7 @@
 			</div>
 
 			<div class="certification-test form-group col-md-12">
-				<label for="label-form labVendor"><b>Lab Vendor</b><span class="asterisk">*</span></label><br><br>
+				<label for="label-form labVendor"><b>Lab Vendor</b><span class="asterisk">*</span></label>
 
 				<!--             <select class="form-control" id="labVendor" (change) = "solution.labVendorsDTO.labVendorId = $event.target.value"> -->
 				<select id="inputState" class="form-control" ngModel name="labVendor" (change)="showLabVendor($event.target.value)"
@@ -192,23 +192,23 @@
 			<div class="contact" *ngIf="labForm">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="firstName"><b>First Name</b></label><br><br>
+						<label for="firstName"><b>First Name</b></label>
 						<input type="text" id="firstName" ngModel name="firstName" [(ngModel)]="labVendorsfirstName" [name]="'firstName'"
 						 readonly>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="lastName"><b>Last Name</b></label><br><br>
+						<label for="lastName"><b>Last Name</b></label>
 						<input type="text" id="lastName" ngModel name="lastName" [(ngModel)]="labVendorslastName" [name]="'lastName'"
 						 readonly>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="email"><b>Email Id</b></label><br><br>
+						<label for="email"><b>Email Id</b></label>
 						<input type="email" id="email inputState" name="email" [(ngModel)]="labVendorsemail" [name]="'emailId'" readonly>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="phone"><b>Phone Number</b></label><br><br>
+						<label for="phone"><b>Phone Number</b></label>
 						<input type="text" id="phone inputState" name="phone" [(ngModel)]="labVendorsphoneNumber" [name]="'phoneNumber'"
 						 readonly>
 					</div>

@@ -38,23 +38,23 @@
         
         <div class=" form-row">
           <div class="form-group col-md-6">
-            <label for="hostName">Host Name<font color=red>*</font></label><br><br>
+            <label for="hostName">Host Name<font color=red>*</font></label>
             <input type="text" class="form-control" [(ngModel)]="device.hostName" ngModel name="host" required>
           </div>
           <div class="form-group col-md-6">
-            <label for="systemTag">System Tag<font color=red>*</font></label><br><br>
+            <label for="systemTag">System Tag<font color=red>*</font></label>
             <input type="text" class="form-control" [(ngModel)]="device.systemTag" ngModel name="system" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="responsibleDivision/unitName">Responsible Division/Unit Name<font color=red>*</font></label><br><br>
+            <label for="responsibleDivision/unitName">Responsible Division/Unit Name<font color=red>*</font></label>
             <input type="text" class="form-control" [(ngModel)]="serverContact.divisionName" ngModel name="division"
               required>
           </div>
 
           <div class="form-group col-md-6">
-            <label for="hostName">Type of Server<font color=red>*</font></label><br><br>
+            <label for="hostName">Type of Server<font color=red>*</font></label>
            <select class="form-control" id="inputState" name="serverType" required  ngModel (change)="getServerData($event.target.value)" required>
 							<option value="" selected>Choose...</option>
 							<option *ngFor="let serverType of serverTypes" value="{{ serverType.serverTypeId }}">{{ serverType.name }}</option>
@@ -69,20 +69,20 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="firstName">First Name<font color=red>*</font></label><br><br>
+            <label for="firstName">First Name<font color=red>*</font></label>
             <input type="text" class="form-control" [(ngModel)]="serverContact.firstName" ngModel name="firstname"
               required>
 
           </div>
           <div class="form-group col-md-6">
-            <label for="lastName">Last Name<font color=red>*</font></label><br><br>
+            <label for="lastName">Last Name<font color=red>*</font></label>
             <input type="text" class="form-control" [(ngModel)]="serverContact.lastName" ngModel name="lastname"
               required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="email">Email ID<font color=red>*</font></label><br><br>
+            <label for="email">Email ID<font color=red>*</font></label>
             <input type="email" class="form-control" [email]="serverContact.emailId!==''" name="email" [(ngModel)]="serverContact.emailId"
               #email="ngModel" required><br><br>
             <span class="help-block" style="color:red;padding-left: 43%;" *ngIf="email.errors?.required && email.touched">
@@ -93,7 +93,7 @@
             </span>
           </div>
           <div class="form-group col-md-6">
-            <label for="phone">Phone Number<font color=red>*</font></label><br><br>
+            <label for="phone">Phone Number<font color=red>*</font></label>
             <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
               [ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
               onlyInteger>
@@ -108,19 +108,19 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="firstName">First Name<font color=red>*</font></label><br><br>
+            <label for="firstName">First Name<font color=red>*</font></label>
             <input type="text" class="form-control" id="firstName" [(ngModel)]="serverContact1.firstName" ngModel name="firstname"
               [ngModelOptions]="{standalone: true}" required>
           </div>
           <div class="form-group col-md-6">
-            <label for="lastName">Last Name<font color=red>*</font></label><br><br>
+            <label for="lastName">Last Name<font color=red>*</font></label>
             <input type="text" class="form-control" id="lastName" [(ngModel)]="serverContact1.lastName" ngModel name="lnum"
               [ngModelOptions]="{standalone: true}" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="email">Email ID<font color=red>*</font></label><br><br>
+            <label for="email">Email ID<font color=red>*</font></label>
             <input id="email1" type="email" class="form-control" [email]="serverContact1.emailId!==''" name="email1"
               [(ngModel)]="serverContact1.emailId" #email1="ngModel" required> <br><br>
             <div style="color:red;padding-left: 43%;" *ngIf="email1.errors?.required && email1.touched">
@@ -131,7 +131,7 @@
             </div>
           </div>
           <div class="form-group col-md-6">
-            <label for="phone">Phone Number<font color=red>*</font></label><br><br>
+            <label for="phone">Phone Number<font color=red>*</font></label>
             <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber1($event,$event.target.value)"
               [ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber1($event.target.value)"
               onlyInteger>
@@ -147,12 +147,12 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="licenceStartDate">License Start Date</label><br><br>
+            <label for="licenceStartDate">License Start Date</label>
             <my-date-picker class="inputState1" name="myname" placeholder="mm/dd/yyyy" [(ngModel)]="startDate"
               (dateChanged)="getStartDate($event)"></my-date-picker>
           </div>
           <div class="form-group col-md-6">
-            <label for="licenseEndDate">License End Date</label><br><br>
+            <label for="licenseEndDate">License End Date</label>
 
             <my-date-picker name="myname" class="inputState1" name="lnew" placeholder="mm/dd/yyyy" [(ngModel)]="endDate"
               (dateChanged)="getEndDate($event)"></my-date-picker>
@@ -160,26 +160,26 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="licenceRenewalDate">License Renewal Date<font color="red">*</font></label><br><br>
+            <label for="licenceRenewalDate">License Renewal Date<font color="red">*</font></label>
             <my-date-picker ngModel class="inputState1" name="lrenew" [(ngModel)]="renDate" placeholder="mm/dd/yyyy"
               (dateChanged)="getRenDate($event)" required></my-date-picker>
           </div>
 
           <div class="form-group col-md-6">
-            <label for="vendorName">Vendor Name</label><br><br>
+            <label for="vendorName">Vendor Name</label>
             <input type="text" class="form-control" id="vendorName" name="'vname'" [(ngModel)]="device.vendorName">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="productName">Product Name<font color="red">*</font></label><br><br>
+            <label for="productName">Product Name<font color="red">*</font></label>
             <input type="text" class="form-control" id="productName" [(ngModel)]="device.productName" ngModel name="product"
               required>
           </div>
 
         
             <div class="form-group col-md-6">
-                <label for="costField">Cost Field<font color="red">*</font></label><br><br>
+                <label for="costField">Cost Field<font color="red">*</font></label>
                 <!-- <div class="dollar"><input type="number" class="form-control" [(ngModel)]="serverContact.cost" ngModel name="cost"
                     required></div> -->
                     <div class="input-group col-md-6">
@@ -203,39 +203,39 @@
         </div>
         <div class=" form-row">
           <div class="form-group col-md-6">
-            <label for="hardware">Hardware</label><br><br>
+            <label for="hardware">Hardware</label>
             <input type="text" class="form-control" id="hardware" [(ngModel)]="device.hardware" name="hardware">
           </div>
           <div class="form-group col-md-6">
-            <label for="updateLevel">Control Name</label><br><br>
+            <label for="updateLevel">Control Name</label>
             <input type="text" class="form-control" name="controlName" [(ngModel)]="device.controlName" id="updateLevel">
           </div>
           <div class="form-group col-md-6">
-            <label for="clockFrequency">Clock Frequency</label><br><br>
+            <label for="clockFrequency">Clock Frequency</label>
             <input type="text" class="form-control" id="clockFrequency" [(ngModel)]="device.clockFrequency" name="clock">
           </div>
           <div class="form-group col-md-6">
-            <label for="memory">Memory</label><br><br>
+            <label for="memory">Memory</label>
             <input type="text" class="form-control" id="memory" [(ngModel)]="device.memorySize" name="memory">
           </div>
           <div class="form-group col-md-6">
-            <label for="diskSpace">Disk Space</label><br><br>
+            <label for="diskSpace">Disk Space</label>
             <input type="text" class="form-control" id="diskSpace" [(ngModel)]="device.localDiskSpace" name="space">
           </div>
           <div class="form-group col-md-6">
-            <label for="cpuCount">CPU Count</label><br><br>
+            <label for="cpuCount">CPU Count</label>
             <input type="text" class="form-control" id="cpuCount" [(ngModel)]="device.cpuCount" name="cpu">
           </div>
           <div class="form-group col-md-6">
-            <label for="physicalCpuCount">Physical CPU Count</label><br><br>
+            <label for="physicalCpuCount">Physical CPU Count</label>
             <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)]="device.physicalCpuCount" name="physical">
           </div>
           <div class="form-group col-md-6">
-            <label for="logicalCpuCount">Logical CPU Count</label><br><br>
+            <label for="logicalCpuCount">Logical CPU Count</label>
             <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)]="device.logicalCpuCount" name="logical">
           </div>
           <div class="form-group col-md-6">
-            <label for="ipAddress">IP Address</label><br><br>
+            <label for="ipAddress">IP Address</label>
             <input type="text" class="form-control" id="ipAddress" [(ngModel)]="device.ipAddress" name="ipaddress">
           </div>
         </div>
@@ -247,11 +247,11 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="operatingSystem">Operating System</label><br><br>
+            <label for="operatingSystem">Operating System</label>
             <input type="text" class="form-control" name="opeartingSystem" [(ngModel)]="device.operatingSystem" id="operatingSystem">
           </div>
           <div class="form-group col-md-6">
-            <label for="version">Version</label><br><br>
+            <label for="version">Version</label>
             <input type="text" class="form-control" id="version" [(ngModel)]="device.osVersion" name="osversion">
           </div>
         </div>
@@ -263,28 +263,28 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="db/AppServerName">DB/APP Server Name</label><br><br>
+            <label for="db/AppServerName">DB/APP Server Name</label>
             <input type="text" class="form-control" id="db/AppServerName" [(ngModel)]="device.dbServer" name="dbserver">
           </div>
         
           <div class="form-group col-md-6">
-            <label for="serverName">Server Name</label><br><br>
+            <label for="serverName">Server Name</label>
             <input type="text" class="form-control" id="serverName" [(ngModel)]="device.serverName" name="servername">
           </div>
         </div>
           <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="version">Version</label><br><br>
+            <label for="version">Version</label>
             <input type="text" class="form-control" id="version" [(ngModel)]="device.dbVersion" name="dbversion">
           </div>
           <div class="form-group col-md-6">
-            <label for="sizeGb">Size GB</label><br><br>
+            <label for="sizeGb">Size GB</label>
             <input type="text" class="form-control" id="sizeGb" [(ngModel)]="device.sizeGb" name="sizegb">
           </div>
           </div>
           <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="archiveLogMode">Archive Log Mode</label><br><br>
+            <label for="archiveLogMode">Archive Log Mode</label>
             <input type="text" class="form-control" id="archiveLogMode" [(ngModel)]="device.archiveLogMode" name="db_version">
           </div>
           </div>

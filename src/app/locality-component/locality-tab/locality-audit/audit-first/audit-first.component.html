@@ -1,168 +1,218 @@
 <div class="my-container">
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-</div>
-
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Policy File</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
   </div>
-  <div class="modal-body">
-    <div>
-      <div class="col-sm-5 col-md-5 col-lg-5">
-        <form #myFileForm="ngForm">
-          <label class="input">
-            <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx"
-              #fileInput (change)="getFile($event)" required>
-
-          </label><br><br>
-        </form>
-      </div>
-
+  
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Policy File</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d()">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-  </div>
-  <div class="modal-footer">
-
-    <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
-    <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark" (click)="compareFile();c()">Compare</button>
-  </div>
-</ng-template>
-
-
-<ng-template #content1 let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Info</h4>
-  </div>
-  <div class="modal-body">
-    <p>{{info}}</p>
-  </div>
-  <div class="modal-footer">
-    <button *ngIf="!showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Ok</button>
-    <button *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
-  </div>
-</ng-template>
-
-<div>
-  <form #myForm="ngForm" class="former">
-    <fieldset [disabled]="showInitial">
-      <div class="plus">
-        <span class=" title elipsis pull-right" *ngIf="showEdit">
-          <a>
-            <fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
-          </a>
-        </span>
-
-        <span *ngIf="showLegalBox" class=" title elipsis pull-right">
-          <a (click)="saveAudit()" *ngIf="myForm.valid">
-            <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-        </span>
-
-      
-
-        <span class=" title elipsis pull-right">
-
-          <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
-            <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
-          </a>
-          <!-- <a (click)="showAudit()" title="Go back to audit section.">
-            <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
-          </a> -->
-        </span>
-      </div>
-      <br>
-
-      <div class="infoBox">
-        <div class="headerOfBox">
-          <h4>Audit Details</h4>
+    <div class="modal-body">
+      <div>
+        <div class="col-sm-5 col-md-5 col-lg-5">
+          <form #myFileForm="ngForm">
+            <label class="input">
+              <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx"
+                #fileInput (change)="getFile($event)" required>
+  
+            </label><br><br>
+          </form>
         </div>
-
+  
+      </div>
+    </div>
+    <div class="modal-footer">
+  
+      <button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+      <button type="savebtn" [disabled]="!myFileForm.valid" class="btn btn-outline-dark" (click)="compareFile();c()">Compare</button>
+    </div>
+  </ng-template>
+  
+  
+  <ng-template #content1 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Info</h4>
+    </div>
+    <div class="modal-body">
+      <p>{{info}}</p>
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="!showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c();redirect()">Ok</button>
+      <button *ngIf="showButton" type="button" class="btn btn-outline-dark confbtn" (click)="c()">Ok</button>
+    </div>
+  </ng-template>
+  
+  <div>
+    <form #myForm="ngForm" class="former">
+      <fieldset [disabled]="showInitial">
+        <div class="plus">
+          <span class=" title elipsis pull-right" *ngIf="showEdit">
+            <a>
+              <fa class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+            </a>
+          </span>
+  
+          <span *ngIf="showLegalBox" class=" title elipsis pull-right">
+            <a (click)="saveAudit()" *ngIf="myForm.valid">
+              <i class="fa fa-floppy-o" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+          </span>
+  
+        
+  
+          <span class=" title elipsis pull-right">
+  
+            <a (click)="showAudit()" title="Change to view mode. This reverts the changes">
+              <i class="fa fa-times" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+            <!-- <a (click)="showAudit()" title="Go back to audit section.">
+              <i class="fa fa-arrow-circle-o-left" aria-hidden="true" style="font-size: 24px;"></i>
+            </a> -->
+          </span>
+        </div>
+        <br>
+  
+        <div class="infoBox">
+          <div class="headerOfBox">
+            <h4>Audit Details</h4>
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group col-md-6">
+  
+              <label for="inputState">Definitive Source<span class="asterisk">*</span></label><br><br>
+  
+              <input *ngIf="!showOriginal" type="text" class="inputState" name="auditName" [(ngModel)]="appAudit.auditTypeName"
+                readonly>
+              <select *ngIf="showOriginal"  class="form-control" ngModel required name="auditName" (change)="selectDefinitive($event.target.value)"
+                required>
+                <option value="">Choose...</option>
+                <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{
+                  auditType.auditTypeName
+                  }}</option>
+              </select>
+              <span class="asterisk">{{policyErr}}</span>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Type/Policy <span class="asterisk">*</span></label><br><br>
+  
+              <input *ngIf="!showOriginal" type="text" class="inputState" name="policyId" [(ngModel)]="polName" readonly>
+              <select *ngIf="showOriginal" class="form-control" ngModel  id="typePolicy" name="policyId" required (change)="selectType($event.target.value)"
+                required>
+                <option value="">Choose...</option>
+                <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{
+                  policyType.policyGrpName
+                  }}</option>
+              </select>
+            </div>
+            </div>
+            <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="lastName">Audit Name<span class="asterisk">*</span></label><br><br>
+  
+              <input *ngIf="!showOriginal" type="text" class="inputState" name="auditType" value="" [(ngModel)]="appAudit.auditType"
+                readonly>
+              <input *ngIf="showOriginal" type="text" class="inputState" name="auditType" value="" [(ngModel)]="appAudit.auditType"
+                required>
+            </div>
+  
+            <div class="form-group col-md-6">
+              <label for="lastName">Audit Date <span class="asterisk">*</span></label><br><br>
+  
+              <input *ngIf="!showOriginal" type="text" class="inputState" name="vauditDate" [(ngModel)]="vauditDate"
+                readonly>
+              <my-date-picker  *ngIf="showOriginal" name="auditDate" class="inputState1" (dateChanged)="getAuditDate($event)"
+                [(ngModel)]="auditDate" required></my-date-picker>
+              <p style="color: red;font-weight: bold;">{{err1}}</p>
+  
+            </div>
+        </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
-
-            <label for="inputState">Definitive Source<span class="asterisk">*</span></label><br><br>
-
-            <input *ngIf="!showOriginal" type="text" class="inputState" name="auditName" [(ngModel)]="appAudit.auditTypeName"
-              readonly>
-            <select *ngIf="showOriginal"  class="form-control" ngModel required name="auditName" (change)="selectDefinitive($event.target.value)"
-              required>
-              <option value="">Choose...</option>
-              <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{
-                auditType.auditTypeName
-                }}</option>
-            </select>
-            <span class="asterisk">{{policyErr}}</span>
+            <div class="form-group col-md-6">
+              <label for="dueDate">Next Audit Date <span class="asterisk">*</span></label><br><br>
+  
+              <my-date-picker name="nextDate" ngModel [options]="myDatePickerOptions" class="inputState1" (dateChanged)="getDate($event)"
+                [(ngModel)]="nextDate" required></my-date-picker>
+              <p style="color: red;font-weight: bold;">{{err}}</p>
+            </div>
+            <div class="form-group col-md-6">
+  
+              <label for="inputState">Overall Status <span class="asterisk">*</span></label><br><br>
+  
+              <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus"
+                [(ngModel)]="appAudit.status">
+              <select  *ngIf="showOriginal || showStatus" [(ngModel)]="appAudit.status" id="modelSolution"
+                ngModel name="overallStatus" class="form-control" (change)="getNextDate($event.target.value)" required>
+                <option value="">Choose...</option>
+                <option value="Open">Open</option>
+                <option value="Suspended">Suspended</option>
+                <option value="Close">Close</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="lastName">Type/Policy <span class="asterisk">*</span></label><br><br>
-
-            <input *ngIf="!showOriginal" type="text" class="inputState" name="policyId" [(ngModel)]="polName" readonly>
-            <select *ngIf="showOriginal" class="form-control" ngModel  id="typePolicy" name="policyId" required (change)="selectType($event.target.value)"
-              required>
-              <option value="">Choose...</option>
-              <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{
-                policyType.policyGrpName
-                }}</option>
-            </select>
+          <div class="row">
+            <div class="form-group col-md-6">
+                <label for="inputState">Audit Level Score <span class="asterisk"></span></label><br><br>
+                <input type="text" class="form-control" name="overallScore" [(ngModel)]= "appAudit.overallScore" readonly/>
+            </div>
+  
+            <div class="form-group col-md-6">
+                <label for="inputState">Risk Level <span class="asterisk"></span></label><br><br>
+                <input type="text" class="form-control" name="riskLevel" [(ngModel)]= "appAudit.overallRiskLevel" readonly/>
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="lastName">Audit Name<span class="asterisk">*</span></label><br><br>
-
-            <input *ngIf="!showOriginal" type="text" class="inputState" name="auditType" value="" [(ngModel)]="appAudit.auditType"
-              readonly>
-            <input *ngIf="showOriginal" type="text" class="inputState" name="auditType" value="" [(ngModel)]="appAudit.auditType"
-              required>
+          
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Open Count: {{appAudit.openCount}}}}</label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Evidence not submitted: {{appAudit.evidenceNotSubmittedCount}}}}</label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Scored 90 and above: {{appAudit.scoreAbove89Count}}}}</label>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Scored between 50 and 75: {{appAudit.scoreAbove50Count}}}}</label>
+                </div>
+              </div>
+              
+            </div>
+            <div class="form-group col-md-6">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Open Count: {{appAudit.closeCount}}}}</label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Audit Findings available for {{appAudit.auditFindingsCount}}}} </label>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label>Scored between 75 and 90: {{appAudit.scoreAbove74Count}}}}</label>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="form-group col-md-6">
-            <label for="lastName">Audit Date <span class="asterisk">*</span></label><br><br>
-
-            <input *ngIf="!showOriginal" type="text" class="inputState" name="vauditDate" [(ngModel)]="vauditDate"
-              readonly>
-            <my-date-picker  *ngIf="showOriginal" name="auditDate" class="inputState1" (dateChanged)="getAuditDate($event)"
-              [(ngModel)]="auditDate" required></my-date-picker>
-            <p style="color: red;font-weight: bold;">{{err1}}</p>
-
-          </div>
-
-          <div class="form-group col-md-6">
-            <label for="dueDate">Next Audit Date <span class="asterisk">*</span></label><br><br>
-
-            <my-date-picker name="nextDate" ngModel [options]="myDatePickerOptions" class="inputState1" (dateChanged)="getDate($event)"
-              [(ngModel)]="nextDate" required></my-date-picker>
-            <p style="color: red;font-weight: bold;">{{err}}</p>
-          </div>
-          <div class="form-group col-md-6">
-
-            <label for="inputState">Overall Status <span class="asterisk">*</span></label><br><br>
-
-            <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus"
-              [(ngModel)]="appAudit.status">
-            <select  *ngIf="showOriginal || showStatus" [(ngModel)]="appAudit.status" id="modelSolution"
-              ngModel name="overallStatus" class="form-control" (change)="getNextDate($event.target.value)" required>
-              <option value="">Choose...</option>
-              <option value="Open">Open</option>
-              <option value="Suspended">Suspended</option>
-              <option value="Close">Close</option>
-            </select>
-          </div>
+          
         </div>
-        <div class="row">
-          <div class="form-group col-md-6">
-              <label for="inputState">Audit Level Score <span class="asterisk"></span></label><br><br>
-              <input type="text" class="form-control" name="overallScore" [(ngModel)]= "appAudit.overallScore" readonly/>
-          </div>
-
-          <div class="form-group col-md-6">
-              <label for="inputState">Risk Level <span class="asterisk"></span></label><br><br>
-              <input type="text" class="form-control" name="riskLevel" [(ngModel)]= "appAudit.overallRiskLevel" readonly/>
-          </div>
-        </div>
-      </div>
-    </fieldset>
-
-  </form>
-</div>
-
+      </fieldset>
+  
+    </form>
+  </div>
+  
+  

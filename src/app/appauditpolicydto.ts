@@ -27,6 +27,9 @@ export class AppAuditPolicyDTO {
 	//private AppAuditPolicyDTO appAuditParentPolicyDTO;
 	appAuditPolicies:any=[];
 	policyDocumentsDTOs:any;
+	weightageN:any;
+    scoreN:any;
+    netScoreN:any
 	
 
 
