@@ -46,6 +46,14 @@ export class AppAudit {
   public lessonsLearnedDescription: string;
   public updatedBy: string;
   public overallScore: number;
+  public evidenceNotSubmittedCount: number;
+  public auditFindingsCount: number;
+  public openCount: number;
+  public closeCount: number;
+  public scoreAbove89Count: number;
+  public scoreAbove74Count: number;
+  public scoreAbove50Count: number;
+
 }
 
 export class Policy {
@@ -77,25 +85,24 @@ export class AppAuditFileDTO {
   createdBy: string;
   createdTs: any;
 }
-
-export class familyPOlicyDTO{
+export class familyPOlicyDTO {
 
 
   assignedDt: any;
-	startDate: any;
-	endDate: any;
-
-	priority: any;
-	weightage: any;
-	score: any;
-	createdBy: any;
-	createdTs: any;
+  startDate: any;
+  endDate: any;
+  priority: any;
+  weightage: any;
+  score: any;
+  evidenceRequired:any
+  createdBy: any;
+  createdTs: any;
   updatedBy: any;
-	 updatedTs: any;
-	policyFamilyID: any;
-	 familyName: any;
+  updatedTs: any;
+  policyFamilyID: any;
+  familyName: any;
   assignedTo: any;
-	appAuditId: any;
-	
+  appAuditId: any;
+
 
 }

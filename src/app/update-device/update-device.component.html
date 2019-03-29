@@ -1,4 +1,4 @@
- <div class="my-container">
+<div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <app-navigation-component></app-navigation-component>
@@ -12,11 +12,16 @@
           data-delay="0" [name]="'home'"></fa>
       </a> -->
       <a href="javascript:void(0)" routerLink="/devicetab">
-        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
-          data-delay="0" [name]="'arrow-left'"></fa>
+        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+          data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
       </a>
     </div>
-    <div class="save-edit" *ngIf="showBtt">
+    <!-- <div class="save-edit" *ngIf="showBtt">
+      <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+        data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
+    </div> -->
+
+    <div class="save-edit" style="float: right;" *ngIf="showBtt">
       <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
         data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
     </div>
@@ -40,17 +45,18 @@
 </ng-template>
 
 <div>
-    <div>
-        <h3 class="pageTitle">Devices</h3>
-        <hr>
-</div>
+  <div>
+    <h3 class="pageTitle">Devices</h3>
+    <hr>
+  </div>
 
-  <form  (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
-    <div id="form1" >
-        <div class="disclaimer"><span style="float:left">Please use this screen to update device information</span>&nbsp;&nbsp;&nbsp;
-          <span style="float:right">
-            <font color=red>*</font> marked fields are mandatory
-          </span> </div>
+  <form (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
+    <div id="form1">
+      <div class="disclaimer"><span style="float:left">Please use this screen to update device
+          information</span>&nbsp;&nbsp;&nbsp;
+        <span style="float:right">
+          <font color=red>*</font> marked fields are mandatory
+        </span> </div>
       <fieldset [disabled]='showForm'>
         <div class="infoBox">
           <div class="form-row headerOfBox">
@@ -74,7 +80,8 @@
             </div>
             <div class="form-group col-md-6">
               <label for="lastName"> Updated Date</label>
-              <input type="text" class="form-control" id="lastName" value="{{device.updatedTs | filterDate}}" readonly="readonly">
+              <input type="text" class="form-control" id="lastName" value="{{device.updatedTs | filterDate}}"
+                readonly="readonly">
             </div>
           </div>
           <div class="form-row">
@@ -90,7 +97,7 @@
             </div>
           </div>
         </div>
- 
+
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Primary Contact</h4>
@@ -110,26 +117,26 @@
           <div class="form-row">
             <div class="form-group col-md-6" [class.has-error]="email.invalid && email.touched">
               <label for="email">Email ID<font color="red">*</font></label>
-              <input type="email" class="form-control" [email]="serverContact.emailId!==''" name="email" [(ngModel)]="serverContact.emailId"
-                #email="ngModel" required><br><br>
-              <div  style="color:red;padding-left: 43%;" *ngIf="email.errors?.required && email.touched">
+              <input type="email" class="form-control" [email]="serverContact.emailId!==''" name="email"
+                [(ngModel)]="serverContact.emailId" #email="ngModel" required><br><br>
+              <div style="color:red;padding-left: 43%;" *ngIf="email.errors?.required && email.touched">
                 Email is required
               </div>
-              <div  style="color:red;padding-left: 43%;" *ngIf="email.errors?.email && email.touched">
+              <div style="color:red;padding-left: 43%;" *ngIf="email.errors?.email && email.touched">
                 Email is invalid
               </div>
             </div>
             <div class="form-group col-md-6">
               <label for="phone">Phone Number<font color="red">*</font></label>
-              <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber($event,$event.target.value)"
-                [ngModel]="serverContact.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber($event.target.value)"
-                onlyInteger>
+              <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx"
+                (keydown)="getPhoneNumber($event,$event.target.value)" [ngModel]="serverContact.phoneNumber" required
+                maxlength="12" minlength="12" (change)="getNumber($event.target.value)" onlyInteger>
 
             </div>
           </div>
 
         </div>
-      
+
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h5>Secondary Contact</h5>
@@ -149,24 +156,24 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="email">Email ID<font color="red">*</font></label>
-              <input type="email" class="form-control" [(ngModel)]="serverContact1.emailId"
-                ngModel name="email1" id="email1" #email1="ngModel" [email]="serverContact1.emailId!==''" required><br><br>
-                <div style="color:red;padding-left: 43%;" *ngIf="email1.errors?.required && email1.touched">
-                    Email is required
-                   </div>
-                   <div style="color:red;padding-left: 43%;" *ngIf="email1.errors?.email && email1.dirty">
-                     Email is invalid
-                   </div>
+              <input type="email" class="form-control" [(ngModel)]="serverContact1.emailId" ngModel name="email1"
+                id="email1" #email1="ngModel" [email]="serverContact1.emailId!==''" required><br><br>
+              <div style="color:red;padding-left: 43%;" *ngIf="email1.errors?.required && email1.touched">
+                Email is required
+              </div>
+              <div style="color:red;padding-left: 43%;" *ngIf="email1.errors?.email && email1.dirty">
+                Email is invalid
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="phone">Phone Number<font color="red">*</font></label>
-              <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx" (keydown)="getPhoneNumber1($event,$event.target.value)"
-                [ngModel]="serverContact1.phoneNumber" required maxlength="12" minlength="12" (change)="getNumber1($event.target.value)"
-                onlyInteger>
+              <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx"
+                (keydown)="getPhoneNumber1($event,$event.target.value)" [ngModel]="serverContact1.phoneNumber" required
+                maxlength="12" minlength="12" (change)="getNumber1($event.target.value)" onlyInteger>
             </div>
           </div>
         </div>
-       
+
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h5>Licensed Information</h5>
@@ -202,27 +209,30 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="productName">Product Name<font color="red">*</font></label>
-              <input type="text" class="form-control" id="productName" ngModel name="product" [(ngModel)]="device.productName"
-                required>
+              <input type="text" class="form-control" id="productName" ngModel name="product"
+                [(ngModel)]="device.productName" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="costField">Cost Field<font color="red">*</font></label>
-                <!-- <div class="dollar"><input type="number" class="form-control" [(ngModel)]="serverContact.cost" ngModel name="cost"
+              <label for="costField">Cost Field<font color="red">*</font></label>
+              <!-- <div class="dollar"><input type="number" class="form-control" [(ngModel)]="serverContact.cost" ngModel name="cost"
                     required></div> -->
-                    <div class="input-group col-md-6">
-              
-                        <div class="input-group-prepend">
-                          <span class="input-group-text dol">$</span>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="serverContact.cost" ngModel name="cost" required currencyMask [options]="{ prefix:'', thousands:',', decimal:'.',align:'left',allowNegative:false,nullable:true}">
-                      </div>
-      
-      
-      
+              <div class="input-group col-md-6" style="margin-top: -11px;">
+
+                <div class="input-group-prepend">
+                  <span class="input-group-text dol">$</span>
+                </div>
+                <input type="text" style="margin-top: 10px;" class="form-control"
+                  aria-label="Amount (to the nearest dollar)" [(ngModel)]="serverContact.cost" ngModel name="cost"
+                  required currencyMask
+                  [options]="{ prefix:'', thousands:',', decimal:'.',align:'left',allowNegative:false,nullable:true}">
               </div>
+
+
+
+            </div>
           </div>
         </div>
-       
+
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Configuration</h4>
@@ -234,13 +244,15 @@
             </div>
             <div class="form-group col-md-6">
               <label for="updateLevel">Control Name</label>
-              <input type="text" class="form-control" name="controlName" [(ngModel)]="device.controlName" id="updateLevel">
+              <input type="text" class="form-control" name="controlName" [(ngModel)]="device.controlName"
+                id="updateLevel">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="clockFrequency">Clock Frequency</label>
-              <input type="text" class="form-control" id="clockFrequency" [(ngModel)]="device.clockFrequency" name="clock">
+              <input type="text" class="form-control" id="clockFrequency" [(ngModel)]="device.clockFrequency"
+                name="clock">
             </div>
             <div class="form-group col-md-6">
               <label for="memory">Memory</label>
@@ -260,11 +272,13 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="physicalCpuCount">Physical CPU Count</label>
-              <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)]="device.physicalCpuCount" name="physical">
+              <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)]="device.physicalCpuCount"
+                name="physical">
             </div>
             <div class="form-group col-md-6">
               <label for="logicalCpuCount">Logical CPU Count</label>
-              <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)]="device.logicalCpuCount" name="logical">
+              <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)]="device.logicalCpuCount"
+                name="logical">
             </div>
           </div>
           <div class="form-row">
@@ -274,7 +288,7 @@
             </div>
           </div>
         </div>
-      
+
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Operating System</h4>
@@ -282,7 +296,8 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="operatingSystem">Operating System</label>
-              <input type="text" class="form-control" name="operatingSystem" [(ngModel)]="device.operatingSystem" id="operatingSystem">
+              <input type="text" class="form-control" name="operatingSystem" [(ngModel)]="device.operatingSystem"
+                id="operatingSystem">
             </div>
             <div class="form-group col-md-6">
               <label for="version">Version</label>
@@ -290,7 +305,7 @@
             </div>
           </div>
         </div>
-       
+
         <div class="infoBox">
           <div class="form-row headerOfBox">
             <h4>Database Server</h4>
@@ -298,7 +313,8 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="db/AppServerName">DB/APP Server Name</label>
-              <input type="text" class="form-control" id="db/AppServerName" [(ngModel)]="device.dbServer" name="dbserver">
+              <input type="text" class="form-control" id="db/AppServerName" [(ngModel)]="device.dbServer"
+                name="dbserver">
             </div>
 
             <div class="form-group col-md-6">
@@ -319,7 +335,8 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="archiveLogMode">Archive Log Mode</label>
-              <input type="text" class="form-control" id="archiveLogMode" [(ngModel)]="device.archiveLogMode" name="db_version">
+              <input type="text" class="form-control" id="archiveLogMode" [(ngModel)]="device.archiveLogMode"
+                name="db_version">
             </div>
           </div>
         </div>
@@ -329,22 +346,24 @@
             <h4>Purpose</h4>
           </div>
           <div class="form-row">
-            <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" name="purpose"
-              [(ngModel)]="device.purpose" maxlength="50000" #purpose="ngModel"> </textarea><!--<div style="float:right">{{50000 - purpose.value.length}} characters left </div> -->
-					 <br>
-					 <div *ngIf="purpose.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div> 
+            <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm"
+              name="purpose" [(ngModel)]="device.purpose" maxlength="50000" #purpose="ngModel"> </textarea>
+            <!--<div style="float:right">{{50000 - purpose.value.length}} characters left </div> -->
+            <br>
+            <div *ngIf="purpose.errors?.maxlength" style="float:right">
+              <span style="color:tomato"> Exceeded the character limit. </span>
+            </div>
           </div>
         </div>
       </fieldset>
-     
+
     </div>
   </form>
   <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark" style="margin-left:5%;">Show
     List</button>
-    <div style="margin-right:5%;">
-  <button type="submit" class="submit btn btn-primary" form="myForm"  [disabled]="!editForm.valid" *ngIf="isLol">Submit</button>
-  <button type="cancel" routerLink="/devicetab" class="cancel btn btn-primary">Cancel</button>
-</div>
+  <div style="margin-right:5%;">
+    <button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!editForm.valid"
+      *ngIf="isLol">Submit</button>
+    <button type="cancel" routerLink="/devicetab" class="cancel btn btn-primary">Cancel</button>
+  </div>
 </div>

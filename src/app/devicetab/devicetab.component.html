@@ -16,8 +16,8 @@
 				 data-delay="0" [name]="'home'"></fa>
 			</a> -->
 			<a href="javascript:void(0)" routerLink="/dashboard">
-				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back" data-animation="true"
-				 data-delay="0" [name]="'arrow-left'"></fa>
+				<fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+					data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
 			</a>
 		</div>
 
@@ -45,38 +45,46 @@
 
 
 
-		<div>
-				<h3 class="pageTitle">Devices</h3>
-				<hr>
-			</div>
-			<br>
+	<div>
+		<h3 class="pageTitle">Devices</h3>
+		<hr>
+	</div>
+	<br>
 
 	<form class="form">
 		<table class="table table-bordered" style="text-align: center">
 			<thead>
 				<tr>
 					<th scope="col" (click)="handleSort()">Host Name
-						<i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
+						<i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor"
+							*ngIf="desc"></i></th>
 					<th scope="col" (click)="handleSorting()">Product Name
-						<i class="fa fa-arrow-down testColor" *ngIf="!des"></i> <i class="fa fa-arrow-up testColor" *ngIf="des"></i></th>
+						<i class="fa fa-arrow-down testColor" *ngIf="!des"></i> <i class="fa fa-arrow-up testColor"
+							*ngIf="des"></i></th>
 
-					<th scope="col" (click)="handleSort2('createdTs')">Create Date<i class="fa fa-arrow-down testColor" *ngIf="!crtdt"></i>
+					<th scope="col" (click)="handleSort2('createdTs')">Create Date<i class="fa fa-arrow-down testColor"
+							*ngIf="!crtdt"></i>
 						<i class="fa fa-arrow-up testColor" *ngIf="crtdt"></i></th>
-					<th scope="col" (click)="handleSort3('updatedTs')">Modified Date<i class="fa fa-arrow-down testColor" *ngIf="!modifiedDt"></i>
+					<th scope="col" (click)="handleSort3('updatedTs')">Modified Date<i
+							class="fa fa-arrow-down testColor" *ngIf="!modifiedDt"></i>
 						<i class="fa fa-arrow-up testColor" *ngIf="modifiedDt"></i></th>
-					<th scope="col" (click)="handleSort4('licenseRenewDt')">Renewal date<i class="fa fa-arrow-down testColor" *ngIf="!rendt"></i>
+					<th scope="col" (click)="handleSort4('licenseRenewDt')">Renewal date<i
+							class="fa fa-arrow-down testColor" *ngIf="!rendt"></i>
 						<i class="fa fa-arrow-up testColor" *ngIf="rendt"></i></th>
-					<th scope="col" (click)="handleSort5('updatedBy')"> Updated By<i class="fa fa-arrow-down testColor" *ngIf="!updtBy"></i>
+					<th scope="col" (click)="handleSort5('updatedBy')"> Updated By<i class="fa fa-arrow-down testColor"
+							*ngIf="!updtBy"></i>
 						<i class="fa fa-arrow-up testColor" *ngIf="updtBy"></i></th>
-					<th scope="col" (click)="handleSort3('updatedTs')"> Updated Date<i class="fa fa-arrow-down testColor" *ngIf="!modifiedDt"></i>
+					<th scope="col" (click)="handleSort3('updatedTs')"> Updated Date<i
+							class="fa fa-arrow-down testColor" *ngIf="!modifiedDt"></i>
 						<i class="fa fa-arrow-up testColor" *ngIf="modifiedDt"></i></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let appDevice of displayDevices|paginate: { itemsPerPage: 10, currentPage: p }">
 
-					<td><a class="box" routerLink="/updateDevice/{{appDevice.databaseId}}" (click)="getDatabases(appDevice.databaseId)"
-						 style="cursor: pointer;">{{ appDevice.hostName}}</a></td>
+					<td><a class="box" routerLink="/updateDevice/{{appDevice.databaseId}}"
+							(click)="getDatabases(appDevice.databaseId)"
+							style="cursor: pointer;">{{ appDevice.hostName}}</a></td>
 					<td>{{appDevice.productName}}</td>
 					<!--      <td>{{appDevice}}</td> -->
 					<td>{{appDevice.createdTs|filter}}</td>
