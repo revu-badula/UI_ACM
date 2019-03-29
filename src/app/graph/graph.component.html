@@ -17,10 +17,11 @@
               <a class="nav-item nav-link disabled">
                 <span style="font-weight: bold;">Dashboards -></span>
               </a>
-              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                aria-controls="nav-home" aria-selected="true">Localities</a>
-              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Systems</a>
+              <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="true">Systems</a>
+              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="false">Localities</a>
+
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
                 aria-controls="nav-contact" aria-selected="false">Policies</a>
               <a class="nav-item nav-link" id="nav-audit-tab" data-toggle="tab" href="#nav-audit" role="tab"
@@ -35,7 +36,7 @@
           </nav>
           <br>
           <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
               <div class="row">
                 <div class="col-md-6">
@@ -82,20 +83,20 @@
               </div>
               <br>
               <div class="row">
-                  <div class="col-md-6">
-                      <div class="chart">
-    
-                        <div style="display: block;width: 70vh; height: 45vh;margin-left: 0vw;background-color: #fff;">
-                          <canvas baseChart [datasets]="barChartData2" [labels]="lineChartLabelsLocalities" [legend]="true"
-                            chartType="bar" [options]="chartOption2" [colors]="chartColorsLocalities2"
-                            (chartClick)="getDataLocalities($event)"></canvas>
-                        </div>
-                      </div>
+                <div class="col-md-6">
+                  <div class="chart">
+
+                    <div style="display: block;width: 70vh; height: 45vh;margin-left: 0vw;background-color: #fff;">
+                      <canvas baseChart [datasets]="barChartData2" [labels]="lineChartLabelsLocalities" [legend]="true"
+                        chartType="bar" [options]="chartOption2" [colors]="chartColorsLocalities2"
+                        (chartClick)="getDataLocalities($event)"></canvas>
                     </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="tab-pane fade show" id="nav-profile" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-home-tab">
               <div class="row">
                 <div class="col-md-6">
                   <div class="chart">
@@ -145,10 +146,10 @@
                   </div> -->
 
                   <div style="display: block;width: 70vh; height: 45vh;margin-left: 0vw;background-color: #fff;">
-                      <canvas baseChart [datasets]="barChartData3" [labels]="lineChartLabelsPolicies" [legend]="true"
-                        chartType="bar" [options]="chartOption3" [colors]="chartColorsPolicies"
-                        (chartClick)="getDataLocalities($event)"></canvas>
-                    </div>
+                    <canvas baseChart [datasets]="barChartData3" [labels]="lineChartLabelsPolicies" [legend]="true"
+                      chartType="bar" [options]="chartOption3" [colors]="chartColorsPolicies"
+                      (chartClick)="getDataLocalities($event)"></canvas>
+                  </div>
 
                 </div>
 
@@ -176,10 +177,10 @@
 
                   </div> -->
                   <div style="display: block;width: 70vh; height: 45vh;margin-left: 0vw;background-color: #fff;">
-                      <canvas baseChart [datasets]="lineChartDataAudit" [labels]="lineChartLabelsAudit" [legend]="true"
-                        chartType="bar" [options]="chartOption4" [colors]="chartColorsAudit"
-                        (chartClick)="getDataLocalities($event)"></canvas>
-                    </div>
+                    <canvas baseChart [datasets]="lineChartDataAudit" [labels]="lineChartLabelsAudit" [legend]="true"
+                      chartType="bar" [options]="chartOption4" [colors]="chartColorsAudit"
+                      (chartClick)="getDataLocalities($event)"></canvas>
+                  </div>
                 </div>
 
                 <div class="col-md-6">
@@ -223,7 +224,7 @@
                     <!-- <canvas baseChart [data]="pieChartData15" [labels]="pieChartLabels15" [chartType]="pieChartType"
                       (chartClick)="chartClicked15($event)" [options]="pieChartOptions15"
                       [colors]="pieChartColor15"></canvas> -->
-                      <canvas baseChart [datasets]="lineChartDataAssess" [labels]="lineChartLabelsAssess" [legend]="true"
+                    <canvas baseChart [datasets]="lineChartDataAssess" [labels]="lineChartLabelsAssess" [legend]="true"
                       chartType="bar" [options]="chartOption5" [colors]="chartColorsAssess"
                       (chartClick)="getDataLocalities($event)"></canvas>
                   </div>
@@ -258,7 +259,7 @@
 
                   </div>
                 </div>
-               
+
               </div>
             </div>
             <div class="tab-pane fade show" id="nav-devices" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -274,13 +275,13 @@
 
                 </div>
                 <div class="col-md-6">
-                    <div style="display: block; width: 70vh; height: 45vh;background-color: #fff;margin-left: 1vw;">
-                      <canvas baseChart [data]="pieChartData9" [labels]="pieChartLabels9" [chartType]="pieChartType"
-                        (chartClick)="chartClicked9($event)" [options]="pieChartOptions9"
-                        [colors]="pieChartColor9"></canvas>
-  
-                    </div>
+                  <div style="display: block; width: 70vh; height: 45vh;background-color: #fff;margin-left: 1vw;">
+                    <canvas baseChart [data]="pieChartData9" [labels]="pieChartLabels9" [chartType]="pieChartType"
+                      (chartClick)="chartClicked9($event)" [options]="pieChartOptions9"
+                      [colors]="pieChartColor9"></canvas>
+
                   </div>
+                </div>
               </div>
             </div>
             <!-- <br>

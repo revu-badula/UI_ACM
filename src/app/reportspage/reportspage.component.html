@@ -1,0 +1,231 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<app-navigation-component></app-navigation-component>
+<div class="navigate sticky-top">
+
+  <div class="form-options">
+    <div class="home-back">
+      <a href="javascript:void(0)" style="color: #000;" (click)="backClicked()">
+        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+          data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+      </a>
+    </div>
+
+
+  </div>
+</div>
+<h3 class="pageTitle">Business Impact Analysis</h3>
+<hr>
+<form #formName="ngForm" (ngSubmit)="createSystem()" enctype="multipart/form-data">
+  <div id="form1">
+    <div class="disclaimer"><span style="float:left">Please use this screen to view Reports
+        information.</span>&nbsp;&nbsp;&nbsp;
+      <span style="float:right">
+        <span class="asterisk">*</span> marked fields are mandatory
+      </span> </div>
+    <!-- <div class="infoBox"> -->
+    <!-- <div class="headerOfBox">
+        <h4>Reports</h4>
+      </div> -->
+    <br>
+    <div class="form-row">
+      <div class="col-md-6">
+
+        <!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
+        <div class="card"
+          style="width: 18rem;height:14em;cursor: pointer;margin-left: 42%;margin-right: auto;display: block;">
+          <div class="card-body" (click)="getValue('true')">
+            <div class="card-heading">
+              <h5 class="card-title">Human Resources</h5>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="fa fa-users fa-3x" style="color:cadetblue"></i>
+              </div>
+              <div class="col-sm-9 text">
+                Impact of human resources on business operations and continuity.
+                <!-- <hr id="lineSpace"> -->
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4" style="margin-left: -11%;
+        margin-top: -0.8vh;">
+          Resource Report
+        </div> -->
+
+
+      <div class="col-md-6">
+        <!-- <input type="radio" (click)="getValue('false')" value="false" name="report"> -->
+        <div class="card"
+          style="width: 18rem;height:14em;cursor: pointer;margin-left: auto;margin-right: 42%;display: block;">
+          <div class="card-body" (click)="getValue('false')">
+            <div class="card-heading">
+              <h5 class="card-title">Technology Resources</h5>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="fa fa-desktop fa-3x" style="color:brown"></i>
+              </div>
+              <div class="col-sm-9 text">
+                Impact of technology resources on business operations and continuity.
+
+                <!-- <hr id="lineSpace"> -->
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4" style="margin-left: -11%;
+        margin-top: -0.8vh;">
+          overall Report
+        </div> -->
+    </div>
+
+    <!-- </div> -->
+
+
+    <div class="infoBox" *ngIf="showReports">
+      <div class="headerOfBox">
+        <h4>Resource Reports</h4>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-6">
+          <label class="fam">Role<span class="asterisk">*</span></label>
+          <select class="form-control" name="userRole" (change)="getUserRoleId($event.target.value)">
+            <option value="" selected>Choose...
+            </option>
+            <option *ngFor="let user of userRoles" value="{{user.appRoleId}}">{{user.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="fam">Name<span class="asterisk">*</span></label>
+          <select class="form-control" name="users" (change)="getUsers($event.target.value)">
+            <option value="" selected>Choose...
+            </option>
+            <option *ngFor="let users of Users" value="{{users.userId}}">{{users.firstName}} {{users.lastName}}</option>
+          </select>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="infoBox" *ngIf="showTable">
+      <div class="headerOfBox">
+        <h4>Systems/Applications</h4>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>
+              Acronym
+            </th>
+            <th>Application Name</th>
+            <th>Business Owner</th>
+            <th>Project Manager</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tableUsers">
+            <td>
+              <a style="color: blue;cursor: pointer;" (click)="gotTo(data.acronym)">{{data.acronym}}
+              </a>
+            </td>
+            <td>{{data.name}}</td>
+            <td>{{data.businessOwnerName}}</td>
+            <td>{{data.projectManagerName}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="infoBox" *ngIf="showOverall">
+      <div class="headerOfBox">
+        <h4>select Below</h4>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-6">
+          <label class="fam">Please select<span class="asterisk">*</span></label>
+          <select class="form-control" name="selectReport" (change)="getReport($event.target.value)">
+            <option value="" selected>Choose...
+            </option>
+            <option value="database">Database</option>
+            <option value="appServer">Application Server</option>
+            <option value="technology">Technology</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="fam">Please select<span class="asterisk">*</span></label>
+          <select class="form-control" name="reportFor" (change)="getReportFor($event.target.value)">
+            <option value="" selected>Choose...
+            </option>
+            <ng-container *ngIf="showDApp">
+              <option *ngFor="let data of reports" value="{{data.databaseId}}">
+                {{data.hostName}}
+              </option>
+            </ng-container>
+            <ng-container *ngIf="showTech">
+              <option *ngFor="let data of tech" value="{{data.technologyId}}">
+                {{data.name}}
+              </option>
+            </ng-container>
+          </select>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="infoBox" *ngIf="showOverallTable">
+      <div class="headerOfBox">
+        <h4>Systems/Applications</h4>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>
+              Acronym
+            </th>
+            <th>Application Name</th>
+            <th>Business Owner</th>
+            <th>Project Manager</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of DST">
+            <td>
+              <a style="color: blue;cursor: pointer;" (click)="gotTo(data.acronym)">{{data.acronym}}
+              </a>
+            </td>
+            <td>{{data.name}}</td>
+            <td>{{data.businessOwnerName}}</td>
+            <td>{{data.projectManagerName}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+</form>

@@ -29,12 +29,17 @@ export class MOUDocDTO {
 export class ApplicationUserDTO {
 
 	firstName: any;
-	lastName:any;
-	title:any;
-	userId:any;
-	role:any;
-	emailId:any;
-	newEntry:any;
-	active:any;
-	applicationUserId:any;
+	lastName: any;
+	title: any;
+	userId: any;
+	role: any;
+	emailId: any;
+	newEntry: any;
+	active: any;
+	applicationUserId: any;
+}
+
+export class UserReportRequest {
+	userId: any;
+	appRoleId: any;
 }

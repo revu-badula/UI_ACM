@@ -159,6 +159,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SampleQuestionComponent } from './sample-question/sample-question.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { BusinessComponent } from './business/business.component';
+import { ReportspageComponent } from './reportspage/reportspage.component';
 
 const appRoutes: Routes = [
 
@@ -194,9 +195,9 @@ const appRoutes: Routes = [
   { path: 'accessUpdate1/:id', component: AssessmentpolicyupdateComponent, canActivate: [AuthGuard] },
   { path: 'graph', component: GraphComponent, canActivate: [AuthGuard]},
   { path: 'sidebar', component: NavbarComponent, canActivate: [AuthGuard]},
-  { path: 'sample' , component: SampleQuestionComponent},
-  { path: 'createQuestion', component: CreateQuestionComponent},
-  // { path: 'bus', component: BusinessComponent},
+  { path: 'sample' , component: SampleQuestionComponent, canActivate: [AuthGuard]},
+  { path: 'createQuestion', component: CreateQuestionComponent, canActivate: [AuthGuard]},
+   { path: 'resImpactAnalysis', component: ReportspageComponent, canActivate: [AuthGuard]},
   
  
   {

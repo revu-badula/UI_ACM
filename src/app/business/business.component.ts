@@ -34,6 +34,7 @@ export class BusinessComponent implements OnInit {
   public applicationUserDTO: ApplicationUserDTO;
   public title: any;
   public loading: boolean = false;
+  public showEdit:boolean=true;
   config: any = {
     height: 250,
     width: 1080,
@@ -53,6 +54,7 @@ export class BusinessComponent implements OnInit {
     branding: false,
     menubar: false,
     statusbar: false
+
   };
   constructor(private ref: ChangeDetectorRef, private httpClient: HttpClient,
     private modalService: NgbModal, private dialog: DialogService) {
@@ -136,6 +138,11 @@ export class BusinessComponent implements OnInit {
     }
   }
 
+  editClick()
+  {
+    this.showEdit=false;
+  }
+
   getSystem() {
     this.loading = true;
     let url5 = APP_CONFIG.viewApplication;
@@ -157,6 +164,10 @@ export class BusinessComponent implements OnInit {
         if (this.system.description != undefined) {
           let des = this.system.description.replace(/<[^>]+>/gm, '');
           this.len = des.length;
+        }
+        if(this.system.costType === undefined)
+        {
+          this.system.costType=null;
         }
       }, error => {
         this.loading = false;

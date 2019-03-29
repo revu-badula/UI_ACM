@@ -22,7 +22,7 @@ export class NavigationComponentComponent implements OnInit {
         let currentURL = route.root.firstChild.snapshot.data['title'];
         if(currentURL === 'home')
         {
-          this.currentURL1=false;
+          this.currentURL1=true;
         }
     });
    }
@@ -67,7 +67,7 @@ export class NavigationComponentComponent implements OnInit {
   }
   goTo()
   {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/graph']);
   }
 
 }

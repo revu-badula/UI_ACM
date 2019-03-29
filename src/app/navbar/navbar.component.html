@@ -1,3 +1,17 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" style="color:white">Info</h4>
+
+    </div>
+    <div class="modal-body">
+        <h3><b>Do you want to open:</b></h3>
+        <button type="button" class="btn btn-outline-dark" (click)="c();showLocal()">Locality</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c();showSys()">Systems</button>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
+    </div>
+</ng-template>
 <div class="logo">
     <a routerLink="/dashboard" class="simple-text">
 
@@ -56,14 +70,14 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/dashboard">
+            <a class="nav-link" (click)="getOpen()">
                 <!-- <i class="material-icons">bubble_chart</i> -->
                 <i class="fa fa-suitcase fa-3x" aria-hidden="true"></i>
                 <p>Audit</p>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/dashboard">
+            <a class="nav-link" (click)="getOpen()">
                 <!-- <i class="material-icons">location_on</i> -->
                 <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
                 <p>Assessmemt</p>
@@ -116,7 +130,14 @@
                 <a class="" routerLink="/devicetab">View/Edit</a>
             </div>
         </li>
-      
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/resImpactAnalysis">
+                <!-- <i class="material-icons">location_on</i> -->
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <p>Business Impact Analysis</p>
+            </a>
+        </li>
+
 
     </ul>
 </div>

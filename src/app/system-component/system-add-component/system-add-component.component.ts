@@ -62,7 +62,7 @@ export class SystemAddComponentComponent implements OnInit {
 
   }
 
-  viewApplication(system) {
+  viewApplication(system:any) {
     sessionStorage.setItem('systemName', system);
     this.router.navigate(['/system/tab2/info']);
   }
@@ -72,7 +72,7 @@ export class SystemAddComponentComponent implements OnInit {
   }
 
 
-  handleSort(value) {
+  handleSort(value:any) {
     if (!this.desc) {
 
       let orderByValue = value;

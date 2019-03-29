@@ -103,7 +103,8 @@ import { CreateQuestionComponent } from './create-question/create-question.compo
 import { BusinessComponent } from './business/business.component';
 import { OnlyNumber } from './onlyNumber';
 import { OnlyNumber1 } from './onlyNumber1';
-
+import { ReportspageComponent } from './reportspage/reportspage.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -175,12 +176,14 @@ import { OnlyNumber1 } from './onlyNumber1';
     CreateQuestionComponent,
     BusinessComponent,
     OnlyNumber,
-    OnlyNumber1
+    OnlyNumber1,
+    ReportspageComponent
 
   ],
 
   imports: [
     BrowserModule,
+    NgSelectModule,
     Angular2FontawesomeModule,
     MyDatePickerModule,
     HttpModule,
@@ -211,9 +214,7 @@ import { OnlyNumber1 } from './onlyNumber1';
       fullScreenBackdrop: true
     }),
     NgxTinymceModule.forRoot({
-      //baseURL: './assets/tinymce/',
     })
-    // UserIdleModule.forRoot({idle: 60, timeout: 60, ping: 120})
   ],
   entryComponents: [
     DialogBoxComponent, DialogComponent

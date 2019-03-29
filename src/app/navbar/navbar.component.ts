@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 declare interface RouteInfo {
   path: string;
   title: string;
@@ -23,11 +25,34 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  @ViewChild('content') content: TemplateRef<any>;
+
   menuItems: any[];
-  constructor() { }
+  constructor(private modalService: NgbModal,private router:Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+  }
+
+  getOpen()
+  {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.modalService.open(this.content,ngbModalOptions);
+
+  }
+
+  showLocal()
+  {
+    this.router.navigate(['/locality/map']);
+
+  }
+
+  showSys() {
+    this.router.navigate(['/system/map']);
   }
 
 }
