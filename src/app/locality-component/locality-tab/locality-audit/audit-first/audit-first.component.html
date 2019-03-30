@@ -17,7 +17,7 @@
               <input type="file" name="file" ngModel file-model="attachment" data-btn-text="Select a File" accept=".pdf,.doc,.docx"
                 #fileInput (change)="getFile($event)" required>
   
-            </label><br><br>
+            </label>
           </form>
         </div>
   
@@ -82,7 +82,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
   
-              <label for="inputState">Definitive Source<span class="asterisk">*</span></label><br><br>
+              <label for="inputState">Definitive Source<span class="asterisk">*</span></label>
   
               <input *ngIf="!showOriginal" type="text" class="inputState" name="auditName" [(ngModel)]="appAudit.auditTypeName"
                 readonly>
@@ -96,7 +96,7 @@
               <span class="asterisk">{{policyErr}}</span>
             </div>
             <div class="form-group col-md-6">
-              <label for="lastName">Type/Policy <span class="asterisk">*</span></label><br><br>
+              <label for="lastName">Type/Policy <span class="asterisk">*</span></label>
   
               <input *ngIf="!showOriginal" type="text" class="inputState" name="policyId" [(ngModel)]="polName" readonly>
               <select *ngIf="showOriginal" class="form-control" ngModel  id="typePolicy" name="policyId" required (change)="selectType($event.target.value)"
@@ -110,7 +110,7 @@
             </div>
             <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="lastName">Audit Name<span class="asterisk">*</span></label><br><br>
+              <label for="lastName">Audit Name<span class="asterisk">*</span></label>
   
               <input *ngIf="!showOriginal" type="text" class="inputState" name="auditType" value="" [(ngModel)]="appAudit.auditType"
                 readonly>
@@ -119,7 +119,7 @@
             </div>
   
             <div class="form-group col-md-6">
-              <label for="lastName">Audit Date <span class="asterisk">*</span></label><br><br>
+              <label for="lastName">Audit Date <span class="asterisk">*</span></label>
   
               <input *ngIf="!showOriginal" type="text" class="inputState" name="vauditDate" [(ngModel)]="vauditDate"
                 readonly>
@@ -131,7 +131,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="dueDate">Next Audit Date <span class="asterisk">*</span></label><br><br>
+              <label for="dueDate">Next Audit Date <span class="asterisk">*</span></label>
   
               <my-date-picker name="nextDate" ngModel [options]="myDatePickerOptions" class="inputState1" (dateChanged)="getDate($event)"
                 [(ngModel)]="nextDate" required></my-date-picker>
@@ -139,7 +139,7 @@
             </div>
             <div class="form-group col-md-6">
   
-              <label for="inputState">Overall Status <span class="asterisk">*</span></label><br><br>
+              <label for="inputState">Overall Status <span class="asterisk">*</span></label>
   
               <input *ngIf="!showOriginal && showStatus1" type="text" class="form-control" name="overallStatus"
                 [(ngModel)]="appAudit.status">
@@ -154,17 +154,17 @@
           </div>
           <div class="row">
             <div class="form-group col-md-6">
-                <label for="inputState">Audit Level Score <span class="asterisk"></span></label><br><br>
+                <label for="inputState">Audit Level Score <span class="asterisk"></span></label>
                 <input type="text" class="form-control" name="overallScore" [(ngModel)]= "appAudit.overallScore" readonly/>
             </div>
   
             <div class="form-group col-md-6">
-                <label for="inputState">Risk Level <span class="asterisk"></span></label><br><br>
+                <label for="inputState">Risk Level <span class="asterisk"></span></label>
                 <input type="text" class="form-control" name="riskLevel" [(ngModel)]= "appAudit.overallRiskLevel" readonly/>
             </div>
           </div>
           
-          <div class="form-row">
+          <!-- <div class="form-row">
             <div class="form-group col-md-6">
               <div class="form-row">
                 <div class="form-group col-md-12">
@@ -207,6 +207,48 @@
                 </div>
               </div>
             </div>
+          </div> -->
+
+          <div class="form-row">
+              <table class="table table-striped table-hover table-bordere">
+                  <th>Open</th>
+                  <th>Close</th>
+                  <th>Evidences not submitted</th>
+                  <th>> 90</th>
+                  <th>75-89 </th>
+                  <th>< 74 </th>
+                  <th>Audit Findings</th>
+
+                  <tbody>
+                    <tr>
+                      <td>
+                          {{appAudit.openCount}}
+                      </td>
+                      <td>
+                          {{appAudit.closeCount}}
+                      </td>
+                      <td>
+                          {{appAudit.evidenceNotSubmittedCount}}
+                      </td>
+                      <td>
+                          {{appAudit.scoreAbove89Count}}
+                      </td>
+                      <td>
+                          {{appAudit.scoreAbove74Count}}
+                      </td>
+                      <td>
+                          {{appAudit.scoreAbove50Count}}
+                      </td>
+
+                      <td>
+                          {{appAudit.auditFindingsCount}}
+                      </td>
+
+                    </tr>
+                  </tbody>
+
+              </table>
+
           </div>
           
         </div>

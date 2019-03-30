@@ -189,7 +189,7 @@
 						(change)="getFamily($event.target.value)">
 						<option value="" selected>Choose...</option>
 						<option value="all">All</option>
-						<option *ngFor="let fam of families" value="{{fam}}">{{fam}}</option>
+						<option *ngFor="let fam of families" value="{{fam.policyFamilyID}}">{{fam.familyName}}</option>
 					</select>
 				</div>
 			</div>
@@ -200,24 +200,25 @@
 			<br>
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-6">
 
 					<div class="form-group">
 						<label for="email">Assigned To</label>
-						<input type="text" name="assignTo" [(ngModel)]="family.assignedTo">
+						<input type="text" class="form-control"  name="assignTo" [(ngModel)]="family.assignedTo">
 					</div>
 				</div>
 
-				<div class="col-md-3">
+				<div class="col-md-6">
 					<div class="form-group">
 						<label for="email">Assigned On</label>
 						<my-date-picker class="inputState1" (dateChanged)="getDateAssign($event)" [(ngModel)]="assignOn" name="assignOn"></my-date-picker>
 					</div>
 				</div>
 
-		
+			</div>
+			<div class="row">
 			
-				<div class="col-md-3">
+				<div class="col-md-6">
 						<label>Priority</label>
 						<select class="form-control" name="priority" (change)="family.priority = $event.target.value" [(ngModel)]="family.priority">
 			  
@@ -227,24 +228,23 @@
 						</select>
 				</div>
 
-				<div class="col-md-3">
+				<div class="col-md-6">
 
 					<label>Weightage</label>
-					<div class="col-md-3"><input type="number" name="Weightage" class="form-control" 
-							(change)="getNum()" [(ngModel)]="family.weightage" id="first" style="width:200% !important" maxlength="1" OnlyNumber1="true"
-							oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" ></div>
+					<input type="number" name="Weightage" class="form-control" 
+							(change)="getNum()" [(ngModel)]="family.weightage" id="first"  maxlength="1" OnlyNumber1="true"
+							oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" >
 
 				</div>
 		</div>
 
 		<div class="row">
 				
-						<label for="yes_no_radio">Is evidence required?</label>
-						<div class="row">
-						<input type="radio" name="yes_no" (click)="getEvi('true')" [(ngModel)]="family.evidenceRequired" checked />Yes
+						<label>Is evidence required?</label> 
+						
+						<input type="radio" name="yes_no" (click)="getEvi('true')" [(ngModel)]="family.evidenceRequired" checked /><span>Yes</span>
 						<input type="radio" name="yes_no" (click)="getEvi('false')" [(ngModel)]="family.evidenceRequired" />No
 				
-						</div>
 						<br>	
 		</div>
 		<button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="overridePolicyFamily()">Submit</button>
