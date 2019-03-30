@@ -1603,7 +1603,7 @@ export class GraphComponent implements OnInit {
   public barChartData: ChartDataSets[] = [
     //{ data: [65, 59, 80, 81, 56, 55, 40, 30, 24, 34, 45, 50],label: 'Series A' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
-    { data: [15, 10, 5, 20, 3, 40, 30, 24, 34, 28, 48, 75], label: 'Audits' }
+    { data: [4,2,7,9,3,4,7,6,8,10,3,4], label: 'Audits' }
 
   ];
   public barChartData2: ChartDataSets[] = [
@@ -1621,7 +1621,7 @@ export class GraphComponent implements OnInit {
   public lineChartDataSystems: ChartDataSets<any> = [
 
     // '15', '8', '5', '10', '23', '13', '35', '40', '34', '46', '30', '49'
-    { data: [65, 59, 80, 81, 56, 55, 40, 30, 24, 34, 45, 50], label: 'Audits' },
+    { data: [4,3,6,9,7,10,5,8,9,2,8,6], label: 'Audits' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
     // { data: [15, 10, 5, 20, 3, 40, 30, 24, 34, 28, 48, 75], label: 'Series C' }
   ];
@@ -2452,8 +2452,16 @@ export class GraphComponent implements OnInit {
 
   getDataLocalities(value: any) {
     if (value.active.length > 0) {
-      console.log(value);
-      console.log(value.active[0]._model);
+     this.router.navigate(['/upcomingAudit']);
+    }
+  }
+
+  chartClickedSystems(value:any)
+  {
+    if (value.active.length > 0) {
+      // console.log(value);
+      // console.log(value.active[0]._model);
+      this.router.navigate(['/upcomingAudit']);
     }
   }
   chartClicked(value: any) {

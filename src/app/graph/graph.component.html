@@ -103,7 +103,7 @@
 
                     <div style="display: block;width: 70vh; height: 45vh;margin-left: 0vw;background-color: #fff;">
                       <canvas baseChart [datasets]="lineChartDataSystems" [labels]="lineChartLabelsSystems"
-                        chartType="bar" [legend]="true" [options]="chartOption1" [colors]="chartColorsSystems"></canvas>
+                        chartType="bar" [legend]="true"  (chartClick)="chartClickedSystems($event)"  [options]="chartOption1" [colors]="chartColorsSystems"></canvas>
                     </div>
                   </div>
 

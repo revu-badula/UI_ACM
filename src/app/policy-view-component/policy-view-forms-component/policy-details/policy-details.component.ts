@@ -24,14 +24,14 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./policy-details.component.css'],
   providers: [ApiserviceService]
 })
-export class PolicyDetailsComponent implements OnInit{
+export class PolicyDetailsComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('content1') content1: TemplateRef<any>;
   policyDisplay: PolicyGrp;
   policies: Policy[];
   policyGrpData: PolicyGrp;
   policyFileobj: any;
-  public showFamily:boolean=true;
+  public showFamily: boolean = true;
   policyDocumentDTO: PolicyDocumentsDTO[];
   files: File[] = [];
   public users: any;
@@ -47,8 +47,8 @@ export class PolicyDetailsComponent implements OnInit{
   public weightageD: any;
   public result: any;
   public realScore: any;
-  
- 
+
+
   family: familyPOlicyDTO;
   public changeOverallStatus: boolean = false;
 
@@ -84,7 +84,7 @@ export class PolicyDetailsComponent implements OnInit{
   public desc4: boolean = false;
   public desc5: boolean = false;
   public loading: boolean = false;
-  public showDownload:boolean=false;
+  public showDownload: boolean = false;
   public policyReviewTerm: any[] = [{ id: 1, reviewTerm: "Yearly" },
   { id: 2, reviewTerm: "Half-Yearly" },
   { id: 3, reviewTerm: "Quarterly" }];
@@ -92,7 +92,7 @@ export class PolicyDetailsComponent implements OnInit{
   public policyReview: PolicyReviewTerm;
 
   constructor(private modalService: NgbModal, private _apiservice: ApiserviceService, private http: Http,
-    private utilservice: UtilService, private activatedRoute: ActivatedRoute,private router: Router,  private dialogService: DialogService, public datepipe: DatePipe,) {
+    private utilservice: UtilService, private activatedRoute: ActivatedRoute, private router: Router, private dialogService: DialogService, public datepipe: DatePipe, ) {
     this.policyDisplay = new PolicyGrp();
     this.policies = [];
     this.policyDocumentsSubmit = new PolicyGrp();
@@ -101,32 +101,32 @@ export class PolicyDetailsComponent implements OnInit{
     this.files = [] as File[];
     this.policyReview = new PolicyReviewTerm();
     this.family = new familyPOlicyDTO();
-    if(UtilService.review){
-      UtilService.review=false;
+    if (UtilService.review) {
+      UtilService.review = false;
       this.router.navigate(['policyView/review']);
     }
 
-    
+
   }
 
-  open(content:any) {
+  open(content: any) {
     this.modalService.open(content);
   }
 
-  show(control:any) {
+  show(control: any) {
     this.modalService.open(control);
   }
 
   changeButton() {
     this.plus = false;
     this.showForm = false;
-    this.showFamily=false;
+    this.showFamily = false;
   }
 
   close() {
     this.plus = true;
     this.showForm = true;
-    this.showFamily=true;
+    this.showFamily = true;
   }
 
   ngOnInit() {
@@ -139,18 +139,17 @@ export class PolicyDetailsComponent implements OnInit{
     this.fetchPolicyFamily(+sessionStorage.getItem("policyGrpId"));
     this.getUsers();
   }
- 
 
-  fetchPolicies(id:any) {
+
+  fetchPolicies(id: any) {
     this.loading = true;
     this._apiservice.fetchPolicies(id)
       .subscribe((data: any) => {
         this.loading = false;
         this.policyDisplay = data.policyGrpDTO;
         this.policies = data.policyDTOs;
-        if(data.policyDTOs != undefined && data.policyDTOs.length > 0)
-        {
-          this.showDownload=true;
+        if (data.policyDTOs != undefined && data.policyDTOs.length > 0) {
+          this.showDownload = true;
         }
         this.policyGrpData = data.policyGrpDTO;
         let dt = new Date(this.policyGrpData.updatedTs);
@@ -227,7 +226,7 @@ export class PolicyDetailsComponent implements OnInit{
     if ((this.lastReviewDate && this.nextReviewDate) != null) {
       this.dateSubmit();
     }
-    this.policyDisplay.updatedBy=Cookie.get("userName");
+    this.policyDisplay.updatedBy = Cookie.get("userName");
     this.policyObj = JSON.stringify(this.policyDisplay);
     let url = APP_CONFIG.updatePolicyGrp;
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -254,16 +253,16 @@ export class PolicyDetailsComponent implements OnInit{
     this.policyDocumentsSubmit.createdBy = Cookie.get("userName");
     this.policyDocumentsSubmit.updatedBy = Cookie.get("userName");
     policyDocumentsData.append('policy', JSON.stringify(this.policyDocumentsSubmit));
-    this.loading=true;
+    this.loading = true;
     this.http.post(url, policyDocumentsData)
-    .map(res => res.json())
-    .subscribe((data: any) => {
-      this.loading=false;
-      this.policies=data.policyDTOs;
-    }, error => {
-      this.loading=false;
-      console.log(error);
-    });
+      .map(res => res.json())
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.policies = data.policyDTOs;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
   }
 
   handleSort(value) {
@@ -436,29 +435,27 @@ export class PolicyDetailsComponent implements OnInit{
   }
 
 
-  fetchPolicyFamily(id:any) {
+  fetchPolicyFamily(id: any) {
     this.families = [];
     this._apiservice.fetchPolicyFamily(id)
       .subscribe((data: any) => {
-        
+
         this.families = data;
 
-        if(data.length > 0)
-        {
-          this.families=[];
-          for(let i=0;i<data.length;i++)
-          {
-            this.families.push(data[i].familyName);
-          }
-        }
+        // if (data.length > 0) {
+        //   this.families = [];
+        //   for (let i = 0; i < data.length; i++) {
+        //     this.families.push(data[i].familyName);
+        //   }
+        // }
 
       }, error => { console.log(error) });
 
   }
 
-  getFamily(value:any) {
+  getFamily(value: any) {
 
-    //console.log(value);
+    this.family.policyFamilyID = null;
     if (value === "") {
 
     }
@@ -466,8 +463,17 @@ export class PolicyDetailsComponent implements OnInit{
       this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
     }
     else {
+      this.family.policyFamilyID=+value;
       this.loading = true;
-      this._apiservice.getPoliciesByFam(value)
+      let name:any;
+      for(let i=0;i<this.families.length;i++)
+      {
+        if(this.families[i].policyFamilyID === +value){
+        name=this.families[i].familyName;
+        break;
+        }
+      }
+      this._apiservice.getPoliciesByFam(name)
         .subscribe((data: any) => {
           this.loading = false;
           this.policies = data;
@@ -499,72 +505,66 @@ export class PolicyDetailsComponent implements OnInit{
     }
   }
 
-  getNum()
-  {
-
-  }
-
- 
-
-
-  getDem()
-  {
-  
-  }
-
-  getRealScore()
-  {
-    
+  getNum() {
 
   }
 
 
-  addStaff(value){
-    if(value>=0&&value<=100){
-    this.scoreN=value;
+
+
+  getDem() {
+
+  }
+
+  getRealScore() {
+
+
+  }
+
+
+  addStaff(value: any) {
+    if (value >= 0 && value <= 100) {
+      this.scoreN = value;
     }
-    else if(value<0){
-    this.scoreN=0;
+    else if (value < 0) {
+      this.scoreN = 0;
     }
-    else{
-    this.scoreN=100;
+    else {
+      this.scoreN = 100;
     }
-    
-    }
+
+  }
 
 
 
-    overridePolicyFamily() {
-      this.loading = true;
-      let url = APP_CONFIG.overridePolicyFamily;
-      this.family.policyFamilyID = +sessionStorage.getItem('policyFamilyID');
-      let data = JSON.stringify(this.family);
-      const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      let options = new RequestOptions({ headers: headers });
-      this.http.post(url, data, options)
-        .subscribe((data: any) => {
-          this.loading = false;
-          this.dialogService.open("Info", "family has been updated.", false, "OK", "OK");
-        }, error => {
-          this.loading = false;
-          console.log(error);
-        })
-    }
+  overridePolicyFamily() {
+    this.loading = true;
+    let url = APP_CONFIG.overridePolicyFamily;
+    // this.family.policyFamilyID = +sessionStorage.getItem('policyFamilyID');
+    let data = JSON.stringify(this.family);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    this.http.post(url, data, options)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.dialogService.open("Info", "family has been updated.", false, "OK", "OK");
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
+  }
 
 
-    getEvi(value:any)
-    {
-      if(value === 'true')
-      {
-        this.family.evidenceRequired=true;
-      }
-      else if(value === 'false')
-      {
-        this.family.evidenceRequired=false;
-  
-      }
+  getEvi(value: any) {
+    if (value === 'true') {
+      this.family.evidenceRequired = true;
     }
-  
+    else if (value === 'false') {
+      this.family.evidenceRequired = false;
+
+    }
+  }
+
 
 }

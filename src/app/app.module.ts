@@ -105,6 +105,7 @@ import { OnlyNumber } from './onlyNumber';
 import { OnlyNumber1 } from './onlyNumber1';
 import { ReportspageComponent } from './reportspage/reportspage.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { UpcomingAuditComponent } from './upcoming-audit/upcoming-audit.component';
 
 
 @NgModule({
@@ -177,7 +178,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BusinessComponent,
     OnlyNumber,
     OnlyNumber1,
-    ReportspageComponent
+    ReportspageComponent,
+    UpcomingAuditComponent
 
   ],
 

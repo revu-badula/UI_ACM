@@ -160,10 +160,11 @@ import { SampleQuestionComponent } from './sample-question/sample-question.compo
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { BusinessComponent } from './business/business.component';
 import { ReportspageComponent } from './reportspage/reportspage.component';
+import { UpcomingAuditComponent } from './upcoming-audit/upcoming-audit.component';
 
 const appRoutes: Routes = [
 
-  { path: '', component: DisclaimerComponent},
+  { path: '', component: DisclaimerComponent },
   { path: 'log', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
   { path: 'login', component: LoginPageComponent, canActivate: [AuthGuardLogin] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { title: 'home' } },
@@ -177,7 +178,7 @@ const appRoutes: Routes = [
   { path: 'accessCntrl/:id', component: AccesscontrolComponent, canActivate: [AuthGuard] },
   { path: 'accessUpdate/:id', component: AuditpolicyupdateComponent, canActivate: [AuthGuard] },
   { path: 'policy', component: PolicyComponentComponent, canActivate: [AuthGuard] },
-  { path:'policyreviewview/:id', component:PolicyreviewViewComponent, canActivate: [AuthGuard]},
+  { path: 'policyreviewview/:id', component: PolicyreviewViewComponent, canActivate: [AuthGuard] },
   { path: 'policyAdd', component: PolicyAddComponent, canActivate: [AuthGuard] },
   { path: 'deviceInventory', component: DeviceComponent, canActivate: [AuthGuard] },
   { path: 'updateDevice/:id', component: UpdateDeviceComponent, canActivate: [AuthGuard] },
@@ -193,15 +194,16 @@ const appRoutes: Routes = [
   { path: 'assessmentPolicyAdd', component: AssessmentpolicyaddComponent, canActivate: [AuthGuard] },
   { path: 'accessCntrl1/:id', component: Accesscontrol1Component, canActivate: [AuthGuard] },
   { path: 'accessUpdate1/:id', component: AssessmentpolicyupdateComponent, canActivate: [AuthGuard] },
-  { path: 'graph', component: GraphComponent, canActivate: [AuthGuard]},
-  { path: 'sidebar', component: NavbarComponent, canActivate: [AuthGuard]},
-  { path: 'sample' , component: SampleQuestionComponent, canActivate: [AuthGuard]},
-  { path: 'createQuestion', component: CreateQuestionComponent, canActivate: [AuthGuard]},
-   { path: 'resImpactAnalysis', component: ReportspageComponent, canActivate: [AuthGuard]},
-  
- 
+  { path: 'graph', component: GraphComponent, canActivate: [AuthGuard] },
+  { path: 'sidebar', component: NavbarComponent, canActivate: [AuthGuard] },
+  { path: 'sample', component: SampleQuestionComponent, canActivate: [AuthGuard] },
+  { path: 'createQuestion', component: CreateQuestionComponent, canActivate: [AuthGuard] },
+  { path: 'resImpactAnalysis', component: ReportspageComponent, canActivate: [AuthGuard] },
+  { path: 'upcomingAudit', component: UpcomingAuditComponent, canActivate: [AuthGuard] },
+
+
   {
-    path: 'callback', component: CallbackComponent, canActivate:[CallGuard]
+    path: 'callback', component: CallbackComponent, canActivate: [CallGuard]
   },
 
   {
@@ -228,60 +230,60 @@ const appRoutes: Routes = [
                 component: AssesslandingComponent, canActivate: [AuthGuard]
               },
               {
-              path: 'assessmentOverview',
-              component: AssessTabComponent, canActivate: [AuthGuard]
-            },
-            {
-              path: 'Tabs',
-              component: AssessDowntabsComponent, canActivate: [AuthGuard],
+                path: 'assessmentOverview',
+                component: AssessTabComponent, canActivate: [AuthGuard]
+              },
+              {
+                path: 'Tabs',
+                component: AssessDowntabsComponent, canActivate: [AuthGuard],
 
-              children: [{
+                children: [{
 
-                path: 'first1',
-                component: AssessDetailsComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'find1',
-                component: AssessFindComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'assesscontrol',
-                component: AssessControlComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'recomendation1',
-                component: AssessRecomendComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'management1',
-                component: ManagementComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'action1',
-                component: AssessActionComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'brisk1',
-                component: AssessBusinessComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'srisk1',
-                component: AssessSecurityComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'budget1',
-                component: AssessBudgetComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard],
-              },
-              {
-                path: 'attachment1',
-                component: AssessAttachmentsComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
-              },
-              {
-                path: 'lessons1',
-                component: AssessLessonsComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                  path: 'first1',
+                  component: AssessDetailsComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'find1',
+                  component: AssessFindComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'assesscontrol',
+                  component: AssessControlComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'recomendation1',
+                  component: AssessRecomendComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'management1',
+                  component: ManagementComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'action1',
+                  component: AssessActionComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'brisk1',
+                  component: AssessBusinessComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'srisk1',
+                  component: AssessSecurityComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'budget1',
+                  component: AssessBudgetComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard],
+                },
+                {
+                  path: 'attachment1',
+                  component: AssessAttachmentsComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                },
+                {
+                  path: 'lessons1',
+                  component: AssessLessonsComponent, canActivate: [WorkflowGuardAssess], canDeactivate: [CanDeactivateGuard]
+                }
+                ]
               }
-              ]
-            }
             ]
 
 
@@ -449,7 +451,7 @@ const appRoutes: Routes = [
             // canActivate: [SystemGuard]
           },
           {
-            path: 'business', component:BusinessComponent, canActivate:[SystemGuard]
+            path: 'business', component: BusinessComponent, canActivate: [SystemGuard]
           },
           {
             path: 'legal',
@@ -478,13 +480,13 @@ const appRoutes: Routes = [
             //canActivate: [WorkflowGuard],
 
             children: [{
-              
+
               path: '',
               component: SystemassesslandingComponent, canActivate: [AuthGuard]
               // canActivate: [AuthGuard]
             },
             {
-              
+
               path: 'sysassessoverview',
               component: SystemAssessTabComponent, canActivate: [AuthGuard]
               // canActivate: [AuthGuard]
@@ -592,9 +594,9 @@ const appRoutes: Routes = [
                   component: SystemAuditFirstComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]
                 },
                 {
-                path: 'auditControl',
-                component: SystemauditcontrolComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
-              },
+                  path: 'auditControl',
+                  component: SystemauditcontrolComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
+                },
                 {
                   path: 'find',
                   component: SystemAuditFindingsComponent, canActivate: [SystemGuardAudit], canDeactivate: [CanDeactivateGuard]
@@ -645,11 +647,11 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes,{useHash:false})],
+  imports: [RouterModule.forRoot(appRoutes, { useHash: false })],
   exports: [RouterModule],
-  providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard, 
+  providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard,
     WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard,
-     SystemGuardAssess, CallGuard, AuthGuardLogin]
+    SystemGuardAssess, CallGuard, AuthGuardLogin]
 
 })
 //export class SystemComponentRoutingModule {}
@@ -665,4 +667,4 @@ export class LocalityComponentRoutingModule {
   //             }
   //   }
   //   }
- }
+}
