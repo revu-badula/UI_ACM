@@ -88,7 +88,7 @@
           </div>
     
     
-    
+    <br>
     
     
     
@@ -128,16 +128,17 @@
             <div class="col-md-6">
     
               <label>Score</label>
-              <div class="col-md-3"><input type="number" class="form-control" name="test"
+              <input type="number" class="form-control" name="test"
                  placeholder="" [(ngModel)]="family.score" id="first"
-                  style="width:200% !important"></div>
+                 >
     
             </div>
-            <button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="postFamilyPolicy()">Submit</button>
+           
           </div>
-    
+          <br>
+          <button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="postFamilyPolicy()">Submit</button>
           
-    
+          <br>
         
         <br>
         <table class="table table-bordered" *ngIf="showTable">

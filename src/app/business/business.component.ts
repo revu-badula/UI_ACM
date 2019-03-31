@@ -125,6 +125,8 @@ export class BusinessComponent implements OnInit {
 
   ngOnInit() {
     this.getSystem();
+    this.getUsers();
+    this.showData();
   }
 
   getData(editor: any) {
