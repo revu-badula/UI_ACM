@@ -402,14 +402,15 @@
   }
 
   .class1{
-    color:green;
+    color:green !important;
   }
 
   .class2{
-    color:orange;
+    color:orange !important;
   }
 
   .class3{
 
-    color:tomato;
+    color:tomato !important;
+
   }
