@@ -51,6 +51,8 @@ export class SystemAuditDetailsComponent implements OnInit {
 
   ngOnInit() {
 
+    this.getCustomCss();
+
   }
 
   getAppId() {
@@ -96,6 +98,7 @@ export class SystemAuditDetailsComponent implements OnInit {
     UtilService.disabled = false;
     sessionStorage.setItem("disabled","false");
     this.router.navigate(['/system/tab2/Audit/Tab/first']);
+    this.getCustomCss();
   }
 
   handleSort(value) {
@@ -332,7 +335,22 @@ export class SystemAuditDetailsComponent implements OnInit {
 
   }
 
+  getCustomCss(){
 
+    for (let i = 0; i < this.appAuditDTOs.length; i++) {
+    if(this.appAuditDTOs[i].overallScore > 85 ){
+      return 'class1';
+  }
+    else if(this.appAuditDTOs[i].overallScore < 85 && this.appAuditDTOs[i].overallScore > 70){
+      return 'class2';
+  }
+
+  else
+  return 'class3';
+
+  }
+
+  }
 
 
 

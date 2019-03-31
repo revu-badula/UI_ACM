@@ -400,3 +400,16 @@
     background: #3498db;
     transform: rotate(43.2deg);
   }
+
+  .class1{
+    color:tomato;
+  }
+
+  .class2{
+    color:orange;
+  }
+
+  .class{
+
+    color:green;
+  }
