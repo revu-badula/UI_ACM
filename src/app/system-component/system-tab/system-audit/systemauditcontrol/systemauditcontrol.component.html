@@ -72,7 +72,61 @@
       <div class="headerOfBox">
         <h4>Policies</h4>
       </div>
-      <table class="table table-bordered">
+
+      <div class="row">
+        <div class="col-md-12">
+          <label class="label-form" for="status"> Family</label>
+          <select class="form-control" style="width:50%;" id="priority" (change)="getFamily($event.target.value)">
+            <option value="" selected>Choose...</option>
+            <option *ngFor="let fam of families" value="{{fam.policyFamilyID}}">{{fam.familyName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" *ngIf="showTable">
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <label for="email">Assigned To</label>
+            <input type="text" name="assignTo" [(ngModel)]="family.assignedTo">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Assigned On</label>
+            <my-date-picker class="inputState1" (dateChanged)="getDateAssign($event)" [(ngModel)]="assignOn"
+              name="assignOn"></my-date-picker>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="row" *ngIf="showTable">
+        <div class="col-md-6">
+          <label>Priority</label>
+          <select class="form-control" name="priority" (change)="family.priority = $event.target.value"
+            [(ngModel)]="family.priority">
+
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+
+
+
+        <div class="col-md-6">
+
+          <label>Score</label>
+          <div class="col-md-3"><input type="number" class="form-control" name="test" placeholder=""
+              [(ngModel)]="family.score" id="first" style="width:200% !important"></div>
+
+        </div>
+        <button type="button" class="btn btn-outline-dark confbtn" style="float: right"
+          (click)="postFamilyPolicy()">Submit</button>
+      </div>
+      <br>
+      <table class="table table-bordered" *ngIf="showTable">
         <thead>
           <tr>
 
@@ -80,7 +134,7 @@
               <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="desc"></i>
             </th>
-            <th scope="col" (click)="handleSort1('policyName')">Policy 
+            <th scope="col" (click)="handleSort1('policyName')">Policy
               <i class="fa fa-arrow-down testColor" *ngIf="!policyName"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="policyName"></i>
             </th>
@@ -88,16 +142,14 @@
               <i class="fa fa-arrow-down testColor" *ngIf="!priority"></i> <i class="fa fa-arrow-up testColor"
                 *ngIf="priority"></i>
             </th>
-            <th scope="col" (click)="handleSort2('priority')">Impact Analysis
-                <i class="fa fa-arrow-down testColor" ></i> <i class="fa fa-arrow-up testColor"
-                  *ngIf="priority"></i>
-              </th>
-              <th scope="col" (click)="handleSort2('priority')">Score
-                <i class="fa fa-arrow-down testColor" ></i> <i class="fa fa-arrow-up testColor"
-                  *ngIf="priority"></i>
-              </th>
-             
-          
+            <!-- <th scope="col" (click)="handleSort2('priority')">Impact Analysis
+              <i class="fa fa-arrow-down testColor"></i> <i class="fa fa-arrow-up testColor" *ngIf="priority"></i>
+            </th> -->
+            <th scope="col" (click)="handleSort2('priority')">Score
+              <i class="fa fa-arrow-down testColor"></i> <i class="fa fa-arrow-up testColor" *ngIf="priority"></i>
+            </th>
+
+
 
             <th scope="col">Status</th>
           </tr>
@@ -112,18 +164,18 @@
             </td>
             <td>{{ policy.policyName }}</td>
             <td>{{ policy.priority }}</td>
-            <td>Low</td>
-            <td>100/100</td>
-           
+            <td>{{policy.netScoreN}}</td>
+            
+
             <!-- <td><i [ngClass]=" policy.status  ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td> -->
-            <td><i [ngClass]="{'primary':policy.status === 'true',
-        'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+            <td><i [ngClass]="{'primary':policy.status === 'Open',
+        'secondary':policy.status === 'Close'}" class="fa fa-check-circle"></i></td>
           </tr>
         </tbody>
       </table>
 
 
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls *ngIf="showTable" (pageChange)="p = $event"></pagination-controls>
 
     </div>
   </form>

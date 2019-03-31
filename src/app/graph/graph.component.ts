@@ -16,7 +16,7 @@ export class GraphComponent implements OnInit {
   public chart: Chart;
   public loading: boolean;
   public pieChartLabels: string[] = ['Low', 'Medium', 'High'];
-  public pieChartData: number[] = [30, 40, 63];
+  public pieChartData: number[] = [3, 2, 5];
   public pieChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -109,7 +109,7 @@ export class GraphComponent implements OnInit {
   };
 
   public pieChartLabels2: string[] = ['Fail', 'Pass'];
-  public pieChartData2: number[] = [43, 90];
+  public pieChartData2: number[] = [3, 5];
   public pieChartOptions2 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -203,7 +203,7 @@ export class GraphComponent implements OnInit {
   };
 
   public pieChartLabels3: string[] = ['Fail', 'Pass'];
-  public pieChartData3: number[] = [53, 80];
+  public pieChartData3: number[] = [3, 8];
   public pieChartOptions3 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -507,7 +507,7 @@ export class GraphComponent implements OnInit {
   };
 
   public pieChartLabels7: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData7: number[] = [10, 15];
+  public pieChartData7: number[] = [3, 5];
   public pieChartOptions7 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -605,7 +605,7 @@ export class GraphComponent implements OnInit {
   };
 
   public pieChartLabels8: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData8: number[] = [8, 22];
+  public pieChartData8: number[] = [7, 2];
   public pieChartOptions8 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -705,7 +705,7 @@ export class GraphComponent implements OnInit {
 
 
   public pieChartLabels9: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData9: number[] = [12, 18];
+  public pieChartData9: number[] = [5,4];
   public pieChartOptions9 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -805,7 +805,7 @@ export class GraphComponent implements OnInit {
 
 
   public pieChartLabels10: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData10: number[] = [18, 28];
+  public pieChartData10: number[] = [4,5];
   public pieChartOptions10 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -1201,7 +1201,7 @@ export class GraphComponent implements OnInit {
 
 
   public pieChartLabels14: string[] = ['Open', 'Close'];
-  public pieChartData14: number[] = [15,28];
+  public pieChartData14: number[] = [5,2];
   public pieChartOptions14 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -1497,7 +1497,7 @@ export class GraphComponent implements OnInit {
   };
 
   public pieChartLabels1: string[] = ['High', 'Medium', 'Low'];
-  public pieChartData1: number[] = [56, 44, 33];
+  public pieChartData1: number[] = [4, 2, 3];
   public pieChartType: string = 'pie';
   public pieChartOptions1 = {
     responsive: true,
@@ -1609,33 +1609,33 @@ export class GraphComponent implements OnInit {
   public barChartData2: ChartDataSets[] = [
     //{ data: [65, 59, 80, 81, 56, 55, 40, 30, 24, 34, 45, 50],label: 'Series A' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
-    { data: [15, 10, 5, 20, 3, 40, 30, 24, 34, 28, 48, 75], label: 'Recertification' }
+    { data: [5, 1, 6, 2, 7, 4, 3, 2, 3, 5, 10, 7], label: 'Recertification' }
 
   ];
   public barChartData3: ChartDataSets[] = [
     //{ data: [65, 59, 80, 81, 56, 55, 40, 30, 24, 34, 45, 50],label: 'Series A' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
-    { data: [15, 10, 5, 20, 3, 40, 30, 24, 34, 28, 48, 75], label: 'Recertification' }
+    { data: [1, 10, 5, 2, 3, 4, 3, 2, 4, 8, 4,10], label: 'Recertification' }
 
   ];
   public lineChartDataSystems: ChartDataSets<any> = [
 
     // '15', '8', '5', '10', '23', '13', '35', '40', '34', '46', '30', '49'
-    { data: [4,3,6,9,7,10,5,8,9,2,8,6], label: 'Audits' },
+    { data: [4,3,6,9,7,8,5,8,9,2,10,6], label: 'Audits' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
     // { data: [15, 10, 5, 20, 3, 40, 30, 24, 34, 28, 48, 75], label: 'Series C' }
   ];
   public lineChartDataAudit: ChartDataSets<any> = [
 
     // '15', '8', '5', '10', '23', '13', '35', '40', '34', '46', '30', '49'
-    { data: [65, 59, 80, 81, 56, 55, 40, 30, 24, 34, 45, 50], label: 'Audits' },
+    { data: [6, 9, 8, 1, 5, 4, 3, 2, 4, 3, 5, 10], label: 'Audits' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
     // { data: [15, 10, 5, 20, 3, 40, 30, 24, 34, 28, 48, 75], label: 'Series C' }
   ];
   public lineChartDataAssess: ChartDataSets<any> = [
 
     // '15', '8', '5', '10', '23', '13', '35', '40', '34', '46', '30', '49'
-    { data: [65, 59, 80, 81, 56, 55, 40, 30, 24, 34, 45, 50], label: 'Assessments' },
+    { data: [3, 9, 10, 1, 6, 5, 4, 3, 2, 4, 4, 5], label: 'Assessments' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
     // { data: [15, 10, 5, 20, 3, 40, 30, 24, 34, 28, 48, 75], label: 'Series C' }
   ];
@@ -2437,8 +2437,8 @@ export class GraphComponent implements OnInit {
 
   ngOnInit() {
     this.getData5();
-    this.getData4();
-    this.getData6();
+    //this.getData4();
+    //this.getData6();
   }
 
 
@@ -2607,6 +2607,8 @@ export class GraphComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.pieChartData5.push(data[4], data[5]);
+        this.pieChartData4.push(data[8], data[9], data[10]);
+        this.pieChartData6.push(data[6], data[7]);
         // let data1 = [
         //   {
         //     "signedLocalities": 3
@@ -2630,6 +2632,8 @@ export class GraphComponent implements OnInit {
         //this.pieChartData5.push(data1[i]);
         //}
         this.showLoc = true;
+        this.showDev = true;
+        this.showSystem = true;
       }, error => {
         this.loading = false;
         console.log(error);

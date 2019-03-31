@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ApiserviceService } from '../../../../apiservice.service';
 import { IMyDate, IMyDpOptions } from 'mydatepicker';
-import { AppAudit, Policy } from '../../../../data.model.auditDTO';
+import { AppAudit, Policy, familyPOlicyDTO } from '../../../../data.model.auditDTO';
 import { UtilService } from '../../../../util.service';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { APP_CONFIG } from '../../../../app.config';
@@ -36,6 +36,7 @@ export class SystemauditcontrolComponent implements OnInit {
   public policyData: any;
   public auditTypes: any;
   public audate: any;
+  public family:familyPOlicyDTO;
   public policyTypes: any;
   public yesfile: boolean = false;
   showInitial: boolean = false;
@@ -77,13 +78,16 @@ export class SystemauditcontrolComponent implements OnInit {
   public policyName: boolean = false;
   public priority: boolean = false;
   public loading: boolean = false;
-
+  public families:any;
+  public assignOn:any;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
-    private router: Router, private route: ActivatedRoute, public datepipe: DatePipe, private dialogService: DialogService) {
+    private router: Router, private route: ActivatedRoute,
+     public datepipe: DatePipe, private dialogService: DialogService,private httpClient: HttpClient) {
     this.appAudit = new AppAudit();
     this.policyDisplay = new Policy();
     this.policies = [];
+    this.family = new familyPOlicyDTO();
     this.getAppId();
 
 
@@ -129,35 +133,117 @@ export class SystemauditcontrolComponent implements OnInit {
       this.showLegalBox = false;
       let id = sessionStorage.getItem('systemAppAuditId');
       let appauid: number = +id;
-      this.editData = this.appAuditDTOs.filter(item => item.appAuditId === appauid);
+      this.getFamilies()
+      // this.editData = this.appAuditDTOs.filter(item => item.appAuditId === appauid);
 
-      for (let i = 0; i < this.editData.length; i++) {
-        this.appAudit = this.editData[i];
-      }
-      this.policies = this.appAudit.auditPolicyDTOs;
-      this.showTable = true;
-      //this.getPolicyName(this.appAudit.auditName)
-      let d = new Date(this.appAudit.auditDate);
-      let day = d.getDate();
-      let month = d.getMonth() + 1;
-      let year = d.getFullYear();
-      this.vauditDate = month + "/" + day + "/" + year;
-      this.auditDate = { date: { year: year, month: month, day: day } };
+      // for (let i = 0; i < this.editData.length; i++) {
+      //   this.appAudit = this.editData[i];
+      // }
+      // this.policies = this.appAudit.auditPolicyDTOs;
+      // this.showTable = true;
+      // //this.getPolicyName(this.appAudit.auditName)
+      // let d = new Date(this.appAudit.auditDate);
+      // let day = d.getDate();
+      // let month = d.getMonth() + 1;
+      // let year = d.getFullYear();
+      // this.vauditDate = month + "/" + day + "/" + year;
+      // this.auditDate = { date: { year: year, month: month, day: day } };
 
-      let d1 = new Date(this.appAudit.nextAuditDate);
-      let day1 = d1.getDate();
-      let month1 = d1.getMonth() + 1;
-      let year1 = d1.getFullYear();
-      this.nextDate = { date: { year: year1, month: month1, day: day1 } };
-      this.myDatePickerOptions.disableUntil.day = day;
-      this.myDatePickerOptions.disableUntil.month = month;
-      this.myDatePickerOptions.disableUntil.year = year;
-      this.myDatePickerOptions.showTodayBtn = false;
+      // let d1 = new Date(this.appAudit.nextAuditDate);
+      // let day1 = d1.getDate();
+      // let month1 = d1.getMonth() + 1;
+      // let year1 = d1.getFullYear();
+      // this.nextDate = { date: { year: year1, month: month1, day: day1 } };
+      // this.myDatePickerOptions.disableUntil.day = day;
+      // this.myDatePickerOptions.disableUntil.month = month;
+      // this.myDatePickerOptions.disableUntil.year = year;
+      // this.myDatePickerOptions.showTodayBtn = false;
 
     }
   }
 
-  getPolicyName(auditId) {
+  getFamilies() {
+    this.loading = true;
+    let url = APP_CONFIG.auditFamilyGroup;
+    let id = sessionStorage.getItem('systemAppAuditId');
+    let appauid: number = +id;
+    this.httpClient.get(url + "?" + "auditId=" + appauid)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.families = data;
+      }, error => {
+        this.loading = false;
+        console.log(error)
+      });
+
+  }
+  getFamily(value: any) {
+
+    if (value === "") {
+
+    }
+    else {
+      let id = sessionStorage.getItem('systemAppAuditId');
+      let appauid: number = +id;
+      let url = APP_CONFIG.getPolicyFamilyDetails;
+      this.loading = true;
+
+      this.httpClient.get(url + "?" + "auditId=" + appauid + "&" + "familyId=" + value)
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.showTable = true;
+          this.policies = data.auditPolicyDTOs;
+          // this.assignTo = data.assignedTo;
+          this.family = data;
+          this.family.policyFamilyID = +value;
+          if (data.assignedDt != undefined && data.assignedDt != null) {
+            let d1 = new Date(data.assignedDt);
+            let day1 = d1.getDate();
+            let month1 = d1.getMonth() + 1;
+            let year1 = d1.getFullYear();
+            this.assignOn = { date: { year: year1, month: month1, day: day1 } };
+          }
+          else {
+            this.assignOn = null;
+          }
+        }, error => {
+          this.loading = false;
+          console.log(error);
+
+        })
+    }
+  }
+
+  getDateAssign(value: any) {
+    if (value.formatted === "") {
+      this.family.assignedDt = null;
+    }
+    else {
+      let d = value.formatted;
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.family.assignedDt = moment(latest_date).format();
+    }
+  }
+  postFamilyPolicy() {
+    this.loading = true;
+    let url = APP_CONFIG.familyOverride;
+    this.family.appAuditId = +sessionStorage.getItem('systemAppAuditId');
+    let data = JSON.stringify(this.family);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    this.http.post(url, data, options)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.dialogService.open("Info", "family has been updated.", false, "OK", "OK");
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
+  }
+
+
+  getPolicyName(auditId:any) {
     this.loading = true;
     this._apiservice.getPolicyGroup(auditId)
       .subscribe((data: any) => {
@@ -174,7 +260,7 @@ export class SystemauditcontrolComponent implements OnInit {
 
   }
 
-  open(content) {
+  open(content: any) {
     this.errorfile = "";
     this.modalService.open(content);
   }
@@ -198,7 +284,7 @@ export class SystemauditcontrolComponent implements OnInit {
 
   }
 
-  selectDefinitive(auditID) {
+  selectDefinitive(auditID: any) {
 
     if (auditID === 'Choose...' || auditID === "") {
       this.definitive = false
@@ -219,7 +305,7 @@ export class SystemauditcontrolComponent implements OnInit {
   }
 
 
-  selectType(policy) {
+  selectType(policy: any) {
     if (policy === 'Choose...' || policy === "") {
       this.showTable = false;
 
@@ -241,7 +327,7 @@ export class SystemauditcontrolComponent implements OnInit {
     }
   }
 
-  getAuditDate(value) {
+  getAuditDate(value: any) {
     this.myForm.controls['nextDate'].disable();
     this.nextDate = null;
     if (value.formatted === "") {
@@ -266,7 +352,7 @@ export class SystemauditcontrolComponent implements OnInit {
     }
   }
 
-  getDate(value) {
+  getDate(value: any) {
 
     if (value.formatted === "") {
 
@@ -282,7 +368,7 @@ export class SystemauditcontrolComponent implements OnInit {
   }
 
 
-  getNextDate(value) {
+  getNextDate(value: any) {
 
     if (value === 'Choose...' || value === "") {
 
@@ -301,9 +387,7 @@ export class SystemauditcontrolComponent implements OnInit {
 
 
 
-  compareDate(d, ddt): boolean {
-    return new Date(ddt) > new Date(d);
-  }
+
 
 
   saveAudit() {

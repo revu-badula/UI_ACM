@@ -34,8 +34,8 @@ export class SystemDetailsComponent implements OnInit {
   public showSource: boolean = true;
   public loading: boolean = false;
   public showBox: boolean = true;
-  public isShow:boolean=false;
-  public users:any;
+  public isShow: boolean = false;
+  public users: any;
 
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService,
     private fb: FormBuilder, private http: Http, private _location: Location, private modalService: NgbModal, private router: Router, private utilservice: UtilService) {
@@ -50,7 +50,7 @@ export class SystemDetailsComponent implements OnInit {
 
   }
 
-  editClick(event:any): void {
+  editClick(event: any): void {
     this.editableForm = false;
     this.isShow = true;
     this.showSource = true;
@@ -60,7 +60,7 @@ export class SystemDetailsComponent implements OnInit {
   showData() {
     if (sessionStorage.getItem('systemName') === null) {
       this.editableForm = false;
-      this.isShow=true;
+      this.isShow = true;
     }
     else {
       this.loading = true;
@@ -158,7 +158,7 @@ export class SystemDetailsComponent implements OnInit {
     return this.color === 'online' ? 0.8 : 1;
   }
 
-  goBack(event:any) {
+  goBack(event: any) {
     event.preventDefault();
     this.router.navigate(['/system/map']);
   }
@@ -166,7 +166,6 @@ export class SystemDetailsComponent implements OnInit {
     this._apiservice.getUsers()
       .subscribe((data: any) => {
         this.users = data;
-console.log(this.users);
       }, error => console.log(error));
 
   }
