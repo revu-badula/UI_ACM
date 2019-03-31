@@ -9,6 +9,18 @@ import { DialogService } from '../dialog.service';
 import { System } from '../data_model_system';
 import { Cookie } from 'ng2-cookies';
 
+
+import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
+import {  applicationView, WorkHours } from '../data_model_system';
+import {  HostListener, ElementRef,  NgModule } from '@angular/core';
+import { ApiserviceService } from '../apiservice.service';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+import { UtilService } from '../util.service';
+
+
+
 @Component({
   selector: 'app-business',
   templateUrl: './business.component.html',
@@ -35,6 +47,22 @@ export class BusinessComponent implements OnInit {
   public title: any;
   public loading: boolean = false;
   public showEdit:boolean=true;
+
+  color: String;
+  public applicationViewDTO: any;
+  
+  appId: number;
+ 
+  public editableForm: boolean = true;
+  viewType: any;
+  contentData: string = "";
+  public showEditButton: boolean = false;
+  public showSource: boolean = true;
+  public showBox: boolean = true;
+  public isShow: boolean = false;
+  public users: any;
+
+
   config: any = {
     height: 250,
     width: 1080,
@@ -57,7 +85,7 @@ export class BusinessComponent implements OnInit {
 
   };
   constructor(private ref: ChangeDetectorRef, private httpClient: HttpClient,
-    private modalService: NgbModal, private dialog: DialogService) {
+    private modalService: NgbModal, private dialog: DialogService, private _apiservice: ApiserviceService,) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.applicationUserDTO = new ApplicationUserDTO();
@@ -268,6 +296,66 @@ export class BusinessComponent implements OnInit {
         this.loading = false;
         console.log(error);
       });
+  }
+
+  selectDefinitive(val) {
+
+  }
+
+
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+
+    const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (number > 100) {
+      this.color = 'online';
+
+    } else {
+      this.color = 'offline';
+
+    }
+
+  }
+
+  showData() {
+    if (sessionStorage.getItem('systemName') === null) {
+      this.editableForm = false;
+      this.isShow = true;
+    }
+    else {
+      this.loading = true;
+      this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
+        .subscribe((data: any) => {
+          this.showSource = false;
+          this.loading = false;
+          this.showEditButton = true;
+          this.showBox = false;
+          this.system = data.applicationViewDTO;
+          this.appId = data.applicationViewDTO.applicationId;
+          let d = new Date(this.system.updatedTime);
+          let day = d.getDate();
+          let month = d.getMonth() + 1;
+          let year = d.getFullYear();
+          this.updatedTime = month + "/" + day + "/" + year;
+          sessionStorage.setItem('systemActive', 'true');
+        }, error => {
+          this.loading = false;
+          console.log(error);
+        });
+    }
+  }
+
+
+ 
+
+
+  getUsers() {
+    this._apiservice.getUsers()
+      .subscribe((data: any) => {
+        this.users = data;
+      }, error => console.log(error));
+
   }
 
 

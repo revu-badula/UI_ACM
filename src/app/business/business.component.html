@@ -106,11 +106,11 @@
           <div class="col-md-6">
             <div class="row">
               <label class="fam">Business Owner</label>
-              <select class="form-control" name="businessOwner" [(ngModel)]="system.businessOwner"
-                (change)="system.businessOwner = $event.target.value">
+              <select name="businessOwner" style="width:50%;" [(ngModel)]="system.businessOwnerNameDoe" class="form-control" id="searchUsers"
+					(change)="system.businessOwnerNameDoe=$event.target.value" required>
                 <option value="" selected>Choose...
                 </option>
-                <option *ngFor="let bo of Bo" value="{{bo.userId}}">{{bo.firstName}} {{bo.lastName}}</option>
+                <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
               </select>
               <span class="col-sm-2" (click)="addUser('businessOwner')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>

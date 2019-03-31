@@ -34,8 +34,10 @@
 
                 <label for="inputState">Business Owner</label>
                 
-               <select id="modelSolution" class="form-control">
-            <option selected></option>
+               <select id="modelSolution" class="form-control" [(ngModel)]="system.businessOwnerNameDoe"
+               (change)="system.businessOwnerNameDoe=$event.target.value" required>
+               <option value="" selected>Choose...</option>
+               <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
             <option>---Select---</option>
               <option>Add new name</option>
           </select>
