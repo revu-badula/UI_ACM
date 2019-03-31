@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild, TemplateRef } from '@angular/core';
 import { APP_CONFIG } from '../../../app.config';
 import { ApiserviceService } from '../../../apiservice.service';
-import { System, TechnologiesDTO, ApplicationDatabaseDTO, applicationView, WorkHours } from '../../../data_model_system';
+import { System, TechnologiesDTO, ApplicationDatabaseDTO, applicationView, WorkHours, ApplicationServerDTO } from '../../../data_model_system';
 import { Cookie } from 'ng2-cookies';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
@@ -21,14 +21,6 @@ export class SystemTechnicalComponent {
   public applicationUserDTO: ApplicationUserDTO;
   public applicationDatabaseDTOs: ApplicationDatabaseDTO;
   public applicationUserDTOdeveloper: ApplicationUserDTO;
-  public applicationUserDTOList: Array<ApplicationUserDTO> = [];
-  public applicationUserDTOList1: Array<ApplicationUserDTO> = [];
-  public applicationUserDTOList2: Array<ApplicationUserDTO> = [];
-  public applicationUserDTOList3: Array<ApplicationUserDTO> = [];
-  public applicationUserDTOList4: Array<ApplicationUserDTO> = [];
-  public applicationUserDTOList5: Array<ApplicationUserDTO> = [];
-  public applicationUserDTOList6: Array<ApplicationUserDTO> = [];
-  public applicationUserDTOList7: Array<ApplicationUserDTO> = [];
   public title: any;
   public acronym: any;
   technologiesDTOs: TechnologiesDTO;
@@ -61,6 +53,7 @@ export class SystemTechnicalComponent {
   applicationUserDTOsystem: ApplicationUserDTO;
   applicationUserDTObusiness: ApplicationUserDTO;
   applicationUserDTOdata: ApplicationUserDTO;
+  applicationServerDTO: ApplicationDatabaseDTO;
   testID: any;
   system1: any;
   developerID: any;
@@ -124,6 +117,7 @@ export class SystemTechnicalComponent {
     this.getApplicationServers();
     this.getDatabases();
     this.applicationUserDTO = new ApplicationUserDTO();
+    this.applicationServerDTO = new ApplicationDatabaseDTO();
     this.getTesters();
     this.system = new System();
     this.config.init_instance_callback = (editor: any) => {
@@ -253,11 +247,33 @@ export class SystemTechnicalComponent {
     }
   }
 
+  getServers(value: any) {
+    console.log(value);
+    if (value === "") {
+
+    }
+    else {
+      this.applicationServerDTO = new ApplicationDatabaseDTO();
+      for (let i = 0; i < this.app.length; i++) {
+        if (this.app[i].databaseId === +value) {
+          this.applicationServerDTO = this.app[i];
+          this.applicationServerDTO.newEntry=true;
+        }
+      }
+      if (this.system.applicationServerDTOs != undefined && this.system.applicationServerDTOs.length > 0) {
+        this.system.applicationServerDTOs.push(this.applicationServerDTO);
+      }
+      else {
+        this.system.applicationServerDTOs = [];
+        this.system.applicationServerDTOs.push(this.applicationServerDTO);
+      }
+    }
+  }
+
   getDatabases() {
     this._apiservice.getDatabases()
       .subscribe((data: any) => {
         this.base = data;
-        console.log(this.base);
 
       }, error => console.log(error));
   }
@@ -265,7 +281,6 @@ export class SystemTechnicalComponent {
     this._apiservice.getTechnologies()
       .subscribe((data: any) => {
         this.tech = data;
-        console.log(this.tech);
 
       }, error => console.log(error));
   }
@@ -273,7 +288,7 @@ export class SystemTechnicalComponent {
     this._apiservice.getTechProjectManager()
       .subscribe((data: any) => {
         this.manager = data;
-        console.log(this.manager);
+
 
       }, error => console.log(error));
   }
@@ -283,15 +298,12 @@ export class SystemTechnicalComponent {
     this._apiservice.getApplicationServers()
       .subscribe((data: any) => {
         this.app = data;
-        console.log(this.app);
-
       }, error => console.log(error));
   }
   getSystemAdministrator() {
     this._apiservice.getTechProjectManager()
       .subscribe((data: any) => {
         this.system1 = data;
-        console.log(this.system1);
 
       }, error => console.log(error));
   }
@@ -299,7 +311,6 @@ export class SystemTechnicalComponent {
     this._apiservice.getDbAdmin()
       .subscribe((data: any) => {
         this.admin = data;
-        console.log(this.admin);
 
       }, error => console.log(error));
   }
@@ -307,7 +318,7 @@ export class SystemTechnicalComponent {
     this._apiservice.getTesters()
       .subscribe((data: any) => {
         this.tester = data;
-        console.log(this.tester);
+
 
       }, error => console.log(error));
   }
@@ -315,7 +326,7 @@ export class SystemTechnicalComponent {
     this._apiservice.getDataCustodian()
       .subscribe((data: any) => {
         this.data = data;
-        console.log(this.data);
+
 
       }, error => console.log(error));
   }
@@ -323,116 +334,111 @@ export class SystemTechnicalComponent {
     this._apiservice.getBusinessAnalyst()
       .subscribe((data: any) => {
         this.business = data;
-        console.log(this.business);
+
 
       }, error => console.log(error));
   }
 
-  checkvalue(value){
-    console.log(value);
-  }
-  checkvalue1(value){
-    console.log(value);
-  }
-  setTrue(){
-    if(this.system.technologiesDTOs!=null){
-    for(let i=0;i<this.system.technologiesDTOs.length;i++){
-    this.system.technologiesDTOs[i].newEntry=true;
-    }
-  }
-  }
+  checkvalue(value: any) {
 
-  setT(){
-    if(this.system.technologiesDTOs!=null){
-      for(let i=0;i<this.system.technologiesDTOs.length;i++){
-      this.system.technologiesDTOs[i].newEntry=true;
+  }
+  checkvalue1(value: any) {
+
+  }
+  setTrue() {
+    if (this.system.technologiesDTOs != null) {
+      for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
+        this.system.technologiesDTOs[i].newEntry = true;
       }
     }
   }
-  setTrue1(){
-    if(this.system.appTechnicalManagers!=null){
-      for(let i=0;i<this.system.appTechnicalManagers.length;i++){
-      this.system.appTechnicalManagers[i].newEntry=true;
+
+  setT() {
+    if (this.system.technologiesDTOs != null) {
+      for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
+        this.system.technologiesDTOs[i].newEntry = true;
       }
     }
   }
-  setTrue2(){
-    if(this.system.appTechnicalManagers!=null){
-      for(let i=0;i<this.system.appSystemAdminsters.length;i++){
-      this.system.appSystemAdminsters[i].newEntry=true;
+  setTrue1() {
+    if (this.system.appTechnicalManagers != null) {
+      for (let i = 0; i < this.system.appTechnicalManagers.length; i++) {
+        this.system.appTechnicalManagers[i].newEntry = true;
       }
-    } 
+    }
+  }
+  setTrue2() {
+    if (this.system.appTechnicalManagers != null) {
+      for (let i = 0; i < this.system.appSystemAdminsters.length; i++) {
+        this.system.appSystemAdminsters[i].newEntry = true;
+      }
+    }
   }
 
-setTrue3(){
-  if(this.system.appBusinessAnalysts!=null){
-    for(let i=0;i<this.system.appBusinessAnalysts.length;i++){
-    this.system.appBusinessAnalysts[i].newEntry=true;
+  setTrue3() {
+    if (this.system.appBusinessAnalysts != null) {
+      for (let i = 0; i < this.system.appBusinessAnalysts.length; i++) {
+        this.system.appBusinessAnalysts[i].newEntry = true;
+      }
     }
-  } 
-}
-
-setTrue4(){
-  if(this.system.appDBAdmins!=null){
-    for(let i=0;i<this.system.appDBAdmins.length;i++){
-    this.system.appDBAdmins[i].newEntry=true;
-    }
-  } 
-}
-
-setTrue5(){
-  if(this.system.developers!=null){
-    for(let i=0;i<this.system.developers.length;i++){
-    this.system.developers[i].newEntry=true;
-    }
-  } 
-}
-
-setTrue6(){
-  if(this.system.appDataCustodians!=null){
-    for(let i=0;i<this.system.appDataCustodians.length;i++){
-    this.system.appDataCustodians[i].newEntry=true;
-    }
-  } 
-  
-}
-
-setTrue7(){
-  if(this.system.testers!=null){
-    for(let i=0;i<this.system.testers.length;i++){
-    this.system.testers[i].newEntry=true;
-    }
-  } 
-}
-
-onDatabaseSelection(value: any) {
-
-  this.applicationDatabaseDTOs = new ApplicationDatabaseDTO();
-
-  for (let i = 0; i < value.length; i++) {
-    this.applicationDatabaseDTOs.databaseId = value[i].databaseId;
-    this.applicationDatabaseDTOs.hostName = value[i].hostName;
-    this.applicationDatabaseDTOs.newEntry = true;
-  }
-  if (this.system.applicationDatabaseDTOs != undefined && this.system.applicationDatabaseDTOs.length > 0) {
-    this.system.applicationDatabaseDTOs.push(this.applicationDatabaseDTOs);
-  }
-  else {
-    this.system.applicationDatabaseDTOs = [];
-    this.system.applicationDatabaseDTOs.push(this.applicationDatabaseDTOs);
   }
 
-}
+  setTrue4() {
+    if (this.system.appDBAdmins != null) {
+      for (let i = 0; i < this.system.appDBAdmins.length; i++) {
+        this.system.appDBAdmins[i].newEntry = true;
+      }
+    }
+  }
+
+  setTrue5() {
+    if (this.system.developers != null) {
+      for (let i = 0; i < this.system.developers.length; i++) {
+        this.system.developers[i].newEntry = true;
+      }
+    }
+  }
+
+  setTrue6() {
+    if (this.system.appDataCustodians != null) {
+      for (let i = 0; i < this.system.appDataCustodians.length; i++) {
+        this.system.appDataCustodians[i].newEntry = true;
+      }
+    }
+
+  }
+
+  setTrue7() {
+    if (this.system.testers != null) {
+      for (let i = 0; i < this.system.testers.length; i++) {
+        this.system.testers[i].newEntry = true;
+      }
+    }
+  }
+
+  onDatabaseSelection(value: any) {
+
+    this.applicationDatabaseDTOs = new ApplicationDatabaseDTO();
+
+    for (let i = 0; i < value.length; i++) {
+      this.applicationDatabaseDTOs.databaseId = value[i].databaseId;
+      this.applicationDatabaseDTOs.hostName = value[i].hostName;
+      this.applicationDatabaseDTOs.newEntry = true;
+    }
+    if (this.system.applicationDatabaseDTOs != undefined && this.system.applicationDatabaseDTOs.length > 0) {
+      this.system.applicationDatabaseDTOs.push(this.applicationDatabaseDTOs);
+    }
+    else {
+      this.system.applicationDatabaseDTOs = [];
+      this.system.applicationDatabaseDTOs.push(this.applicationDatabaseDTOs);
+    }
+
+  }
   createSystem() {
     this.system.updatedBy = Cookie.get('userName');
     let url = APP_CONFIG.updateSystem;
     var formData = new FormData();
     formData.append('application', JSON.stringify(this.system));
-    console.log(this.system.technologiesDTOs);
-    console.log(this.system.testers);
-    console.log(this.system.developers);
-    console.log(this.system.appDataCustodians);
-
     this.loading = true;
     this.httpClient.post(url, formData)
       .subscribe((data: any) => {
@@ -452,7 +458,7 @@ onDatabaseSelection(value: any) {
     this.httpClient.get(url5 + '?' + 'acronym' + '=' + sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
-        this.getBusinessOwner();
+        //this.getBusinessOwner();
         this.acronym = data.applicationViewDTO.acronym;
         this.updatedBy = data.applicationViewDTO.updatedBy;
         this.sysName = data.applicationViewDTO.name;
@@ -513,8 +519,6 @@ onDatabaseSelection(value: any) {
     this._apiservice.getDevelopers()
       .subscribe((data: any) => {
         this.developer = data;
-        console.log(this.developer);
-
       }, error => console.log(error));
   }
   getData(editor: any) {

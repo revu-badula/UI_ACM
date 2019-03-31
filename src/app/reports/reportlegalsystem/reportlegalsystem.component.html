@@ -28,7 +28,7 @@
             <thead>
                 <tr class="colorWhite">
                     <th scope="col" (click)="handleSort('applicationAcronym')" style="color:white !important">
-                        Localities<i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up"
+                        Systems<i class="fa fa-arrow-down" *ngIf="!desc"></i> <i class="fa fa-arrow-up"
                             *ngIf="desc"></i></th>
                     <th scope="col" (click)="handleSort3('name')" style="color:white !important"> Document Name <i
                             class="fa fa-arrow-down" *ngIf="!name"></i>
@@ -50,7 +50,8 @@
                     <td>{{locality.name}}</td>
                     <td>{{locality.recertificationDt | filter}}</td>
                     <td>{{locality.receiptDt | filter}}</td>
-                    <td>{{locality.signed | signed }}</td>
+                    <!-- <td>{{locality.signed? 'fa fa-check-circle primary' : 'fa fa-times secondary'" }}</td> -->
+                    <td><i [ngClass]=" locality.signed ? 'fa fa-check-circle primary' : 'fa fa-times secondary'"></i></td>
 
 
                 </tr>

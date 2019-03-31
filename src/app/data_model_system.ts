@@ -30,6 +30,7 @@ export class System {
   appDataCustodians: ApplicationUserDTO[] = [];
   appSystemAdminsters: ApplicationUserDTO[] = [];
   appTechnicalManagers: ApplicationUserDTO[] = [];
+  applicationServerDTOs: any;
   businessOwner: any;
   dataOwner: any;
   iso: any;
@@ -86,7 +87,6 @@ export class ApplicationUserDTO {
 }
 
 export class TechnologiesDTO {
-
   technologyId: number;
   name: string;
   technologyVersion: string;
@@ -95,49 +95,9 @@ export class TechnologiesDTO {
 
 }
 
-// export class DatabaseDTO{
-//   databaseId: number;
-//         hostName: string;
-//         platform: string;
-//         dbVersion: string;
-//         hardware: string;
-//         updateLevel: string;
-//         addressLength: string;
-//         clockFrequency: string;
-//         memorySize: string;
-//         localDiskSpace: string;
-//         cpuCount: number;
-//         physicalCpuCount: number;
-//         logicalCpuCount: number;
-//         ipAddress: string;
-//         dbServer: string;
-//         serverName: string;
-//         archiveLogMode: string;
-//         sizeGb: string;
-//         purpose: string;
-//         osVersion: string;
-//         createdBy: string;
-//         createdTs: any;
-//         updatedBy: string;
-//         updatedTs: any;
-//         systemTag: string;
-//         newEntry: any;
-//         active: any;
-//         licenseStartDt: any;
-//         licenseEndDt:any;
-//         licenseRenewDt: any;
-//         vendorName: string;
-//         productName: string;
-//         serverContactDTOs:ServerContactDTO;
-//         operatingSystem: string;
-//         controlName: string;
-//         serverTypeId: number;
-//         serverTypeName: string;
-// }
 
 export class ServerContactDTO {
   serverContactId: number;
-
   firstName: string;
   lastName: string;
   emailId: string;
@@ -158,9 +118,22 @@ export class ApplicationDatabaseDTO {
   administratorName: string;
   custodian: string;
   newEntry: any;
-
   databaseId: number;
-  //	private UserTbl userTbl;
   hostName: string;
 
+}
+
+export class ApplicationServerDTO {
+  applicationServerId:any;
+  name:any;
+  assetTag:any;
+  systemType:any;
+  equipmentType:any;
+  addressLine1:any;
+  addressLine2:any;
+  city:any;
+  zipCode:any;
+  newEntry:any;
+  active:any;
+  serverId:any;
 }

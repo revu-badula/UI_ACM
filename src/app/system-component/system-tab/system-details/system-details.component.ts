@@ -10,6 +10,10 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../../../util.service';
 import { SystemFilterPipeDate } from '../../system-date-filter';
 import { Cookie } from 'ng2-cookies';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ApplicationUserDTO } from '../../../data_model_legal';
+import { DialogService } from '../../../dialog.service';
 
 @Component({
   selector: 'app-system-details',
@@ -21,12 +25,15 @@ export class SystemDetailsComponent implements OnInit {
 
   @ViewChild('editForm') solutionsForm: NgForm;
   @ViewChild('content') content: TemplateRef<any>;
+  @ViewChild('user') addUserC: TemplateRef<any>;
 
   color: String;
   public applicationViewDTO: any;
   system: System;
   appId: number;
   updatedTime: any;
+  public title: any;
+  public applicationUserDTO: ApplicationUserDTO;
   public editableForm: boolean = true;
   viewType: any;
   contentData: string = "";
@@ -36,14 +43,18 @@ export class SystemDetailsComponent implements OnInit {
   public showBox: boolean = true;
   public isShow: boolean = false;
   public users: any;
-
+  public Bo: any;
+  public So: any;
   constructor(private route: ActivatedRoute, private _apiservice: ApiserviceService,
-    private fb: FormBuilder, private http: Http, private _location: Location, private modalService: NgbModal, private router: Router, private utilservice: UtilService) {
+    private fb: FormBuilder, private http: Http,
+    private _location: Location, private modalService: NgbModal, private dialog: DialogService,
+    private router: Router, private utilservice: UtilService, private httpClient: HttpClient) {
     this.system = new System();
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    this.applicationUserDTO = new ApplicationUserDTO();
     this.showData();
-    this.getUsers();
+    //this.getUsers();
   }
 
   ngOnInit() {
@@ -61,11 +72,13 @@ export class SystemDetailsComponent implements OnInit {
     if (sessionStorage.getItem('systemName') === null) {
       this.editableForm = false;
       this.isShow = true;
+      this.getBusinessOwner();
     }
     else {
       this.loading = true;
       this._apiservice.viewApplication(sessionStorage.getItem('systemName'))
         .subscribe((data: any) => {
+          this.getBusinessOwner();
           this.showSource = false;
           this.loading = false;
           this.showEditButton = true;
@@ -130,9 +143,9 @@ export class SystemDetailsComponent implements OnInit {
 
   }
 
-  selectDefinitive(val) {
+  // selectDefinitive(val) {
 
-  }
+  // }
 
 
 
@@ -169,6 +182,79 @@ export class SystemDetailsComponent implements OnInit {
       }, error => console.log(error));
 
   }
+  getBusinessOwner() {
+    this.loading = true;
+    let url = APP_CONFIG.getBusinessOwnerB;
+    // let url1 = APP_CONFIG.getDataOwner;
+    // let url2 = APP_CONFIG.getProjectManager;
+    // let url3 = APP_CONFIG.getISO;
+    let url1 = APP_CONFIG.getSystem_Site_Data_Owner;
+    Observable.forkJoin(
+      this.httpClient.get(url),
+      this.httpClient.get(url1)
+    ).subscribe((data: any) => {
+      this.loading = false;
+      this.Bo = data[0];
+      this.So = data[1];
+
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
+  }
+
+  addUser(value: any) {
+    this.title = "";
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.applicationUserDTO = new ApplicationUserDTO();
+    if (value === 'businessOwner') {
+      this.title = "Create Business Owner";
+      this.applicationUserDTO.role = "BUSINESS OWNER";
+    }
+    else if (value === 'projectManager') {
+      this.title = "Create Project Manager";
+      this.applicationUserDTO.role = "PROJECT MANAGER";
+    }
+    else if (value === 'dataOwner') {
+      this.title = "Create Data Owner";
+      this.applicationUserDTO.role = "DATA OWNER";
+    }
+    else if (value === 'iso') {
+      this.title = "Create Information Security officer";
+      this.applicationUserDTO.role = "ISO";
+    }
+    else if (value === 'systemSiteOwner') {
+      this.title = "Create Hosting System Site Owner";
+      this.applicationUserDTO.role = "SYSTEM OWNER";
+    }
+
+
+    this.applicationUserDTO.active = true;
+    this.applicationUserDTO.newEntry = true;
+    this.modalService.open(this.addUserC, ngbModalOptions);
+  }
+
+  createUser() {
+    this.loading = true;
+    let url = APP_CONFIG.addUser;
+    this.httpClient.post(url, this.applicationUserDTO)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.dialog.open("Info", "Data has been added.", false, "ok", "ok")
+          .then((result: any) => {
+            this.getBusinessOwner();
+          });
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+  }
+
+
+
 
 
 

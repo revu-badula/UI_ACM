@@ -1,33 +1,57 @@
 <div class="my-container">
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-  </div>
-  <app-navigation-component></app-navigation-component>
-  <div class="navigate sticky-top">
-  
-    <div class="form-options">
-      <div class="home-back">
-        <!-- <a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a> -->
-        <a href="javascript:void(0)" (click)="backClicked()">
-          <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
-            data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
-        </a>
-      </div>
-  
-  
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<app-navigation-component></app-navigation-component>
+<div class="navigate sticky-top">
+
+  <div class="form-options">
+    <div class="home-back">
+      <!-- <a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a> -->
+      <a href="javascript:void(0)" (click)="backClicked()">
+        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+          data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+      </a>
     </div>
+
+
   </div>
-  <!-- <div class="pageHeader">
-                    <h3 class="pageTitle">Vendor List</h3>
-                </div> -->
-  
-  <h3 class="pageTitle">upcoming Audits</h3>
-  <hr>
-  
-  <form class="forms">
-  
-  
-    
-    <br>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    <!-- <a (click)="openVendorEdit(10)">click here...........</a> -->
-  </form>
+</div>
+
+<h3 class="pageTitle">upcoming Audits</h3>
+<hr>
+
+<form class="forms">
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th (click)="handleSort()" style="color:white">System Name<i class="sorting fa fa-arrow-down"
+            *ngIf="!desc"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
+        <th (click)="handleSorta()" style="color:white">Audit Date<i class="sorting fa fa-arrow-down" *ngIf="!des"></i> <i
+            class="sorting fa fa-arrow-up" *ngIf="des"></i></th>
+        <th (click)="handleSortb()" style="color:white">Next Audit Date<i class="sorting fa fa-arrow-down"
+            *ngIf="!dec"></i> <i class="sorting fa fa-arrow-up" *ngIf="dec"></i></th>
+        <th (click)="handleSortc()" style="color:white">updatedBy<i class="sorting fa fa-arrow-down" *ngIf="!de"></i>
+          <i class="sorting fa fa-arrow-up" *ngIf="de"></i></th>
+        <th style="color:white" (click)="handleSort1('certDt')">upadate Date<i class="sorting fa fa-arrow-down"
+            *ngIf="!signed"></i> <i class="sorting fa fa-arrow-up" *ngIf="signed"></i></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let solution of Audits | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td><a style="color:blue;cursor: pointer;">
+          {{ solution.appAcronym }}</a></td>
+        <td>{{ solution.auditDate | date:'MM/dd/yyyy' }}</td>
+        <td>{{solution.nextAuditDate  | date:'MM/dd/yyyy'}}</td>
+        <td>{{ solution.updatedBy}}</td>
+        <td>{{ solution.upadateTs | date:'MM/dd/yyyy' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <br>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <!-- <a (click)="openVendorEdit(10)">click here...........</a> -->
+</form>
