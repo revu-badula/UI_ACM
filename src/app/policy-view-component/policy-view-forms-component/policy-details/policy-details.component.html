@@ -186,8 +186,8 @@
 					<label class="label-form" for="status"> Please choose a Family</label>
 					<select class="form-control" style="width:50%;" id="priority"
 						(change)="getFamily($event.target.value)" >
-						<option value="" selected>Choose...</option>
-						<option value="all">All</option>
+						
+						<option value="all" selected>All</option>
 						<option *ngFor="let fam of families" value="{{fam.policyFamilyID}}">{{fam.familyName}}</option>
 					</select>
 				</div>
@@ -264,7 +264,7 @@
 			</ul>
 			<br>
 			<div> 
-				<button type="button" class="btn btn-outline-dark confbtn" style="float:left" class="downButton" (click)="toggle()">{{buttonName}}</button>
+				<button type="button" class="btn btn-outline-dark confbtn" style="float:left"  (click)="toggle()">{{buttonName}}</button>
 				<button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="overridePolicyFamily()">Submit</button>
 			</div>
 			<br>

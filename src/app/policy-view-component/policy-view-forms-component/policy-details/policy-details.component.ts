@@ -38,7 +38,7 @@ export class PolicyDetailsComponent implements OnInit {
   plus = true;
   public families: any;
   public showN:boolean = false;
-  public buttonName:any = '+';
+  public buttonName:any = 'Show';
 
 
   public assignTo: any;
@@ -572,10 +572,10 @@ export class PolicyDetailsComponent implements OnInit {
     this.showN = !this.showN;
 
     // CHANGE THE NAME OF THE BUTTON.
-    if(this.show)  
-      this.buttonName = "-";
+    if(this.showN)  
+      this.buttonName = "Hide";
     else
-      this.buttonName = "+";
+      this.buttonName = "Show";
   }
 
 
