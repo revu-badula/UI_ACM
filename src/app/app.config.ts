@@ -123,10 +123,12 @@ export const APP_CONFIG = {
   getServerReport: apiBaseUrl + 'getServerReport',
   getTechReport: apiBaseUrl + 'getTechReport',
   familyOverride: apiBaseUrl + 'familyOverride',
-  fetchPolicyFamily :apiBaseUrl +'fetchPolicyFamily',
-  fetchPoliciesWithFamily :apiBaseUrl + 'fetchPoliciesWithFamily',
-  overridePolicyFamily : apiBaseUrl +'overridePolicyFamily',
-  upComingAudits :apiBaseUrl+'upComingAudits'
+  fetchPolicyFamily: apiBaseUrl + 'fetchPolicyFamily',
+  fetchPoliciesWithFamily: apiBaseUrl + 'fetchPoliciesWithFamily',
+  overridePolicyFamily: apiBaseUrl + 'overridePolicyFamily',
+  upComingAudits: apiBaseUrl + 'upComingAudits',
+  getServers: apiBaseUrl + 'getServers',
+
 }
 
 

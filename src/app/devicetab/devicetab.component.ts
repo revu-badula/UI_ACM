@@ -40,7 +40,7 @@ export class DevicetabComponent implements OnInit {
 
   getDatabases() {
     this.loading = true;
-    this._apiservice.getDatabases()
+    this._apiservice.getServers()
       .subscribe((data: any) => {
         this.loading = false;
         this.displayDevices = data;

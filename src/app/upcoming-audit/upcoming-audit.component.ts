@@ -10,24 +10,24 @@ import { APP_CONFIG } from 'app/app.config';
 })
 export class UpcomingAuditComponent implements OnInit {
 
-  public loading:boolean=false;
-  public vendors:any;
-  constructor(private _location: Location,private httpClient:HttpClient) { }
+  public loading: boolean = false;
+  public vendors: any;
+  public p: number = 1;
+  constructor(private _location: Location, private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.upcomingAudits();
 
   }
 
-  upcomingAudits()
-  {
+  upcomingAudits() {
     this.loading = true;
-    let url=APP_CONFIG.upComingAudits
+    let url = APP_CONFIG.upComingAudits
     this.httpClient.get(url)
       .subscribe((data: any) => {
         this.loading = false;
         this.vendors = data.vendorsDTOs;
-        
+
       }, error => {
         this.loading = false;
         console.log(error);
