@@ -54,7 +54,7 @@
                             <tr *ngFor="let  audit of appAuditDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
                                     <td>
                                         <a (click)="getAudit(audit.appAuditId)" style="cursor:pointer;color:blue;">{{
-                                                audit.auditTypeName }}</a>
+                                                audit.auditTypeName }}<br><span style="font-size: 11px;">(Improve score or Reduce risk)</span></a>
                                     </td>
                                     <td>{{audit.auditType}}</td>
                                  
