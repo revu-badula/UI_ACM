@@ -1759,8 +1759,11 @@ export class GraphComponent implements OnInit {
   ];
   pieChartColor6: any = [
     {
-      backgroundColor: ['#A52A2A',
-        '#D2691E'
+      backgroundColor: [
+        // '#A52A2A',
+        // '#D2691E'
+        '#66CDAA',
+        '#FFD700'
       ]
     }
   ];

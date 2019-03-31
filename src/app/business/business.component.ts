@@ -8,15 +8,10 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService } from '../dialog.service';
 import { System } from '../data_model_system';
 import { Cookie } from 'ng2-cookies';
-
-
-import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
-import {  applicationView, WorkHours } from '../data_model_system';
 import {  HostListener, ElementRef,  NgModule } from '@angular/core';
 import { ApiserviceService } from '../apiservice.service';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
 import { UtilService } from '../util.service';
 
 
@@ -125,8 +120,7 @@ export class BusinessComponent implements OnInit {
 
   ngOnInit() {
     this.getSystem();
-    this.getUsers();
-    this.showData();
+    //this.showData();
   }
 
   getData(editor: any) {
@@ -349,16 +343,6 @@ export class BusinessComponent implements OnInit {
   }
 
 
- 
-
-
-  getUsers() {
-    this._apiservice.getUsers()
-      .subscribe((data: any) => {
-        this.users = data;
-      }, error => console.log(error));
-
-  }
 
 
 }

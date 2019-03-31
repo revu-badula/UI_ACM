@@ -4,7 +4,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
 	<div class="modal-header">
 		<h4 class="modal-title">Info</h4>
-	
+
 	</div>
 	<div class="modal-body">
 		<p>{{contentData}}</p>
@@ -13,108 +13,188 @@
 		<button type="button" class="btn btn-outline-dark confbtn" (click)="c();">Ok</button>
 	</div>
 </ng-template>
+<ng-template #user let-c="close" let-d="dismiss">
+	<form #myForm="ngForm">
+		<div class="modal-header">
+			<h4 class="modal-title">{{title}}</h4>
+		</div>
+		<div class="modal-body">
+			<div class="form-row">
+				<div class="col-6">
+					FirstName<span class="asterisk">*</span>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-md-12">
+					<input type="text" class="form-control" style="width: 100% !important;" ngModel name="firstName"
+						[(ngModel)]="applicationUserDTO.firstName" required>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-6">
+					lastName<span class="asterisk">*</span>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-md-12">
+					<input type="text" class="form-control" style="width: 100% !important;" ngModel name="lastName"
+						[(ngModel)]="applicationUserDTO.lastName" required>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-6">
+					Email<span class="asterisk">*</span>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-md-12">
+					<input type="text" class="form-control" style="width: 100% !important;" ngModel name="email"
+						[(ngModel)]="applicationUserDTO.emailId" required>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" [disabled]="!myForm.valid" class="btn btn-outline-dark"
+				(click)="createUser();c()">Add</button>
+			<button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
+
+
+		</div>
+	</form>
+</ng-template>
+
 <div class="save-edit" style="float: right;" *ngIf="showEditButton && !isShow">
-	<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0"
-	 [name]="'edit'" (click)="editClick()"></fa>
+	<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+		data-delay="0" [name]="'edit'" (click)="editClick()"></fa>
 </div>
 
 <form #formName="ngForm" (ngSubmit)="createSystem()" enctype="multipart/form-data">
 
 
 	<div id="form1">
-			<div class="disclaimer"><span style="float:left">Please use this screen to add system information.</span>&nbsp;&nbsp;&nbsp;
-				<span style="float:right">
-					<font color=red>*</font> marked fields are mandatory
-				</span> </div>
+		<div class="disclaimer"><span style="float:left">Please use this screen to add system
+				information.</span>&nbsp;&nbsp;&nbsp;
+			<span style="float:right">
+				<font color=red>*</font> marked fields are mandatory
+			</span> </div>
 
 		<fieldset [disabled]="editableForm">
 
-				<div class="infoBox">
-						<div class="headerOfBox"><h4>General Information</h4></div>
-
-			<div class="form-row">
-				<div class="form-group col-md-6">
-
-					<label for="inputState">System Acronym <span class="asterisk">*</span></label>
-					
-					<input type="text" class="form-control" *ngIf="showBox"  name="acronym" [(ngModel)]="system.acronym" required>
-					<input type="text" class="form-control" *ngIf="!showBox"  name="acronym" [(ngModel)]="system.acronym" required
-					 readonly>
-				</div>
-				<div class="form-group col-md-6">
-
-					<label for="inputState">System Name<span class="asterisk">*</span></label>
-					
-					<input type="text" class="form-control inputState"  name="systemName" [(ngModel)]="system.name" required>
+			<div class="infoBox">
+				<div class="headerOfBox">
+					<h4>General Information</h4>
 				</div>
 
-			</div>
-			<div *ngIf="showEditButton" class="form-row">
-				<div class="form-group col-md-6">
+				<div class="form-row">
+					<div class="form-group col-md-6">
 
-					<label for="inputState"> Updated By</label>
+						<label for="inputState">System Acronym <span class="asterisk">*</span></label>
 
-					<input type="text" class="form-control"  name="lastUpdatedBy" [(ngModel)]="system.updatedBy" readonly>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="lastName">  Updated Date</label>
+						<input type="text" class="form-control" *ngIf="showBox" name="acronym"
+							[(ngModel)]="system.acronym" required>
+						<input type="text" class="form-control" *ngIf="!showBox" name="acronym"
+							[(ngModel)]="system.acronym" required readonly>
+					</div>
+					<div class="form-group col-md-6">
 
-					<input type="text" class="form-control"  name="updatedTime" [(ngModel)]="updatedTime" readonly>
+						<label for="inputState">System Name<span class="asterisk">*</span></label>
+
+						<input type="text" class="form-control inputState" name="systemName" [(ngModel)]="system.name"
+							required>
+					</div>
+
 				</div>
-			</div>
-		</div>
-		
-		<div class="infoBox">
-				<div class="headerOfBox"><h4>Contact Information</h4></div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="inputState">Business Owner <span class="asterisk">*</span></label>
-					<!-- <input type="text" class="form-control" name="firstName" [(ngModel)]="system.businessOwnerNameDoe" required> -->
-					<select name="businessOwner" style="width:50%;" [(ngModel)]="system.businessOwnerNameDoe" class="form-control" id="searchUsers"
-					(change)="system.businessOwnerNameDoe=$event.target.value" required>
-						<option value="" selected>Choose...</option>
-						<option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
-					</select>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="lastName">System Owner <span class="asterisk">*</span></label>
-					<!-- <input type="text" class="form-control"  name="lastName" [(ngModel)]="system.systemOwnerNameDoe" required> -->
-					<select name="systemOwner" style="width:50%;" [(ngModel)]="system.systemOwnerNameDoe" class="form-control" id="searchUsers"
-					(change)="system.systemOwnerNameDoe=$event.target.value" required>
-						<option value="" selected>Choose...</option>
-						<option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
-					</select>
+				<div *ngIf="showEditButton" class="form-row">
+					<div class="form-group col-md-6">
+
+						<label for="inputState"> Updated By</label>
+
+						<input type="text" class="form-control" name="lastUpdatedBy" [(ngModel)]="system.updatedBy"
+							readonly>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="lastName"> Updated Date</label>
+
+						<input type="text" class="form-control" name="updatedTime" [(ngModel)]="updatedTime" readonly>
+					</div>
 				</div>
 			</div>
 
-		</div>
-		
-		<div class="infoBox">
-				<div class="headerOfBox"><h4>Other Information</h4></div>
-
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label class="label-form" for="definitiveSource"><b>System Sensitivity</b> <span class="asterisk">*</span></label>
-					
-					<input *ngIf="!showSource" type="text" class="form-control"  ngModel name="sysSen" [(ngModel)]="system.systemSensitivityName"
-					 required>
-					<select *ngIf="showSource" class="form-control" style="width:50%;" [(ngModel)]="system.systemSensitivity" (change)="selectDefinitive($event.target.value)"
-					 name="sysSen" required>
-						<option value="1">High</option>
-						<option value="2">Medium</option>
-						<option value="3">Low</option>
-					</select>
+			<div class="infoBox">
+				<div class="headerOfBox">
+					<h4>Contact Information</h4>
 				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<div class="row">
+							<label for="inputState">Business Owner <span class="asterisk">*</span></label>
+							<!-- <input type="text" class="form-control" name="firstName" [(ngModel)]="system.businessOwnerNameDoe" required> -->
+							<select name="businessOwner" style="width:50%;" [(ngModel)]="system.businessOwner"
+								class="form-control" id="searchUsers"
+								(change)="system.businessOwner=$event.target.value" required>
+								<option value="" selected>Choose...</option>
+								<option *ngFor="let bo of Bo" value="{{bo.userId}}">{{bo.firstName}} {{bo.lastName}}
+								</option>
+								<!-- <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option> -->
+							</select>
+							<span class="col-sm-2" (click)="addUser('businessOwner')"><i class="fa fa-plus-circle"
+									aria-hidden="true"></i></span>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<div class="row">
+							<label for="lastName">System Owner <span class="asterisk">*</span></label>
+							<!-- <input type="text" class="form-control"  name="lastName" [(ngModel)]="system.systemOwnerNameDoe" required> -->
+							<select name="systemOwner" style="width:50%;" [(ngModel)]="system.systemOwner"
+								class="form-control" id="searchUsers"
+								(change)="system.systemOwner=$event.target.value" required>
+								<option value="" selected>Choose...</option>
+								<option *ngFor="let so of So" value="{{so.userId}}">{{so.firstName}} {{so.lastName}}
+								</option>
+								<!-- <option *ngFor="let getUser of users"
+									value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}}
+									{{getUser.lastName }}</option> -->
+							</select>
+							<span class="col-sm-2" (click)="addUser('systemSiteOwner')"><i class="fa fa-plus-circle"
+									aria-hidden="true"></i></span>
+						</div>
+					</div>
+				</div>
+
 			</div>
-			<br>
-			<br>
-		</div>
+
+			<div class="infoBox">
+				<div class="headerOfBox">
+					<h4>Other Information</h4>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="label-form" for="definitiveSource"><b>System Sensitivity</b> <span
+								class="asterisk">*</span></label>
+
+						<input *ngIf="!showSource" type="text" class="form-control" ngModel name="sysSen"
+							[(ngModel)]="system.systemSensitivityName" required>
+						<select *ngIf="showSource" class="form-control" style="width:50%;"
+							[(ngModel)]="system.systemSensitivity" (change)="selectDefinitive($event.target.value)"
+							name="sysSen" required>
+							<option value="1">High</option>
+							<option value="2">Medium</option>
+							<option value="3">Low</option>
+						</select>
+					</div>
+				</div>
+				<br>
+				<br>
+			</div>
 		</fieldset>
 	</div>
-		<div class="buttons" style="margin-right:5%">
+	<div class="buttons" style="margin-right:5%">
 
-			<button *ngIf="isShow" type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
-			<button type="cancel" class="cancel btn btn-primary" (click)="goBack($event)">Cancel</button>
-		</div>
-	
+		<button *ngIf="isShow" type="submit" class="submit btn btn-primary" [disabled]="!formName.valid">Submit</button>
+		<button type="cancel" class="cancel btn btn-primary" (click)="goBack($event)">Cancel</button>
+	</div>
+
 </form>

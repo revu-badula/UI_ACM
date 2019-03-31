@@ -53,7 +53,8 @@
                     <td>{{locality.name}}</td>
                     <td>{{locality.recertificationDt | filter}}</td>
                     <td>{{locality.receiptDt | filter}}</td>
-                    <td>{{locality.signed | signed }}</td>
+                    <!-- <td>{{locality.signed | signed }}</td> -->
+                    <td><i [ngClass]=" locality.signed ? 'fa fa-check-circle primary' : 'fa fa-times secondary'"></i></td>
 
 
                 </tr>

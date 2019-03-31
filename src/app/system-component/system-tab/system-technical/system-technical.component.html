@@ -71,19 +71,19 @@
 
 
         <div class="form-row">
-            <div class="form-group col-md-6">
-  
-              <label class="fam">System Acronym <span class="asterisk">*</span></label>
-  
-              <input type="text" autofocus class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
-            </div>
-            <div class="form-group col-md-6">
-              <label class="fam">System Name <span class="asterisk">*</span></label>
-  
-              <input type="text" class="form-control" id="lastName" value="{{sysName}}" readonly>
-            </div>
-  
+          <div class="form-group col-md-6">
+
+            <label class="fam">System Acronym <span class="asterisk">*</span></label>
+
+            <input type="text" autofocus class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
           </div>
+          <div class="form-group col-md-6">
+            <label class="fam">System Name <span class="asterisk">*</span></label>
+
+            <input type="text" class="form-control" id="lastName" value="{{sysName}}" readonly>
+          </div>
+
+        </div>
       </div>
       <div class="infoBox">
         <div class="headerOfBox">
@@ -91,7 +91,8 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-            <tinymce name="effort" name="description" [config]="config3"></tinymce>
+            <tinymce name="effort" name="description" [(ngModel)]="system.technologyStatus" [config]="config3">
+            </tinymce>
             remaining {{50000 -len3}}
 
           </div>
@@ -104,54 +105,53 @@
         <p>If you want add a new device.Please click on Add device from left panel</p>
         <div class="form-row">
           <div class="form-group col-md-6">
-              <div class="row">
+            <div class="row">
               <label class="fam">Databases(s) </label><br><br>
-       
-            <ng-select class="formOpt" [items]="base" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-              bindLabel="hostName" placeholder="Choose..." [(ngModel)]="system.applicationDatabaseDTOs" name="databaseServer"
-              (change)="onDatabaseSelection($event)" (open)="checkvalue($event)" (change)="setT()">
-              <ng-template ng-option-tmp  let-item="item" let-index="index">
+
+              <ng-select class="formOpt" [items]="base" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+                bindLabel="hostName" placeholder="Choose..." [(ngModel)]="system.applicationDatabaseDTOs"
+                name="databaseServer" (change)="onDatabaseSelection($event)" (open)="checkvalue($event)"
+                (change)="setT()">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.hostName }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <div class="row">
+              <label for="inputState">Server(s) </label><br><br>
+              <!-- <select class="formOpt" (change)="getServers($event.target.value)">
+                <option class="form-control">Choose...</option>
+                <option *ngFor="let techUser1 of app" value="{{techUser1.databaseId}}">{{techUser1.hostName}}</option>
+              </select> -->
+              <ng-select class="formOpt" [items]="app" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+              bindLabel="applicationServer" (change)="getServers($event)" placeholder="Choose..."
+              name="applicationServer" [(ngModel)]="system.applicationServerDTOs"
+              >
+              <ng-template ng-option-tmp let-item="item" let-index="index">
                 <div>{{ item.hostName }}</div>
               </ng-template>
             </ng-select>
+
+            </div>
           </div>
-          </div>
-          <div class="form-group col-md-6">
-              <div class="row">
-            <label for="inputState">Server(s) </label><br><br>
-            <select class="formOpt">
-      <option class="form-control">Choose...</option>
-      <option *ngFor="let techUser1 of app" [ngValue]="techUser1.databaseId"  >{{techUser1.hostName}}</option>
-    </select>
-            <!-- <ng-select class="formOpt"
-    [items]="app"
-    [multiple]="true"
-    [closeOnSelect]="false"
-    [searchable]="false"
-    bindLabel="hostName"
-    placeholder="Choose..."
-    [(ngModel)]="system.databaseDTOs" name="databaseDTOs">
-    <ng-template ng-option-tmp let-item="item" let-index="index">
-      <div>{{ item.hostName }}</div>
-  </ng-template>
-  </ng-select> -->
-          </div>
-          </div>
-         
+
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
-              <div class="row">
-            <label class="fam">Programming Languages</label><br><br>
-            <ng-select class="formOpt" [items]="tech" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-              bindLabel="name" placeholder="Choose..." [(ngModel)]="system.technologiesDTOs" (change)="setTrue()" name="technologiesDTOs">
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.name + ' ' + item.technologyVersion }}</div>
-              </ng-template>
-            </ng-select>
+            <div class="row">
+              <label class="fam">Programming Languages</label><br><br>
+              <ng-select class="formOpt" [items]="tech" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
+                bindLabel="name" placeholder="Choose..." [(ngModel)]="system.technologiesDTOs" (change)="setTrue()"
+                name="technologiesDTOs">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.name + ' ' + item.technologyVersion }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
           </div>
-</div>
         </div>
       </div>
       <div class="infoBox">
@@ -160,153 +160,151 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-              <div class="row">
-                  <label class="fam">Technical Manager</label><br><br>
-            <ng-select class="formOpt" [items]="manager" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-              bindLabel="firstName" placeholder="Choose..."  (change)="setTrue1()" [(ngModel)]="system.appTechnicalManagers"
-              name="appTechnicalManagers">
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.firstName + ' ' + item.lastName }}</div>
-              </ng-template>
-            </ng-select>
+            <div class="row">
+              <label class="fam">Technical Manager</label><br><br>
+              <ng-select class="formOpt" [items]="manager" [multiple]="true" [closeOnSelect]="false"
+                [searchable]="false" bindLabel="firstName" placeholder="Choose..." (change)="setTrue1()"
+                [(ngModel)]="system.appTechnicalManagers" name="appTechnicalManagers">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
+                </ng-template>
+              </ng-select>
 
-            <span class="col-sm-2" (click)="addUser('appTechnicalManagers9')"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i></span>
+              <span class="col-sm-2" (click)="addUser('appTechnicalManagers9')"><i class="fa fa-plus-circle"
+                  aria-hidden="true"></i></span>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <div class="row">
+              <label for="inputState">System Administrator</label><br><br>
+              <ng-select [items]="system1" class="formOpt" (change)="setTrue2()" [multiple]="true"
+                [closeOnSelect]="false" [searchable]="false" bindLabel="firstName" placeholder="Choose..."
+                [(ngModel)]="system.appSystemAdminsters" name="appSystemAdminsters">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
+                </ng-template>
+              </ng-select>
+              <span class="col-sm-2" (click)="addUser('systemadmin')"><i class="fa fa-plus-circle"
+                  aria-hidden="true"></i></span>
+            </div>
           </div>
         </div>
-          <div class="form-group col-md-6">
-              <div class="row">
-            <label for="inputState">System Administrator</label><br><br>
-            <!-- <select class="form-control" name="sys" [(ngModel)]="sysID" (change)="selectSys()" >
-         <option>Choose...</option> 
-         <option *ngFor="let User1 of system1" [ngValue]="User1.userId" >{{User1.firstName}}{{User1.lastName}}</option>
-       </select> -->
-            <ng-select [items]="system1" class="formOpt" (change)="setTrue2()" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appSystemAdminsters"
-              name="appSystemAdminsters">
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.firstName + ' ' + item.lastName }}</div>
-              </ng-template>
-            </ng-select>
-            <span class="col-sm-2" (click)="addUser('systemadmin')"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i></span>
-          </div>
-          </div>
-          </div>
-       
+
         <div class="form-row">
           <div class="form-group col-md-6">
-              <div class="row">
-                  <label class="fam">Business Analysis</label><br><br>
+            <div class="row">
+              <label class="fam">Business Analysis</label><br><br>
 
-            <ng-select [items]="business" class="formOpt" (change)="setTrue3()"  [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appBusinessAnalysts"
-              name="appBusinessAnalysts">
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.firstName + ' ' + item.lastName }}</div>
-              </ng-template>
-            </ng-select>
-        
-            <span class="col-sm-2"  (click)="addUser('businessanalyst')"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i></span>
+              <ng-select [items]="business" class="formOpt" (change)="setTrue3()" [multiple]="true"
+                [closeOnSelect]="false" [searchable]="false" bindLabel="firstName" placeholder="Choose..."
+                [(ngModel)]="system.appBusinessAnalysts" name="appBusinessAnalysts">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
+                </ng-template>
+              </ng-select>
+
+              <span class="col-sm-2" (click)="addUser('businessanalyst')"><i class="fa fa-plus-circle"
+                  aria-hidden="true"></i></span>
+            </div>
           </div>
-        </div>
           <div class="form-group col-md-6">
-              <div class="row">
-                  <label class="fam">DB Administrator</label><br><br>
-            <ng-select [items]="business" class="formOpt" (change)="setTrue4()"  [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appDBAdmins" name="appDBAdmins">
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.firstName + ' ' + item.lastName }}</div>
-              </ng-template>
-            </ng-select>
-            <span class="col-sm-2"  (click)="addUser('dbAdministrator')"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i></span>
-          </div>
+            <div class="row">
+              <label class="fam">DB Administrator</label><br><br>
+              <ng-select [items]="business" class="formOpt" (change)="setTrue4()" [multiple]="true"
+                [closeOnSelect]="false" [searchable]="false" bindLabel="firstName" placeholder="Choose..."
+                [(ngModel)]="system.appDBAdmins" name="appDBAdmins">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
+                </ng-template>
+              </ng-select>
+              <span class="col-sm-2" (click)="addUser('dbAdministrator')"><i class="fa fa-plus-circle"
+                  aria-hidden="true"></i></span>
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-              <div class="row">
-                  <label class="fam">Developers</label><br><br>
-   
-            <ng-select [items]="developer" class="formOpt" [multiple]="true" [closeOnSelect]="false"
-              [searchable]="false" bindLabel="firstName" (change)="setTrue5()"  placeholder="Choose..." [(ngModel)]="system.developers"
-              name="developers">
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.firstName + ' ' + item.lastName }}</div>
-              </ng-template>
-            </ng-select>
-            <span class="col-sm-2"  (click)="addUser('developer')"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i></span>
+            <div class="row">
+              <label class="fam">Developers</label><br><br>
+
+              <ng-select [items]="developer" class="formOpt" [multiple]="true" [closeOnSelect]="false"
+                [searchable]="false" bindLabel="firstName" (change)="setTrue5()" placeholder="Choose..."
+                [(ngModel)]="system.developers" name="developers">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
+                </ng-template>
+              </ng-select>
+              <span class="col-sm-2" (click)="addUser('developer')"><i class="fa fa-plus-circle"
+                  aria-hidden="true"></i></span>
+            </div>
           </div>
-        </div>
           <div class="form-group col-md-6">
-              <div class="row">
+            <div class="row">
               <label class="fam">Data Custodian</label><br><br>
-            <ng-select [items]="data" class="formOpt" [multiple]="true" (change)="setTrue6()"  [closeOnSelect]="false" [searchable]="false"
-              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.appDataCustodians"
-              name="appDataCustodians">
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.firstName + ' ' + item.lastName }}</div>
-              </ng-template>
-            </ng-select>
-            <span class="col-sm-2"  (click)="addUser('datacustodian')"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i></span>
-          </div>
+              <ng-select [items]="data" class="formOpt" [multiple]="true" (change)="setTrue6()" [closeOnSelect]="false"
+                [searchable]="false" bindLabel="firstName" placeholder="Choose..."
+                [(ngModel)]="system.appDataCustodians" name="appDataCustodians">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
+                </ng-template>
+              </ng-select>
+              <span class="col-sm-2" (click)="addUser('datacustodian')"><i class="fa fa-plus-circle"
+                  aria-hidden="true"></i></span>
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-              <div class="row">
-                  <label class="fam">Testers </label><br><br>
-   
-            <ng-select [items]="tester" class="formOpt" [multiple]="true"  (change)="setTrue7()"  [closeOnSelect]="false" [searchable]="false"
-              bindLabel="firstName" placeholder="Choose..." [(ngModel)]="system.testers" name="testers">
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.firstName + ' ' + item.lastName }}</div>
-              </ng-template>
-            </ng-select>
-            <span class="col-sm-2" (click)="addUser('tester')"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i></span>
+            <div class="row">
+              <label class="fam">Testers </label><br><br>
+
+              <ng-select [items]="tester" class="formOpt" [multiple]="true" (change)="setTrue7()"
+                [closeOnSelect]="false" [searchable]="false" bindLabel="firstName" placeholder="Choose..."
+                [(ngModel)]="system.testers" name="testers">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
+                </ng-template>
+              </ng-select>
+              <span class="col-sm-2" (click)="addUser('tester')"><i class="fa fa-plus-circle"
+                  aria-hidden="true"></i></span>
+            </div>
           </div>
-</div>
         </div>
       </div>
-      
+
       <div class="infoBox">
         <div class="headerOfBox">Internal Interfaces</div>
         <div class="form-row">
           <div class="form-group col-md-6">
-             
+
             <tinymce name="effort" name="description" [(ngModel)]="system.internalInterfaces" [config]="config1">
             </tinymce>
             remaining {{50000 -len}}
           </div>
-    
+
         </div>
       </div>
       <div class="infoBox">
         <div class="headerOfBox">External Interfaces</div>
         <div class="form-row">
           <div class="form-group col-md-6">
-             
+
             <tinymce name="effort1" [(ngModel)]="system.externalInterfaces" [config]="config2"></tinymce>
             remaining {{50000 -len2}}
-       
-        </div>
+
+          </div>
         </div>
       </div>
       <div class="infoBox">
         <div class="headerOfBox">Data Center Details</div>
         <div class="form-row">
           <div class="form-group col-md-6">
-             
+
             <tinymce name="description" name="Physical" [(ngModel)]="system.physicalLocation" [config]="config">
             </tinymce>
             remaining {{50000 -len1}}
-        
-        </div>
+
+          </div>
         </div>
       </div>
       <div class="infoBox">

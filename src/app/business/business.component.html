@@ -106,11 +106,11 @@
           <div class="col-md-6">
             <div class="row">
               <label class="fam">Business Owner</label>
-              <select name="businessOwner" style="width:50%;" [(ngModel)]="system.businessOwnerNameDoe" class="form-control" id="searchUsers"
-					(change)="system.businessOwnerNameDoe=$event.target.value" required>
+              <select name="businessOwner" style="width:50%;" [(ngModel)]="system.businessOwner" class="form-control"
+                id="searchUsers" (change)="system.businessOwner = $event.target.value" required>
                 <option value="" selected>Choose...
                 </option>
-                <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
+                <option *ngFor="let bo of Bo" value="{{bo.userId}}">{{bo.firstName}} {{bo.lastName}}</option>
               </select>
               <span class="col-sm-2" (click)="addUser('businessOwner')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>
@@ -168,11 +168,11 @@
           <div class="col-md-6">
             <div class="row">
               <label class="fam businessTop">Hosting System Site Owner</label>
-              <select name="systemOwner" style="width:50%;" [(ngModel)]="system.systemOwnerNameDoe" class="form-control" id="searchUsers"
-					(change)="system.systemOwnerNameDoe=$event.target.value" required>
-						<option value="" selected>Choose...</option>
-						<option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option>
-					</select>
+              <select name="systemOwner" style="width:50%;" [(ngModel)]="system.systemOwner" class="form-control"
+                id="searchUsers" (change)="system.systemOwner = $event.target.value" required>
+                <option value="" selected>Choose...</option>
+                <option *ngFor="let so of So" value="{{so.userId}}">{{so.firstName}} {{so.lastName}}</option>
+              </select>
               <span class="col-sm-2" (click)="addUser('systemSiteOwner')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>
             </div>

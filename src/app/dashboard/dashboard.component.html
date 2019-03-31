@@ -1,4 +1,4 @@
-<ng-template #content let-c="close" let-d="dismiss">
+<!-- <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" style="color:white">Info</h4>
 
@@ -11,6 +11,74 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
   </div>
+</ng-template> -->
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" style="color:white">Please Select</h4>
+
+    </div>
+    <div class="modal-body">
+        <!-- <h3><b>Do you want to open:</b></h3> -->
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="c();showLocal()">Location</button>
+        <button type="button" class="btn btn-outline-dark" (click)="c();showSys()">System</button> -->
+    <div class="form-row">
+        <div class="col-md-3">
+                <div class="card"
+                style="width: 12rem;height:10em;cursor: pointer;margin-left: 25%;margin-right: auto;display: block;">
+                <div class="card-body" (click)="c();showLocal()" style="background-color: #fff !important;">
+                  <div class="card-heading">
+                    <h5 class="card-title" style="text-align: center;background-color: #fff !important;">Location</h5>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3" (click)="c();showLocal()" style="
+                        margin-left: auto;
+                        margin-right: auto;
+                        display: block;">
+                      <i class="fa fa-map-marker fa-3x" style="color:cadetblue"></i>
+                    </div>
+                    <!-- <div class="col-sm-9 text">
+                      Location
+                      <hr id="lineSpace">
+      
+                    </div> -->
+                  </div>
+      
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-3">
+
+                <div class="card"
+                style="width: 12rem;height:10em;cursor: pointer;margin-left: 109%;margin-right: auto;display: block;">
+                <div class="card-body" (click)="c();showSys()" style="background-color: #fff !important;">
+                  <div class="card-heading">
+                    <h5 class="card-title" style="text-align: center;background-color: #fff !important;">System</h5>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3" style="
+                    margin-left: auto;
+                    margin-right: 47%;
+                    display: block;">
+                      <i class="fa fa-laptop fa-3x" style="color:cadetblue"></i>
+                    </div>
+                    <!-- <div class="col-sm-9 text" style="margin-left: 36%;
+                    margin-top: -24%;">
+                      System
+                      <hr id="lineSpace">
+      
+                    </div> -->
+                  </div>
+      
+                </div>
+              </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
+    </div>
 </ng-template>
 
 
