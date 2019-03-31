@@ -166,12 +166,19 @@
                             <div class="headerOfBox">
                                 <h4>Evidences</h4>
                             </div>
-                            <label for="yes_no_radio">Is evidence required?</label>
+                            <!-- <label for="yes_no_radio">Is evidence required?</label>
                             <div class="row">
                                     <input type="radio"  [(ngModel)]="policyAccess.evidenceRequired" (click)="getEvi('true')" (change)="onEvidenceRequiredChange($event.target.value)" name="yes_no" checked />Yes
                                     <input type="radio"  [(ngModel)]="policyAccess.evidenceRequired" (click)="getEvi('false')" (change)="onEvidenceRequiredChange($event.target.value)"  name="yes_no" />No
                             </div>
-                            <br>
+                            <br> -->
+
+                            <div class="custom02">
+                                    <p>Is evidence required?</p>
+                                    <input type="radio" id="radio03-01" name="demo03" [(ngModel)]="policyAccess.evidenceRequired" (click)="getEvi('true')" (change)="onEvidenceRequiredChange($event.target.value)"  /><label for="radio03-01">Yes</label>
+                                    <input type="radio" id="radio03-02" name="demo03" [(ngModel)]="policyAccess.evidenceRequired" (click)="getEvi('false')" (change)="onEvidenceRequiredChange($event.target.value)"   /><label for="radio03-02">No</label>
+                                   
+                                </div>
                             <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
             
             

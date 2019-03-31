@@ -96,84 +96,83 @@
 		</div>
 	</div>
 
-	
-		<form (ngSubmit)="updatePolicyGrp()" #myForm="ngForm">
 
-			<fieldset [disabled]='showForm'>
+	<form (ngSubmit)="updatePolicyGrp()" #myForm="ngForm">
 
-				<div class="infoBox">
-					<div class="headerOfBox">Information</div>
-					<div class="model-solution-row form-row">
-						<div class="model form-group col-md-6">
-							<label class="label-form" for="lastReviewDate">Last Review Date<span
-									class="asterisk">*</span></label>
-							<my-date-picker name="myname" class="inputState1" [(ngModel)]="lastReviewDate" ngModel
-								[selDate]="displayLastReviewDate" required></my-date-picker>
-						</div>
-						<div class="version form-group col-md-6">
-							<label class="label-form" for="nextReviewDate">Next Review Date<span
-									class="asterisk">*</span></label>
-							<my-date-picker name="myname" class="inputState1" [(ngModel)]="nextReviewDate" ngModel
-								[selDate]="displayNextReviewDate" required></my-date-picker>
-						</div>
+		<fieldset [disabled]='showForm'>
+
+			<div class="infoBox">
+				<div class="headerOfBox">Information</div>
+				<div class="model-solution-row form-row">
+					<div class="model form-group col-md-6">
+						<label class="label-form" for="lastReviewDate">Last Review Date<span
+								class="asterisk">*</span></label>
+						<my-date-picker name="myname" class="inputState1" [(ngModel)]="lastReviewDate" ngModel
+							[selDate]="displayLastReviewDate" required></my-date-picker>
 					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label class="label-form" for="owner">Owner<span class="asterisk">*</span></label>
-							<select type="text" class="edit-disable form-control" [(ngModel)]="policyDisplay.owner"
-								(change)="policyDisplay.owner = $event.target.value" [name]="'policy_owner'" required>
-								<option value="" selected>Choose...</option>
-								<option *ngFor="let getUser of  users"
-									value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+					<div class="version form-group col-md-6">
+						<label class="label-form" for="nextReviewDate">Next Review Date<span
+								class="asterisk">*</span></label>
+						<my-date-picker name="myname" class="inputState1" [(ngModel)]="nextReviewDate" ngModel
+							[selDate]="displayNextReviewDate" required></my-date-picker>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="label-form" for="owner">Owner<span class="asterisk">*</span></label>
+						<select type="text" class="edit-disable form-control" [(ngModel)]="policyDisplay.owner"
+							(change)="policyDisplay.owner = $event.target.value" [name]="'policy_owner'" required>
+							<option value="" selected>Choose...</option>
+							<option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
 									getUser.firstName}} {{getUser.lastName }} </option>
-							</select>
-						</div>
-						<div class="form-group col-md-6">
-							<label class="label-form" for="policyReviewTerm">Policy Review Term<span
-									class="asterisk">*</span></label>
-							<input type="text" id="inputState" class="edit-disable form-control" *ngIf="showForm"
-								[(ngModel)]="policyDisplay.policyReviewTerm" [name]="'review_term'" readonly>
-							<select class="form-control" style="width:50%;" id="priority" *ngIf="!showForm"
-								[(ngModel)]="policyDisplay.policyReviewTerm" [name]="'review_term'"
-								(change)="displayReview($event.target.value)" required>
-								<option *ngFor="let review of policyReviewTerm" [value]="review.reviewTerm">
-									{{review.reviewTerm}}</option>
-								<!-- <option value="2">Half-Yearly</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="label-form" for="policyReviewTerm">Policy Review Term<span
+								class="asterisk">*</span></label>
+						<input type="text" id="inputState" class="edit-disable form-control" *ngIf="showForm"
+							[(ngModel)]="policyDisplay.policyReviewTerm" [name]="'review_term'" readonly>
+						<select class="form-control" style="width:50%;" id="priority" *ngIf="!showForm"
+							[(ngModel)]="policyDisplay.policyReviewTerm" [name]="'review_term'"
+							(change)="displayReview($event.target.value)" required>
+							<option *ngFor="let review of policyReviewTerm" [value]="review.reviewTerm">
+								{{review.reviewTerm}}</option>
+							<!-- <option value="2">Half-Yearly</option>
 											<option value="3">Quarterly</option> -->
-							</select>
-							<!-- <button class="btn btn-primary" (click)="displayReview(selectedReviewTerm.value)">Display</button> -->
-						</div>
+						</select>
+						<!-- <button class="btn btn-primary" (click)="displayReview(selectedReviewTerm.value)">Display</button> -->
 					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label class="label-form" for="status">Status<span class="asterisk">*</span></label>
-							<input type="text" id="inputState" class="form-control"
-								[ngModel]="policyDisplay.status | subControlPipe" [name]="'policy_status'"
-								*ngIf="showForm" readonly>
-							<select class="form-control" style="width:50%;" name="selectstatus"
-								[(ngModel)]="policyDisplay.status" id="priority"
-								(change)="policyDisplay.status = $event.target.value" *ngIf="!showForm" required>
-								<option value="true">Open</option>
-								<option value="false">Close</option>
-							</select>
-						</div>
-
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="label-form" for="status">Status<span class="asterisk">*</span></label>
+						<input type="text" id="inputState" class="form-control"
+							[ngModel]="policyDisplay.status | subControlPipe" [name]="'policy_status'" *ngIf="showForm"
+							readonly>
+						<select class="form-control" style="width:50%;" name="selectstatus"
+							[(ngModel)]="policyDisplay.status" id="priority"
+							(change)="policyDisplay.status = $event.target.value" *ngIf="!showForm" required>
+							<option value="true">Open</option>
+							<option value="false">Close</option>
+						</select>
 					</div>
-
 
 				</div>
-				<div class="infoBox">
+
+
+			</div>
+			<div class="infoBox" style="width: 80%">
 				<div class="headerOfBox">
 					<h4>Description</h4>
 				</div>
 				<textarea id="description" [ngxSummernote]="config" cols="156" rows="7"
 					[(ngModel)]="policyDisplay.description" [name]="'policy_description'"
 					[ngxSummernoteDisabled]="showForm"></textarea>
-				</div>
-			</fieldset>
+			</div>
+		</fieldset>
 
-		</form>
-	
+	</form>
+
 
 
 
@@ -186,7 +185,7 @@
 				<div class="col-md-12" *ngIf="showFamily">
 					<label class="label-form" for="status"> Please choose a Family</label>
 					<select class="form-control" style="width:50%;" id="priority"
-						(change)="getFamily($event.target.value)">
+						(change)="getFamily($event.target.value)" >
 						<option value="" selected>Choose...</option>
 						<option value="all">All</option>
 						<option *ngFor="let fam of families" value="{{fam.policyFamilyID}}">{{fam.familyName}}</option>
@@ -204,93 +203,116 @@
 
 					<div class="form-group">
 						<label for="email">Assigned To</label>
-						<input type="text" class="form-control"  name="assignTo" [(ngModel)]="family.assignedTo">
+						<input type="text" class="form-control" name="assignTo" [(ngModel)]="family.assignedTo">
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="email">Assigned On</label>
-						<my-date-picker class="inputState1" (dateChanged)="getDateAssign($event)" [(ngModel)]="assignOn" name="assignOn"></my-date-picker>
+						<my-date-picker class="inputState1" (dateChanged)="getDateAssign($event)" [(ngModel)]="assignOn"
+							name="assignOn"></my-date-picker>
 					</div>
 				</div>
 
 			</div>
 			<div class="row">
-			
+
 				<div class="col-md-6">
-						<label>Priority</label>
-						<select class="form-control" name="priority" (change)="family.priority = $event.target.value" [(ngModel)]="family.priority">
-			  
-						  <option value="high">High</option>
-						  <option value="medium">Medium</option>
-						  <option value="low">Low</option>
-						</select>
+					<label>Priority</label>
+					<select class="form-control" name="priority" (change)="family.priority = $event.target.value"
+						[(ngModel)]="family.priority">
+
+						<option value="high">High</option>
+						<option value="medium">Medium</option>
+						<option value="low">Low</option>
+					</select>
 				</div>
 
 				<div class="col-md-6">
 
 					<label>Weightage</label>
-					<input type="number" name="Weightage" class="form-control" 
-							(change)="getNum()" [(ngModel)]="family.weightage" id="first"  maxlength="1" OnlyNumber1="true"
-							oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" >
+					<input type="number" name="Weightage" class="form-control" (change)="getNum()"
+						[(ngModel)]="family.weightage" id="first" maxlength="1" OnlyNumber1="true"
+						oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
 
 				</div>
-		</div>
+			</div>
 
-		<div class="row">
+			<!-- <div class="row">
 				
-						<label>Is evidence required?</label> 
-						
-						<input type="radio" name="yes_no" (click)="getEvi('true')" [(ngModel)]="family.evidenceRequired" checked /><span>Yes</span>
+						<label class="radio-inline" style="display: inline-block !important">Is evidence required?
+						<input type="radio" name="yes_no" (click)="getEvi('true')" [(ngModel)]="family.evidenceRequired"  />Yes 
 						<input type="radio" name="yes_no" (click)="getEvi('false')" [(ngModel)]="family.evidenceRequired" />No
-				
+					</label> 
 						<br>	
-		</div>
-		<button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="overridePolicyFamily()">Submit</button>
-		<br>
-		<br>
+		</div> -->
+			<!-- <div class="custom02" >
+				<label>Is evidence required?</label>
+				<input type="radio" id="radio03-01" name="demo03" [(ngModel)]="family.evidenceRequired" (click)="getEvi('true')" (change)="onEvidenceRequiredChange($event.target.value)"  />Yes
+				<input type="radio" id="radio03-02" name="demo03" [(ngModel)]="family.evidenceRequired" (click)="getEvi('false')" (change)="onEvidenceRequiredChange($event.target.value)"   />No   
+		</div> -->
+			<br>
+			<ul class="tg-list">
+				<li class="tg-list-item">
+					<label>Is evidence required?</label>
+					<input class="tgl tgl-flip" id="cb7" name="electronicPollbook"
+						[(ngModel)]="family.evidenceRequired" [checked]="family.evidenceRequired"
+						type="checkbox" />
+					<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb7"></label>
+				</li>
+			</ul>
+			<br>
+			<div> 
+				<button type="button" class="btn btn-outline-dark confbtn" style="float:left" class="downButton" (click)="toggle()">{{buttonName}}</button>
+				<button type="button" class="btn btn-outline-dark confbtn" style="float: right" (click)="overridePolicyFamily()">Submit</button>
+			</div>
+			<br>
+			<br>
 
-
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<!-- <th (click)="handleSort('familyName')" scope="col">Family Name <i class="sorting fa fa-arrow-down" *ngIf="!desc1"></i>
+			<div *ngIf="showN">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<!-- <th (click)="handleSort('familyName')" scope="col">Family Name <i class="sorting fa fa-arrow-down" *ngIf="!desc1"></i>
 						<i class="sorting fa fa-arrow-up" *ngIf="desc1"></i></th> -->
-					<th (click)="handleSort2('controlNumber')" scope="col">Control <i class="sorting fa fa-arrow-down"
-							*ngIf="!desc2"></i>
-						<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
-						<th (click)="handleSort2('controlNumber')" scope="col">Family <i class="sorting fa fa-arrow-down"
-							*ngIf="!desc2"></i>
-						<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
-					<th (click)="handleSort3('policyName')" scope="col">Policy <i class="sorting fa fa-arrow-down"
-							*ngIf="!desc3"></i>
-						<i class="sorting fa fa-arrow-up" *ngIf="desc3"></i></th>
-					<th (click)="handleSort4('priority')" scope="col">Priority<i class="second fa fa-arrow-down"
-							*ngIf="!desc4"></i>
-						<i class="second fa fa-arrow-up" *ngIf="desc4"></i></th>
-					<th (click)="handleSort5('priority')" scope="col">Weightage<i class="second fa fa-arrow-down"
-							*ngIf="!desc5"></i>
-						<i class="second fa fa-arrow-up" *ngIf="desc5"></i></th>
-					
-					<th scope="col">Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-					<!-- <td>{{policy.familyName}}</td> -->
-					<td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
+							<th (click)="handleSort2('controlNumber')" scope="col">Control <i
+									class="sorting fa fa-arrow-down" *ngIf="!desc2"></i>
+								<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
+							<th (click)="handleSort2('controlNumber')" scope="col">Family <i
+									class="sorting fa fa-arrow-down" *ngIf="!desc2"></i>
+								<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
+							<th (click)="handleSort3('policyName')" scope="col">Policy <i
+									class="sorting fa fa-arrow-down" *ngIf="!desc3"></i>
+								<i class="sorting fa fa-arrow-up" *ngIf="desc3"></i></th>
+							<th (click)="handleSort4('priority')" scope="col">Priority<i class="second fa fa-arrow-down"
+									*ngIf="!desc4"></i>
+								<i class="second fa fa-arrow-up" *ngIf="desc4"></i></th>
+							<th (click)="handleSort5('priority')" scope="col">Weightage<i
+									class="second fa fa-arrow-down" *ngIf="!desc5"></i>
+								<i class="second fa fa-arrow-up" *ngIf="desc5"></i></th>
+
+							<th scope="col">Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+							<!-- <td>{{policy.familyName}}</td> -->
+							<td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
 							policy.controlNumber
 							}}</a></td>
 							<td>{{policy.familyName}}</td>
-					<td>{{ policy.policyName }}</td>
-					<td>{{ policy.priority }}</td>
-					<td>{{policy.weightageN}}</td>
-					<td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
-				</tr>
-			</tbody>
-		</table>
-		<br>
-		<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+							<td>{{ policy.policyName }}</td>
+							<td>{{ policy.priority }}</td>
+							<td>{{policy.weightageN}}</td>
+							<td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<br>
+				<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+			</div>
+		</div>
 	</div>
-</div>

@@ -46,7 +46,7 @@
 
 
 	<div>
-		<h3 class="pageTitle">Devices</h3>
+		<h3 class="pageTitle">Infrastructure Manager</h3>
 		<hr>
 	</div>
 	<br>
@@ -65,9 +65,7 @@
 					<th scope="col" (click)="handleSort2('createdTs')">Create Date<i class="fa fa-arrow-down testColor"
 							*ngIf="!crtdt"></i>
 						<i class="fa fa-arrow-up testColor" *ngIf="crtdt"></i></th>
-					<th scope="col" (click)="handleSort3('updatedTs')">Modified Date<i
-							class="fa fa-arrow-down testColor" *ngIf="!modifiedDt"></i>
-						<i class="fa fa-arrow-up testColor" *ngIf="modifiedDt"></i></th>
+					
 					<th scope="col" (click)="handleSort4('licenseRenewDt')">Renewal date<i
 							class="fa fa-arrow-down testColor" *ngIf="!rendt"></i>
 						<i class="fa fa-arrow-up testColor" *ngIf="rendt"></i></th>
@@ -88,7 +86,7 @@
 					<td>{{appDevice.productName}}</td>
 					<!--      <td>{{appDevice}}</td> -->
 					<td>{{appDevice.createdTs|filter}}</td>
-					<td>{{appDevice.updatedTs|filter}}</td>
+					
 
 					<td>{{appDevice.licenseRenewDt|filter}}</td>
 					<td>{{ appDevice.updatedBy }}</td>
