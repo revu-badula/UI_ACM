@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DialogService } from '../../../dialog.service';
 import { ApplicationUserDTO } from '../../../data_model_legal';
+import { JSDocCommentStmt } from '@angular/compiler';
 declare let tinymce: any;
 @Component({
   selector: 'app-system-technical',
@@ -49,7 +50,7 @@ export class SystemTechnicalComponent {
   public data: any;
   public base: any;
   app: any;
-  public templist:any=[];
+  public templist: any = [];
   public tester: any;
   applicationUserDTOsystem: ApplicationUserDTO;
   applicationUserDTObusiness: ApplicationUserDTO;
@@ -107,20 +108,9 @@ export class SystemTechnicalComponent {
     statusbar: false
   };
   constructor(private ref: ChangeDetectorRef, private dialog: DialogService, private httpClient: HttpClient, private _apiservice: ApiserviceService, private modalService: NgbModal) {
-    this.getTechnologies();
-    this.getTechProjectManager();
-    this.getBusinessAnalyst();
-    this.getSystemAdministrator();
-    this.getDbAdmin();
-    this.getDevelopers();
-    this.getDevelopers();
-    this.getDataCustodian();
-    this.getApplicationServers();
-    this.getDatabases();
     this.applicationUserDTO = new ApplicationUserDTO();
     this.applicationServerDTO = new ApplicationDatabaseDTO();
     this.technologiesDTOs = new TechnologiesDTO();
-    this.getTesters();
     this.system = new System();
     this.config.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
@@ -259,7 +249,7 @@ export class SystemTechnicalComponent {
       for (let i = 0; i < this.app.length; i++) {
         if (this.app[i].databaseId === +value) {
           this.applicationServerDTO = this.app[i];
-          this.applicationServerDTO.newEntry=true;
+          this.applicationServerDTO.newEntry = true;
         }
       }
       if (this.system.applicationServerDTOs != undefined && this.system.applicationServerDTOs.length > 0) {
@@ -283,6 +273,19 @@ export class SystemTechnicalComponent {
     this._apiservice.getTechnologies()
       .subscribe((data: any) => {
         this.tech = data;
+        if (this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0) {
+          for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
+            for (let j = 0; j < this.tech.length; j++) {
+              if (this.system.technologiesDTOs[i].technologyId === this.tech[i].technologyId) {
+                this.tech.splice(i, 1);
+              }
+            }
+          }
+          // this.tech=tech;
+        }
+        else {
+          this.tech = data;
+        }
 
       }, error => console.log(error));
   }
@@ -347,46 +350,47 @@ export class SystemTechnicalComponent {
   checkvalue1(value: any) {
 
   }
-  setTrue(value:any){
-    
-    for(let i=0;i<this.tech.length;i++){
-    
-      if(this.tech[i].technologyId === value)
-      {
+  setTrue(value: any) {
+
+    for (let i = 0; i < this.tech.length; i++) {
+
+      if (this.tech[i].technologyId === +value) {
         this.technologiesDTOs = new TechnologiesDTO();
-        this.technologiesDTOs.technologyId = this.system.technologiesDTOs[i].technologyId;
+        this.technologiesDTOs.technologyId = this.tech[i].technologyId;
+        this.technologiesDTOs.name = this.tech[i].name;
+        this.technologiesDTOs.technologyVersion = this.tech[i].technologyVersion;
         this.technologiesDTOs.newEntry = true;
-        if(this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0)
-        this.system.technologiesDTOs.push(this.technologiesDTOs);
-        else{
-          this.system.technologiesDTOs=[];
+        this.technologiesDTOs.active = true;
+        if (this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0)
+          this.system.technologiesDTOs.push(this.technologiesDTOs);
+        else {
+          this.system.technologiesDTOs = [];
           this.system.technologiesDTOs.push(this.technologiesDTOs);
 
         }
-        this.tech.splice(i,1);
+        this.tech.splice(i, 1);
 
       }
     }
   }
-  
-  
 
 
-  hideMinus(value:any){
-    
-    for(let i = 0;i< this.system.technologiesDTOs.length;i++)
-    {
-      if(this.system.technologiesDTOs[i].technologyID === +value)
-      {
+
+
+  hideMinus(value: any) {
+
+    for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
+      if (this.system.technologiesDTOs[i].technologyId === +value) {
+        this.system.technologiesDTOs[i].active = false;
         this.tech.push(this.system.technologiesDTOs[i]);
-        this.system.technologiesDTOs.splice(i,1);
+        this.system.technologiesDTOs.splice(i, 1);
       }
     }
   }
 
-spliceLang(index){
-  this.tech.splice(index, 1);
-}
+  spliceLang(index) {
+    this.tech.splice(index, 1);
+  }
 
 
   setT() {
@@ -494,7 +498,7 @@ spliceLang(index){
     this.httpClient.get(url5 + '?' + 'acronym' + '=' + sessionStorage.getItem('systemName'))
       .subscribe((data: any) => {
         this.loading = false;
-        //this.getBusinessOwner();
+        this.getBusinessOwner();
         this.acronym = data.applicationViewDTO.acronym;
         this.updatedBy = data.applicationViewDTO.updatedBy;
         this.sysName = data.applicationViewDTO.name;
@@ -506,6 +510,7 @@ spliceLang(index){
         let year = d.getFullYear();
         this.updatedTime = month + "/" + day + "/" + year;
         this.system = data.applicationViewDTO;
+        this.system.technologiesDTOs = data.applicationViewDTO.technologies;
         if (this.system.description != undefined) {
           let des = this.system.description.replace(/<[^>]+>/gm, '');
           this.len = des.length;
@@ -518,6 +523,16 @@ spliceLang(index){
 
 
   getBusinessOwner() {
+    // this.getTechnologies();
+    // this.getTechProjectManager();
+    // this.getBusinessAnalyst();
+    // this.getSystemAdministrator();
+    // this.getDbAdmin();
+    // this.getDevelopers();
+    // this.getDataCustodian();
+    // this.getApplicationServers();
+    // this.getDatabases();
+    // this.getTesters();
     this.loading = true;
     let url = APP_CONFIG.getBusinessAnalyst;
     let url1 = APP_CONFIG.getDataCustodian;
@@ -526,6 +541,9 @@ spliceLang(index){
     let url4 = APP_CONFIG.getSystemAdministrator;
     let url5 = APP_CONFIG.getTechProjectManager;
     let url6 = APP_CONFIG.getDevelopers;
+    let url7 = APP_CONFIG.getApplicationServers;
+    let url8 = APP_CONFIG.getTechnologies;
+    let url9 = APP_CONFIG.getDatabases;
     Observable.forkJoin(
       this.httpClient.get(url),
       this.httpClient.get(url1),
@@ -534,16 +552,37 @@ spliceLang(index){
       this.httpClient.get(url4),
       this.httpClient.get(url5),
       this.httpClient.get(url6),
+      this.httpClient.get(url7),
+      this.httpClient.get(url8),
+      this.httpClient.get(url9),
     ).subscribe((data: any) => {
       this.loading = false;
-      this.Bo = data[0];
-      this.Do = data[1];
-      this.Pm = data[2];
-      this.Iso = data[3];
-      this.So = data[4];
-      this.Ao = data[5];
-      this.Co = data[6];
-
+      this.business = data[0];
+      this.data = data[1];
+      this.tester = data[2];
+      this.admin = data[3];
+      this.system1 = data[4];
+      this.manager = data[5];
+      this.developer = data[6];
+      this.app = data[7];
+      
+      this.base = data[9];
+      this.tech=[];
+      if (this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0) {
+        let tech = data[8];
+        for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
+          for (let j = 0; j < tech.length; j++) {
+            if (this.system.technologiesDTOs[i].technologyId === tech[j].technologyId) {
+              tech.splice(j, 1);
+            }
+           
+          }
+        }
+        this.tech=tech;
+      }
+      else {
+        this.tech = data[8];
+      }
     }, error => {
       this.loading = false;
       console.log(error);

@@ -75,7 +75,7 @@
 
             <label class="fam">System Acronym <span class="asterisk">*</span></label>
 
-            <input type="text" autofocus class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
+            <input type="text" class="form-control" id="lastName" value="{{acronym}}" readonly="readonly">
           </div>
           <div class="form-group col-md-6">
             <label class="fam">System Name <span class="asterisk">*</span></label>
@@ -150,7 +150,7 @@
               </select>
 
               <br>
-              <ul *ngFor="let temp of system.technologiesDTO">
+              <ul *ngFor="let temp of system.technologiesDTOs">
 
                 <li>
                   {{temp.name + temp.technologyVersion}} <i class="fa fa-minus-circle" aria-hidden="true"
