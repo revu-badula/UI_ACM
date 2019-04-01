@@ -20,7 +20,7 @@ export class System {
   businessAnalyst: any;
   technicalProjectManager: any;
   systemSensitivityName: string;
-  technologiesDTOs: TechnologiesDTO[] = [];
+  technologiesDTOs: any;
   // databaseDTOs:DatabaseDTO[] = []; 
   applicationDatabaseDTOs: ApplicationDatabaseDTO[] = [];
   developers: ApplicationUserDTO[] = [];

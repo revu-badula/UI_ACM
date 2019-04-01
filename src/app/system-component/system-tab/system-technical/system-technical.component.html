@@ -126,13 +126,12 @@
                 <option *ngFor="let techUser1 of app" value="{{techUser1.databaseId}}">{{techUser1.hostName}}</option>
               </select> -->
               <ng-select class="formOpt" [items]="app" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-              bindLabel="applicationServer" (change)="getServers($event)" placeholder="Choose..."
-              name="applicationServer" [(ngModel)]="system.applicationServerDTOs"
-              >
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div>{{ item.hostName }}</div>
-              </ng-template>
-            </ng-select>
+                bindLabel="applicationServer" (change)="getServers($event)" placeholder="Choose..."
+                name="applicationServer" [(ngModel)]="system.applicationServerDTOs">
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  <div>{{ item.hostName }}</div>
+                </ng-template>
+              </ng-select>
 
             </div>
           </div>
@@ -143,13 +142,22 @@
           <div class="form-group col-md-6">
             <div class="row">
               <label class="fam">Programming Languages</label><br><br>
-              <ng-select class="formOpt" [items]="tech" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-                bindLabel="name" placeholder="Choose..." [(ngModel)]="system.technologiesDTOs" (change)="setTrue()"
-                name="technologiesDTOs">
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  <div>{{ item.name + ' ' + item.technologyVersion }}</div>
-                </ng-template>
-              </ng-select>
+              <select class="formOpt" name="technologys"
+                (change)="setTrue($event.target.value)">
+                <option class="form-control">Choose...</option>
+                <option *ngFor="let techUser1 of tech" value="{{techUser1.technologyId}}">
+                  {{techUser1.name + techUser1.technologyVersion}}</option>
+              </select>
+
+              <br>
+              <ul *ngFor="let temp of system.technologiesDTO">
+
+                <li>
+                  {{temp.name + temp.technologyVersion}} <i class="fa fa-minus-circle" aria-hidden="true"
+                    (click)="hideMinus(temp.technologyId)"></i>
+                </li>
+
+              </ul>
             </div>
           </div>
         </div>

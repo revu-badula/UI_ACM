@@ -49,6 +49,7 @@ export class SystemTechnicalComponent {
   public data: any;
   public base: any;
   app: any;
+  public templist:any=[];
   public tester: any;
   applicationUserDTOsystem: ApplicationUserDTO;
   applicationUserDTObusiness: ApplicationUserDTO;
@@ -118,6 +119,7 @@ export class SystemTechnicalComponent {
     this.getDatabases();
     this.applicationUserDTO = new ApplicationUserDTO();
     this.applicationServerDTO = new ApplicationDatabaseDTO();
+    this.technologiesDTOs = new TechnologiesDTO();
     this.getTesters();
     this.system = new System();
     this.config.init_instance_callback = (editor: any) => {
@@ -345,13 +347,47 @@ export class SystemTechnicalComponent {
   checkvalue1(value: any) {
 
   }
-  setTrue() {
-    if (this.system.technologiesDTOs != null) {
-      for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
-        this.system.technologiesDTOs[i].newEntry = true;
+  setTrue(value:any){
+    
+    for(let i=0;i<this.tech.length;i++){
+    
+      if(this.tech[i].technologyId === value)
+      {
+        this.technologiesDTOs = new TechnologiesDTO();
+        this.technologiesDTOs.technologyId = this.system.technologiesDTOs[i].technologyId;
+        this.technologiesDTOs.newEntry = true;
+        if(this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0)
+        this.system.technologiesDTOs.push(this.technologiesDTOs);
+        else{
+          this.system.technologiesDTOs=[];
+          this.system.technologiesDTOs.push(this.technologiesDTOs);
+
+        }
+        this.tech.splice(i,1);
+
       }
     }
   }
+  
+  
+
+
+  hideMinus(value:any){
+    
+    for(let i = 0;i< this.system.technologiesDTOs.length;i++)
+    {
+      if(this.system.technologiesDTOs[i].technologyID === +value)
+      {
+        this.tech.push(this.system.technologiesDTOs[i]);
+        this.system.technologiesDTOs.splice(i,1);
+      }
+    }
+  }
+
+spliceLang(index){
+  this.tech.splice(index, 1);
+}
+
 
   setT() {
     if (this.system.technologiesDTOs != null) {
