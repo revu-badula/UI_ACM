@@ -253,15 +253,22 @@
 				<input type="radio" id="radio03-02" name="demo03" [(ngModel)]="family.evidenceRequired" (click)="getEvi('false')" (change)="onEvidenceRequiredChange($event.target.value)"   />No   
 		</div> -->
 			<br>
+			<div class="form-row">
+				<div class="form-group col-md-3">
+						<label>Is evidence required?</label>
+						</div>
+				<div class="form-group col-md-4">
 			<ul class="tg-list">
 				<li class="tg-list-item">
-					<label>Is evidence required?</label>
+				
 					<input class="tgl tgl-flip" id="cb7" name="electronicPollbook"
 						[(ngModel)]="family.evidenceRequired" [checked]="family.evidenceRequired"
 						type="checkbox" />
 					<label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb7"></label>
 				</li>
 			</ul>
+		</div>
+		</div>
 			<br>
 			<div> 
 				<button type="button" class="btn btn-outline-dark confbtn" style="float:left"  (click)="toggle()">{{buttonName}}</button>
