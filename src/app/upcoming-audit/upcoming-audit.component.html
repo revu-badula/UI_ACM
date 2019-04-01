@@ -40,7 +40,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let solution of Audits | paginate: { itemsPerPage: 10, currentPage: p }">
-        <td><a style="color:blue;cursor: pointer;">
+        <td><a style="color:blue;cursor: pointer;" (click)="viewApplication(solution.appAcronym)">
           {{ solution.appAcronym }}</a></td>
         <td>{{ solution.auditDate | date:'MM/dd/yyyy' }}</td>
         <td>{{solution.nextAuditDate  | date:'MM/dd/yyyy'}}</td>

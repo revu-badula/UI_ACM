@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from 'app/app.config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upcoming-audit',
@@ -19,11 +20,18 @@ export class UpcomingAuditComponent implements OnInit {
   public dec: boolean = false;
   public de: boolean = false;
 
-  constructor(private _location: Location, private httpClient: HttpClient) { }
+  constructor(private _location: Location, private httpClient: HttpClient,private router:Router) {
+    sessionStorage.removeItem('systemName');
+   }
 
   ngOnInit() {
     this.upcomingAudits();
 
+  }
+
+  viewApplication(system:any) {
+    sessionStorage.setItem('systemName', system);
+    this.router.navigate(['/system/tab2/info']);
   }
 
   upcomingAudits() {
