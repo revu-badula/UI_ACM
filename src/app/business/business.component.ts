@@ -90,15 +90,9 @@ export class BusinessComponent implements OnInit {
       editor.on('keyup', () => {
         this.getData(editor);
       });
-      editor.on('focus', () => {
-        this.getData(editor);
-      });
     };
     this.config1.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
-        this.getData1(editor);
-      });
-      editor.on('focus', () => {
         this.getData1(editor);
       });
     };
