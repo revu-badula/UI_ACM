@@ -8,16 +8,16 @@
         <!-- <button type="button" class="btn btn-outline-dark" (click)="c();showLocal()">Location</button>
         <button type="button" class="btn btn-outline-dark" (click)="c();showSys()">System</button> -->
     <div class="form-row">
-        <div class="col-md-3">
-                <div class="card"
-                style="width: 12rem;height:10em;cursor: pointer;margin-left: 25%;margin-right: auto;display: block;">
-                <div class="card-body" (click)="c();showLocal()">
+        <div class="col-md-6">
+                <div class="card"  (click)="c();showLocal()"
+                style="width: 12rem;height:10em;cursor: pointer;margin-left: 14%;margin-right: auto;display: block;">
+                <div class="card-body">
                   <div class="card-heading">
                     <h5 class="card-title" style="text-align: center;">Location</h5>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-3" (click)="c();showLocal()" style="
+                    <div class="col-sm-3" style="
                         margin-left: auto;
                         margin-right: auto;
                         display: block;">
@@ -33,10 +33,10 @@
                 </div>
               </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
 
                 <div class="card"
-                style="width: 12rem;height:10em;cursor: pointer;margin-left: 109%;margin-right: auto;display: block;">
+                style="width: 12rem;height:10em;cursor: pointer;margin-left: 3%;margin-right: auto;display: block;">
                 <div class="card-body" (click)="c();showSys()">
                   <div class="card-heading">
                     <h5 class="card-title" style="text-align: center;">System</h5>
@@ -145,11 +145,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="navbarDropdownMenuLinkSys" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" routerLink="/system/map">
                 <!-- <i class="material-icons">notifications</i> -->
                 <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
-                <a class="" routerLink="/system/map" style="margin-left:-16px">Systems </a>
+                <p>Systems </p>
             </a>
             <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSys">
                 <a class="" routerLink="/system/tab2/info">Create</a>
@@ -173,11 +172,10 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" id="navbarDropdownMenuLinkDev" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" routerLink="/devicetab">
                 <!-- <i class="material-icons">laptop</i> -->
                 <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color:slategray"></i>
-                <a class="" routerLink="/devicetab" style="margin-left:-16px">Infrastructure Manager</a>
+                <p>Infrastructure Manager</p>
             </a>
             <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkDev">
                 <a class="" routerLink="/deviceInventory">Create</a>

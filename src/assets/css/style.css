@@ -22,6 +22,62 @@ body.modal-open {
 a {
   cursor: pointer;
 }
+table{
+	background-color: #ffffff;
+	text-align: center;
+	border: 1px solid black;
+}
+
+.table-bordered tbody tr:nth-of-type(odd){
+	background-color: #EEEEEE !important;
+	border: 1px solid black;
+}
+
+tbody tr:nth-of-type(odd){
+	background-color: #EEEEEE !important;
+}
+
+table thead tr th{  white-space: pre-wrap;
+	font-weight: 500;
+	color: black;
+	border: 1px solid black;
+	background-color: #cecfd5;
+}
+
+table thead tr td{ word-wrap: break-word;
+	color: black;
+}
+
+
+
+table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid black;
+}
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #000;
+}
+.table-bordered td, .table-bordered th {
+  border: 1px solid #000 !important;
+}
+
+
 .form-options{
   float: left;
   margin-right: 15px;
@@ -95,6 +151,13 @@ h4 {
   background-color: #A9A9A9 !important;
   border-color: #A9A9A9 !important;
   color: #000 !important;
+}
+.primary {
+  color: green !important;
+}
+
+.secondary {
+  color: red !important;
 }
 
 .confbtn {

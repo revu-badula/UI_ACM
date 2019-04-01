@@ -31,9 +31,9 @@ export class SystemAuditDetailsComponent implements OnInit {
   public nextAuditDate: boolean = false;
   public showPagination: boolean = true;
   public sysName: any;
-  public sts:boolean=false;
-  public updtBy:boolean=false;
-  public updt:boolean=false;
+  public sts: boolean = false;
+  public updtBy: boolean = false;
+  public updt: boolean = false;
   public updatedBy: any;
   constructor(private modalService: NgbModal, private http: Http,
     private _apiservice: ApiserviceService, private utilService: UtilService,
@@ -50,8 +50,6 @@ export class SystemAuditDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.getCustomCss();
 
   }
 
@@ -83,7 +81,7 @@ export class SystemAuditDetailsComponent implements OnInit {
   }
 
   goTo() {
-    sessionStorage.setItem("disabled","true");
+    sessionStorage.setItem("disabled", "true");
     this.router.navigate(['/system/tab2/Audit/Tab/first']);
 
   }
@@ -92,13 +90,12 @@ export class SystemAuditDetailsComponent implements OnInit {
     this.showPlusButton = true;
   }
 
-  getAudit(id:any) {
+  getAudit(id: any) {
     UtilService.appAuditId = id;
     sessionStorage.setItem('systemAppAuditId', id);
     UtilService.disabled = false;
-    sessionStorage.setItem("disabled","false");
+    sessionStorage.setItem("disabled", "false");
     this.router.navigate(['/system/tab2/Audit/Tab/first']);
-    this.getCustomCss();
   }
 
   handleSort(value) {
@@ -335,21 +332,35 @@ export class SystemAuditDetailsComponent implements OnInit {
 
   }
 
-  getCustomCss(){
+  getCustomCss(value:any) {
 
-    for (let i = 0; i < this.appAuditDTOs.length; i++) {
-    if(this.appAuditDTOs[i].overallScore > 85 ){
+ 
+      if (value > 85) {
+        return 'class1';
+      }
+      else if (value < 85 && value > 70) {
+        return 'class2';
+      }
+
+      else
+        return 'class3';
+
+    
+
+  }
+
+  getRickClass(value:any)
+  {
+    
+    if (value === 'Low') {
       return 'class1';
-  }
-    else if(this.appAuditDTOs[i].overallScore < 85 && this.appAuditDTOs[i].overallScore > 70){
+    }
+    else if (value === 'Medium') {
       return 'class2';
-  }
+    }
 
-  else
-  return 'class3';
-
-  }
-
+    else
+      return 'class3';
   }
 
 

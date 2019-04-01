@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, TemplateRef, HostListener, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService } from '../dialog.service';
 import { System } from '../data_model_system';
 import { Cookie } from 'ng2-cookies';
-import {  HostListener, ElementRef,  NgModule } from '@angular/core';
+import {  } from '@angular/core';
 import { ApiserviceService } from '../apiservice.service';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -23,6 +23,7 @@ import { UtilService } from '../util.service';
 })
 export class BusinessComponent implements OnInit {
   @ViewChild('user') addUserC: TemplateRef<any>;
+  @ViewChild('elem1') elem1: ElementRef<any>;
   public len: any = 0;
   public len1: any = 0;
   public test: any;
@@ -89,9 +90,15 @@ export class BusinessComponent implements OnInit {
       editor.on('keyup', () => {
         this.getData(editor);
       });
+      editor.on('focus', () => {
+        this.getData(editor);
+      });
     };
     this.config1.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
+        this.getData1(editor);
+      });
+      editor.on('focus', () => {
         this.getData1(editor);
       });
     };
@@ -294,9 +301,7 @@ export class BusinessComponent implements OnInit {
       });
   }
 
-  selectDefinitive(val) {
-
-  }
+  
 
 
 

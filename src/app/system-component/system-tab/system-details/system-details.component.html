@@ -139,7 +139,7 @@
 								</option>
 								<!-- <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}} {{getUser.lastName }}</option> -->
 							</select>
-							<span class="col-sm-2" (click)="addUser('businessOwner')"><i class="fa fa-plus-circle"
+							<span class="col-sm-2" *ngIf="!editableForm" (click)="addUser('businessOwner')"><i class="fa fa-plus-circle"
 									aria-hidden="true"></i></span>
 						</div>
 					</div>
@@ -157,7 +157,7 @@
 									value="{{ getUser.firstName}} {{getUser.lastName }}">{{ getUser.firstName}}
 									{{getUser.lastName }}</option> -->
 							</select>
-							<span class="col-sm-2" (click)="addUser('systemSiteOwner')"><i class="fa fa-plus-circle"
+							<span class="col-sm-2" *ngIf="!editableForm" (click)="addUser('systemSiteOwner')"><i class="fa fa-plus-circle"
 									aria-hidden="true"></i></span>
 						</div>
 					</div>
