@@ -781,10 +781,10 @@ export class GraphComponent implements OnInit {
       xAxes: [
 
         {
-          id: 'Devices Dates',
+          id: 'Vulnerability Dates',
           scaleLabel: {
             display: true,
-            labelString: 'Devices Dates',
+            labelString: 'Vulnerability Dates',
             fontColor: '#000',
             fontWeight: 'bold',
             fontSize: '20'
