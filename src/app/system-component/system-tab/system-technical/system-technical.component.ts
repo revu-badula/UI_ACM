@@ -63,6 +63,7 @@ export class SystemTechnicalComponent {
   sysID: any;
   businessID: any;
   dbID: any;
+  public showEdit:boolean=true;
   dataID: any;
   public programmingLanguage: any;
   public programmingLanguageList: any = [];
@@ -615,6 +616,12 @@ export class SystemTechnicalComponent {
       this.ref.detectChanges();
     }
   };
+
+
+  editClick()
+{
+  this.showEdit=false;
+}
   getData3(editor: any) {
     this.len3 = 0;
     if (tinymce.activeEditor.getContent({ format: 'text' }).length > 50000) {
