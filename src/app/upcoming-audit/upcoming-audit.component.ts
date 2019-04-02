@@ -53,146 +53,134 @@ export class UpcomingAuditComponent implements OnInit {
     this._location.back();
   }
 
-  handleSort() {
-
+  handleSort(value:any) {
     if (!this.desc) {
-      this.Audits.sort(this.doAsc);
+      let orderByValue = value;
+      this.Audits.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.desc = true;
     }
     else {
-      this.Audits.sort(this.doDsc);
+      let orderByValue = value;
+      this.Audits.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.desc = false;
     }
 
-  }
 
-  doAsc(a, b) {
-
-    if (a.name > b.name) {
-      return -1;
-    } else if (a.name < b.name) {
-      return 1;
-    }
-    return 0;
-  }
-
-  doDsc(a, b) {
-    if (a.name < b.name) {
-      return -1;
-    } else if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
   }
 
 
-  handleSorta() {
-
+  handleSort1(value:any) {
     if (!this.des) {
-      this.Audits.sort(this.doAs);
+      let orderByValue = value;
+      this.Audits.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.des = true;
     }
     else {
-      this.Audits.sort(this.doDs);
+      let orderByValue = value;
+      this.Audits.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.des = false;
     }
 
-  }
 
-  doAs(a, b) {
-
-    if (a.vendor.name > b.vendor.name) {
-      return -1;
-    } else if (a.vendor.name < b.vendor.name) {
-      return 1;
-    }
-    return 0;
-  }
-
-  doDs(a, b) {
-    if (a.vendor.name < b.vendor.name) {
-      return -1;
-    } else if (a.vendor.name > b.vendor.name) {
-      return 1;
-    }
-    return 0;
   }
 
 
-
-
-  handleSortb() {
-
+  handleSort2(value:any) {
     if (!this.dec) {
-      this.Audits.sort(this.doA);
+      let orderByValue = value;
+      this.Audits.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.dec = true;
     }
     else {
-      this.Audits.sort(this.doD);
+      let orderByValue = value;
+      this.Audits.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.dec = false;
     }
 
+
   }
 
-  doA(a, b) {
-
-    if (a.solutionTypeName > b.solutionTypeName) {
-      return -1;
-    } else if (a.solutionTypeName < b.solutionTypeName) {
-      return 1;
-    }
-    return 0;
-  }
-
-  doD(a, b) {
-    if (a.solutionTypeName < b.solutionTypeName) {
-      return -1;
-    } else if (a.solutionTypeName > b.solutionTypeName) {
-      return 1;
-    }
-    return 0;
-  }
-
-
-
-  handleSortc() {
-
+  handleSort3(value:any) {
     if (!this.de) {
-      this.Audits.sort(this.doAc);
+      let orderByValue = value;
+      this.Audits.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.de = true;
     }
     else {
-      this.Audits.sort(this.doDc);
+      let orderByValue = value;
+      this.Audits.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
       this.de = false;
     }
 
+
   }
 
-  doAc(a, b) {
-
-    if (a.systemTypeDTO.name > b.systemTypeDTO.name) {
-      return -1;
-    } else if (a.systemTypeDTO.name < b.systemTypeDTO.name) {
-      return 1;
-    }
-    return 0;
-  }
-
-  doDc(a, b) {
-    if (a.systemTypeDTO.name < b.systemTypeDTO.name) {
-      return -1;
-    } else if (a.systemTypeDTO.name > b.systemTypeDTO.name) {
-      return 1;
-    }
-    return 0;
-  }
-
-
-
-  handleSort1(value) {
-
+  handleSort4(value:any) {
     if (!this.signed) {
-      //this.policies.sort(this.doAsc);
       let orderByValue = value;
       this.Audits.sort((a: any, b: any) => {
         if (a[orderByValue] > b[orderByValue]) {
@@ -216,12 +204,17 @@ export class UpcomingAuditComponent implements OnInit {
           return 0;
         }
       });
-      //this.policies.sort(this.doDsc);
       this.signed = false;
     }
 
 
   }
+
+
+
+
+
+  
 
 
 }

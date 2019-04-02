@@ -144,8 +144,8 @@
               </a>
             </td>
             <td *ngIf="data.activeLocality === 0">{{data.name}}</td>
-            <td *ngIf="data.activeLocality === 0">{{data.businessOwnerName}}</td>
-            <td *ngIf="data.activeLocality === 0">{{data.projectManagerName}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.businessOwner}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.projectManager}}</td>
           </tr>
         </tbody>
       </table>
@@ -198,12 +198,16 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>
-              Acronym
+            <th (click)="handleSort1('acronym')" style="color:white">
+              Acronym<i class="sorting fa fa-arrow-down"
+              *ngIf="!signed"></i> <i class="sorting fa fa-arrow-up" *ngIf="signed"></i>
             </th>
-            <th>Application Name</th>
-            <th>Business Owner</th>
-            <th>Project Manager</th>
+            <th (click)="handleSort2('name')" style="color:white">Application Name<i class="sorting fa fa-arrow-down"
+              *ngIf="!desc"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
+            <th (click)="handleSort3('businessOwnerName')" style="color:white">Business Owner<i class="sorting fa fa-arrow-down"
+              *ngIf="!des"></i> <i class="sorting fa fa-arrow-up" *ngIf="des"></i></th>
+            <th (click)="handleSort4('projectManagerName')" style="color:white">Project Manager<i class="sorting fa fa-arrow-down"
+              *ngIf="!de"></i> <i class="sorting fa fa-arrow-up" *ngIf="de"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -213,8 +217,8 @@
               </a>
             </td>
             <td *ngIf="data.activeLocality === 0">{{data.name}}</td>
-            <td *ngIf="data.activeLocality === 0">{{data.businessOwnerName}}</td>
-            <td *ngIf="data.activeLocality === 0">{{data.projectManagerName}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.businessOwner}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.projectManager}}</td>
           </tr>
         </tbody>
       </table>

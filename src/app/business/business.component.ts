@@ -8,7 +8,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { DialogService } from '../dialog.service';
 import { System } from '../data_model_system';
 import { Cookie } from 'ng2-cookies';
-import {  } from '@angular/core';
+import { } from '@angular/core';
 import { ApiserviceService } from '../apiservice.service';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -42,13 +42,13 @@ export class BusinessComponent implements OnInit {
   public applicationUserDTO: ApplicationUserDTO;
   public title: any;
   public loading: boolean = false;
-  public showEdit:boolean=true;
+  public showEdit: boolean = true;
 
   color: String;
   public applicationViewDTO: any;
-  
+
   appId: number;
- 
+
   public editableForm: boolean = true;
   viewType: any;
   contentData: string = "";
@@ -81,7 +81,7 @@ export class BusinessComponent implements OnInit {
 
   };
   constructor(private ref: ChangeDetectorRef, private httpClient: HttpClient,
-    private modalService: NgbModal, private dialog: DialogService, private _apiservice: ApiserviceService,) {
+    private modalService: NgbModal, private dialog: DialogService, private _apiservice: ApiserviceService, ) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.applicationUserDTO = new ApplicationUserDTO();
@@ -97,7 +97,15 @@ export class BusinessComponent implements OnInit {
       });
     };
     let w = screen.width;
-    if (w > 1475) {
+    if (w>=1600 && w < 1650) {
+      this.config.width = 1245;
+      this.config1.width = 1245;
+    }
+    else if (w > 1509 && w < 1600) {
+      this.config.width = 1210;
+      this.config1.width = 1210;
+    }
+    else if (w > 1475 && w <= 1509) {
       this.config.width = 1180;
       this.config1.width = 1180;
     }
@@ -163,9 +171,8 @@ export class BusinessComponent implements OnInit {
     }
   }
 
-  editClick()
-  {
-    this.showEdit=false;
+  editClick() {
+    this.showEdit = false;
   }
 
   getSystem() {
@@ -190,9 +197,8 @@ export class BusinessComponent implements OnInit {
           let des = this.system.description.replace(/<[^>]+>/gm, '');
           this.len = des.length;
         }
-        if(this.system.costType === undefined)
-        {
-          this.system.costType=null;
+        if (this.system.costType === undefined) {
+          this.system.costType = null;
         }
       }, error => {
         this.loading = false;
@@ -295,7 +301,7 @@ export class BusinessComponent implements OnInit {
       });
   }
 
-  
+
 
 
 

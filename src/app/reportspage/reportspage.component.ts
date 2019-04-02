@@ -31,6 +31,10 @@ export class ReportspageComponent implements OnInit {
   public techData: any;
   public DST:any;
   public showOverallTable: boolean = false;
+  public signed:boolean=false;
+  public desc:boolean=false;
+  public des:boolean=false;
+  public de:boolean=false;
   constructor(private httpClient: HttpClient,
      private _location: Location,private router: Router) {
     this.user = new UserReportRequest();
@@ -222,6 +226,133 @@ export class ReportspageComponent implements OnInit {
     sessionStorage.setItem('systemName', system);
     this.router.navigate(['/system/tab2/info']);
   }
+
+
+  handleSort1(value:any) {
+    if (!this.signed) {
+      let orderByValue = value;
+      this.DST.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.signed = true;
+    }
+    else {
+      let orderByValue = value;
+      this.DST.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.signed = false;
+    }
+
+
+  }
+
+
+  handleSort2(value:any) {
+    if (!this.desc) {
+      let orderByValue = value;
+      this.DST.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = true;
+    }
+    else {
+      let orderByValue = value;
+      this.DST.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.desc = false;
+    }
+
+
+  }
+
+  handleSort3(value:any) {
+    if (!this.des) {
+      let orderByValue = value;
+      this.DST.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.des = true;
+    }
+    else {
+      let orderByValue = value;
+      this.DST.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.des = false;
+    }
+
+
+  }
+
+  handleSort4(value:any) {
+    if (!this.de) {
+      let orderByValue = value;
+      this.DST.sort((a: any, b: any) => {
+        if (a[orderByValue] > b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] < b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.de = true;
+    }
+    else {
+      let orderByValue = value;
+      this.DST.sort((a: any, b: any) => {
+        if (a[orderByValue] < b[orderByValue]) {
+          return -1;
+        } else if (a[orderByValue] > b[orderByValue]) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.de = false;
+    }
+
+
+  }
+
 
 
 

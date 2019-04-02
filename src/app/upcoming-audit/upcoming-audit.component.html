@@ -25,15 +25,15 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th (click)="handleSort()" style="color:white">System Name<i class="sorting fa fa-arrow-down"
+        <th (click)="handleSort('appAcronym')" style="color:white">System Name<i class="sorting fa fa-arrow-down"
             *ngIf="!desc"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
-        <th (click)="handleSorta()" style="color:white">Audit Date<i class="sorting fa fa-arrow-down" *ngIf="!des"></i> <i
+        <th (click)="handleSort1('auditDate')" style="color:white">Audit Date<i class="sorting fa fa-arrow-down" *ngIf="!des"></i> <i
             class="sorting fa fa-arrow-up" *ngIf="des"></i></th>
-        <th (click)="handleSortb()" style="color:white">Next Audit Date<i class="sorting fa fa-arrow-down"
+        <th (click)="handleSort2('nextAuditDate')" style="color:white">Next Audit Date<i class="sorting fa fa-arrow-down"
             *ngIf="!dec"></i> <i class="sorting fa fa-arrow-up" *ngIf="dec"></i></th>
-        <th (click)="handleSortc()" style="color:white">updatedBy<i class="sorting fa fa-arrow-down" *ngIf="!de"></i>
+        <th (click)="handleSort3('updatedBy')" style="color:white">updatedBy<i class="sorting fa fa-arrow-down" *ngIf="!de"></i>
           <i class="sorting fa fa-arrow-up" *ngIf="de"></i></th>
-        <th style="color:white" (click)="handleSort1('certDt')">upadate Date<i class="sorting fa fa-arrow-down"
+        <th style="color:white" (click)="handleSort4('upadateTs')">upadate Date<i class="sorting fa fa-arrow-down"
             *ngIf="!signed"></i> <i class="sorting fa fa-arrow-up" *ngIf="signed"></i></th>
         
       </tr>
