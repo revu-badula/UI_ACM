@@ -139,13 +139,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let data of tableUsers">
-            <td>
-              <a style="color: blue;cursor: pointer;" (click)="gotTo(data.acronym)">{{data.acronym}}
+            <td *ngIf="data.activeLocality === 0">
+              <a style="color: blue;cursor: pointer;" (click)="goTo(data.acronym)">{{data.acronym}}
               </a>
             </td>
-            <td>{{data.name}}</td>
-            <td>{{data.businessOwnerName}}</td>
-            <td>{{data.projectManagerName}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.name}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.businessOwnerName}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.projectManagerName}}</td>
           </tr>
         </tbody>
       </table>
@@ -208,13 +208,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let data of DST">
-            <td>
-              <a style="color: blue;cursor: pointer;" (click)="gotTo(data.acronym)">{{data.acronym}}
+            <td *ngIf="data.activeLocality === 0">
+              <a style="color: blue;cursor: pointer;" (click)="goTo(data.acronym)">{{data.acronym}}
               </a>
             </td>
-            <td>{{data.name}}</td>
-            <td>{{data.businessOwnerName}}</td>
-            <td>{{data.projectManagerName}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.name}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.businessOwnerName}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.projectManagerName}}</td>
           </tr>
         </tbody>
       </table>

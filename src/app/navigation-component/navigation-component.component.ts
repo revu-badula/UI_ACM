@@ -20,9 +20,9 @@ export class NavigationComponentComponent implements OnInit {
     .filter(e => e instanceof NavigationEnd)
     .forEach(e => {
         let currentURL = route.root.firstChild.snapshot.data['title'];
-        if(currentURL === 'home')
+        if(currentURL === 'graph')
         {
-          this.currentURL1=true;
+          this.currentURL1=false;
         }
     });
    }

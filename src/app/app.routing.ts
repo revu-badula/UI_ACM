@@ -194,7 +194,7 @@ const appRoutes: Routes = [
   { path: 'assessmentPolicyAdd', component: AssessmentpolicyaddComponent, canActivate: [AuthGuard] },
   { path: 'accessCntrl1/:id', component: Accesscontrol1Component, canActivate: [AuthGuard] },
   { path: 'accessUpdate1/:id', component: AssessmentpolicyupdateComponent, canActivate: [AuthGuard] },
-  { path: 'graph', component: GraphComponent, canActivate: [AuthGuard] },
+  { path: 'graph', component: GraphComponent, canActivate: [AuthGuard],data: { title: 'graph' } },
   { path: 'sidebar', component: NavbarComponent, canActivate: [AuthGuard] },
   { path: 'sample', component: SampleQuestionComponent, canActivate: [AuthGuard] },
   { path: 'createQuestion', component: CreateQuestionComponent, canActivate: [AuthGuard] },
