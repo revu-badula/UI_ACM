@@ -186,7 +186,9 @@
         <div class="headerOfBox">
           <h4>Description</h4>
         </div>
-        <tinymce name="description" [disabled]="showEdit" [(ngModel)]="system.description" [config]="config"></tinymce>
+        <!-- [disabled]="showEdit" -->
+        <tinymce name="description" *ngIf="showEdit" disabled=true [(ngModel)]="system.description" [config]="config"></tinymce>
+        <tinymce name="description" *ngIf="!showEdit" [(ngModel)]="system.description" [config]="config"></tinymce>
         remaining {{50000 -len}}
 
 
@@ -196,7 +198,9 @@
         <div class="headerOfBox">
           <h4>Level Of Effort</h4>
         </div>
-        <tinymce name="effort" [disabled]="showEdit" [(ngModel)]="system.costType" [config]="config1"></tinymce>
+        <!-- [disabled]="showEdit" -->
+        <tinymce name="effort" *ngIf="showEdit" disabled=true [(ngModel)]="system.costType" [config]="config1"></tinymce>
+        <tinymce name="effort" *ngIf="!showEdit"  [(ngModel)]="system.costType" [config]="config1"></tinymce>
         remaining {{50000 -len1}}
 
 

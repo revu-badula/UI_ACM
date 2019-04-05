@@ -76,7 +76,15 @@ table-fixed thead {
 .table-bordered td, .table-bordered th {
   border: 1px solid #000 !important;
 }
-
+.modal-title {
+  margin-bottom: 0;
+  line-height: 0.3 !important;
+}
+.modal-header {
+  background-color: black;
+  color: #ffffff;
+  height: 5vh !important;
+}
 
 .form-options{
   float: left;

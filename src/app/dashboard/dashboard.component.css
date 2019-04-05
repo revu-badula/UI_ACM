@@ -104,6 +104,15 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, .1);
 }
 
+.modal-header {
+    background-color: black;
+    height: 6vh;
+}
+.modal-title {
+    margin-bottom: 0;
+    line-height: 0.5;
+}
+
 #form2 {
     border-radius: 10px;
     margin: 0% 4% 0% 4%;

@@ -128,6 +128,7 @@ export const APP_CONFIG = {
   overridePolicyFamily: apiBaseUrl + 'overridePolicyFamily',
   upComingAudits: apiBaseUrl + 'upComingAudits',
   getServers: apiBaseUrl + 'getServers',
+  getLocalityGraphDetails: apiBaseUrl + 'getLocalityGraphDetails',
 
 }
 

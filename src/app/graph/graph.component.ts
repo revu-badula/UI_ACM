@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
 import { Router } from '@angular/router';
 import { UtilService } from '../util.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-graph',
@@ -507,7 +508,8 @@ export class GraphComponent implements OnInit {
   };
 
   public pieChartLabels7: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData7: number[] = [3, 5];
+  public pieChartData7: number[]=[];
+  // = [3, 5];
   public pieChartOptions7 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -541,6 +543,7 @@ export class GraphComponent implements OnInit {
           let meta = chartInstance.controller.getDatasetMeta(i);
           meta.data.forEach((bar: any, index: any) => {
             let data = dataset.data[index];
+            if(data > 0 ){
             var w_offset = ctx.measureText(data).width / 2;
             var h_offset = textSize / 4;
             //var startAngle = dataset.data[i].startAngle;
@@ -554,6 +557,7 @@ export class GraphComponent implements OnInit {
             var posX = (radius / 2) * Math.cos(middleAngle) + midX;
             var posY = (radius / 2) * Math.sin(middleAngle) + midY;
             ctx.fillText(data, posX + w_offset, posY + h_offset);
+            }
           });
         });
       }
@@ -583,7 +587,7 @@ export class GraphComponent implements OnInit {
       xAxes: [
 
         {
-          id: 'Systems Legal',
+          id: 'Recertification Status',
           scaleLabel: {
             display: true,
             labelString: 'Recertification Status',
@@ -2429,6 +2433,7 @@ export class GraphComponent implements OnInit {
   public showDev: boolean;
   public showBar: boolean;
   public showSystem: boolean;
+  public showRecert:boolean;
   constructor(private httpClient: HttpClient, private router: Router, private utilService: UtilService) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -2606,12 +2611,22 @@ export class GraphComponent implements OnInit {
     this.pieChartData5 = [];
     this.loading = true;
     let url = APP_CONFIG.getAllTotals;
-    this.httpClient.get(url)
-      .subscribe((data: any) => {
+    let url1 = APP_CONFIG.getLocalityGraphDetails;
+    let d = new Date();
+    let year=d.getFullYear();
+    Observable.forkJoin(
+    this.httpClient.get(url),
+    this.httpClient.get(url1+"?"+"yearNumber="+year)
+    ).subscribe((data: any) => {
         this.loading = false;
-        this.pieChartData5.push(data[4], data[5]);
-        this.pieChartData4.push(data[8], data[9], data[10]);
-        this.pieChartData6.push(data[6], data[7]);
+        let dat = data[0];
+        this.pieChartData5.push(dat[4], dat[5]);
+        this.pieChartData4.push(dat[8], dat[9], dat[10]);
+        this.pieChartData6.push(dat[6], dat[7]);
+        let reData=data[1].recertificationCountDTO.pastDateCount;
+        let reDataF=data[1].recertificationCountDTO.futureDateCount;
+        this.pieChartData7.push(reData,reDataF);
+
         // let data1 = [
         //   {
         //     "signedLocalities": 3
@@ -2637,6 +2652,7 @@ export class GraphComponent implements OnInit {
         this.showLoc = true;
         this.showDev = true;
         this.showSystem = true;
+        this.showRecert=true;
       }, error => {
         this.loading = false;
         console.log(error);

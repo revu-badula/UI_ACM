@@ -1,14 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild, TemplateRef } from '@angular/core';
 import { APP_CONFIG } from '../../../app.config';
 import { ApiserviceService } from '../../../apiservice.service';
-import { System, TechnologiesDTO, ApplicationDatabaseDTO, applicationView, WorkHours, ApplicationServerDTO } from '../../../data_model_system';
+import { System, TechnologiesDTO, ApplicationDatabaseDTO, ApplicationServerDTO } from '../../../data_model_system';
 import { Cookie } from 'ng2-cookies';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DialogService } from '../../../dialog.service';
 import { ApplicationUserDTO } from '../../../data_model_legal';
-import { JSDocCommentStmt } from '@angular/compiler';
 declare let tinymce: any;
 @Component({
   selector: 'app-system-technical',
@@ -21,22 +20,15 @@ export class SystemTechnicalComponent {
   system: System;
   public applicationUserDTO: ApplicationUserDTO;
   public applicationDatabaseDTOs: ApplicationDatabaseDTO;
-  public applicationUserDTOdeveloper: ApplicationUserDTO;
+  applicationDatabase: ApplicationDatabaseDTO;
+  applicationServer: ApplicationDatabaseDTO;
+  applicationTechManager: ApplicationUserDTO;
   public title: any;
   public acronym: any;
   technologiesDTOs: TechnologiesDTO;
   public updatedBy: any;
   public sysName: any;
   public updatedTime: any;
-  public Bo: any;
-  public Do: any;
-  public Iso: any;
-  public Pm: any;
-  public So: any;
-  public Ao: any;
-  public Co: any;
-  databaseServer: any;
-  applicationUserDTOdb: ApplicationUserDTO;
   public loading: boolean = false;
   public len: any = 0;
   public len1: any = 0;
@@ -47,11 +39,21 @@ export class SystemTechnicalComponent {
   public business: any;
   public admin: any;
   public developer: any;
-  public data: any;
+  public datac: any;
   public base: any;
   app: any;
   public templist: any = [];
   public tester: any;
+  public showTableTech: boolean = false;
+  public showTableBase: boolean = false;
+  public showTableServer: boolean = false;
+  public showTableManager: boolean = false;
+  public showTableSysAdmin: boolean = false;
+  public showTableBusiness: boolean = false;
+  public showTableDBAdmin: boolean = false;
+  public showTableDeveloper: boolean = false;
+  public showTableData: boolean = false;
+  public showTableTest: boolean = false;
   applicationUserDTOsystem: ApplicationUserDTO;
   applicationUserDTObusiness: ApplicationUserDTO;
   applicationUserDTOdata: ApplicationUserDTO;
@@ -63,7 +65,7 @@ export class SystemTechnicalComponent {
   sysID: any;
   businessID: any;
   dbID: any;
-  public showEdit:boolean=true;
+  public showEdit: boolean = true;
   dataID: any;
   public programmingLanguage: any;
   public programmingLanguageList: any = [];
@@ -109,6 +111,8 @@ export class SystemTechnicalComponent {
     statusbar: false
   };
   constructor(private ref: ChangeDetectorRef, private dialog: DialogService, private httpClient: HttpClient, private _apiservice: ApiserviceService, private modalService: NgbModal) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.applicationUserDTO = new ApplicationUserDTO();
     this.applicationServerDTO = new ApplicationDatabaseDTO();
     this.technologiesDTOs = new TechnologiesDTO();
@@ -171,206 +175,409 @@ export class SystemTechnicalComponent {
   ngOnInit() {
     this.getSystem();
   }
-  refresh() {
-    this.getDevelopers();
-  }
-  selectDeveloper() {
-    for (let i = 0; i < this.developer.length; i++) {
-      if (this.developer[i].userId === this.developerID) {
-        this.applicationUserDTO = this.developer[i];
+
+  getTesters(value: any) {
+    if (value === "Choose...") {
+
+    }
+    else {
+      for (let i = 0; i < this.tester.length; i++) {
+        if (this.tester[i].userId === +value) {
+          this.applicationTechManager = new ApplicationUserDTO();
+          this.applicationTechManager.userId = this.tester[i].userId;
+          this.applicationTechManager.firstName = this.tester[i].firstName;
+          this.applicationTechManager.lastName = this.tester[i].lastName;
+          this.applicationTechManager.applicationUserId = this.tester[i].applicationUserId;
+          this.applicationTechManager.active = true;
+          this.applicationTechManager.newEntry = true;
+          if (this.system.testers != undefined && this.system.testers.length > 0) {
+            this.system.testers.push(this.applicationTechManager);
+          }
+          else {
+            this.system.testers = [];
+            this.system.testers.push(this.applicationTechManager);
+          }
+          this.tester.splice(i, 1);
+          this.showTableTest = true;
+        }
       }
+
     }
   }
-
-  selectTech() {
-    for (let i = 0; i < this.manager.length; i++) {
-      if (this.manager[i].userId === this.techID) {
-        this.applicationUserDTOdeveloper = this.manager[i];
-      }
-    }
-  }
-
-  storeLanguage() {
-    for (let i = 0; i < this.tech.length; i++) {
-      if (this.tech[i].technologyID === this.programmingLanguage) {
-        this.programmingLanguage = this.tech[i];
-      }
-    }
-  }
-
-  selectSys() {
-    for (let i = 0; i < this.system1.length; i++) {
-      if (this.system1[i] != null) {
-        if (this.system1[i].userId === this.sysID) {
-          this.applicationUserDTOsystem = this.system1[i];
+  deleteTest(value: any) {
+    for (let i = 0; i < this.system.testers.length; i++) {
+      if (this.system.testers[i].userId === value) {
+        if (this.system.testers[i].active) {
+          this.system.testers[i].active = false;
+          this.system.testers[i].newEntry = false;
+          this.tester.push(this.system.testers[i]);
+          if (this.system.testers[i].applicationUserId === 0)
+            this.system.testers.splice(i, 1);
         }
       }
     }
   }
 
-  selectBusiness() {
+  getDataCustodian(value: any) {
+    if (value === "Choose...") {
 
-    for (let i = 0; i < this.business.length; i++) {
-      if (this.business[i].userId === this.businessID) {
-        this.applicationUserDTObusiness = this.business[i];
+    }
+    else {
+      for (let i = 0; i < this.datac.length; i++) {
+        if (this.datac[i].userId === +value) {
+          this.applicationTechManager = new ApplicationUserDTO();
+          this.applicationTechManager.userId = this.datac[i].userId;
+          this.applicationTechManager.firstName = this.datac[i].firstName;
+          this.applicationTechManager.lastName = this.datac[i].lastName;
+          this.applicationTechManager.applicationUserId = this.datac[i].applicationUserId;
+          this.applicationTechManager.active = true;
+          this.applicationTechManager.newEntry = true;
+          if (this.system.appDataCustodians != undefined && this.system.appDataCustodians.length > 0) {
+            this.system.appDataCustodians.push(this.applicationTechManager);
+          }
+          else {
+            this.system.appDataCustodians = [];
+            this.system.appDataCustodians.push(this.applicationTechManager);
+          }
+          this.datac.splice(i, 1);
+          this.showTableData = true;
+        }
       }
     }
   }
 
-  selectDb() {
-    for (let i = 0; i < this.admin.length; i++) {
-      if (this.admin[i].userId === this.dbID) {
-        this.applicationUserDTOdb = this.admin[i];
+  deleteCustodian(value: any) {
+    for (let i = 0; i < this.system.appDataCustodians.length; i++) {
+      if (this.system.appDataCustodians[i].userId === value) {
+        if (this.system.appDataCustodians[i].active) {
+          this.system.appDataCustodians[i].active = false;
+          this.system.appDataCustodians[i].newEntry = false;
+          this.datac.push(this.system.appDataCustodians[i]);
+          if (this.system.appDataCustodians[i].applicationUserId === 0)
+            this.system.appDataCustodians.splice(i, 1);
+        }
       }
     }
   }
 
-  selectData() {
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.data[i].userId === this.dataID) {
-        this.applicationUserDTOdata = this.data[i];
+
+  getDevelopers(value: any) {
+    if (value === "Choose...") {
+
+    }
+    else {
+      for (let i = 0; i < this.developer.length; i++) {
+        if (this.developer[i].userId === +value) {
+          this.applicationTechManager = new ApplicationUserDTO();
+          this.applicationTechManager.userId = this.developer[i].userId;
+          this.applicationTechManager.firstName = this.developer[i].firstName;
+          this.applicationTechManager.lastName = this.developer[i].lastName;
+          this.applicationTechManager.applicationUserId = this.developer[i].applicationUserId;
+          this.applicationTechManager.active = true;
+          this.applicationTechManager.newEntry = true;
+          if (this.system.developers != undefined && this.system.developers.length > 0) {
+            this.system.developers.push(this.applicationTechManager);
+          }
+          else {
+            this.system.developers = [];
+            this.system.developers.push(this.applicationTechManager);
+          }
+          this.developer.splice(i, 1);
+          this.showTableDeveloper = true;
+        }
       }
     }
   }
-  selectTester() {
-    for (let i = 0; i < this.tester.length; i++) {
-      if (this.tester[i].userId === this.testID) {
-        this.applicationUserDTOtest = this.tester[i];
+  deleteDeveloper(value: any) {
+    for (let i = 0; i < this.system.developers.length; i++) {
+      if (this.system.developers[i].userId === value) {
+        if (this.system.developers[i].active) {
+          this.system.developers[i].active = false;
+          this.system.developers[i].newEntry = false;
+          this.developer.push(this.system.developers[i]);
+          if (this.system.developers[i].applicationUserId === 0)
+            this.system.developers.splice(i, 1);
+        }
+      }
+    }
+  }
+
+  getDbAdmin(value: any) {
+    if (value === "Choose...") {
+
+    }
+    else {
+
+      for (let i = 0; i < this.admin.length; i++) {
+        if (this.admin[i].userId === +value) {
+          this.applicationTechManager = new ApplicationUserDTO();
+          this.applicationTechManager.userId = this.admin[i].userId;
+          this.applicationTechManager.firstName = this.admin[i].firstName;
+          this.applicationTechManager.lastName = this.admin[i].lastName;
+          this.applicationTechManager.applicationUserId = this.admin[i].applicationUserId;
+          this.applicationTechManager.active = true;
+          this.applicationTechManager.newEntry = true;
+          if (this.system.appDBAdmins != undefined && this.system.appDBAdmins.length > 0) {
+            this.system.appDBAdmins.push(this.applicationTechManager);
+          }
+          else {
+            this.system.appDBAdmins = [];
+            this.system.appDBAdmins.push(this.applicationTechManager);
+          }
+          this.admin.splice(i, 1);
+          this.showTableDBAdmin = true;
+        }
+      }
+
+    }
+  }
+
+  deleteDbAdmin(value: any) {
+    for (let i = 0; i < this.system.appDBAdmins.length; i++) {
+      if (this.system.appDBAdmins[i].userId === value) {
+        if (this.system.appDBAdmins[i].active) {
+          this.system.appDBAdmins[i].active = false;
+          this.system.appDBAdmins[i].newEntry = false;
+          this.admin.push(this.system.appDBAdmins[i]);
+          if (this.system.appDBAdmins[i].applicationUserId === 0)
+            this.system.appDBAdmins.splice(i, 1);
+        }
+      }
+    }
+  }
+
+  getBusiness(value: any) {
+    if (value === "Choose...") {
+
+    }
+    else {
+
+      for (let i = 0; i < this.business.length; i++) {
+        if (this.business[i].userId === +value) {
+          this.applicationTechManager = new ApplicationUserDTO();
+          this.applicationTechManager.userId = this.business[i].userId;
+          this.applicationTechManager.firstName = this.business[i].firstName;
+          this.applicationTechManager.lastName = this.business[i].lastName;
+          this.applicationTechManager.applicationUserId = this.business[i].applicationUserId;
+          this.applicationTechManager.active = true;
+          this.applicationTechManager.newEntry = true;
+          if (this.system.appBusinessAnalysts != undefined && this.system.appBusinessAnalysts.length > 0) {
+            this.system.appBusinessAnalysts.push(this.applicationTechManager);
+          }
+          else {
+            this.system.appBusinessAnalysts = [];
+            this.system.appBusinessAnalysts.push(this.applicationTechManager);
+          }
+          this.business.splice(i, 1);
+          this.showTableBusiness = true;
+        }
+      }
+
+    }
+  }
+
+  deleteBusiness(value: any) {
+    for (let i = 0; i < this.system.appBusinessAnalysts.length; i++) {
+      if (this.system.appBusinessAnalysts[i].userId === value) {
+        if (this.system.appBusinessAnalysts[i].active) {
+          this.system.appBusinessAnalysts[i].active = false;
+          this.system.appBusinessAnalysts[i].newEntry = false;
+          this.business.push(this.system.appBusinessAnalysts[i]);
+          if (this.system.appBusinessAnalysts[i].applicationUserId === 0)
+            this.system.appBusinessAnalysts.splice(i, 1);
+        }
+      }
+    }
+  }
+
+  getSystemAdmin(value: any) {
+    if (value === "Choose...") {
+
+    }
+    else {
+      for (let i = 0; i < this.system1.length; i++) {
+        if (this.system1[i].userId === +value) {
+          this.applicationTechManager = new ApplicationUserDTO();
+          this.applicationTechManager.userId = this.system1[i].userId;
+          this.applicationTechManager.firstName = this.system1[i].firstName;
+          this.applicationTechManager.lastName = this.system1[i].lastName;
+          this.applicationTechManager.applicationUserId = this.system1[i].applicationUserId;
+          this.applicationTechManager.active = true;
+          this.applicationTechManager.newEntry = true;
+          if (this.system.appSystemAdminsters != undefined && this.system.appSystemAdminsters.length > 0) {
+            this.system.appSystemAdminsters.push(this.applicationTechManager);
+          }
+          else {
+            this.system.appSystemAdminsters = [];
+            this.system.appSystemAdminsters.push(this.applicationTechManager);
+          }
+          this.system1.splice(i, 1);
+          this.showTableSysAdmin = true;
+        }
+      }
+    }
+  }
+
+  deleteSystemAdmin(value: any) {
+    for (let i = 0; i < this.system.appSystemAdminsters.length; i++) {
+      if (this.system.appSystemAdminsters[i].userId === value) {
+        if (this.system.appSystemAdminsters[i].active) {
+          this.system.appSystemAdminsters[i].active = false;
+          this.system.appSystemAdminsters[i].newEntry = false;
+          this.system1.push(this.system.appSystemAdminsters[i]);
+          if (this.system.appSystemAdminsters[i].applicationUserId === 0)
+            this.system.appSystemAdminsters.splice(i, 1);
+        }
+      }
+    }
+  }
+
+  getTechManager(value: any) {
+    if (value === "Choose...") {
+
+    }
+    else {
+      for (let i = 0; i < this.manager.length; i++) {
+        if (this.manager[i].userId === +value) {
+          this.applicationTechManager = new ApplicationUserDTO();
+          this.applicationTechManager.userId = this.manager[i].userId;
+          this.applicationTechManager.firstName = this.manager[i].firstName;
+          this.applicationTechManager.lastName = this.manager[i].lastName;
+          this.applicationTechManager.applicationUserId = this.manager[i].applicationUserId;
+          this.applicationTechManager.active = true;
+          this.applicationTechManager.newEntry = true;
+          if (this.system.appTechnicalManagers != undefined && this.system.appTechnicalManagers.length > 0) {
+            this.system.appTechnicalManagers.push(this.applicationTechManager);
+          }
+          else {
+            this.system.appTechnicalManagers = [];
+            this.system.appTechnicalManagers.push(this.applicationTechManager);
+          }
+          this.manager.splice(i, 1);
+          this.showTableManager = true;
+        }
+      }
+    }
+  }
+
+  deleteTechManager(value: any) {
+    for (let i = 0; i < this.system.appTechnicalManagers.length; i++) {
+      if (this.system.appTechnicalManagers[i].userId === value) {
+        if (this.system.appTechnicalManagers[i].active) {
+          this.system.appTechnicalManagers[i].active = false;
+          this.system.appTechnicalManagers[i].newEntry = false;
+          this.manager.push(this.system.appTechnicalManagers[i]);
+          if (this.system.appTechnicalManagers[i].applicationUserId === 0)
+            this.system.appTechnicalManagers.splice(i, 1);
+        }
       }
     }
   }
 
   getServers(value: any) {
-    console.log(value);
-    if (value === "") {
+    if (value === "Choose...") {
 
     }
     else {
-      this.applicationServerDTO = new ApplicationDatabaseDTO();
       for (let i = 0; i < this.app.length; i++) {
         if (this.app[i].databaseId === +value) {
-          this.applicationServerDTO = this.app[i];
-          this.applicationServerDTO.newEntry = true;
+          this.applicationServer = new ApplicationDatabaseDTO();
+          this.applicationServer.databaseId = this.app[i].databaseId;
+          this.applicationServer.hostName = this.app[i].hostName;
+          this.applicationServer.active = true;
+          this.applicationServer.newEntry = true;
+          if (this.system.applicationServerDTOs != undefined && this.system.applicationServerDTOs.length > 0) {
+            this.system.applicationServerDTOs.push(this.applicationServer);
+          }
+          else {
+            this.system.applicationServerDTOs = [];
+            this.system.applicationServerDTOs.push(this.applicationServer);
+          }
+          this.app.splice(i, 1);
+          this.showTableServer = true;
         }
-      }
-      if (this.system.applicationServerDTOs != undefined && this.system.applicationServerDTOs.length > 0) {
-        this.system.applicationServerDTOs.push(this.applicationServerDTO);
-      }
-      else {
-        this.system.applicationServerDTOs = [];
-        this.system.applicationServerDTOs.push(this.applicationServerDTO);
       }
     }
   }
 
-  getDatabases() {
-    this._apiservice.getDatabases()
-      .subscribe((data: any) => {
-        this.base = data;
-
-      }, error => console.log(error));
+  deleteServer(value: any) {
+    for (let i = 0; i < this.system.applicationServerDTOs.length; i++) {
+      if (this.system.applicationServerDTOs[i].databaseId === value) {
+        if (this.system.applicationServerDTOs[i].active) {
+          this.system.applicationServerDTOs[i].active = false;
+          this.system.applicationServerDTOs[i].newEntry = false;
+          this.app.push(this.system.applicationServerDTOs[i]);
+        }
+      }
+    }
   }
-  getTechnologies() {
-    this._apiservice.getTechnologies()
-      .subscribe((data: any) => {
-        this.tech = data;
-        if (this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0) {
-          for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
-            for (let j = 0; j < this.tech.length; j++) {
-              if (this.system.technologiesDTOs[i].technologyId === this.tech[i].technologyId) {
-                this.tech.splice(i, 1);
-              }
-            }
+
+  getDatabase(value: any) {
+    if (value === "Choose...") {
+
+    }
+    else {
+      for (let i = 0; i < this.base.length; i++) {
+        if (this.base[i].databaseId === +value) {
+          this.applicationDatabase = new ApplicationDatabaseDTO();
+          this.applicationDatabase.databaseId = this.base[i].databaseId;
+          this.applicationDatabase.hostName = this.base[i].hostName;
+          this.applicationDatabase.active = true;
+          this.applicationDatabase.newEntry = true;
+          if (this.system.applicationDatabaseDTOs != undefined && this.system.applicationDatabaseDTOs.length > 0) {
+            this.system.applicationDatabaseDTOs.push(this.applicationDatabase);
           }
-          // this.tech=tech;
+          else {
+            this.system.applicationDatabaseDTOs = [];
+            this.system.applicationDatabaseDTOs.push(this.applicationDatabase);
+          }
+          this.base.splice(i, 1);
+          this.showTableBase = true;
         }
-        else {
-          this.tech = data;
+      }
+    }
+  }
+
+  deleteBase(value: any) {
+    for (let i = 0; i < this.system.applicationDatabaseDTOs.length; i++) {
+      if (this.system.applicationDatabaseDTOs[i].databaseId === value) {
+        if (this.system.applicationDatabaseDTOs[i].active) {
+          this.system.applicationDatabaseDTOs[i].active = false;
+          this.system.applicationDatabaseDTOs[i].newEntry = false;
+          this.base.push(this.system.applicationDatabaseDTOs[i]);
         }
-
-      }, error => console.log(error));
-  }
-  getTechProjectManager() {
-    this._apiservice.getTechProjectManager()
-      .subscribe((data: any) => {
-        this.manager = data;
-
-
-      }, error => console.log(error));
+      }
+    }
   }
 
 
-  getApplicationServers() {
-    this._apiservice.getApplicationServers()
-      .subscribe((data: any) => {
-        this.app = data;
-      }, error => console.log(error));
-  }
-  getSystemAdministrator() {
-    this._apiservice.getTechProjectManager()
-      .subscribe((data: any) => {
-        this.system1 = data;
-
-      }, error => console.log(error));
-  }
-  getDbAdmin() {
-    this._apiservice.getDbAdmin()
-      .subscribe((data: any) => {
-        this.admin = data;
-
-      }, error => console.log(error));
-  }
-  getTesters() {
-    this._apiservice.getTesters()
-      .subscribe((data: any) => {
-        this.tester = data;
 
 
-      }, error => console.log(error));
-  }
-  getDataCustodian() {
-    this._apiservice.getDataCustodian()
-      .subscribe((data: any) => {
-        this.data = data;
-
-
-      }, error => console.log(error));
-  }
-  getBusinessAnalyst() {
-    this._apiservice.getBusinessAnalyst()
-      .subscribe((data: any) => {
-        this.business = data;
-
-
-      }, error => console.log(error));
-  }
-
-  checkvalue(value: any) {
-
-  }
-  checkvalue1(value: any) {
-
-  }
   setTrue(value: any) {
 
-    for (let i = 0; i < this.tech.length; i++) {
+    if (value === "Choose...") {
 
-      if (this.tech[i].technologyId === +value) {
-        this.technologiesDTOs = new TechnologiesDTO();
-        this.technologiesDTOs.technologyId = this.tech[i].technologyId;
-        this.technologiesDTOs.name = this.tech[i].name;
-        this.technologiesDTOs.technologyVersion = this.tech[i].technologyVersion;
-        this.technologiesDTOs.newEntry = true;
-        this.technologiesDTOs.active = true;
-        if (this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0)
-          this.system.technologiesDTOs.push(this.technologiesDTOs);
-        else {
-          this.system.technologiesDTOs = [];
-          this.system.technologiesDTOs.push(this.technologiesDTOs);
+    }
+    else {
+      for (let i = 0; i < this.tech.length; i++) {
 
+        if (this.tech[i].technologyId === +value) {
+          this.technologiesDTOs = new TechnologiesDTO();
+          this.technologiesDTOs.technologyId = this.tech[i].technologyId;
+          this.technologiesDTOs.name = this.tech[i].name;
+          this.technologiesDTOs.technologyVersion = this.tech[i].technologyVersion;
+          this.technologiesDTOs.newEntry = true;
+          this.technologiesDTOs.active = true;
+          if (this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0)
+            this.system.technologiesDTOs.push(this.technologiesDTOs);
+          else {
+            this.system.technologiesDTOs = [];
+            this.system.technologiesDTOs.push(this.technologiesDTOs);
+
+          }
+          this.tech.splice(i, 1);
+          this.showTableTech = true;
         }
-        this.tech.splice(i, 1);
-
       }
     }
   }
@@ -382,100 +589,19 @@ export class SystemTechnicalComponent {
 
     for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
       if (this.system.technologiesDTOs[i].technologyId === +value) {
-        this.system.technologiesDTOs[i].active = false;
-        this.tech.push(this.system.technologiesDTOs[i]);
-        this.system.technologiesDTOs.splice(i, 1);
+        if (this.system.technologiesDTOs[i].active) {
+          this.system.technologiesDTOs[i].active = false;
+          this.system.technologiesDTOs[i].newEntry = false;
+          this.tech.push(this.system.technologiesDTOs[i]);
+        }
+        //this.system.technologiesDTOs.splice(i, 1);
       }
     }
   }
 
-  spliceLang(index) {
-    this.tech.splice(index, 1);
-  }
 
-
-  setT() {
-    if (this.system.technologiesDTOs != null) {
-      for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
-        this.system.technologiesDTOs[i].newEntry = true;
-      }
-    }
-  }
-  setTrue1() {
-    if (this.system.appTechnicalManagers != null) {
-      for (let i = 0; i < this.system.appTechnicalManagers.length; i++) {
-        this.system.appTechnicalManagers[i].newEntry = true;
-      }
-    }
-  }
-  setTrue2() {
-    if (this.system.appTechnicalManagers != null) {
-      for (let i = 0; i < this.system.appSystemAdminsters.length; i++) {
-        this.system.appSystemAdminsters[i].newEntry = true;
-      }
-    }
-  }
-
-  setTrue3() {
-    if (this.system.appBusinessAnalysts != null) {
-      for (let i = 0; i < this.system.appBusinessAnalysts.length; i++) {
-        this.system.appBusinessAnalysts[i].newEntry = true;
-      }
-    }
-  }
-
-  setTrue4() {
-    if (this.system.appDBAdmins != null) {
-      for (let i = 0; i < this.system.appDBAdmins.length; i++) {
-        this.system.appDBAdmins[i].newEntry = true;
-      }
-    }
-  }
-
-  setTrue5() {
-    if (this.system.developers != null) {
-      for (let i = 0; i < this.system.developers.length; i++) {
-        this.system.developers[i].newEntry = true;
-      }
-    }
-  }
-
-  setTrue6() {
-    if (this.system.appDataCustodians != null) {
-      for (let i = 0; i < this.system.appDataCustodians.length; i++) {
-        this.system.appDataCustodians[i].newEntry = true;
-      }
-    }
-
-  }
-
-  setTrue7() {
-    if (this.system.testers != null) {
-      for (let i = 0; i < this.system.testers.length; i++) {
-        this.system.testers[i].newEntry = true;
-      }
-    }
-  }
-
-  onDatabaseSelection(value: any) {
-
-    this.applicationDatabaseDTOs = new ApplicationDatabaseDTO();
-
-    for (let i = 0; i < value.length; i++) {
-      this.applicationDatabaseDTOs.databaseId = value[i].databaseId;
-      this.applicationDatabaseDTOs.hostName = value[i].hostName;
-      this.applicationDatabaseDTOs.newEntry = true;
-    }
-    if (this.system.applicationDatabaseDTOs != undefined && this.system.applicationDatabaseDTOs.length > 0) {
-      this.system.applicationDatabaseDTOs.push(this.applicationDatabaseDTOs);
-    }
-    else {
-      this.system.applicationDatabaseDTOs = [];
-      this.system.applicationDatabaseDTOs.push(this.applicationDatabaseDTOs);
-    }
-
-  }
   createSystem() {
+
     this.system.updatedBy = Cookie.get('userName');
     let url = APP_CONFIG.updateSystem;
     var formData = new FormData();
@@ -511,10 +637,103 @@ export class SystemTechnicalComponent {
         let year = d.getFullYear();
         this.updatedTime = month + "/" + day + "/" + year;
         this.system = data.applicationViewDTO;
-        this.system.technologiesDTOs = data.applicationViewDTO.technologies;
-        if (this.system.description != undefined) {
-          let des = this.system.description.replace(/<[^>]+>/gm, '');
+
+        if (data.applicationViewDTO.testers != undefined && data.applicationViewDTO.testers.length > 0) {
+          this.system.testers = data.applicationViewDTO.testers;
+          this.showTableTest = true;
+        }
+        else {
+          this.system.testers = [];
+        }
+
+
+        if (data.applicationViewDTO.appDataCustodians != undefined && data.applicationViewDTO.appDataCustodians.length > 0) {
+          this.system.appDataCustodians = data.applicationViewDTO.appDataCustodians;
+          this.showTableData = true;
+        }
+        else {
+          this.system.appDataCustodians = [];
+        }
+
+        if (data.applicationViewDTO.developers != undefined && data.applicationViewDTO.developers.length > 0) {
+          this.system.developers = data.applicationViewDTO.developers;
+          this.showTableDeveloper = true;
+        }
+        else {
+          this.system.developers = [];
+        }
+
+
+        if (data.applicationViewDTO.appDBAdmins != undefined && data.applicationViewDTO.appDBAdmins.length > 0) {
+          this.system.appDBAdmins = data.applicationViewDTO.appDBAdmins;
+          this.showTableDBAdmin = true;
+        }
+        else {
+          this.system.appDBAdmins = [];
+        }
+
+        if (data.applicationViewDTO.appBusinessAnalysts != undefined && data.applicationViewDTO.appBusinessAnalysts.length > 0) {
+          this.system.appBusinessAnalysts = data.applicationViewDTO.appBusinessAnalysts;
+          this.showTableBusiness = true;
+        }
+        else {
+          this.system.appBusinessAnalysts = [];
+        }
+
+        if (data.applicationViewDTO.appSystemAdminsters != undefined && data.applicationViewDTO.appSystemAdminsters.length > 0) {
+          this.system.appSystemAdminsters = data.applicationViewDTO.appSystemAdminsters;
+          this.showTableSysAdmin = true;
+        }
+        else {
+          this.system.appSystemAdminsters = [];
+        }
+
+        if (data.applicationViewDTO.appTechnicalManagers != undefined && data.applicationViewDTO.appTechnicalManagers.length > 0) {
+          this.system.appTechnicalManagers = data.applicationViewDTO.appTechnicalManagers;
+          this.showTableManager = true;
+        }
+        else {
+          this.system.appTechnicalManagers = [];
+        }
+
+        if (data.applicationViewDTO.applicationServerDTOs != undefined && data.applicationViewDTO.applicationServerDTOs.length > 0) {
+          this.system.applicationServerDTOs = data.applicationViewDTO.applicationServerDTOs;
+          this.showTableServer = true;
+        }
+        else {
+          this.system.applicationServerDTOs = [];
+        }
+
+        if (data.applicationViewDTO.technologies != undefined && data.applicationViewDTO.technologies.length > 0) {
+          this.system.technologiesDTOs = data.applicationViewDTO.technologies;
+          this.showTableTech = true;
+        }
+        else {
+          this.system.technologiesDTOs = [];
+        }
+
+        if (data.applicationViewDTO.applicationDatabaseDTOs != undefined && data.applicationViewDTO.applicationDatabaseDTOs.length > 0) {
+          this.system.applicationDatabaseDTOs = data.applicationViewDTO.applicationDatabaseDTOs;
+          this.showTableBase = true;
+        }
+        else {
+          this.system.applicationDatabaseDTOs = [];
+        }
+        if (this.system.physicalLocation != undefined) {
+          let des = this.system.physicalLocation.replace(/<[^>]+>/gm, '');
           this.len = des.length;
+        }
+        if (this.system.technologyStatus != undefined) {
+          let des = this.system.technologyStatus.replace(/<[^>]+>/gm, '');
+          this.len3 = des.length;
+        }
+        if (this.system.internalInterfaces != undefined) {
+          let des = this.system.internalInterfaces.replace(/<[^>]+>/gm, '');
+          this.len1 = des.length;
+        }
+        if (this.system.externalInterfaces != undefined) {
+          let des = this.system.externalInterfaces.replace(/<[^>]+>/gm, '');
+          this.len2 = des.length;
         }
       }, error => {
         this.loading = false;
@@ -524,16 +743,6 @@ export class SystemTechnicalComponent {
 
 
   getBusinessOwner() {
-    // this.getTechnologies();
-    // this.getTechProjectManager();
-    // this.getBusinessAnalyst();
-    // this.getSystemAdministrator();
-    // this.getDbAdmin();
-    // this.getDevelopers();
-    // this.getDataCustodian();
-    // this.getApplicationServers();
-    // this.getDatabases();
-    // this.getTesters();
     this.loading = true;
     let url = APP_CONFIG.getBusinessAnalyst;
     let url1 = APP_CONFIG.getDataCustodian;
@@ -558,17 +767,166 @@ export class SystemTechnicalComponent {
       this.httpClient.get(url9),
     ).subscribe((data: any) => {
       this.loading = false;
-      this.business = data[0];
-      this.data = data[1];
-      this.tester = data[2];
-      this.admin = data[3];
-      this.system1 = data[4];
-      this.manager = data[5];
-      this.developer = data[6];
-      this.app = data[7];
-      
-      this.base = data[9];
-      this.tech=[];
+      //this.business = data[0];
+      //this.datac = data[1];
+      //this.tester = data[2];
+      //this.admin = data[3];
+      //this.system1 = data[4];
+      //this.manager = data[5];
+      //this.developer = data[6];
+      //this.app = data[7];
+
+      //this.base = data[9];
+
+      this.tester= [];
+      if (this.system.testers != undefined && this.system.testers.length > 0) {
+        let tester = data[2];
+        for (let i = 0; i < this.system.testers.length; i++) {
+          for (let j = 0; j < tester.length; j++) {
+            if (this.system.testers[i].userId === tester[j].userId) {
+              tester.splice(j, 1);
+            }
+
+          }
+        }
+        this.tester = tester;
+      }
+      else {
+        this.tester = data[2];
+      }
+
+
+      this.datac = [];
+      if (this.system.appDataCustodians != undefined && this.system.appDataCustodians.length > 0) {
+        let datac = data[1];
+        for (let i = 0; i < this.system.appDataCustodians.length; i++) {
+          for (let j = 0; j < datac.length; j++) {
+            if (this.system.appDataCustodians[i].userId === datac[j].userId) {
+              datac.splice(j, 1);
+            }
+
+          }
+        }
+        this.datac = datac;
+      }
+      else {
+        this.datac = data[1];
+      }
+
+
+      this.developer = [];
+      if (this.system.developers != undefined && this.system.developers.length > 0) {
+        let developer = data[6];
+        for (let i = 0; i < this.system.developers.length; i++) {
+          for (let j = 0; j < developer.length; j++) {
+            if (this.system.developers[i].userId === developer[j].userId) {
+              developer.splice(j, 1);
+            }
+
+          }
+        }
+        this.developer = developer;
+      }
+      else {
+        this.developer = data[6];
+      }
+
+
+
+      this.admin = [];
+      if (this.system.appDBAdmins != undefined && this.system.appDBAdmins.length > 0) {
+        let admin = data[3];
+        for (let i = 0; i < this.system.appDBAdmins.length; i++) {
+          for (let j = 0; j < admin.length; j++) {
+            if (this.system.appDBAdmins[i].userId === admin[j].userId) {
+              admin.splice(j, 1);
+            }
+
+          }
+        }
+        this.admin = admin;
+      }
+      else {
+        this.admin = data[3];
+      }
+
+
+      this.business = [];
+      if (this.system.appBusinessAnalysts != undefined && this.system.appBusinessAnalysts.length > 0) {
+        let business = data[0];
+        for (let i = 0; i < this.system.appBusinessAnalysts.length; i++) {
+          for (let j = 0; j < business.length; j++) {
+            if (this.system.appBusinessAnalysts[i].userId === business[j].userId) {
+              business.splice(j, 1);
+            }
+
+          }
+        }
+        this.business = business;
+      }
+      else {
+        this.business = data[0];
+      }
+
+
+      this.system1 = [];
+      if (this.system.appSystemAdminsters != undefined && this.system.appSystemAdminsters.length > 0) {
+        let system1 = data[4];
+        for (let i = 0; i < this.system.appSystemAdminsters.length; i++) {
+          for (let j = 0; j < system1.length; j++) {
+            if (this.system.appSystemAdminsters[i].userId === system1[j].userId) {
+              system1.splice(j, 1);
+            }
+
+          }
+        }
+        this.system1 = system1;
+      }
+      else {
+        this.system1 = data[4];
+      }
+
+
+
+      this.manager = [];
+      if (this.system.appTechnicalManagers != undefined && this.system.appTechnicalManagers.length > 0) {
+        let manager = data[5];
+        for (let i = 0; i < this.system.appTechnicalManagers.length; i++) {
+          for (let j = 0; j < manager.length; j++) {
+            if (this.system.appTechnicalManagers[i].userId === manager[j].userId) {
+              manager.splice(j, 1);
+            }
+
+          }
+        }
+        this.manager = manager;
+      }
+      else {
+        this.manager = data[5];
+      }
+
+
+      this.app = [];
+      if (this.system.applicationServerDTOs != undefined && this.system.applicationServerDTOs.length > 0) {
+        let app = data[7];
+        for (let i = 0; i < this.system.applicationServerDTOs.length; i++) {
+          for (let j = 0; j < app.length; j++) {
+            if (this.system.applicationServerDTOs[i].databaseId === app[j].databaseId) {
+              app.splice(j, 1);
+            }
+
+          }
+        }
+        this.app = app;
+      }
+      else {
+        this.app = data[7];
+      }
+
+
+
+
+      this.tech = [];
       if (this.system.technologiesDTOs != undefined && this.system.technologiesDTOs.length > 0) {
         let tech = data[8];
         for (let i = 0; i < this.system.technologiesDTOs.length; i++) {
@@ -576,13 +934,30 @@ export class SystemTechnicalComponent {
             if (this.system.technologiesDTOs[i].technologyId === tech[j].technologyId) {
               tech.splice(j, 1);
             }
-           
+
           }
         }
-        this.tech=tech;
+        this.tech = tech;
       }
       else {
         this.tech = data[8];
+      }
+
+      this.base = [];
+      if (this.system.applicationDatabaseDTOs != undefined && this.system.applicationDatabaseDTOs.length > 0) {
+        let base = data[9];
+        for (let i = 0; i < this.system.applicationDatabaseDTOs.length; i++) {
+          for (let j = 0; j < base.length; j++) {
+            if (this.system.applicationDatabaseDTOs[i].databaseId === base[j].databaseId) {
+              base.splice(j, 1);
+            }
+
+          }
+        }
+        this.base = base;
+      }
+      else {
+        this.base = data[9];
       }
     }, error => {
       this.loading = false;
@@ -591,12 +966,7 @@ export class SystemTechnicalComponent {
   }
 
 
-  getDevelopers() {
-    this._apiservice.getDevelopers()
-      .subscribe((data: any) => {
-        this.developer = data;
-      }, error => console.log(error));
-  }
+
   getData(editor: any) {
     this.len = 0;
     if (tinymce.activeEditor.getContent({ format: 'text' }).length > 50000) {
@@ -618,10 +988,9 @@ export class SystemTechnicalComponent {
   };
 
 
-  editClick()
-{
-  this.showEdit=false;
-}
+  editClick() {
+    this.showEdit = false;
+  }
   getData3(editor: any) {
     this.len3 = 0;
     if (tinymce.activeEditor.getContent({ format: 'text' }).length > 50000) {
@@ -688,32 +1057,32 @@ export class SystemTechnicalComponent {
       keyboard: false
     };
     this.applicationUserDTO = new ApplicationUserDTO();
-    if (value === 'appTechnicalManagers9') {
-      this.title = "Create Technical Managers";
+    if (value === 'appTechnicalManagers') {
+      this.title = "Create Technical Manager";
       this.applicationUserDTO.role = "TECHPROJECT MANAGER";
     }
     else if (value === 'dbAdministrator') {
-      this.title = "Create dbAdministrator Manager";
+      this.title = "Create DBAdministrator Manager";
       this.applicationUserDTO.role = "DB ADMINISTRATOR";
     }
     else if (value === 'developer') {
-      this.title = "Create developer";
+      this.title = "Create Developer";
       this.applicationUserDTO.role = "DEVELOPER";
     }
     else if (value === 'tester') {
-      this.title = "Create Information Security officer";
+      this.title = "Create Tester";
       this.applicationUserDTO.role = "TESTER";
     }
     else if (value === 'systemadmin') {
-      this.title = "Create system administrator";
+      this.title = "Create System Administrator";
       this.applicationUserDTO.role = "SYSTEM ADMINISTRATOR";
     }
     else if (value === 'businessanalyst') {
-      this.title = "Create business analyst";
+      this.title = "Create Business Analyst";
       this.applicationUserDTO.role = "BUSINESS ANALYST";
     }
     else if (value === 'datacustodian') {
-      this.title = "Create data custodian";
+      this.title = "Create Data Custodian";
       this.applicationUserDTO.role = "DATA CUSTODIAN";
     }
     this.applicationUserDTO.active = true;

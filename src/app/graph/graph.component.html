@@ -62,7 +62,7 @@
               </div>
               <br>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" *ngIf="showRecert">
                   <div style="display: block; width: 70vh; height: 30vh;background-color: #fff;margin-left: 0vw;">
                     <canvas baseChart [data]="pieChartData7" [labels]="pieChartLabels7" [chartType]="pieChartType"
                       (chartClick)="chartClicked7($event)" [options]="pieChartOptions7"

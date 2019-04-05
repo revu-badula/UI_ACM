@@ -63,7 +63,7 @@
     <div class="disclaimer"><span style="float:left">Please use this screen to add system
         information.</span>&nbsp;&nbsp;&nbsp;
       <span style="float:right">
-        <font color=red>*</font> marked fields are mandatory
+        <span class="asterisk">*</span> marked fields are mandatory
       </span> </div>
 
     <fieldset [disabled]="showEdit">
@@ -87,8 +87,8 @@
             <input type="text" class="form-control" id="lastName" value="{{sysName}}" readonly>
           </div>
 
-    
-      </div>
+
+        </div>
         <div class="form-row">
 
           <div class="form-group col-md-6">
@@ -100,7 +100,7 @@
             <input type="text" class="form-control" id="updatedAt" value="{{updatedTime}}" readonly>
           </div>
         </div>
- 
+
       </div>
       <div class="infoBox">
         <div class="headerOfBox">
@@ -108,7 +108,11 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-            <tinymce name="effort" name="description" [(ngModel)]="system.technologyStatus" [config]="config3">
+            <tinymce name="effort" name="technology" *ngIf="showEdit" disabled=true
+              [(ngModel)]="system.technologyStatus" [config]="config3">
+            </tinymce>
+            <tinymce name="effort" name="technology" *ngIf="!showEdit" [(ngModel)]="system.technologyStatus"
+              [config]="config3">
             </tinymce>
             remaining {{50000 -len3}}
 
@@ -124,51 +128,50 @@
           <div class="form-group col-md-6">
             <div class="row">
               <label class="fam">Databases(s) </label><br><br>
-              <select class="formOpt" name="data2"
-              (change)="getServers($event)" >
+              <select class="formOpt" name="data2" (change)="getDatabase($event.target.value)">
                 <option class="form-control">Choose...</option>
-                <option *ngFor="let bases of base" >
-                  {{bases.hostName}}</option>
+                <option *ngFor="let data of base" value="{{data.databaseId}}">
+                  {{data.hostName}}</option>
               </select>
-              <!-- <ng-select class="formOpt" [items]="base" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-                bindLabel="hostName" placeholder="Choose..." [(ngModel)]="system.applicationDatabaseDTOs"
-                name="databaseServer" (change)="onDatabaseSelection($event)" (open)="checkvalue($event)"
-                (change)="setT()">
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  <div>{{ item.hostName }}</div>
-                </ng-template>
-              </ng-select> -->
+
+            </div>
+            <div class="row">
+              <div *ngIf="showTableBase" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.applicationDatabaseDTOs">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.hostName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteBase(temp.databaseId)"></i></td>
+                  </tr>
+
+                </table>
+              </div>
             </div>
           </div>
           <div class="form-group col-md-6">
             <div class="row">
               <label for="inputState">Server(s) </label><br><br>
-           
-              <!-- <ng-select class="formOpt" [items]="app" [multiple]="true" [closeOnSelect]="false" [searchable]="false"
-                bindLabel="applicationServer" (change)="getServers($event)" placeholder="Choose..."
-                name="applicationServer" [(ngModel)]="system.applicationServerDTOs">
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  <div>{{ item.hostName }}</div>
-                </ng-template>
-              </ng-select> -->
-              <select class="formOpt" name="server"
-              (change)="getServers($event)" >
+              <select class="formOpt" name="server" (change)="getServers($event.target.value)">
                 <option class="form-control">Choose...</option>
-                <option *ngFor="let service of app" >
-                  {{service.hostName}}</option>
+                <option *ngFor="let server of app" value="{{server.databaseId}}">
+                  {{server.hostName}}</option>
               </select>
+            </div>
+            <div class="row">
+              <div *ngIf="showTableServer" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.applicationServerDTOs">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.hostName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteServer(temp.databaseId)"></i></td>
+                  </tr>
 
-              <br>
-              <!-- <ul *ngFor="let temp0 of system.technologiesDTOs">
-
-                <li>
-                  {{temp0.hostName}} <i class="fa fa-minus-circle" aria-hidden="true"
-                  ></i>
-                </li>
-
-              </ul> -->
-          
-
+                </table>
+              </div>
             </div>
           </div>
 
@@ -178,22 +181,28 @@
           <div class="form-group col-md-6">
             <div class="row">
               <label class="fam">Programming Languages</label><br><br>
-              <select class="formOpt" name="technologys"
-                (change)="setTrue($event.target.value)">
+              <select class="formOpt" name="technologys" (change)="setTrue($event.target.value)">
                 <option class="form-control">Choose...</option>
                 <option *ngFor="let techUser1 of tech" value="{{techUser1.technologyId}}">
-                  {{techUser1.name + techUser1.technologyVersion}}</option>
+                  {{techUser1.name }} {{ techUser1.technologyVersion}}</option>
               </select>
 
-              <br>
-              <ul *ngFor="let temp of system.technologiesDTOs">
 
-                <li>
-                  {{temp.name + temp.technologyVersion}} <i class="fa fa-minus-circle" aria-hidden="true"
-                    (click)="hideMinus(temp.technologyId)"></i>
-                </li>
 
-              </ul>
+            </div>
+            <div class="row">
+              <div *ngIf="showTableTech" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                  <th style="width:100%;">Below Are Selected Users</th>
+                  <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.technologiesDTOs">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.name + temp.technologyVersion}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="hideMinus(temp.technologyId)"></i></td>
+                  </tr>
+
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -206,63 +215,58 @@
           <div class="form-group col-md-6">
             <div class="row">
               <label class="fam">Technical Manager</label><br><br>
-              <!-- <ng-select class="formOpt" [items]="manager" [multiple]="true" [closeOnSelect]="false"
-                [searchable]="false" bindLabel="firstName" placeholder="Choose..." (change)="setTrue1()"
-                [(ngModel)]="system.appTechnicalManagers" name="appTechnicalManagers">
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
-                </ng-template>
-              </ng-select> -->
-              <select class="formOpt" name="man"
-              (change)="setTrue1()" >
+
+              <select class="formOpt" name="man" (change)="getTechManager($event.target.value)">
                 <option class="form-control">Choose...</option>
-                <option *ngFor="let manage of manager" >
-                  {{manage.firstName + manage.lastName}}</option>
+                <option *ngFor="let manage of manager" value="{{manage.userId}}">
+                  {{manage.firstName}} {{ manage.lastName}}</option>
               </select>
+              <span *ngIf="!showEdit" class="col-sm-2" (click)="addUser('appTechnicalManagers')"><i
+                  class="fa fa-plus-circle" aria-hidden="true"></i></span>
+            </div>
+            <div class="row">
+              <div *ngIf="showTableManager" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.appTechnicalManagers">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.firstName}} {{ temp.lastName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteTechManager(temp.userId)"></i></td>
+                  </tr>
 
-              <br>
-              <!-- <ul *ngFor="let temp01 of system.appTechnicalManagers">
-
-                <li>
-                  {{temp01.firstName}} <i class="fa fa-minus-circle" aria-hidden="true"
-                  ></i>
-                </li>
-
-              </ul> -->
-
-              <span class="col-sm-2" (click)="addUser('appTechnicalManagers9')"><i class="fa fa-plus-circle"
-                  aria-hidden="true"></i></span>
+                </table>
+              </div>
             </div>
           </div>
           <div class="form-group col-md-6">
             <div class="row">
-              <label for="inputState">System Administrator</label><br><br>
-              <!-- <ng-select [items]="system1" class="formOpt" (change)="setTrue2()" [multiple]="true"
-                [closeOnSelect]="false" [searchable]="false" bindLabel="firstName" placeholder="Choose..."
-                [(ngModel)]="system.appSystemAdminsters" name="appSystemAdminsters">
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
-                </ng-template>
-              </ng-select> -->
-              <select class="formOpt" name="sys"
-              (change)="setTrue2()" >
+              <label class="fam">System Administrator</label><br><br>
+
+              <select class="formOpt" name="sys" (change)="getSystemAdmin($event.target.value)">
                 <option class="form-control">Choose...</option>
-                <option *ngFor="let system of system1" >
-                  {{system.firstName + system.lastName}}</option>
+                <option *ngFor="let system of system1" value="{{system.userId}}">
+                  {{system.firstName}} {{ system.lastName}}</option>
               </select>
-
-              <br>
-              <!-- <ul *ngFor="let temp02 of system.appSystemAdminsters">
-
-                <li>
-                  {{temp02.firstName}} <i class="fa fa-minus-circle" aria-hidden="true"
-                  ></i>
-                </li>
-
-              </ul> -->
-              <span class="col-sm-2" (click)="addUser('systemadmin')"><i class="fa fa-plus-circle"
+              <span *ngIf="!showEdit" class="col-sm-2" (click)="addUser('systemadmin')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>
             </div>
+            <div class="row">
+              <div *ngIf="showTableSysAdmin" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.appSystemAdminsters">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.firstName}} {{ temp.lastName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteSystemAdmin(temp.userId)"></i></td>
+                  </tr>
+
+                </table>
+              </div>
+
+            </div>
+
           </div>
         </div>
 
@@ -271,63 +275,57 @@
             <div class="row">
               <label class="fam">Business Analysis</label><br><br>
 
-              <!-- <ng-select [items]="business" class="formOpt" (change)="setTrue3()" [multiple]="true"
-                [closeOnSelect]="false" [searchable]="false" bindLabel="firstName" placeholder="Choose..."
-                [(ngModel)]="system.appBusinessAnalysts" name="appBusinessAnalysts">
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
-                </ng-template>
-              </ng-select> -->
-              <select class="formOpt" name="analysis"
-              (change)="setTrue3()" >
+
+              <select class="formOpt" name="analysis" (change)="getBusiness($event.target.value)">
                 <option class="form-control">Choose...</option>
-                <option *ngFor="let busi of system1" >
-                  {{busi.firstName + busi.lastName}}</option>
+                <option *ngFor="let busi of business" value="{{busi.userId}}">
+                  {{busi.firstName }} {{ busi.lastName}}</option>
               </select>
-
-              <br>
-              <!-- <ul *ngFor="let temp03 of system.appBusinessAnalysts">
-
-                <li>
-                  {{temp03.firstName}} <i class="fa fa-minus-circle" aria-hidden="true"
-                  ></i>
-                </li>
-
-              </ul> -->
-
-              <span class="col-sm-2" (click)="addUser('businessanalyst')"><i class="fa fa-plus-circle"
+              <span *ngIf="!showEdit" class="col-sm-2" (click)="addUser('businessanalyst')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>
+            </div>
+            <div class="row">
+
+              <div *ngIf="showTableBusiness" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.appBusinessAnalysts">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.firstName}} {{ temp.lastName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteBusiness(temp.userId)"></i></td>
+                  </tr>
+
+                </table>
+              </div>
             </div>
           </div>
           <div class="form-group col-md-6">
             <div class="row">
               <label class="fam">DB Administrator</label><br><br>
-              <!-- <ng-select [items]="business" class="formOpt" (change)="setTrue4()" [multiple]="true"
-                [closeOnSelect]="false" [searchable]="false" bindLabel="firstName" placeholder="Choose..."
-                [(ngModel)]="system.appDBAdmins" name="appDBAdmins">
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
-                </ng-template>
-              </ng-select> -->
-              <select class="formOpt" name="admins"
-              (change)="setTrue4()" >
+
+              <select class="formOpt" name="admins" (change)="getDbAdmin($event.target.value)">
                 <option class="form-control">Choose...</option>
-                <option *ngFor="let db of business" >
-                  {{db.firstName + db.lastName}}</option>
+                <option *ngFor="let db of admin" value="{{db.userId}}">
+                  {{db.firstName }} {{db.lastName}}</option>
               </select>
 
-              <br>
-              <!-- <ul *ngFor="let temp04 of system.appDBAdmins">
-
-                <li>
-                  {{temp04.firstName}} <i class="fa fa-minus-circle" aria-hidden="true"
-                  ></i>
-                </li>
-
-              </ul> -->
-
-              <span class="col-sm-2" (click)="addUser('dbAdministrator')"><i class="fa fa-plus-circle"
+              <span *ngIf="!showEdit" class="col-sm-2" (click)="addUser('dbAdministrator')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>
+            </div>
+            <div class="row">
+              <div *ngIf="showTableDBAdmin" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.appDBAdmins">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.firstName}} {{ temp.lastName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteDbAdmin(temp.userId)"></i></td>
+                  </tr>
+
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -335,92 +333,107 @@
           <div class="form-group col-md-6">
             <div class="row">
               <label class="fam">Developers</label><br><br>
-              <select class="formOpt" name="data1"
-              (change)="setTrue5($event.target.value)">
-              <option class="form-control">Choose...</option>
-              <option *ngFor="let item5 of developer" value="{{item5.userId}}">
-                {{item5.firstName + item5.lastName}}</option>
-            </select>
-              <span class="col-sm-2" (click)="addUser('developer')"><i class="fa fa-plus-circle"
+              <select class="formOpt" name="data1" (change)="getDevelopers($event.target.value)">
+                <option class="form-control">Choose...</option>
+                <option *ngFor="let item5 of developer" value="{{item5.userId}}">
+                  {{item5.firstName}} {{ item5.lastName}}</option>
+              </select>
+              <span *ngIf="!showEdit" class="col-sm-2" (click)="addUser('developer')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>
             </div>
+            <div class="row">
+              <div *ngIf="showTableDeveloper" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.developers">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.firstName}} {{ temp.lastName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteDeveloper(temp.userId)"></i></td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
           </div>
-          <ul *ngFor="let temp4 of system.developers">
 
-            <li>
-              {{temp4.firstName + temp4.lastName}} <i class="fa fa-minus-circle" aria-hidden="true"
-                (click)="hideMinus1(temp4.userId)"></i>
-            </li>
 
-          </ul>           
-          
-       
+
           <div class="form-group col-md-6">
             <div class="row">
               <label class="fam">Data Custodian</label><br><br>
-              <!-- <ng-select [items]="data" class="formOpt" [multiple]="true" (change)="setTrue6()" [closeOnSelect]="false"
-                [searchable]="false" bindLabel="firstName" placeholder="Choose..."
-                [(ngModel)]="system.appDataCustodians" name="appDataCustodians">
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  <div>{{ item.firstName + ' ' + item.lastName }}</div>
-                </ng-template>
-              </ng-select> -->
-              <select class="formOpt" name="data1"
-              (change)="setTrue6($event.target.value)">
-              <option class="form-control">Choose...</option>
-              <option *ngFor="let item2 of data" value="{{item2.userId}}">
-                {{item2.firstName + item2.lastName}}</option>
-            </select>
-              <span class="col-sm-2" (click)="addUser('datacustodian')"><i class="fa fa-plus-circle"
+
+              <select class="formOpt" name="data1" (change)="getDataCustodian($event.target.value)">
+                <option class="form-control">Choose...</option>
+                <option *ngFor="let item2 of datac" value="{{item2.userId}}">
+                  {{item2.firstName}} {{item2.lastName}}</option>
+              </select>
+              <span *ngIf="!showEdit" class="col-sm-2" (click)="addUser('datacustodian')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>
             </div>
+            <div class="row">
+              <div *ngIf="showTableData" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.appDataCustodians">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.firstName}} {{ temp.lastName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteCustodian(temp.userId)"></i></td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
           </div>
-          <!-- <ul *ngFor="let temp2 of system.appDataCustodians">
 
-            <li>
-              {{temp2.firstName + temp2.lastName}} <i class="fa fa-minus-circle" aria-hidden="true"
-                (click)="hideMinus1(temp2.userId)"></i>
-            </li>
+        </div>
 
-          </ul> -->
-      </div>
-    
         <div class="form-row">
           <div class="form-group col-md-6">
             <div class="row">
               <label class="fam">Testers </label><br><br>
-              <select class="formOpt" name="data1"
-              (change)="setTrue6($event.target.value)">
-              <option class="form-control">Choose...</option>
-              <option *ngFor="let item7 of tester" value="{{item7.userId}}">
-                {{item7.firstName + item7.lastName}}</option>
-            </select>
-             
-            </div>
-          </div>
-          <ul *ngFor="let temp06 of system.testers">
-
-            <li>
-              {{temp06.firstName + temp06.lastName}} <i class="fa fa-minus-circle" aria-hidden="true"
-             ></i>
-            </li>
-
-          </ul>
-              <span class="col-sm-2" (click)="addUser('tester')"><i class="fa fa-plus-circle"
+              <select class="formOpt" name="data1" (change)="getTesters($event.target.value)">
+                <option class="form-control">Choose...</option>
+                <option *ngFor="let item7 of tester" value="{{item7.userId}}">
+                  {{item7.firstName}} {{ item7.lastName}}</option>
+              </select>
+              <span *ngIf="!showEdit" class="col-sm-2" (click)="addUser('tester')"><i class="fa fa-plus-circle"
                   aria-hidden="true"></i></span>
             </div>
-      
+
+            <div class="row">
+              <div *ngIf="showTableTest" style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                    <th style="width:100%;">Below Are Selected Users</th>
+                    <th *ngIf="!showEdit"></th>
+                  <tr *ngFor="let temp of system.testers">
+                    <td style="width: 100%;" *ngIf="temp.active">{{temp.firstName}} {{ temp.lastName}}</td>
+                    <td *ngIf="temp.active && !showEdit"> <i class="fa fa-minus-circle" style="color: red;"
+                        aria-hidden="true" (click)="deleteTest(temp.userId)"></i></td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-     
+
+      </div>
+
 
       <div class="infoBox">
         <div class="headerOfBox">Internal Interfaces</div>
         <div class="form-row">
           <div class="form-group col-md-6">
 
-            <tinymce name="effort" name="description" [(ngModel)]="system.internalInterfaces" [config]="config1">
+            <tinymce name="effort" *ngIf="showEdit" disabled=true name="internalInterfaces"
+              [(ngModel)]="system.internalInterfaces" [config]="config1">
             </tinymce>
-            remaining {{50000 -len}}
+            <tinymce name="effort" *ngIf="!showEdit" name="internalInterfaces" [(ngModel)]="system.internalInterfaces"
+              [config]="config1">
+            </tinymce>
+            remaining {{50000 -len1}}
           </div>
 
         </div>
@@ -430,7 +443,10 @@
         <div class="form-row">
           <div class="form-group col-md-6">
 
-            <tinymce name="effort1" [(ngModel)]="system.externalInterfaces" [config]="config2"></tinymce>
+            <tinymce name="externalInterfaces" *ngIf="showEdit" disabled=true [(ngModel)]="system.externalInterfaces"
+              [config]="config2"></tinymce>
+            <tinymce name="externalInterfaces" *ngIf="!showEdit" [(ngModel)]="system.externalInterfaces"
+              [config]="config2"></tinymce>
             remaining {{50000 -len2}}
 
           </div>
@@ -441,9 +457,12 @@
         <div class="form-row">
           <div class="form-group col-md-6">
 
-            <tinymce name="description" name="Physical" [(ngModel)]="system.physicalLocation" [config]="config">
+            <tinymce name="dataCenterDetails" *ngIf="showEdit" disabled=true [(ngModel)]="system.physicalLocation"
+              [config]="config">
             </tinymce>
-            remaining {{50000 -len1}}
+            <tinymce name="dataCenterDetails" *ngIf="!showEdit" [(ngModel)]="system.physicalLocation" [config]="config">
+            </tinymce>
+            remaining {{50000 -len}}
 
           </div>
         </div>

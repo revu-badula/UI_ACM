@@ -21,15 +21,14 @@ export class System {
   technicalProjectManager: any;
   systemSensitivityName: string;
   technologiesDTOs: any;
-  // databaseDTOs:DatabaseDTO[] = []; 
-  applicationDatabaseDTOs: ApplicationDatabaseDTO[] = [];
-  developers: ApplicationUserDTO[] = [];
-  testers: ApplicationUserDTO[] = [];
-  appDBAdmins: ApplicationUserDTO[] = [];
-  appBusinessAnalysts: ApplicationUserDTO[] = [];
-  appDataCustodians: ApplicationUserDTO[] = [];
-  appSystemAdminsters: ApplicationUserDTO[] = [];
-  appTechnicalManagers: ApplicationUserDTO[] = [];
+  applicationDatabaseDTOs: any
+  developers: any;
+  testers: any;
+  appDBAdmins:any;
+  appBusinessAnalysts:any;
+  appDataCustodians:any;
+  appSystemAdminsters: any;
+  appTechnicalManagers: any;
   applicationServerDTOs: any;
   businessOwner: any;
   dataOwner: any;
@@ -39,7 +38,8 @@ export class System {
   levelOfEffort: any;
   costType: any;
   description: any;
-  estimatedCost: any
+  estimatedCost: any;
+  technologyStatus:any;
 
 
 }
@@ -120,20 +120,22 @@ export class ApplicationDatabaseDTO {
   newEntry: any;
   databaseId: number;
   hostName: string;
+  active: any;
 
 }
 
 export class ApplicationServerDTO {
-  applicationServerId:any;
-  name:any;
-  assetTag:any;
-  systemType:any;
-  equipmentType:any;
-  addressLine1:any;
-  addressLine2:any;
-  city:any;
-  zipCode:any;
-  newEntry:any;
-  active:any;
-  serverId:any;
+  applicationServerId: any;
+  name: any;
+  assetTag: any;
+  systemType: any;
+  equipmentType: any;
+  addressLine1: any;
+  addressLine2: any;
+  city: any;
+  zipCode: any;
+  newEntry: any;
+  active: any;
+  serverId: any;
+  hostName:any;
 }
