@@ -1,16 +1,49 @@
-<app-navigation-component></app-navigation-component>
+<!-- <app-navigation-component></app-navigation-component>
 <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}">
-            
-            <div class="form-options">
-                <div class="home-back">
-                	<!-- <a routerLink="/dashboard"><fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true" data-delay="0" [name]="'home'"></fa></a> -->
-                	<a href="javascript:void(0)" (click)="backClicked()">
-                            <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
-                                data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
-                        </a>
-                </div>
-                
-            </div>
-        </div>
-<app-policy-view-forms-component></app-policy-view-forms-component>
 
+    <div class="form-options">
+        <div class="home-back">
+            <a href="javascript:void(0)" (click)="backClicked()">
+                <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+                    data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+            </a>
+        </div>
+
+    </div>
+</div> -->
+<!-- <app-policy-view-forms-component></app-policy-view-forms-component> -->
+<div class="my-container">
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div class="form1" style="margin: -90vh 5% 0% 0%;">
+
+    <div class="infoBox">
+        <div class="headerOfBox">
+            <h4>Overview</h4>
+        </div>
+        <form class="forms">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
+                    <select class="form-control" style="width:50%;" name="definiteSource" [(ngModel)]="auditTypeId"
+                        required (change)="selectDefinitive($event.target.value)">
+                        <option value="">Choose...</option>
+                        <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">
+                            {{ auditType.auditTypeName }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
+                    <select class="form-control" style="width:50%;" name="type" required [(ngModel)]="policyGrpId"
+                        (change)="selectType($event.target.value)">
+                        <option value="">Choose...</option>
+                        <option *ngFor="let policyType of  policyTypes" value="{{ policyType.policyGrpId }}">{{ policyType.policyGrpName
+                        }}</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

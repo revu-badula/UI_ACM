@@ -106,6 +106,9 @@ import { OnlyNumber1 } from './onlyNumber1';
 import { ReportspageComponent } from './reportspage/reportspage.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UpcomingAuditComponent } from './upcoming-audit/upcoming-audit.component';
+import { NewpolicyComponent } from './newpolicy/newpolicy.component';
+import { PolicysidebarComponent } from './policysidebar/policysidebar.component';
+import { ScontrolComponent } from './scontrol/scontrol.component';
 
 
 @NgModule({
@@ -179,7 +182,10 @@ import { UpcomingAuditComponent } from './upcoming-audit/upcoming-audit.componen
     OnlyNumber,
     OnlyNumber1,
     ReportspageComponent,
-    UpcomingAuditComponent
+    UpcomingAuditComponent,
+    NewpolicyComponent,
+    PolicysidebarComponent,
+    ScontrolComponent
 
   ],
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, TemplateRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild,ChangeDetectorRef, ElementRef, TemplateRef, AfterViewInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { PolicyGrp, Policy, PolicyDocumentsDTO, PolicyReviewTerm } from '../../../data_modelPolicy';
 import { familyPOlicyDTO } from '../../../data.model.auditDTO';
@@ -11,7 +11,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Cookie } from 'ng2-cookies';
 import { DialogService } from '../../../dialog.service';
-
+declare let tinymce: any;
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { Observable, Subject } from 'rxjs';
@@ -37,8 +37,8 @@ export class PolicyDetailsComponent implements OnInit {
   public users: any;
   plus = true;
   public families: any;
-  public showN:boolean = false;
-  public buttonName:any = 'Show';
+  public showN: boolean = false;
+  public buttonName: any = 'Show';
 
 
   public assignTo: any;
@@ -55,21 +55,21 @@ export class PolicyDetailsComponent implements OnInit {
   public changeOverallStatus: boolean = false;
 
   p: number = 1;
-  config = {
-    placeholder: '',
-    tabsize: 2,
-    height: 200,
-    width: "100%",
-    toolbar: [
-      // [groupName, [list of button]]
-      ['misc', ['undo', 'redo']],
-      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-      ['fontsize', ['fontname', 'fontsize', 'color']],
-      ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
-    ],
-    fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
+  // config = {
+  //   placeholder: '',
+  //   tabsize: 2,
+  //   height: 200,
+  //   width: "100%",
+  //   toolbar: [
+  //     // [groupName, [list of button]]
+  //     ['misc', ['undo', 'redo']],
+  //     ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+  //     ['fontsize', ['fontname', 'fontsize', 'color']],
+  //     ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
+  //   ],
+  //   fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
 
-  };
+  // };
   showDocument: boolean;
   showForm: boolean = true;
   public policyDropDownId: number;
@@ -87,14 +87,26 @@ export class PolicyDetailsComponent implements OnInit {
   public desc5: boolean = false;
   public loading: boolean = false;
   public showDownload: boolean = false;
+  public len: any = 0;
   public policyReviewTerm: any[] = [{ id: 1, reviewTerm: "Yearly" },
   { id: 2, reviewTerm: "Half-Yearly" },
   { id: 3, reviewTerm: "Quarterly" }];
   public policyObj: any;
   public policyReview: PolicyReviewTerm;
-
+  config: any = {
+    height: 250,
+    width: 1080,
+    theme: 'modern',
+    plugins: 'textcolor wordcount colorpicker textpattern',
+    toolbar: 'bold italic strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+    branding: false,
+    menubar: false,
+    statusbar: false
+  };
   constructor(private modalService: NgbModal, private _apiservice: ApiserviceService, private http: Http,
-    private utilservice: UtilService, private activatedRoute: ActivatedRoute, private router: Router, private dialogService: DialogService, public datepipe: DatePipe, ) {
+    private utilservice: UtilService, private activatedRoute: ActivatedRoute,
+     private router: Router, private dialogService: DialogService,
+      public datepipe: DatePipe,private ref: ChangeDetectorRef) {
     this.policyDisplay = new PolicyGrp();
     this.policies = [];
     this.policyDocumentsSubmit = new PolicyGrp();
@@ -103,13 +115,70 @@ export class PolicyDetailsComponent implements OnInit {
     this.files = [] as File[];
     this.policyReview = new PolicyReviewTerm();
     this.family = new familyPOlicyDTO();
-    if (UtilService.review) {
-      UtilService.review = false;
-      this.router.navigate(['policyView/review']);
-    }
+    // if (UtilService.review) {
+    //   UtilService.review = false;
+    //   this.router.navigate(['policyView/review']);
+    // }
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    this.config.init_instance_callback = (editor: any) => {
+      editor.on('keyup', () => {
+        this.getData(editor);
+      });
+    };
+    // let w = screen.width;
+    // if (w>=1600 && w < 1650) {
+    //   this.config.width = 1245;
+    // }
+    // else if (w > 1509 && w < 1600) {
+    //   this.config.width = 1175;
+    // }
+    // else if (w > 1475 && w <= 1509) {
+    //   this.config.width = 1150;
+    // }
+    // else if (w > 1440 && w <= 1475) {
+    //   this.config.width = 1115;
+    // }
+    // else if (w >= 1400 && w <= 1440) {
+    //   this.config.width = 1080;
+    // }
+    // else if (w >= 1380 && w < 1400) {
+    //   this.config.width = 1020;
+    // }
+
+    // else if (w > 1330 && w < 1380) {
+    //   this.config.width = 1000;
+    // }
+    // else if (w >= 1310 && w <= 1330) {
+    //   this.config.width = 980;
+    // }
+    // else if (w >= 1280 && w <= 1309) {
+    //   this.config.width = 950;
+    // }
 
 
   }
+
+
+  getData(editor: any) {
+    this.len = 0;
+    if (tinymce.activeEditor.getContent({ format: 'text' }).length > 50000) {
+      let len: any = tinymce.activeEditor.getContent({ format: 'text' }).length;
+      let re = len - 50000;
+      let data: any = tinymce.activeEditor.getContent({ format: 'text' });
+      let dat = data.substring(0, 50000);
+      tinymce.activeEditor.setContent('<div id="idTextPanel" class="jqDnR" style="margin: 0px; padding: 0px; position: relative; color: #666666; font-family: Verdana, Geneva, Helvetica, sans-serif; font-size: 11px;"><p style="margin: 0px 0px 10px; padding: 0px; line-height: normal; font-family: Verdana, Geneva, sans-serif; font-size: 10px;">' + dat + '</p></div>');
+      this.ref.detectChanges();
+    }
+    else if (tinymce.activeEditor.getContent() === "") {
+      this.len = 0;
+      this.ref.detectChanges();
+    }
+    else {
+      this.len = tinymce.activeEditor.getContent({ format: 'text' }).length;
+      this.ref.detectChanges();
+    }
+  };
 
   open(content: any) {
     this.modalService.open(content);
@@ -132,12 +201,9 @@ export class PolicyDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    //this.fetchPolicies(UtilService.policyGrpId);
+    
     this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
     this.policyDropDownId = UtilService.policyGrpId;
-    //this.getFamilies(UtilService.policyGrpId);
     this.fetchPolicyFamily(+sessionStorage.getItem("policyGrpId"));
     this.getUsers();
   }
@@ -149,6 +215,10 @@ export class PolicyDetailsComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.policyDisplay = data.policyGrpDTO;
+        if(this.policyDisplay.description != undefined){
+          let des = this.policyDisplay.description.replace(/<[^>]+>/gm, '');
+          this.len = des.length;
+        }
         this.policies = data.policyDTOs;
         if (data.policyDTOs != undefined && data.policyDTOs.length > 0) {
           this.showDownload = true;
@@ -168,13 +238,17 @@ export class PolicyDetailsComponent implements OnInit {
         if ((this.policyDisplay.lastReviewDate && this.policyDisplay.policyReviewDate) != null) {
           this.dateRetreive();
         }
-      }, error => console.log(error));
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      }
+      );
 
   }
 
-  displayReview(val) {
+  displayReview(val:any) {
 
-    this.policyDisplay.policyReviewTermId = val.target.value;
+    //this.policyDisplay.policyReviewTermId = val;
     this.policyDisplay.policyReviewTerm = val;
   }
 
@@ -183,7 +257,7 @@ export class PolicyDetailsComponent implements OnInit {
     this.showDocument = true;
   }
 
-  downloadFile(id) {
+  downloadFile(id:any) {
     window.open(APP_CONFIG.generatePolicyFile + '?' + 'policyGrpId' + '=' + id);
   }
 
@@ -465,14 +539,13 @@ export class PolicyDetailsComponent implements OnInit {
       this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
     }
     else {
-      this.family.policyFamilyID=+value;
+      this.family.policyFamilyID = +value;
       this.loading = true;
-      let name:any;
-      for(let i=0;i<this.families.length;i++)
-      {
-        if(this.families[i].policyFamilyID === +value){
-        name=this.families[i].familyName;
-        break;
+      let name: any;
+      for (let i = 0; i < this.families.length; i++) {
+        if (this.families[i].policyFamilyID === +value) {
+          name = this.families[i].familyName;
+          break;
         }
       }
       this._apiservice.getPoliciesByFam(name)
@@ -572,7 +645,7 @@ export class PolicyDetailsComponent implements OnInit {
     this.showN = !this.showN;
 
     // CHANGE THE NAME OF THE BUTTON.
-    if(this.showN)  
+    if (this.showN)
       this.buttonName = "Hide";
     else
       this.buttonName = "Show";

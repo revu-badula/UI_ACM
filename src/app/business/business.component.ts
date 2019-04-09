@@ -96,35 +96,35 @@ export class BusinessComponent implements OnInit {
         this.getData1(editor);
       });
     };
-    let w = screen.width;
-    if (w>=1600 && w < 1650) {
-      this.config.width = 1245;
-      this.config1.width = 1245;
-    }
-    else if (w > 1509 && w < 1600) {
-      this.config.width = 1210;
-      this.config1.width = 1210;
-    }
-    else if (w > 1475 && w <= 1509) {
-      this.config.width = 1180;
-      this.config1.width = 1180;
-    }
-    else if (w > 1440 && w <= 1475) {
-      this.config.width = 1125;
-      this.config1.width = 1125;
-    }
-    else if (w >= 1400 && w <= 1440) {
-      this.config.width = 1115;
-      this.config1.width = 1115;
-    }
-    else if (w >= 1310 && w <= 1330) {
-      this.config.width = 1050;
-      this.config1.width = 1050;
-    }
-    else if (w >= 1280 && w <= 1309) {
-      this.config.width = 1015;
-      this.config1.width = 1015;
-    }
+    // let w = screen.width;
+    // if (w>=1600 && w < 1650) {
+    //   this.config.width = 1245;
+    //   this.config1.width = 1245;
+    // }
+    // else if (w > 1509 && w < 1600) {
+    //   this.config.width = 1210;
+    //   this.config1.width = 1210;
+    // }
+    // else if (w > 1475 && w <= 1509) {
+    //   this.config.width = 1180;
+    //   this.config1.width = 1180;
+    // }
+    // else if (w > 1440 && w <= 1475) {
+    //   this.config.width = 1125;
+    //   this.config1.width = 1125;
+    // }
+    // else if (w >= 1400 && w <= 1440) {
+    //   this.config.width = 1115;
+    //   this.config1.width = 1115;
+    // }
+    // else if (w >= 1310 && w <= 1330) {
+    //   this.config.width = 1050;
+    //   this.config1.width = 1050;
+    // }
+    // else if (w >= 1280 && w <= 1309) {
+    //   this.config.width = 1015;
+    //   this.config1.width = 1015;
+    // }
   }
 
   ngOnInit() {

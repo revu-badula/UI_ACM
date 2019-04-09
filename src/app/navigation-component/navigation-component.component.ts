@@ -55,6 +55,8 @@ export class NavigationComponentComponent implements OnInit {
     sessionStorage.removeItem('appSolId');
     sessionStorage.removeItem('systemMouId');
     sessionStorage.removeItem('fipscode');
+    sessionStorage.removeItem('auditId');
+    sessionStorage.removeItem('policyGrpId');
     let result:any= await this.okta.isAuthenticated();
     if(result){
     this.okta.logout();

@@ -1,0 +1,80 @@
+<app-navigation-component></app-navigation-component>
+
+<div class="wrapper">
+  <div class="sidebar">
+    <!-- <app-policysidebar></app-policysidebar> -->
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <!-- <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item"> -->
+        <!-- <a class="nav-link" [routerLink]="[menuItem.path]">
+                  <i class="material-icons">{{menuItem.icon}}</i>
+                  <p>{{menuItem.title}}</p>
+              </a> -->
+        <!-- </li> -->
+        <li class="nav-item" routerLinkActive="active">
+    
+          <a class="nav-link" routerLink="policySrt">
+            <i class="material-icons">dashboard</i>
+            <p>Select Policy</p>
+          </a>
+    
+        </li>
+    
+        <li class="nav-item" routerLinkActive="active">
+          <a  routerLink="sdetails"  [ngClass]="showData ?'nav-link':'nav-link disabled'">
+            <!-- <i class="material-icons">person</i> -->
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            Details
+          </a>
+    
+        </li>
+    
+        <li class="nav-item" routerLinkActive="active">
+          <a  routerLink="sreview" [ngClass]="showData ?'nav-link':'nav-link disabled'">
+            <!-- <i class="material-icons">content_paste</i> -->
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Review Section
+          </a>
+    
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a routerLink="sdocuments" [ngClass]="showData ?'nav-link':'nav-link disabled'">
+            <!-- <i class="material-icons">content_paste</i> -->
+            <i class="fa fa-file-text" aria-hidden="true"></i>
+            Documents
+          </a>
+    
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a routerLink="sapplications" [ngClass]="showData ?'nav-link':'nav-link disabled'">
+            <!-- <i class="material-icons">content_paste</i> -->
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Application
+          </a>
+    
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a [ngClass]="showData ?'nav-link':'nav-link disabled'">
+            <!-- <i class="material-icons">person</i> -->
+            <!-- (click)="getData(data.policyFamilyID)" -->
+            <!-- routerLink="scontrol/{{data.policyFamilyID}}" -->
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            Families
+            <ul>
+              <li *ngFor="let data of families">
+                <a routerLink="dummy/{{data.policyFamilyID}}"   style="color: blue;cursor: pointer;font-size:9px;">{{data.familyName}}</a></li>
+            </ul>
+          </a>
+    
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    
+      <router-outlet (activate)="setRoutedComponent($event)"></router-outlet>
+  </div>
+
+</div>

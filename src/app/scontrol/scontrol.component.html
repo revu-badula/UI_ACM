@@ -1,0 +1,142 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+
+
+
+
+<div class="form1" style="margin: -90vh 5% 0% 0%;">
+  <div class="infoBox">
+    <div class="headerOfBox">
+      <h4>Controls</h4>
+    </div>
+    <div>
+      <!-- <div class="row">
+        <div class="col-md-12" *ngIf="showFamily">
+          <label class="fam"> Please choose a Family</label>
+          <select class="form-control" style="width:50%;" id="priority" (change)="getFamily($event.target.value)">
+
+            <option value="all" selected>All</option>
+            <option *ngFor="let fam of families" value="{{fam.policyFamilyID}}">{{fam.familyName}}</option>
+          </select>
+        </div>
+      </div> -->
+
+
+
+
+      <br>
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <label class="fam">Assigned To</label>
+            <input type="text" class="form-control" name="assignTo" [(ngModel)]="family.assignedTo">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="fam">Assigned On</label>
+            <my-date-picker class="inputState1" (dateChanged)="getDateAssign($event)" [(ngModel)]="assignOn"
+              name="assignOn"></my-date-picker>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-md-6">
+          <label class="fam">Priority</label>
+          <select class="form-control" name="priority" (change)="family.priority = $event.target.value"
+            [(ngModel)]="family.priority">
+
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+
+          <label class="fam">Weightage</label>
+          <input type="number" name="Weightage" class="form-control" (change)="getNum()" [(ngModel)]="family.weightage"
+            id="first" maxlength="1" OnlyNumber1="true"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+        </div>
+      </div>
+
+
+      <br>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label class="fam">Is evidence required?</label>
+        </div>
+        <div class="form-group col-md-4">
+          <ul class="tg-list">
+            <li class="tg-list-item" style="list-style-type: none;">
+
+              <input class="tgl tgl-flip" id="cb7" name="electronicPollbook" [(ngModel)]="family.evidenceRequired"
+                [checked]="family.evidenceRequired" type="checkbox" />
+              <label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="cb7"></label>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <div>
+        <button type="button" class="btn btn-outline-dark confbtn" style="float:left"
+          (click)="toggle()">{{buttonName}}</button>
+        <button type="button" class="btn btn-outline-dark confbtn" style="float: right"
+          (click)="overridePolicyFamily()">Submit</button>
+      </div>
+      <br>
+      <br>
+
+      <div *ngIf="showN">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th (click)="handleSort2('controlNumber')" scope="col">Control <i class="sorting fa fa-arrow-down"
+                  *ngIf="!desc2"></i>
+                <i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
+              <th (click)="handleSort2('controlNumber')" scope="col">Family <i class="sorting fa fa-arrow-down"
+                  *ngIf="!desc2"></i>
+                <i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
+              <th (click)="handleSort3('policyName')" scope="col">Policy <i class="sorting fa fa-arrow-down"
+                  *ngIf="!desc3"></i>
+                <i class="sorting fa fa-arrow-up" *ngIf="desc3"></i></th>
+              <th (click)="handleSort4('priority')" scope="col">Priority<i class="second fa fa-arrow-down"
+                  *ngIf="!desc4"></i>
+                <i class="second fa fa-arrow-up" *ngIf="desc4"></i></th>
+              <th (click)="handleSort5('priority')" scope="col">Weightage<i class="second fa fa-arrow-down"
+                  *ngIf="!desc5"></i>
+                <i class="second fa fa-arrow-up" *ngIf="desc5"></i></th>
+
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+              <td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a></td>
+              <td>{{policy.familyName}}</td>
+              <td>{{ policy.policyName }}</td>
+              <td>{{ policy.priority }}</td>
+              <td>{{policy.weightageN}}</td>
+              <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br>
+        <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

@@ -145,7 +145,7 @@ h2 {
   color: #777;
 }
 
-.tgl {
+/* .tgl {
   display: none;
 }
 .tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
@@ -237,7 +237,7 @@ h2 {
 .tgl-flip:checked + .tgl-btn:active:after {
   -webkit-transform: rotateY(20deg);
           transform: rotateY(20deg);
-}
+} */
 	
 	
   

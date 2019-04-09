@@ -161,6 +161,8 @@ import { CreateQuestionComponent } from './create-question/create-question.compo
 import { BusinessComponent } from './business/business.component';
 import { ReportspageComponent } from './reportspage/reportspage.component';
 import { UpcomingAuditComponent } from './upcoming-audit/upcoming-audit.component';
+import { NewpolicyComponent } from './newpolicy/newpolicy.component';
+import { ScontrolComponent } from './scontrol/scontrol.component';
 
 const appRoutes: Routes = [
 
@@ -194,12 +196,13 @@ const appRoutes: Routes = [
   { path: 'assessmentPolicyAdd', component: AssessmentpolicyaddComponent, canActivate: [AuthGuard] },
   { path: 'accessCntrl1/:id', component: Accesscontrol1Component, canActivate: [AuthGuard] },
   { path: 'accessUpdate1/:id', component: AssessmentpolicyupdateComponent, canActivate: [AuthGuard] },
-  { path: 'graph', component: GraphComponent, canActivate: [AuthGuard],data: { title: 'graph' } },
+  { path: 'graph', component: GraphComponent, canActivate: [AuthGuard], data: { title: 'graph' } },
   { path: 'sidebar', component: NavbarComponent, canActivate: [AuthGuard] },
   { path: 'sample', component: SampleQuestionComponent, canActivate: [AuthGuard] },
   { path: 'createQuestion', component: CreateQuestionComponent, canActivate: [AuthGuard] },
   { path: 'resImpactAnalysis', component: ReportspageComponent, canActivate: [AuthGuard] },
   { path: 'upcomingAudit', component: UpcomingAuditComponent, canActivate: [AuthGuard] },
+  { path: 'newPolicy', component: NewpolicyComponent },
 
 
   {
@@ -422,6 +425,20 @@ const appRoutes: Routes = [
       { path: 'documents', component: DocumentsComponent, canActivate: [AuthGuard] },
       { path: 'applications', component: ApplicationsComponent, canActivate: [AuthGuard] },
       { path: 'dummy', component: DummyComponent, canActivate: [AuthGuard] }]
+  },
+
+  {
+    path: 'spolicy', component: NewpolicyComponent,
+    children: [
+      { path: 'policySrt', component: PolicyViewComponentComponent, canActivate: [AuthGuard] },
+      { path: 'sdetails', component: PolicyDetailsComponent, canActivate: [AuthGuard] },
+      { path: 'sreview', component: ReviewComponent, canActivate: [AuthGuard] },
+      { path: 'sdocuments', component: DocumentsComponent, canActivate: [AuthGuard] },
+      { path: 'sapplications', component: ApplicationsComponent, canActivate: [AuthGuard] },
+      { path: 'scontrol/:id', component: ScontrolComponent, canActivate: [AuthGuard] },
+      { path: 'dummy/:id', component: DummyComponent, },
+    ]
+
   },
 
 

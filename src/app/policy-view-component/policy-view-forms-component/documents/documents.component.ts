@@ -9,6 +9,7 @@ import { ApiserviceService } from '../../../apiservice.service';
 import { Cookie } from 'ng2-cookies';
 declare var swal: any; '';
 import { DialogService } from '../../../dialog.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -28,7 +29,7 @@ export class DocumentsComponent implements OnInit {
   public loading: boolean = false;
 
   constructor(private modalService: NgbModal, private http: Http, private utilservice: UtilService, 
-    private _apiservice: ApiserviceService, private dialogService: DialogService) {
+    private _apiservice: ApiserviceService, private dialogService: DialogService,private router:Router) {
     this.policyGrpData = new PolicyGrp();
     this.files = [] as File[];
     this.policyDocumentDTO = new PolicyDocumentsDTO();

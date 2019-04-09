@@ -58,366 +58,372 @@
 		</form>
 	</div>
 </ng-template>
+<div class="form1" style="margin: -90vh 5% 0% 0%;">
+	<div *ngIf="!showDetails" class="infoBox">
+		<div class="headerOfBox">
+			<h4>Policy Reviewers</h4>
+		</div>
 
-<div *ngIf="!showDetails" class="infoBox">
-	<div class="headerOfBox">
-		<h4>Policy Reviewers</h4>
-	</div>
-
-	<div class="policy-edit" style="padding-bottom: 1%;">
-		<!-- <fa (click)="open(content)" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa> -->
-		<fa (click)="changeButton()" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip" data-placement="right"
-			title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
-		<fa (click)="showPopup(content)" *ngIf="!plus" class="plus-icon" [name]="'plus'"></fa>
-	</div>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th (click)="handleSort('policyGrpName')" scope="col">Policy Name<i class="sorting fa fa-arrow-down"
-						*ngIf="!desc"></i>
-					<i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
-				<th (click)="handleSort2('assignedTo')" scope="col">Assigned To<i class="sorting fa fa-arrow-down"
-						*ngIf="!desc2"></i>
-					<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
-				<th (click)="handleSort3('createdTs')" scope="col">Assigned On<i class="sorting fa fa-arrow-down"
-						*ngIf="!desc3"></i>
-					<i class="sorting fa fa-arrow-up" *ngIf="desc3"></i></th>
-				<th (click)="handleSort4('dueDate')" scope="col">Due Date<i class="sorting fa fa-arrow-down"
-						*ngIf="!desc4"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc4"></i></th>
-				<th (click)="handleSort5('status')" scope="col">Status<i class="sorting fa fa-arrow-down"
-						*ngIf="!desc5"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc5"></i></th>
-				<!-- <th scope="col">Notify</th> -->
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let tableData of policyData | paginate: { itemsPerPage: 10, currentPage: p }">
-				<td (click)="displayReviewDetails(tableData.policyReview)" style="cursor:pointer;color:blue;">{{
+		<div class="policy-edit" style="padding-bottom: 1%;">
+			<!-- <fa (click)="open(content)" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa> -->
+			<fa (click)="changeButton()" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip"
+				data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
+			<fa (click)="showPopup(content)" *ngIf="!plus" class="plus-icon" [name]="'plus'"></fa>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th (click)="handleSort('policyGrpName')" scope="col">Policy Name<i class="sorting fa fa-arrow-down"
+							*ngIf="!desc"></i>
+						<i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
+					<th (click)="handleSort2('assignedTo')" scope="col">Assigned To<i class="sorting fa fa-arrow-down"
+							*ngIf="!desc2"></i>
+						<i class="sorting fa fa-arrow-up" *ngIf="desc2"></i></th>
+					<th (click)="handleSort3('createdTs')" scope="col">Assigned On<i class="sorting fa fa-arrow-down"
+							*ngIf="!desc3"></i>
+						<i class="sorting fa fa-arrow-up" *ngIf="desc3"></i></th>
+					<th (click)="handleSort4('dueDate')" scope="col">Due Date<i class="sorting fa fa-arrow-down"
+							*ngIf="!desc4"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc4"></i></th>
+					<th (click)="handleSort5('status')" scope="col">Status<i class="sorting fa fa-arrow-down"
+							*ngIf="!desc5"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc5"></i></th>
+					<!-- <th scope="col">Notify</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let tableData of policyData | paginate: { itemsPerPage: 10, currentPage: p }">
+					<td (click)="displayReviewDetails(tableData.policyReview)" style="cursor:pointer;color:blue;">{{
 					tableData.policyGrpName }}</td>
-				<td>{{ tableData.assignedTo }}</td>
-				<td>{{ tableData.createdTs | filter }}</td>
-				<td>{{ tableData.dueDate | filter }}</td>
-				<td>{{ tableData.status | subControlPipe }}</td>
-				<!-- <td>{{ solution.certRenewalDueDt }}</td> -->
-			</tr>
-		</tbody>
-	</table>
-	<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
-</div>
-<div *ngIf="showDetails && !showPolicy">
-	<form class="insideForms" #myForm="ngForm">
-		<div class="infoBox">
-			<div class="headerOfBox">
+					<td>{{ tableData.assignedTo }}</td>
+					<td>{{ tableData.createdTs | filter }}</td>
+					<td>{{ tableData.dueDate | filter }}</td>
+					<td>{{ tableData.status | subControlPipe }}</td>
+					<!-- <td>{{ solution.certRenewalDueDt }}</td> -->
+				</tr>
+			</tbody>
+		</table>
+		<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+	</div>
+	<div *ngIf="showDetails && !showPolicy">
+		<form class="insideForms" #myForm="ngForm">
+			<div class="infoBox">
+				<div class="headerOfBox">
+					<h4>Policy Details</h4>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="definitiveSource">Definitive Source</label>
+						<input type="text" id="definitiveSource" class="form-control"
+							[(ngModel)]="reviewDTO.definitiveSourceName" [name]="'definitive_source'" readonly>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="typePolicy">Type/Policy</label>
+						<input type="text" id="typePolicy" class="form-control" [(ngModel)]="reviewDTO.policyGrpName"
+							[name]="'policy_grpName'" readonly>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="status">Status</label>
+						<!-- <input type="text" id="status" class="form-control" [ngModel]="reviewDTO.status" [name]="'review_status'"> -->
+						<select class="form-control" style="width:50%;" ngModel name="status"
+							[(ngModel)]="reviewDTO.status" (change)="reviewDTO.status = $event.target.value" required>
+							<option value="" selected>Choose...</option>
+							<option value="true">Open</option>
+							<option value="false">Close</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="dueDate">Due Date</label>
+						<my-date-picker name="myname" [disabled]="true" class="inputState1" [(ngModel)]="dueDate">
+						</my-date-picker>
+					</div>
+				</div>
+			</div>
+
+			<div class="infoBox" style="width:80%">
+				<div class="headerOfBox">
+					<h4>Comments</h4>
+				</div>
+				<textarea [(ngModel)]="reviewDTO.comments" ngModel [ngxSummernote]="config" cols="156" rows="7"
+					[name]="'review_comments'" maxlength="50000"> </textarea>
+
+			</div>
+
+			<div class="infoBox">
+				<div class="headerOfBox">
+					<h4>Policy Reviewers</h4>
+				</div>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th (click)="handleSort()" scope="col">Control Number<i class="sorting fa fa-arrow-down"
+									*ngIf="!desc"></i>
+								<i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
+							<th (click)="handleSort()" scope="col">Policy Name<i class="sorting fa fa-arrow-down"
+									*ngIf="!desc"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
+							<th (click)="handleSort()" scope="col">Priority<i class="second fa fa-arrow-down"
+									*ngIf="!desc"></i> <i class="second fa fa-arrow-up" *ngIf="desc"></i></th>
+							<th (click)="handleSort()" scope="col">Policy Value<i class="second fa fa-arrow-down"
+									*ngIf="!desc"></i> <i class="second fa fa-arrow-up" *ngIf="desc"></i></th>
+							<th scope="col">Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+							<!-- <td>{{ policy.controlNumber }}</td> -->
+							<td (click)="displayPolicy(policy.policyId)" style="cursor:pointer;color:blue;">
+								{{ policy.controlNumber }}</td>
+							<td>{{ policy.policyName }}</td>
+							<td>{{ policy.priority }}</td>
+							<td>{{ policy.policyVal }}</td>
+							<td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+				<button type="button" class="review-btn btn btn-primary" [disabled]="!myForm.valid"
+					(click)="updateReview()">Submit</button>
+				<button type="button" class="review-btn btn btn-primary" (click)="showDetails=false">Go to Review
+					Section</button>
+			</div>
+		</form>
+	</div>
+	<div *ngIf=showPolicy>
+		<form class="form">
+			<fieldset [disabled]='showForm'>
 				<h4>Policy Details</h4>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="definitiveSource">Definitive Source</label>
-					<input type="text" id="definitiveSource" class="form-control"
-						[(ngModel)]="reviewDTO.definitiveSourceName" [name]="'definitive_source'" readonly>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="typePolicy">Type/Policy</label>
-					<input type="text" id="typePolicy" class="form-control" [(ngModel)]="reviewDTO.policyGrpName"
-						[name]="'policy_grpName'" readonly>
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="status">Status</label>
-					<!-- <input type="text" id="status" class="form-control" [ngModel]="reviewDTO.status" [name]="'review_status'"> -->
-					<select class="form-control" style="width:50%;" ngModel name="status" [(ngModel)]="reviewDTO.status"
-						(change)="reviewDTO.status = $event.target.value" required>
-						<option value="" selected>Choose...</option>
-						<option value="true">Open</option>
-						<option value="false">Close</option>
-					</select>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="dueDate">Due Date</label>
-					<my-date-picker name="myname" [disabled]="true" class="inputState1" [(ngModel)]="dueDate">
-					</my-date-picker>
-				</div>
-			</div>
-		</div>
-
-		<div class="infoBox" style="width:80%">
-			<div class="headerOfBox">
-				<h4>Comments</h4>
-			</div>
-			<textarea [(ngModel)]="reviewDTO.comments" ngModel [ngxSummernote]="config" cols="156" rows="7"
-				[name]="'review_comments'" maxlength="50000"> </textarea>
-
-		</div>
-
-		<div class="infoBox">
-			<div class="headerOfBox">
-				<h4>Policy Reviewers</h4>
-			</div>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th (click)="handleSort()" scope="col">Control Number<i class="sorting fa fa-arrow-down"
-								*ngIf="!desc"></i>
-							<i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
-						<th (click)="handleSort()" scope="col">Policy Name<i class="sorting fa fa-arrow-down"
-								*ngIf="!desc"></i> <i class="sorting fa fa-arrow-up" *ngIf="desc"></i></th>
-						<th (click)="handleSort()" scope="col">Priority<i class="second fa fa-arrow-down"
-								*ngIf="!desc"></i> <i class="second fa fa-arrow-up" *ngIf="desc"></i></th>
-						<th (click)="handleSort()" scope="col">Policy Value<i class="second fa fa-arrow-down"
-								*ngIf="!desc"></i> <i class="second fa fa-arrow-up" *ngIf="desc"></i></th>
-						<th scope="col">Status</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-						<!-- <td>{{ policy.controlNumber }}</td> -->
-						<td (click)="displayPolicy(policy.policyId)" style="cursor:pointer;color:blue;">
-							{{ policy.controlNumber }}</td>
-						<td>{{ policy.policyName }}</td>
-						<td>{{ policy.priority }}</td>
-						<td>{{ policy.policyVal }}</td>
-						<td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i></td>
-					</tr>
-				</tbody>
-			</table>
-			<pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
-			<button type="button" class="review-btn btn btn-primary" [disabled]="!myForm.valid"
-				(click)="updateReview()">Submit</button>
-			<button type="button" class="review-btn btn btn-primary" (click)="showDetails=false">Go to Review
-				Section</button>
-		</div>
-	</form>
-</div>
-<div *ngIf=showPolicy>
-	<form class="form">
-		<fieldset [disabled]='showForm'>
-			<h4>Policy Details</h4>
-			<div class=" form-row">
-				<div class="form-group col-md-6">
-					<label for="familyName">Family Name</label>
-					<input type="text" class="form-control" id="familyName" ngModel name="familyName"
-						[(ngModel)]="policyAccess.familyName" [name]="'family_name'">
-				</div>
-			</div>
-
-			<h4>Policy Information</h4>
-			<div class=" form-row">
-				<div class="form-group col-md-6">
-					<label for="controlNumber">Control Number</label>
-					<div class="asterisk">*</div>
-					<input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
-						[(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" required>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="controlName">Control Name</label>
-					<div class="asterisk">*</div>
-					<input type="text" class="form-control" id="controlName" ngModel name="controlName"
-						[(ngModel)]="policyAccess.classType" [name]="'class_type'" required>
-				</div>
-			</div>
-			<label for="description">Description</label>
-			<p *ngIf="showForm">{{ policyAccess.description }}</p>
-			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.description"
-				[name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea>
-			<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-			<br>
-			<div *ngIf="description.errors?.maxlength" style="float:right">
-				<span style="color:tomato"> Exceeded the character limit. </span>
-			</div>
-			<div class=" form-row">
-				<div class="form-group col-md-6">
-					<label for="policyValue">Policy Value</label>
-					<div class="asterisk">*</div>
-					<input type="text" class="form-control" id="policyValue" ngModel name="policyValue"
-						[(ngModel)]="policyAccess.policyVal" [name]="'policy_val'" required>
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="procedures">Procedures</label>
-					<div class="asterisk">*</div>
-					<p *ngIf="showForm">{{ policyAccess.procedures }}</p>
-					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.procedures"
-						[name]="'policy_procedures'" maxlength="50000"> </textarea>
-					<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-					<br>
-					<div *ngIf="notes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> Exceeded the character limit. </span>
+				<div class=" form-row">
+					<div class="form-group col-md-6">
+						<label for="familyName">Family Name</label>
+						<input type="text" class="form-control" id="familyName" ngModel name="familyName"
+							[(ngModel)]="policyAccess.familyName" [name]="'family_name'">
 					</div>
 				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="guidelines">Guidelines</label>
-					<p *ngIf="showForm">{{ policyAccess.guidelines }}</p>
-					<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.guidelines"
-						[name]="'policy_guidelines'" maxlength="50000" #guidelines="ngModel"> </textarea>
-					<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-					<br>
-					<div *ngIf="guidelines.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> Exceeded the character limit. </span>
+
+				<h4>Policy Information</h4>
+				<div class=" form-row">
+					<div class="form-group col-md-6">
+						<label for="controlNumber">Control Number</label>
+						<div class="asterisk">*</div>
+						<input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
+							[(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="controlName">Control Name</label>
+						<div class="asterisk">*</div>
+						<input type="text" class="form-control" id="controlName" ngModel name="controlName"
+							[(ngModel)]="policyAccess.classType" [name]="'class_type'" required>
 					</div>
 				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="priority">Priority</label>
-					<div class="asterisk">*</div>
-					<select class="form-control" id="priority" *ngIf="showForm">
-						<option>{{ policyAccess.priority }}</option>
-					</select>
-					<select class="form-control" id="priority" (change)="policyAccess.priority = $event.target.value"
-						*ngIf="!showForm">
-						<option value="High">High</option>
-						<option value="Medium">Medium</option>
-						<option value="Low">Low</option>
-					</select>
+				<label for="description">Description</label>
+				<p *ngIf="showForm">{{ policyAccess.description }}</p>
+				<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" [(ngModel)]="policyAccess.description"
+					[name]="'policy_description'" maxlength="50000" #description="ngModel"> </textarea>
+				<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+				<br>
+				<div *ngIf="description.errors?.maxlength" style="float:right">
+					<span style="color:tomato"> Exceeded the character limit. </span>
 				</div>
-				<div class="form-group col-md-6">
-					<label for="policyAndProcedure">Control Number (Policy and Procedure)</label>
-					<input type="text" class="form-control" id="policyAndProcedure">
+				<div class=" form-row">
+					<div class="form-group col-md-6">
+						<label for="policyValue">Policy Value</label>
+						<div class="asterisk">*</div>
+						<input type="text" class="form-control" id="policyValue" ngModel name="policyValue"
+							[(ngModel)]="policyAccess.policyVal" [name]="'policy_val'" required>
+					</div>
 				</div>
-			</div>
-			<!-- <div class="form-row">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="procedures">Procedures</label>
+						<div class="asterisk">*</div>
+						<p *ngIf="showForm">{{ policyAccess.procedures }}</p>
+						<textarea *ngIf="!showForm" cols="156" rows="7" id="patches"
+							[(ngModel)]="policyAccess.procedures" [name]="'policy_procedures'"
+							maxlength="50000"> </textarea>
+						<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+						<br>
+						<div *ngIf="notes.errors?.maxlength" style="float:right">
+							<span style="color:tomato"> Exceeded the character limit. </span>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="guidelines">Guidelines</label>
+						<p *ngIf="showForm">{{ policyAccess.guidelines }}</p>
+						<textarea *ngIf="!showForm" cols="156" rows="7" id="patches"
+							[(ngModel)]="policyAccess.guidelines" [name]="'policy_guidelines'" maxlength="50000"
+							#guidelines="ngModel"> </textarea>
+						<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+						<br>
+						<div *ngIf="guidelines.errors?.maxlength" style="float:right">
+							<span style="color:tomato"> Exceeded the character limit. </span>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="priority">Priority</label>
+						<div class="asterisk">*</div>
+						<select class="form-control" id="priority" *ngIf="showForm">
+							<option>{{ policyAccess.priority }}</option>
+						</select>
+						<select class="form-control" id="priority"
+							(change)="policyAccess.priority = $event.target.value" *ngIf="!showForm">
+							<option value="High">High</option>
+							<option value="Medium">Medium</option>
+							<option value="Low">Low</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="policyAndProcedure">Control Number (Policy and Procedure)</label>
+						<input type="text" class="form-control" id="policyAndProcedure">
+					</div>
+				</div>
+				<!-- <div class="form-row">
     	<div class="form-group col-md-6">
             <label for="policyAndProcedure">Control Number (Policy and Procedure)</label>
               <input type="text" class="form-control" id="policyAndProcedure">
             	</div>
     </div> -->
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="informationSystemDesignDocument">Information System Design Document</label>
-					<input type="text" class="form-control" id="informationSystemDesignDocument">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="informationSystemDesignDocument">Information System Design Document</label>
+						<input type="text" class="form-control" id="informationSystemDesignDocument">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="securityPlan">Security Plan</label>
+						<input type="text" class="form-control" id="securityPlan">
+					</div>
 				</div>
-				<div class="form-group col-md-6">
-					<label for="securityPlan">Security Plan</label>
-					<input type="text" class="form-control" id="securityPlan">
-				</div>
-			</div>
-			<!--  <div class="form-row">
+				<!--  <div class="form-row">
     	<div class="form-group col-md-6">
             <label for="securityPlan">Security Plan</label>
               <input type="text" class="form-control" id="securityPlan">
             	</div>
     </div> -->
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="informationSystemConfigurationSettings">Information System Configuration
-						Settings</label>
-					<input type="text" class="form-control" id="informationSystemConfigurationSettings">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="informationSystemConfigurationSettings">Information System Configuration
+							Settings</label>
+						<input type="text" class="form-control" id="informationSystemConfigurationSettings">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="configurationBaseline">Configuration Baseline</label>
+						<input type="text" class="form-control" id="configurationBaseline">
+					</div>
 				</div>
-				<div class="form-group col-md-6">
-					<label for="configurationBaseline">Configuration Baseline</label>
-					<input type="text" class="form-control" id="configurationBaseline">
-				</div>
-			</div>
-			<!-- <div class="form-row">
+				<!-- <div class="form-row">
     	<div class="form-group col-md-6">
             <label for="configurationBaseline">Configuration Baseline</label>
               <input type="text" class="form-control" id="configurationBaseline">
             	</div>
     </div> -->
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="auditRecords">Audit Records</label>
-					<input type="text" class="form-control" id="auditRecords">
-				</div>
-			</div>
-			<h4>Artifacts</h4>
-			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" maxlength="50000"> </textarea>
-			<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-			<!-- <br>
-					 <div *ngIf="notes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div>  -->
-			<hr />
-			<h4>Non-COV</h4>
-			<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" maxlength="50000"> </textarea>
-			<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
-			<!-- <br>
-					 <div *ngIf="notes.errors?.maxlength" style="float:right">
-						<span style="color:tomato"> 	Exceeded the character limit. </span>
-					   </div>  -->
-			<hr />
-			<h4>Policy Links</h4>
-			<!-- <a routerLink="/linkedPolicies/{{ policyAccess.policyId }}"><button class="policy-links btn btn-primary">Add Policy Links</button></a> -->
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="internalPolicyLinks">Internal Policy Links</label>
-					<div class="display-file">
-						<table>
-							<tbody>
-								<tr *ngFor="let link of links">
-
-									<td style="cursor:pointer;color:blue;">{{ link.controlNumber }}</td>
-
-								</tr>
-							</tbody>
-						</table>
-						<!--             	<ul -->
-						<!-- 								*ngFor=" let certDocDTO of solution.certDocDTOs "> -->
-						<!-- 								<li -->
-						<!-- 									*ngIf="certDocDTO.section == 'patches'"> -->
-						<!-- 									<a href="#">{{certDocDTO.fileName}}</a><fa *ngIf="!editSolution.disabled" class="download-icon icons" [name]="'trash'"></fa></li> -->
-						<!-- 							</ul> -->
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="auditRecords">Audit Records</label>
+						<input type="text" class="form-control" id="auditRecords">
 					</div>
 				</div>
-				<div class="form-group col-md-6">
-					<label for="externalPolicyLinks">External Policy Links</label>
+				<h4>Artifacts</h4>
+				<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" maxlength="50000"> </textarea>
+				<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+				<!-- <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div>  -->
+				<hr />
+				<h4>Non-COV</h4>
+				<textarea *ngIf="!showForm" cols="156" rows="7" id="patches" maxlength="50000"> </textarea>
+				<!--<div style="float:right">{{50000 - notes.value.length}} characters left </div> -->
+				<!-- <br>
+					 <div *ngIf="notes.errors?.maxlength" style="float:right">
+						<span style="color:tomato"> 	Exceeded the character limit. </span>
+					   </div>  -->
+				<hr />
+				<h4>Policy Links</h4>
+				<!-- <a routerLink="/linkedPolicies/{{ policyAccess.policyId }}"><button class="policy-links btn btn-primary">Add Policy Links</button></a> -->
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="internalPolicyLinks">Internal Policy Links</label>
+						<div class="display-file">
+							<table>
+								<tbody>
+									<tr *ngFor="let link of links">
+
+										<td style="cursor:pointer;color:blue;">{{ link.controlNumber }}</td>
+
+									</tr>
+								</tbody>
+							</table>
+							<!--             	<ul -->
+							<!-- 								*ngFor=" let certDocDTO of solution.certDocDTOs "> -->
+							<!-- 								<li -->
+							<!-- 									*ngIf="certDocDTO.section == 'patches'"> -->
+							<!-- 									<a href="#">{{certDocDTO.fileName}}</a><fa *ngIf="!editSolution.disabled" class="download-icon icons" [name]="'trash'"></fa></li> -->
+							<!-- 							</ul> -->
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="externalPolicyLinks">External Policy Links</label>
+					</div>
 				</div>
-			</div>
-			<!-- <div class="form-row">
+				<!-- <div class="form-row">
 		<div class="form-group col-md-6">
             <label for="externalPolicyLinks">External Policy Links</label>
               <input type="text" class="form-control" id="externalPolicyLinks">
             	</div>
 	</div> -->
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="assignTo">Assign To</label>
-					<input type="text" class="form-control" id="assignTo" [(ngModel)]="policyAccess.assignedTo"
-						[name]="'assi_to'">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="endDate">End Date</label>
-					<my-date-picker name="myname" [(ngModel)]="endDate" [selDate]="displayEndDate"></my-date-picker>
-				</div>
-				<div class="form-group col-md-6">
-					<label for="status">Status</label>
-					<select class="form-control" id="status" *ngIf="showForm">
-						<option>{{ policyAccess.status }}</option>
-					</select>
-					<select class="form-control" id="status" (change)="policyAccess.status = $event.target.value"
-						*ngIf="!showForm">
-						<option value="false">Open</option>
-						<option value="true">Close</option>
-					</select>
-				</div>
-			</div>
-			<hr />
-			<div class="form-row">
-				<div class="col-md-6">
-					<h4>Documents</h4>
-					<input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
-					<div class="display-file">
-						<ul *ngFor=" let policyDocument of displayPolicyDocuments">
-							<li>
-								<a href="#" style="cursor:pointer;color:blue;">{{policyDocument.documentName}}</a></li>
-						</ul>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="assignTo">Assign To</label>
+						<input type="text" class="form-control" id="assignTo" [(ngModel)]="policyAccess.assignedTo"
+							[name]="'assi_to'">
 					</div>
-					<!-- <input type = "file" #fileInput> -->
-					<!-- <button class="documents btn btn-primary">Add Documents</button> -->
+					<div class="form-group col-md-6">
+						<label for="endDate">End Date</label>
+						<my-date-picker name="myname" [(ngModel)]="endDate" [selDate]="displayEndDate"></my-date-picker>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="status">Status</label>
+						<select class="form-control" id="status" *ngIf="showForm">
+							<option>{{ policyAccess.status }}</option>
+						</select>
+						<select class="form-control" id="status" (change)="policyAccess.status = $event.target.value"
+							*ngIf="!showForm">
+							<option value="false">Open</option>
+							<option value="true">Close</option>
+						</select>
+					</div>
 				</div>
-				<div>
-					<h4>Comments</h4>
-					<p></p>
+				<hr />
+				<div class="form-row">
+					<div class="col-md-6">
+						<h4>Documents</h4>
+						<input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
+						<div class="display-file">
+							<ul *ngFor=" let policyDocument of displayPolicyDocuments">
+								<li>
+									<a href="#" style="cursor:pointer;color:blue;">{{policyDocument.documentName}}</a>
+								</li>
+							</ul>
+						</div>
+						<!-- <input type = "file" #fileInput> -->
+						<!-- <button class="documents btn btn-primary">Add Documents</button> -->
+					</div>
+					<div>
+						<h4>Comments</h4>
+						<p></p>
+					</div>
 				</div>
-			</div>
-		</fieldset>
-		<hr />
-		<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
-		<button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button>
-		<button type="cancel" class="cancel btn btn-primary" (click)="showPolicy=false">Cancel</button>
-		<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
-	</form>
+			</fieldset>
+			<hr />
+			<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
+			<button type="submit" (click)="open(content)" *ngIf="!showForm"
+				class="submit btn btn-primary">Submit</button>
+			<button type="cancel" class="cancel btn btn-primary" (click)="showPolicy=false">Cancel</button>
+			<!-- <button type="submit" (click)="open(content)" *ngIf="!showForm" class="submit btn btn-primary">Submit</button> -->
+		</form>
+	</div>
 </div>

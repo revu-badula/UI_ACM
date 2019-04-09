@@ -425,7 +425,7 @@
       <div class="infoBox">
         <div class="headerOfBox">Internal Interfaces</div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
 
             <tinymce name="effort" *ngIf="showEdit" disabled=true name="internalInterfaces"
               [(ngModel)]="system.internalInterfaces" [config]="config1">
@@ -441,7 +441,7 @@
       <div class="infoBox">
         <div class="headerOfBox">External Interfaces</div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
 
             <tinymce name="externalInterfaces" *ngIf="showEdit" disabled=true [(ngModel)]="system.externalInterfaces"
               [config]="config2"></tinymce>
@@ -455,7 +455,7 @@
       <div class="infoBox">
         <div class="headerOfBox">Data Center Details</div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
 
             <tinymce name="dataCenterDetails" *ngIf="showEdit" disabled=true [(ngModel)]="system.physicalLocation"
               [config]="config">
