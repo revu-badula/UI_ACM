@@ -109,6 +109,11 @@ import { UpcomingAuditComponent } from './upcoming-audit/upcoming-audit.componen
 import { NewpolicyComponent } from './newpolicy/newpolicy.component';
 import { PolicysidebarComponent } from './policysidebar/policysidebar.component';
 import { ScontrolComponent } from './scontrol/scontrol.component';
+import { RmsComponent } from './rms/rms.component';
+import { RmsStartComponent } from './rms-start/rms-start.component';
+import { RmsdetailsComponent } from './rmsdetails/rmsdetails.component';
+import { RmsoverviewComponent } from './rmsoverview/rmsoverview.component';
+import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
 
 
 @NgModule({
@@ -185,7 +190,12 @@ import { ScontrolComponent } from './scontrol/scontrol.component';
     UpcomingAuditComponent,
     NewpolicyComponent,
     PolicysidebarComponent,
-    ScontrolComponent
+    ScontrolComponent,
+    RmsComponent,
+    RmsStartComponent,
+    RmsdetailsComponent,
+    RmsoverviewComponent,
+    TaskdetailsComponent
 
   ],
 

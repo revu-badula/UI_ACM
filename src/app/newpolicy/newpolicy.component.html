@@ -58,12 +58,13 @@
             <!-- <i class="material-icons">person</i> -->
             <!-- (click)="getData(data.policyFamilyID)" -->
             <!-- routerLink="scontrol/{{data.policyFamilyID}}" -->
+            <!-- routerLink="dummy/{{data.policyFamilyID}}" -->
             <i class="fa fa-map-marker" aria-hidden="true"></i>
             Families
-            <ul>
+            <ol>
               <li *ngFor="let data of families">
                 <a routerLink="dummy/{{data.policyFamilyID}}"   style="color: blue;cursor: pointer;font-size:9px;">{{data.familyName}}</a></li>
-            </ul>
+              </ol>
           </a>
     
         </li>

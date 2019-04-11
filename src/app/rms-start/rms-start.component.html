@@ -1,0 +1,35 @@
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  </div>
+  <div class="form1" style="margin: -90vh 5% 0% 0%;">
+  
+      <div class="infoBox">
+          <div class="headerOfBox">
+              <h4>Overview</h4>
+          </div>
+          <form class="forms">
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
+                      <select class="form-control" style="width:50%;" name="definiteSource" [(ngModel)]="rmfSrcId"
+                          required (change)="selectDefinitive($event.target.value)">
+                          <option value="">Choose...</option>
+                          <option *ngFor="let auditType of RMF" value="{{ auditType.rmfSrcId }}">
+                              {{ auditType.name }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
+                      <select class="form-control" style="width:50%;" name="type" required [(ngModel)]="rmfGrpId"
+                          (change)="selectType($event.target.value)">
+                          <option value="">Choose...</option>
+                          <option *ngFor="let policyType of  RMFGroup" value="{{ policyType.rmfGrpId }}">{{ policyType.name
+                          }}</option>
+                      </select>
+                  </div>
+  
+              </div>
+  
+          </form>
+      </div>
+  </div>

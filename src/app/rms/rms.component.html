@@ -1,0 +1,74 @@
+<app-navigation-component></app-navigation-component>
+
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+
+        <li class="nav-item" routerLinkActive="active">
+
+          <a class="nav-link" routerLink="rmsSrt">
+            <i class="material-icons">dashboard</i>
+            <p>Risk Management Framework</p>
+          </a>
+
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a routerLink="rmsoverview" [ngClass]="showData ?'nav-link':'nav-link disabled'">
+
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            RMF Overview
+          </a>
+
+        </li>
+
+        <!-- <li class="nav-item" routerLinkActive="active">
+          <a  routerLink="sreview" [ngClass]="showData ?'nav-link':'nav-link disabled'">
+           
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Review Section
+          </a>
+    
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a routerLink="sdocuments" [ngClass]="showData ?'nav-link':'nav-link disabled'">
+            
+            <i class="fa fa-file-text" aria-hidden="true"></i>
+            Documents
+          </a>
+    
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a routerLink="sapplications" [ngClass]="showData ?'nav-link':'nav-link disabled'">
+            
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Application
+          </a>
+    
+        </li>-->
+        <li class="nav-item" routerLinkActive="active">
+          <a [ngClass]="showData ?'nav-link':'nav-link disabled'">
+
+
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            Process
+            <ul>
+              <li *ngFor="let data of process">
+                <a routerLink="rmsdetails/{{data.rmfProcessId}}"
+                  style="color: blue;cursor: pointer;font-size:9px;">{{data.name}}</a></li>
+              
+            </ul>
+          </a>
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-panel">
+    <router-outlet (activate)="setRoutedComponent($event)"></router-outlet>
+  </div>
+
+</div>

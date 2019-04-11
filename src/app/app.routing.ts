@@ -163,6 +163,11 @@ import { ReportspageComponent } from './reportspage/reportspage.component';
 import { UpcomingAuditComponent } from './upcoming-audit/upcoming-audit.component';
 import { NewpolicyComponent } from './newpolicy/newpolicy.component';
 import { ScontrolComponent } from './scontrol/scontrol.component';
+import { RmsComponent } from './rms/rms.component';
+import { RmsStartComponent } from './rms-start/rms-start.component';
+import { RmsdetailsComponent } from './rmsdetails/rmsdetails.component';
+import { RmsoverviewComponent } from './rmsoverview/rmsoverview.component';
+import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
 
 const appRoutes: Routes = [
 
@@ -428,7 +433,7 @@ const appRoutes: Routes = [
   },
 
   {
-    path: 'spolicy', component: NewpolicyComponent,
+    path: 'spolicy', component: NewpolicyComponent, canActivate: [AuthGuard],
     children: [
       { path: 'policySrt', component: PolicyViewComponentComponent, canActivate: [AuthGuard] },
       { path: 'sdetails', component: PolicyDetailsComponent, canActivate: [AuthGuard] },
@@ -436,9 +441,18 @@ const appRoutes: Routes = [
       { path: 'sdocuments', component: DocumentsComponent, canActivate: [AuthGuard] },
       { path: 'sapplications', component: ApplicationsComponent, canActivate: [AuthGuard] },
       { path: 'scontrol/:id', component: ScontrolComponent, canActivate: [AuthGuard] },
-      { path: 'dummy/:id', component: DummyComponent, },
+      { path: 'dummy/:id', component: DummyComponent, canActivate: [AuthGuard] },
     ]
 
+  },
+  {
+    path: 'rms', component: RmsComponent,
+    children: [
+      { path: 'rmsSrt', component: RmsStartComponent },
+      { path: 'rmsdetails/:id', component: RmsdetailsComponent },
+      { path: 'rmsoverview', component: RmsoverviewComponent },
+      { path: 'taskdetails/:id', component: TaskdetailsComponent }
+    ]
   },
 
 

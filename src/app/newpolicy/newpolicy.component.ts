@@ -14,7 +14,7 @@ export class NewpolicyComponent implements OnInit {
   public showData: boolean = false;
   public families: any;
   public i: any = 0;
-  constructor(private _apiservice: ApiserviceService,private router:Router) {
+  constructor(private _apiservice: ApiserviceService, private router: Router) {
     sessionStorage.removeItem('auditId');
     sessionStorage.removeItem('policyGrpId');
   }
@@ -29,9 +29,14 @@ export class NewpolicyComponent implements OnInit {
         this.showData = false;
       }
     }
-    else {
-      this.showData = true;
-      this.getFamilies();
+    else if (value.router.url === '/spolicy/sdetails') {
+      // if (this.showData) {
+
+      // }
+      // else {
+        this.showData = true;
+        this.getFamilies();
+      //}
     }
 
   }
@@ -49,9 +54,8 @@ export class NewpolicyComponent implements OnInit {
       });
   }
 
-  getData(value:any)
-  {
-    this.router.navigate(['spolicy/dummy/'+value]);
+  getData(value: any) {
+    this.router.navigate(['spolicy/dummy/' + value]);
   }
 
 

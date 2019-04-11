@@ -1,0 +1,57 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div class="form1" style="margin: -90vh 5% 0% 0%;">
+
+
+  <div class="infoBox">
+    <div class="headerOfBox">
+      <h4>Purpose</h4>
+    </div>
+    <div class="form-row">
+      <div class="col-md-12">
+        <p>
+          <!-- The purpose of the Prepare step is to carry out essential activities at the organization, mission and business
+          process, and information system levels of the organization to help prepare the organization to manage its
+          security and privacy risks using the Risk Management Framework. -->
+          {{purpose}}
+        </p>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="infoBox">
+    <div class="headerOfBox">
+      <h4>Prepare Tasks—Organization Level</h4>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Tasks</th>
+          <th>Outcomes</th>
+          <th>Assign To</th>
+          <th>Assign On</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of outcomes">
+          <td><a (click)="goTo(data.rmfDtlId)" style="color: blue;cursor: pointer;">{{data.taskId}}</a><br>
+            {{data.shortDescription}}
+          </td>
+          <td>{{data.outcomes}}</td>
+          <td>{{data.assignedTo}}</td>
+          <td>{{data.assignedOn | date:'MM/dd/yyyy'}}</td>
+          <td><i [ngClass]=" data.status ? 'fa fa-check-circle primary' : 'fa fa-times secondary'"></i></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+
+</div>

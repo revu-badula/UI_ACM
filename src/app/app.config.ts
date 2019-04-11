@@ -129,6 +129,13 @@ export const APP_CONFIG = {
   upComingAudits: apiBaseUrl + 'upComingAudits',
   getServers: apiBaseUrl + 'getServers',
   getLocalityGraphDetails: apiBaseUrl + 'getLocalityGraphDetails',
+  getRMFSrc: apiBaseUrl + 'getRMFSrc',
+  getRMFGrps: apiBaseUrl + 'getRMFGrps',
+  getRMFProcess: apiBaseUrl + 'getRMFProcess',
+  getRMFDetails: apiBaseUrl + 'getRMFDetails',
+  getRMFDetail: apiBaseUrl + 'getRMFDetail',
+  getRMFRoles: apiBaseUrl + 'getRMFRoles',
+  saveRMFDetails: apiBaseUrl + 'saveRMFDetails',
 
 }
 

@@ -1,0 +1,230 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div class="form1" style="margin: -89vh 5% 0% 0%;">
+  <div class="policy-edit" style="margin-bottom: -2%;
+  margin-top: -1%;
+  float: right;">
+    <fa class="edit-icon icons" (click)="changeButton()" *ngIf="plus" data-toggle="tooltip" data-placement="right"
+      title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
+  </div>
+  <form (ngSubmit)="submitDetails()" #myForm="ngForm">
+    <fieldset [disabled]="showForm">
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Information</h4>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="fam">Task<span class="asterisk">*</span></label>
+            <input type="text" class="form-control" name="task" [(ngModel)]="rmfDetailDTO.taskId">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label class="fam">Short Description<span class="asterisk">*</span></label>
+            <input type="text" class="form-control" name="shortDescription" [(ngModel)]="rmfDetailDTO.shortDescription">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="fam">Assign To<span class="asterisk">*</span></label>
+            <select type="text" class="edit-disable form-control" [(ngModel)]="rmfDetailDTO.assignedTo"
+              (change)="rmfDetailDTO.assignedTo = $event.target.value" [name]="'assignTo'" required>
+              <option value="" selected>Choose...</option>
+              <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+									getUser.firstName}} {{getUser.lastName }} </option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label class="fam">Assign On<span class="asterisk">*</span></label>
+            <my-date-picker name="assignOn" class="inputState1" (dateChanged)="getAssignOn($event)"
+              [(ngModel)]="assignOn" ngModel required></my-date-picker>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <div class="row">
+              <label class="fam">Primary Responsibility<span class="asterisk">*</span></label>
+              <select class="form-control" name="rmfPrimaryResponsibility"
+                (change)="getResponsibilityRoles($event.target.value)" required>
+                <option value="" selected>Choose...
+                </option>
+                <option *ngFor="let iso of roles" value="{{iso.rmfRoleId}}">{{iso.name}}</option>
+              </select>
+            </div>
+
+            <div class="row">
+              <div style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                  <th style="width:100%;">Below Are Selected Users</th>
+                  <th></th>
+                  <tr *ngFor="let temp of rmfDetailDTO.rmfPrimaryResponsibilityDTOs">
+                    <td style="width: 100%;">{{temp.name}}</td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group col-md-6">
+            <div class="row">
+              <label class="fam">Supporting Roles<span class="asterisk">*</span></label>
+              <select class="form-control" name="rmfSupportingRoles" (change)="getSupportingRoles($event.target.value)"
+                required>
+                <option value="" selected>Choose...
+                </option>
+                <option *ngFor="let iso of rolesSupport" value="{{iso.rmfRoleId}}">{{iso.name}}</option>
+              </select>
+            </div>
+            <div class="row">
+              <div style="width:233px; height:80px; overflow:auto;margin-left: 38%;margin-top: 1%;">
+                <table style="border: none;">
+                  <th style="width:100%;">Below Are Selected Users</th>
+                  <th></th>
+                  <tr *ngFor="let temp of rmfDetailDTO.rmfSupportingRolesDTOs">
+                    <td style="width: 100%;">{{temp.name}}</td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label class="fam">Status<span class="asterisk">*</span></label>
+              <select class="form-control" style="width:50%;" name="status"
+                [(ngModel)]="rmfDetailDTO.status"
+                (change)="rmfDetailDTO.status = $event.target.value" required>
+                <option value="true">Open</option>
+                <option value="false">Close</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label class="fam">Description<span class="asterisk">*</span></label>
+                <input type="text" class="form-control" name="description" [(ngModel)]="rmfDetailDTO.description">
+              </div>
+  
+          </div>
+
+
+      </div>
+
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Outcomes</h4>
+        </div>
+        <div class="col-md-12">
+          <tinymce name="outcomes" disabled=true *ngIf="showForm" [(ngModel)]="rmfDetailDTO.outcomes" [config]="config">
+          </tinymce>
+          <tinymce name="outcomes" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.outcomes" [config]="config"></tinymce>
+          remaining {{50000 -len}}
+        </div>
+      </div>
+
+
+      <div class="infoBox">
+          <div class="headerOfBox">
+            <h4>References</h4>
+          </div>
+          <div class="col-md-12">
+            <tinymce name="references" disabled=true *ngIf="showForm" [(ngModel)]="rmfDetailDTO.references" [config]="config7">
+            </tinymce>
+            <tinymce name="references" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.references" [config]="config7"></tinymce>
+            remaining {{50000 -len7}}
+          </div>
+        </div>
+
+
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Potential Inputs</h4>
+        </div>
+        <div class="col-md-12">
+          <tinymce name="potentialInputs" disabled=true *ngIf="showForm" [(ngModel)]="rmfDetailDTO.potentialInputs"
+            [config]="config1"></tinymce>
+          <tinymce name="potentialInputs" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.potentialInputs"
+            [config]="config1"></tinymce>
+          remaining {{50000 -len1}}
+        </div>
+      </div>
+
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Discussion</h4>
+        </div>
+        <div class="col-md-12">
+          <tinymce name="discussion" disabled=true *ngIf="showForm" [(ngModel)]="rmfDetailDTO.discussion"
+            [config]="config2"></tinymce>
+          <tinymce name="discussion" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.discussion" [config]="config2">
+          </tinymce>
+          remaining {{50000 -len2}}
+        </div>
+      </div>
+
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Expected Outputs</h4>
+        </div>
+        <div class="col-md-12">
+          <tinymce name="expectedOutputs" disabled=true *ngIf="showForm" [(ngModel)]="rmfDetailDTO.expectedOutputs"
+            [config]="config3"></tinymce>
+          <tinymce name="expectedOutputs" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.expectedOutputs"
+            [config]="config3"></tinymce>
+          remaining {{50000 -len3}}
+        </div>
+      </div>
+
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Procedures</h4>
+        </div>
+        <div class="col-md-12">
+          <tinymce name="procedures" disabled=true *ngIf="showForm" [(ngModel)]="rmfDetailDTO.procedures"
+            [config]="config4"></tinymce>
+          <tinymce name="procedures" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.procedures" [config]="config4">
+          </tinymce>
+          remaining {{50000 -len4}}
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="headerOfBox">
+          <h4>Standards</h4>
+        </div>
+        <div class="col-md-12">
+          <tinymce name="standards" disabled=true *ngIf="showForm" [(ngModel)]="rmfDetailDTO.standards"
+            [config]="config5"></tinymce>
+          <tinymce name="standards" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.standards" [config]="config5"></tinymce>
+          remaining {{50000 -len5}}
+        </div>
+      </div>
+      <div class="infoBox">
+          <div class="headerOfBox">
+            <h4>Guidelines</h4>
+          </div>
+          <div class="col-md-12">
+            <tinymce name="guidelines" disabled=true *ngIf="showForm" [(ngModel)]="rmfDetailDTO.guidelines"
+              [config]="config6"></tinymce>
+            <tinymce name="guidelines" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.guidelines" [config]="config6"></tinymce>
+            remaining {{50000 -len6}}
+          </div>
+        </div>
+
+
+    </fieldset>
+    <div class="buttons">
+
+      <button type="submit" *ngIf="!showForm" class="submit btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+      <button type="button" class="cancel btn btn-primary">Cancel</button>
+    </div>
+
+  </form>
+
+</div>
