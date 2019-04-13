@@ -24,17 +24,24 @@
 
   <div class="infoBox">
     <div class="headerOfBox">
-      <h4>Prepare Tasks—Organization Level</h4>
+      <h4>{{name}}</h4>
     </div>
 
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Tasks</th>
-          <th>Outcomes</th>
-          <th>Assign To</th>
-          <th>Assign On</th>
-          <th>Status</th>
+          <th  (click)="handleSort1('taskId')">Tasks<i class="fa fa-arrow-down" *ngIf="!col1"></i>
+            <i class="fa fa-arrow-up" *ngIf="col1"></i></th>
+          <th (click)="handleSort2('outcomes')">Outcomes<i class="fa fa-arrow-down" *ngIf="!col2"></i>
+            <i class="fa fa-arrow-up" *ngIf="col2"></i></th>
+          <th (click)="handleSort3('assignedTo')">Assigned To<i class="fa fa-arrow-down" *ngIf="!col3"></i>
+            <i class="fa fa-arrow-up" *ngIf="col3"></i></th>
+          <th (click)="handleSort4('assignedOn')">Assigned On<i class="fa fa-arrow-down" *ngIf="!col4"></i>
+            <i class="fa fa-arrow-up" *ngIf="col4"></i></th>
+          <th (click)="handleSort5('closedDate')">Closed Date<i class="fa fa-arrow-down" *ngIf="!col5"></i>
+            <i class="fa fa-arrow-up" *ngIf="col5"></i></th>
+          <th (click)="handleSort6('status')">Status<i class="fa fa-arrow-down" *ngIf="!col6"></i>
+            <i class="fa fa-arrow-up" *ngIf="col6"></i></th>
         </tr>
       </thead>
       <tbody>
@@ -45,7 +52,8 @@
           <td>{{data.outcomes}}</td>
           <td>{{data.assignedTo}}</td>
           <td>{{data.assignedOn | date:'MM/dd/yyyy'}}</td>
-          <td><i [ngClass]=" data.status ? 'fa fa-check-circle primary' : 'fa fa-times secondary'"></i></td>
+          <td>{{data.closedDate | date:'MM/dd/yyyy'}}</td>
+          <td><i [ngClass]="data.status ? 'fa fa-times-circle secondary' : 'fa fa-check-circle primary'"></i></td>
         </tr>
 
       </tbody>

@@ -136,6 +136,13 @@ export const APP_CONFIG = {
   getRMFDetail: apiBaseUrl + 'getRMFDetail',
   getRMFRoles: apiBaseUrl + 'getRMFRoles',
   saveRMFDetails: apiBaseUrl + 'saveRMFDetails',
+  getAppRMFs: apiBaseUrl + 'getAppRMFs',
+  createAppRMF: apiBaseUrl + 'createAppRMF',
+  getAppRMF:apiBaseUrl + 'getAppRMF',
+  updateAppRMF:apiBaseUrl + 'updateAppRMF',
+  getAppRMFDetailsonProcess: apiBaseUrl + 'getAppRMFDetailsonProcess',
+  getAppRMFDetails: apiBaseUrl + 'getAppRMFDetails',
+  updateAppRMFDetails: apiBaseUrl + 'updateAppRMFDetails',
 
 }
 

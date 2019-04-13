@@ -168,6 +168,13 @@ import { RmsStartComponent } from './rms-start/rms-start.component';
 import { RmsdetailsComponent } from './rmsdetails/rmsdetails.component';
 import { RmsoverviewComponent } from './rmsoverview/rmsoverview.component';
 import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
+import { SystemrmfComponent } from './system-component/system-tab/systemrmf/systemrmf.component';
+import { SystemrmflandingComponent } from './system-component/system-tab/systemrmf/systemrmflanding/systemrmflanding.component';
+import { SystemrmftabComponent } from './system-component/system-tab/systemrmf/systemrmftab/systemrmftab.component';
+import { SystemrmffirstComponent } from './system-component/system-tab/systemrmf/systemrmffirst/systemrmffirst.component';
+import { SystemrmfprocessComponent } from './system-component/system-tab/systemrmf/systemrmfprocess/systemrmfprocess.component';
+import { SystemrmfprepareComponent } from './system-component/system-tab/systemrmf/systemrmfprepare/systemrmfprepare.component';
+import { SystemrmftaskComponent } from './system-component/system-tab/systemrmf/systemrmftask/systemrmftask.component';
 
 const appRoutes: Routes = [
 
@@ -446,12 +453,12 @@ const appRoutes: Routes = [
 
   },
   {
-    path: 'rms', component: RmsComponent,
+    path: 'rms', component: RmsComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'rmsSrt', component: RmsStartComponent },
-      { path: 'rmsdetails/:id', component: RmsdetailsComponent },
-      { path: 'rmsoverview', component: RmsoverviewComponent },
-      { path: 'taskdetails/:id', component: TaskdetailsComponent }
+      { path: 'rmsSrt', component: RmsStartComponent, canActivate: [AuthGuard] },
+      { path: 'rmsdetails/:id', component: RmsdetailsComponent, canActivate: [AuthGuard] },
+      { path: 'rmsoverview', component: RmsoverviewComponent, canActivate: [AuthGuard] },
+      { path: 'taskdetails/:id', component: TaskdetailsComponent, canActivate: [AuthGuard] }
     ]
   },
 
@@ -504,6 +511,31 @@ const appRoutes: Routes = [
             path: 'security',
             component: SystemSecurityComponent, canActivate: [SystemGuard]
             // canActivate: [SystemGuard]
+          },
+          {
+            path: 'rmf', component: SystemrmfComponent, canActivate: [SystemGuard],
+            children: [
+              {
+                path: '', component: SystemrmflandingComponent, canActivate: [SystemGuard]
+              },
+              {
+                path:"tabrmf", component: SystemrmftabComponent, canActivate: [SystemGuard],
+                children:[
+                  {
+                    path:'rmfStart', component: SystemrmffirstComponent, canActivate:[SystemGuard]
+                  },
+                  {
+                    path:'rmfProcess', component: SystemrmfprocessComponent, canActivate:[SystemGuard]
+                  },
+                  {
+                    path:'rmfControls/:id', component: SystemrmfprepareComponent, canActivate:[SystemGuard]
+                  },
+                  {
+                    path:'rmftask/:id', component: SystemrmftaskComponent, canActivate:[SystemGuard]
+                  }
+                ]
+              }
+            ]
           },
           {
             path: 'assessment',

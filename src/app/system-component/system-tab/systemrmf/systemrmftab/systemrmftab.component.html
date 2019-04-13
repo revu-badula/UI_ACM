@@ -1,0 +1,57 @@
+<div class="form-div">
+    <form >
+
+        <div class="form-row">
+            <div class="form-group col-md-2.5" >
+                <div class="wrapper1">
+                    <ul class="StepProgress">
+                        <li class="StepProgress-item current">
+                            <a style="color:black" routerLinkActive="active" routerLink="rmfStart"
+                                [routerLinkActiveOptions]="{exact: true}">Information</a>
+                        </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                                <a style="color:black" routerLinkActive="active" routerLink="rmfProcess"
+                                    [routerLinkActiveOptions]="{exact: true}">Processes</a>
+                            </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/find2">Findings</a>
+                        </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a  style="color:black" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/recomendation2">Recommendations</a>
+                        </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black"  routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/management2">Management
+                                Response</a>
+                        </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/action2">Action
+                                Plan</a>
+                        </li>
+
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/brisk2">Business
+                                Risk</a>
+                        </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/srisk2">Security
+                                Risk</a>
+                        </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black"    routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/budget2">Budget</a>
+                        </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/attachment2">Attachments</a>
+                        </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/lessons2">Lessons
+                                Learned</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="float:right" class="form-group col-md-9">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </form>
+</div>

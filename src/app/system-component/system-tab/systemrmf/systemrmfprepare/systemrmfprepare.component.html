@@ -1,0 +1,65 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div>
+
+
+  <div class="infoBox">
+    <div class="headerOfBox">
+      <h4>Purpose</h4>
+    </div>
+    <div class="form-row">
+      <div class="col-md-12">
+        <p>
+          <!-- The purpose of the Prepare step is to carry out essential activities at the organization, mission and business
+            process, and information system levels of the organization to help prepare the organization to manage its
+            security and privacy risks using the Risk Management Framework. -->
+          {{purpose}}
+        </p>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="infoBox">
+    <div class="headerOfBox">
+      <h4>{{name}}</h4>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+          <tr>
+              <th  (click)="handleSort1('taskId')">Tasks<i class="fa fa-arrow-down" *ngIf="!col1"></i>
+                <i class="fa fa-arrow-up" *ngIf="col1"></i></th>
+              <th (click)="handleSort2('outcomes')">Outcomes<i class="fa fa-arrow-down" *ngIf="!col2"></i>
+                <i class="fa fa-arrow-up" *ngIf="col2"></i></th>
+              <th (click)="handleSort3('assignedTo')">Assigned To<i class="fa fa-arrow-down" *ngIf="!col3"></i>
+                <i class="fa fa-arrow-up" *ngIf="col3"></i></th>
+              <th (click)="handleSort4('assignedOn')">Assigned On<i class="fa fa-arrow-down" *ngIf="!col4"></i>
+                <i class="fa fa-arrow-up" *ngIf="col4"></i></th>
+              <th (click)="handleSort5('closedDate')">Closed Date<i class="fa fa-arrow-down" *ngIf="!col5"></i>
+                <i class="fa fa-arrow-up" *ngIf="col5"></i></th>
+              <th (click)="handleSort6('status')">Status<i class="fa fa-arrow-down" *ngIf="!col6"></i>
+                <i class="fa fa-arrow-up" *ngIf="col6"></i></th>
+            </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of outcomes">
+          <td><a (click)="goTo(data.rmfApplicationId)" style="color: blue;cursor: pointer;">{{data.taskId}}</a><br>
+            {{data.shortDescription}}
+          </td>
+          <td>{{data.outcomes}}</td>
+          <td>{{data.assignedTo}}</td>
+          <td>{{data.assignedOn | date:'MM/dd/yyyy'}}</td>
+          <td>{{data.closedDate | date:'MM/dd/yyyy'}}</td>
+          <td><i [ngClass]=" data.status ? 'fa fa-times-circle secondary' : 'fa fa-check-circle primary'"></i></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+
+</div>

@@ -10,7 +10,7 @@
           <form class="forms">
               <div class="form-row">
                   <div class="form-group col-md-6">
-                      <label for="definitiveSource"><b>Definitive Source</b><span class="asterisk">*</span></label>
+                      <label class="fam"><b>Source</b><span class="asterisk">*</span></label>
                       <select class="form-control" style="width:50%;" name="definiteSource" [(ngModel)]="rmfSrcId"
                           required (change)="selectDefinitive($event.target.value)">
                           <option value="">Choose...</option>
@@ -19,7 +19,7 @@
                       </select>
                   </div>
                   <div class="form-group col-md-6">
-                      <label for="typePolicy"><b>Type/Policy</b><span class="asterisk">*</span></label>
+                      <label class="fam"><b>Type</b><span class="asterisk">*</span></label>
                       <select class="form-control" style="width:50%;" name="type" required [(ngModel)]="rmfGrpId"
                           (change)="selectType($event.target.value)">
                           <option value="">Choose...</option>

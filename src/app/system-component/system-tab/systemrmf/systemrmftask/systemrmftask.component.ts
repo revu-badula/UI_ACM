@@ -2,22 +2,23 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { APP_CONFIG } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
-import { RMFDetailDTO, RMFPrimaryResponsibilityDTO, RMFSupportingRolesDTO } from '../solutionData';
+import { RMFApplicationDetailDTO, RMFPrimaryResponsibilityDTO, RMFSupportingRolesDTO } from '../../../../solutionData';
 import { Observable } from 'rxjs';
 declare let tinymce: any;
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
-import { DialogService } from '../dialog.service';
+import { DialogService } from '../../../../dialog.service';
+
 @Component({
-  selector: 'app-taskdetails',
-  templateUrl: './taskdetails.component.html',
-  styleUrls: ['./taskdetails.component.css']
+  selector: 'app-systemrmftask',
+  templateUrl: './systemrmftask.component.html',
+  styleUrls: ['./systemrmftask.component.css']
 })
-export class TaskdetailsComponent implements OnInit {
+export class SystemrmftaskComponent implements OnInit {
 
   public rmfDtlID: any;
   public loading: boolean;
-  public rmfDetailDTO: RMFDetailDTO;
+  public rmfDetailDTO: RMFApplicationDetailDTO;
   public len: any = 0;
   public len1: any = 0;
   public len2: any = 0;
@@ -33,8 +34,8 @@ export class TaskdetailsComponent implements OnInit {
   public rolesSupport: any;
   public showForm: boolean = true;
   public plus: boolean = true;
-  public closedDate: any;
   public showCloseDate: boolean = false;
+  public closedDate: any;
   public rmfresponsible: RMFPrimaryResponsibilityDTO;
   public rmfsupport: RMFSupportingRolesDTO;
   public users: any;
@@ -142,9 +143,7 @@ export class TaskdetailsComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute, private httpClient: HttpClient,
     private ref: ChangeDetectorRef, public datepipe: DatePipe, private dialog: DialogService) {
-    this.rmfDetailDTO = new RMFDetailDTO();
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    this.rmfDetailDTO = new RMFApplicationDetailDTO();
     this.config.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
         this.getData(editor);
@@ -185,6 +184,9 @@ export class TaskdetailsComponent implements OnInit {
         this.getData7(editor);
       });
     };
+    this.route.params.subscribe(params => {
+      this.rmfDtlID = params['id'];
+    });
     this.config8.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
         this.getData8(editor);
@@ -195,9 +197,6 @@ export class TaskdetailsComponent implements OnInit {
         this.getData9(editor);
       });
     };
-    this.route.params.subscribe(params => {
-      this.rmfDtlID = params['id'];
-    });
   }
 
   ngOnInit() {
@@ -206,11 +205,11 @@ export class TaskdetailsComponent implements OnInit {
 
   getInfo() {
     this.loading = true;
-    let url = APP_CONFIG.getRMFDetail;
+    let url = APP_CONFIG.getAppRMFDetails;
     let url1 = APP_CONFIG.getRMFRoles;
     let url2 = APP_CONFIG.getUsers;
     Observable.forkJoin(
-      this.httpClient.get(url + "?" + "rmfDtlId=" + this.rmfDtlID),
+      this.httpClient.get(url + "?" + "rmfAppId=" + this.rmfDtlID),
       this.httpClient.get(url1),
       this.httpClient.get(url2)
     ).subscribe((data: any) => {
@@ -253,17 +252,14 @@ export class TaskdetailsComponent implements OnInit {
         let des = this.rmfDetailDTO.references.replace(/<[^>]+>/gm, '');
         this.len7 = des.length;
       }
-
-      if (this.rmfDetailDTO.primaryResponsibility != undefined) {
-        let des = this.rmfDetailDTO.primaryResponsibility.replace(/<[^>]+>/gm, '');
+      if (this.rmfDetailDTO.actionPlanSummary != undefined) {
+        let des = this.rmfDetailDTO.actionPlanSummary.replace(/<[^>]+>/gm, '');
         this.len8 = des.length;
       }
-      if (this.rmfDetailDTO.supportingRoles != undefined) {
-        let des = this.rmfDetailDTO.supportingRoles.replace(/<[^>]+>/gm, '');
+      if (this.rmfDetailDTO.findingComments != undefined) {
+        let des = this.rmfDetailDTO.findingComments.replace(/<[^>]+>/gm, '');
         this.len9 = des.length;
       }
-
-
       if (this.rmfDetailDTO.assignedOn === undefined) {
         this.assignOn = { date: null };
       }
@@ -438,8 +434,6 @@ export class TaskdetailsComponent implements OnInit {
       this.ref.detectChanges();
     }
   };
-
-
   getData8(editor: any) {
     this.len8 = 0;
     if (tinymce.activeEditor.getContent({ format: 'text' }).length > 50000) {
@@ -480,6 +474,7 @@ export class TaskdetailsComponent implements OnInit {
       this.ref.detectChanges();
     }
   };
+
 
   getResponsibilityRoles(value: any) {
     if (value === "") {
@@ -548,7 +543,7 @@ export class TaskdetailsComponent implements OnInit {
         .then((result: any) => {
           if (result) {
             this.loading = true;
-            let url = APP_CONFIG.saveRMFDetails;
+            let url = APP_CONFIG.updateAppRMFDetails;
             this.httpClient.post(url, this.rmfDetailDTO)
               .subscribe((data: any) => {
                 this.loading = false;
@@ -562,15 +557,15 @@ export class TaskdetailsComponent implements OnInit {
                 this.loading = false;
                 console.log(error);
               });
+
           }
         }, error => {
           console.log(error);
         })
-
     }
     else {
       this.loading = true;
-      let url = APP_CONFIG.saveRMFDetails;
+      let url = APP_CONFIG.updateAppRMFDetails;
       this.httpClient.post(url, this.rmfDetailDTO)
         .subscribe((data: any) => {
           this.loading = false;
@@ -583,8 +578,10 @@ export class TaskdetailsComponent implements OnInit {
         }, error => {
           this.loading = false;
           console.log(error);
-        })
+        });
+
     }
+
   }
 
   changeButton() {
@@ -620,4 +617,5 @@ export class TaskdetailsComponent implements OnInit {
       this.rmfDetailDTO.closedDate = moment(latest_date).format();
     }
   }
+
 }

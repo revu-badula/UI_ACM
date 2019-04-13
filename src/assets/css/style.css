@@ -9,6 +9,7 @@ html {
   overflow-x: hidden;
   overflow: visible;
 }
+
 .nav-link.disabled {
   color: #eee !important;
   pointer-events: none;
@@ -18,6 +19,7 @@ html {
 body.modal-open {
   overflow: hidden;
 }
+
 .mce-tinymce {
   visibility: inherit !important;
   position: relative;
@@ -32,82 +34,91 @@ body.modal-open {
 a {
   cursor: pointer;
 }
-table{
-	background-color: #ffffff;
-	text-align: center;
-	border: 1px solid black;
+
+table {
+  background-color: #ffffff;
+  text-align: center;
+  border: 1px solid black;
 }
 
-.table-bordered tbody tr:nth-of-type(odd){
-	background-color: #EEEEEE !important;
-	border: 1px solid black;
+.table-bordered tbody tr:nth-of-type(odd) {
+  background-color: #EEEEEE !important;
+  border: 1px solid black;
 }
 
-tbody tr:nth-of-type(odd){
-	background-color: #EEEEEE !important;
+tbody tr:nth-of-type(odd) {
+  background-color: #EEEEEE !important;
 }
 
-table thead tr th{  white-space: pre-wrap;
-	font-weight: 500;
-	color: black;
-	border: 1px solid black;
-	background-color: #cecfd5;
+table thead tr th {
+  white-space: pre-wrap;
+  font-weight: 500;
+  color: black;
+  border: 1px solid black;
+  background-color: #cecfd5;
 }
 
-table thead tr td{ word-wrap: break-word;
-	color: black;
+table thead tr td {
+  word-wrap: break-word;
+  color: black;
 }
-
-
 
 table-fixed thead {
   width: 97%;
 }
+
 .table-fixed tbody {
   height: 230px;
   overflow-y: auto;
   width: 100%;
 }
+
 .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
   display: block;
 }
-.table-fixed tbody td, .table-fixed thead > tr> th {
+
+.table-fixed tbody td, .table-fixed thead>tr>th {
   float: left;
   border-bottom-width: 0;
 }
 
 .table-bordered td, .table-bordered th {
-    border: 1px solid black;
+  border: 1px solid black;
 }
+
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #000;
 }
+
 .table-bordered td, .table-bordered th {
   border: 1px solid #000 !important;
 }
+
 .modal-title {
   margin-bottom: 0;
   line-height: 0.3 !important;
 }
+
 .modal-header {
   background-color: black;
   color: #ffffff;
   height: 5vh !important;
 }
 
-.form-options{
+.form-options {
   float: left;
   margin-right: 15px;
   margin-top: -15px;
   padding: 5px;
 }
+
 .navigate {
   margin: 15px;
   padding: 5px;
 }
 
-.icons{
+.icons {
   color: black;
   vertical-align: middle;
   font-size: 20px;
@@ -170,6 +181,7 @@ h4 {
   border-color: #A9A9A9 !important;
   color: #000 !important;
 }
+
 .primary {
   color: green !important;
 }
@@ -641,6 +653,15 @@ input {
 
 input[type=button] {
   float: none;
+}
+
+.rmfIcons {
+  color: black;
+  vertical-align: middle;
+  font-size: 20px !important;
+  padding: 2px;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 #inputState {
@@ -1155,19 +1176,24 @@ a .material-icons {
   width: calc(100% - 260px);
   transition: 0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
+
 .tgl {
   display: none;
 }
-.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl+.tgl-btn {
   box-sizing: border-box;
 }
-.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl+.tgl-btn::-moz-selection {
   background: none;
 }
-.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl+.tgl-btn::selection {
   background: none;
 }
-.tgl + .tgl-btn {
+
+.tgl+.tgl-btn {
   outline: 0;
   display: block;
   width: 4em;
@@ -1175,36 +1201,40 @@ a .material-icons {
   position: relative;
   cursor: pointer;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+
+.tgl+.tgl-btn:after, .tgl+.tgl-btn:before {
   position: relative;
   display: block;
   content: "";
- width:44%;
+  width: 44%;
   height: 100%;
 }
-.tgl + .tgl-btn:after {
+
+.tgl+.tgl-btn:after {
   left: 0;
 }
-.tgl + .tgl-btn:before {
+
+.tgl+.tgl-btn:before {
   display: none;
 }
-.tgl:checked + .tgl-btn:after {
+
+.tgl:checked+.tgl-btn:after {
   left: 50%;
 }
 
-
-.tgl-flip + .tgl-btn {
+.tgl-flip+.tgl-btn {
   padding: 2px;
   transition: all .2s ease;
   font-family: sans-serif;
   -webkit-perspective: 100px;
-          perspective: 100px;
+  perspective: 100px;
 }
-.tgl-flip + .tgl-btn:after, .tgl-flip + .tgl-btn:before {
+
+.tgl-flip+.tgl-btn:after, .tgl-flip+.tgl-btn:before {
   display: inline-block;
   transition: all .4s ease;
   width: 100%;
@@ -1217,34 +1247,40 @@ a .material-icons {
   top: 0;
   left: 0;
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   border-radius: 4px;
 }
-.tgl-flip + .tgl-btn:after {
+
+.tgl-flip+.tgl-btn:after {
   content: attr(data-tg-on);
   background: #02C66F;
   -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
-.tgl-flip + .tgl-btn:before {
+
+.tgl-flip+.tgl-btn:before {
   background: gray;
   content: attr(data-tg-off);
 }
-.tgl-flip + .tgl-btn:active:before {
+
+.tgl-flip+.tgl-btn:active:before {
   -webkit-transform: rotateY(-20deg);
-          transform: rotateY(-20deg);
+  transform: rotateY(-20deg);
 }
-.tgl-flip:checked + .tgl-btn:before {
+
+.tgl-flip:checked+.tgl-btn:before {
   -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
-.tgl-flip:checked + .tgl-btn:after {
+
+.tgl-flip:checked+.tgl-btn:after {
   -webkit-transform: rotateY(0);
-          transform: rotateY(0);
+  transform: rotateY(0);
   left: 0;
   background: #7FC6A6;
 }
-.tgl-flip:checked + .tgl-btn:active:after {
+
+.tgl-flip:checked+.tgl-btn:active:after {
   -webkit-transform: rotateY(20deg);
-          transform: rotateY(20deg);
+  transform: rotateY(20deg);
 }

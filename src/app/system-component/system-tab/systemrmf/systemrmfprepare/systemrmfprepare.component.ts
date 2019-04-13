@@ -2,18 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from 'app/app.config';
-
 @Component({
-  selector: 'app-rmsdetails',
-  templateUrl: './rmsdetails.component.html',
-  styleUrls: ['./rmsdetails.component.css']
+  selector: 'app-systemrmfprepare',
+  templateUrl: './systemrmfprepare.component.html',
+  styleUrls: ['./systemrmfprepare.component.css']
 })
-export class RmsdetailsComponent implements OnInit {
+export class SystemrmfprepareComponent implements OnInit {
 
+  public rmfProcessID:any;
   public loading: boolean = false;
   public outcomes:any;
-  public rmfProcessID:any;
-  public second:boolean;
   public purpose:any;
   public name:any;
   public col1:any;
@@ -27,35 +25,32 @@ export class RmsdetailsComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     this.route.params.subscribe(params => {
       this.rmfProcessID = params['id'];
-      if(this.second)
       this.getData();
     });
   }
 
   ngOnInit() {
-    this.second=true;
-    this.getData();
   }
 
   getData() {
     this.loading = true;
-    let url = APP_CONFIG.getRMFDetails;
-    this.httpClient.get(url+"?"+"rmfProcessId="+this.rmfProcessID)
+    let url = APP_CONFIG.getAppRMFDetailsonProcess;
+    this.httpClient.get(url+"?"+"rmfProcessId="+this.rmfProcessID+"&rmfAppId="+sessionStorage.getItem('systemRmfId'))
       .subscribe((data: any) => {
         this.loading = false;
         this.purpose=data.purpose;
         this.name=data.name;
-        this.outcomes=data.rmfDetailDTOs;
+        this.outcomes=data.rmfApplicationDetailDTOs;
       }, error => {
         this.loading = false;
         console.log(error);
       })
   }
+
   goTo(id:any)
   {
-    this.router.navigate(['rms/taskdetails/'+id]);
+    this.router.navigate(['system/tab2/rmf/tabrmf/rmftask/'+id]);
   }
-
   handleSort1(value:any) {
 
     if (!this.col1) {
