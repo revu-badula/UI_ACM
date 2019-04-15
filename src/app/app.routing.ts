@@ -179,6 +179,8 @@ import { SystemrmffindingComponent } from './system-component/system-tab/systemr
 import { SystemrmfrecommendationsComponent } from './system-component/system-tab/systemrmf/systemrmfrecommendations/systemrmfrecommendations.component';
 import { SystemrmfmanagementresponseComponent } from './system-component/system-tab/systemrmf/systemrmfmanagementresponse/systemrmfmanagementresponse.component';
 import { rmfGuard } from './rmfguard';
+import { SystemrmfactionplanComponent } from './system-component/system-tab/systemrmf/systemrmfactionplan/systemrmfactionplan.component';
+import { SystemrmfbusinessriskComponent } from './system-component/system-tab/systemrmf/systemrmfbusinessrisk/systemrmfbusinessrisk.component';
 
 const appRoutes: Routes = [
 
@@ -545,6 +547,12 @@ const appRoutes: Routes = [
                   },
                   {
                     path:'rmfManage', component: SystemrmfmanagementresponseComponent, canActivate:[rmfGuard]
+                  },
+                  {
+                    path:'rmfaction', component: SystemrmfactionplanComponent, canActivate:[rmfGuard]
+                  },
+                  {
+                    path:'rmfbusiness', component: SystemrmfbusinessriskComponent, canActivate:[rmfGuard]
                   }
                 ]
               }

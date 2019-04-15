@@ -15,7 +15,7 @@ declare let tinymce: any;
 })
 export class SystemrmffindingComponent implements OnInit {
   public loading: boolean;
-  public showEdit: boolean;
+  public showEdit: boolean=true;
   public len: any = 0;
   public len1: any = 0;
   public rmfApplicationDTO: RMFApplicationDTO;
@@ -152,7 +152,7 @@ export class SystemrmffindingComponent implements OnInit {
   saveRmf() {
     this.loading = true;
     let url = APP_CONFIG.updateAppRMF;
-    this.rmfApplicationDTO.updBy = Cookie.get('userName');
+    this.rmfApplicationDTO.updatedBy = Cookie.get('userName');
     this.httpClient.post(url, this.rmfApplicationDTO)
       .subscribe((data: any) => {
         this.loading = false;

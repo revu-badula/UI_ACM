@@ -216,7 +216,7 @@ export class SystemrmffirstComponent implements OnInit {
 
         this.loading = true;
         let url = APP_CONFIG.updateAppRMF;
-        this.rmfApplicationDTO.updBy=Cookie.get('userName');
+        this.rmfApplicationDTO.updatedBy=Cookie.get('userName');
         this.httpClient.post(url, this.rmfApplicationDTO)
           .subscribe((data: any) => {
             this.loading = false;

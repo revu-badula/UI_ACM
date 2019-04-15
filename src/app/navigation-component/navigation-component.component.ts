@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cookie } from 'ng2-cookies';
-import { Router,NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { HostListener } from '@angular/core';
 import { OktaAuthService } from '../okta/oka.service';
 import { UtilService } from '../util.service';
@@ -11,21 +11,20 @@ import { UtilService } from '../util.service';
 })
 export class NavigationComponentComponent implements OnInit {
 
-  public userName:any;
-  public currentURL1:boolean=true;
-  constructor(private router: Router, private okta:OktaAuthService, 
+  public userName: any;
+  public currentURL1: boolean = true;
+  constructor(private router: Router, private okta: OktaAuthService,
     private utilService: UtilService, route: ActivatedRoute) {
-    this.userName=Cookie.get("userName");
+    this.userName = Cookie.get("userName");
     router.events
-    .filter(e => e instanceof NavigationEnd)
-    .forEach(e => {
+      .filter(e => e instanceof NavigationEnd)
+      .forEach(e => {
         let currentURL = route.root.firstChild.snapshot.data['title'];
-        if(currentURL === 'graph')
-        {
-          this.currentURL1=false;
+        if (currentURL === 'graph') {
+          this.currentURL1 = false;
         }
-    });
-   }
+      });
+  }
 
   ngOnInit() {
   }
@@ -33,12 +32,11 @@ export class NavigationComponentComponent implements OnInit {
 
 
 
-   async signOut()
-  {
+  async signOut() {
     //localStorage.clear();
     Cookie.delete('access_token');
     Cookie.delete('userName');
-    UtilService.calback=true;
+    UtilService.calback = true;
     sessionStorage.removeItem('localityName');
     sessionStorage.removeItem('appAuditId');
     sessionStorage.removeItem('appMouId');
@@ -57,18 +55,20 @@ export class NavigationComponentComponent implements OnInit {
     sessionStorage.removeItem('fipscode');
     sessionStorage.removeItem('auditId');
     sessionStorage.removeItem('policyGrpId');
-    let result:any= await this.okta.isAuthenticated();
-    if(result){
-    this.okta.logout();
-    this.router.navigate(['/logout']);
+    sessionStorage.removeItem("systemRmfId");
+    sessionStorage.removeItem("rmfdisabled");
+    sessionStorage.removeItem('rmfActive');
+    let result: any = await this.okta.isAuthenticated();
+    if (result) {
+      this.okta.logout();
+      this.router.navigate(['/logout']);
     }
-    else{
+    else {
       //this.okta.logout();
       this.router.navigate(['/logout']);
     }
   }
-  goTo()
-  {
+  goTo() {
     this.router.navigate(['/graph']);
   }
 

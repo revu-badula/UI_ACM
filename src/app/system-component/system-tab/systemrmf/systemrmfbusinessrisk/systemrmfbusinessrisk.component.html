@@ -1,0 +1,58 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<div>
+  <form #myForm="ngForm">
+
+
+    <div style="
+    margin-bottom: -1%;float: right;">
+
+      <fa *ngIf="showEdit" class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+
+
+
+      <fa *ngIf="myForm.valid" (click)="saveRmf()" class="fa fa-floppy-o rmfIcons" aria-hidden="true"></fa>
+
+      <fa (click)="showRmf()" class="fa fa-times rmfIcons" aria-hidden="true"></fa>
+
+
+
+    </div>
+    <div class="infoBox">
+      <div class="headerOfBox">
+        <h4>Business Risk</h4>
+      </div>
+      <fieldset [disabled]="showEdit">
+
+        <div class="form-row">
+
+
+
+
+          <div class="col-md-12">
+            <span class="fam" style="font-weight: bold;">Description</span>
+            <tinymce name="description" disabled=true *ngIf="showEdit" [(ngModel)]="rmfApplicationDTO.businessRisks"
+              [config]="config">
+            </tinymce>
+            <tinymce name="description" *ngIf="!showEdit" [(ngModel)]="rmfApplicationDTO.businessRisks"
+              [config]="config">
+            </tinymce>
+            remaining {{50000 -len}}
+          </div>
+
+        </div>
+
+      </fieldset>
+
+
+
+
+    </div>
+
+
+
+
+  </form>
+</div>

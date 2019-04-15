@@ -10,17 +10,17 @@ declare let tinymce: any;
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
 @Component({
-  selector: 'app-systemrmfmanagementresponse',
-  templateUrl: './systemrmfmanagementresponse.component.html',
-  styleUrls: ['./systemrmfmanagementresponse.component.css']
+  selector: 'app-systemrmfbusinessrisk',
+  templateUrl: './systemrmfbusinessrisk.component.html',
+  styleUrls: ['./systemrmfbusinessrisk.component.css']
 })
-export class SystemrmfmanagementresponseComponent implements OnInit {
+export class SystemrmfbusinessriskComponent implements OnInit {
 
   public loading: boolean;
   public showEdit: boolean=true;
   public len: any = 0;
   public len1: any = 0;
-  public resDate: any;
+  public estDate: any;
   public rmfApplicationDTO: RMFApplicationDTO;
   public users: any;
   config: any = {
@@ -46,9 +46,13 @@ export class SystemrmfmanagementresponseComponent implements OnInit {
 
   ngOnInit() {
     this.getAppId();
+   
+
   }
 
+ 
 
+ 
   getAppId() {
     this.loading = true;
     let url = APP_CONFIG.viewApplication;
@@ -91,17 +95,6 @@ export class SystemrmfmanagementresponseComponent implements OnInit {
   valueChanged() {
     this.showEdit = false;
   }
-  getResDate(value: any) {
-    if (value.formatted === "") {
-      this.rmfApplicationDTO.responseDt = null;
-    }
-    else {
-      let d = value.formatted;
-      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
-      this.rmfApplicationDTO.responseDt = moment(latest_date).format();
-    }
-
-  }
 
   showOnPageLoad() {
 
@@ -109,31 +102,22 @@ export class SystemrmfmanagementresponseComponent implements OnInit {
     let id = sessionStorage.getItem('systemRmfId');
     let rmfid = +id;
     let url = APP_CONFIG.getAppRMF;
-
-    this.httpClient.get(url + "?" + "rmfAppId=" + rmfid)
+   
+      this.httpClient.get(url + "?" + "rmfAppId=" + rmfid)
       .subscribe((data: any) => {
-        this.loading = false;
-        this.rmfApplicationDTO = data;
-        // if (this.rmfApplicationDTO.managementReponse != undefined) {
-        //   let des = this.rmfApplicationDTO.managementReponse.replace(/<[^>]+>/gm, '');
-        //   this.len = des.length;
-        // }
-        if (this.rmfApplicationDTO.responseDt === undefined || this.rmfApplicationDTO.responseDt === null) {
-          this.resDate = { date: null };
-        }
-        else {
-          let d = new Date(this.rmfApplicationDTO.responseDt);
-          let day = d.getDate();
-          let month = d.getMonth() + 1;
-          let year = d.getFullYear();
-          this.resDate = { date: { year: year, month: month, day: day } };
-        }
+      this.loading = false;
+      this.rmfApplicationDTO = data
+      if (this.rmfApplicationDTO.businessRisks != undefined) {
+        let des = this.rmfApplicationDTO.businessRisks.replace(/<[^>]+>/gm, '');
+        this.len = des.length;
+      }
+      
 
 
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
 
   }
 

@@ -20,7 +20,7 @@ export class RMFApplicationDTO {
   status:any;
   createdBy:any;
   createdTs:any;
-  updBy:any;
+  updatedBy:any;
   updTs:any;
   typeOfFindings:any;
   overallRiskLevel:any;
@@ -48,4 +48,6 @@ export class RMFApplicationDTO {
   rmfGrpId:any;
   applicationId:any;
   rmfTypeName:any;
+  summary:any;
+  businessRisks:any;
 }
