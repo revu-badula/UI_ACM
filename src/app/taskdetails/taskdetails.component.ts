@@ -552,7 +552,7 @@ export class TaskdetailsComponent implements OnInit {
             this.httpClient.post(url, this.rmfDetailDTO)
               .subscribe((data: any) => {
                 this.loading = false;
-                this.dialog.open("Info", "Data has been updated.", false, "OK", "Ok")
+                this.dialog.open("Info", "RMF has been updated.", false, "OK", "Ok")
                   .then((result: any) => {
 
                   }, error => {
@@ -574,7 +574,7 @@ export class TaskdetailsComponent implements OnInit {
       this.httpClient.post(url, this.rmfDetailDTO)
         .subscribe((data: any) => {
           this.loading = false;
-          this.dialog.open("Info", "Data has been updated.", false, "OK", "Ok")
+          this.dialog.open("Info", "RMF has been updated.", false, "OK", "Ok")
             .then((result: any) => {
 
             }, error => {

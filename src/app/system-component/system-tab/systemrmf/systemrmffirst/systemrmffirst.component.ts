@@ -199,7 +199,7 @@ export class SystemrmffirstComponent implements OnInit {
       this.httpClient.post(url, this.rmfApplicationDTO)
         .subscribe((data: any) => {
           this.loading = false;
-          this.dialog.open("Info", "Rmf has been created.", false, "OK", "OK")
+          this.dialog.open("Info", "RMF has been created.", false, "OK", "OK")
             .then((result: any) => {
               if (result) {
                 this.router.navigate(['/system/tab2/rmf']);
@@ -220,7 +220,7 @@ export class SystemrmffirstComponent implements OnInit {
         this.httpClient.post(url, this.rmfApplicationDTO)
           .subscribe((data: any) => {
             this.loading = false;
-            this.dialog.open("Info", "Rmf has been updated.", false, "OK", "OK")
+            this.dialog.open("Info", "RMF has been updated.", false, "OK", "OK")
               .then((result: any) => {
                 if (result) {
                  

@@ -91,10 +91,74 @@
 
         </li>
         <li class="nav-item">
+            <a class="nav-link" routerLink="/rms/rmsSrt">
+                <!-- <i class="material-icons">location_on</i> -->
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <p>Risk Management Framework</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/resImpactAnalysis">
+                <!-- <i class="material-icons">location_on</i> -->
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <p>Business Impact Analysis</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkPol" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <!-- <i class="material-icons">notifications</i> -->
+                <i class="fa fa-file-text fa-3x" aria-hidden="true"></i>
+                policies
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkPol">
+                <a class="" routerLink="/policy">Create</a>
+                <!-- <a class="" routerLink="/policyView">View/Edit</a> -->
+                <a class="" routerLink="/spolicy/policySrt">View/Edit</a>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/system/map">
+                <!-- <i class="material-icons">notifications</i> -->
+                <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
+                <p>IT Portfolio Manager</p>
+            </a>
+            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSys">
+                <a class="" routerLink="/system/tab2/info">Create</a>
+                View/Edit</a>
+            </div> -->
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/devicetab">
+                <!-- <i class="material-icons">laptop</i> -->
+                <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color:slategray"></i>
+                <p>Infrastructure Manager</p>
+            </a>
+            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkDev">
+                <a class="" routerLink="/deviceInventory">Create</a>
+                <a class="" routerLink="/devicetab">View/Edit</a>
+            </div> -->
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="getOpen()">
+                <!-- <i class="material-icons">bubble_chart</i> -->
+                <i class="fa fa-suitcase fa-3x" aria-hidden="true"></i>
+                <p>Audit</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="getOpen()">
+                <!-- <i class="material-icons">location_on</i> -->
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <p>Assessmemt</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" routerLink="/locality/map">
                 <!-- <i class="material-icons">person</i> -->
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                Localities
+                Locations
             </a>
             <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkLoc">
                 <a class="" routerLink="/locality/map">Create</a>
@@ -125,20 +189,8 @@
                 <a class="" routerLink="/solutionsView">View/Edit</a>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="getOpen()">
-                <!-- <i class="material-icons">bubble_chart</i> -->
-                <i class="fa fa-suitcase fa-3x" aria-hidden="true"></i>
-                <p>Audit</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="getOpen()">
-                <!-- <i class="material-icons">location_on</i> -->
-                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
-                <p>Assessmemt</p>
-            </a>
-        </li>
+     
+       
         <li class="nav-item">
             <a class="nav-link" routerLink="/reports">
                 <!-- <i class="material-icons">notifications</i> -->
@@ -146,59 +198,15 @@
                 <p>Reports</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/system/map">
-                <!-- <i class="material-icons">notifications</i> -->
-                <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
-                <p>Systems </p>
-            </a>
-            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSys">
-                <a class="" routerLink="/system/tab2/info">Create</a>
-                View/Edit</a>
-            </div> -->
-        </li>
+     
 
 
 
-        <li class="nav-item">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkPol" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <!-- <i class="material-icons">notifications</i> -->
-                <i class="fa fa-file-text fa-3x" aria-hidden="true"></i>
-                policies
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkPol">
-                <a class="" routerLink="/policy">Create</a>
-                <!-- <a class="" routerLink="/policyView">View/Edit</a> -->
-                <a class="" routerLink="/spolicy/policySrt">View/Edit</a>
-            </div>
-        </li>
+       
 
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/devicetab">
-                <!-- <i class="material-icons">laptop</i> -->
-                <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color:slategray"></i>
-                <p>Infrastructure Manager</p>
-            </a>
-            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkDev">
-                <a class="" routerLink="/deviceInventory">Create</a>
-                <a class="" routerLink="/devicetab">View/Edit</a>
-            </div> -->
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/resImpactAnalysis">
-                <!-- <i class="material-icons">location_on</i> -->
-                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
-                <p>Business Impact Analysis</p>
-            </a>
-        </li>
+      
+    
 
-        <li class="nav-item">
-                <a class="nav-link" routerLink="/rms/rmsSrt">
-                    <!-- <i class="material-icons">location_on</i> -->
-                    <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
-                    <p>Risk Management Framework</p>
-                </a>
-            </li>
+      
     </ul>
 </div>
