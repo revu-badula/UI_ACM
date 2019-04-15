@@ -25,7 +25,6 @@ export class SystemAuditDetailsTab1 implements OnInit {
 
   valueChanged() {
     this.editButton = true;
-    console.log(this.editButton);
     this.parentClick.emit(this.editButton);
   }
 

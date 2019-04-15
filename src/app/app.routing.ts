@@ -175,6 +175,10 @@ import { SystemrmffirstComponent } from './system-component/system-tab/systemrmf
 import { SystemrmfprocessComponent } from './system-component/system-tab/systemrmf/systemrmfprocess/systemrmfprocess.component';
 import { SystemrmfprepareComponent } from './system-component/system-tab/systemrmf/systemrmfprepare/systemrmfprepare.component';
 import { SystemrmftaskComponent } from './system-component/system-tab/systemrmf/systemrmftask/systemrmftask.component';
+import { SystemrmffindingComponent } from './system-component/system-tab/systemrmf/systemrmffinding/systemrmffinding.component';
+import { SystemrmfrecommendationsComponent } from './system-component/system-tab/systemrmf/systemrmfrecommendations/systemrmfrecommendations.component';
+import { SystemrmfmanagementresponseComponent } from './system-component/system-tab/systemrmf/systemrmfmanagementresponse/systemrmfmanagementresponse.component';
+import { rmfGuard } from './rmfguard';
 
 const appRoutes: Routes = [
 
@@ -525,13 +529,22 @@ const appRoutes: Routes = [
                     path:'rmfStart', component: SystemrmffirstComponent, canActivate:[SystemGuard]
                   },
                   {
-                    path:'rmfProcess', component: SystemrmfprocessComponent, canActivate:[SystemGuard]
+                    path:'rmfProcess', component: SystemrmfprocessComponent, canActivate:[rmfGuard]
                   },
                   {
-                    path:'rmfControls/:id', component: SystemrmfprepareComponent, canActivate:[SystemGuard]
+                    path:'rmfControls/:id', component: SystemrmfprepareComponent, canActivate:[rmfGuard]
                   },
                   {
-                    path:'rmftask/:id', component: SystemrmftaskComponent, canActivate:[SystemGuard]
+                    path:'rmftask/:id', component: SystemrmftaskComponent, canActivate:[rmfGuard]
+                  },
+                  {
+                    path:'rmfFinding', component: SystemrmffindingComponent, canActivate:[rmfGuard]
+                  },
+                  {
+                    path:'rmfRecom', component: SystemrmfrecommendationsComponent, canActivate:[rmfGuard]
+                  },
+                  {
+                    path:'rmfManage', component: SystemrmfmanagementresponseComponent, canActivate:[rmfGuard]
                   }
                 ]
               }
@@ -714,7 +727,7 @@ const appRoutes: Routes = [
   exports: [RouterModule],
   providers: [WorkflowGuard, WorkflowGuardAudit, AuthGuard,
     WorkflowGuardAssess, CanDeactivateGuard, SystemGuardAudit, SystemGuard,
-    SystemGuardAssess, CallGuard, AuthGuardLogin]
+    SystemGuardAssess, CallGuard, AuthGuardLogin, rmfGuard]
 
 })
 //export class SystemComponentRoutingModule {}

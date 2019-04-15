@@ -1,0 +1,89 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<div>
+  <form #myForm="ngForm">
+
+    <div style="padding-top: 2%;
+    margin-bottom: -1%;float: right;">
+
+      <fa class="edit-icon icons" *ngIf="showEdit" [name]="'edit'" (click)="valueChanged()"></fa>
+      <fa *ngIf="myForm.valid" (click)="saveRmf()" class="fa fa-floppy-o rmfIcons" aria-hidden="true">
+      </fa>
+      <fa (click)="showRmf()" class="fa fa-times rmfIcons" aria-hidden="true"></fa>
+
+
+
+    </div>
+
+    <div class="infoBox">
+      <div class="headerOfBox">
+        <h4>Findings</h4>
+      </div>
+
+      <fieldset [disabled]="showEdit">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+
+            <label class="fam">Type of Finding</label>
+
+            <input type="text" class="form-control" name="typeOfFindings" id="TypeOfFinding"
+              [(ngModel)]="rmfApplicationDTO.typeOfFindings">
+          </div>
+          <div class="form-group col-md-6">
+            <label class="fam">Overall risk level</label>
+            <input type="text" class="form-control" name="overallRiskLevel" id="overallRiskLevel"
+              [(ngModel)]="rmfApplicationDTO.overallRiskLevel">
+          </div>
+        </div>
+
+        <div class="form-row">
+
+
+          
+
+          <div class="col-md-12">
+              <span class="fam" style="font-weight: bold;">Description</span>
+          <tinymce name="auditFindings" disabled=true *ngIf="showEdit" [(ngModel)]="rmfApplicationDTO.auditFindings"
+            [config]="config1">
+          </tinymce>
+          <tinymce name="auditFindings" *ngIf="!showEdit" [(ngModel)]="rmfApplicationDTO.auditFindings"
+            [config]="config1">
+          </tinymce>
+          remaining {{50000 -len1}}
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-12">
+              <span class="fam" style="font-weight: bold;">Comments</span>
+            <tinymce name="comments" disabled=true *ngIf="showEdit" [(ngModel)]="rmfApplicationDTO.findingComments"
+              [config]="config">
+            </tinymce>
+            <tinymce name="comments" *ngIf="!showEdit" [(ngModel)]="rmfApplicationDTO.findingComments"
+              [config]="config">
+            </tinymce>
+            remaining {{50000 -len}}
+          </div>
+
+
+        </div>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+
+            <label class="fam">Responsible Party</label>
+            <input type="text" name="responsibleParty" class="form-control" id="responsibleParty"
+              [(ngModel)]="rmfApplicationDTO.responsibleParty">
+
+          </div>
+        </div>
+
+      </fieldset>
+    </div>
+
+  </form>
+</div>

@@ -25,19 +25,19 @@
             <tr>
 
 
-              <th scope="col" (click)="handleSort('auditName')">RMF Name<i class="fa fa-arrow-down" *ngIf="!desc"></i>
-                <i class="fa fa-arrow-up" *ngIf="desc"></i></th>
-              <th scope="col" (click)="handleSort1('auditType')">RMF Type <i class="fa fa-arrow-down"
-                  *ngIf="!auditType"></i>
-                <i class="fa fa-arrow-up" *ngIf="auditType"></i></th>
-              <th scope="col" (click)="handleSort2('auditDate')">Review Date<i class="fa fa-arrow-down"
-                  *ngIf="!auditDate"></i>
-                <i class="fa fa-arrow-up" *ngIf="auditDate"></i></th>
-              <th scope="col" (click)="handleSort3('nextAuditDate')">Next Review Date<i class="fa fa-arrow-down"
-                  *ngIf="!nextAuditDate"></i>
-                <i class="fa fa-arrow-up" *ngIf="nextAuditDate"></i></th>
-              <th scope="col" (click)="handleSort4('status')">Status<i class="fa fa-arrow-down" *ngIf="!sts"></i>
-                <i class="fa fa-arrow-up" *ngIf="sts"></i></th>
+              <th scope="col" (click)="handleSort1('name')">RMF Name<i class="fa fa-arrow-down" *ngIf="!col1"></i>
+                <i class="fa fa-arrow-up" *ngIf="col1"></i></th>
+              <th scope="col" (click)="handleSort2('rmfTypeName')">RMF Type <i class="fa fa-arrow-down"
+                  *ngIf="!col2"></i>
+                <i class="fa fa-arrow-up" *ngIf="col2"></i></th>
+              <th scope="col" (click)="handleSort3('reviewDate')">Review Date<i class="fa fa-arrow-down"
+                  *ngIf="!col3"></i>
+                <i class="fa fa-arrow-up" *ngIf="col3"></i></th>
+              <th scope="col" (click)="handleSort4('nextReviewDate')">Next Review Date<i class="fa fa-arrow-down"
+                  *ngIf="!col4"></i>
+                <i class="fa fa-arrow-up" *ngIf="col4"></i></th>
+              <th scope="col" (click)="handleSort5('status')">Status<i class="fa fa-arrow-down" *ngIf="!col5"></i>
+                <i class="fa fa-arrow-up" *ngIf="col5"></i></th>
             </tr>
           </thead>
           <tbody>

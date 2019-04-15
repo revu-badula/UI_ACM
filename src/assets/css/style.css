@@ -710,6 +710,17 @@ input[type=button] {
   position: relative;
   counter-increment: list;
 }
+.disabled>a,
+.disabled>a:focus, 
+.disabled>a:hover, 
+.disabled>span, 
+.disabled>span:focus, 
+.disabled>span:hover{
+color: #777;
+cursor: not-allowed;
+/* background-color: #fff;
+border-color: #ddd; */
+}  
 
 .StepProgress-item:not(:last-child) {
   padding-bottom: 20px;

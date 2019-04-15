@@ -1,0 +1,61 @@
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div>
+    <form #myForm="ngForm">
+
+        <div style="padding-top: 2%;
+        margin-bottom: -1%;float: right;">
+
+            <fa (click)="saveRmf()" *ngIf="myForm.valid" class="fa fa-floppy-o rmfIcons" aria-hidden="true"></fa>
+            <fa *ngIf="showEdit" class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+            <fa (click)="showRmf()" class="fa fa-times rmfIcons" aria-hidden="true"></fa>
+
+
+
+
+        </div>
+
+        <div class="infoBox">
+            <div class="headerOfBox">
+                <h4>Recommendations</h4>
+            </div>
+            <fieldset [disabled]="showEdit">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+
+                        <label class="fam">Recommended By</label>
+                        <select name="systemOwner" style="width:50%;margin-top:10px"
+                            [(ngModel)]="rmfApplicationDTO.recomendedBy" class="form-control" id="searchUsers"
+                            (change)="rmfApplicationDTO.recomendedBy=$event.target.value" required>
+                            <option value="" selected>Choose...</option>
+                            <option *ngFor="let getUser of users" value="{{ getUser.firstName}} {{getUser.lastName }}">
+                                {{getUser.firstName}} {{getUser.lastName }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="fam">Estimated completion date</label>
+                        <my-date-picker (dateChanged)="getEstDate($event)" [disabled]='showEdit' class="inputState1"
+                            [(ngModel)]="estDate" name="estDate"></my-date-picker>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <span class="fam" style="font-weight: bold;">Recommendations</span>
+
+                        <tinymce name="recomendations" disabled=true *ngIf="showEdit"
+                            [(ngModel)]="rmfApplicationDTO.recomendations" [config]="config">
+                        </tinymce>
+                        <tinymce name="recomendations" *ngIf="!showEdit" [(ngModel)]="rmfApplicationDTO.recomendations"
+                            [config]="config">
+                        </tinymce>
+                        remaining {{50000 -len}}
+                    </div>
+
+                </div>
+
+            </fieldset>
+        </div>
+    </form>
+</div>

@@ -9,7 +9,6 @@ import { DatePipe } from '@angular/common';
 import { IMyDpOptions } from 'mydatepicker';
 import { Observable } from 'rxjs';
 import { DialogService } from '../../../../dialog.service';
-import { tryParse } from 'selenium-webdriver/http';
 import { Cookie } from 'ng2-cookies';
 
 @Component({
@@ -126,6 +125,7 @@ export class SystemrmffirstComponent implements OnInit {
       let id = sessionStorage.getItem('systemRmfId');
       let rmfid = +id;
       let url = APP_CONFIG.getAppRMF;
+      sessionStorage.setItem("rmfActive","true")
       this.httpClient.get(url + "?" + "rmfAppId=" + rmfid)
         .subscribe((data: any) => {
           this.loading = false;

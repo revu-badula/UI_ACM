@@ -22,6 +22,8 @@ export class RmsdetailsComponent implements OnInit {
   public col4:any;
   public col5:any;
   public col6:any;
+  public closeCount:any;
+  public openCount:any;
   constructor(private router: Router, private httpClient: HttpClient,private route: ActivatedRoute) { 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -45,6 +47,8 @@ export class RmsdetailsComponent implements OnInit {
         this.loading = false;
         this.purpose=data.purpose;
         this.name=data.name;
+        this.openCount=data.openCount;
+        this.closeCount=data.closeCount;
         this.outcomes=data.rmfDetailDTOs;
       }, error => {
         this.loading = false;

@@ -69,6 +69,9 @@ import { SystemrmffirstComponent } from './system-tab/systemrmf/systemrmffirst/s
 import { SystemrmfprocessComponent } from './system-tab/systemrmf/systemrmfprocess/systemrmfprocess.component';
 import { SystemrmfprepareComponent } from './system-tab/systemrmf/systemrmfprepare/systemrmfprepare.component';
 import { SystemrmftaskComponent } from './system-tab/systemrmf/systemrmftask/systemrmftask.component';
+import { SystemrmffindingComponent } from './system-tab/systemrmf/systemrmffinding/systemrmffinding.component';
+import { SystemrmfrecommendationsComponent } from './system-tab/systemrmf/systemrmfrecommendations/systemrmfrecommendations.component';
+import { SystemrmfmanagementresponseComponent } from './system-tab/systemrmf/systemrmfmanagementresponse/systemrmfmanagementresponse.component';
 
 @NgModule({
   imports: [
@@ -103,6 +106,6 @@ import { SystemrmftaskComponent } from './system-tab/systemrmf/systemrmftask/sys
   ],
   declarations: [SystemAddComponentComponent, SystemTabComponent,SystemComponentComponent, SystemDetailsComponent, SystemSolutionsComponent, SystemSolutionsLinkComponent, SystemSolutionstablelinkComponent, SystemBusinessComponent, SystemAuditComponent, SystemAuditDetailsComponent, SystemAuditFindingsComponent, SystemAuditRecomendationsComponent, SystemLegalComponent, SystemAuditManagementComponent, SystemSecurityComponent, SystemAuditActionComponent, SystemAuditBusinessriskComponent, SystemAuditSecurityriskComponent, 
   SystemAuditBudgetComponent, SystemAuditAttachmentsComponent, SystemAssessmentComponent, 
-  SystemTechnicalComponent,SystemFilterPipeDate, SystemFilterAuditName,SystemAuditFirstComponent, SystemAuditDetailsTab, SystemAuditLessonsComponent, SystemAssessDetailsComponent, SystemAssessTabComponent,SystemAuditDetailsTab1, SystemLegalformComponent, SystemLegalmainComponent,KeysPipe, SystemAssessDowntabsComponent, SystemAssessFindComponent, SystemAssessActionComponent, SystemAssessAttachmentsComponent, SystemAssessBudgetComponent, SystemAssessBusinessComponent, SystemAssessLessonsComponent, SystemAssessRecomendComponent, SystemAssessSecurityComponent, SystemAssessManagementComponent, SystemassesscontrolComponent, SystemassesslandingComponent, SystemauditlandingComponent, SystemauditcontrolComponent, SystemrmfComponent, SystemrmflandingComponent, SystemrmftabComponent, SystemrmffirstComponent, SystemrmfprocessComponent, SystemrmfprepareComponent, SystemrmftaskComponent]
+  SystemTechnicalComponent,SystemFilterPipeDate, SystemFilterAuditName,SystemAuditFirstComponent, SystemAuditDetailsTab, SystemAuditLessonsComponent, SystemAssessDetailsComponent, SystemAssessTabComponent,SystemAuditDetailsTab1, SystemLegalformComponent, SystemLegalmainComponent,KeysPipe, SystemAssessDowntabsComponent, SystemAssessFindComponent, SystemAssessActionComponent, SystemAssessAttachmentsComponent, SystemAssessBudgetComponent, SystemAssessBusinessComponent, SystemAssessLessonsComponent, SystemAssessRecomendComponent, SystemAssessSecurityComponent, SystemAssessManagementComponent, SystemassesscontrolComponent, SystemassesslandingComponent, SystemauditlandingComponent, SystemauditcontrolComponent, SystemrmfComponent, SystemrmflandingComponent, SystemrmftabComponent, SystemrmffirstComponent, SystemrmfprocessComponent, SystemrmfprepareComponent, SystemrmftaskComponent, SystemrmffindingComponent, SystemrmfrecommendationsComponent, SystemrmfmanagementresponseComponent]
 })
 export class SystemComponentModule {}

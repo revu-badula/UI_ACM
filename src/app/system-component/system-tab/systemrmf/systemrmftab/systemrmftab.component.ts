@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./systemrmftab.component.css']
 })
 export class SystemrmftabComponent implements OnInit {
+  public disabled: any;
 
-  constructor() { }
+  constructor() {
+    this.disabled = JSON.parse(sessionStorage.getItem("rmfdisabled"));
+
+   }
 
   ngOnInit() {
   }

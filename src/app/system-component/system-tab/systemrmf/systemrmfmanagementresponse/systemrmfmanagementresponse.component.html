@@ -1,0 +1,61 @@
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div>
+    <form #myForm="ngForm">
+
+        <div style="padding-top: 2%;
+        margin-bottom: -1%;float: right;">
+
+            <fa *ngIf="showEdit" class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+
+            <fa *ngIf="myForm.valid" (click)="saveRmf()" class="fa fa-floppy-o rmfIcons" aria-hidden="true"></fa>
+
+            <fa (click)="showRmf()" class="fa fa-times rmfIcons" aria-hidden="true"></fa>
+
+
+
+        </div>
+
+        <div class="infoBox">
+            <div class="headerOfBox">
+                <h4>Management Response</h4>
+            </div>
+
+            <fieldset [disabled]="showEdit">
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+
+                        <label class="fam">Response By</label>
+
+                        <input type="text" name="responseBy" class="form-control" id="responseBy"
+                            [(ngModel)]="rmfApplicationDTO.responseBy">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="fam">Response date</label>
+                        <my-date-picker name="resDate" [disabled]='showEdit' class="inputState1"
+                            (dateChanged)="getResDate($event)" [(ngModel)]="resDate"></my-date-picker>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col-md-12">
+                    <span class="fam" style="font-weight: bold;">Description</span>
+                    <tinymce name="managementReponse" disabled=true *ngIf="showEdit"
+                        [(ngModel)]="rmfApplicationDTO.managementReponse" [config]="config">
+                    </tinymce>
+                    <tinymce name="managementReponse" *ngIf="!showEdit"
+                        [(ngModel)]="rmfApplicationDTO.managementReponse" [config]="config">
+                    </tinymce>
+                    remaining {{50000 -len}}
+                    </div>
+
+                </div>
+
+
+            </fieldset>
+        </div>
+    </form>
+</div>

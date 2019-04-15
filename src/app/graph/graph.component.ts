@@ -1500,7 +1500,7 @@ export class GraphComponent implements OnInit {
     },
   };
 
-  public pieChartLabels1: string[] = ['High', 'Medium', 'Low'];
+  public pieChartLabels1: string[] = ['High(50-75)%', 'Medium(75-90)%', 'Low(90-100)%'];
   public pieChartData1: number[] = [4, 2, 3];
   public pieChartType: string = 'pie';
   public pieChartOptions1 = {
