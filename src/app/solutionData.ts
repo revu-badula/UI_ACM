@@ -44,6 +44,7 @@ export class RMFDetailDTO {
     rmfDtlId: any;
     taskId: any;
     shortDescription: any;
+    description:any;
     outcomes: any;
     potentialInputs: any;
     discussion: any;
@@ -109,5 +110,7 @@ export class RMFApplicationDetailDTO {
     priority:any;
 	score:any;
     actionPlanSummary:any;
-	findingComments:any;
+    findingComments:any;
+    existingLifeCycle:any;
+    newLifeCycle:any;
 }

@@ -20,6 +20,8 @@ export class SystemrmfprepareComponent implements OnInit {
   public col4:any;
   public col5:any;
   public col6:any;
+  public openCount:any;
+  public closeCount:any;
   constructor(private router: Router, private httpClient: HttpClient,private route: ActivatedRoute) { 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
