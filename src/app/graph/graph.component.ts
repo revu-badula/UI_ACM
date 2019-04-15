@@ -1401,6 +1401,114 @@ export class GraphComponent implements OnInit {
     },
   };
 
+  public pieChartLabelsTask: string[] = ['Open', 'Closed'];
+  public pieChartDataTask: number[] = [4,6];
+  pieChartColorTask: any = [
+    {
+      backgroundColor: [
+        '#DC143C',
+        '#7FFF00'
+      ]
+    }
+  ];
+  public pieChartOptionsTask = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      onHover: (e: any) => {
+        e.target.style.cursor = 'pointer';
+      }
+    },
+    hover: {
+      onHover: function (e: any) {
+        var point = this.getElementAtEvent(e);
+        if (point.length) e.target.style.cursor = 'pointer';
+        else e.target.style.cursor = 'default';
+      }
+    },
+    animation: {
+      duration: 2000,
+      "onComplete": function () {
+        let chartInstance = this.chart,
+          ctx = chartInstance.ctx;
+
+        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+        ctx.textAlign = 'center';
+        //ctx.textBaseline = 'bottom';
+        ctx.fontWeight = "bold";
+        var textSize = chartInstance.width / 10;
+        var radius = chartInstance.outerRadius;
+        var midX = chartInstance.width / 2;
+        var midY = chartInstance.height / 2
+        this.data.datasets.forEach((dataset: any, i: any) => {
+          let meta = chartInstance.controller.getDatasetMeta(i);
+          meta.data.forEach((bar: any, index: any) => {
+            let data = dataset.data[index];
+            var w_offset = ctx.measureText(data).width / 2;
+            var h_offset = textSize / 4;
+            //var startAngle = dataset.data[i].startAngle;
+            //var endAngle = myPieChart.segments[i].endAngle;
+            // var startAngle = 4.71238898038469;
+            // var endAngle = 8.47;
+            var startAngle = chartInstance.controller.getDatasetMeta(i).data[index]._model.startAngle;
+            var endAngle = chartInstance.controller.getDatasetMeta(i).data[index]._model.endAngle;
+            ctx.fillStyle = "white";
+            var middleAngle = startAngle + ((endAngle - startAngle) / 2);
+            var posX = (radius / 2) * Math.cos(middleAngle) + midX;
+            var posY = (radius / 2) * Math.sin(middleAngle) + midY;
+            ctx.fillText(data, posX + w_offset, posY + h_offset);
+          });
+        });
+      }
+
+    },
+    scales: {
+      display: false,
+      yAxes: [
+        {
+          id: 'Audits',
+          scaleLabel: {
+            display: true,
+            // labelString: 'Audits',
+            fontColor: '#000',
+            fontWeight: 'bold',
+            fontSize: '20'
+          },
+          ticks: {
+            display: false,
+          },
+          gridLines: {
+            display: false
+          }
+
+        }
+      ],
+      xAxes: [
+
+        {
+          id: 'My Tasks',
+          scaleLabel: {
+            display: true,
+            labelString: 'My Tasks',
+            fontColor: '#000',
+            fontWeight: 'bold',
+            fontSize: '15'
+          },
+
+          ticks: {
+            display: false
+          },
+          gridLines: {
+            display: false
+          }
+
+        }
+      ]
+    },
+  };
+
+
+
 
   public pieChartLabels6: string[] = ['Signed', 'UnSigned'];
   public pieChartData6: number[] = [];
@@ -1507,6 +1615,10 @@ export class GraphComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: false,
     legend: {
+      labels: {
+        fontColor: '#000',
+        boxWidth:10
+      },
       onHover: (e: any) => {
         e.target.style.cursor = 'pointer';
       }
@@ -2473,6 +2585,10 @@ export class GraphComponent implements OnInit {
     }
   }
   chartClicked(value: any) {
+
+  }
+
+  chartClickedTask(value: any) {
 
   }
 

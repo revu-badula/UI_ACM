@@ -18,7 +18,7 @@
                 <span style="font-weight: bold;">Dashboards -></span>
               </a>
               <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="true">Systems</a>
+                aria-controls="nav-profile" aria-selected="true">My Dashboard</a>
               <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                 aria-controls="nav-home" aria-selected="false">Localities</a>
 
@@ -132,6 +132,21 @@
                   </div>
 
                 </div>
+
+
+                <div class="col-md-6">
+                  <div style="display: block; width: 70vh; height: 30vh;background-color: #fff;margin-left: 1vw;">
+                    <canvas baseChart [data]="pieChartDataTask" [labels]="pieChartLabelsTask" [chartType]="pieChartType"
+                      (chartClick)="chartClickedTask($event)" [options]="pieChartOptionsTask"
+                      [colors]="pieChartColorTask"></canvas>
+
+                  </div>
+
+                </div>
+
+
+
+
               </div>
             </div>
 

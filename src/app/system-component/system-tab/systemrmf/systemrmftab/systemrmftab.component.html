@@ -46,6 +46,9 @@
                             <a style="color:black" routerLinkActive="active" routerLink="/system/tab2/assessment/Tabs2/lessons2">Lessons
                                 Learned</a>
                         </li>
+                        <li class="StepProgress-item current" [ngClass]="{disabled:disabled}">
+                            <a style="color:black" (click)="getFile()">Download POA&M</a>
+                        </li>
                     </ul>
                 </div>
             </div>

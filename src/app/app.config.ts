@@ -143,6 +143,7 @@ export const APP_CONFIG = {
   getAppRMFDetailsonProcess: apiBaseUrl + 'getAppRMFDetailsonProcess',
   getAppRMFDetails: apiBaseUrl + 'getAppRMFDetails',
   updateAppRMFDetails: apiBaseUrl + 'updateAppRMFDetails',
+  generatePOAM:apiBaseUrl + 'generatePOAM',
 
 }
 

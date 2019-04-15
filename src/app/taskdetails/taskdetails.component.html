@@ -110,7 +110,7 @@
             <select class="form-control" style="width:50%;" name="status" [(ngModel)]="rmfDetailDTO.status"
               (change)="getStatus($event.target.value)" required>
               <option value="true">Open</option>
-              <option value="false">Close</option>
+              <option value="false">Closed</option>
             </select>
           </div>
 
@@ -130,7 +130,7 @@
                   <tinymce name="primaryResponsibility" *ngIf="!showForm" [(ngModel)]="rmfDetailDTO.primaryResponsibility"
                     [config]="config8"></tinymce>
                   remaining {{50000 -len8}} -->
-            <table>
+            <table  style="margin-left: auto;margin-right: auto;">
               <th>
                 Primary Responsibility
               </th>

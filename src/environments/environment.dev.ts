@@ -4,9 +4,11 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-    production: true,
-    url:'http://localhost:8080/ApplicationPortfolioManager/services/',
-    redirectURL:'http://localhost:8080/Integra/callback',
-    clientId:'0oai1582ptdSfti3f0h7'
-  };
-  
+  production: true,
+  url:'http://localhost:8080/ApplicationPortfolioManager/services/',
+  redirectURL:'http://localhost:8080/Integra/callback',
+  clientId:'0oai1582ptdSfti3f0h7'
+  // url: 'http://172.24.16.56:8080/ApplicationPortfolioManager/services/',
+  // redirectURL: 'http://172.24.16.56:8080/Integra/callback',
+  // clientId: '0oahpllrzzFIIJmIU0h7'
+};

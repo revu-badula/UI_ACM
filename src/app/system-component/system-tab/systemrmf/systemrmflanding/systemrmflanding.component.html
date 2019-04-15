@@ -15,7 +15,7 @@
         <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right; font-size: 24px;" (click)="goTo()"></i>
       </span>
       <br>
-      <div class="infoBox">
+      <div class="infoBox" *ngIf="show">
 
         <div class="headerOfBox">
           <h4>Overview</h4>
@@ -43,9 +43,9 @@
           <tbody>
             <tr *ngFor="let audit of rmf | paginate: { itemsPerPage: 10, currentPage: p }">
               <td>
-                <a (click)="getAudit(audit.rmfAppId)" style="cursor:pointer;color:blue;">
+                <a (click)="getPicture(audit)" style="cursor:pointer;color:blue;">
                   {{audit.name }}
-                  </a>
+                </a>
               </td>
               <td>{{audit.rmfTypeName}}</td>
               <td>{{audit.reviewDate | filterDate | date:'MM/dd/yyyy'}}</td>
@@ -57,6 +57,37 @@
         </table>
         <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
       </div>
+
+      <div class="infoBox" *ngIf="!show">
+
+        <div class="headerOfBox">
+          <h4>Overview</h4>
+        </div>
+        <div style="float: right;cursor: pointer;" (click)="getBack()">
+          Go Back
+        </div>
+    
+        <div class="arrowBox" (click)="getAudit()" style="cursor: pointer;">
+          {{rmfname}}<br><br>
+          {{rmftype}}
+        </div>
+        <div class="basicContent" (click)="getAudit()" style="cursor: pointer;">
+          {{sysname}}
+        </div>
+        <div class="arrowBox2" (click)="getFile()" style="cursor: pointer;">
+          PoA&M
+        </div>
+        <div class="arrowBox3">
+          score
+        </div>
+        <div class="arrowBox4">
+          ssp
+        </div>
+        <div class="arrowBox5">
+          Sars
+        </div>
+      </div>
+
     </div>
   </form>
 </div>

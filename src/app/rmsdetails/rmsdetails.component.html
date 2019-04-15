@@ -27,17 +27,17 @@
       <h4>{{name}}</h4>
     </div>
     <div class="form-row">
-    <div class="col-md-3">
-      Open - {{openCount}}
+      <div class="col-md-3">
+        Open - {{openCount}}
+      </div>
+      <div class="col-md-3">
+        Close - {{closeCount}}
+      </div>
     </div>
-    <div class="col-md-3">
-      Close - {{closeCount}}
-    </div>
-  </div>
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th  (click)="handleSort1('taskId')">Tasks<i class="fa fa-arrow-down" *ngIf="!col1"></i>
+          <th (click)="handleSort1('taskId')">Tasks<i class="fa fa-arrow-down" *ngIf="!col1"></i>
             <i class="fa fa-arrow-up" *ngIf="col1"></i></th>
           <th (click)="handleSort2('outcomes')">Outcomes<i class="fa fa-arrow-down" *ngIf="!col2"></i>
             <i class="fa fa-arrow-up" *ngIf="col2"></i></th>
