@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from 'app/app.config';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AlertService } from 'app/alert.service';
 
 @Component({
   selector: 'app-rms',
@@ -12,9 +14,17 @@ export class RmsComponent implements OnInit {
 
   public showData: boolean;
   public process: any;
-  constructor(private httpClient: HttpClient, private router: Router) {
+  public subscription: Subscription;
+  public message:any;
+  public show:boolean=false;
+  constructor(private httpClient: HttpClient, private router: Router,private alertService:AlertService) {
     sessionStorage.removeItem("rmfSrcId");
     sessionStorage.removeItem("rmfGrpId");
+    // this.subscription=this.alertService.getChildData()
+    // .subscribe((data:any) =>{
+    
+    // });
+
   }
 
   ngOnInit() {
@@ -52,5 +62,8 @@ export class RmsComponent implements OnInit {
         console.log(error)
       });
   }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+}
 
 }

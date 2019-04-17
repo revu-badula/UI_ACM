@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
 import { Router } from '@angular/router';
+import { AlertService } from 'app/alert.service';
 
 @Component({
   selector: 'app-rms-start',
@@ -14,7 +15,7 @@ export class RmsStartComponent implements OnInit {
   public rmfSrcId:any;
   public RMFGroup:any;
   public rmfGrpId:any;
-  constructor(private httpClient: HttpClient,private router:Router) { 
+  constructor(private httpClient: HttpClient,private router:Router,private alertService:AlertService) { 
     this.rmfSrcId=+sessionStorage.getItem("rmfSrcId");
       //this.policyGrpId=UtilService.policyGrpId;
       this.rmfGrpId=+sessionStorage.getItem("rmfGrpId");
@@ -34,6 +35,7 @@ export class RmsStartComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.RMF=data;
+        //this.alertService.emitChange(this.RMF);
       }, error => {
         this.loading = false;
         console.log(error);

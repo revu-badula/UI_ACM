@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 @Injectable()
 export class AlertService {
     private subject = new Subject<any>();
+    private childData = new Subject<any>();
     private keepAfterNavigationChange = false;
 
     constructor(private router: Router) {
@@ -17,6 +18,7 @@ export class AlertService {
                 } else {
                     // clear alert
                     this.subject.next();
+                    this.childData.next();
                 }
             }
         });
@@ -34,5 +36,19 @@ export class AlertService {
 
     getMessage(): Observable<any> {
         return this.subject.asObservable();
+    }
+
+
+    //private emitChangeSource = new Subject<any>();
+
+    //changeEmitted$ = this.emitChangeSource.asObservable();
+
+    emitChange(message: string, keepAfterNavigationChange = false) {
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.childData.next({text: message });
+    }
+
+    getChildData(): Observable<any> {
+        return this.childData.asObservable();
     }
 }
