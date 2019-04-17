@@ -12,22 +12,6 @@
       <h4>Controls</h4>
     </div>
     <div>
-      <!-- <div class="row">
-        <div class="col-md-12" *ngIf="showFamily">
-          <label class="fam"> Please choose a Family</label>
-          <select class="form-control" style="width:50%;" id="priority" (change)="getFamily($event.target.value)">
-
-            <option value="all" selected>All</option>
-            <option *ngFor="let fam of families" value="{{fam.policyFamilyID}}">{{fam.familyName}}</option>
-          </select>
-        </div>
-      </div> -->
-
-
-
-
-      <br>
-
       <div class="row">
         <div class="col-md-6">
 
@@ -89,14 +73,17 @@
       <br>
       <div>
         <button type="button" class="btn btn-outline-dark confbtn" style="float:left"
-          (click)="toggle()">{{buttonName}}</button>
+          (click)="toggle()">
+          <i [ngClass]="showN?'fa fa-plus-circle':'fa fa-minus-circle'" aria-hidden="true"></i>
+
+        </button>
         <button type="button" class="btn btn-outline-dark confbtn" style="float: right"
           (click)="overridePolicyFamily()">Submit</button>
       </div>
       <br>
       <br>
 
-      <div *ngIf="showN">
+      <div *ngIf="!showN">
         <table class="table table-bordered">
           <thead>
             <tr>

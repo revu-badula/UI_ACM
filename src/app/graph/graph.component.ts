@@ -2546,6 +2546,7 @@ export class GraphComponent implements OnInit {
   public showBar: boolean;
   public showSystem: boolean;
   public showRecert:boolean;
+  public showHover:boolean;
   constructor(private httpClient: HttpClient, private router: Router, private utilService: UtilService) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -2722,7 +2723,6 @@ export class GraphComponent implements OnInit {
 
     }
   }
-
   getData5() {
     this.pieChartData5 = [];
     this.loading = true;

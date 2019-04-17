@@ -144,6 +144,8 @@ export const APP_CONFIG = {
   getAppRMFDetails: apiBaseUrl + 'getAppRMFDetails',
   updateAppRMFDetails: apiBaseUrl + 'updateAppRMFDetails',
   generatePOAM:apiBaseUrl + 'generatePOAM',
+  generateSsp:apiBaseUrl + 'generateSSP',
+  generateSars:apiBaseUrl + 'generateSARs'
 
 }
 

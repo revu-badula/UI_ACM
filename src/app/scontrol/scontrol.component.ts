@@ -429,8 +429,6 @@ export class ScontrolComponent implements OnInit {
 
   toggle() {
     this.showN = !this.showN;
-
-    // CHANGE THE NAME OF THE BUTTON.
     if (this.showN)
       this.buttonName = "Hide";
     else

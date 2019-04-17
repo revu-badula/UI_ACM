@@ -181,6 +181,7 @@ import { SystemrmfmanagementresponseComponent } from './system-component/system-
 import { rmfGuard } from './rmfguard';
 import { SystemrmfactionplanComponent } from './system-component/system-tab/systemrmf/systemrmfactionplan/systemrmfactionplan.component';
 import { SystemrmfbusinessriskComponent } from './system-component/system-tab/systemrmf/systemrmfbusinessrisk/systemrmfbusinessrisk.component';
+import { DeviceentryComponent } from './deviceentry/deviceentry.component';
 
 const appRoutes: Routes = [
 
@@ -220,7 +221,8 @@ const appRoutes: Routes = [
   { path: 'createQuestion', component: CreateQuestionComponent, canActivate: [AuthGuard] },
   { path: 'resImpactAnalysis', component: ReportspageComponent, canActivate: [AuthGuard] },
   { path: 'upcomingAudit', component: UpcomingAuditComponent, canActivate: [AuthGuard] },
-  { path: 'newPolicy', component: NewpolicyComponent },
+  { path: 'newPolicy', component: NewpolicyComponent, canActivate: [AuthGuard] },
+  { path: 'deviceEntry', component: DeviceentryComponent, canActivate: [AuthGuard] },
 
 
   {
@@ -525,34 +527,34 @@ const appRoutes: Routes = [
                 path: '', component: SystemrmflandingComponent, canActivate: [SystemGuard]
               },
               {
-                path:"tabrmf", component: SystemrmftabComponent, canActivate: [SystemGuard],
-                children:[
+                path: "tabrmf", component: SystemrmftabComponent, canActivate: [SystemGuard],
+                children: [
                   {
-                    path:'rmfStart', component: SystemrmffirstComponent, canActivate:[SystemGuard]
+                    path: 'rmfStart', component: SystemrmffirstComponent, canActivate: [SystemGuard]
                   },
                   {
-                    path:'rmfProcess', component: SystemrmfprocessComponent, canActivate:[rmfGuard]
+                    path: 'rmfProcess', component: SystemrmfprocessComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfControls/:id', component: SystemrmfprepareComponent, canActivate:[rmfGuard]
+                    path: 'rmfControls/:id', component: SystemrmfprepareComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmftask/:id', component: SystemrmftaskComponent, canActivate:[rmfGuard]
+                    path: 'rmftask/:id', component: SystemrmftaskComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfFinding', component: SystemrmffindingComponent, canActivate:[rmfGuard]
+                    path: 'rmfFinding', component: SystemrmffindingComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfRecom', component: SystemrmfrecommendationsComponent, canActivate:[rmfGuard]
+                    path: 'rmfRecom', component: SystemrmfrecommendationsComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfManage', component: SystemrmfmanagementresponseComponent, canActivate:[rmfGuard]
+                    path: 'rmfManage', component: SystemrmfmanagementresponseComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfaction', component: SystemrmfactionplanComponent, canActivate:[rmfGuard]
+                    path: 'rmfaction', component: SystemrmfactionplanComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfbusiness', component: SystemrmfbusinessriskComponent, canActivate:[rmfGuard]
+                    path: 'rmfbusiness', component: SystemrmfbusinessriskComponent, canActivate: [rmfGuard]
                   }
                 ]
               }

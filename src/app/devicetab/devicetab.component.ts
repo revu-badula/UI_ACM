@@ -5,10 +5,9 @@ import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { Device, Server } from '../data_modelDeviceInventory';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../util.service';
-import { FilterPipe } from '../convertDate.pipe';
 import { DatePipe } from '@angular/common';
-import { IMyDate, IMyDpOptions } from 'mydatepicker';
-import * as moment from 'moment';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-devicetab',
@@ -27,13 +26,19 @@ export class DevicetabComponent implements OnInit {
   public modifiedDt: boolean = false;
   public rendt: boolean = false;
   public updtBy: boolean = false;
-  constructor(private _apiservice: ApiserviceService, private http: Http, private modalService: NgbModal, private utilservice: UtilService, private datepipe: DatePipe) {
+  constructor(private _apiservice: ApiserviceService, 
+    private http: Http, private modalService: NgbModal, 
+    private utilservice: UtilService, private datepipe: DatePipe,private _location: Location) {
     this.device = new Device();
 
   }
 
   ngOnInit() {
     this.getDatabases();
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
 

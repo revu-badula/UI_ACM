@@ -103,20 +103,22 @@
 
                     <div style="display: block;width: 70vh; height: 45vh;margin-left: 0vw;background-color: #fff;">
                       <canvas baseChart [datasets]="lineChartDataSystems" [labels]="lineChartLabelsSystems"
-                        chartType="bar" [legend]="true"  (chartClick)="chartClickedSystems($event)"  [options]="chartOption1" [colors]="chartColorsSystems"></canvas>
+                        chartType="bar" [legend]="true" (chartClick)="chartClickedSystems($event)"
+                        [options]="chartOption1" [colors]="chartColorsSystems"></canvas>
                     </div>
                   </div>
 
                 </div>
                 <div class="col-md-6">
+
                   <div
                     style="display: block; width: 70vh; height: 45vh;background-color: #fff;margin-left: 1vw;padding-top: 3vh;">
-
                     <canvas baseChart [data]="pieChartData1" [labels]="pieChartLabels1" chartType="pie"
                       [options]="pieChartOptions1" [colors]="pieChartColor1"
                       (chartClick)="chartClicked1($event)"></canvas>
 
                   </div>
+
 
                 </div>
               </div>

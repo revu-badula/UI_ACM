@@ -1,0 +1,119 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<app-navigation-component></app-navigation-component>
+<div class="navigate sticky-top">
+
+  <div class="form-options">
+    <div class="home-back">
+      <a href="javascript:void(0)" style="color: #000;" (click)="backClicked()">
+        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+          data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+      </a>
+    </div>
+
+
+  </div>
+</div>
+<h3 class="pageTitle">Infrastructure Manager</h3>
+<hr>
+<form #formName="ngForm" enctype="multipart/form-data">
+  <div id="form1">
+    <div class="disclaimer"><span style="float:left">Please use this screen to view Infrastructure Manager
+        information.</span>&nbsp;&nbsp;&nbsp;
+      <span style="float:right">
+        <span class="asterisk">*</span> marked fields are mandatory
+      </span> </div>
+
+    <br>
+    <div class="form-row">
+      <div class="col-md-3">
+        <div class="card"
+          style="width: 16rem;height:14em;cursor: pointer;margin-right: auto;display: block;">
+          <div class="card-body" (click)="getValue('devicetab')">
+            <div class="card-heading">
+              <h5 class="card-title">Database Servers</h5>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="fa fa-database fa-3x" style="color:cadetblue"></i>
+              </div>
+              <div class="col-sm-9 text">
+               Click here to manage Database Servers.
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-3">
+        <div class="card"
+          style="width: 16rem;height:14em;cursor: pointer;display: block;">
+          <div class="card-body" (click)="getValue('devicetab')">
+            <div class="card-heading">
+              <h5 class="card-title">Application Servers</h5>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="fa fa-server fa-3x" style="color:coral"></i>
+              </div>
+              <div class="col-sm-9 text">
+                  Click here to manage Application Servers.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-3">
+        <div class="card"
+          style="width: 16rem;height:14em;cursor: pointer;display: block;">
+          <div class="card-body" (click)="getValue('devicetab')">
+            <div class="card-heading">
+              <h5 class="card-title">All other Devices</h5>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="fa fa-desktop fa-3x" style="color:yellowgreen"></i>
+              </div>
+              <div class="col-sm-9 text">
+                  Click here to manage other Devices.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-3">
+        <div class="card"
+          style="width: 16rem;height:14em;cursor: pointer;display: block;">
+          <div class="card-body" (click)="getValue('deviceInventory')">
+            <div class="card-heading">
+              <h5 class="card-title">Create</h5>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="fa fa-plus-square fa-3x" style="color:teal"></i>
+              </div>
+              <div class="col-sm-9 text">
+                  Click here to create new Infrastructure Manager
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</form>

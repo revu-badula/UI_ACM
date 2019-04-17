@@ -66,18 +66,18 @@
         <div style="float: right;cursor: pointer;" (click)="getBack()">
           Go Back
         </div>
-    
-        <div class="arrowBox" (click)="getAudit()" style="cursor: pointer;">
+
+        <!-- <div class="arrowBox" (click)="getAudit()" style="cursor: pointer;">
           {{rmfname}}<br><br>
           {{rmftype}}
-        </div>
-        <div class="basicContent" (click)="getAudit()" style="cursor: pointer;">
+        </div> -->
+        <!-- <div class="basicContent" (click)="getAudit()" style="cursor: pointer;">
           {{sysname}}
-        </div>
-        <div class="arrowBox2" (click)="getFile()" style="cursor: pointer;">
+        </div> -->
+        <!-- <div class="arrowBox2" (click)="getFile()" style="cursor: pointer;">
           PoA&M
-        </div>
-        <div class="arrowBox3">
+        </div> -->
+        <!-- <div class="arrowBox3">
           score
         </div>
         <div class="arrowBox4">
@@ -85,8 +85,129 @@
         </div>
         <div class="arrowBox5">
           Sars
-        </div>
+        </div> -->
+
+        <table style="border: none;
+        margin-left: auto;
+        margin-right: auto;">
+          <tr id="rmftab1">
+            <td>
+              <div class="col-md-3">
+                <div class="card" (click)="getAudit()" style="width: 16rem;height:14em;cursor: pointer;margin-right: auto;display: block;
+                margin-left: -38%;background-color: cornsilk;">
+                  <div class="card-body">
+                    <div class="card-heading">
+                      <h5 class="card-title">Apply RMF</h5>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-9 text" style="font-size:18px;
+                      font-weight: bold;text-align: center;">
+                        {{rmfname}}<br><br>
+                        {{rmftype}}
+
+                      </div>
+                    </div>
+                    <div class="triangle-left"></div>
+
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="col-md-3">
+                <div class="card" (click)="getAudit()" style="width: 16rem;height:14em;
+                cursor: pointer;
+                display: block;background-color:ghostwhite;margin-right: 12px;">
+                  <div class="card-body">
+                    <div class="card-heading">
+                      <h5 class="card-title">System Under Review</h5>
+                    </div>
+                    <hr>
+                    <div class="row">
+
+                      <div class="col-sm-9 text" style="text-align: center;
+                            margin-left: 33px;
+                            line-height: 13vh;
+                            font-size:18px;
+                            font-weight: bold;">
+                        {{sysname}}
+
+
+                      </div>
+                    </div>
+                    <div class="triangle-left1"></div>
+
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td style="padding-left: 28px;">
+          <tr id="rmftab1">
+            <h5 style="padding-bottom: 4px;">Review Outcomes</h5>
+          </tr>
+          <tr id="rmftab1">
+            <!-- <div class="col-md-3">
+                        <div class="card"
+                          style="width: 10rem;height:3em;cursor: pointer;margin-right: auto;display: block;">
+                          <div class="card-body" (click)="getValue('devicetab')">
+                            <div class="card-heading">
+                              <h5 class="card-title">System</h5>
+                            </div>
+                          
+                         
+                
+                          </div>
+                        </div>
+                      </div> -->
+            <div class="arr2" (click)="getFile('poam')" style="cursor: pointer;max-width: 90%;margin-bottom: 6px;">
+              PoA&M
+            </div>
+          </tr>
+          <tr id="rmftab1">
+            <!-- <div class="col-md-3">
+              <div class="card" style="width: 10rem;height:3em;cursor: pointer;margin-right: auto;display: block;">
+                <div class="card-body" (click)="getValue('devicetab')">
+                  <div class="card-heading">
+                    <h5 class="card-title">System</h5>
+                  </div>
+
+
+                </div>
+              </div>
+            </div> -->
+
+            <div class="arr2" style="cursor: pointer;max-width: 90%;margin-bottom: 6px;">
+              Score
+            </div>
+          </tr>
+          <tr id="rmftab1">
+            <div class="arr2" (click)="getFile('ssp')" style="cursor: pointer;max-width: 90%;margin-bottom: 6px;">
+              SSP
+            </div>
+            <!-- <div class="col-md-3">
+              <div class="card" style="width: 10rem;height:3em;cursor: pointer;margin-right: auto;display: block;">
+                <div class="card-body" (click)="getValue('devicetab')">
+                  <div class="card-heading">
+                    <h5 class="card-title">System</h5>
+                  </div>
+
+
+                </div>
+              </div>
+            </div> -->
+          </tr>
+          <tr id="rmftab1">
+            <div class="arr2" (click)="getFile('sars')" style="cursor: pointer;max-width: 90%;margin-bottom: 6px;">
+              SARs
+            </div>
+          </tr>
+
+          </td>
+          </tr>
+        </table>
       </div>
+
 
     </div>
   </form>

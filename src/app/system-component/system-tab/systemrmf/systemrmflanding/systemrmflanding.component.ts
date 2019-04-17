@@ -98,10 +98,22 @@ export class SystemrmflandingComponent implements OnInit {
     this.router.navigate(['/system/tab2/rmf/tabrmf/rmfStart']);
   }
 
-  getFile()
+  getFile(value:any)
   {
+    if(value === 'poam'){
     let url=APP_CONFIG.generatePOAM;
     window.open(url + '?' + 'rmfAppId' + '=' + this.systemRmfId);
+    }
+    else if(value === 'ssp')
+    {
+      let url=APP_CONFIG.generateSsp;
+      window.open(url + '?' + 'rmfAppId' + '=' + this.systemRmfId);
+    }
+    else if(value === 'sars')
+    {
+      let url=APP_CONFIG.generateSars;
+      window.open(url + '?' + 'rmfAppId' + '=' + this.systemRmfId);
+    }
   }
 
   handleSort1(value: any) {

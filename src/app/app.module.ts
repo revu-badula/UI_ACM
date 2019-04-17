@@ -114,6 +114,7 @@ import { RmsStartComponent } from './rms-start/rms-start.component';
 import { RmsdetailsComponent } from './rmsdetails/rmsdetails.component';
 import { RmsoverviewComponent } from './rmsoverview/rmsoverview.component';
 import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
+import { DeviceentryComponent } from './deviceentry/deviceentry.component';
 
 
 @NgModule({
@@ -195,7 +196,8 @@ import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
     RmsStartComponent,
     RmsdetailsComponent,
     RmsoverviewComponent,
-    TaskdetailsComponent
+    TaskdetailsComponent,
+    DeviceentryComponent
 
   ],
 
