@@ -7,8 +7,7 @@ import { DatePipe } from '@angular/common';
 import { DialogService } from '../../../../dialog.service';
 import { Cookie } from 'ng2-cookies';
 declare let tinymce: any;
-import * as moment from 'moment';
-import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-systemrmfbusinessrisk',
   templateUrl: './systemrmfbusinessrisk.component.html',

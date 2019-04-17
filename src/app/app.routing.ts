@@ -182,6 +182,10 @@ import { rmfGuard } from './rmfguard';
 import { SystemrmfactionplanComponent } from './system-component/system-tab/systemrmf/systemrmfactionplan/systemrmfactionplan.component';
 import { SystemrmfbusinessriskComponent } from './system-component/system-tab/systemrmf/systemrmfbusinessrisk/systemrmfbusinessrisk.component';
 import { DeviceentryComponent } from './deviceentry/deviceentry.component';
+import { SystemrmfsecurityriskComponent } from './system-component/system-tab/systemrmf/systemrmfsecurityrisk/systemrmfsecurityrisk.component';
+import { SystemrmfbudgetComponent } from './system-component/system-tab/systemrmf/systemrmfbudget/systemrmfbudget.component';
+import { SystemrmfattachmentsComponent } from './system-component/system-tab/systemrmf/systemrmfattachments/systemrmfattachments.component';
+import { SystemrmflessonslearnedComponent } from './system-component/system-tab/systemrmf/systemrmflessonslearned/systemrmflessonslearned.component';
 
 const appRoutes: Routes = [
 
@@ -555,6 +559,18 @@ const appRoutes: Routes = [
                   },
                   {
                     path: 'rmfbusiness', component: SystemrmfbusinessriskComponent, canActivate: [rmfGuard]
+                  },
+                  {
+                    path:'rmfsecurity', component: SystemrmfsecurityriskComponent,canActivate:[rmfGuard]
+                  },
+                  {
+                    path:'rmfbudget', component: SystemrmfbudgetComponent,canActivate:[rmfGuard]
+                  },
+                  {
+                    path:'rmfattachment', component: SystemrmfattachmentsComponent,canActivate:[rmfGuard]
+                  },
+                  {
+                    path:'rmflessons', component: SystemrmflessonslearnedComponent,canActivate:[rmfGuard]
                   }
                 ]
               }

@@ -7,14 +7,12 @@ import { DatePipe } from '@angular/common';
 import { DialogService } from '../../../../dialog.service';
 import { Cookie } from 'ng2-cookies';
 declare let tinymce: any;
-
-
 @Component({
-  selector: 'app-systemrmfsecurityrisk',
-  templateUrl: './systemrmfsecurityrisk.component.html',
-  styleUrls: ['./systemrmfsecurityrisk.component.css']
+  selector: 'app-systemrmfbudget',
+  templateUrl: './systemrmfbudget.component.html',
+  styleUrls: ['./systemrmfbudget.component.css']
 })
-export class SystemrmfsecurityriskComponent implements OnInit {
+export class SystemrmfbudgetComponent implements OnInit {
 
   public loading: boolean;
   public showEdit: boolean=true;
@@ -107,8 +105,8 @@ export class SystemrmfsecurityriskComponent implements OnInit {
       .subscribe((data: any) => {
       this.loading = false;
       this.rmfApplicationDTO = data
-      if (this.rmfApplicationDTO.securityRisks != undefined) {
-        let des = this.rmfApplicationDTO.securityRisks.replace(/<[^>]+>/gm, '');
+      if (this.rmfApplicationDTO.budgetDescriptionhtml != undefined) {
+        let des = this.rmfApplicationDTO.budgetDescriptionhtml.replace(/<[^>]+>/gm, '');
         this.len = des.length;
       }
       
@@ -143,6 +141,7 @@ export class SystemrmfsecurityriskComponent implements OnInit {
       });
 
   }
+
 
 
 

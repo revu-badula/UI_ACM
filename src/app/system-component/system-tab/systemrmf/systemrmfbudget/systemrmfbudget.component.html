@@ -1,0 +1,62 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<div>
+  <form #myForm="ngForm">
+
+    <div style="
+    margin-bottom: -1%;float: right;">
+
+      <fa *ngIf="showEdit" class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+
+      <fa *ngIf="myForm.valid && !showEdit" (click)="saveRmf()" class="fa fa-floppy-o rmfIcons" aria-hidden="true"></fa>
+
+      <fa (click)="showRmf()" class="fa fa-times rmfIcons" aria-hidden="true"></fa>
+
+
+
+    </div>
+    <div class="infoBox">
+      <div class="headerOfBox">
+        <h4>Budget</h4>
+      </div>
+
+      <fieldset [disabled]="showEdit">
+
+
+        <div class="form-row">
+
+
+          <div class="col-md-12">
+            <span class="fam" style="font-weight: bold;">Description</span>
+            <tinymce name="description" disabled=true *ngIf="showEdit"
+              [(ngModel)]="rmfApplicationDTO.budgetDescriptionhtml" [config]="config">
+            </tinymce>
+            <tinymce name="description" *ngIf="!showEdit" [(ngModel)]="rmfApplicationDTO.budgetDescriptionhtml"
+              [config]="config">
+            </tinymce>
+            remaining {{50000 -len}}
+
+          </div>
+        </div>
+
+
+        <div class="form-row">
+          <label class="fam">Overall estimates</label>
+
+          <div class="input-group col-md-6">
+
+            <div class="input-group-prepend">
+              <span class="input-group-text dol">$</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="overallEstimates"
+              [(ngModel)]="rmfApplicationDTO.budget" style="margin-top: 10px;" currencyMask
+              [options]="{ prefix:'', thousands:',', decimal:'.',align:'left',allowNegative:false,nullable:true}">
+          </div>
+        </div>
+
+      </fieldset>
+    </div>
+  </form>
+</div>

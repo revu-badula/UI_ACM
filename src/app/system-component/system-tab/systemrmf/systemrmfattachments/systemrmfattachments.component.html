@@ -1,0 +1,59 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div>
+  <form>
+
+
+    <div style="margin-bottom: -1%;float: right;">
+    
+          <fa *ngIf="showEdit" class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
+      
+          <fa *ngIf="!showEdit" (click)="saveRmf()" class="fa fa-floppy-o rmfIcons" aria-hidden="true"></fa>
+    
+
+
+          <fa (click)="showRmf()" class="fa fa-times rmfIcons" aria-hidden="true"></fa>
+     
+
+    </div>
+
+
+    <div class="infoBox">
+      <div class="headerOfBox">
+        <h4>Attachments</h4>
+      </div>
+      <fieldset [disabled]="showEdit">
+
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <h5>RMF Attachments</h5>
+            <br>
+        
+            <input type="file" #fileInput (change)="createMOUDTO($event)" accept=".pdf,.doc,.docx">
+          </div>
+         
+
+
+        </div>
+
+      </fieldset>
+      <br>
+      <table id="myTable">
+        <tr>
+          <th>File Name</th>
+          <th *ngIf="!showForm">Action</th>
+        </tr>
+        <tr *ngFor="let file of rmfApplicationDTO.appAuditFileDTOs let i = index">
+          <td *ngIf="file.status" (click)="getFile(file.appAuditFileId)" style="cursor: pointer;color:blue;">
+            {{file.fileName}}
+          </td>
+          <td *ngIf="file.status && !showForm" (click)="deleteFile(file.appAuditFileId,i)" style="cursor:pointer;">
+            <i class="fa fa-trash" aria-hidden="true" style="font-size: 24px;"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>

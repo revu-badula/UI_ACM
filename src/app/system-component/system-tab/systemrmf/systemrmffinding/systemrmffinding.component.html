@@ -9,7 +9,7 @@
     margin-bottom: -1%;float: right;">
 
       <fa class="edit-icon icons" *ngIf="showEdit" [name]="'edit'" (click)="valueChanged()"></fa>
-      <fa *ngIf="myForm.valid" (click)="saveRmf()" class="fa fa-floppy-o rmfIcons" aria-hidden="true">
+      <fa *ngIf="myForm.valid && !showEdit" (click)="saveRmf()" class="fa fa-floppy-o rmfIcons" aria-hidden="true">
       </fa>
       <fa (click)="showRmf()" class="fa fa-times rmfIcons" aria-hidden="true"></fa>
 

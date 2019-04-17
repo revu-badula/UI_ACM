@@ -50,4 +50,8 @@ export class RMFApplicationDTO {
   rmfTypeName:any;
   summary:any;
   businessRisks:any;
+  securityRisks:any;
+  budget:any;
+  appAuditFileDTOs:any;
+  lessonsEnteredDate:any;
 }

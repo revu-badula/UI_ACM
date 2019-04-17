@@ -3,8 +3,8 @@
 </div>
 
 <div>
-  <form #myForm="ngForm">
 
+  <form #myForm="ngForm">
 
     <div style="
     margin-bottom: -1%;float: right;">
@@ -12,8 +12,8 @@
       <fa *ngIf="showEdit" class="edit-icon icons" [name]="'edit'" (click)="valueChanged()"></fa>
 
 
-
       <fa *ngIf="myForm.valid && !showEdit" (click)="saveRmf()" class="fa fa-floppy-o rmfIcons" aria-hidden="true"></fa>
+
 
       <fa (click)="showRmf()" class="fa fa-times rmfIcons" aria-hidden="true"></fa>
 
@@ -22,37 +22,41 @@
     </div>
     <div class="infoBox">
       <div class="headerOfBox">
-        <h4>Business Risk</h4>
+        <h4>Lessons Learned</h4>
       </div>
+
       <fieldset [disabled]="showEdit">
 
         <div class="form-row">
+          <div class="form-group col-md-6">
 
+            <label class="fam">Entered By</label>
+            <input type="text" class="form-control" name="enteredBy"
+              [(ngModel)]="rmfApplicationDTO.lessonsEnteredBy">
+          </div>
+          <div class="form-group col-md-6">
 
-
-
-          <div class="col-md-12">
-            <span class="fam" style="font-weight: bold;">Description</span>
-            <tinymce name="description" disabled=true *ngIf="showEdit" [(ngModel)]="rmfApplicationDTO.businessRisks"
-              [config]="config">
-            </tinymce>
-            <tinymce name="description" *ngIf="!showEdit" [(ngModel)]="rmfApplicationDTO.businessRisks"
-              [config]="config">
-            </tinymce>
-            remaining {{50000 -len}}
+            <label class="fam">Entered Date</label>
+            <my-date-picker name="startDate" class="inputState1" [disabled]='showEdit'
+              (dateChanged)="getEnteredDate($event)" [(ngModel)]="endDate"></my-date-picker>
           </div>
 
         </div>
 
+        <div class="form-row">
+          <div class="col-md-12">
+            <span class="fam" style="font-weight: bold;">Description</span>
+            <tinymce name="description" disabled=true *ngIf="showEdit"
+              [(ngModel)]="rmfApplicationDTO.lessonsLearnedDescription" [config]="config">
+            </tinymce>
+            <tinymce name="description" *ngIf="!showEdit" [(ngModel)]="rmfApplicationDTO.lessonsLearnedDescription"
+              [config]="config">
+            </tinymce>
+            remaining {{50000 -len}}
+          </div>
+        </div>
+
       </fieldset>
-
-
-
-
     </div>
-
-
-
-
   </form>
 </div>

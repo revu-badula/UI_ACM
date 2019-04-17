@@ -52,10 +52,10 @@ export class SolutionsComponent implements OnInit {
     height: 250,
     width:1180,
     theme: 'modern',
-    plugins: 'textcolor wordcount colorpicker textpattern',
-    toolbar: 'bold italic strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+    plugins: 'textcolor wordcount colorpicker textpattern link',
+    toolbar: 'bold italic strikethrough forecolor backcolor fontsizeselect | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
     branding: false,
-    menubar:false,
+    menubar:true,
     statusbar:false
   };
   public labForm: boolean = false;
