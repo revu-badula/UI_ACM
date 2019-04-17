@@ -17,12 +17,12 @@ export class RmsComponent implements OnInit {
   // public subscription: Subscription;
   // public message:any;
   // public show:boolean=false;
-  constructor(private httpClient: HttpClient, private router: Router,private alertService:AlertService) {
+  constructor(private httpClient: HttpClient, private router: Router, private alertService: AlertService) {
     sessionStorage.removeItem("rmfSrcId");
     sessionStorage.removeItem("rmfGrpId");
     // this.subscription=this.alertService.getChildData()
     // .subscribe((data:any) =>{
-    
+
     // });
 
   }
@@ -37,13 +37,13 @@ export class RmsComponent implements OnInit {
         this.showData = false;
       }
     }
-    else if(value.router.url === '/rms/rmsoverview') {
+    else if (value.router.url === '/rms/rmsoverview') {
       // if(this.showData){
-      
+
       // }
       // else{
-        this.showData = true;
-        this.getFamilies();
+      this.showData = true;
+      this.getFamilies();
       // }
     }
 
@@ -62,8 +62,8 @@ export class RmsComponent implements OnInit {
         console.log(error)
       });
   }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-}
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
 }
