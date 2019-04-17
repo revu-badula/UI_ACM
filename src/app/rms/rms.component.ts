@@ -14,9 +14,9 @@ export class RmsComponent implements OnInit {
 
   public showData: boolean;
   public process: any;
-  public subscription: Subscription;
-  public message:any;
-  public show:boolean=false;
+  // public subscription: Subscription;
+  // public message:any;
+  // public show:boolean=false;
   constructor(private httpClient: HttpClient, private router: Router,private alertService:AlertService) {
     sessionStorage.removeItem("rmfSrcId");
     sessionStorage.removeItem("rmfGrpId");
