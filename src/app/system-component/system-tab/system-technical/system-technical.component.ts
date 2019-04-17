@@ -610,7 +610,7 @@ export class SystemTechnicalComponent {
     this.httpClient.post(url, formData)
       .subscribe((data: any) => {
         this.loading = false;
-        this.dialog.open("Info", "Systen has been updated.", false, "OK", "OK")
+        this.dialog.open("Info", "Technical has been updated.", false, "OK", "OK")
           .then((result) => {
 
           });
