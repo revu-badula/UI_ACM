@@ -24,6 +24,8 @@ import { IncidentAssignmentComponent } from './incident-assignment/incident-assi
 import { IncidentResolutionComponent } from './incident-resolution/incident-resolution.component';
 import { IncidentBusinessComponent } from './incident-business/incident-business.component';
 import { IncidentTechnicalComponent } from './incident-technical/incident-technical.component';
+import { IncidentcapComponent } from './incidentcap/incidentcap.component';
+import { IncidentcloseComponent } from './incidentclose/incidentclose.component';
 
 @NgModule({
   imports: [
@@ -55,6 +57,6 @@ import { IncidentTechnicalComponent } from './incident-technical/incident-techni
     NgxTinymceModule.forRoot({
     })
   ],
-  declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent]
+  declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent, IncidentcloseComponent]
 })
 export class IncidentModuleModule { }

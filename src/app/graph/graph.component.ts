@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart,ChartDataSets } from 'chart.js';
+import { Chart, ChartDataSets } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
 import { Router } from '@angular/router';
@@ -16,42 +16,42 @@ ExportingModule(Highcharts);
 export class GraphComponent implements OnInit {
 
   highcharts = Highcharts;
-   chartOptions = {   
-      chart: {
-         type: "heatmap",
-         marginTop: 40,
-         marginBottom: 80,
-         plotBorderWidth: 1
-      },
-      credits: {
-        enabled: false
+  chartOptions = {
+    chart: {
+      type: "heatmap",
+      marginTop: 40,
+      marginBottom: 80,
+      plotBorderWidth: 1
     },
-      title: {
-         text: "Systems At Risk"
-      },
-      subtitle: {
-         text: ""
-      },
-      xAxis: {
-        categories: ['Low', 'Medium', 'High'],
-        visible:true
+    credits: {
+      enabled: false
+    },
+    title: {
+      text: "Systems At Risk"
+    },
+    subtitle: {
+      text: ""
+    },
+    xAxis: {
+      categories: ['Low', 'Medium', 'High'],
+      visible: true
     },
 
     yAxis: {
-        categories: ['loc1', 'loc2', 'loc3', 'loc4', 'loc5'],
-        title: null,
-        // maxColor:'green',
-        // minColor:'red',
-        
+      categories: ['loc1', 'loc2', 'loc3', 'loc4', 'loc5'],
+      title: null,
+      // maxColor:'green',
+      // minColor:'red',
+
     },
-      plotOptions: {
-        series: {
-           dataLabels: {
-              enabled: true
-           }
+    plotOptions: {
+      series: {
+        dataLabels: {
+          enabled: true
         }
-     },
-     
+      }
+    },
+
     colorAxis: {
       // min: 0,
       // minColor: '#FFFFFF',
@@ -60,63 +60,63 @@ export class GraphComponent implements OnInit {
         from: 0,
         to: 10,
         color: '#2b9142',
-        name:'Low'
-    },{
-        from:10,
-        to:20,
-        color:'#007bff',
-        name:'Medium'
-    },{
-        from:20,
-        to:100,
-        color:'#dc3545',
-        name:'High'
-    }]
+        name: 'Low'
+      }, {
+        from: 10,
+        to: 20,
+        color: '#007bff',
+        name: 'Medium'
+      }, {
+        from: 20,
+        to: 100,
+        color: '#dc3545',
+        name: 'High'
+      }]
 
-   
-      
-     
-  },
 
-  legend: {
+
+
+    },
+
+    legend: {
       align: 'right',
       layout: 'vertical',
       margin: 0,
       verticalAlign: 'top',
       y: 25,
       //symbolHeight: 180,
-      enabled:false
-  },
-  tooltip: {
-    formatter: function () {
+      enabled: false
+    },
+    tooltip: {
+      formatter: function () {
         return '<b>' + this.series.yAxis.categories[this.point.y] + '</b> has<br><b>' +
-            this.point.value + '</b><br><b>' + this.series.xAxis.categories[this.point.x] + '</b>';
-    }
-},
-series: [{
-  name: 'Sales per employee',
-  borderWidth: 1,
-  data: [[0, 0, 10],
-   [0, 1, 19], 
-   [0, 2, 8], 
-   [0, 3, 24],
-    [0, 4, 67], 
-    [1, 0, 92], 
-    [1, 1, 58], 
-    [1, 2, 78], 
-    [1, 3, 20], 
-    [1, 4, 48], 
-    [2, 0, 35], 
-    [2, 1, 15],
-     [2, 2, 12], 
-     [2, 3, 64], 
-     [2, 4, 52]],
-  dataLabels: {
-      enabled: true,
-      color: '#000000'
-  }
-}]
-   };
+          this.point.value + '</b><br><b>' + this.series.xAxis.categories[this.point.x] + '</b>';
+      }
+    },
+    series: [{
+      name: 'Sales per employee',
+      borderWidth: 1,
+      data: [[0, 0, 10],
+      [0, 1, 19],
+      [0, 2, 8],
+      [0, 3, 24],
+      [0, 4, 67],
+      [1, 0, 92],
+      [1, 1, 58],
+      [1, 2, 78],
+      [1, 3, 20],
+      [1, 4, 48],
+      [2, 0, 35],
+      [2, 1, 15],
+      [2, 2, 12],
+      [2, 3, 64],
+      [2, 4, 52]],
+      dataLabels: {
+        enabled: true,
+        color: '#000000'
+      }
+    }]
+  };
 
 
 
@@ -185,8 +185,8 @@ series: [{
           ticks: {
             display: false,
           },
-          gridLines:{
-            display:false
+          gridLines: {
+            display: false
           }
 
         }
@@ -206,8 +206,8 @@ series: [{
           ticks: {
             display: false
           },
-          gridLines:{
-            display:false
+          gridLines: {
+            display: false
           }
 
         }
@@ -475,8 +475,8 @@ series: [{
           ticks: {
             display: false,
           },
-          gridLines:{
-            display:false
+          gridLines: {
+            display: false
           }
 
         }
@@ -496,8 +496,8 @@ series: [{
           ticks: {
             display: false
           },
-          gridLines:{
-            display:false
+          gridLines: {
+            display: false
           }
 
         }
@@ -614,7 +614,7 @@ series: [{
   };
 
   public pieChartLabels7: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData7: number[]=[];
+  public pieChartData7: number[] = [];
   // = [3, 5];
   public pieChartOptions7 = {
     responsive: true,
@@ -649,20 +649,20 @@ series: [{
           let meta = chartInstance.controller.getDatasetMeta(i);
           meta.data.forEach((bar: any, index: any) => {
             let data = dataset.data[index];
-            if(data > 0 ){
-            var w_offset = ctx.measureText(data).width / 2;
-            var h_offset = textSize / 4;
-            //var startAngle = dataset.data[i].startAngle;
-            //var endAngle = myPieChart.segments[i].endAngle;
-            // var startAngle = 4.71238898038469;
-            // var endAngle = 8.47;
-            var startAngle = chartInstance.controller.getDatasetMeta(i).data[index]._model.startAngle;
-            var endAngle = chartInstance.controller.getDatasetMeta(i).data[index]._model.endAngle;
-            ctx.fillStyle = "white";
-            var middleAngle = startAngle + ((endAngle - startAngle) / 2);
-            var posX = (radius / 2) * Math.cos(middleAngle) + midX;
-            var posY = (radius / 2) * Math.sin(middleAngle) + midY;
-            ctx.fillText(data, posX + w_offset, posY + h_offset);
+            if (data > 0) {
+              var w_offset = ctx.measureText(data).width / 2;
+              var h_offset = textSize / 4;
+              //var startAngle = dataset.data[i].startAngle;
+              //var endAngle = myPieChart.segments[i].endAngle;
+              // var startAngle = 4.71238898038469;
+              // var endAngle = 8.47;
+              var startAngle = chartInstance.controller.getDatasetMeta(i).data[index]._model.startAngle;
+              var endAngle = chartInstance.controller.getDatasetMeta(i).data[index]._model.endAngle;
+              ctx.fillStyle = "white";
+              var middleAngle = startAngle + ((endAngle - startAngle) / 2);
+              var posX = (radius / 2) * Math.cos(middleAngle) + midX;
+              var posY = (radius / 2) * Math.sin(middleAngle) + midY;
+              ctx.fillText(data, posX + w_offset, posY + h_offset);
             }
           });
         });
@@ -815,7 +815,7 @@ series: [{
 
 
   public pieChartLabels9: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData9: number[] = [5,4];
+  public pieChartData9: number[] = [5, 4];
   public pieChartOptions9 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -915,7 +915,7 @@ series: [{
 
 
   public pieChartLabels10: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData10: number[] = [4,5];
+  public pieChartData10: number[] = [4, 5];
   public pieChartOptions10 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -1113,7 +1113,7 @@ series: [{
 
 
   public pieChartLabels12: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData12: number[] = [9,13];
+  public pieChartData12: number[] = [9, 13];
   public pieChartOptions12 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -1311,7 +1311,7 @@ series: [{
 
 
   public pieChartLabels14: string[] = ['Open', 'Close'];
-  public pieChartData14: number[] = [5,2];
+  public pieChartData14: number[] = [5, 2];
   public pieChartOptions14 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -1410,7 +1410,7 @@ series: [{
 
 
   public pieChartLabels15: string[] = ['Past Dates', 'Future Dates'];
-  public pieChartData15: number[] = [7,5];
+  public pieChartData15: number[] = [7, 5];
   public pieChartOptions15 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -1508,7 +1508,7 @@ series: [{
   };
 
   public pieChartLabelsTask: string[] = ['Open', 'Closed'];
-  public pieChartDataTask: number[] = [4,6];
+  public pieChartDataTask: number[] = [4, 6];
   pieChartColorTask: any = [
     {
       backgroundColor: [
@@ -1723,7 +1723,7 @@ series: [{
     legend: {
       labels: {
         fontColor: '#000',
-        boxWidth:10
+        boxWidth: 10
       },
       onHover: (e: any) => {
         e.target.style.cursor = 'pointer';
@@ -1787,8 +1787,8 @@ series: [{
           ticks: {
             display: false,
           },
-          gridLines:{
-            display:false
+          gridLines: {
+            display: false
           }
 
         }
@@ -1808,8 +1808,8 @@ series: [{
           ticks: {
             display: false
           },
-          gridLines:{
-            display:false
+          gridLines: {
+            display: false
           }
 
         }
@@ -1825,7 +1825,7 @@ series: [{
   public barChartData: ChartDataSets[] = [
     //{ data: [65, 59, 80, 81, 56, 55, 40, 30, 24, 34, 45, 50],label: 'Series A' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
-    { data: [4,2,7,9,3,4,7,6,8,10,3,4], label: 'Audits' }
+    { data: [4, 2, 7, 9, 3, 4, 7, 6, 8, 10, 3, 4], label: 'Audits' }
 
   ];
   public barChartData2: ChartDataSets[] = [
@@ -1837,13 +1837,13 @@ series: [{
   public barChartData3: ChartDataSets[] = [
     //{ data: [65, 59, 80, 81, 56, 55, 40, 30, 24, 34, 45, 50],label: 'Series A' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
-    { data: [1, 10, 5, 2, 3, 4, 3, 2, 4, 8, 4,10], label: 'Recertification' }
+    { data: [1, 10, 5, 2, 3, 4, 3, 2, 4, 8, 4, 10], label: 'Recertification' }
 
   ];
   public lineChartDataSystems: ChartDataSets<any> = [
 
     // '15', '8', '5', '10', '23', '13', '35', '40', '34', '46', '30', '49'
-    { data: [4,3,6,9,7,8,5,8,9,2,10,6], label: 'Audits' },
+    { data: [4, 3, 6, 9, 7, 8, 5, 8, 9, 2, 10, 6], label: 'Audits' },
     // { data: [28, 48, 40, 19, 86, 27, 90, 15, 10, 5, 20, 3], label: 'Series B' },
     // { data: [15, 10, 5, 20, 3, 40, 30, 24, 34, 28, 48, 75], label: 'Series C' }
   ];
@@ -1920,7 +1920,7 @@ series: [{
       pointHoverBorderColor: '#A52A2A'
     },
   ];
-   public chartColorsAudit: Array<any> = [
+  public chartColorsAudit: Array<any> = [
     { // second color
       backgroundColor: '#90EE90',
       borderColor: '#90EE90',
@@ -2178,7 +2178,7 @@ series: [{
     legend: {
       labels: {
         fontColor: '#000',
-        boxWidth:10
+        boxWidth: 10
       },
       onHover: (e: any) => {
         e.target.style.cursor = 'pointer';
@@ -2273,7 +2273,7 @@ series: [{
     legend: {
       labels: {
         fontColor: '#000',
-        boxWidth:10
+        boxWidth: 10
       },
       onHover: (e: any) => {
         e.target.style.cursor = 'pointer';
@@ -2651,8 +2651,8 @@ series: [{
   public showDev: boolean;
   public showBar: boolean;
   public showSystem: boolean;
-  public showRecert:boolean;
-  public showHover:boolean;
+  public showRecert: boolean;
+  public showHover: boolean;
   constructor(private httpClient: HttpClient, private router: Router, private utilService: UtilService) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -2679,12 +2679,11 @@ series: [{
 
   getDataLocalities(value: any) {
     if (value.active.length > 0) {
-     this.router.navigate(['/upcomingAudit']);
+      this.router.navigate(['/upcomingAudit']);
     }
   }
 
-  chartClickedSystems(value:any)
-  {
+  chartClickedSystems(value: any) {
     if (value.active.length > 0) {
       // console.log(value);
       // console.log(value.active[0]._model);
@@ -2835,50 +2834,50 @@ series: [{
     let url = APP_CONFIG.getAllTotals;
     let url1 = APP_CONFIG.getLocalityGraphDetails;
     let d = new Date();
-    let year=d.getFullYear();
+    let year = d.getFullYear();
     Observable.forkJoin(
-    this.httpClient.get(url),
-    this.httpClient.get(url1+"?"+"yearNumber="+year)
+      this.httpClient.get(url),
+      this.httpClient.get(url1 + "?" + "yearNumber=" + year)
     ).subscribe((data: any) => {
-        this.loading = false;
-        let dat = data[0];
-        this.pieChartData5.push(dat[4], dat[5]);
-        this.pieChartData4.push(dat[8], dat[9], dat[10]);
-        this.pieChartData6.push(dat[6], dat[7]);
-        let reData=data[1].recertificationCountDTO.pastDateCount;
-        let reDataF=data[1].recertificationCountDTO.futureDateCount;
-        this.pieChartData7.push(reData,reDataF);
+      this.loading = false;
+      let dat = data[0];
+      this.pieChartData5.push(dat[4], dat[5]);
+      this.pieChartData4.push(dat[8], dat[9], dat[10]);
+      this.pieChartData6.push(dat[6], dat[7]);
+      let reData = data[1].recertificationCountDTO.pastDateCount;
+      let reDataF = data[1].recertificationCountDTO.futureDateCount;
+      this.pieChartData7.push(reData, reDataF);
 
-        // let data1 = [
-        //   {
-        //     "signedLocalities": 3
-        //   },
-        //   {
-        //     "unSignedLocalities": 2
-        //   },
-        //   //   // {
-        //   //   "signedSystems": 4
-        //   // },
-        //   // {
-        //   //   "unSignedSystems": 5
-        //   // }
-        //   3,2,4,5
-        //];
-        // for (let i = 0; i < data1.length; i++) {
-        //   if (data1[i].signedLocalities != undefined)
-        //     this.pieChartData5.push(data1[i].signedLocalities);
-        //   else
-        //     this.pieChartData5.push(data1[i].unSignedLocalities);
-        //this.pieChartData5.push(data1[i]);
-        //}
-        this.showLoc = true;
-        this.showDev = true;
-        this.showSystem = true;
-        this.showRecert=true;
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+      // let data1 = [
+      //   {
+      //     "signedLocalities": 3
+      //   },
+      //   {
+      //     "unSignedLocalities": 2
+      //   },
+      //   //   // {
+      //   //   "signedSystems": 4
+      //   // },
+      //   // {
+      //   //   "unSignedSystems": 5
+      //   // }
+      //   3,2,4,5
+      //];
+      // for (let i = 0; i < data1.length; i++) {
+      //   if (data1[i].signedLocalities != undefined)
+      //     this.pieChartData5.push(data1[i].signedLocalities);
+      //   else
+      //     this.pieChartData5.push(data1[i].unSignedLocalities);
+      //this.pieChartData5.push(data1[i]);
+      //}
+      this.showLoc = true;
+      this.showDev = true;
+      this.showSystem = true;
+      this.showRecert = true;
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
 
 
 

@@ -194,6 +194,8 @@ import { IncidentAssignmentComponent } from './incident-module/incident-assignme
 import { IncidentResolutionComponent } from './incident-module/incident-resolution/incident-resolution.component';
 import { IncidentBusinessComponent } from './incident-module/incident-business/incident-business.component';
 import { IncidentTechnicalComponent } from './incident-module/incident-technical/incident-technical.component';
+import { IncidentcapComponent } from './incident-module/incidentcap/incidentcap.component';
+import { IncidentcloseComponent } from './incident-module/incidentclose/incidentclose.component';
 
 const appRoutes: Routes = [
 
@@ -755,7 +757,7 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'incident', component: IncidentinfoComponent,
+    path: 'incident', component: IncidentinfoComponent, canActivate:[AuthGuard],
     children: [
       { path: 'info', component: IncidentdetailComponent },
       { path: 'classification', component: IncidentclassificationComponent },
@@ -763,7 +765,9 @@ const appRoutes: Routes = [
       { path: 'assignment', component: IncidentAssignmentComponent },
       { path: 'resolution', component: IncidentResolutionComponent },
       { path: 'business', component: IncidentBusinessComponent },
-      { path: 'technical', component: IncidentTechnicalComponent }
+      { path: 'technical', component: IncidentTechnicalComponent },
+      { path: 'cap', component: IncidentcapComponent },
+      { path: 'close', component: IncidentcloseComponent }
     ]
   },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },

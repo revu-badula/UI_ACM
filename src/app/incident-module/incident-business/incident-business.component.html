@@ -3,14 +3,13 @@
 </div>
 
 <div class="plus" style="float:right">
-  <i *ngIf="showEditButton" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
-    (click)="editClick()"></i>
+  <i *ngIf="showEditButton" class="fa fa-edit" data-delay="0" style="font-size: 24px;" (click)="editClick()"></i>
 </div>
 
 <form #formName="ngForm" id="myForm" (ngSubmit)="createLocality()" enctype="multipart/form-data">
 
   <div id="formSame">
-    <div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
+    <div class="disclaimer"><span>Please use this screen to add information.</span>&nbsp;&nbsp;&nbsp;
       <span style="float:right">
         <font color=red>*</font> marked fields are mandatory
       </span> </div>
@@ -20,19 +19,18 @@
           <h4>General Information</h4>
         </div>
         <div class="form-row">
-          <span class="fam" style="font-weight: bold;">Impact</span>
+          <span class="fam" style="font-weight: bold;">Summary</span>
           <div class="form-group col-md-12">
-            <tinymce  name="impact" [(ngModel)]="test" *ngIf="showEditButton" disabled=true
-              [config]="config">
+            <tinymce name="impact" [(ngModel)]="test" *ngIf="showEditButton" disabled=true [config]="config">
             </tinymce>
-            <tinymce  name="impact" [(ngModel)]="test" *ngIf="!showEditButton" [config]="config">
+            <tinymce name="impact" [(ngModel)]="test" *ngIf="!showEditButton" [config]="config">
             </tinymce>
             remaining {{50000 -len}}
 
           </div>
         </div>
 
-        <div class="form-row">
+        <!-- <div class="form-row">
           <span class="fam" style="font-weight: bold;">Resolution</span>
           <div class="form-group col-md-12">
             <tinymce name="resolution"  [(ngModel)]="test1" *ngIf="showEditButton" disabled=true
@@ -57,9 +55,9 @@
             remaining {{50000 -len2}}
 
           </div>
-        </div>
+        </div> -->
 
-      
+
       </div>
 
 

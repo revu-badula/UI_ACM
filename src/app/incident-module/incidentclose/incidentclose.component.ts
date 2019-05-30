@@ -1,16 +1,16 @@
-import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 declare let tinymce: any;
 
 @Component({
-  selector: 'app-incidentclassification',
-  templateUrl: './incidentclassification.component.html',
-  styleUrls: ['./incidentclassification.component.css']
+  selector: 'app-incidentclose',
+  templateUrl: './incidentclose.component.html',
+  styleUrls: ['./incidentclose.component.css']
 })
-export class IncidentclassificationComponent implements OnInit {
+export class IncidentcloseComponent implements OnInit {
 
-  public len:number=0;
-  public showEditButton:boolean;
-  public test:any;
+  public len: number = 0;
+  public showEditButton: boolean;
+  public test: any;
   config: any = {
     height: 250,
     width: 1080,
@@ -21,7 +21,7 @@ export class IncidentclassificationComponent implements OnInit {
     menubar: false,
     statusbar: false
   };
-  constructor(private ref:ChangeDetectorRef) {
+  constructor(private ref: ChangeDetectorRef) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.config.init_instance_callback = (editor: any) => {
@@ -29,7 +29,7 @@ export class IncidentclassificationComponent implements OnInit {
         this.getData(editor);
       });
     };
-   }
+  }
 
   ngOnInit() {
   }

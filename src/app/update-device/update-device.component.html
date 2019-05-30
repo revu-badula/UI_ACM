@@ -7,25 +7,12 @@
 
   <div class="form-options">
     <div class="home-back">
-      <!-- <a routerLink="/dashboard">
-        <fa class="left-icons home-icon icons" data-toggle="tooltip" data-placement="right" title="Home" data-animation="true"
-          data-delay="0" [name]="'home'"></fa>
-      </a> -->
+
       <a href="javascript:void(0)" routerLink="/devicetab">
         <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
           data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
       </a>
     </div>
-    <!-- <div class="save-edit" *ngIf="showBtt">
-      <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
-        data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
-    </div> -->
-
-    <div class="save-edit" style="float: right;" *ngIf="showBtt">
-      <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
-        data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
-    </div>
-
   </div>
 </div>
 
@@ -49,7 +36,10 @@
     <h3 class="pageTitle">Devices</h3>
     <hr>
   </div>
-
+  <div class="save-edit" style="float: right;" *ngIf="showBtt">
+    <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+      data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
+  </div>
   <form (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
     <div id="form1">
       <div class="disclaimer"><span style="float:left">Please use this screen to update device
