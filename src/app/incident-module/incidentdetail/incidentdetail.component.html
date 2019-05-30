@@ -1,0 +1,125 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<div class="plus" style="float:right">
+  <i *ngIf="showEditButton && !isShow" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
+    (click)="editClick()"></i>
+</div>
+
+<form #formName="ngForm" id="myForm" (ngSubmit)="createLocality()" enctype="multipart/form-data">
+
+  <div id="formSame">
+    <div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
+      <span style="float:right">
+        <font color=red>*</font> marked fields are mandatory
+      </span> </div>
+    <fieldset [disabled]="editableForm">
+      <div class="infoBox">
+        <div class="form-row headerOfBox">
+          <h4>General Information</h4>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="fam">Name<span class="asterisk">*</span></label>
+            <input type="text" name="incidentName" class="form-control">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="fam">Severity<span class="asterisk">*</span></label>
+            <select class="form-control" name="severity">
+              <option value="">Choose...</option>
+              <option value="critical">Critical</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="fam">Status<span class="asterisk">*</span></label>
+            <select class="form-control" name="status">
+              <option value="">Choose...</option>
+              <option value="open">Open</option>
+              <option value="close">Close</option>
+              <option value="reopen">Reopen</option>
+              <option value="suspend">Suspend</option>
+              <option value="invalid">Invalid</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6">
+            <label class="fam">Reported Source<span class="asterisk">*</span></label>
+            <input type="text" name="reportedSource" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label class="fam">Progress<span class="asterisk">*</span></label>
+            <select class="form-control" name="progress">
+              <option value="">Choose...</option>
+              <option value="created">Created</option>
+              <option value="impactAnalysis">Impact Analysis</option>
+              <option value="implementation">Implementation</option>
+              <option value="testing">Testing</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="form-row">
+          <span class="fam" style="font-weight: bold;">Description</span>
+          <div class="form-group col-md-12">
+            <tinymce  name="description" [(ngModel)]="test" *ngIf="showEditButton" disabled=true
+              [config]="config">
+            </tinymce>
+            <tinymce  name="description" [(ngModel)]="test" *ngIf="!showEditButton" [config]="config">
+            </tinymce>
+            remaining {{50000 -len}}
+
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="fam">Server/ Systems<span class="asterisk">*</span></label>
+            <select class="form-control" name="severity">
+              <option value="">Choose...</option>
+              <option value="critical">Application</option>
+              <option value="high">Systems</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="fam">Values<span class="asterisk">*</span></label>
+            <select class="form-control" name="severity">
+              <option value="">Choose...</option>
+            </select>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+
+
+    </fieldset>
+    <!-- <div class="buttons" style="margin-right:5%;">
+      <button type="submit" form="myForm" class="submit btn btn-primary" [disabled]="!formName.valid"
+        *ngIf="isShow">Submit</button>
+      <button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
+    </div> -->
+    <div class="d-flex justify-content-between p-2">
+      <button type="button" *ngIf="!showHead" class="cancel btn btn-primary">
+        Cancel
+      </button>
+      <button type="button" class="cancel btn btn-primary">
+        Submit
+      </button>
+
+    </div>
+
+  </div>
+
+
+</form>

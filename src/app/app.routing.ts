@@ -186,6 +186,14 @@ import { SystemrmfsecurityriskComponent } from './system-component/system-tab/sy
 import { SystemrmfbudgetComponent } from './system-component/system-tab/systemrmf/systemrmfbudget/systemrmfbudget.component';
 import { SystemrmfattachmentsComponent } from './system-component/system-tab/systemrmf/systemrmfattachments/systemrmfattachments.component';
 import { SystemrmflessonslearnedComponent } from './system-component/system-tab/systemrmf/systemrmflessonslearned/systemrmflessonslearned.component';
+import { IncidentinfoComponent } from './incident-module/incidentinfo/incidentinfo.component';
+import { IncidentdetailComponent } from './incident-module/incidentdetail/incidentdetail.component';
+import { IncidentclassificationComponent } from './incident-module/incidentclassification/incidentclassification.component';
+import { IncidentImpactComponent } from './incident-module/incident-impact/incident-impact.component';
+import { IncidentAssignmentComponent } from './incident-module/incident-assignment/incident-assignment.component';
+import { IncidentResolutionComponent } from './incident-module/incident-resolution/incident-resolution.component';
+import { IncidentBusinessComponent } from './incident-module/incident-business/incident-business.component';
+import { IncidentTechnicalComponent } from './incident-module/incident-technical/incident-technical.component';
 
 const appRoutes: Routes = [
 
@@ -561,16 +569,16 @@ const appRoutes: Routes = [
                     path: 'rmfbusiness', component: SystemrmfbusinessriskComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfsecurity', component: SystemrmfsecurityriskComponent,canActivate:[rmfGuard]
+                    path: 'rmfsecurity', component: SystemrmfsecurityriskComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfbudget', component: SystemrmfbudgetComponent,canActivate:[rmfGuard]
+                    path: 'rmfbudget', component: SystemrmfbudgetComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmfattachment', component: SystemrmfattachmentsComponent,canActivate:[rmfGuard]
+                    path: 'rmfattachment', component: SystemrmfattachmentsComponent, canActivate: [rmfGuard]
                   },
                   {
-                    path:'rmflessons', component: SystemrmflessonslearnedComponent,canActivate:[rmfGuard]
+                    path: 'rmflessons', component: SystemrmflessonslearnedComponent, canActivate: [rmfGuard]
                   }
                 ]
               }
@@ -744,6 +752,18 @@ const appRoutes: Routes = [
           }
         ]
       }
+    ]
+  },
+  {
+    path: 'incident', component: IncidentinfoComponent,
+    children: [
+      { path: 'info', component: IncidentdetailComponent },
+      { path: 'classification', component: IncidentclassificationComponent },
+      { path: 'impact', component: IncidentImpactComponent },
+      { path: 'assignment', component: IncidentAssignmentComponent },
+      { path: 'resolution', component: IncidentResolutionComponent },
+      { path: 'business', component: IncidentBusinessComponent },
+      { path: 'technical', component: IncidentTechnicalComponent }
     ]
   },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },

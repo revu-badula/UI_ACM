@@ -22,21 +22,21 @@
                     data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
             </a>
         </div>
-        <div class="save-edit">
-            <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
-                data-delay="0" *ngIf="editVendorForm.disabled" (click)="editClicked()" [name]="'edit'"></fa>
-        </div>
     </div>
 </div>
+
 
 <div class="page-description">
     <h3>Vendors</h3>
     <hr>
 </div>
-
+<div class="save-edit">
+    <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+        data-delay="0" *ngIf="editVendorForm.disabled" (click)="editClicked()" [name]="'edit'"></fa>
+</div>
 <form id="myForm" [formGroup]="editVendorForm" (ngSubmit)="createVendor(editVendorForm.value)">
 
-    <div id="form1" style="padding-top: 3%;">
+    <div id="form1">
         <div class="disclaimer" *ngIf="!editVendorForm.disabled"><span style="float:left">Please use this screen to edit
                 vendors only.</span>&nbsp;&nbsp;&nbsp;
             <span style="float:right">

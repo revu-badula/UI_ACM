@@ -76,137 +76,118 @@
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
-        <!-- <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item"> -->
-        <!-- <a class="nav-link" [routerLink]="[menuItem.path]">
-                <i class="material-icons">{{menuItem.icon}}</i>
-                <p>{{menuItem.title}}</p>
-            </a> -->
-        <!-- </li> -->
         <li class="nav-item">
 
             <a class="nav-link" routerLink="/dashboard">
-                <i class="material-icons">dashboard</i>
+                <i class="material-icons" style="color: black;">dashboard</i>
                 <p>Classic View</p>
             </a>
 
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/rms/rmsSrt">
-                <!-- <i class="material-icons">location_on</i> -->
-                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color: black;"></i>
                 <p>Risk Management Framework</p>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/resImpactAnalysis">
-                <!-- <i class="material-icons">location_on</i> -->
-                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-tasks fa-3x" aria-hidden="true" style="color: black;"></i>
                 <p>Business Impact Analysis</p>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkPol" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <!-- <i class="material-icons">notifications</i> -->
-                <i class="fa fa-file-text fa-3x" aria-hidden="true"></i>
-                policies
+            <a href="#adminMenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-file-text fa-3x" aria-hidden="true" style="color: black;"></i>
+                Policies
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkPol">
-                <a class="" routerLink="/policy">Create</a>
-                <!-- <a class="" routerLink="/policyView">View/Edit</a> -->
-                <a class="" routerLink="/spolicy/policySrt">View/Edit</a>
-            </div>
+            <ul class="collapse list-unstyled" id="adminMenu2">
+                <li>
+                    <a routerLink="/policy">Create</a>
+                </li>
+                <li>
+                    <a class="" routerLink="/spolicy/policySrt">View/Edit</a>
+                </li>
+            </ul>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" routerLink="/system/map">
-                <!-- <i class="material-icons">notifications</i> -->
-                <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-cogs fa-3x" aria-hidden="true" style="color: black;"></i>
                 <p>IT Portfolio Manager</p>
             </a>
-            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSys">
-                <a class="" routerLink="/system/tab2/info">Create</a>
-                View/Edit</a>
-            </div> -->
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/deviceEntry">
-                <!-- <i class="material-icons">laptop/devicetab</i> -->
-                <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color:slategray"></i>
+                <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color: black;"></i>
                 <p>Infrastructure Manager</p>
             </a>
-            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkDev">
-                <a class="" routerLink="/deviceInventory">Create</a>
-                <a class="" routerLink="/devicetab">View/Edit</a>
-            </div> -->
+
         </li>
         <li class="nav-item">
             <a class="nav-link" (click)="getOpen()">
-                <!-- <i class="material-icons">bubble_chart</i> -->
-                <i class="fa fa-suitcase fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-suitcase fa-3x" aria-hidden="true" style="color: black;"></i>
                 <p>Audit</p>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" (click)="getOpen()">
-                <!-- <i class="material-icons">location_on</i> -->
-                <i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color: black;"></i>
                 <p>Assessmemt</p>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/locality/map">
-                <!-- <i class="material-icons">person</i> -->
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <i class="fa fa-map-marker" aria-hidden="true" style="color: black;"></i>
                 Locations
             </a>
-            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkLoc">
-                <a class="" routerLink="/locality/map">Create</a>
-                <a class="" routerLink="/locality/map">View/Edit</a>
-            </div> -->
+
         </li>
         <li class="nav-item">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkVen" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <!-- <i class="material-icons">content_paste</i> -->
-                <i class="fa fa-user" aria-hidden="true"></i>
+            <a href="#adminMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-user" aria-hidden="true" style="color: black;"></i>
                 Certified Vendors
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkVen">
-                <a class="" routerLink="/vendors">Create</a>
-                <a class="" routerLink="/vendorsView">View/Edit</a>
-            </div>
+            <ul class="collapse list-unstyled" id="adminMenu">
+                <li>
+                    <a routerLink="/vendors">Create</a>
+                </li>
+                <li>
+                    <a class="" routerLink="/vendorsView">View/Edit</a>
+                </li>
+            </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <!-- <i class="material-icons">library_books</i> -->
-                <i class="fa fa-paper-plane fa-3x" aria-hidden="true"></i>
+        <li class="nav-item">
+            <a href="#adminMenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-paper-plane fa-3x" aria-hidden="true" style="color: black;"></i>
                 Certified Solutions
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="" routerLink="/solutions">Create</a>
-                <a class="" routerLink="/solutionsView">View/Edit</a>
-            </div>
+            <ul class="collapse list-unstyled" id="adminMenu1">
+                <li>
+                    <a routerLink="/solutions">Create</a>
+                </li>
+                <li>
+                    <a class="" routerLink="/solutionsView">View/Edit</a>
+                </li>
+            </ul>
         </li>
-     
-       
+
+
         <li class="nav-item">
             <a class="nav-link" routerLink="/reports">
-                <!-- <i class="material-icons">notifications</i> -->
-                <i class="fa fa-area-chart fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-area-chart fa-3x" aria-hidden="true" style="color: black;"></i>
                 <p>Reports</p>
             </a>
         </li>
-     
 
 
 
-       
 
-      
-    
 
-      
+
+
+
+
+
     </ul>
 </div>

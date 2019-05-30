@@ -115,6 +115,8 @@ import { RmsdetailsComponent } from './rmsdetails/rmsdetails.component';
 import { RmsoverviewComponent } from './rmsoverview/rmsoverview.component';
 import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
 import { DeviceentryComponent } from './deviceentry/deviceentry.component';
+import { HighchartsChartComponent } from 'highcharts-angular';
+import { IncidentModuleModule } from './incident-module/incident-module.module';
 
 
 @NgModule({
@@ -197,8 +199,8 @@ import { DeviceentryComponent } from './deviceentry/deviceentry.component';
     RmsdetailsComponent,
     RmsoverviewComponent,
     TaskdetailsComponent,
-    DeviceentryComponent
-
+    DeviceentryComponent,
+    HighchartsChartComponent
   ],
 
   imports: [
@@ -216,6 +218,7 @@ import { DeviceentryComponent } from './deviceentry/deviceentry.component';
     //SystemComponentRoutingModule,
     NgxSummernoteModule,
     SystemComponentModule,
+    IncidentModuleModule,
     ClickOutsideModule,
     BrowserAnimationsModule,
     NavigationComponentModule,

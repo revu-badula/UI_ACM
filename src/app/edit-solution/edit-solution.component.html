@@ -10,10 +10,7 @@
 					data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
 			</a>
 		</div>
-		<div class="save-edit">
-			<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
-				data-delay="0" *ngIf="clickExp" (click)="editorGroup()" [name]="'edit'"></fa>
-		</div>
+
 	</div>
 </div>
 
@@ -29,14 +26,18 @@
 	</div>
 </ng-template>
 <div>
+	<div class="save-edit">
+		<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+			data-delay="0" *ngIf="clickExp" (click)="editorGroup()" [name]="'edit'"></fa>
+	</div>
 
 	<div class="page-description">
 		<h3>Solutions</h3>
 		<hr>
 	</div>
+
 	<form (ngSubmit)="createSolution()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
-		<br>
-		<div id="form1" style="padding-top: 3%;">
+		<div id="form1">
 			<div class="disclaimer" *ngIf="!showForm"><span>Please use this screen to edit certified solutions
 					only</span>&nbsp;&nbsp;&nbsp;
 				<span style="float:right">
@@ -134,7 +135,7 @@
 					</div>
 				</div>
 
-				<div class="infoBox">
+				<div class="infoBox" style="width: 80%;">
 					<div class="headerOfBox">
 						<h4>Installation and Hosting</h4>
 					</div>
@@ -207,14 +208,16 @@
 						<div class="form-group col-md-6">
 							<label for="approvedDate"><b>DoEL Approved Date</b><span class="asterisk">*</span></label>
 							<my-date-picker name="myname" ngModel [disabled]='showForm' class="inputState1"
-								[(ngModel)]="approveDate" [options]="myDatePickerOptions" (dateChanged)="getApprovalDate($event)" required>
+								[(ngModel)]="approveDate" [options]="myDatePickerOptions"
+								(dateChanged)="getApprovalDate($event)" required>
 							</my-date-picker>
 
 						</div>
 						<div class="form-group col-md-6">
 							<label for="dueDate"><b>Renewal Due Date</b><span class="asterisk">*</span></label>
-							<my-date-picker name="renname" [options]="myDatePickerOptions" ngModel [disabled]='showForm' class="inputState1"
-								[(ngModel)]="dueDate" (dateChanged)="getDueDate($event)" required></my-date-picker>
+							<my-date-picker name="renname" [options]="myDatePickerOptions" ngModel [disabled]='showForm'
+								class="inputState1" [(ngModel)]="dueDate" (dateChanged)="getDueDate($event)" required>
+							</my-date-picker>
 						</div>
 					</div>
 				</div>
@@ -267,7 +270,7 @@
 					</div>
 				</div>
 
-				<div class="infoBox">
+				<div class="infoBox" style="width: 80%;">
 					<div class="headerOfBox">
 						<h4>Standard</h4>
 					</div>
@@ -311,7 +314,7 @@
 					</div>
 				</div>
 
-				<div class="infoBox">
+				<div class="infoBox" style="width: 80%;">
 					<div class="headerOfBox">
 						<h4>Patches</h4>
 					</div>
@@ -351,7 +354,7 @@
 					</div>
 				</div>
 
-				<div class="infoBox">
+				<div class="infoBox" style="width: 80%;">
 					<div class="headerOfBox">
 						<h4>Notes</h4>
 					</div>

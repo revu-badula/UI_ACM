@@ -1,19 +1,125 @@
 import { Component, OnInit } from '@angular/core';
-//import { Chart, pattern } from 'chart.js';
-import { Chart, ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { ChartsModule } from 'ng2-charts';
+import { Chart,ChartDataSets } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
 import { Router } from '@angular/router';
 import { UtilService } from '../util.service';
 import { Observable } from 'rxjs';
-
+import * as Highcharts from 'highcharts';
+import ExportingModule from 'highcharts/modules/heatmap';
+ExportingModule(Highcharts);
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit {
+
+  highcharts = Highcharts;
+   chartOptions = {   
+      chart: {
+         type: "heatmap",
+         marginTop: 40,
+         marginBottom: 80,
+         plotBorderWidth: 1
+      },
+      credits: {
+        enabled: false
+    },
+      title: {
+         text: "Systems At Risk"
+      },
+      subtitle: {
+         text: ""
+      },
+      xAxis: {
+        categories: ['Low', 'Medium', 'High'],
+        visible:true
+    },
+
+    yAxis: {
+        categories: ['loc1', 'loc2', 'loc3', 'loc4', 'loc5'],
+        title: null,
+        // maxColor:'green',
+        // minColor:'red',
+        
+    },
+      plotOptions: {
+        series: {
+           dataLabels: {
+              enabled: true
+           }
+        }
+     },
+     
+    colorAxis: {
+      // min: 0,
+      // minColor: '#FFFFFF',
+      // maxColor: Highcharts.getOptions().colors[4]
+      dataClasses: [{
+        from: 0,
+        to: 10,
+        color: '#2b9142',
+        name:'Low'
+    },{
+        from:10,
+        to:20,
+        color:'#007bff',
+        name:'Medium'
+    },{
+        from:20,
+        to:100,
+        color:'#dc3545',
+        name:'High'
+    }]
+
+   
+      
+     
+  },
+
+  legend: {
+      align: 'right',
+      layout: 'vertical',
+      margin: 0,
+      verticalAlign: 'top',
+      y: 25,
+      //symbolHeight: 180,
+      enabled:false
+  },
+  tooltip: {
+    formatter: function () {
+        return '<b>' + this.series.yAxis.categories[this.point.y] + '</b> has<br><b>' +
+            this.point.value + '</b><br><b>' + this.series.xAxis.categories[this.point.x] + '</b>';
+    }
+},
+series: [{
+  name: 'Sales per employee',
+  borderWidth: 1,
+  data: [[0, 0, 10],
+   [0, 1, 19], 
+   [0, 2, 8], 
+   [0, 3, 24],
+    [0, 4, 67], 
+    [1, 0, 92], 
+    [1, 1, 58], 
+    [1, 2, 78], 
+    [1, 3, 20], 
+    [1, 4, 48], 
+    [2, 0, 35], 
+    [2, 1, 15],
+     [2, 2, 12], 
+     [2, 3, 64], 
+     [2, 4, 52]],
+  dataLabels: {
+      enabled: true,
+      color: '#000000'
+  }
+}]
+   };
+
+
+
   public chart: Chart;
   public loading: boolean;
   public pieChartLabels: string[] = ['Low', 'Medium', 'High'];

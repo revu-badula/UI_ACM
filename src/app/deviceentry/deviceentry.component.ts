@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-deviceentry',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class DeviceentryComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private _location: Location) { }
 
   ngOnInit() {
   }
@@ -17,6 +18,9 @@ export class DeviceentryComponent implements OnInit {
   {
 
     this.router.navigate([value]);
+  }
+  backClicked() {
+    this._location.back();
   }
 
 }

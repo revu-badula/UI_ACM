@@ -124,7 +124,7 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  saveToken(token) {
+  saveToken(token:any) {
 
     //var expireDate = new Date().getTime() + (token.expires_in);
     //console.log(expireDate)
@@ -164,7 +164,7 @@ export class LoginPageComponent implements OnInit {
       })
   }
 
-  getUserRoles(res) {
+  getUserRoles(res:any) {
     //console.log(res);
     this.loading=true;
     let url = "http://172.24.16.56:8080/UAMWebservices/fetchRoleNamesSVC?userId=" + res.emailId;
