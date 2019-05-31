@@ -69,10 +69,9 @@
         <div class="form-row">
           <span class="fam" style="font-weight: bold;">Description</span>
           <div class="form-group col-md-12">
-            <tinymce  name="description" [(ngModel)]="test" *ngIf="showEditButton" disabled=true
-              [config]="config">
+            <tinymce name="description" [(ngModel)]="test" *ngIf="showEditButton" disabled=true [config]="config">
             </tinymce>
-            <tinymce  name="description" [(ngModel)]="test" *ngIf="!showEditButton" [config]="config">
+            <tinymce name="description" [(ngModel)]="test" *ngIf="!showEditButton" [config]="config">
             </tinymce>
             remaining {{50000 -len}}
 
@@ -82,16 +81,28 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label class="fam">Server/ Systems<span class="asterisk">*</span></label>
-            <select class="form-control" name="severity">
+            <select class="form-control" name="serversys" (change)="getValue($event.target.value)">
               <option value="">Choose...</option>
-              <option value="critical">Application</option>
-              <option value="high">Systems</option>
+              <option value="server">Servers</option>
+              <option value="system">Systems</option>
             </select>
           </div>
           <div class="form-group col-md-6">
             <label class="fam">Values<span class="asterisk">*</span></label>
-            <select class="form-control" name="severity">
+            <select class="form-control" name="sysserver">
               <option value="">Choose...</option>
+              <ng-container *ngIf="showSystem">
+                <option *ngFor="let system of systems"
+                  value="{{system.acronym}}">
+                  {{system.acronym}}
+                </option>
+              </ng-container>
+              <ng-container  *ngIf="showServer">
+                <option *ngFor="let server of servers"
+                  value="{{server.hostName}}">
+                  {{server.hostName}}
+                  </option>
+              </ng-container>
             </select>
           </div>
         </div>
@@ -110,7 +121,7 @@
       <button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
     </div> -->
     <div class="d-flex justify-content-between p-2">
-      <button type="button" *ngIf="!showHead" class="cancel btn btn-primary">
+      <button type="button"  class="cancel btn btn-primary">
         Cancel
       </button>
       <button type="button" class="cancel btn btn-primary">

@@ -28,7 +28,7 @@ body.modal-open {
 
 .modal-open .modal {
   overflow-x: hidden;
-  overflow-y: scroll !important;
+  overflow-y: scroll;
 }
 
 a {
@@ -844,16 +844,12 @@ border-color: #ddd; */
 .pageHeader {
   text-align: center;
   padding: 0.2rem;
-  /* background: rgb(226,226,226); 
-
-  background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); 
-  background: linear-gradient(to bottom, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); 
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); IE6-9 */
 }
 
 .sticky-top {
-  /* height:30px; */
-  border-radius: 5px;
+  position: relative !important;
+  top: 42px !important;
+  z-index: 1020;
 }
 
 .modal-header {
@@ -1294,12 +1290,42 @@ input {
 }
 
 .sidebar .sidebar-wrapper {
-  position: relative;
+  /* position: relative;
   height: calc(100vh - 75px);
   overflow: auto;
   width: 260px;
   z-index: 4;
-  padding-bottom: 30px;
+  padding-bottom: 30px; */
+  position: fixed;
+  height: calc(100% - 30px);
+  left: 0;
+  top: 38px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 272px;
+  background-color: #fff;
+}
+
+.fixedHeader {
+  position: fixed !important;
+  display: block;
+  width: 100%;
+  /* padding: 6px; */
+  height: 40px;
+  z-index: 9997;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+#form2 {
+  border-radius: 10px;
+  margin: 2vh 0% 0% 0%;
+  /* background-color: white; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  text-align: center;
 }
 
 .sidebar .logo {
@@ -1539,7 +1565,7 @@ a .material-icons {
 
 #formSame {
   border-radius: 10px;
-  margin: 0% 5% 0% 5%;
+  margin: 0% 1% 0% 1%;
   background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1549,4 +1575,30 @@ a .material-icons {
 
 .newlist ul li a {
   padding: 8px;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: .3rem;
+  outline: 0;
+  top: 66px !important;
+}
+
+.newBackBtn {
+  position: relative;
+  top: 55px;
+  z-index: 1020;
+}
+
+.newSticky {
+  position: relative;
+  top: 42px;
+  z-index: 1020;
 }

@@ -1,5 +1,5 @@
 <div class="pos-f-t">
-          <nav class="navbar1">
+          <nav class="navbar1 fixedHeader">
             <img src="assets/img/logo1.png"  style="float: left">
             &nbsp;
             <a *ngIf="currentURL1">
@@ -8,7 +8,7 @@
           </a>
 
             <a (click)="signOut()" style="cursor: pointer;">
-                <i class="fa fa-sign-out" aria-hidden="true" title="Logout" style="float: right; color:lightgrey; right: 0%;font-size: 1.5vw; margin-top:0.3rem "></i>
+                <i class="fa fa-sign-out" aria-hidden="true" title="Logout" style="float: right; color:lightgrey; right: 0%;font-size: 1.5vw; margin-top:0.5rem;margin-right: 10px;"></i>
             </a>
             <h5 style="float: right"  class="logInName">Logged in as: {{userName}} &nbsp; </h5>
             

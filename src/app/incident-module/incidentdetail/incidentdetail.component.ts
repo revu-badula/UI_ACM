@@ -1,5 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AlertService } from '../../alert.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { APP_CONFIG } from '../../app.config';
 declare let tinymce: any;
 
 @Component({
@@ -9,9 +12,14 @@ declare let tinymce: any;
 })
 export class IncidentdetailComponent implements OnInit {
 
-  public len:number=0;
-  public showEditButton:boolean;
-  public test:any;
+  public len: number = 0;
+  public showEditButton: boolean;
+  public test: any;
+  public loading: boolean = false;
+  public systems: any;
+  public servers: any;
+  public showSystem:boolean=false;
+  public showServer:boolean=false;
   config: any = {
     height: 250,
     width: 1080,
@@ -22,7 +30,8 @@ export class IncidentdetailComponent implements OnInit {
     menubar: false,
     statusbar: false
   };
-  constructor(private ref:ChangeDetectorRef,private alertService: AlertService) { 
+  constructor(private ref: ChangeDetectorRef,
+    private alertService: AlertService, private httpClient: HttpClient) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.config.init_instance_callback = (editor: any) => {
@@ -33,6 +42,7 @@ export class IncidentdetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getDropdowns();
   }
 
   getData(editor: any) {
@@ -55,6 +65,31 @@ export class IncidentdetailComponent implements OnInit {
       this.ref.detectChanges();
     }
   };
+
+  getDropdowns() {
+    this.loading = true;
+    let url = APP_CONFIG.getPendingApplications;
+    let url1 = APP_CONFIG.getServers;
+    Observable.forkJoin(
+      this.httpClient.get(url),
+      this.httpClient.get(url1)
+    ).subscribe((data: any) => {
+      this.loading = false;
+      this.systems = data[0];
+      this.servers = data[1];
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
+  }
+
+  getValue(value:any)
+  {
+    this.showServer=false;
+    this.showSystem=false;
+    if(value == 'server'){this.showServer=true}
+    else if(value == 'system'){this.showSystem=true;}
+  }
 
 
 }
