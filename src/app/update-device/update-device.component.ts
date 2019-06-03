@@ -12,6 +12,7 @@ import { PhonePipe } from '../locality-component/phone-pipe';
 import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-update-device',
   templateUrl: './update-device.component.html',
@@ -19,17 +20,19 @@ import { DatePipe } from '@angular/common';
   providers: [ApiserviceService, PhonePipe],
 })
 export class UpdateDeviceComponent implements OnInit {
-  device: Device;
+  public device: Device;
   public deviceData: any;
-  appId: number;
+  public appId: number;
   public getDeviceData: any;
   public hostName: any;
-  showForm: boolean = true;
-  isLol: boolean = false;
+  public showForm: boolean = true;
+  public isLol: boolean = false;
   public loading: boolean = false;
-  color: String;
-  serverContact: Server;
-  serverContact1: Server;
+  public color: String;
+  public serverContact: Server;
+  public serverContact1: Server;
+  public serverEnvs: any;
+
   config = {
     placeholder: '',
     tabsize: 2,
@@ -56,12 +59,12 @@ export class UpdateDeviceComponent implements OnInit {
   approveDate: any;
   dueDate: any;
   @ViewChild('content') content: TemplateRef<any>;
-  //public selectDate: IMyDate = null;
-  //public renewalDate: IMyDate = null;
   public licenceStartDate: IMyDate = null;
 
   constructor(private phone: PhonePipe, private _apiservice: ApiserviceService,
-    private activatedRoute: ActivatedRoute, private datepipe: DatePipe, private http: Http, private modalService: NgbModal, private _location: Location, private utilservice: UtilService) {
+    private activatedRoute: ActivatedRoute, private datepipe: DatePipe,
+     private http: Http, private modalService: NgbModal, private _location: Location, 
+     private utilservice: UtilService,private httpClient: HttpClient) {
     this.device = new Device();
     this.serverContact = new Server();
     this.serverContact1 = new Server();
@@ -83,12 +86,21 @@ export class UpdateDeviceComponent implements OnInit {
     this.serverContact.phoneNumber = this.phone.transform(value);
   }
 
-  
 
+  getServerEnvs() {
+    let url = APP_CONFIG.getServerEnvs;
+    this.loading=true;
+    this.httpClient.get(url)
+      .subscribe((data: any) => {
+        this.loading=false;
+        this.serverEnvs = data;
+      },error => {
+        this.loading=false;
+        console.log(error)
+      });
+  }
 
-
-
-  getPhoneNumber(e:any, value:any) {
+  getPhoneNumber(e: any, value: any) {
 
     let key = e.charCode || e.keyCode || 0;
     if (key !== 8 && key !== 9) {
@@ -108,7 +120,7 @@ export class UpdateDeviceComponent implements OnInit {
 
 
 
-  getPhoneNumber1(e:any, value:any) {
+  getPhoneNumber1(e: any, value: any) {
 
     let key = e.charCode || e.keyCode || 0;
     if (key !== 8 && key !== 9) {
@@ -142,7 +154,7 @@ export class UpdateDeviceComponent implements OnInit {
 
 
 
-  open(content) {
+  open(content:any) {
     this.modalService.open(content);
   }
 
@@ -155,7 +167,7 @@ export class UpdateDeviceComponent implements OnInit {
     }
   }
 
-  getDBServer(id) {
+  getDBServer(id:any) {
     this.loading = true;
     this._apiservice.getDBServer(id)
       .subscribe((data: any) => {
@@ -229,10 +241,11 @@ export class UpdateDeviceComponent implements OnInit {
     this.showForm = false;
     this.isLol = true;
     this.showBtt = false;
+    this.getServerEnvs();
   }
 
 
-  getStartDate(value:any) {
+  getStartDate(value: any) {
     if (value.formatted === "") {
       this.device.licenseStartDt = null;
     }
@@ -245,7 +258,7 @@ export class UpdateDeviceComponent implements OnInit {
 
   }
 
-  getEndDate(value:any) {
+  getEndDate(value: any) {
     if (value.formatted === "") {
       this.device.licenseEndDt = null;
     }
@@ -260,7 +273,7 @@ export class UpdateDeviceComponent implements OnInit {
 
 
 
-  getRenDate(value) {
+  getRenDate(value:any) {
     if (value.formatted === "") {
       this.device.licenseRenewDt = null;
     }
@@ -278,7 +291,7 @@ export class UpdateDeviceComponent implements OnInit {
 
 
 
-  getNumber(value) {
+  getNumber(value:any) {
     if (value.length === 10) {
 
       let data = value.slice(0, 3);
@@ -295,7 +308,7 @@ export class UpdateDeviceComponent implements OnInit {
   }
 
 
-  getNumber1(value:any) {
+  getNumber1(value: any) {
     if (value.length === 10) {
 
       let data = value.slice(0, 3);

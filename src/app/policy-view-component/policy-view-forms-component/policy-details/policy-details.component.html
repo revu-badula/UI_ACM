@@ -129,7 +129,7 @@ margin-bottom: -1%;">
 						<select class="form-control" style="width:50%;" id="priority" *ngIf="!showForm"
 							[(ngModel)]="policyDisplay.policyReviewTerm" [name]="'review_term'"
 							(change)="displayReview($event.target.value)" required>
-							<option *ngFor="let review of policyReviewTerm" value="review.reviewTerm">
+							<option *ngFor="let review of policyReviewTerm" value="{{review.reviewTerm}}">
 								{{review.reviewTerm}}</option>
 							<!-- <option value="2">Half-Yearly</option>
 											<option value="3">Quarterly</option> -->

@@ -26,6 +26,7 @@ import { IncidentBusinessComponent } from './incident-business/incident-business
 import { IncidentTechnicalComponent } from './incident-technical/incident-technical.component';
 import { IncidentcapComponent } from './incidentcap/incidentcap.component';
 import { IncidentcloseComponent } from './incidentclose/incidentclose.component';
+import { PhoneMaskDirective } from './phone-mask';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import { IncidentcloseComponent } from './incidentclose/incidentclose.component'
     NgxTinymceModule.forRoot({
     })
   ],
-  declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent, IncidentcloseComponent]
+  declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent,
+     IncidentcloseComponent, PhoneMaskDirective]
 })
 export class IncidentModuleModule { }

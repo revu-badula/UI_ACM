@@ -39,13 +39,9 @@ export class ScontrolComponent implements OnInit {
   public weightageD: any;
   public result: any;
   public realScore: any;
-
-
   family: familyPOlicyDTO;
   public changeOverallStatus: boolean = false;
-
   p: number = 1;
-
   showDocument: boolean;
   showForm: boolean = true;
   public desc1: boolean = false;
@@ -95,11 +91,8 @@ export class ScontrolComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
-    // this.policyDropDownId = UtilService.policyGrpId;
     this.fetchPolicyFamily(+sessionStorage.getItem("policyGrpId"));
-    // this.getUsers();
   }
 
 
@@ -109,10 +102,7 @@ export class ScontrolComponent implements OnInit {
       .subscribe((data: any) => {
         this.loading = false;
         this.policyDisplay = data.policyGrpDTO;
-        //this.policies = data.policyDTOs;
         this.policyGrpData = data.policyGrpDTO;
-
-
       }, error => {
         this.loading = false;
         console.log(error);
@@ -122,8 +112,6 @@ export class ScontrolComponent implements OnInit {
   }
 
   displayReview(val: any) {
-
-    //this.policyDisplay.policyReviewTermId = val;
     this.policyDisplay.policyReviewTerm = val;
   }
 
@@ -312,7 +300,6 @@ export class ScontrolComponent implements OnInit {
     this.families = [];
     this._apiservice.fetchPolicyFamily(id)
       .subscribe((data: any) => {
-
         this.families = data;
         this.getFamily(this.policyFamilyID);
 
@@ -322,15 +309,21 @@ export class ScontrolComponent implements OnInit {
   }
 
   getFamily(value: any) {
-
-    this.family.policyFamilyID = null;
-
     this.family.policyFamilyID = +value;
     this.loading = true;
     let name: any;
     for (let i = 0; i < this.families.length; i++) {
       if (this.families[i].policyFamilyID === +value) {
         name = this.families[i].familyName;
+        this.family = this.families[i];
+        if(this.family.assignedDt !== undefined && this.family !== null)
+        {
+          let rd = new Date(this.family.assignedDt);
+          let year = rd.getFullYear();
+          let month = rd.getMonth() + 1;
+          let day = rd.getDate();
+          this.assignOn = { date: { month: month, day: day, year: year } };
+        }
         break;
       }
     }
@@ -401,7 +394,6 @@ export class ScontrolComponent implements OnInit {
   overridePolicyFamily() {
     this.loading = true;
     let url = APP_CONFIG.overridePolicyFamily;
-    // this.family.policyFamilyID = +sessionStorage.getItem('policyFamilyID');
     let data = JSON.stringify(this.family);
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

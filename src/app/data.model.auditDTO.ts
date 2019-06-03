@@ -72,8 +72,6 @@ export class Policy {
   guidelines: string;
   familyName: string;
   classType: string;
-
-
 }
 
 export class AppAuditFileDTO {
@@ -86,8 +84,6 @@ export class AppAuditFileDTO {
   createdTs: any;
 }
 export class familyPOlicyDTO {
-
-
   assignedDt: any;
   startDate: any;
   endDate: any;
@@ -103,6 +99,4 @@ export class familyPOlicyDTO {
   familyName: any;
   assignedTo: any;
   appAuditId: any;
-
-
 }

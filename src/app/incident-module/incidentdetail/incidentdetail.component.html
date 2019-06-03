@@ -7,7 +7,7 @@
     (click)="editClick()"></i>
 </div>
 
-<form #formName="ngForm" id="myForm" (ngSubmit)="createLocality()" enctype="multipart/form-data">
+<form #formName="ngForm"  (ngSubmit)="createLocality()" enctype="multipart/form-data">
 
   <div id="formSame">
     <div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
@@ -19,23 +19,90 @@
         <div class="form-row headerOfBox">
           <h4>General Information</h4>
         </div>
+
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <!-- <div class="form-group col-md-6">
             <label class="fam">Name<span class="asterisk">*</span></label>
             <input type="text" name="incidentName" class="form-control">
+          </div> -->
+          <div class="form-group col-md-6">
+            <label class="fam">Reported By<span class="asterisk">*</span></label>
+            <input type="text" name="reportedBy" class="form-control">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
+            <label class="fam">Email<span class="asterisk">*</span></label>
+            <input type="text" class="form-control" name="emailId"
+              pattern="^[a-zA-Z0-9._%'+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+
+          </div>
+          <div class="form-group col-md-6">
+            <label class="fam">Phone<span class="asterisk">*</span></label>
+            <input type="text" name="phone" class="form-control" pattern="^\(\d{3}\)\s\d{3}-\d{4}$">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label class="fam">Short Description<span class="asterisk">*</span></label>
+            <input type="text" name="shortdes" class="form-control"  style="width: 72% !important;">
+          </div>
+        
+
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="fam">Type of incident<span class="asterisk">*</span></label>
+            <select class="form-control" name="typeofincident">
+              <option value="">Choose...</option>
+            </select>
+          </div>
+          <!-- <div class="col-md-6">
+            <label class="fam">Reported Source<span class="asterisk">*</span></label>
+            <input type="text" name="reportedSource" class="form-control">
+          </div> -->
+          <div class="form-group col-md-6">
             <label class="fam">Severity<span class="asterisk">*</span></label>
             <select class="form-control" name="severity">
               <option value="">Choose...</option>
-              <option value="critical">Critical</option>
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
+              <!-- <option value="critical">Critical</option> -->
+              <option value="high">High - System is totally down</option>
+              <option value="medium">Medium - System is partially down</option>
+              <option value="low">Low - System has intermittent issues</option>
             </select>
           </div>
+        
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="fam">Systems Impacted<span class="asterisk">*</span></label>
+            <input type="text" name="systemsImpacted" class="form-control">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label class="fam">Business unit impacted<span class="asterisk">*</span></label>
+            <select class="form-control" name="businessUnitImpacted">
+              <option value="">Choose...</option>
+            </select>
+          </div>
+      
+          <!-- <div class="form-group col-md-6">
+            <label class="fam">Application Server<span class="asterisk">*</span></label>
+            <input type="text" name="applicationServer" class="form-control">
+          </div> -->
+        </div>
+      
+        <!-- <div class="form-row"> -->
+
+          <!-- <div class="form-group col-md-6">
+            <label class="fam">Detailed Description<span class="asterisk">*</span></label>
+            <input type="text" name="detaileddes" class="form-control">
+          </div> -->
+         
+        <!-- </div> -->
+        <div class="form-row">
+      
+        
           <div class="form-group col-md-6">
             <label class="fam">Status<span class="asterisk">*</span></label>
             <select class="form-control" name="status">
@@ -46,12 +113,6 @@
               <option value="suspend">Suspend</option>
               <option value="invalid">Invalid</option>
             </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-md-6">
-            <label class="fam">Reported Source<span class="asterisk">*</span></label>
-            <input type="text" name="reportedSource" class="form-control">
           </div>
           <div class="col-md-6">
             <label class="fam">Progress<span class="asterisk">*</span></label>
@@ -67,7 +128,7 @@
         </div>
         <br>
         <div class="form-row">
-          <span class="fam" style="font-weight: bold;">Description</span>
+          <span class="fam" style="font-weight: bold;">Detailed Description</span>
           <div class="form-group col-md-12">
             <tinymce name="description" [(ngModel)]="test" *ngIf="showEditButton" disabled=true [config]="config">
             </tinymce>
@@ -92,16 +153,14 @@
             <select class="form-control" name="sysserver">
               <option value="">Choose...</option>
               <ng-container *ngIf="showSystem">
-                <option *ngFor="let system of systems"
-                  value="{{system.acronym}}">
+                <option *ngFor="let system of systems" value="{{system.acronym}}">
                   {{system.acronym}}
                 </option>
               </ng-container>
-              <ng-container  *ngIf="showServer">
-                <option *ngFor="let server of servers"
-                  value="{{server.hostName}}">
+              <ng-container *ngIf="showServer">
+                <option *ngFor="let server of servers" value="{{server.hostName}}">
                   {{server.hostName}}
-                  </option>
+                </option>
               </ng-container>
             </select>
           </div>
@@ -121,7 +180,7 @@
       <button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
     </div> -->
     <div class="d-flex justify-content-between p-2">
-      <button type="button"  class="cancel btn btn-primary">
+      <button type="button" class="cancel btn btn-primary">
         Cancel
       </button>
       <button type="button" class="cancel btn btn-primary">

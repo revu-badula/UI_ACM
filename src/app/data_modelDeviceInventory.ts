@@ -23,12 +23,9 @@ export class Device {
   serverName: string;
   archiveLogMode: string;
   sizeGb: string;
-  //private byte[] purpose;
   osVersion: string;
   createdBy: string;
-  //private Date createdTs;
   updatedBy: string;
-  //private Date updatedTs;
   systemTag: string;
   newEntry: boolean;
   active: boolean;
@@ -38,13 +35,14 @@ export class Device {
   vendorName: string;
   productName: string;
   serverContactDTOs: any = [];
-  serverTypeId:any;
-  serverTypeName:any;
+  serverTypeId: any;
+  serverTypeName: any;
+  serverEnvName: any;
+  serverEnvId: any;
 }
 
 export class Server {
   serverContactId: number;
-  //serverEntity:ServerEntity;
   firstName: string;
   lastName: string;
   emailId: string;

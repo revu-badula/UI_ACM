@@ -12,6 +12,8 @@ import * as moment from 'moment';
 import { PhonePipe } from '../locality-component/phone-pipe';
 import { Cookie } from 'ng2-cookies';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-device',
   templateUrl: './device.component.html',
@@ -34,6 +36,7 @@ export class DeviceComponent implements OnInit {
   public test: any;
   public endDate: any;
   isLol: boolean = false;
+  public serverEnvs: any;
   renDate: any;
   config = {
     placeholder: '',
@@ -56,7 +59,7 @@ export class DeviceComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any>;
   constructor(private phone: PhonePipe, private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal, private utilservice: UtilService,
-    private datepipe: DatePipe, private router: Router) {
+    private datepipe: DatePipe, private router: Router, private httpClient: HttpClient) {
     this.device = new Device();
     this.getDevice = new Device();
     this.device.serverContactDTOs = [];
@@ -79,15 +82,20 @@ export class DeviceComponent implements OnInit {
     }
   }
   getServers() {
+    let url = APP_CONFIG.getServerTypes;
+    let url1 = APP_CONFIG.getServerEnvs;
     this.loading = true;
-    this._apiservice.getServerTypes()
-      .subscribe((data: any) => {
-        this.loading = false;
-        this.serverTypes = data;
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+    Observable.forkJoin(
+      this.httpClient.get(url),
+      this.httpClient.get(url1)
+    ).subscribe((data: any) => {
+      this.loading = false;
+      this.serverTypes = data[0];
+      this.serverEnvs = data[1];
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
   }
 
 
@@ -101,7 +109,7 @@ export class DeviceComponent implements OnInit {
     this.isLol = true;
   }
 
-  getServerData(value:any) {
+  getServerData(value: any) {
     if (value == "") {
       this.device.serverTypeId = null;
     }
@@ -331,8 +339,8 @@ export class DeviceComponent implements OnInit {
 
 }
  /*let d = new Date(this.solution.certDt);
-     this.selectDate = {
-        year: d.getFullYear(),
-       month: d.getMonth() + 1,
-       day: d.getDate()
-     }*/
+   this.selectDate = {
+      year: d.getFullYear(),
+     month: d.getMonth() + 1,
+     day: d.getDate()
+   }*/

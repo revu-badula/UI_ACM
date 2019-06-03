@@ -64,6 +64,19 @@
             </select>
           </div>
         </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Environment<font color="red">*</font></label>
+            <select  [(ngModel)]="device.serverEnvId" style="width:50%;" class="form-control" ngModel  required name="serverEnvName"
+              (change)="device.serverEnvId=$event.target.value">
+              <option *ngFor=" let serverEnv of serverEnvs" value="{{ serverEnv.serverEnvId }}">{{ serverEnv.name}}
+              </option>
+            </select>
+          </div>
+
+
+        </div>
       </div>
 
       <div class="infoBox">
