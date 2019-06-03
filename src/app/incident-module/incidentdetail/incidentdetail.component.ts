@@ -1,9 +1,11 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation, ViewChild, PipeTransform } from '@angular/core';
 import { AlertService } from '../../alert.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { APP_CONFIG } from '../../app.config';
 declare let tinymce: any;
+import { FormGroup } from '@angular/forms';
+import { DecimalPipe, Location } from '@angular/common';
 
 @Component({
   selector: 'app-incidentdetail',
@@ -11,15 +13,20 @@ declare let tinymce: any;
   styleUrls: ['./incidentdetail.component.css']
 })
 export class IncidentdetailComponent implements OnInit {
-
+  @ViewChild('myForm') myForm: FormGroup;
   public len: number = 0;
   public showEditButton: boolean;
   public test: any;
+  public test1: any;
   public loading: boolean = false;
   public systems: any;
   public servers: any;
-  public showSystem:boolean=false;
-  public showServer:boolean=false;
+  public showSystem: boolean = false;
+  public showServer: boolean = false;
+  public users: any;
+  public dummy: any;
+  public dbservers: any = [];
+  public apps: any = [];
   config: any = {
     height: 250,
     width: 1080,
@@ -30,8 +37,9 @@ export class IncidentdetailComponent implements OnInit {
     menubar: false,
     statusbar: false
   };
+  public search: any;
   constructor(private ref: ChangeDetectorRef,
-    private alertService: AlertService, private httpClient: HttpClient) {
+    private alertService: AlertService, private httpClient: HttpClient, private pipe: DecimalPipe, private _location: Location) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.config.init_instance_callback = (editor: any) => {
@@ -39,6 +47,7 @@ export class IncidentdetailComponent implements OnInit {
         this.getData(editor);
       });
     };
+
   }
 
   ngOnInit() {
@@ -70,25 +79,102 @@ export class IncidentdetailComponent implements OnInit {
     this.loading = true;
     let url = APP_CONFIG.getPendingApplications;
     let url1 = APP_CONFIG.getServers;
+    // let url2 = APP_CONFIG.getUsers;
     Observable.forkJoin(
       this.httpClient.get(url),
       this.httpClient.get(url1)
+      // this.httpClient.get(url2)
     ).subscribe((data: any) => {
       this.loading = false;
       this.systems = data[0];
       this.servers = data[1];
+      // this.users = data[2];
+      // this.dummy =  this.users.slice(0,this.users.length)
     }, error => {
       this.loading = false;
       console.log(error);
     });
   }
 
-  getValue(value:any)
-  {
-    this.showServer=false;
-    this.showSystem=false;
-    if(value == 'server'){this.showServer=true}
-    else if(value == 'system'){this.showSystem=true;}
+  getValue(value: any) {
+    this.showServer = false;
+    this.showSystem = false;
+    if (value == 'server') { this.showServer = true }
+    else if (value == 'system') { this.showSystem = true; }
+  }
+  getData1(value: any) {
+    if (value.length >= 3) {
+      //this.loading=true;
+      let url = APP_CONFIG.searchUser;
+      this.httpClient.get(url + "?lastName=" + value)
+        .subscribe((data: any) => {
+          //this.loading=false;
+          this.dummy = data;
+        }, error => {
+          //this.loading=false;
+          console.log(error);
+        })
+      //this.dummy=this.users.filter((country:any) => this.matches(country, value, this.pipe));
+    }
+    else {
+      this.dummy = [];
+    }
+  }
+
+  matches(user: any, term: string, pipe: PipeTransform) {
+    return user.firstName.toLowerCase().includes(term)
+      || user.lastName.toLowerCase().includes(term);
+  }
+
+  fillData(value: any) {
+    if (this.dummy !== undefined && this.dummy !== null && this.dummy.length > 0) {
+      for (let i = 0; i < this.dummy.length; i++) {
+        if (this.dummy[i].lastName === value) {
+          this.test1 = this.dummy[i].emailId;
+        }
+      }
+    }
+  }
+
+  backClicked() {
+    this._location.back();
+  }
+  removeServer(index: number) {
+    this.dbservers.splice(index, 1);
+  }
+
+  removeApp(index: number) {
+    this.apps.splice(index, 1);
+  }
+  getServer(id: any) {
+    let url = APP_CONFIG.getDBServer;
+    this.httpClient.get(url + '?' + 'a' + '=' + id)
+      .subscribe((data: any) => {
+        data.serverContactDTOs.filter((item: any) => {
+          if (item.isPrimary === true) {
+            data.primaryContactName = item.firstName + " " + item.lastName;
+          }
+        });
+        data.serverContactDTOs.filter((item: any) => {
+          if (item.isPrimary === false) {
+            data.secondaryContactName = item.firstName + " " + item.lastName;
+          }
+        });
+        this.dbservers.push(data)
+      });
+  }
+
+  getApplication(name: any) {
+    this.loading = true;
+    let url = APP_CONFIG.viewApplication;
+    this.httpClient.get(url + '?' + 'acronym' + '=' + name)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.apps.push(data.applicationViewDTO)
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
   }
 
 

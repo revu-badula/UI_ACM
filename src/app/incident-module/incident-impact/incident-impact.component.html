@@ -81,7 +81,7 @@
       <button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
     </div> -->
     <div class="d-flex justify-content-between p-2">
-      <button type="button" *ngIf="!showHead" class="cancel btn btn-primary">
+      <button type="button" class="cancel btn btn-primary" (click)="backClicked()">
         Cancel
       </button>
       <button type="button" class="cancel btn btn-primary">

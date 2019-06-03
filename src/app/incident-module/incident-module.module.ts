@@ -11,7 +11,7 @@ import { NgxSummernoteModule } from 'ngx-summernote';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxCurrencyModule } from "ngx-currency";
 import { NgxTinymceModule } from 'ngx-tinymce';
-import { ChartsModule} from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 import { NavigationComponentModule } from '../navigation-component/navigation-component.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
@@ -27,9 +27,12 @@ import { IncidentTechnicalComponent } from './incident-technical/incident-techni
 import { IncidentcapComponent } from './incidentcap/incidentcap.component';
 import { IncidentcloseComponent } from './incidentclose/incidentclose.component';
 import { PhoneMaskDirective } from './phone-mask';
-
+import { MatInputModule,  MatAutocompleteModule } from '@angular/material';
+import { DecimalPipe } from '@angular/common';
 @NgModule({
   imports: [
+    MatInputModule,
+    MatAutocompleteModule,
     CommonModule,
     BrowserModule,
     MyDatePickerModule,
@@ -59,6 +62,7 @@ import { PhoneMaskDirective } from './phone-mask';
     })
   ],
   declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent,
-     IncidentcloseComponent, PhoneMaskDirective]
+    IncidentcloseComponent, PhoneMaskDirective],
+    providers:[DecimalPipe]
 })
 export class IncidentModuleModule { }

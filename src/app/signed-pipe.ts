@@ -1,4 +1,3 @@
-import { IMyDate } from 'mydatepicker';
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
     name: 'signed'
@@ -16,5 +15,7 @@ export class SignedPipe implements PipeTransform {
             }
 
         }
+        // data = data.substring(0, 10);
+        // return data.replace(/^(\d{0,3})(\d{0,3})(\d{0,4})/, '($1) $2-$3');
     }
 }

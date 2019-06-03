@@ -49,7 +49,6 @@ export class IncidentinfoComponent implements OnInit {
       newObservable.subscribe(
         (res) => {
           if (res === true) {
-
             this.router.navigate(['']);
           }
         },

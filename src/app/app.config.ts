@@ -147,7 +147,7 @@ export const APP_CONFIG = {
   generateSsp: apiBaseUrl + 'generateSSP',
   generateSars: apiBaseUrl + 'generateSARs',
   getServerEnvs: apiBaseUrl + 'getServerEnvs',
-
+  searchUser: apiBaseUrl + 'searchUser',
 }
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 declare let tinymce: any;
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-incident-technical',
@@ -45,7 +46,7 @@ export class IncidentTechnicalComponent implements OnInit {
     menubar: false,
     statusbar: false
   };
-  constructor(private ref:ChangeDetectorRef) { 
+  constructor(private ref:ChangeDetectorRef,private _location: Location) { 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.config.init_instance_callback = (editor: any) => {
@@ -67,6 +68,11 @@ export class IncidentTechnicalComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  backClicked() {
+    this._location.back();
+  }
+
 
 
   getData(editor: any) {

@@ -1,25 +1,24 @@
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
-
 <div class="plus" style="float:right">
   <i *ngIf="showEditButton && !isShow" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
     (click)="editClick()"></i>
 </div>
 
-<form #formName="ngForm"  (ngSubmit)="createLocality()" enctype="multipart/form-data">
 
-  <div id="formSame">
-    <div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
-      <span style="float:right">
-        <font color=red>*</font> marked fields are mandatory
-      </span> </div>
-    <fieldset [disabled]="editableForm">
-      <div class="infoBox">
-        <div class="form-row headerOfBox">
-          <h4>General Information</h4>
-        </div>
 
+<div id="formSame">
+  <div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
+    <span style="float:right">
+      <font color=red>*</font> marked fields are mandatory
+    </span> </div>
+  <fieldset [disabled]="editableForm">
+    <div class="infoBox">
+      <div class="form-row headerOfBox">
+        <h4>General Information</h4>
+      </div>
+      <form #formName="ngForm" (ngSubmit)="createLocality()" enctype="multipart/form-data">
         <div class="form-row">
           <!-- <div class="form-group col-md-6">
             <label class="fam">Name<span class="asterisk">*</span></label>
@@ -27,27 +26,43 @@
           </div> -->
           <div class="form-group col-md-6">
             <label class="fam">Reported By<span class="asterisk">*</span></label>
-            <input type="text" name="reportedBy" class="form-control">
+            <!-- <input type="text" name="reportedBy" class="form-control"> -->
+            <mat-form-field>
+              <input type="text" matInput name="seaUser" (blur)="fillData($event.target.value)"
+                (keyup)="getData1($event.target.value)" [(ngModel)]="search" required [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                <mat-optgroup *ngFor="let group of dummy">
+                  <mat-option [value]="group.lastName">
+                    {{group.lastName}}
+                  </mat-option>
+                </mat-optgroup>
+              </mat-autocomplete>
+            </mat-form-field>
           </div>
         </div>
+
+
         <div class="form-row">
           <div class="form-group col-md-6">
             <label class="fam">Email<span class="asterisk">*</span></label>
-            <input type="text" class="form-control" name="emailId"
-              pattern="^[a-zA-Z0-9._%'+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
-
+            <input type="text" [(ngModel)]="test1" class="form-control" name="emailId" #email1="ngModel"
+              pattern="^[a-zA-Z0-9._%'+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" readonly>
+            <span *ngIf="email1.errors">
+              Email is invalid.
+            </span>
           </div>
           <div class="form-group col-md-6">
             <label class="fam">Phone<span class="asterisk">*</span></label>
-            <input type="text" name="phone" class="form-control" pattern="^\(\d{3}\)\s\d{3}-\d{4}$">
+            <input type="text" name="phone" class="form-control" pattern="^\(\d{3}\)\s\d{3}-\d{4}$" readonly>
           </div>
         </div>
+
         <div class="form-row">
           <div class="form-group col-md-12">
             <label class="fam">Short Description<span class="asterisk">*</span></label>
-            <input type="text" name="shortdes" class="form-control"  style="width: 72% !important;">
+            <input type="text" name="shortdes" class="form-control" style="width: 72% !important;">
           </div>
-        
+
 
         </div>
         <div class="form-row">
@@ -71,7 +86,7 @@
               <option value="low">Low - System has intermittent issues</option>
             </select>
           </div>
-        
+
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -85,24 +100,24 @@
               <option value="">Choose...</option>
             </select>
           </div>
-      
+
           <!-- <div class="form-group col-md-6">
             <label class="fam">Application Server<span class="asterisk">*</span></label>
             <input type="text" name="applicationServer" class="form-control">
           </div> -->
         </div>
-      
+
         <!-- <div class="form-row"> -->
 
-          <!-- <div class="form-group col-md-6">
+        <!-- <div class="form-group col-md-6">
             <label class="fam">Detailed Description<span class="asterisk">*</span></label>
             <input type="text" name="detaileddes" class="form-control">
           </div> -->
-         
+
         <!-- </div> -->
         <div class="form-row">
-      
-        
+
+
           <div class="form-group col-md-6">
             <label class="fam">Status<span class="asterisk">*</span></label>
             <select class="form-control" name="status">
@@ -141,55 +156,130 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label class="fam">Server/ Systems<span class="asterisk">*</span></label>
-            <select class="form-control" name="serversys" (change)="getValue($event.target.value)">
+            <label class="fam">Systems<span class="asterisk">*</span></label>
+            <select class="form-control" name="serversys" (change)="getApplication($event.target.value)">
               <option value="">Choose...</option>
-              <option value="server">Servers</option>
-              <option value="system">Systems</option>
-            </select>
-          </div>
-          <div class="form-group col-md-6">
-            <label class="fam">Values<span class="asterisk">*</span></label>
-            <select class="form-control" name="sysserver">
-              <option value="">Choose...</option>
-              <ng-container *ngIf="showSystem">
+              <ng-container>
                 <option *ngFor="let system of systems" value="{{system.acronym}}">
-                  {{system.acronym}}
-                </option>
-              </ng-container>
-              <ng-container *ngIf="showServer">
-                <option *ngFor="let server of servers" value="{{server.hostName}}">
-                  {{server.hostName}}
-                </option>
-              </ng-container>
+                  {{system.acronym}}</option>
+                </ng-container>
             </select>
           </div>
+        </div>
+        <div class="form-row">
+          <table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>System Name
+								</th>
+
+								<th>Business
+									Owner
+								</th>
+
+
+								<th>System
+									Owner
+								</th>
+								<th>Updated
+									By
+								</th>
+								<th>Updated
+									Date
+								</th>
+								<th>Remove</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr
+								*ngFor="let pendingApplication of apps | paginate: { itemsPerPage: 10, currentPage: p } let i= index">
+								<td><a class="anchor"
+									(click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
+								</td>
+								<td>{{pendingApplication.businessOwnerNameDoe}}</td>
+
+								<td>{{pendingApplication.systemOwnerNameDoe}}</td>
+								<td>{{pendingApplication.updatedBy}}</td>
+								<td>{{pendingApplication.updatedTs }}</td>
+								<td><a  (click)="removeApp(i)"><i class="fa fa-minus-circle" style = "color:red"></i></a></td>
+							</tr>
+
+						</tbody>
+					</table>
+					<pagination-controls
+						(pageChange)="p = $event"></pagination-controls>
+					<br>
+
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="fam">Servers<span class="asterisk">*</span></label>
+            <select class="form-control" name="sysserver"
+            (change)="getServer($event.target.value)">
+            <option value="">Choose...</option>
+            <ng-container>
+            <option *ngFor="let server of servers"
+              value="{{server.databaseId}}">{{server.hostName}}</option>
+            </ng-container>
+          </select>
+          </div>
+        </div>
+        <div class="form-row">
+
+          <table class="table table-bordered" style="text-align: center">
+						<thead>
+							<tr>
+								<th>Host Name</th>
+								<th>Product Name</th>
+								<th>Primary
+									Contact
+								</th>
+								<th>Secondary
+									Contact
+								</th>
+								<th>Remove
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let appDevice of dbservers let i=index">
+
+								<td><a class="box"
+									routerLink="/updateDevice/{{appDevice.databaseId}}"
+									(click)="getDatabases(appDevice.databaseId)"
+									style="cursor: pointer;">{{ appDevice.hostName}}</a></td>
+								<td>{{appDevice.productName}}</td>
+								<td>{{appDevice.primaryContactName}}</td>
+								<td>{{appDevice.secondaryContactName}}</td>
+								<td><a  (click)="removeServer(i)"><i class="fa fa-minus-circle" style = "color:red"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+
         </div>
 
 
 
+      </form>
+
+    </div>
 
 
-      </div>
-
-
-    </fieldset>
-    <!-- <div class="buttons" style="margin-right:5%;">
+  </fieldset>
+  <!-- <div class="buttons" style="margin-right:5%;">
       <button type="submit" form="myForm" class="submit btn btn-primary" [disabled]="!formName.valid"
         *ngIf="isShow">Submit</button>
       <button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
     </div> -->
-    <div class="d-flex justify-content-between p-2">
-      <button type="button" class="cancel btn btn-primary">
-        Cancel
-      </button>
-      <button type="button" class="cancel btn btn-primary">
-        Submit
-      </button>
-
-    </div>
+  <div class="d-flex justify-content-between p-2">
+    <button type="button" class="cancel btn btn-primary" (click)="backClicked()">
+      Cancel
+    </button>
+    <button type="button" class="cancel btn btn-primary">
+      Submit
+    </button>
 
   </div>
 
-
-</form>
+</div>
