@@ -196,6 +196,7 @@ import { IncidentBusinessComponent } from './incident-module/incident-business/i
 import { IncidentTechnicalComponent } from './incident-module/incident-technical/incident-technical.component';
 import { IncidentcapComponent } from './incident-module/incidentcap/incidentcap.component';
 import { IncidentcloseComponent } from './incident-module/incidentclose/incidentclose.component';
+import { IncidentstartComponent } from './incident-module/incidentstart/incidentstart.component';
 
 const appRoutes: Routes = [
 
@@ -471,6 +472,7 @@ const appRoutes: Routes = [
       { path: 'sapplications', component: ApplicationsComponent, canActivate: [AuthGuard] },
       { path: 'scontrol/:id', component: ScontrolComponent, canActivate: [AuthGuard] },
       { path: 'dummy/:id', component: DummyComponent, canActivate: [AuthGuard] },
+      { path: 'saccesscontrol/:id', component:ControlNameComponent,canActivate:[AuthGuard]}
     ]
 
   },
@@ -757,7 +759,7 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'incident', component: IncidentinfoComponent, canActivate:[AuthGuard],
+    path: 'incident', component: IncidentinfoComponent, canActivate: [AuthGuard],
     children: [
       { path: 'info', component: IncidentdetailComponent },
       { path: 'classification', component: IncidentclassificationComponent },
@@ -770,6 +772,7 @@ const appRoutes: Routes = [
       { path: 'close', component: IncidentcloseComponent }
     ]
   },
+  { path: 'incidentStart', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({

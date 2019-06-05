@@ -2,7 +2,7 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <div class="plus" style="float:right">
-  <i *ngIf="showEditButton && !isShow" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
+  <i *ngIf="showEditButton && editMode" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
     (click)="editClick()"></i>
 </div>
 
@@ -13,20 +13,16 @@
     <span style="float:right">
       <font color=red>*</font> marked fields are mandatory
     </span> </div>
-  <fieldset [disabled]="editableForm">
-    <div class="infoBox">
-      <div class="form-row headerOfBox">
-        <h4>General Information</h4>
-      </div>
-      <form #formName="ngForm" (ngSubmit)="createLocality()" enctype="multipart/form-data">
+
+  <div class="infoBox">
+    <div class="form-row headerOfBox">
+      <h4>General Information</h4>
+    </div>
+    <form #formName="ngForm" enctype="multipart/form-data">
+      <fieldset [disabled]="showEditButton">
         <div class="form-row">
-          <!-- <div class="form-group col-md-6">
-            <label class="fam">Name<span class="asterisk">*</span></label>
-            <input type="text" name="incidentName" class="form-control">
-          </div> -->
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6" *ngIf="!showEditButton">
             <label class="fam">Reported By<span class="asterisk">*</span></label>
-            <!-- <input type="text" name="reportedBy" class="form-control"> -->
             <mat-form-field>
               <input type="text" matInput name="seaUser" (blur)="fillData($event.target.value)"
                 (keyup)="getData1($event.target.value)" [(ngModel)]="search" required [matAutocomplete]="autoGroup">
@@ -39,32 +35,40 @@
               </mat-autocomplete>
             </mat-form-field>
           </div>
-        </div>
-
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label class="fam">Email<span class="asterisk">*</span></label>
-            <input type="text" [(ngModel)]="test1" class="form-control" name="emailId" #email1="ngModel"
-              pattern="^[a-zA-Z0-9._%'+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" readonly>
-            <span *ngIf="email1.errors">
-              Email is invalid.
-            </span>
+          <div class="form-group col-md-6" *ngIf="showEditButton">
+            <label class="fam">Reported By<span class="asterisk">*</span></label>
+            <input type="text" name="reportedBy" readonly [(ngModel)]="incidentManagementDTO.reportedBy"
+              class="form-control">
           </div>
-          <div class="form-group col-md-6">
-            <label class="fam">Phone<span class="asterisk">*</span></label>
-            <input type="text" name="phone" class="form-control" pattern="^\(\d{3}\)\s\d{3}-\d{4}$" readonly>
-          </div>
-        </div>
 
+        </div>
+      </fieldset>
+
+      <div class="form-row" *ngIf="!showEditButton">
+        <div class="form-group col-md-6">
+          <label class="fam">Email<span class="asterisk">*</span></label>
+          <input type="text" [(ngModel)]="test1" class="form-control" name="emailId" #email1="ngModel"
+            pattern="^[a-zA-Z0-9._%'+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" readonly>
+          <span *ngIf="email1.errors">
+            Email is invalid.
+          </span>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="fam">Phone<span class="asterisk">*</span></label>
+          <input type="text" name="phone" class="form-control" pattern="^\(\d{3}\)\s\d{3}-\d{4}$" readonly>
+        </div>
+      </div>
+
+      <fieldset [disabled]="showEditButton">
         <div class="form-row">
           <div class="form-group col-md-12">
             <label class="fam">Short Description<span class="asterisk">*</span></label>
-            <input type="text" name="shortdes" class="form-control" style="width: 72% !important;">
+            <input type="text" name="shortdes" [(ngModel)]="incidentManagementDTO.shortDescription" class="form-control"
+              style="width: 72% !important;">
           </div>
-
-
         </div>
+      </fieldset>
+      <fieldset [disabled]="showEditButton">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label class="fam">Type of incident<span class="asterisk">*</span></label>
@@ -72,15 +76,12 @@
               <option value="">Choose...</option>
             </select>
           </div>
-          <!-- <div class="col-md-6">
-            <label class="fam">Reported Source<span class="asterisk">*</span></label>
-            <input type="text" name="reportedSource" class="form-control">
-          </div> -->
+
           <div class="form-group col-md-6">
             <label class="fam">Severity<span class="asterisk">*</span></label>
-            <select class="form-control" name="severity">
+            <select class="form-control" name="severity" [(ngModel)]="incidentManagementDTO.severity"
+              (change)="incidentManagementDTO.severity = $event.target.value">
               <option value="">Choose...</option>
-              <!-- <option value="critical">Critical</option> -->
               <option value="high">High - System is totally down</option>
               <option value="medium">Medium - System is partially down</option>
               <option value="low">Low - System has intermittent issues</option>
@@ -88,7 +89,10 @@
           </div>
 
         </div>
+      </fieldset>
+      <fieldset [disabled]="showEditButton">
         <div class="form-row">
+
           <div class="form-group col-md-6">
             <label class="fam">Systems Impacted<span class="asterisk">*</span></label>
             <input type="text" name="systemsImpacted" class="form-control">
@@ -101,26 +105,17 @@
             </select>
           </div>
 
-          <!-- <div class="form-group col-md-6">
-            <label class="fam">Application Server<span class="asterisk">*</span></label>
-            <input type="text" name="applicationServer" class="form-control">
-          </div> -->
+
         </div>
-
-        <!-- <div class="form-row"> -->
-
-        <!-- <div class="form-group col-md-6">
-            <label class="fam">Detailed Description<span class="asterisk">*</span></label>
-            <input type="text" name="detaileddes" class="form-control">
-          </div> -->
-
-        <!-- </div> -->
+      </fieldset>
+      <fieldset [disabled]="editMode">
         <div class="form-row">
 
 
           <div class="form-group col-md-6">
             <label class="fam">Status<span class="asterisk">*</span></label>
-            <select class="form-control" name="status">
+            <select class="form-control" name="status" [(ngModel)]="incidentManagementDTO.status"
+              (change)="incidentManagementDTO.status = $event.target.value">
               <option value="">Choose...</option>
               <option value="open">Open</option>
               <option value="close">Close</option>
@@ -140,143 +135,134 @@
               <option value="closed">Closed</option>
             </select>
           </div>
-        </div>
-        <br>
-        <div class="form-row">
-          <span class="fam" style="font-weight: bold;">Detailed Description</span>
-          <div class="form-group col-md-12">
-            <tinymce name="description" [(ngModel)]="test" *ngIf="showEditButton" disabled=true [config]="config">
-            </tinymce>
-            <tinymce name="description" [(ngModel)]="test" *ngIf="!showEditButton" [config]="config">
-            </tinymce>
-            remaining {{50000 -len}}
-
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label class="fam">Systems<span class="asterisk">*</span></label>
-            <select class="form-control" name="serversys" (change)="getApplication($event.target.value)">
-              <option value="">Choose...</option>
-              <ng-container>
-                <option *ngFor="let system of systems" value="{{system.acronym}}">
-                  {{system.acronym}}</option>
-                </ng-container>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>System Name
-								</th>
-
-								<th>Business
-									Owner
-								</th>
-
-
-								<th>System
-									Owner
-								</th>
-								<th>Updated
-									By
-								</th>
-								<th>Updated
-									Date
-								</th>
-								<th>Remove</th>
-							</tr>
-						</thead>
-						<tbody>
-
-							<tr
-								*ngFor="let pendingApplication of apps | paginate: { itemsPerPage: 10, currentPage: p } let i= index">
-								<td><a class="anchor"
-									(click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
-								</td>
-								<td>{{pendingApplication.businessOwnerNameDoe}}</td>
-
-								<td>{{pendingApplication.systemOwnerNameDoe}}</td>
-								<td>{{pendingApplication.updatedBy}}</td>
-								<td>{{pendingApplication.updatedTs }}</td>
-								<td><a  (click)="removeApp(i)"><i class="fa fa-minus-circle" style = "color:red"></i></a></td>
-							</tr>
-
-						</tbody>
-					</table>
-					<pagination-controls
-						(pageChange)="p = $event"></pagination-controls>
-					<br>
 
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label class="fam">Servers<span class="asterisk">*</span></label>
-            <select class="form-control" name="sysserver"
-            (change)="getServer($event.target.value)">
+      </fieldset>
+      <br>
+      <div class="form-row">
+        <span class="fam" style="font-weight: bold;">Detailed Description</span>
+        <div class="form-group col-md-12">
+          <tinymce name="description" [(ngModel)]="incidentManagementDTO.longDescription" *ngIf="showEditButton"
+            disabled=true [config]="config">
+          </tinymce>
+          <tinymce name="description" [(ngModel)]="incidentManagementDTO.longDescription" *ngIf="!showEditButton"
+            [config]="config">
+          </tinymce>
+          remaining {{50000 -len}}
+
+        </div>
+      </div>
+
+      <div class="form-row" *ngIf="!showEditButton">
+        <div class="form-group col-md-6">
+          <label class="fam">Systems<span class="asterisk">*</span></label>
+          <select class="form-control" name="serversys" (change)="getApplication($event.target.value)">
             <option value="">Choose...</option>
             <ng-container>
-            <option *ngFor="let server of servers"
-              value="{{server.databaseId}}">{{server.hostName}}</option>
+              <option *ngFor="let system of systems" value="{{system.acronym}}">
+                {{system.acronym}}</option>
             </ng-container>
           </select>
-          </div>
         </div>
-        <div class="form-row">
+      </div>
+      <div class="form-row">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>System Name
+              </th>
+              <th>Business
+                Owner
+              </th>
+              <th>System
+                Owner
+              </th>
+              <th>Updated
+                By
+              </th>
+              <th>Updated
+                Date
+              </th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
 
-          <table class="table table-bordered" style="text-align: center">
-						<thead>
-							<tr>
-								<th>Host Name</th>
-								<th>Product Name</th>
-								<th>Primary
-									Contact
-								</th>
-								<th>Secondary
-									Contact
-								</th>
-								<th>Remove
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let appDevice of dbservers let i=index">
+            <tr *ngFor="let pendingApplication of incidentManagementDTO.applicationDTOs
+              | paginate: { itemsPerPage: 10, currentPage: p } let i= index">
+              <td><a (click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
+              </td>
+              <td>{{pendingApplication.businessOwnerNameDoe}}</td>
 
-								<td><a class="box"
-									routerLink="/updateDevice/{{appDevice.databaseId}}"
-									(click)="getDatabases(appDevice.databaseId)"
-									style="cursor: pointer;">{{ appDevice.hostName}}</a></td>
-								<td>{{appDevice.productName}}</td>
-								<td>{{appDevice.primaryContactName}}</td>
-								<td>{{appDevice.secondaryContactName}}</td>
-								<td><a  (click)="removeServer(i)"><i class="fa fa-minus-circle" style = "color:red"></i></a></td>
-							</tr>
-						</tbody>
-					</table>
+              <td>{{pendingApplication.systemOwnerNameDoe}}</td>
+              <td>{{pendingApplication.updatedBy}}</td>
+              <td>{{pendingApplication.updatedTime | date:'MM/dd/yyyy' }}</td>
+              <td><a (click)="removeApp(i)"><i class="fa fa-minus-circle" style="color:red"></i></a></td>
+            </tr>
 
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <br>
+
+      </div>
+      <div class="form-row" *ngIf="!showEditButton">
+        <div class="form-group col-md-6">
+          <label class="fam">Servers<span class="asterisk">*</span></label>
+          <select class="form-control" name="sysserver" (change)="getServer($event.target.value)">
+            <option value="">Choose...</option>
+            <ng-container>
+              <option *ngFor="let server of servers" value="{{server.databaseId}}">{{server.hostName}}</option>
+            </ng-container>
+          </select>
         </div>
+      </div>
+      <div class="form-row">
+
+        <table class="table table-bordered" style="text-align: center">
+          <thead>
+            <tr>
+              <th>Host Name</th>
+              <th>Product Name</th>
+              <th>Primary
+                Contact
+              </th>
+              <th>Secondary
+                Contact
+              </th>
+              <th>Remove
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let appDevice of incidentManagementDTO.databaseDTOs let i=index">
+
+              <td><a class="box" routerLink="/updateDevice/{{appDevice.databaseId}}"
+                  (click)="getDatabases(appDevice.databaseId)" style="cursor: pointer;">{{ appDevice.hostName}}</a>
+              </td>
+              <td>{{appDevice.productName}}</td>
+              <td>{{appDevice.primaryContactName}}</td>
+              <td>{{appDevice.secondaryContactName}}</td>
+              <td><a (click)="removeServer(i)"><i class="fa fa-minus-circle" style="color:red"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
 
 
 
-      </form>
+    </form>
 
-    </div>
+  </div>
 
 
-  </fieldset>
-  <!-- <div class="buttons" style="margin-right:5%;">
-      <button type="submit" form="myForm" class="submit btn btn-primary" [disabled]="!formName.valid"
-        *ngIf="isShow">Submit</button>
-      <button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
-    </div> -->
+
   <div class="d-flex justify-content-between p-2">
     <button type="button" class="cancel btn btn-primary" (click)="backClicked()">
       Cancel
     </button>
-    <button type="button" class="cancel btn btn-primary">
+    <button type="button" class="cancel btn btn-primary" (click)="getSave()">
       Submit
     </button>
 

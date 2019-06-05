@@ -108,7 +108,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-              <td><a routerLink="/accessControl/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
+              <td><a routerLink="/spolicy/saccesscontrol/{{ policy.policyId }}" style="cursor:pointer;color:blue;">{{
                 policy.controlNumber
                 }}</a></td>
               <td>{{policy.familyName}}</td>

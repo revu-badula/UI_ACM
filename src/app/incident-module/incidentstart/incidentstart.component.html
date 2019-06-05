@@ -1,0 +1,41 @@
+<app-navigation-component></app-navigation-component>
+
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<div>
+  <h3 class="pageTitle">Incidents</h3>
+  <hr>
+</div>
+<div class="incidentPlus">
+  <i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;" (click)="createSystem()"></i>
+</div>
+<form class="forms">
+    <br _ngcontent-c5="">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th sortable="shortDescription" (sort)="getSort($event)">Name</th>
+        <th sortable="reportedBy" (sort)="getSort($event)">Reported By</th>
+        <th sortable="serverity" (sort)="getSort($event)">Severity</th>
+        <th sortable="status" (sort)="getSort($event)">Staus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let incident of incidents | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td><a class="incidentLink" (click)="viewApplication(incident.incidentId)">{{incident.shortDescription}}</a></td>
+        <td>{{incident.reportedBy}}</td>
+        <td>{{incident.severity}}</td>
+        <td>{{incident.status}}</td>
+      </tr>
+
+
+
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <br>
+
+
+</form>

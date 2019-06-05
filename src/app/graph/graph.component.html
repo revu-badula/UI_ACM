@@ -19,7 +19,7 @@
               </a>
               <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
                 aria-controls="nav-profile" aria-selected="true">Dashboard</a>
-                <a class="nav-item nav-link" id="nav-devices-tab" data-toggle="tab" href="#nav-task" role="tab"
+              <a class="nav-item nav-link" id="nav-devices-tab" data-toggle="tab" href="#nav-task" role="tab"
                 aria-controls="nav-task" aria-selected="false">My Tasks</a>
               <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                 aria-controls="nav-home" aria-selected="false">Locations</a>
@@ -34,7 +34,7 @@
                 aria-controls="nav-solution" aria-selected="false">Solutions</a>
               <a class="nav-item nav-link" id="nav-devices-tab" data-toggle="tab" href="#nav-devices" role="tab"
                 aria-controls="nav-devices" aria-selected="false">Devices</a>
-              
+
             </div>
           </nav>
           <br>
@@ -100,14 +100,7 @@
             </div>
 
             <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
-                    style="width: 100%; height: 300px; display: block;">
-                  </highcharts-chart>
-                </div>
-              </div>
-              <br>
+              <!-- 
               <div class="row">
                 <div class="col-md-6">
                   <div class="chart">
@@ -133,8 +126,8 @@
 
                 </div>
               </div>
-              <br>
-              <div class="row">
+              <br> -->
+              <!-- <div class="row">
 
                 <div class="col-md-6" *ngIf="showSystem">
                   <div style="display: block; width: 100%; height: 30vh;background-color: #fff;margin-left: 0vw;">
@@ -156,11 +149,120 @@
                   </div>
 
                 </div>
+              </div> -->
+              <mat-sidenav-container class="example-sidenav-container"
+                style="min-height: 100%;background-color: inherit;">
+
+
+                <mat-sidenav-content>
+                  <mat-grid-list cols="10" rowHeight="100px">
+                    <mat-grid-tile [colspan]="3" [rowspan]="2">
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          My Tasks
+                        </div>
+                        <div class="col-md-6 pull-left">
+                          <span class="dot pendingDot">10</span>
+                          <p style="text-align: center;">Open</p>
+                        </div>
+                        <div class="col-md-6 pull-left">
+                          <span class="dot pendingDot">20</span>
+                          <p style="text-align: center;">Close</p>
+                        </div>
+                      </div>
+
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="4" [rowspan]="2">
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          My Notifications
+                        </div>
+                        <table style="margin-bottom: 0;border: 1px solid #dee2e6;">
+
+                          <tbody>
+                            <tr>
+                              <span>No New Notification</span>
+
+
+
+                            </tr>
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="2">
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          POAMS
+                        </div>
+
+
+                      </div>
+
+                    </mat-grid-tile>
+
+
+                    <mat-grid-tile [colspan]="10" [rowspan]="3">
+
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          upcoming Audits and Assessments
+                        </div>
+                        <div class="col-md-12">
+                          <div style="display: block;width:100%; height:15rem;background-color:#fff;">
+                            <canvas baseChart [datasets]="lineChartDataSystems1" [labels]="lineChartLabelsSystems1"
+                              chartType="bar" [legend]="true" (chartClick)="chartClickedSystems1($event)"
+                              [options]="chartOption12" [colors]="chartColorsSystems1"></canvas>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="10" [rowspan]="4" style="min-width: 100%;">
+
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          Incident Reports
+                        </div>
+
+                        <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions123"
+                          style="width: 100%; height: 300px; display: block;">
+                        </highcharts-chart>
+
+                      </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="10" [rowspan]="4" style="min-width: 100%;">
+
+                        <div class="testMat">
+                          <div class="entryTitle">
+                          Vulnerability Scan Report
+                          </div>
+  
+                          <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions1234"
+                            style="width: 100%; height: 300px; display: block;">
+                          </highcharts-chart>
+  
+                        </div>
+                      </mat-grid-tile>
+
+
+
+                  </mat-grid-list>
+                </mat-sidenav-content>
+              </mat-sidenav-container>
 
 
 
 
-              </div>
+
+
+
+
+
             </div>
 
             <div class="tab-pane fade show" id="nav-contact" role="tabpanel" aria-labelledby="nav-home-tab">

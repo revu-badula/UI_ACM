@@ -6,7 +6,8 @@ import { APP_CONFIG } from '../../app.config';
 declare let tinymce: any;
 import { FormGroup } from '@angular/forms';
 import { DecimalPipe, Location } from '@angular/common';
-
+import { IncidentManagementDTO } from '../incident-model';
+import { Cookie } from 'ng2-cookies';
 @Component({
   selector: 'app-incidentdetail',
   templateUrl: './incidentdetail.component.html',
@@ -27,6 +28,7 @@ export class IncidentdetailComponent implements OnInit {
   public dummy: any;
   public dbservers: any = [];
   public apps: any = [];
+  incidentManagementDTO: IncidentManagementDTO;
   config: any = {
     height: 250,
     width: 1080,
@@ -38,10 +40,12 @@ export class IncidentdetailComponent implements OnInit {
     statusbar: false
   };
   public search: any;
+  public editMode:boolean=true;
   constructor(private ref: ChangeDetectorRef,
     private alertService: AlertService, private httpClient: HttpClient, private pipe: DecimalPipe, private _location: Location) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    this.incidentManagementDTO = new IncidentManagementDTO();
     this.config.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
         this.getData(editor);
@@ -51,12 +55,42 @@ export class IncidentdetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getDropdowns();
+    this.getIncidentInfo();
+  }
+
+  getIncidentInfo() {
+    if (sessionStorage.getItem('incidentName') === null) {
+      this.editMode=false;
+      this.alertService.emitChange('true');
+      this.getDropdowns();
+    }
+    else {
+      this.showEditButton=true;
+      this.alertService.emitChange('false');
+      let inId = +sessionStorage.getItem('incidentName');
+      this.loading = true;
+      let url = APP_CONFIG.getPendingApplications;
+      let url1 = APP_CONFIG.getServers;
+      let url2 = APP_CONFIG.getIncident;
+      Observable.forkJoin(
+        this.httpClient.get(url),
+        this.httpClient.get(url1),
+        this.httpClient.get(url2 + "?incidentId=" + inId)
+      ).subscribe((data: any) => {
+        this.loading = false;
+        this.systems = data[0];
+        this.servers = data[1];
+        this.incidentManagementDTO=data[2];
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+
+    }
   }
 
   getData(editor: any) {
     this.len = 0;
-    //this.alertService.emitChange('false');
     if (tinymce.activeEditor.getContent({ format: 'text' }).length > 50000) {
       let len: any = tinymce.activeEditor.getContent({ format: 'text' }).length;
       let re = len - 50000;
@@ -131,6 +165,8 @@ export class IncidentdetailComponent implements OnInit {
       for (let i = 0; i < this.dummy.length; i++) {
         if (this.dummy[i].lastName === value) {
           this.test1 = this.dummy[i].emailId;
+          this.incidentManagementDTO.reportedBy = this.dummy[i].firstName + " " + this.dummy[i].lastName;
+          this.incidentManagementDTO.userId = this.dummy[i].userId;
         }
       }
     }
@@ -140,28 +176,41 @@ export class IncidentdetailComponent implements OnInit {
     this._location.back();
   }
   removeServer(index: number) {
-    this.dbservers.splice(index, 1);
+    if (this.incidentManagementDTO.databaseDTOs !== undefined && this.incidentManagementDTO.databaseDTOs !== null && this.incidentManagementDTO.databaseDTOs.length > 0) {
+      this.incidentManagementDTO.databaseDTOs.splice(index, 1);
+    }
   }
 
   removeApp(index: number) {
-    this.apps.splice(index, 1);
+    if (this.incidentManagementDTO.applicationDTOs !== undefined && this.incidentManagementDTO.applicationDTOs !== null && this.incidentManagementDTO.applicationDTOs.length > 0) {
+      this.incidentManagementDTO.applicationDTOs.splice(index, 1);
+    }
   }
   getServer(id: any) {
     let url = APP_CONFIG.getDBServer;
-    this.httpClient.get(url + '?' + 'a' + '=' + id)
-      .subscribe((data: any) => {
-        data.serverContactDTOs.filter((item: any) => {
-          if (item.isPrimary === true) {
-            data.primaryContactName = item.firstName + " " + item.lastName;
+    if (id !== "") {
+      this.httpClient.get(url + '?' + 'a' + '=' + id)
+        .subscribe((data: any) => {
+          data.serverContactDTOs.filter((item: any) => {
+            if (item.isPrimary === true) {
+              data.primaryContactName = item.firstName + " " + item.lastName;
+            }
+          });
+          data.serverContactDTOs.filter((item: any) => {
+            if (item.isPrimary === false) {
+              data.secondaryContactName = item.firstName + " " + item.lastName;
+            }
+          });
+          if (this.incidentManagementDTO.databaseDTOs !== undefined && this.incidentManagementDTO.databaseDTOs.length > 0) {
+            this.incidentManagementDTO.databaseDTOs.push(data);
           }
-        });
-        data.serverContactDTOs.filter((item: any) => {
-          if (item.isPrimary === false) {
-            data.secondaryContactName = item.firstName + " " + item.lastName;
+          else {
+            this.incidentManagementDTO.databaseDTOs = []
+            this.incidentManagementDTO.databaseDTOs.push(data);
           }
+
         });
-        this.dbservers.push(data)
-      });
+    }
   }
 
   getApplication(name: any) {
@@ -170,11 +219,38 @@ export class IncidentdetailComponent implements OnInit {
     this.httpClient.get(url + '?' + 'acronym' + '=' + name)
       .subscribe((data: any) => {
         this.loading = false;
-        this.apps.push(data.applicationViewDTO)
+        if (this.incidentManagementDTO.applicationDTOs !== undefined && this.incidentManagementDTO.applicationDTOs.length > 0) {
+          this.incidentManagementDTO.applicationDTOs.push(data.applicationViewDTO);
+        }
+        else {
+          this.incidentManagementDTO.applicationDTOs = [];
+          this.incidentManagementDTO.applicationDTOs.push(data.applicationViewDTO);
+        }
       }, error => {
         this.loading = false;
         console.log(error);
       });
+
+  }
+
+  getSave() {
+    this.loading = true;
+    let url = APP_CONFIG.reportIncident;
+    this.incidentManagementDTO.createdBy = Cookie.get("userName");
+    this.httpClient.post(url, this.incidentManagementDTO)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.alertService.emitChange('false');
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
+  }
+
+  editClick()
+  {
+    //this.showEditButton=false;
+    this.editMode=false;
   }
 
 

@@ -29,6 +29,9 @@ import { IncidentcloseComponent } from './incidentclose/incidentclose.component'
 import { PhoneMaskDirective } from './phone-mask';
 import { MatInputModule,  MatAutocompleteModule } from '@angular/material';
 import { DecimalPipe } from '@angular/common';
+import { IncidentstartComponent } from './incidentstart/incidentstart.component';
+import { NgbdSortableHeader } from './sort';
+
 @NgModule({
   imports: [
     MatInputModule,
@@ -62,7 +65,7 @@ import { DecimalPipe } from '@angular/common';
     })
   ],
   declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent,
-    IncidentcloseComponent, PhoneMaskDirective],
+    IncidentcloseComponent, PhoneMaskDirective, IncidentstartComponent,NgbdSortableHeader],
     providers:[DecimalPipe]
 })
 export class IncidentModuleModule { }

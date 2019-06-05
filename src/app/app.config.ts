@@ -148,6 +148,9 @@ export const APP_CONFIG = {
   generateSars: apiBaseUrl + 'generateSARs',
   getServerEnvs: apiBaseUrl + 'getServerEnvs',
   searchUser: apiBaseUrl + 'searchUser',
+  getAllIncidents: apiBaseUrl + 'getAllIncidents',
+  reportIncident: apiBaseUrl + 'reportIncident',
+  getIncident: apiBaseUrl + 'getIncident',
 }
 
 

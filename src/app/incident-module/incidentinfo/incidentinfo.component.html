@@ -35,33 +35,33 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link"  routerLink="/incident/classification"
+                <a [ngClass]="showText?'nav-link disabled':'nav-link'"  routerLink="/incident/classification"
                     routerLinkActive="active">
                     <fa class="help" [name]="'paper-plane'"></fa>&nbsp;Financial Risk
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " routerLinkActive="active" routerLink="/incident/impact">
+                <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/incident/impact">
                     <fa class="help" [name]="'gavel'"></fa>&nbsp;Security Risk
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " routerLinkActive="active" routerLink="/incident/assignment">
+                <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/incident/assignment">
                     <fa class="help" [name]="'book'"></fa>&nbsp;RCA
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " routerLinkActive="active" routerLink="/incident/resolution">
+                <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/incident/resolution">
                     <fa class="help" [name]="'check-circle'"></fa>&nbsp;Resolution
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " routerLinkActive="active" routerLink="/incident/cap">
+                <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/incident/cap">
                     <fa class="help" [name]="'check-circle'"></fa>&nbsp;CAP
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " routerLinkActive="active" routerLink="/incident/close">
+                <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/incident/close">
                     <fa class="help" [name]="'check-circle'"></fa>&nbsp;Closeout Summary
                 </a>
             </li>

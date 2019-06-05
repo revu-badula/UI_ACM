@@ -117,6 +117,8 @@ import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
 import { DeviceentryComponent } from './deviceentry/deviceentry.component';
 import { HighchartsChartComponent } from 'highcharts-angular';
 import { IncidentModuleModule } from './incident-module/incident-module.module';
+import { MatGridListModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material';
 
 
 @NgModule({
@@ -226,6 +228,8 @@ import { IncidentModuleModule } from './incident-module/incident-module.module';
     ReactiveFormsModule,
     NgxPaginationModule,
     ChartsModule,
+    MatGridListModule,
+    MatSidenavModule,
     NgbModule.forRoot(),
     LoadingModule.forRoot({
       animationType: ANIMATION_TYPES.rotatingPlane,

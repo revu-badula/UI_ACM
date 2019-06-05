@@ -2,7 +2,7 @@
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <app-navigation-component></app-navigation-component>
-<div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}"
+<!-- <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}"
     style="padding-top: 1vw;">
 
     <div class="form-options">
@@ -17,9 +17,8 @@
             <fa class="edit-icon fontSizeEm icons" data-toggle="tooltip" data-placement="right" title="Save"
                 data-animation="true" data-delay="0" (click)="editorGroup()" [name]="'edit'"></fa>
         </div>
-        <!-- <fa class="edit-icon icons" [name]="'edit'"></fa> -->
     </div>
-</div>
+</div> -->
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title">Info</h4>
@@ -34,7 +33,13 @@
 <div *ngIf="!showDiv">
     <form (ngSubmit)="addPolicy()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
         <fieldset [disabled]='showForm'>
-            <div id="form1">
+            <div class="form1" style="margin: 4vh 5% 0% 0%;">
+                <div class="policy-edit" style="position: relative;top: 15px;">
+
+                    <fa class="edit-icon icons" (click)="editorGroup()" *ngIf="showEli" data-toggle="tooltip"
+                        data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
+
+                </div>
                 <div class="infoBox">
                     <div class="headerOfBox">
                         <h4>Policy</h4>
@@ -131,7 +136,7 @@
                     </div>
                     <br>
                     <div class="form-row">
-                        
+
                         <div class="form-group col-md-6">
                             <label for="priority">Priority<span class="asterisk">*</span></label>
                             <select class="form-control" name="priority" ngModel [(ngModel)]="policyAccess.priority"
@@ -145,83 +150,88 @@
                     </div>
                 </div>
 
-                <div class="infoBox">
-                        <div class = "headerOfBox">Audit Findings</div>
+                <!-- <div class="infoBox" style="width: 80%;">
+                    <div class="headerOfBox">Audit Findings</div>
                     <div class="form-row">
-                    
-                      <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
-                        [(ngModel)]="appPolicy.description" [name]="'policy_description'" maxlength="50000"
-                        #description="ngModel"> </textarea>
-                      <!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
-                      <br>
-                      <div *ngIf="description.errors?.maxlength" style="float:right">
-                        <span style="color:tomato"> Exceeded the character limit. </span>
-                      </div>
-            
-                    </div>
-                  </div>
-             
 
-                      <div class="infoBox">
-                            <div class="headerOfBox">
-                                <h4>Evidences</h4>
-                            </div>
-                            <!-- <label for="yes_no_radio">Is evidence required?</label>
+                        <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
+                            id="patches" [(ngModel)]="appPolicy.description" [name]="'policy_description'"
+                            maxlength="50000" #description="ngModel"> </textarea>
+                        <br>
+                        <div *ngIf="description.errors?.maxlength" style="float:right">
+                            <span style="color:tomato"> Exceeded the character limit. </span>
+                        </div>
+
+                    </div>
+                </div> -->
+
+
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Evidences</h4>
+                    </div>
+                    <!-- <label for="yes_no_radio">Is evidence required?</label>
                             <div class="row">
                                     <input type="radio"  [(ngModel)]="policyAccess.evidenceRequired" (click)="getEvi('true')" (change)="onEvidenceRequiredChange($event.target.value)" name="yes_no" checked />Yes
                                     <input type="radio"  [(ngModel)]="policyAccess.evidenceRequired" (click)="getEvi('false')" (change)="onEvidenceRequiredChange($event.target.value)"  name="yes_no" />No
                             </div>
                             <br> -->
 
-                            <div class="custom02">
-                                    <p>Is evidence required?</p>
-                                    <input type="radio" id="radio03-01" name="demo03" [(ngModel)]="policyAccess.evidenceRequired" (click)="getEvi('true')" (change)="onEvidenceRequiredChange($event.target.value)"  /><label for="radio03-01">Yes</label>
-                                    <input type="radio" id="radio03-02" name="demo03" [(ngModel)]="policyAccess.evidenceRequired" (click)="getEvi('false')" (change)="onEvidenceRequiredChange($event.target.value)"   /><label for="radio03-02">No</label>
-                                   
-                                </div>
-                            <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
-            
-            
-                            <br><br><br>
-                            <div class="col-md-6">
-                                <div class="form-row">
-                                    <table id="myTable">
-                                        <tr>
-                                            <th>File Name</th>
-                                            <th *ngIf="showFrm">Action</th>
-                                        </tr>
-                                        <tr *ngFor=" let policyDocument of appPolicy.policyDocumentsDTOs let i = index">
-                                            <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;"
-                                                (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">
-                                                {{policyDocument.documentName}}</td>
-                                            <td *ngIf="policyDocument.activeFlag && showFrm"
-                                                (click)="deleteFile(policyDocument.policyDocId,i)" style="cursor: pointer;"><i
-                                                    class=" fa fa-trash" aria-hidden="true"
-                                                    style="font-size: 24px;color: black;"></i></td>
-                                        </tr>
-                                    </table>
-                                </div>
+                    <div class="custom02">
+                        <p>Is evidence required?</p>
+                        <input type="radio" id="radio03-01" name="demo03" [(ngModel)]="policyAccess.evidenceRequired"
+                            (click)="getEvi('true')" (change)="onEvidenceRequiredChange($event.target.value)" /><label
+                            for="radio03-01">Yes</label>
+                        <input type="radio" id="radio03-02" name="demo03" [(ngModel)]="policyAccess.evidenceRequired"
+                            (click)="getEvi('false')" (change)="onEvidenceRequiredChange($event.target.value)" /><label
+                            for="radio03-02">No</label>
+
+                    </div>
+                    <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
+
+
+                    <br><br><br>
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            <table id="myTable">
+                                <tr>
+                                    <th>File Name</th>
+                                    <th *ngIf="showFrm">Action</th>
+                                </tr>
+                                <tr *ngFor=" let policyDocument of appPolicy.policyDocumentsDTOs let i = index">
+                                    <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;"
+                                        (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">
+                                        {{policyDocument.documentName}}</td>
+                                    <td *ngIf="policyDocument.activeFlag && showFrm"
+                                        (click)="deleteFile(policyDocument.policyDocId,i)" style="cursor: pointer;"><i
+                                            class=" fa fa-trash" aria-hidden="true"
+                                            style="font-size: 24px;color: black;"></i></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="infoBox">
+                    <div class="headerOfBox">Score</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label>Weightage</label>
+                                <div class="col-md-3"><input type="number" name="weightN" class="form-control"
+                                        placeholder="" [(ngModel)]="policyAccess.weightageN" id="first"
+                                        style="width:200% !important"></div>
+
                             </div>
                         </div>
-              
-                      <div class="infoBox">
-                        <div class="headerOfBox">Score</div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="row">
-                        <label>Weightage</label>
-                        <div class="col-md-3"><input type="number" name="weightN" class="form-control" placeholder=""  [(ngModel)]="policyAccess.weightageN" id="first" style="width:200% !important"></div>
-                        
-                      </div>
-                          </div>
-                      
-                      </div>
-              
-                      <br>
-                   
-                      </div>
 
-                
+                    </div>
+
+                    <br>
+
+                </div>
+
+
 
 
                 <div class="infoBox" style="width: 80%">
@@ -258,7 +268,7 @@
                         <span style="color:tomato"> Exceeded the character limit. </span>
                     </div>
                 </div>
-   
+
 
                 <div class="infoBox">
                     <div class="headerOfBox">
@@ -512,7 +522,7 @@
 
                     </div>
                 </div>
-            
+
             </div>
             <br>
             <div *ngIf="showDef">

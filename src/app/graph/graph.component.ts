@@ -15,8 +15,129 @@ ExportingModule(Highcharts);
 })
 export class GraphComponent implements OnInit {
 
+
+
+  public lineChartDataSystems1: ChartDataSets<any> = [
+    { data: ['4','2','10','5','4','6','8','1','9','2','11','7'], label: 'Audit' },
+    { data: ['3','5','1','4','2','9','3','8','13','8','15','2'], label: 'Assessment' },
+  ];
+  public lineChartLabelsSystems1: Array<any> = ['January','February','March','April','May','June','July','August','September','November','December'];
+  public chartOption12 = {
+    responsive: true,
+    maintainAspectRatio: false,
+    showTooltips: false,
+    hover: {
+      onHover: function (e: any) {
+        var point = this.getElementAtEvent(e);
+        if (point.length) e.target.style.cursor = 'pointer';
+        else e.target.style.cursor = 'default';
+      }
+    },
+    animation: {
+      duration: 1000,
+      "onComplete": function () {
+        var chartInstance = this.chart,
+          ctx = chartInstance.ctx;
+        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        this.data.datasets.forEach((dataset: any, i: any) => {
+          var meta = chartInstance.controller.getDatasetMeta(i);
+          meta.data.forEach((bar: any, index: any) => {
+            var data = dataset.data[index];
+            if (data > 0) {
+              ctx.fillText(data, bar._model.x, bar._model.y - 5);
+            }
+          });
+        });
+      }
+    },
+    scales: {
+      yAxes: [
+        {
+          // id: 'Audits',
+          // scaleLabel: {
+          //   display: true,
+          //   labelString: 'Audits',
+          //   fontColor: '#000',
+          //   fontWeight: 'bold',
+          //   fontSize: '20'
+          // },
+          ticks: {
+            beginAtZero: true,
+          },
+          display: true
+        }
+      ],
+      xAxes: [
+
+        {
+          // id: 'Upcoming Audits for Systems',
+          // scaleLabel: {
+          //   //display: true,
+          //   // labelString: 'Upcoming Audits for Systems',
+          //   fontColor: '#000',
+          //   fontWeight:'bold',
+          //   fontSize:5
+          // },
+          barThickness: 25,
+          display: true,
+          gridLines: {
+            display: true
+
+          },
+          ticks: {
+            fontSize: 10
+          }
+
+
+        }
+      ]
+    },
+    legend: {
+      labels: {
+        fontColor: '#000',
+        boxWidth: 10
+      },
+      onHover: (e: any) => {
+        e.target.style.cursor = 'pointer';
+      }
+    }
+
+
+  };
+
+  public chartColorsSystems1: Array<any> = [
+    { // first color
+      backgroundColor: '#8FBC8F',
+      borderColor: 'rgba(225,10,24,0.2)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    },
+    { // second color
+      backgroundColor: '#663399',
+      borderColor: 'rgba(225,10,24,0.2)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    },
+    { // second color
+      backgroundColor: '#8B0000',
+      borderColor: 'rgba(225,10,24,0.2)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    },
+
+
+  ];
+
   highcharts = Highcharts;
-  chartOptions = {
+  /*chartOptions = {
     chart: {
       type: "heatmap",
       marginTop: 40,
@@ -116,7 +237,139 @@ export class GraphComponent implements OnInit {
         color: '#000000'
       }
     }]
-  };
+  };*/
+
+
+
+  chartOptions123 = {   
+    chart: {
+       type: "line"
+    },
+    credits: {
+      enabled: false
+    },
+    title: {
+       text: null
+    },
+    subtitle: {
+       text: null
+    },
+    xAxis:{
+       categories:["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    },
+    yAxis: {          
+       title:{
+          text:null
+       },
+       allowDecimals:false 
+    },
+    plotOptions: {
+       series: {
+          dataLabels: {
+             enabled: true
+          }
+       }
+    },
+    tooltip: {
+    
+    },
+    legend: {
+      align: 'right',
+      layout: 'vertical',
+      margin: 0,
+      verticalAlign: 'top',
+      y: 25,
+      //symbolHeight: 180,
+      enabled: false
+    },
+    series: [{
+       name: 'Incident 1',
+       data: [1,2,3,4,5,1,3,8,2,9,10,4]
+    },
+    {
+       name: 'Incident 2',
+       data: [4,9,3,4,8,1,2,12,3,9,8,2]
+    },
+    {
+       name: 'Incident 3',
+       data: [3,7,6,2,5,11,2,1,3,7,2,4]
+    },
+    {
+       name: 'Incident 4',
+       data: [5,2,9,6,3,1,6,11,2,8,12,6]
+    }]
+ };
+
+
+
+ chartOptions1234 = {   
+  chart: {
+     type: "column"
+  },
+  credits: {
+    enabled: false
+  },
+  title: {
+     text: null
+  },
+  subtitle: {
+     text: null
+  },
+  xAxis:{
+     categories:["sys1", "sys2", "sys3", "sys4", "sys5", "sys6",
+        "sys7", "sys8", "sys9", "sys10", "sys11", "sys12",'sys13']
+  },
+  yAxis: {          
+     title:{
+        text:null
+     },
+     allowDecimals:false 
+  },
+  plotOptions: {
+    column: {
+      stacking: 'normal',
+      dataLabels: {
+          enabled: true
+      }
+  }
+  },
+  tooltip: {
+  
+  },
+  legend: {
+    align: 'right',
+    layout: 'vertical',
+    margin: 0,
+    verticalAlign: 'top',
+    y: 25,
+    //symbolHeight: 180,
+    enabled: false
+  },
+//   legend: {
+//     align: 'right',
+//     x: -30,
+//     verticalAlign: 'top',
+//     y: 25,
+//     floating: true,
+//     backgroundColor:
+//         Highcharts.defaultOptions.legend.backgroundColor || 'white',
+//     borderColor: '#CCC',
+//     borderWidth: 1,
+//     shadow: false
+// },
+  series: [{
+    name: 'High',
+    data: [5, 3, 4, 7, 2,2, 2, 3, 2, 1,4,2,3]
+}, {
+    name: 'Medium',
+    data: [2, 2, 3, 2, 1,5, 3, 4, 7, 2,1,3,1]
+}, {
+    name: 'Low',
+    data: [3, 4, 4, 2, 5,2, 2, 3, 2, 1,4,6,9]
+}]
+};
+
 
 
 
@@ -2705,6 +2958,10 @@ export class GraphComponent implements OnInit {
 
   }
   chartClicked3(value: any) {
+
+  }
+  chartClickedSystems1(value: any)
+  {
 
   }
   chartClicked4(value: any) {
