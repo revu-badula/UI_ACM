@@ -460,9 +460,9 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
-  getPoliciesByFam(value) {
-    let url = APP_CONFIG.getPoliciesByFam;
-    return this._httpService.get(url + '?' + 'familyName' + '=' + value)
+  getPoliciesByFam(value:any) {
+    let url = APP_CONFIG.getPoliciesByFamId;
+    return this._httpService.get(url + '?' + 'policiesByFamId' + '=' + value)
       .map(res => <Response>res.json())
   }
 

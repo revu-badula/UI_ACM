@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 export class AlertService {
     private subject = new Subject<any>();
     private childData = new Subject<any>();
+    private childData2 = new Subject<any>();
     private keepAfterNavigationChange = false;
 
     constructor(private router: Router) {
@@ -45,10 +46,12 @@ export class AlertService {
 
     emitChange(message: string, keepAfterNavigationChange = false) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
-        this.childData.next({text: message });
+        this.childData.next({ text: message });
     }
+   
 
     getChildData(): Observable<any> {
         return this.childData.asObservable();
     }
+  
 }

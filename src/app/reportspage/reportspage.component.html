@@ -18,7 +18,7 @@
 <h3 class="pageTitle">Business Impact Analysis</h3>
 <hr>
 <form #formName="ngForm"  enctype="multipart/form-data">
-  <div id="form1">
+  <div id="formSame">
     <div class="disclaimer"><span style="float:left">Please use this screen to view Reports
         information.</span>&nbsp;&nbsp;&nbsp;
       <span style="float:right">
@@ -28,8 +28,69 @@
     <!-- <div class="headerOfBox">
         <h4>Reports</h4>
       </div> -->
+   <br>
+    <div class="form-row" *ngIf="firstTab">
+      <div class="col-md-6">
+
+        <!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
+        <div class="card"
+          style="width: 18rem;height:14em;cursor: pointer;margin-left: 42%;margin-right: auto;display: block;">
+          <div class="card-body" (click)="scheduled = false; unscheduled = true;showReports = false;showTable = false;firstTab=false;goToIncident()">
+            <div class="card-heading">
+              <h5 class="card-title">Unscheduled Events</h5>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="fa fa-users fa-3x" style="color:cadetblue"></i>
+              </div>
+              <div class="col-sm-9 text">
+                Impact of unscheduled events (Incident Manager)
+                <!-- <hr id="lineSpace"> -->
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4" style="margin-left: -11%;
+        margin-top: -0.8vh;">
+          Resource Report
+        </div> -->
+
+
+      <div class="col-md-6">
+        <!-- <input type="radio" (click)="getValue('false')" value="false" name="report"> -->
+        <div class="card"
+          style="width: 18rem;height:14em;cursor: pointer;margin-left: auto;margin-right: 42%;display: block;">
+          <div class="card-body" (click)="scheduled = true; unscheduled = false;showReports = false;showTable = false;firstTab=false;">
+            <div class="card-heading">
+              <h5 class="card-title">Scheduled Events</h5>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="fa fa-bullhorn fa-3x" style="color:brown"></i>
+              </div>
+              <div class="col-sm-9 text">
+                 Impact of scheduled events (Server upgrades, resource impact etc.)
+
+                <!-- <hr id="lineSpace"> -->
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4" style="margin-left: -11%;
+        margin-top: -0.8vh;">
+          overall Report
+        </div> -->
+    </div>
     <br>
-    <div class="form-row">
+    <div class="form-row" *ngIf="scheduled">
       <div class="col-md-6">
 
         <!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
@@ -144,29 +205,101 @@
               </a>
             </td>
             <td *ngIf="data.activeLocality === 0">{{data.name}}</td>
-            <td *ngIf="data.activeLocality === 0">{{data.businessOwner}}</td>
-            <td *ngIf="data.activeLocality === 0">{{data.projectManager}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.businessOwnerName}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.projectManagerName}}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="infoBox" *ngIf="showOverall">
-      <div class="headerOfBox">
-        <h4>select Below</h4>
-      </div>
 
-      <div class="form-row">
-        <div class="col-md-6">
-          <label class="fam">Please select<span class="asterisk">*</span></label>
-          <select class="form-control" name="selectReport" (change)="getReport($event.target.value)">
-            <option value="" selected>Choose...
-            </option>
-            <option value="database">Database</option>
-            <option value="appServer">Application Server</option>
-            <option value="technology">Technology</option>
-          </select>
-        </div>
+	<div class="headerOfBox">
+        <h4>Select Below</h4>
+      </div>
+      
+			<div class="form-row">
+				<div class="col-md-4">
+					<!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
+					<div class="card"
+						style="width: 18rem; height: 14em; cursor: pointer; margin-left: auto; margin-right: auto; display: block;">
+						<div class="card-body" (click)="getReport('appServer')">
+							<div class="card-heading">
+								<h5 class="card-title">Database Server</h5>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<i class="fa fa-database fa-3x" style="color: cadetblue"></i>
+								</div>
+								<div class="col-sm-9 text">
+									Impact of human resources on business operations and
+									continuity.
+									<!-- <hr id="lineSpace"> -->
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
+					<div class="card"
+						style="width: 18rem; height: 14em; cursor: pointer; margin-left: auto; margin-right: auto; display: block;">
+						<div class="card-body" (click)="getReport('database')">
+							<div class="card-heading">
+								<h5 class="card-title">Application Server</h5>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<i class="fa fa-desktop fa-3x" style="color: cadetblue"></i>
+								</div>
+								<div class="col-sm-9 text">
+									Impact of human resources on business operations and
+									continuity.
+									<!-- <hr id="lineSpace"> -->
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
+					<div class="card"
+						style="width: 18rem; height: 14em; cursor: pointer; margin-left: auto; margin-right: auto; display: block;">
+						<div class="card-body" (click)="getReport('technology')">
+							<div class="card-heading">
+								<h5 class="card-title">Technology</h5>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<i class="fa  fa-microchip fa-3x" style="color: cadetblue"></i>
+								</div>
+								<div class="col-sm-9 text">
+									Impact of human resources on business operations and
+									continuity.
+									<!-- <hr id="lineSpace"> -->
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+<br> <br>
+		
+
+      <div class="form-row" *ngIf="showDApp || showTech">
         <div class="col-md-6">
           <label class="fam">Please select<span class="asterisk">*</span></label>
           <select class="form-control" name="reportFor" (change)="getReportFor($event.target.value)">
@@ -217,8 +350,8 @@
               </a>
             </td>
             <td *ngIf="data.activeLocality === 0">{{data.name}}</td>
-            <td *ngIf="data.activeLocality === 0">{{data.businessOwner}}</td>
-            <td *ngIf="data.activeLocality === 0">{{data.projectManager}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.businessOwnerName}}</td>
+            <td *ngIf="data.activeLocality === 0">{{data.projectManagerName}}</td>
           </tr>
         </tbody>
       </table>

@@ -4,6 +4,7 @@ import { APP_CONFIG } from 'app/app.config';
 import { UserReportRequest } from '../data_model_legal';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-reportspage',
@@ -35,8 +36,11 @@ export class ReportspageComponent implements OnInit {
   public desc:boolean=false;
   public des:boolean=false;
   public de:boolean=false;
+  public scheduled:boolean=false;
+  public unscheduled:boolean=false;
+  public firstTab:boolean = true;
   constructor(private httpClient: HttpClient,
-     private _location: Location,private router: Router) {
+     private _location: Location,private router: Router,private alertService: AlertService) {
     this.user = new UserReportRequest();
     sessionStorage.removeItem('systemName');
     sessionStorage.removeItem('systemActive');
@@ -117,6 +121,8 @@ export class ReportspageComponent implements OnInit {
   }
 
   getReport(value: any) {
+    this.showReports = false;
+    this.showTable = false;
     this.showDApp = false;
     this.showTech = false;
     this.reports = [];
@@ -351,6 +357,11 @@ export class ReportspageComponent implements OnInit {
     }
 
 
+  }
+
+  goToIncident()
+  {
+    this.router.navigate(['/incidentStart/true']);
   }
 
 

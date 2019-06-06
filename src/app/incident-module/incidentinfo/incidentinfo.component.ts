@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { Observable, from, Subscription, timer } from 'rxjs';
 import { DialogService } from '../../dialog.service';
@@ -20,8 +20,10 @@ export class IncidentinfoComponent implements OnInit {
   public _counter: number = 0;
   private _timer: Observable<number>;
   private subscription: Subscription;
+  @Input() comingType: boolean;
   public message: any;
   public showText:boolean=false;
+  public showBIA:boolean;
   constructor(private _location: Location, private idleTimeoutSvc: IdleTimeoutService, private dialogService: DialogService,
     private navbar: NavigationComponentComponent, private router: Router, private alertService: AlertService) { }
 
@@ -40,6 +42,7 @@ export class IncidentinfoComponent implements OnInit {
         }
       }
     });
+   
     this.startCounter();
     //this.idleTimeoutSvc.setTimeMilli(900000);
     this._idleTimerSubscription = this.idleTimeoutSvc.timeoutExpired.subscribe(res => {
@@ -57,6 +60,9 @@ export class IncidentinfoComponent implements OnInit {
         }
       );
     });
+    if (this.comingType !== undefined){
+    this.showBIA = this.comingType;
+    }
   }
 
   backClicked() {

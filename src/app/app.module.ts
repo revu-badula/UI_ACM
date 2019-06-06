@@ -119,6 +119,7 @@ import { HighchartsChartComponent } from 'highcharts-angular';
 import { IncidentModuleModule } from './incident-module/incident-module.module';
 import { MatGridListModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
+import { MyTaskComponent } from './my-task/my-task.component';
 
 
 @NgModule({
@@ -202,7 +203,8 @@ import { MatSidenavModule } from '@angular/material';
     RmsoverviewComponent,
     TaskdetailsComponent,
     DeviceentryComponent,
-    HighchartsChartComponent
+    HighchartsChartComponent,
+    MyTaskComponent
   ],
 
   imports: [

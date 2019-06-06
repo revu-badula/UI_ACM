@@ -8,6 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { DecimalPipe, Location } from '@angular/common';
 import { IncidentManagementDTO } from '../incident-model';
 import { Cookie } from 'ng2-cookies';
+import { DialogService } from '../../dialog.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-incidentdetail',
   templateUrl: './incidentdetail.component.html',
@@ -42,7 +44,9 @@ export class IncidentdetailComponent implements OnInit {
   public search: any;
   public editMode:boolean=true;
   constructor(private ref: ChangeDetectorRef,
-    private alertService: AlertService, private httpClient: HttpClient, private pipe: DecimalPipe, private _location: Location) {
+    private alertService: AlertService, 
+    private httpClient: HttpClient, private pipe: DecimalPipe,
+     private _location: Location,private dialogService:DialogService,private router:Router) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.incidentManagementDTO = new IncidentManagementDTO();
@@ -51,6 +55,7 @@ export class IncidentdetailComponent implements OnInit {
         this.getData(editor);
       });
     };
+    sessionStorage.removeItem('systemName');
 
   }
 
@@ -236,21 +241,49 @@ export class IncidentdetailComponent implements OnInit {
   getSave() {
     this.loading = true;
     let url = APP_CONFIG.reportIncident;
+    if(this.incidentManagementDTO.incidentId == undefined){
     this.incidentManagementDTO.createdBy = Cookie.get("userName");
     this.httpClient.post(url, this.incidentManagementDTO)
       .subscribe((data: any) => {
         this.loading = false;
+        sessionStorage.setItem("incidentName",data.incidentId);
         this.alertService.emitChange('false');
+        this.dialogService.open("Info",'Incident has been created.',false,"OK","OK")
+        .then((res:any)=>{
+        })
       }, error => {
         this.loading = false;
         console.log(error);
-      })
+      });
+    }
+    // else{
+    //   this.incidentManagementDTO.updatedBy = Cookie.get("userName");
+    //   this.httpClient.post(url, this.incidentManagementDTO)
+    //     .subscribe((data: any) => {
+    //       this.loading = false;
+    //       this.dialogService.open("Info",'Incident has been updated.',false,"OK","OK")
+    //       .then((res:any)=>{
+    //       })
+    //     }, error => {
+    //       this.loading = false;
+    //       console.log(error);
+    //     });
+    // }
   }
 
   editClick()
   {
     //this.showEditButton=false;
     this.editMode=false;
+  }
+
+  viewApplication(system:any) {
+    sessionStorage.setItem('systemName', system);
+    this.router.navigate(['/system/tab2/info']);
+  }
+  getDevice(id:any)
+  {
+    this.router.navigate(['/updateDevice/'+id]);
   }
 
 

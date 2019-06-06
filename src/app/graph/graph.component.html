@@ -1,4 +1,38 @@
 <app-navigation-component></app-navigation-component>
+<ng-template #emailView let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Email Notifications</h4>
+    <button type="button" style="line-height: 0.1;opacity: 2.2;" class="close" aria-label="Close" (click)="c()">
+      <span aria-hidden="true" style="color: #fff;outline: none;">&times;</span>
+  </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <span class="fam">From</span>
+          <input class="form-control1" name="from" type="text" value="Sunny Singh" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <span class="fam">Date</span>
+          <input class="form-control1" name="date" type="text" value="5/6/2019" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <span class="fam">Message</span>
+          <textarea name="message" rows="10" style="width: 100%;"
+            readonly>Policy has been assigned for review</textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" style="margin-top: 0;" class="btn btn-secondary" (click)="c()">Close</button>
+  </div>
+</ng-template>
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
@@ -19,8 +53,8 @@
               </a>
               <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
                 aria-controls="nav-profile" aria-selected="true">Dashboard</a>
-              <a class="nav-item nav-link" id="nav-devices-tab" data-toggle="tab" href="#nav-task" role="tab"
-                aria-controls="nav-task" aria-selected="false">My Tasks</a>
+              <!-- <a class="nav-item nav-link" id="nav-devices-tab" data-toggle="tab" href="#nav-task" role="tab"
+                aria-controls="nav-task" aria-selected="false">My Tasks</a> -->
               <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                 aria-controls="nav-home" aria-selected="false">Locations</a>
 
@@ -161,11 +195,11 @@
                         <div class="entryTitle">
                           My Tasks
                         </div>
-                        <div class="col-md-6 pull-left">
+                        <div class="col-md-6 pull-left" style="outline: none;" routerLink="/mytasks">
                           <span class="dot pendingDot">10</span>
                           <p style="text-align: center;">Open</p>
                         </div>
-                        <div class="col-md-6 pull-left">
+                        <div class="col-md-6 pull-left" style="outline: none;" routerLink="/mytasks">
                           <span class="dot pendingDot">20</span>
                           <p style="text-align: center;">Close</p>
                         </div>
@@ -174,16 +208,25 @@
                     </mat-grid-tile>
 
                     <mat-grid-tile [colspan]="4" [rowspan]="2">
-                      <div class="testMat">
+                      <div class="testMat7">
                         <div class="entryTitle">
                           My Notifications
                         </div>
-                        <table style="margin-bottom: 0;border: 1px solid #dee2e6;">
+                        <table class="testTable" style="margin-bottom: 0;width: 100%;border: 1px solid #dee2e6;">
 
                           <tbody>
-                            <tr>
-                              <span>No New Notification</span>
+                            <tr *ngFor="let result of myNotifications let i=index">
 
+                              <td class="newTableBorder" style="width: 45%;">
+                                <a title="employeeDetails" style="cursor: pointer;color: blue;"
+                                  (click)="getNotification()">New Notification {{i+1}}</a>
+                              </td>
+                              <td class="newTableBorder" style="width: 15%;white-space: nowrap;">
+                                6/5/2019
+                              </td>
+                              <td class="newTableBorder" style="width: 25%;white-space: nowrap;">
+                                {{result.sentFrom }}
+                              </td>
 
 
                             </tr>
@@ -195,7 +238,15 @@
                     <mat-grid-tile [colspan]="3" [rowspan]="2">
                       <div class="testMat">
                         <div class="entryTitle">
-                          POAMS
+                          Plans of Action and Milestones
+                        </div>
+                        <div class="col-md-4">
+                          <div style="display: block; width: 45vh; height: 9rem;position: relative;top: -1vh;">
+                            <canvas baseChart [data]="pieChartDataWage" [labels]="pieChartLabelsWage" chartType="pie"
+                              [options]="pieChartOptionsWage" [colors]="pieChartColorWage1"
+                              (chartClick)="chartClickedWage($event)"></canvas>
+
+                          </div>
                         </div>
 
 
@@ -208,7 +259,7 @@
 
                       <div class="testMat">
                         <div class="entryTitle">
-                          upcoming Audits and Assessments
+                          Upcoming Audits and Assessments
                         </div>
                         <div class="col-md-12">
                           <div style="display: block;width:100%; height:15rem;background-color:#fff;">
@@ -221,6 +272,134 @@
                         </div>
                       </div>
                     </mat-grid-tile>
+                    <mat-grid-tile [colspan]="4" [rowspan]="2">
+
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          Control Status
+                        </div>
+                        <table class="testTable" style="width: 98%;margin-left: 4px;border: none;height: 85%;">
+                          <!-- <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Reported By</th>
+                                <th>Severity</th>
+                                <th>Staus</th>
+                              </tr>
+                            </thead> -->
+                          <tbody>
+                            <tr>
+                              <td style="background: red !important;color: #fff;">Critical</td>
+                              <td style="background: #fff !important;color: red;">10</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: orange !important;color: #fff;">High</td>
+                              <td style="background: #fff !important;color: orange;">7</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: lightblue !important;color: #fff;">Medium</td>
+                              <td style="background: #fff !important;color: lightblue;">2</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: green !important;color: #fff;">Low</td>
+                              <td style="background: #fff !important;color: green">12</td>
+
+                            </tr>
+
+
+
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="3" [rowspan]="2">
+
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          Assessment
+                        </div>
+                        <table class="testTable" style="width: 96%;margin-left: 4px;border: none;height: 85%;">
+                          <!-- <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Reported By</th>
+                                <th>Severity</th>
+                                <th>Staus</th>
+                              </tr>
+                            </thead> -->
+                          <tbody>
+
+                            <tr>
+                              <td style="background: orange !important;color: #fff;">High</td>
+                              <td style="background: #fff !important;color: orange;">3</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: lightblue !important;color: #fff;">Medium</td>
+                              <td style="background: #fff !important;color: lightblue;">6</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: green !important;color: #fff;">Low</td>
+                              <td style="background: #fff !important;color: green">1</td>
+
+                            </tr>
+
+
+
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="3" [rowspan]="2">
+
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          Audit
+                        </div>
+                        <table class="testTable" style="width: 96%;margin-left: 4px;border: none;height: 85%;">
+                          <!-- <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Reported By</th>
+                                <th>Severity</th>
+                                <th>Staus</th>
+                              </tr>
+                            </thead> -->
+                          <tbody>
+
+                            <tr>
+                              <td style="background: orange !important;color: #fff;">High</td>
+                              <td style="background: #fff !important;color: orange;">5</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: lightblue !important;color: #fff;">Medium</td>
+                              <td style="background: #fff !important;color: lightblue;">9</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: green !important;color: #fff;">Low</td>
+                              <td style="background: #fff !important;color: green">3</td>
+
+                            </tr>
+
+
+
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </mat-grid-tile>
+
+
                     <mat-grid-tile [colspan]="10" [rowspan]="4" style="min-width: 100%;">
 
                       <div class="testMat">
@@ -237,17 +416,103 @@
 
                     <mat-grid-tile [colspan]="10" [rowspan]="4" style="min-width: 100%;">
 
-                        <div class="testMat">
-                          <div class="entryTitle">
+                      <div class="testMat">
+                        <div class="entryTitle">
                           Vulnerability Scan Report
-                          </div>
-  
-                          <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions1234"
-                            style="width: 100%; height: 300px; display: block;">
-                          </highcharts-chart>
-  
                         </div>
-                      </mat-grid-tile>
+
+                        <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions1234"
+                          style="width: 100%; height: 300px; display: block;">
+                        </highcharts-chart>
+
+                      </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="10" [rowspan]="3">
+
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          System Health (Based on open risks for each system)
+                        </div>
+                        <div class="col-md-12">
+                          <div style="display: block;width:100%; height:15rem;background-color:#fff;">
+                            <canvas baseChart [datasets]="lineChartDataSystems15" [labels]="lineChartLabelsSystems15"
+                              chartType="bar" [legend]="true" (chartClick)="chartClickedSystems1($event)"
+                              [options]="chartOption15" [colors]="chartColorsSystems15"></canvas>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </mat-grid-tile>
+
+
+                    <mat-grid-tile [colspan]="5" [rowspan]="2">
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          Policies
+                        </div>
+                        <div class="col-md-6">
+                          <div style="display: block; width: 70vh; height: 10rem;position: relative;top: -2vh;">
+                            <canvas baseChart [data]="pieChartDataWage" [labels]="pieChartLabelsWage" chartType="pie"
+                              [options]="pieChartOptionsWage" [colors]="pieChartColorWage"
+                              (chartClick)="chartClickedWage($event)"></canvas>
+
+                          </div>
+                        </div>
+                      </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="5" [rowspan]="2">
+
+                      <div class="testMat">
+                        <div class="entryTitle">
+                          Critical Families
+                        </div>
+                        <table class="testTable" style="width: 98%;margin-left: 4px;border: none;height: 85%;">
+                          <!-- <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Reported By</th>
+                                <th>Severity</th>
+                                <th>Staus</th>
+                              </tr>
+                            </thead> -->
+                          <tbody>
+                            <tr>
+                              <td style="background: red !important;color: #fff;">Critical</td>
+                              <td style="background: #fff !important;color: red;">4</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: orange !important;color: #fff;">High</td>
+                              <td style="background: #fff !important;color: orange;">3</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: lightblue !important;color: #fff;">Medium</td>
+                              <td style="background: #fff !important;color: lightblue;">2</td>
+
+                            </tr>
+                            <tr>
+                              <td style="background: green !important;color: #fff;">Low</td>
+                              <td style="background: #fff !important;color: green">8</td>
+
+                            </tr>
+
+
+
+
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </mat-grid-tile>
+
+
+
+
+
 
 
 

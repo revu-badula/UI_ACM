@@ -1,0 +1,66 @@
+<app-navigation-component></app-navigation-component>
+
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<div>
+  <h3 class="pageTitle">Tasks</h3>
+  <hr>
+</div>
+
+<form class="forms">
+  <table id="mytaskTable" class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 35%;">Description</th>
+        <!-- <th>Assigned To</th> -->
+        <th>Assigned On</th>
+        <th>Close</th>
+        <th>Prority</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left !important;
+        font-weight: bold;">Develop technical solutions and new security tools to help mitigate security vulnerabilities and automate repeatable tasks.</td>
+        <td>5/6/2019</td>
+        <td>6/6/2019</td>
+        <td>High</td>
+        <td>Close</td>
+      </tr>
+      <tr>
+        <td style="text-align: left !important;
+        font-weight: bold;">Design computer security architecture and develop detailed cyber security designs.</td>
+        <td>3/6/2019</td>
+        <td>5/6/2019</td>
+        <td>Medium</td>
+        <td>Close</td>
+      </tr>
+      <tr>
+        <td style="text-align: left !important;
+        font-weight: bold;">Write comprehensive reports including assessment-based findings, outcomes and propositions for further system security enhancement.</td>
+        <td>5/6/2019</td>
+        <td>9/6/2019</td>
+        <td>High</td>
+        <td>Open</td>
+      </tr>
+      <tr>
+        <td style="text-align: left !important;
+        font-weight: bold;">Identify and define system security requirements.</td>
+        <td>2/6/2019</td>
+        <td>4/6/2019</td>
+        <td>Low</td>
+        <td>Close</td>
+      </tr>
+
+
+
+    </tbody>
+  </table>
+  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <br> -->
+
+
+</form>

@@ -197,6 +197,9 @@ import { IncidentTechnicalComponent } from './incident-module/incident-technical
 import { IncidentcapComponent } from './incident-module/incidentcap/incidentcap.component';
 import { IncidentcloseComponent } from './incident-module/incidentclose/incidentclose.component';
 import { IncidentstartComponent } from './incident-module/incidentstart/incidentstart.component';
+import { NewBusinessImpactComponetComponent } from './incident-module/new-business-impact-componet/new-business-impact-componet.component';
+import { IncidentBusinessImpactComponent } from './incident-module/incident-business-impact/incident-business-impact.component';
+import { MyTaskComponent } from './my-task/my-task.component';
 
 const appRoutes: Routes = [
 
@@ -238,7 +241,7 @@ const appRoutes: Routes = [
   { path: 'upcomingAudit', component: UpcomingAuditComponent, canActivate: [AuthGuard] },
   { path: 'newPolicy', component: NewpolicyComponent, canActivate: [AuthGuard] },
   { path: 'deviceEntry', component: DeviceentryComponent, canActivate: [AuthGuard] },
-
+  { path: 'mytasks', component: MyTaskComponent, canActivate: [AuthGuard] },
 
   {
     path: 'callback', component: CallbackComponent, canActivate: [CallGuard]
@@ -472,7 +475,7 @@ const appRoutes: Routes = [
       { path: 'sapplications', component: ApplicationsComponent, canActivate: [AuthGuard] },
       { path: 'scontrol/:id', component: ScontrolComponent, canActivate: [AuthGuard] },
       { path: 'dummy/:id', component: DummyComponent, canActivate: [AuthGuard] },
-      { path: 'saccesscontrol/:id', component:ControlNameComponent,canActivate:[AuthGuard]}
+      { path: 'saccesscontrol/:id', component: ControlNameComponent, canActivate: [AuthGuard] }
     ]
 
   },
@@ -759,6 +762,21 @@ const appRoutes: Routes = [
     ]
   },
   {
+    path: 'newBusinessImpact', component: NewBusinessImpactComponetComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'info', component: IncidentdetailComponent },
+      { path: 'classification', component: IncidentclassificationComponent },
+      { path: 'impact', component: IncidentImpactComponent },
+      { path: 'assignment', component: IncidentAssignmentComponent },
+      { path: 'resolution', component: IncidentResolutionComponent },
+      { path: 'business', component: IncidentBusinessComponent },
+      { path: 'technical', component: IncidentTechnicalComponent },
+      { path: 'cap', component: IncidentcapComponent },
+      { path: 'close', component: IncidentcloseComponent },
+      { path: 'businessImpact', component: IncidentBusinessImpactComponent },
+    ]
+  },
+  {
     path: 'incident', component: IncidentinfoComponent, canActivate: [AuthGuard],
     children: [
       { path: 'info', component: IncidentdetailComponent },
@@ -773,6 +791,7 @@ const appRoutes: Routes = [
     ]
   },
   { path: 'incidentStart', component: IncidentstartComponent, canActivate: [AuthGuard] },
+  { path: 'incidentStart/:type', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({

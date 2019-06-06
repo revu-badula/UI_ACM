@@ -224,13 +224,11 @@ export class UpdateDeviceComponent implements OnInit {
           let year = d.getFullYear();
           this.renDate = { date: { year: year, month: month, day: day } };
         }
-
-
-
-
-        //console.log(this.device);
+        
+      }, error =>{
         this.loading = false;
-      }, error => console.log(error));
+       console.log(error);
+      });
   }
 
   backClicked() {

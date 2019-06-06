@@ -36,6 +36,7 @@ export class DeviceComponent implements OnInit {
   public test: any;
   public endDate: any;
   isLol: boolean = false;
+  public details: boolean = false;
   public serverEnvs: any;
   renDate: any;
   config = {

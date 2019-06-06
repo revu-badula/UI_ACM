@@ -302,8 +302,6 @@ export class ScontrolComponent implements OnInit {
       .subscribe((data: any) => {
         this.families = data;
         this.getFamily(this.policyFamilyID);
-
-
       }, error => { console.log(error) });
 
   }
@@ -314,7 +312,7 @@ export class ScontrolComponent implements OnInit {
     let name: any;
     for (let i = 0; i < this.families.length; i++) {
       if (this.families[i].policyFamilyID === +value) {
-        name = this.families[i].familyName;
+        name = this.families[i].policyFamilyID;
         this.family = this.families[i];
         if(this.family.assignedDt !== undefined && this.family !== null)
         {

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart, ChartDataSets } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../util.service';
 import { Observable } from 'rxjs';
 import * as Highcharts from 'highcharts';
@@ -18,10 +19,11 @@ export class GraphComponent implements OnInit {
 
 
   public lineChartDataSystems1: ChartDataSets<any> = [
-    { data: ['4','2','10','5','4','6','8','1','9','2','11','7'], label: 'Audit' },
-    { data: ['3','5','1','4','2','9','3','8','13','8','15','2'], label: 'Assessment' },
+    { data: ['4', '2', '10', '5', '4', '6', '8', '1', '9', '2', '11', '7'], label: 'Audit' },
+    { data: ['3', '5', '1', '4', '2', '9', '3', '8', '13', '8', '15', '2'], label: 'Assessment' },
   ];
-  public lineChartLabelsSystems1: Array<any> = ['January','February','March','April','May','June','July','August','September','November','December'];
+  public lineChartLabelsSystems1: Array<any> = ['January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September', 'october', 'November', 'December'];
   public chartOption12 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -117,7 +119,7 @@ export class GraphComponent implements OnInit {
       pointHoverBorderColor: 'rgba(225,10,24,0.2)'
     },
     { // second color
-      backgroundColor: '#663399',
+      backgroundColor: '#FFA500',
       borderColor: 'rgba(225,10,24,0.2)',
       pointBackgroundColor: 'rgba(225,10,24,0.2)',
       pointBorderColor: '#fff',
@@ -135,6 +137,270 @@ export class GraphComponent implements OnInit {
 
 
   ];
+
+
+
+  public lineChartDataSystems15: ChartDataSets<any> = [
+    { data: ['4', '2', '10', '5', '4', '6', '8', '1', '9', '2', '11', '7'], label: 'High' },
+    { data: ['7', '1', '6', '2', '8', '3', '4', '3', '8', '2', '1', '6'], label: 'Medium' },
+    { data: ['2', '3', '1', '5', '6', '9', '2', '2', '5', '3', '7', '2'], label: 'Low' }
+  ];
+  public lineChartLabelsSystems15: Array<any> = ['HR Management System', 'Financial Management System', 'Time and Attendance', 'Case Management System', 'Benefit System',
+    'Learning Management System', 'Security Training System', 'Payroll System', 'Customer Services', 'Customer Care Portal', 'Provider Operations', 'Member Services'];
+  public chartOption15 = {
+    responsive: true,
+    maintainAspectRatio: false,
+    showTooltips: false,
+    hover: {
+      onHover: function (e: any) {
+        var point = this.getElementAtEvent(e);
+        if (point.length) e.target.style.cursor = 'pointer';
+        else e.target.style.cursor = 'default';
+      }
+    },
+    animation: {
+      duration: 1000,
+      "onComplete": function () {
+        var chartInstance = this.chart,
+          ctx = chartInstance.ctx;
+        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        this.data.datasets.forEach((dataset: any, i: any) => {
+          var meta = chartInstance.controller.getDatasetMeta(i);
+          meta.data.forEach((bar: any, index: any) => {
+            var data = dataset.data[index];
+            if (data > 0) {
+              ctx.fillText(data, bar._model.x, bar._model.y - 5);
+            }
+          });
+        });
+      }
+    },
+    scales: {
+      yAxes: [
+        {
+          // id: 'Audits',
+          // scaleLabel: {
+          //   display: true,
+          //   labelString: 'Audits',
+          //   fontColor: '#000',
+          //   fontWeight: 'bold',
+          //   fontSize: '20'
+          // },
+          ticks: {
+            beginAtZero: true,
+          },
+          display: true
+        }
+      ],
+      xAxes: [
+
+        {
+          // id: 'Upcoming Audits for Systems',
+          // scaleLabel: {
+          //   //display: true,
+          //   // labelString: 'Upcoming Audits for Systems',
+          //   fontColor: '#000',
+          //   fontWeight:'bold',
+          //   fontSize:5
+          // },
+          barThickness: 25,
+          display: true,
+          gridLines: {
+            display: true
+
+          },
+          ticks: {
+            fontSize: 10
+          }
+
+
+        }
+      ]
+    },
+    legend: {
+      labels: {
+        fontColor: '#000',
+        boxWidth: 10
+      },
+      onHover: (e: any) => {
+        e.target.style.cursor = 'pointer';
+      }
+    }
+
+
+  };
+
+  public chartColorsSystems15: Array<any> = [
+    { // second color
+      backgroundColor: '#FF7F50',
+      borderColor: 'rgba(225,10,24,0.2)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    },
+    { // second color
+      backgroundColor: '#FFD700',
+      borderColor: 'rgba(225,10,24,0.2)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    },
+    { // second color
+      backgroundColor: '#008B8B',
+      borderColor: 'rgba(225,10,24,0.2)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    }
+
+
+  ];
+
+
+
+  public pieChartLabelsWage: string[] = ['Open', 'Closed'];
+  public pieChartDataWage: number[] = [2, 3];
+  public pieChartOptionsWage = {
+    responsive: true,
+    maintainAspectRatio: false,
+    // title: {
+    //   display: true,
+    //   text: 'Wage',
+    //   position: 'bottom',
+    //   fontWeight: 'bold',
+    //   color: '#000'
+    // },
+    legend: {
+      labels: {
+        fontColor: '#000',
+        boxWidth: 10
+      },
+      onHover: (e: any) => {
+        e.target.style.cursor = 'pointer';
+      }
+    },
+    hover: {
+      onHover: function (e: any) {
+        var point = this.getElementAtEvent(e);
+        if (point.length) e.target.style.cursor = 'pointer';
+        else e.target.style.cursor = 'default';
+      }
+    },
+    animation: {
+      duration: 2000,
+      "onComplete": function () {
+        let chartInstance = this.chart,
+          ctx = chartInstance.ctx;
+
+        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+        ctx.textAlign = 'center';
+        //ctx.textBaseline = 'bottom';
+        ctx.fontWeight = "bold";
+        var textSize = chartInstance.width / 10;
+        var radius = chartInstance.outerRadius;
+        var midX = chartInstance.width / 2;
+        var midY = chartInstance.height / 2
+        this.data.datasets.forEach((dataset: any, i: any) => {
+          let meta = chartInstance.controller.getDatasetMeta(i);
+          meta.data.forEach((bar: any, index: any) => {
+            let data = dataset.data[index];
+            if (data > 0) {
+              var w_offset = ctx.measureText(data).width / 2;
+              if (data < 5) {
+                var h_offset = textSize / 16;
+              }
+              else {
+                var h_offset = textSize / 4;
+              }
+              //var startAngle = dataset.data[i].startAngle;
+              //var endAngle = myPieChart.segments[i].endAngle;
+              // var startAngle = 4.71238898038469;
+              // var endAngle = 8.47;
+              var startAngle = chartInstance.controller.getDatasetMeta(i).data[index]._model.startAngle;
+              var endAngle = chartInstance.controller.getDatasetMeta(i).data[index]._model.endAngle;
+              ctx.fillStyle = "white";
+              var middleAngle = startAngle + ((endAngle - startAngle) / 2);
+              var posX = (radius / 2) * Math.cos(middleAngle) + midX;
+              var posY = (radius / 2) * Math.sin(middleAngle) + midY;
+              if (data < 5) {
+                ctx.fillText(data, posX - w_offset, posY - h_offset);
+              }
+              else {
+                ctx.fillText(data, posX + w_offset, posY + h_offset);
+              }
+            }
+          });
+        });
+      }
+
+    },
+    scales: {
+      display: false,
+      yAxes: [
+        {
+          // ticks: {
+          //   display: false,
+          // },
+          // gridLines:{
+          //   display:false
+          // }
+          display: false
+
+        }
+      ],
+      xAxes: [
+
+        {
+          // id: 'Tickets Type',
+          // scaleLabel: {
+          //   display: true,
+          //   labelString: 'Tickets Type',
+          //   fontColor: '#000',
+          //   fontWeight: 'bold',
+          //   fontSize: '20'
+          // },
+
+          // ticks: {
+          //   display: false
+          // },
+          // gridLines:{
+          //   display:false
+          // }
+          display: false
+
+        }
+      ]
+    },
+  };
+  pieChartColorWage: any = [
+    {
+      backgroundColor: [
+        '#3CB371',
+        '#FFA500',
+        '#663399'
+        // '#BA55D3'
+      ]
+    }
+  ];
+
+  pieChartColorWage1: any = [
+    {
+      backgroundColor: ['#66CDAA',
+        '#FFD700'
+      ]
+    }
+  ];
+
+
+
+
+
+
 
   highcharts = Highcharts;
   /*chartOptions = {
@@ -241,134 +507,128 @@ export class GraphComponent implements OnInit {
 
 
 
-  chartOptions123 = {   
+  chartOptions123 = {
     chart: {
-       type: "line"
+      type: "line"
     },
     credits: {
       enabled: false
     },
     title: {
-       text: null
+      text: null
     },
     subtitle: {
-       text: null
+      text: null
     },
-    xAxis:{
-       categories:["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    xAxis: {
+      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     },
-    yAxis: {          
-       title:{
-          text:null
-       },
-       allowDecimals:false 
+    yAxis: {
+      title: {
+        text: null
+      },
+      allowDecimals: false
     },
     plotOptions: {
-       series: {
-          dataLabels: {
-             enabled: true
-          }
-       }
+      series: {
+        dataLabels: {
+          enabled: true
+        }
+      }
     },
     tooltip: {
-    
+
     },
     legend: {
-      align: 'right',
-      layout: 'vertical',
-      margin: 0,
-      verticalAlign: 'top',
-      y: 25,
-      //symbolHeight: 180,
-      enabled: false
+      align: 'center',
+      x: 10,
+      verticalAlign: 'bottom',
+      y: 22,
+      floating: true,
+      backgroundColor:
+        Highcharts.defaultOptions.legend.backgroundColor || 'white',
+      borderColor: '#CCC',
+      borderWidth: 0,
+      shadow: false
     },
     series: [{
-       name: 'Incident 1',
-       data: [1,2,3,4,5,1,3,8,2,9,10,4]
+      name: 'Information Technology',
+      data: [1, 2, 3, 4, 5, 1, 3, 8, 2, 9, 10, 4]
     },
     {
-       name: 'Incident 2',
-       data: [4,9,3,4,8,1,2,12,3,9,8,2]
+      name: 'Operations',
+      data: [4, 9, 3, 4, 8, 1, 2, 12, 3, 9, 8, 2]
     },
     {
-       name: 'Incident 3',
-       data: [3,7,6,2,5,11,2,1,3,7,2,4]
+      name: 'Security',
+      data: [3, 7, 6, 2, 5, 11, 2, 1, 3, 7, 2, 4]
     },
     {
-       name: 'Incident 4',
-       data: [5,2,9,6,3,1,6,11,2,8,12,6]
+      name: 'Financial',
+      data: [5, 2, 9, 6, 3, 1, 6, 11, 2, 8, 12, 6]
     }]
- };
+  };
 
 
 
- chartOptions1234 = {   
-  chart: {
-     type: "column"
-  },
-  credits: {
-    enabled: false
-  },
-  title: {
-     text: null
-  },
-  subtitle: {
-     text: null
-  },
-  xAxis:{
-     categories:["sys1", "sys2", "sys3", "sys4", "sys5", "sys6",
-        "sys7", "sys8", "sys9", "sys10", "sys11", "sys12",'sys13']
-  },
-  yAxis: {          
-     title:{
-        text:null
-     },
-     allowDecimals:false 
-  },
-  plotOptions: {
-    column: {
-      stacking: 'normal',
-      dataLabels: {
+  chartOptions1234 = {
+    chart: {
+      type: "column"
+    },
+    credits: {
+      enabled: false
+    },
+    title: {
+      text: null
+    },
+    subtitle: {
+      text: null
+    },
+    xAxis: {
+      categories: ['HR Management System', 'Financial Management System', 'Time and Attendance', 'Case Management System', 'Benefit System',
+        'Learning Management System', 'Security Training System', 'Payroll System', 'Customer Services', 'Customer Care Portal', 'Provider Operations', 'Member Services']
+    },
+    yAxis: {
+      title: {
+        text: null
+      },
+      allowDecimals: false
+    },
+    plotOptions: {
+      column: {
+        stacking: 'normal',
+        dataLabels: {
           enabled: true
+        }
       }
-  }
-  },
-  tooltip: {
-  
-  },
-  legend: {
-    align: 'right',
-    layout: 'vertical',
-    margin: 0,
-    verticalAlign: 'top',
-    y: 25,
-    //symbolHeight: 180,
-    enabled: false
-  },
-//   legend: {
-//     align: 'right',
-//     x: -30,
-//     verticalAlign: 'top',
-//     y: 25,
-//     floating: true,
-//     backgroundColor:
-//         Highcharts.defaultOptions.legend.backgroundColor || 'white',
-//     borderColor: '#CCC',
-//     borderWidth: 1,
-//     shadow: false
-// },
-  series: [{
-    name: 'High',
-    data: [5, 3, 4, 7, 2,2, 2, 3, 2, 1,4,2,3]
-}, {
-    name: 'Medium',
-    data: [2, 2, 3, 2, 1,5, 3, 4, 7, 2,1,3,1]
-}, {
-    name: 'Low',
-    data: [3, 4, 4, 2, 5,2, 2, 3, 2, 1,4,6,9]
-}]
-};
+    },
+    tooltip: {
+
+    },
+    legend: {
+      align: 'center',
+      x: 10,
+      verticalAlign: 'bottom',
+      y: 22,
+      floating: true,
+      backgroundColor:
+        Highcharts.defaultOptions.legend.backgroundColor || 'white',
+      borderColor: '#CCC',
+      borderWidth: 0,
+      shadow: false
+    },
+    series: [{
+      name: 'High',
+      data: [5, 3, 4, 7, 2, 2, 2, 3, 2, 1, 4, 2]
+    }, {
+      name: 'Medium',
+      data: [2, 2, 3, 2, 1, 5, 3, 4, 7, 2, 1, 3]
+    }, {
+      name: 'Low',
+      data: [3, 4, 4, 2, 5, 2, 2, 3, 2, 1, 4, 6]
+    }]
+  };
 
 
 
@@ -2906,7 +3166,10 @@ export class GraphComponent implements OnInit {
   public showSystem: boolean;
   public showRecert: boolean;
   public showHover: boolean;
-  constructor(private httpClient: HttpClient, private router: Router, private utilService: UtilService) {
+  @ViewChild('emailView') emailView: ElementRef;
+  public myNotifications = [{ "createdOn": "2019-06 - 03", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2989, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2919", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2981, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2978, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2975, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2713, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2712, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2709, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2699, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2697, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2694, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2690, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2683, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2648, "sentBy": 0, "to": 0, "subject": "System Access Termination Requested", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2644, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2612, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2611, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2609, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Jacob Blake" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2602, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 22", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2600, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2563, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2561, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2559, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2546, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2545, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2542, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2533, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2508, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2481, "sentBy": 0, "to": 0, "subject": "Employee Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2472, "sentBy": 0, "to": 0, "subject": "Employee Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2456, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2440", "unRead": false, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2443, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2440", "unRead": false, "sentFrom": "Mike Cary" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2436, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2434, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2432, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2430, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2428, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2425, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2423, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }];
+  constructor(private httpClient: HttpClient, private router: Router,
+     private utilService: UtilService,private modalService: NgbModal) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     UtilService.signlegal = false;
@@ -2960,8 +3223,10 @@ export class GraphComponent implements OnInit {
   chartClicked3(value: any) {
 
   }
-  chartClickedSystems1(value: any)
-  {
+  chartClickedSystems1(value: any) {
+
+  }
+  chartClickedWage(value: any) {
 
   }
   chartClicked4(value: any) {
@@ -3225,6 +3490,16 @@ export class GraphComponent implements OnInit {
         this.loading = false;
         console.log(error);
       });
+  }
+
+
+  getNotification() {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    this.modalService.open(this.emailView, ngbModalOptions);
+
   }
 
 

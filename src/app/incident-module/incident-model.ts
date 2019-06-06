@@ -21,6 +21,7 @@ export class IncidentManagementDTO {
     itSecurityRisk: any;
     createdBy:any;
     updatedBy:any;
+    typeOfIncident:any;
 }
 export class IncidentProgressDTO {
 

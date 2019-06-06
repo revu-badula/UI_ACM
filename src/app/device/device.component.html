@@ -26,7 +26,69 @@
     <h3 class="pageTitle">Devices</h3>
   </div>
   <form (ngSubmit)="submitDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
-    <div id="form1">
+  	<div id="form1"  *ngIf="!details">
+  		  <div class="form-row">
+		      <div class="col-md-6">
+		
+		        <!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
+		        <div class="card"
+		          style="width: 18rem;height:14em;cursor: pointer;margin-left: 42%;margin-right: auto;display: block;">
+		          <div class="card-body" (click)="details = true">
+		            <div class="card-heading">
+		              <h5 class="card-title">Production Server</h5>
+		            </div>
+		            <hr>
+		            <div class="row">
+		              <div class="col-sm-3">
+		                <i class="fa fa-users fa-3x" style="color:cadetblue"></i>
+		              </div>
+		              <div class="col-sm-9 text">
+		                Click here to create Production Server.
+		                <!-- <hr id="lineSpace"> -->
+		
+		              </div>
+		            </div>
+		
+		          </div>
+		        </div>
+		      </div>
+		      <!-- <div class="col-md-4" style="margin-left: -11%;
+		        margin-top: -0.8vh;">
+		          Resource Report
+		        </div> -->
+		
+		
+		      <div class="col-md-6">
+		        <!-- <input type="radio" (click)="getValue('false')" value="false" name="report"> -->
+		        <div class="card"
+		          style="width: 18rem;height:14em;cursor: pointer;margin-left: auto;margin-right: 42%;display: block;">
+		          <div class="card-body" (click)="details = true">
+		            <div class="card-heading">
+		              <h5 class="card-title">Non-Production Server</h5>
+		            </div>
+		            <hr>
+		            <div class="row">
+		              <div class="col-sm-3">
+		                <i class="fa fa-desktop fa-3x" style="color:brown"></i>
+		              </div>
+		              <div class="col-sm-9 text">
+		               Click here to create non production server.
+		
+		                <!-- <hr id="lineSpace"> -->
+		
+		              </div>
+		            </div>
+		
+		          </div>
+		        </div>
+		      </div>
+		      <!-- <div class="col-md-4" style="margin-left: -11%;
+		        margin-top: -0.8vh;">
+		          overall Report
+		        </div> -->
+		    </div>
+  	</div>
+    <div id="form1" *ngIf="details">
       <div class="disclaimer"><span style="float:left">Please use this screen to add/ view
           devices</span>&nbsp;&nbsp;&nbsp;
         <span style="float:right">
@@ -334,12 +396,13 @@
 
 
       </div>
-    </div>
-  </form>
-  <button routerLink="/devicetab" style="margin-left: 10%;" type="button" class="showList btn btn-outline-dark">Show
+      	<button routerLink="/devicetab" style="margin-left: 10%;" type="button" class="showList btn btn-outline-dark">Show
     List</button>
   <div style="margin-right:5%">
     <button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!editForm.valid">Submit</button>
     <button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
   </div>
+    </div>
+  </form>
+  
 </div>

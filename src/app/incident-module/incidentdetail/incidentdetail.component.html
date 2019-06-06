@@ -72,8 +72,13 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label class="fam">Type of incident<span class="asterisk">*</span></label>
-            <select class="form-control" name="typeofincident">
+           <select class="form-control" name="typeOfIncident" [(ngModel)]="incidentManagementDTO.typeOfIncident"
+              (change)="incidentManagementDTO.typeOfIncident = $event.target.value">
               <option value="">Choose...</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Operations">Operations</option>
+              <option value="Security">Security</option>
+               <option value="Finance">Finance</option>
             </select>
           </div>
 
@@ -94,14 +99,15 @@
         <div class="form-row">
 
           <div class="form-group col-md-6">
-            <label class="fam">Systems Impacted<span class="asterisk">*</span></label>
-            <input type="text" name="systemsImpacted" class="form-control">
-          </div>
-
-          <div class="form-group col-md-6">
-            <label class="fam">Business unit impacted<span class="asterisk">*</span></label>
-            <select class="form-control" name="businessUnitImpacted">
+            <label class="fam">Business unit<span class="asterisk">*</span></label>
+            <select class="form-control" name="businessImpact" [(ngModel)]="incidentManagementDTO.businessImpact"
+              (change)="incidentManagementDTO.businessImpact = $event.target.value">
               <option value="">Choose...</option>
+              <option value="Human Resource">Human Resource</option>
+              <option value="Finance">Finance</option>
+              <option value="Claims Processing">Claims Processing</option>
+               <option value="Member Services">Member Services</option>
+                <option value="Provider Services">Provider Services</option>
             </select>
           </div>
 
@@ -126,13 +132,13 @@
           </div>
           <div class="col-md-6">
             <label class="fam">Progress<span class="asterisk">*</span></label>
-            <select class="form-control" name="progress">
-              <option value="">Choose...</option>
-              <option value="created">Created</option>
-              <option value="impactAnalysis">Impact Analysis</option>
-              <option value="implementation">Implementation</option>
-              <option value="testing">Testing</option>
-              <option value="closed">Closed</option>
+            <select class="form-control" name="incidentProgressId" [(ngModel)]="incidentManagementDTO.status"
+             (change)="incidentManagementDTO.incidentProgressId = $event.target.value">
+              <option value="1">Created</option>
+              <option value="2">Impact Analysis</option>
+              <option value="3">Implementation</option>
+              <option value="4">Testing</option>
+              <option value="5">Closed</option>
             </select>
           </div>
 
@@ -190,7 +196,7 @@
 
             <tr *ngFor="let pendingApplication of incidentManagementDTO.applicationDTOs
               | paginate: { itemsPerPage: 10, currentPage: p } let i= index">
-              <td><a (click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
+              <td><a style="color: blue;cursor: pointer;" (click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
               </td>
               <td>{{pendingApplication.businessOwnerNameDoe}}</td>
 
@@ -223,7 +229,7 @@
           <thead>
             <tr>
               <th>Host Name</th>
-              <th>Product Name</th>
+              <th>Vendor Name</th>
               <th>Primary
                 Contact
               </th>
@@ -237,8 +243,8 @@
           <tbody>
             <tr *ngFor="let appDevice of incidentManagementDTO.databaseDTOs let i=index">
 
-              <td><a class="box" routerLink="/updateDevice/{{appDevice.databaseId}}"
-                  (click)="getDatabases(appDevice.databaseId)" style="cursor: pointer;">{{ appDevice.hostName}}</a>
+              <td><a class="box" (click)="getDevice(appDevice.databaseId)"
+                   style="cursor: pointer;color: blue;">{{ appDevice.hostName}}</a>
               </td>
               <td>{{appDevice.productName}}</td>
               <td>{{appDevice.primaryContactName}}</td>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChildren,QueryList } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from 'app/app.config';
 import { NgbdSortableHeader, SortEvent } from '../sort';
@@ -12,11 +12,22 @@ export class IncidentstartComponent implements OnInit {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   public loading: boolean;
   public incidents: any;
-  constructor(private router: Router, private httpClient: HttpClient) {
+  public show:boolean;
+  constructor(private router: Router, private httpClient: HttpClient,private activatedRoute: ActivatedRoute) {
     sessionStorage.removeItem('incidentName');
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      let dat = params['type'];
+      if(dat !== undefined)
+      {
+        if(dat === "true")
+        {
+          this.show=true;
+        }
+      }
+    });
     this.getIncidents();
   }
 
@@ -35,15 +46,26 @@ export class IncidentstartComponent implements OnInit {
   }
 
   viewApplication(incidentId: any) {
+    if(!this.show){
     sessionStorage.setItem('incidentName', incidentId);
     this.router.navigate(['/incident/info']);
+    }
+    else{
+      sessionStorage.setItem('incidentName', incidentId);
+      this.router.navigate(['/newBusinessImpact/info'])
+    }
   }
 
   createSystem() {
+    if(!this.show)
     this.router.navigate(['/incident/info']);
+    else{
+      this.router.navigate(['/newBusinessImpact/info']);
+    }
   }
 
   getSort({ column, direction }: SortEvent) {
+    if(this.incidents !== undefined && this.incidents !==null && this.incidents.length >0)
     this.headers.forEach(header => {
       if (header.sortable !== column) {
         header.direction = '';
