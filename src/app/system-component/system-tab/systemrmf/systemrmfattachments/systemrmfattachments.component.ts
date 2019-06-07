@@ -19,6 +19,7 @@ export class SystemrmfattachmentsComponent implements OnInit {
   public rmfApplicationDTO: RMFApplicationDTO;
   appAuditFileDTO: AppAuditFileDTO;
   public givenfile: boolean = false;
+  public showForm:boolean;
   @ViewChild('fileInput') inputEl: ElementRef;
 
   constructor(private httpClient: HttpClient, private router: Router,

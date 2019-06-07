@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { IncidentinfoComponent } from './incidentinfo/incidentinfo.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -68,6 +68,6 @@ import { IncidentBusinessImpactComponent } from './incident-business-impact/inci
   ],
   declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent,
     IncidentcloseComponent, PhoneMaskDirective, IncidentstartComponent,NgbdSortableHeader, NewBusinessImpactComponetComponent, IncidentBusinessImpactComponent],
-    providers:[DecimalPipe]
+    providers:[DecimalPipe, DatePipe]
 })
 export class IncidentModuleModule { }

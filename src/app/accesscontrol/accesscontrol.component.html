@@ -138,11 +138,7 @@
                         <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
                             id="patches" [(ngModel)]="appPolicy.description" name="description"
                             maxlength="50000"> </textarea>
-                        <!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
-                        <br>
-                        <div *ngIf="description?.errors?.maxlength" style="float:right">
-                            <span style="color:tomato"> Exceeded the character limit. </span>
-                        </div>
+
 
                     </div>
 
@@ -156,31 +152,29 @@
                         <textarea cols="156" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm" rows="7"
                             id="patches" [(ngModel)]="appPolicy.auditFindings" name="description"
                             maxlength="50000"> </textarea>
-                        <!--<div style="float:right">{{50000 - description.value.length}} characters left </div> -->
-                        <br>
-                        <div *ngIf="auditFindings?.errors?.maxlength" style="float:right">
-                            <span style="color:tomato"> Exceeded the character limit. </span>
-                        </div>
+                      
 
                     </div>
                 </div>
 
-            
 
 
-                
-            <div class="infoBox">
+
+
+                <div class="infoBox">
                     <div class="headerOfBox">
                         <h4>Evidences</h4>
                     </div>
                     <p>Is evidence required?</p>
                     <p>
-                    <input type="radio" value="Y" [(ngModel)]="appPolicy.evidenceRequired" (change)="onEvidenceRequiredChange($event.target.value)" name="yes_no" readonly />Yes
-                    <input type="radio" value="N" [(ngModel)]="appPolicy.evidenceRequired" (change)="onEvidenceRequiredChange($event.target.value)"name="yes_no" readonly />No
+                        <input type="radio" value="Y" [(ngModel)]="appPolicy.evidenceRequired"
+                            (change)="onEvidenceRequiredChange()" name="yes_no" readonly />Yes
+                        <input type="radio" value="N" [(ngModel)]="appPolicy.evidenceRequired"
+                            (change)="onEvidenceRequiredChange()" name="yes_no" readonly />No
                     </p>
                     <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)">
-    
-    
+
+
                     <br><br><br>
                     <div class="col-md-6">
                         <div class="form-row">
@@ -210,7 +204,7 @@
                             <div class="row">
                                 <label>Weightage</label>
                                 <div class="col-md-3"><input type="number" name="weightN" class="form-control"
-                                        placeholder=""  [(ngModel)]="appPolicy.weightageN" id="first" readonly></div>
+                                        placeholder="" [(ngModel)]="appPolicy.weightageN" id="first" readonly></div>
 
                             </div>
                         </div>
@@ -218,8 +212,8 @@
                             <div class="row">
                                 <label>Score</label>
                                 <div class="col-md-3"><input type="number" class="form-control" name="test"
-                                        (change)="getRealScore()" placeholder="" [(ngModel)]="appPolicy.scoreN" id="first"
-                                        style="width:200% !important"></div>
+                                        (change)="getRealScore()" placeholder="" [(ngModel)]="appPolicy.scoreN"
+                                        id="first" style="width:200% !important"></div>
 
                             </div>
                         </div>
@@ -231,8 +225,9 @@
                             <div class="row">
                                 <label>Net score</label>
                                 <div class="col-md-3">
-                                    <input type="number" class="form-control" name="realScore" [(ngModel)]="appPolicy.netScoreN"
-                                        placeholder="" id="first" style="width:200% !important">
+                                    <input type="number" class="form-control" name="realScore"
+                                        [(ngModel)]="appPolicy.netScoreN" placeholder="" id="first"
+                                        style="width:200% !important">
 
                                 </div>
 
@@ -242,161 +237,162 @@
                     </div>
 
                 </div>
-        
-
-                
 
 
 
 
-            <div class="form-row">
-                <div class="form-group col-md-12">
 
-                    <div class="infoBox" style="width: 80%">
-                        <div class="headerOfBox">
-                            <h4>Procedures<span class="asterisk">*</span>
-                            </h4>
-                        </div>
-                        <textarea cols="156" [ngxSummernote]="config" style="width: 80%"
-                            [ngxSummernoteDisabled]="showForm" rows="7" id="patches" ngModel name="policyProcedures"
-                            [(ngModel)]="appPolicy.procedures" [name]="'policy_procedures'" maxlength="50000" required
-                            #procedures="ngModel"> </textarea>
-                        <!--<div style="float:right">{{50000 - procedures.value.length}} characters left </div> -->
-                        <br>
-                        <div *ngIf="procedures.errors?.maxlength" style="float:right">
-                            <span style="color:tomato"> Exceeded the character limit. </span>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <div class="infoBox" style="width: 80%">
-                        <div class="headerOfBox">
-                            <h4>Guidelines</h4>
-                        </div>
-                        <textarea cols="156" [ngxSummernote]="config" style="width: 80%"
-                            [ngxSummernoteDisabled]="showForm" rows="7" id="patches" [(ngModel)]="appPolicy.guidelines"
-                            [name]="'policy_guidelines'" maxlength="50000" #guidelines="ngModel"> </textarea>
-                        <!--<div style="float:right">{{50000 - guidelines.value.length}} characters left </div> -->
-                        <br>
-                        <div *ngIf="guidelines.errors?.maxlength" style="float:right">
-                            <span style="color:tomato"> Exceeded the character limit. </span>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+
+                        <div class="infoBox" style="width: 80%">
+                            <div class="headerOfBox">
+                                <h4>Procedures<span class="asterisk">*</span>
+                                </h4>
+                            </div>
+                            <textarea cols="156" [ngxSummernote]="config" style="width: 80%"
+                                [ngxSummernoteDisabled]="showForm" rows="7" id="patches" ngModel name="policyProcedures"
+                                [(ngModel)]="appPolicy.procedures" [name]="'policy_procedures'" maxlength="50000"
+                                required #procedures="ngModel"> </textarea>
+                            <!--<div style="float:right">{{50000 - procedures.value.length}} characters left </div> -->
+                            <br>
+                            <div *ngIf="procedures.errors?.maxlength" style="float:right">
+                                <span style="color:tomato"> Exceeded the character limit. </span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
 
-
-
-            <div class="infoBox">
-                <div class="headerOfBox">
-                    <h4>Sub Control</h4>
-                </div>
-                <div style="float:right" *ngIf="!showEli">
-                    <fa class="plus-icon" (click)="goToSubControl()" [name]="'plus'"></fa>
-                </div>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-
-                            <th id="colorWhite">Sub Control Number</th>
-                            <th id="colorWhite">Sub Control Name</th>
-                            <th id="colorWhite">Assigned To</th>
-                            <th id="colorWhite">End Date</th>
-                            <th id="colorWhite">Status</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            *ngFor="let subPol of appPolicy.appAuditPolicies | paginate: { itemsPerPage: 10, currentPage: p }">
-                            <td><a *ngIf="showEli">{{ subPol.controlNumber }}</a><a *ngIf="!showEli"
-                                    (click)="getSubpolicy(subPol.appAuditPolicyId)"
-                                    style="cursor: pointer;color: blue;">{{subPol.controlNumber}}</a></td>
-                            <td>{{subPol.controlName}}</td>
-                            <td>{{subPol.assignedTo}}</td>
-                            <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
-                            <td>{{subPol.status | subControlPipe}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
-
-
-
-            <div class="infoBox" style="width: 80%">
-                <div class="headerOfBox">
-                    <h4>Artifacts</h4>
-                </div>
-                <textarea [ngxSummernote]="config" name="artifacts" style="width: 80%" [(ngModel)]="appPolicy.artifacts"
-                    [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches" maxlength="50000"
-                    #artifacts="ngModel"> </textarea>
-                <!--<div style="float:right">{{50000 - artifacts.value.length}} characters left </div> -->
-                <br>
-                <div *ngIf="artifacts.errors?.maxlength" style="float:right">
-                    <span style="color:tomato"> Exceeded the character limit. </span>
-                </div>
-            </div>
-
-
-
-            <div class="infoBox" style="width: 80%">
-                <div class="headerOfBox">
-                    <h4>Non-COV</h4>
-
-                </div>
-                <textarea [ngxSummernote]="config" name="noncov" style="width: 80%" [(ngModel)]="appPolicy.nonCov"
-                    [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches" maxlength="50000"
-                    #nonCov="ngModel"> </textarea>
-                <!--<div style="float:right">{{50000 - nonCov.value.length}} characters left </div> -->
-                <br>
-                <div *ngIf="nonCov.errors?.maxlength" style="float:right">
-                    <span style="color:tomato"> Exceeded the character limit. </span>
-                </div>
-            </div>
-
-
-
-            <div class="infoBox">
-                <div class="headerOfBox">
-                    <h4>Documents</h4>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="infoBox" style="width: 80%">
+                            <div class="headerOfBox">
+                                <h4>Guidelines</h4>
+                            </div>
+                            <textarea cols="156" [ngxSummernote]="config" style="width: 80%"
+                                [ngxSummernoteDisabled]="showForm" rows="7" id="patches"
+                                [(ngModel)]="appPolicy.guidelines" [name]="'policy_guidelines'" maxlength="50000"
+                                #guidelines="ngModel"> </textarea>
+                            <!--<div style="float:right">{{50000 - guidelines.value.length}} characters left </div> -->
+                            <br>
+                            <div *ngIf="guidelines.errors?.maxlength" style="float:right">
+                                <span style="color:tomato"> Exceeded the character limit. </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)"> -->
-                <div class="col-md-6">
-                    <div class="form-row">
-                        <table id="myTable">
+
+
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Sub Control</h4>
+                    </div>
+                    <div style="float:right" *ngIf="!showEli">
+                        <fa class="plus-icon" (click)="goToSubControl()" [name]="'plus'"></fa>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <th>File Name</th>
-                                <!-- <th *ngIf="!showFrm">Action</th> -->
+
+                                <th id="colorWhite">Sub Control Number</th>
+                                <th id="colorWhite">Sub Control Name</th>
+                                <th id="colorWhite">Assigned To</th>
+                                <th id="colorWhite">End Date</th>
+                                <th id="colorWhite">Status</th>
+
                             </tr>
-                            <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
-                                <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;"
-                                    (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">
-                                    {{policyDocument.documentName}}</td>
-                                <!-- <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
-                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black;"></i></td> -->
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let subPol of appPolicy.appAuditPolicies | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td><a *ngIf="showEli">{{ subPol.controlNumber }}</a><a *ngIf="!showEli"
+                                        (click)="getSubpolicy(subPol.appAuditPolicyId)"
+                                        style="cursor: pointer;color: blue;">{{subPol.controlNumber}}</a></td>
+                                <td>{{subPol.controlName}}</td>
+                                <td>{{subPol.assignedTo}}</td>
+                                <td>{{subPol.endDate | filterDate | date:'MM/dd/yyyy'}}</td>
+                                <td>{{subPol.status | subControlPipe}}</td>
                             </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
 
 
 
-                        </table>
+                <div class="infoBox" style="width: 80%">
+                    <div class="headerOfBox">
+                        <h4>Artifacts</h4>
+                    </div>
+                    <textarea [ngxSummernote]="config" name="artifacts" style="width: 80%"
+                        [(ngModel)]="appPolicy.artifacts" [ngxSummernoteDisabled]="showForm" cols="156" rows="7"
+                        id="patches" maxlength="50000" #artifacts="ngModel"> </textarea>
+                    <!--<div style="float:right">{{50000 - artifacts.value.length}} characters left </div> -->
+                    <br>
+                    <div *ngIf="artifacts.errors?.maxlength" style="float:right">
+                        <span style="color:tomato"> Exceeded the character limit. </span>
                     </div>
                 </div>
 
+
+
+                <div class="infoBox" style="width: 80%">
+                    <div class="headerOfBox">
+                        <h4>Non-COV</h4>
+
+                    </div>
+                    <textarea [ngxSummernote]="config" name="noncov" style="width: 80%" [(ngModel)]="appPolicy.nonCov"
+                        [ngxSummernoteDisabled]="showForm" cols="156" rows="7" id="patches" maxlength="50000"
+                        #nonCov="ngModel"> </textarea>
+                    <!--<div style="float:right">{{50000 - nonCov.value.length}} characters left </div> -->
+                    <br>
+                    <div *ngIf="nonCov.errors?.maxlength" style="float:right">
+                        <span style="color:tomato"> Exceeded the character limit. </span>
+                    </div>
+                </div>
+
+
+
+                <div class="infoBox">
+                    <div class="headerOfBox">
+                        <h4>Documents</h4>
+                    </div>
+
+                    <!-- <input type="file" #fileInput (change)="createPolicyDocumentDTO($event)"> -->
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            <table id="myTable">
+                                <tr>
+                                    <th>File Name</th>
+                                    <!-- <th *ngIf="!showFrm">Action</th> -->
+                                </tr>
+                                <tr *ngFor=" let policyDocument of policyAccess.policyDocumentsDTOs let i = index">
+                                    <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;"
+                                        (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">
+                                        {{policyDocument.documentName}}</td>
+                                    <!-- <td *ngIf="policyDocument.activeFlag && !showFrm" (click)="deleteFile(policyDocument.policyDocId,i)"
+                                        style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true" style="font-size: 24px;color: black;"></i></td> -->
+                                </tr>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
-
-
-</div>
-</fieldset>
-</form>
-<div style="margin-right:5%">
-    <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm"
-        class="submit btn btn-primary">Submit</button>
-    <button type="cancel" class="cancel btn btn-primary" (click)=" backClicked()">Cancel</button>
-</div>
+        </fieldset>
+    </form>
+    <div style="margin-right:5%">
+        <button type="submit" form="myForm" [disabled]="!editForm.valid" *ngIf="!showForm"
+            class="submit btn btn-primary">Submit</button>
+        <button type="cancel" class="cancel btn btn-primary" (click)=" backClicked()">Cancel</button>
+    </div>
 </div>

@@ -13,6 +13,7 @@ export class IncidentResolutionComponent implements OnInit {
   public showEditButton:boolean;
   public test:any;
   public test1:any;
+  public loading:boolean;
   config: any = {
     height: 250,
     width: 1080,
@@ -97,4 +98,9 @@ export class IncidentResolutionComponent implements OnInit {
       this.ref.detectChanges();
     }
   };
+
+  getRenDate(value:any)
+  {
+
+  }
 }

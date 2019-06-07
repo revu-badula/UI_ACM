@@ -5,6 +5,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 import { NgbModal, NgbModalOptions, NgbActiveModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Component, Input, OnInit, ApplicationRef, ChangeDetectorRef } from '@angular/core';
+declare const setImmediate: any;
 
 @Component({
     template: `

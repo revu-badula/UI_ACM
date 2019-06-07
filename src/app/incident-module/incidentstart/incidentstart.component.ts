@@ -13,6 +13,7 @@ export class IncidentstartComponent implements OnInit {
   public loading: boolean;
   public incidents: any;
   public show:boolean;
+  public p:number=1;
   constructor(private router: Router, private httpClient: HttpClient,private activatedRoute: ActivatedRoute) {
     sessionStorage.removeItem('incidentName');
   }

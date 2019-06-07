@@ -9,7 +9,7 @@ export class IncidentManagementDTO {
     incidentProgressDTO: IncidentProgressDTO;
     shortDescription: any;
     longDescription: any;
-    serverity: any;
+    severity: any;
     status: any;
     reportedBy: any;
     userId:number;

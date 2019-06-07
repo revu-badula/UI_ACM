@@ -26,11 +26,6 @@
 	</div>
 </ng-template>
 <div>
-	<div class="save-edit">
-		<fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
-			data-delay="0" *ngIf="clickExp" (click)="editorGroup()" [name]="'edit'"></fa>
-	</div>
-
 	<div class="page-description">
 		<h3>Solutions</h3>
 		<hr>
@@ -38,7 +33,11 @@
 
 	<form (ngSubmit)="createSolution()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
 		<div id="form1">
-			<div class="disclaimer" *ngIf="!showForm"><span>Please use this screen to edit certified solutions
+				<div class="save-edit" style="position: absolute;right: 2%;top: 15%;">
+						<fa class="edit-icon icons"
+						 *ngIf="clickExp" (click)="editorGroup()" name="edit"></fa>
+					</div>
+			<div class="disclaimer"><span>Please use this screen to edit certified solutions
 					only</span>&nbsp;&nbsp;&nbsp;
 				<span style="float:right">
 					<font color=red>*</font> marked fields are mandatory

@@ -30,6 +30,7 @@ export class IncidentdetailComponent implements OnInit {
   public dummy: any;
   public dbservers: any = [];
   public apps: any = [];
+  public p:number=1;
   incidentManagementDTO: IncidentManagementDTO;
   config: any = {
     height: 250,

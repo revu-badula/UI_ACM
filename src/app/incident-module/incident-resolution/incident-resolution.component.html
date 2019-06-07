@@ -7,7 +7,7 @@
     (click)="editClick()"></i>
 </div>
 
-<form #formName="ngForm" id="myForm" (ngSubmit)="createLocality()" enctype="multipart/form-data">
+<form #formName="ngForm"  enctype="multipart/form-data">
 
   <div id="formSame">
     <div class="disclaimer"><span>Please use this screen to add information.</span>&nbsp;&nbsp;&nbsp;
@@ -55,31 +55,11 @@
 
           </div>
         </div>
-
-
-        <!-- <div class="form-row">
-          <span class="fam" style="font-weight: bold;">Security Risk</span>
-          <div class="form-group col-md-12">
-            <tinymce  name="securityRisk" [(ngModel)]="test2" *ngIf="showEditButton" disabled=true
-              [config]="config2">
-            </tinymce>
-            <tinymce  name="securityRisk" [(ngModel)]="test2" *ngIf="!showEditButton" [config]="config2">
-            </tinymce>
-            remaining {{50000 -len2}}
-
-          </div>
-        </div> -->
-
       
       </div>
 
 
     </fieldset>
-    <!-- <div class="buttons" style="margin-right:5%;">
-      <button type="submit" form="myForm" class="submit btn btn-primary" [disabled]="!formName.valid"
-        *ngIf="isShow">Submit</button>
-      <button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
-    </div> -->
     <div class="d-flex justify-content-between p-2">
       <button type="button"  class="cancel btn btn-primary" (click)="backClicked()">
         Cancel

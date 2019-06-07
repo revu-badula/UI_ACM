@@ -11,6 +11,7 @@ export class IncidentcloseComponent implements OnInit {
 
   public len: number = 0;
   public showEditButton: boolean;
+  public loading:boolean;
   public test: any;
   config: any = {
     height: 250,
@@ -58,6 +59,11 @@ export class IncidentcloseComponent implements OnInit {
       this.ref.detectChanges();
     }
   };
+
+  getRenDate(value:any)
+  {
+    
+  }
 
 
 }

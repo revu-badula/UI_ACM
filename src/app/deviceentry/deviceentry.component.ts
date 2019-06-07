@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 })
 export class DeviceentryComponent implements OnInit {
 
+  public loading:boolean;
   constructor(private router:Router,private _location: Location) { }
 
   ngOnInit() {

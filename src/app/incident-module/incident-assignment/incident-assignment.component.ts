@@ -12,6 +12,7 @@ export class IncidentAssignmentComponent implements OnInit {
   public len:number=0;
   public showEditButton:boolean;
   public test:any;
+  public loading:boolean;
   config: any = {
     height: 250,
     width: 1080,
@@ -57,5 +58,10 @@ export class IncidentAssignmentComponent implements OnInit {
       this.ref.detectChanges();
     }
   };
+
+  getRenDate(value:any)
+  {
+    
+  }
 
 }

@@ -11,6 +11,7 @@ export class IncidentBusinessComponent implements OnInit {
   public len:number=0;
   public len1:number=0;
   public len2:number=0;
+  public loading:boolean;
   public showEditButton:boolean;
   public test:any;
   public test1:any;

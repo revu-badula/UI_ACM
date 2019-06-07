@@ -23,17 +23,14 @@ export class AppAuditPolicyDTO {
     artifacts: string;
     nonCov: string;
     securityPlan: string;
-	appParentPolicyId:any
-	//private AppAuditPolicyDTO appAuditParentPolicyDTO;
+	appParentPolicyId:any;
 	appAuditPolicies:any=[];
 	policyDocumentsDTOs:any;
 	weightageN:any;
     scoreN:any;
 	netScoreN:any;
 	auditFindings:any;
-	
-
-
+	evidenceRequired:any;
 }
 
 export class Policy {

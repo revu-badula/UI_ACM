@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalityComponentRoutingModule } from '.././app.routing';
 import { BrowserModule } from '@angular/platform-browser';
@@ -100,6 +100,7 @@ import { AssesslandingComponent } from './locality-tab/locality-assessment/asses
     AssessAttachmentsComponent, AssessLessonsComponent, LocalitysolutionsformComponent,
     NgbdModalContent, PhonePipe, OnlyIntegerDirective, OnlyInteger, OnlyDollar, AuditControlComponent, AssessControlComponent, AuditLandingComponent, AssesslandingComponent],
   entryComponents: [NgbdModalContent, DialogComponent],
-  exports:[OnlyInteger, OnlyIntegerDirective, FilterPipeDate, OnlyDollar]
+  exports:[OnlyInteger, OnlyIntegerDirective, FilterPipeDate, OnlyDollar],
+  providers:[DatePipe]
 })
 export class LocalityComponentModule { }

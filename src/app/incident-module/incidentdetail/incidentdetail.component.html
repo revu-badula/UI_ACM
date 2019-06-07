@@ -1,7 +1,7 @@
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
-<div class="plus" style="float:right">
+<div class="plus" style="float:right;position:absolute;right: 2%;">
   <i *ngIf="showEditButton && editMode" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
     (click)="editClick()"></i>
 </div>

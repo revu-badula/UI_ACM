@@ -8,13 +8,11 @@ import { APP_CONFIG } from '../../../app.config';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { UtilService } from '../../../util.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Cookie } from 'ng2-cookies';
 import { DialogService } from '../../../dialog.service';
 declare let tinymce: any;
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
-import { Observable, Subject } from 'rxjs';
 
 
 
@@ -22,7 +20,7 @@ import { Observable, Subject } from 'rxjs';
   selector: 'app-policy-details',
   templateUrl: './policy-details.component.html',
   styleUrls: ['./policy-details.component.css'],
-  providers: [ApiserviceService]
+  providers: [ApiserviceService,DatePipe]
 })
 export class PolicyDetailsComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
@@ -39,8 +37,6 @@ export class PolicyDetailsComponent implements OnInit {
   public families: any;
   public showN: boolean = false;
   public buttonName: any = 'Show';
-
-
   public assignTo: any;
   public assignOn: any;
   public scoreN: any;
@@ -49,27 +45,9 @@ export class PolicyDetailsComponent implements OnInit {
   public weightageD: any;
   public result: any;
   public realScore: any;
-
-
   family: familyPOlicyDTO;
   public changeOverallStatus: boolean = false;
-
   p: number = 1;
-  // config = {
-  //   placeholder: '',
-  //   tabsize: 2,
-  //   height: 200,
-  //   width: "100%",
-  //   toolbar: [
-  //     // [groupName, [list of button]]
-  //     ['misc', ['undo', 'redo']],
-  //     ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-  //     ['fontsize', ['fontname', 'fontsize', 'color']],
-  //     ['para', ['style0', 'ul', 'ol', 'paragraph', 'height']]
-  //   ],
-  //   fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
-
-  // };
   showDocument: boolean;
   showForm: boolean = true;
   public policyDropDownId: number;
@@ -115,10 +93,6 @@ export class PolicyDetailsComponent implements OnInit {
     this.files = [] as File[];
     this.policyReview = new PolicyReviewTerm();
     this.family = new familyPOlicyDTO();
-    // if (UtilService.review) {
-    //   UtilService.review = false;
-    //   this.router.navigate(['policyView/review']);
-    // }
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.config.init_instance_callback = (editor: any) => {
@@ -126,35 +100,7 @@ export class PolicyDetailsComponent implements OnInit {
         this.getData(editor);
       });
     };
-    // let w = screen.width;
-    // if (w>=1600 && w < 1650) {
-    //   this.config.width = 1245;
-    // }
-    // else if (w > 1509 && w < 1600) {
-    //   this.config.width = 1175;
-    // }
-    // else if (w > 1475 && w <= 1509) {
-    //   this.config.width = 1150;
-    // }
-    // else if (w > 1440 && w <= 1475) {
-    //   this.config.width = 1115;
-    // }
-    // else if (w >= 1400 && w <= 1440) {
-    //   this.config.width = 1080;
-    // }
-    // else if (w >= 1380 && w < 1400) {
-    //   this.config.width = 1020;
-    // }
-
-    // else if (w > 1330 && w < 1380) {
-    //   this.config.width = 1000;
-    // }
-    // else if (w >= 1310 && w <= 1330) {
-    //   this.config.width = 980;
-    // }
-    // else if (w >= 1280 && w <= 1309) {
-    //   this.config.width = 950;
-    // }
+    
 
 
   }

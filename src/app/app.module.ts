@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
@@ -10,7 +9,6 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { RegisterService } from './services/register.service';
 import { HttpModule } from '@angular/http';
 import { LocalityComponentRoutingModule } from './app.routing';
-//import { SystemComponentRoutingModule } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationComponentModule } from './navigation-component/navigation-component.module';
 import { OptionListModule } from './option-list/option-list.module';
@@ -66,16 +64,13 @@ import { SignedPipe } from './signed-pipe';
 import { DevicetabComponent } from './devicetab/devicetab.component';
 import { IdleTimeoutService } from './idleTimeOutService';
 import { DialogComponent } from './dialog.service';
-import { OnlyIntegerDirective } from './locality-component/only-integer.directive';
 import { CustomCurrencyPipe } from './currency-pipe';
-import { CurrencyPipe, LocationStrategy, APP_BASE_HREF, HashLocationStrategy } from '@angular/common';
-import { OnlyInteger } from './integer';
+import { CurrencyPipe, APP_BASE_HREF} from '@angular/common';
 import { ReportLegalComponent } from './reports/report-legal/report-legal.component';
 import { ReportSolutionsComponent } from './reports/report-solutions/report-solutions.component';
 import { ReportVendorComponent } from './reports/report-vendor/report-vendor.component';
 import { ReportDeviceComponent } from './reports/report-device/report-device.component';
 import { ReportlegalsystemComponent } from './reports/reportlegalsystem/reportlegalsystem.component';
-import { NgxSummernoteModule } from 'ngx-summernote';
 import { SubControlNameComponent } from './control-name/sub-control-name/sub-control-name.component';
 import { SubControlPipe } from './sub-control-status';
 import { ControlPipe } from './control-status';
@@ -83,7 +78,6 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { CallbackComponent } from './callback/callback.component';
 import { OktaAuthService } from './okta/oka.service';
 import { SampleComponent } from './sample/sample.component';
-import { CustomHashLocationStrategy } from './custom-hash-location';
 import { AccesscontrolComponent } from './accesscontrol/accesscontrol.component';
 import { AuditpolicyaddComponent } from './auditpolicyadd/auditpolicyadd.component';
 import { AuditpolicyupdateComponent } from './auditpolicyupdate/auditpolicyupdate.component';
@@ -115,12 +109,13 @@ import { RmsdetailsComponent } from './rmsdetails/rmsdetails.component';
 import { RmsoverviewComponent } from './rmsoverview/rmsoverview.component';
 import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
 import { DeviceentryComponent } from './deviceentry/deviceentry.component';
-import { HighchartsChartComponent } from 'highcharts-angular';
 import { IncidentModuleModule } from './incident-module/incident-module.module';
 import { MatGridListModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MyTaskComponent } from './my-task/my-task.component';
-
+import { NgxSummernoteModule } from 'ngx-summernote';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -203,7 +198,6 @@ import { MyTaskComponent } from './my-task/my-task.component';
     RmsoverviewComponent,
     TaskdetailsComponent,
     DeviceentryComponent,
-    HighchartsChartComponent,
     MyTaskComponent
   ],
 
@@ -216,10 +210,10 @@ import { MyTaskComponent } from './my-task/my-task.component';
     HttpClientModule,
     CoreModule,
     FormsModule,
+    HighchartsChartModule,
     NgxCurrencyModule,
     LocalityComponentRoutingModule,
     LocalityComponentModule,
-    //SystemComponentRoutingModule,
     NgxSummernoteModule,
     SystemComponentModule,
     IncidentModuleModule,
@@ -249,7 +243,7 @@ import { MyTaskComponent } from './my-task/my-task.component';
     DialogBoxComponent, DialogComponent
   ],
   providers: [RegisterService, UtilService,{provide:APP_BASE_HREF, useValue:'/Integra/'}, ApiserviceService, AlertService, OktaAuthService,
-    AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe],
+    AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
