@@ -7,7 +7,7 @@ import { IMyDate } from 'mydatepicker';
 import { APP_CONFIG } from '../app.config';
 import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
 import { UtilService } from '../util.service';
-import { ActivatedRoute, Params, Router,NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 import { Cookie } from 'ng2-cookies';
 import { DialogService } from '../dialog.service';
 declare let tinymce: any;
@@ -53,7 +53,7 @@ export class ScontrolComponent implements OnInit {
   public showDownload: boolean = false;
   public len: any = 0;
   public policyFamilyID: any;
-
+  public second: boolean;
   constructor(private modalService: NgbModal, private _apiservice: ApiserviceService, private http: Http,
     private utilservice: UtilService,
     private router: Router, private dialogService: DialogService,
@@ -64,6 +64,10 @@ export class ScontrolComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     this.route.params.subscribe(params => {
       this.policyFamilyID = params['id'];
+      if (this.second) {
+        this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
+        this.fetchPolicyFamily(+sessionStorage.getItem("policyGrpId"));
+      }
     });
   }
 
@@ -91,6 +95,7 @@ export class ScontrolComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.second = true;
     this.fetchPolicies(+sessionStorage.getItem("policyGrpId"));
     this.fetchPolicyFamily(+sessionStorage.getItem("policyGrpId"));
   }
@@ -314,8 +319,7 @@ export class ScontrolComponent implements OnInit {
       if (this.families[i].policyFamilyID === +value) {
         name = this.families[i].policyFamilyID;
         this.family = this.families[i];
-        if(this.family.assignedDt !== undefined && this.family !== null)
-        {
+        if (this.family.assignedDt !== undefined && this.family !== null) {
           let rd = new Date(this.family.assignedDt);
           let year = rd.getFullYear();
           let month = rd.getMonth() + 1;

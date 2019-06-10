@@ -46,11 +46,10 @@ export class IncidentinfoComponent implements OnInit {
       }
     });
 
-    // this.subscription1 = this.missionService.missionAnnounced$.subscribe(
-    //   mission => {
-    //     this.test=mission;
-    //     console.log(this.test);
-    //   });
+    this.subscription1 = this.missionService.missionAnnounced$.subscribe(
+      mission => {
+        this.test=mission;
+      });
 
     this.startCounter();
     //this.idleTimeoutSvc.setTimeMilli(900000);
@@ -101,7 +100,7 @@ export class IncidentinfoComponent implements OnInit {
   ngOnDestroy() {
     this._idleTimerSubscription.unsubscribe();
     this.subscription.unsubscribe();
-    //this.subscription1.unsubscribe();
+    this.subscription1.unsubscribe();
   }
 
 }

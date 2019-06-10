@@ -64,7 +64,7 @@
             <ol>
               <ng-container *ngFor="let data of families">
               <li class="nav-item" routerLinkActive="active" routerLinkActiveOptions=" {exact:false}">
-                <a routerLink="dummy/{{data.policyFamilyID}}"   style="color: blue;cursor: pointer;font-size:12px;font-weight: bold;">{{data.familyName}}</a>
+                <a class="nav-link" routerLink="scontrol/{{data.policyFamilyID}}"   style="color: blue;cursor: pointer;font-size:12px;font-weight: bold;">{{data.familyName}}</a>
               </li>
               
             </ng-container>

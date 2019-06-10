@@ -1384,7 +1384,7 @@ input {
 }
 
 .sidebar .nav li.active>a, .sidebar .nav li.active>a i {
-  color: red;
+  color: red !important;
 }
 
 .sidebar .nav li:first-child>a {

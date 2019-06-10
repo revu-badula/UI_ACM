@@ -54,7 +54,7 @@
       <button type="button" class="cancel btn btn-primary" (click)="backClicked()">
         Cancel
       </button>
-      <button type="button" class="cancel btn btn-primary">
+      <button type="button" class="cancel btn btn-primary" (click)="saveBusinessRisk()" [disabled]="!formName.valid">
         Submit
       </button>
 

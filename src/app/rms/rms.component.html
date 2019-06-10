@@ -53,11 +53,13 @@
 
             <i class="fa fa-map-marker" aria-hidden="true"></i>
             Process
-            <ul>
-              <li *ngFor="let data of process">
-                <a routerLink="rmsdetails/{{data.rmfProcessId}}"
-                  style="color: blue;cursor: pointer;font-size:14px;font-weight: bold;">{{data.name}}</a></li>
-              
+            <ul> 
+              <ng-container *ngFor="let data of process">
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="rmsdetails/{{data.rmfProcessId}}"
+                  style="color: blue;cursor: pointer;font-size:14px;font-weight: bold;">{{data.name}}</a>
+              </li>
+            </ng-container>
             </ul>
           </a>
 

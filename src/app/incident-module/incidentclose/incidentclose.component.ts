@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef,AfterViewInit} from '@angular/core';
 declare let tinymce: any;
 import { Location } from '@angular/common';
 import { IMBusinessRiskDTO } from '../incident-model';
@@ -8,13 +8,14 @@ import { IncidentManagementDTO } from '../incident-model';
 import { APP_CONFIG } from '../../app.config';
 import { HttpClient } from '@angular/common/http';
 import { DialogService } from '../../dialog.service';
+import { IncidentinfoComponent } from '../incidentinfo/incidentinfo.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-incidentclose',
   templateUrl: './incidentclose.component.html',
   styleUrls: ['./incidentclose.component.css']
 })
-export class IncidentcloseComponent implements OnInit {
-
+export class IncidentcloseComponent implements OnInit,AfterViewInit {
   public len: number = 0;
   public showEditButton: boolean;
   public test: any;
@@ -34,7 +35,7 @@ export class IncidentcloseComponent implements OnInit {
   };
   constructor(private ref: ChangeDetectorRef, private _location: Location,
     private datepipe: DatePipe, private httpClient: HttpClient,
-    private dialogService: DialogService) {
+    private dialogService: DialogService,private info:IncidentinfoComponent,private router:Router) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.imBusinessRiskDTO = new IMBusinessRiskDTO();
@@ -49,23 +50,32 @@ export class IncidentcloseComponent implements OnInit {
   ngOnInit() {
     this.getIncident();
   }
+  ngAfterViewInit() {
+    
+  }  
 
   backClicked() {
     this._location.back();
   }
 
   getIncident() {
-    let inId = +sessionStorage.getItem('incidentName');
-    this.loading = true;
-    let url = APP_CONFIG.getIncident;
-    this.httpClient.get(url + "?incidentId=" + inId)
-      .subscribe((data: any) => {
-        this.loading = false;
-        this.imBusinessRiskDTO.incidentManagementId = data.incidentId;
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+    // let inId = +sessionStorage.getItem('incidentName');
+    // this.loading = true;
+    // let url = APP_CONFIG.getIncident;
+    // this.httpClient.get(url + "?incidentId=" + inId)
+    //   .subscribe((data: any) => {
+    //     this.loading = false;
+    
+    if(this.info.test !== undefined){
+      this.imBusinessRiskDTO.incidentManagementId = this.info.test.incidentId;
+      }
+      else{
+        this.router.navigate(['/incident/info']);
+      }
+      // }, error => {
+      //   this.loading = false;
+      //   console.log(error);
+      // });
 
   }
 

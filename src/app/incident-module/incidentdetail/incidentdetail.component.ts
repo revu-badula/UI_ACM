@@ -52,6 +52,7 @@ export class IncidentdetailComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.incidentManagementDTO = new IncidentManagementDTO();
+    this.missionService.announceMission(null);
     this.config.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
         this.getData(editor);
@@ -88,7 +89,7 @@ export class IncidentdetailComponent implements OnInit {
         this.systems = data[0];
         this.servers = data[1];
         this.incidentManagementDTO=data[2];
-        //this.missionService.announceMission(this.incidentManagementDTO)
+        this.missionService.announceMission(this.incidentManagementDTO);
       }, error => {
         this.loading = false;
         console.log(error);

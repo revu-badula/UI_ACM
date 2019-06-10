@@ -554,19 +554,47 @@ export class GraphComponent implements OnInit {
     },
     series: [{
       name: 'Information Technology',
-      data: [1, 2, 3, 4, 5, 1, 3, 8, 2, 9, 10, 4]
+      lineColor: '#00008B',
+      color: '#00008B',
+      data: [1, 2, 3, 4, 5, 1, 3, 8, 2, 9, 10, 4],
+      marker: {
+        symbol: 'circle',
+        lineColor: '#00008B',
+        fillColor:'#00008B'
+      }
     },
     {
       name: 'Operations',
-      data: [4, 9, 3, 4, 8, 1, 2, 12, 3, 9, 8, 2]
+      lineColor: '#A52A2A',
+      color:'#A52A2A',
+      data: [4, 9, 3, 4, 8, 1, 2, 12, 3, 9, 8, 2],
+      marker: {
+        symbol: 'circle',
+        lineColor: '#A52A2A',
+        fillColor:'#A52A2A'
+      }
     },
     {
       name: 'Security',
-      data: [3, 7, 6, 2, 5, 11, 2, 1, 3, 7, 2, 4]
+      lineColor: '#DC143C',
+      color:'#DC143C',
+      data: [3, 7, 6, 2, 5, 11, 2, 1, 3, 7, 2, 4],
+      marker: {
+        symbol: 'circle',
+        lineColor: '#DC143C',
+        fillColor:'#DC143C'
+      }
     },
     {
       name: 'Financial',
-      data: [5, 2, 9, 6, 3, 1, 6, 11, 2, 8, 12, 6]
+      lineColor: '#006400',
+      color:'#006400',
+      data: [5, 2, 9, 6, 3, 1, 6, 11, 2, 8, 12, 6],
+      marker: {
+        symbol: 'circle',
+        lineColor: '#006400',
+        fillColor:'#006400'
+      }
     }]
   };
 
@@ -3169,7 +3197,7 @@ export class GraphComponent implements OnInit {
   @ViewChild('emailView') emailView: ElementRef;
   public myNotifications = [{ "createdOn": "2019-06 - 03", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2989, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2919", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2981, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2978, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2975, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2713, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2712, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2709, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2699, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2697, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2694, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2690, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2683, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2648, "sentBy": 0, "to": 0, "subject": "System Access Termination Requested", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2644, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2612, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2611, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2609, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Jacob Blake" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2602, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 22", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2600, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2563, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2561, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2559, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2546, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2545, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2542, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2533, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2508, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2481, "sentBy": 0, "to": 0, "subject": "Employee Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2472, "sentBy": 0, "to": 0, "subject": "Employee Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2456, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2440", "unRead": false, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2443, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2440", "unRead": false, "sentFrom": "Mike Cary" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2436, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2434, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2432, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2430, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2428, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2425, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2423, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }];
   constructor(private httpClient: HttpClient, private router: Router,
-     private utilService: UtilService,private modalService: NgbModal) {
+    private utilService: UtilService, private modalService: NgbModal) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     UtilService.signlegal = false;

@@ -4,10 +4,11 @@ import {Location} from '@angular/common';
 import { IMResolutionDTO } from '../incident-model';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
-import { IncidentManagementDTO } from '../incident-model';
 import { APP_CONFIG } from '../../app.config';
 import { HttpClient } from '@angular/common/http';
 import { DialogService } from '../../dialog.service';
+import { IncidentinfoComponent } from '../incidentinfo/incidentinfo.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-incident-resolution',
   templateUrl: './incident-resolution.component.html',
@@ -41,7 +42,9 @@ export class IncidentResolutionComponent implements OnInit {
     menubar: false,
     statusbar: false
   };
-  constructor(private ref:ChangeDetectorRef,private _location: Location, private datepipe: DatePipe, private httpClient: HttpClient, private dialogService: DialogService) { 
+  constructor(private ref:ChangeDetectorRef,private _location: Location,
+     private datepipe: DatePipe, private httpClient: HttpClient,
+      private dialogService: DialogService,private info:IncidentinfoComponent,private router:Router) { 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.imResolutionDTO = new IMResolutionDTO();
@@ -67,17 +70,22 @@ export class IncidentResolutionComponent implements OnInit {
   }
 
   getIncident() {
-    let inId = +sessionStorage.getItem('incidentName');
-    this.loading = true;
-    let url = APP_CONFIG.getIncident;
-    this.httpClient.get(url + "?incidentId=" + inId)
-      .subscribe((data: any) => {
-        this.loading = false;
-        this.imResolutionDTO.incidentManagementId = data.incidentId;
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+    // let inId = +sessionStorage.getItem('incidentName');
+    // this.loading = true;
+    // let url = APP_CONFIG.getIncident;
+    // this.httpClient.get(url + "?incidentId=" + inId)
+    //   .subscribe((data: any) => {
+    //     this.loading = false;
+    if(this.info.test !== undefined){
+      this.imResolutionDTO.incidentManagementId = this.info.test.incidentId;
+      }
+      else{
+        this.router.navigate(['/incident/info']);
+      }
+      // }, error => {
+      //   this.loading = false;
+      //   console.log(error);
+      // });
 
   }
 

@@ -8,6 +8,8 @@ import { IncidentManagementDTO } from '../incident-model';
 import { APP_CONFIG } from '../../app.config';
 import { HttpClient } from '@angular/common/http';
 import { DialogService } from '../../dialog.service';
+import { IncidentinfoComponent } from '../incidentinfo/incidentinfo.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-incident-technical',
@@ -35,7 +37,8 @@ export class IncidentTechnicalComponent implements OnInit {
   };
 
   constructor(private ref: ChangeDetectorRef, private _location: Location,
-    private datepipe: DatePipe, private httpClient: HttpClient, private dialogService: DialogService) {
+    private datepipe: DatePipe, private httpClient: HttpClient,
+     private dialogService: DialogService,private info:IncidentinfoComponent, private router: Router) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.imBusinessRiskDTO = new IMBusinessRiskDTO();
@@ -57,12 +60,12 @@ export class IncidentTechnicalComponent implements OnInit {
   }
 
   getIncident() {
-    let inId = +sessionStorage.getItem('incidentName');
-    this.loading = true;
-    let url = APP_CONFIG.getIncident;
-    this.httpClient.get(url + "?incidentId=" + inId)
-      .subscribe((data: any) => {
-        this.loading = false;
+    // let inId = +sessionStorage.getItem('incidentName');
+    // this.loading = true;
+    // let url = APP_CONFIG.getIncident;
+    // this.httpClient.get(url + "?incidentId=" + inId)
+    //   .subscribe((data: any) => {
+    //     this.loading = false;
         // if(data.businessRiskDTOs !== undefined && data.businessRiskDTOs !== null && data.businessRiskDTOs.length > 0)
         // {
         //  for(let i =0 ;i<data.businessRiskDTOs.length;i++)
@@ -84,11 +87,16 @@ export class IncidentTechnicalComponent implements OnInit {
         //       this.subDate=null;
         //     }
         // }
-        this.imBusinessRiskDTO.incidentManagementId = data.incidentId;
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+        if(this.info.test !== undefined){
+        this.imBusinessRiskDTO.incidentManagementId = this.info.test.incidentId;
+        }
+        else{
+          this.router.navigate(['/incident/info']);
+        }
+      // }, error => {
+      //   this.loading = false;
+      //   console.log(error);
+      // });
 
   }
 
