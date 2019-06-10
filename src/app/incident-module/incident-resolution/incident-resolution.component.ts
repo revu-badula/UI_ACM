@@ -76,7 +76,7 @@ export class IncidentResolutionComponent implements OnInit {
     // this.httpClient.get(url + "?incidentId=" + inId)
     //   .subscribe((data: any) => {
     //     this.loading = false;
-    if(this.info.test !== undefined){
+    if(this.info.test !== undefined && this.info.test !== null){
       this.imResolutionDTO.incidentManagementId = this.info.test.incidentId;
       }
       else{

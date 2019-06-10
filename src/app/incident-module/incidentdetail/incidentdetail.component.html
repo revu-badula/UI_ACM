@@ -24,7 +24,7 @@
           <div class="form-group col-md-6" *ngIf="!showEditButton">
             <label class="fam">Reported By<span class="asterisk">*</span></label>
             <mat-form-field>
-              <input type="text" matInput name="seaUser" (blur)="fillData($event.target.value)"
+              <input type="text" matInput name="seaUser"
                 (keyup)="getData1($event.target.value)" [(ngModel)]="search" required [matAutocomplete]="autoGroup">
               <mat-autocomplete #autoGroup="matAutocomplete">
                 <mat-optgroup *ngFor="let group of dummy">

@@ -87,7 +87,7 @@ export class IncidentTechnicalComponent implements OnInit {
         //       this.subDate=null;
         //     }
         // }
-        if(this.info.test !== undefined){
+        if(this.info.test !== undefined && this.info.test !== null){
         this.imBusinessRiskDTO.incidentManagementId = this.info.test.incidentId;
         }
         else{

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { APP_CONFIG } from '../../app.config';
 declare let tinymce: any;
-import { FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { DecimalPipe, Location } from '@angular/common';
 import { IncidentManagementDTO } from '../incident-model';
 import { Cookie } from 'ng2-cookies';
@@ -17,7 +17,7 @@ import { MissionService } from '../incident-service';
   styleUrls: ['./incidentdetail.component.css']
 })
 export class IncidentdetailComponent implements OnInit {
-  @ViewChild('myForm') myForm: FormGroup;
+  @ViewChild('formName') formName: NgForm;
   public len: number = 0;
   public showEditButton: boolean;
   public test: any;
@@ -31,7 +31,7 @@ export class IncidentdetailComponent implements OnInit {
   public dummy: any;
   public dbservers: any = [];
   public apps: any = [];
-  public p:number=1;
+  public p: number = 1;
   incidentManagementDTO: IncidentManagementDTO;
   config: any = {
     height: 250,
@@ -44,11 +44,12 @@ export class IncidentdetailComponent implements OnInit {
     statusbar: false
   };
   public search: any;
-  public editMode:boolean=true;
+  public editMode: boolean = true;
+  public formChangesSubscription: any;
   constructor(private ref: ChangeDetectorRef,
-    private alertService: AlertService, 
+    private alertService: AlertService,
     private httpClient: HttpClient, private pipe: DecimalPipe,
-     private _location: Location,private dialogService:DialogService,private router:Router,private missionService:MissionService) {
+    private _location: Location, private dialogService: DialogService, private router: Router, private missionService: MissionService) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.incidentManagementDTO = new IncidentManagementDTO();
@@ -64,16 +65,25 @@ export class IncidentdetailComponent implements OnInit {
 
   ngOnInit() {
     this.getIncidentInfo();
+    this.formChangesSubscription = this.formName.form.valueChanges.subscribe(x => {
+      if(x.seaUser !== undefined)
+      {
+        this.fillData(x.seaUser);
+      }
+    })
+  }
+  ngOnDestroy() {
+    this.formChangesSubscription.unsubscribe();
   }
 
   getIncidentInfo() {
     if (sessionStorage.getItem('incidentName') === null) {
-      this.editMode=false;
+      this.editMode = false;
       this.alertService.emitChange('true');
       this.getDropdowns();
     }
     else {
-      this.showEditButton=true;
+      this.showEditButton = true;
       this.alertService.emitChange('false');
       let inId = +sessionStorage.getItem('incidentName');
       this.loading = true;
@@ -88,7 +98,7 @@ export class IncidentdetailComponent implements OnInit {
         this.loading = false;
         this.systems = data[0];
         this.servers = data[1];
-        this.incidentManagementDTO=data[2];
+        this.incidentManagementDTO = data[2];
         this.missionService.announceMission(this.incidentManagementDTO);
       }, error => {
         this.loading = false;
@@ -245,20 +255,21 @@ export class IncidentdetailComponent implements OnInit {
   getSave() {
     this.loading = true;
     let url = APP_CONFIG.reportIncident;
-    if(this.incidentManagementDTO.incidentId == undefined){
-    this.incidentManagementDTO.createdBy = Cookie.get("userName");
-    this.httpClient.post(url, this.incidentManagementDTO)
-      .subscribe((data: any) => {
-        this.loading = false;
-        sessionStorage.setItem("incidentName",data.incidentId);
-        this.alertService.emitChange('false');
-        this.dialogService.open("Info",'Incident has been created.',false,"OK","OK")
-        .then((res:any)=>{
-        })
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+    if (this.incidentManagementDTO.incidentId == undefined) {
+      this.incidentManagementDTO.createdBy = Cookie.get("userName");
+      this.httpClient.post(url, this.incidentManagementDTO)
+        .subscribe((data: any) => {
+          this.loading = false;
+          sessionStorage.setItem("incidentName",data.incidentId);
+          this.missionService.announceMission(data);
+          this.alertService.emitChange('false');
+          this.dialogService.open("Info", 'Incident has been created.', false, "OK", "OK")
+            .then((res: any) => {
+            })
+        }, error => {
+          this.loading = false;
+          console.log(error);
+        });
     }
     // else{
     //   this.incidentManagementDTO.updatedBy = Cookie.get("userName");
@@ -275,19 +286,17 @@ export class IncidentdetailComponent implements OnInit {
     // }
   }
 
-  editClick()
-  {
+  editClick() {
     //this.showEditButton=false;
-    this.editMode=false;
+    this.editMode = false;
   }
 
-  viewApplication(system:any) {
+  viewApplication(system: any) {
     sessionStorage.setItem('systemName', system);
     this.router.navigate(['/system/tab2/info']);
   }
-  getDevice(id:any)
-  {
-    this.router.navigate(['/updateDevice/'+id]);
+  getDevice(id: any) {
+    this.router.navigate(['/updateDevice/' + id]);
   }
 
 
