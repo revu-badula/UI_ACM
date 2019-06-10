@@ -22,69 +22,40 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label class="fam">Submitted By<span class="asterisk">*</span></label>
-            <input type="text" name="submittedBy" class="form-control">
+            <input type="text" name="submittedBy" [(ngModel)]="imBusinessRiskDTO.submittedBy" class="form-control" required>
           </div>
           <div class="form-group col-md-6">
             <label class="fam">Submitted On<span class="asterisk">*</span></label>
             <my-date-picker ngModel class="inputState1" name="submittedOn"
-            (dateChanged)="getRenDate($event)" required></my-date-picker>
+            (dateChanged)="getRenDate($event)" [(ngModel)]="subDate" required></my-date-picker>
           </div>
         </div>
         <div class="form-row">
           <span class="fam" style="font-weight: bold;">Summary</span>
           <div class="form-group col-md-12">
-            <tinymce  name="impact" [(ngModel)]="test" *ngIf="showEditButton" disabled=true
+            <tinymce  name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="showEditButton" disabled=true
               [config]="config">
             </tinymce>
-            <tinymce  name="impact" [(ngModel)]="test" *ngIf="!showEditButton" [config]="config">
+            <tinymce  name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="!showEditButton" [config]="config">
             </tinymce>
             remaining {{50000 -len}}
 
           </div>
         </div>
 
-        <!-- <div class="form-row">
-          <span class="fam" style="font-weight: bold;">Resolution</span>
-          <div class="form-group col-md-12">
-            <tinymce name="resolution"  [(ngModel)]="test1" *ngIf="showEditButton" disabled=true
-              [config]="config1">
-            </tinymce>
-            <tinymce name="resolution"  [(ngModel)]="test1" *ngIf="!showEditButton" [config]="config1">
-            </tinymce>
-            remaining {{50000 -len1}}
 
-          </div>
-        </div>
-
-
-        <div class="form-row">
-          <span class="fam" style="font-weight: bold;">Security Risk</span>
-          <div class="form-group col-md-12">
-            <tinymce  name="securityRisk" [(ngModel)]="test2" *ngIf="showEditButton" disabled=true
-              [config]="config2">
-            </tinymce>
-            <tinymce  name="securityRisk" [(ngModel)]="test2" *ngIf="!showEditButton" [config]="config2">
-            </tinymce>
-            remaining {{50000 -len2}}
-
-          </div>
-        </div> -->
 
       
       </div>
 
 
     </fieldset>
-    <!-- <div class="buttons" style="margin-right:5%;">
-      <button type="submit" form="myForm" class="submit btn btn-primary" [disabled]="!formName.valid"
-        *ngIf="isShow">Submit</button>
-      <button type="cancel" (click)="d($event)" class="cancel btn btn-primary">Cancel</button>
-    </div> -->
+    
     <div class="d-flex justify-content-between p-2">
       <button type="button"  class="cancel btn btn-primary" (click)="backClicked()">
         Cancel
       </button>
-      <button type="button" class="cancel btn btn-primary">
+      <button type="button" (click)="saveBusinessRisk()" [disabled]="!formName.valid" class="cancel btn btn-primary">
         Submit
       </button>
 

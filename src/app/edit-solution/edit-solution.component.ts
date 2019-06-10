@@ -14,12 +14,9 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
-import { finalize } from 'rxjs/operators';
 import { DialogService } from '../dialog.service';
 import { UtilService } from '../util.service';
-
 declare var swal: any; ''
-
 @Component({
   selector: 'app-edit-solution',
   templateUrl: './edit-solution.component.html',
@@ -199,7 +196,7 @@ export class EditSolutionComponent implements OnInit {
   // }
 
 
-  getApprovalDate(value) {
+  getApprovalDate(value:any) {
     if (value.formatted === "") {
       this.solution.certDt = null;
     }
@@ -209,7 +206,7 @@ export class EditSolutionComponent implements OnInit {
       this.solution.certDt = moment(latest_date).format();
     }
   }
-  getDueDate(value) {
+  getDueDate(value:any) {
     if (value.formatted === "") {
       this.solution.certRenewalDueDt = null;
     }
@@ -373,10 +370,8 @@ export class EditSolutionComponent implements OnInit {
 
 
 
-  showFile(id) {
-    //window.open(APP_CONFIG.getSolutionFile + '?' + 'fileID' + '=' + id)
+  showFile(id:any) {
     this.utilService.getFile(id);
-
   }
 
   @HostListener('window:scroll', [])
@@ -417,9 +412,9 @@ export class EditSolutionComponent implements OnInit {
         cancelButtonText: cancelButtonText,
         allowOutsideClick: false,
         allowEscapeKey: false
-      }).then((result) => {
+      }).then((result:any) => {
         resolve(result);
-      }, error => reject(error));
+      },(error:any) => reject(error));
     });
   }
 

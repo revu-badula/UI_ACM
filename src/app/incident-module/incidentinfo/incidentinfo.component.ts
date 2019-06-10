@@ -6,6 +6,8 @@ import { NavigationComponentComponent } from '../../navigation-component/navigat
 import { IdleTimeoutService } from '../../idleTimeOutService';
 import { Router } from '@angular/router';
 import { AlertService } from '../../alert.service';
+import { MissionService } from '../incident-service';
+
 
 @Component({
   selector: 'app-incidentinfo',
@@ -20,29 +22,36 @@ export class IncidentinfoComponent implements OnInit {
   public _counter: number = 0;
   private _timer: Observable<number>;
   private subscription: Subscription;
+  private subscription1: Subscription;
   @Input() comingType: boolean;
   public message: any;
-  public showText:boolean=false;
-  public showBIA:boolean;
+  public showText: boolean = false;
+  public showBIA: boolean;
+  public test:any;
   constructor(private _location: Location, private idleTimeoutSvc: IdleTimeoutService, private dialogService: DialogService,
-    private navbar: NavigationComponentComponent, private router: Router, private alertService: AlertService) { }
+    private navbar: NavigationComponentComponent,
+    private router: Router, private alertService: AlertService, private missionService: MissionService) { }
 
   ngOnInit() {
 
     this.subscription = this.alertService.getChildData().subscribe(message => {
       this.message = message;
-      if(this.message !== undefined)
-      {
-        if(this.message.text === "true")
-        {
+      if (this.message !== undefined) {
+        if (this.message.text === "true") {
           this.showText = true;
         }
-        else if(this.message.text === 'false'){
+        else if (this.message.text === 'false') {
           this.showText = false;
         }
       }
     });
-   
+
+    // this.subscription1 = this.missionService.missionAnnounced$.subscribe(
+    //   mission => {
+    //     this.test=mission;
+    //     console.log(this.test);
+    //   });
+
     this.startCounter();
     //this.idleTimeoutSvc.setTimeMilli(900000);
     this._idleTimerSubscription = this.idleTimeoutSvc.timeoutExpired.subscribe(res => {
@@ -60,8 +69,8 @@ export class IncidentinfoComponent implements OnInit {
         }
       );
     });
-    if (this.comingType !== undefined){
-    this.showBIA = this.comingType;
+    if (this.comingType !== undefined) {
+      this.showBIA = this.comingType;
     }
   }
 
@@ -92,6 +101,7 @@ export class IncidentinfoComponent implements OnInit {
   ngOnDestroy() {
     this._idleTimerSubscription.unsubscribe();
     this.subscription.unsubscribe();
+    //this.subscription1.unsubscribe();
   }
 
 }

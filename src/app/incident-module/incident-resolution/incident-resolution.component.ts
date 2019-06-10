@@ -1,7 +1,13 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 declare let tinymce: any;
 import {Location} from '@angular/common';
-
+import { IMResolutionDTO } from '../incident-model';
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
+import { IncidentManagementDTO } from '../incident-model';
+import { APP_CONFIG } from '../../app.config';
+import { HttpClient } from '@angular/common/http';
+import { DialogService } from '../../dialog.service';
 @Component({
   selector: 'app-incident-resolution',
   templateUrl: './incident-resolution.component.html',
@@ -14,6 +20,7 @@ export class IncidentResolutionComponent implements OnInit {
   public test:any;
   public test1:any;
   public loading:boolean;
+  public imResolutionDTO:IMResolutionDTO;
   config: any = {
     height: 250,
     width: 1080,
@@ -34,9 +41,10 @@ export class IncidentResolutionComponent implements OnInit {
     menubar: false,
     statusbar: false
   };
-  constructor(private ref:ChangeDetectorRef,private _location: Location) { 
+  constructor(private ref:ChangeDetectorRef,private _location: Location, private datepipe: DatePipe, private httpClient: HttpClient, private dialogService: DialogService) { 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    this.imResolutionDTO = new IMResolutionDTO();
     this.config.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
         this.getData(editor);
@@ -51,11 +59,28 @@ export class IncidentResolutionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getIncident();
   }
 
   backClicked() {
     this._location.back();
   }
+
+  getIncident() {
+    let inId = +sessionStorage.getItem('incidentName');
+    this.loading = true;
+    let url = APP_CONFIG.getIncident;
+    this.httpClient.get(url + "?incidentId=" + inId)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.imResolutionDTO.incidentManagementId = data.incidentId;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+
+  }
+
 
 
   getData(editor: any) {
@@ -99,8 +124,30 @@ export class IncidentResolutionComponent implements OnInit {
     }
   };
 
-  getRenDate(value:any)
-  {
+  saveBusinessRisk() {
+    this.loading = true;
+    let url = APP_CONFIG.saveIMResolution;
+    this.httpClient.post(url, this.imResolutionDTO)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.dialogService.open("Info", "Resolution has been created.", false, "OK", "OK")
+          .then((result: any) => {
 
+          })
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+  }
+
+  getRenDate(value: any) {
+    if (value.formatted === "") {
+      this.imResolutionDTO.submittedOn = null;
+    }
+    else {
+      let d = value.formatted;
+      let latest_date = this.datepipe.transform(d, 'yyyy-MM-dd');
+      this.imResolutionDTO.submittedOn = moment(latest_date).format();
+    }
   }
 }

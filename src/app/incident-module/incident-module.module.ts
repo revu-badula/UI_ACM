@@ -33,7 +33,7 @@ import { IncidentstartComponent } from './incidentstart/incidentstart.component'
 import { NgbdSortableHeader } from './sort';
 import { NewBusinessImpactComponetComponent } from './new-business-impact-componet/new-business-impact-componet.component';
 import { IncidentBusinessImpactComponent } from './incident-business-impact/incident-business-impact.component';
-
+import { MissionService } from './incident-service';
 @NgModule({
   imports: [
     MatInputModule,
@@ -68,6 +68,6 @@ import { IncidentBusinessImpactComponent } from './incident-business-impact/inci
   ],
   declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent,
     IncidentcloseComponent, PhoneMaskDirective, IncidentstartComponent,NgbdSortableHeader, NewBusinessImpactComponetComponent, IncidentBusinessImpactComponent],
-    providers:[DecimalPipe, DatePipe]
+    providers:[DecimalPipe, DatePipe,MissionService]
 })
 export class IncidentModuleModule { }

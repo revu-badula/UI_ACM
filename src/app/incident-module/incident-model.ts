@@ -1,5 +1,3 @@
-import { Device } from '../data_modelDeviceInventory';
-import { System } from '../data_model_system';
 export class IncidentManagementDTO {
 
     incidentId: number;
@@ -12,20 +10,35 @@ export class IncidentManagementDTO {
     severity: any;
     status: any;
     reportedBy: any;
-    userId:number;
+    userId: number;
     technicalImpact: any;
     businessImpact: any;
     businessResolutionDescription: any;
     itResolutionDescription: any;
     businessSecurityRisk: any;
     itSecurityRisk: any;
-    createdBy:any;
-    updatedBy:any;
-    typeOfIncident:any;
+    createdBy: any;
+    updatedBy: any;
+    typeOfIncident: any;
 }
 export class IncidentProgressDTO {
 
     incidentProgressId: number;
     name: any;
     incidentManagementDTOs: any
+}
+export class IMBusinessRiskDTO {
+    id: any;
+    submittedBy: any;
+    submittedOn: any;
+    summary: any;
+    incidentManagementId: any;
+}
+export class IMResolutionDTO {
+    id:any;
+    submittedBy:any;
+    submittedOn:any;
+    summary:any;
+    comment:any;
+    incidentManagementId:any;
 }

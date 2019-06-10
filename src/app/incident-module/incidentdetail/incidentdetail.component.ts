@@ -10,6 +10,7 @@ import { IncidentManagementDTO } from '../incident-model';
 import { Cookie } from 'ng2-cookies';
 import { DialogService } from '../../dialog.service';
 import { Router } from '@angular/router';
+import { MissionService } from '../incident-service';
 @Component({
   selector: 'app-incidentdetail',
   templateUrl: './incidentdetail.component.html',
@@ -47,7 +48,7 @@ export class IncidentdetailComponent implements OnInit {
   constructor(private ref: ChangeDetectorRef,
     private alertService: AlertService, 
     private httpClient: HttpClient, private pipe: DecimalPipe,
-     private _location: Location,private dialogService:DialogService,private router:Router) {
+     private _location: Location,private dialogService:DialogService,private router:Router,private missionService:MissionService) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.incidentManagementDTO = new IncidentManagementDTO();
@@ -87,6 +88,7 @@ export class IncidentdetailComponent implements OnInit {
         this.systems = data[0];
         this.servers = data[1];
         this.incidentManagementDTO=data[2];
+        //this.missionService.announceMission(this.incidentManagementDTO)
       }, error => {
         this.loading = false;
         console.log(error);

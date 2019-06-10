@@ -151,6 +151,12 @@ export const APP_CONFIG = {
   getAllIncidents: apiBaseUrl + 'getAllIncidents',
   reportIncident: apiBaseUrl + 'reportIncident',
   getIncident: apiBaseUrl + 'getIncident',
+  saveIMBusiness: apiBaseUrl + 'saveIMBusiness',
+  saveIMFinancial: apiBaseUrl + 'saveIMFinancial',
+  saveIMSecurity:apiBaseUrl + 'saveIMSecurity',
+  saveIMRCA: apiBaseUrl + 'saveIMRCA',
+  saveIMResolution: apiBaseUrl + 'saveIMResolution',
+  saveIMCloseOut: apiBaseUrl + 'saveIMCloseOut',
 }
 
 
