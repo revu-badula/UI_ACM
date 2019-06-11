@@ -38,7 +38,6 @@ import { ApplicationsComponent } from './policy-view-component/policy-view-forms
 import { DialogBoxComponent } from './policy-view-component/policy-view-forms-component/documents/dialog-box/dialog-box.component';
 import { EditNavigationComponent } from './edit-navigation/edit-navigation.component';
 import { EditVendorComponent } from './edit-vendor/edit-vendor.component';
-import { FilterPipe } from './convertDate.pipe';
 import { UtilService } from './util.service';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 import { LocalityComponentModule } from "./locality-component/locality-component.module";
@@ -147,7 +146,6 @@ import { DatePipe } from '@angular/common';
     DialogBoxComponent,
     EditVendorComponent,
     EditNavigationComponent,
-    FilterPipe,
     ControlNameComponent,
     PolicyAddComponent,
     DeviceComponent,

@@ -22,7 +22,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label class="fam">Submitted By<span class="asterisk">*</span></label>
-            <input type="text" name="submittedBy" class="form-control">
+            <input type="text" name="submittedBy" [(ngModel)]="imBusinessRiskDTO.submittedBy" class="form-control" required>
           </div>
           <div class="form-group col-md-6">
             <label class="fam">Submitted On<span class="asterisk">*</span></label>
@@ -33,15 +33,49 @@
         <div class="form-row">
           <span class="fam" style="font-weight: bold;">Summary</span>
           <div class="form-group col-md-12">
-            <tinymce  name="impact" [(ngModel)]="test" *ngIf="showEditButton" disabled=true
+            <tinymce  name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="showEditButton" disabled=true
               [config]="config">
             </tinymce>
-            <tinymce  name="impact" [(ngModel)]="test" *ngIf="!showEditButton" [config]="config">
+            <tinymce  name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="!showEditButton" [config]="config">
             </tinymce>
             remaining {{50000 -len}}
 
           </div>
         </div>
+
+        <div class="form-row">
+            <div class="col-md-12">
+  
+                <table id="mytaskTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Summary</th>
+                            <th>SubmittedBy</th>
+                            <th>Submitted On</th>
+          
+          
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let data of businessDTOs">
+                            <td><span [innerHTML]="data.summary"></span></td>
+                            <td>{{data.submittedBy}}</td>
+                            <td>{{data.submittedOn | filter}}</td>
+          
+                          </tr>
+                     
+               
+                
+                
+                
+                    </tbody>
+                  </table>
+                  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+                 
+                
+            </div>
+  
+          </div>
 
        
 

@@ -42,6 +42,39 @@
 
           </div>
         </div>
+        <div class="form-row">
+            <div class="col-md-12">
+  
+                <table id="mytaskTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Summary</th>
+                            <th>SubmittedBy</th>
+                            <th>Submitted On</th>
+          
+          
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let data of businessDTOs">
+                            <td><span [innerHTML]="data.summary"></span></td>
+                            <td>{{data.submittedBy}}</td>
+                            <td>{{data.submittedOn | filter}}</td>
+          
+                          </tr>
+                     
+               
+                
+                
+                
+                    </tbody>
+                  </table>
+                  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+                 
+                
+            </div>
+  
+          </div>
 
 
 

@@ -27,13 +27,14 @@ import { IncidentTechnicalComponent } from './incident-technical/incident-techni
 import { IncidentcapComponent } from './incidentcap/incidentcap.component';
 import { IncidentcloseComponent } from './incidentclose/incidentclose.component';
 import { PhoneMaskDirective } from './phone-mask';
-import { MatInputModule,  MatAutocompleteModule } from '@angular/material';
+import { MatInputModule, MatAutocompleteModule } from '@angular/material';
 import { DecimalPipe } from '@angular/common';
 import { IncidentstartComponent } from './incidentstart/incidentstart.component';
 import { NgbdSortableHeader } from './sort';
 import { NewBusinessImpactComponetComponent } from './new-business-impact-componet/new-business-impact-componet.component';
 import { IncidentBusinessImpactComponent } from './incident-business-impact/incident-business-impact.component';
 import { MissionService } from './incident-service';
+import { FilterPipe } from '../convertDate.pipe';
 @NgModule({
   imports: [
     MatInputModule,
@@ -67,7 +68,8 @@ import { MissionService } from './incident-service';
     })
   ],
   declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent,
-    IncidentcloseComponent, PhoneMaskDirective, IncidentstartComponent,NgbdSortableHeader, NewBusinessImpactComponetComponent, IncidentBusinessImpactComponent],
-    providers:[DecimalPipe, DatePipe,MissionService]
+    IncidentcloseComponent, PhoneMaskDirective, FilterPipe, IncidentstartComponent, NgbdSortableHeader, NewBusinessImpactComponetComponent, IncidentBusinessImpactComponent],
+  providers: [DecimalPipe, DatePipe, MissionService],
+  exports: [FilterPipe,PhoneMaskDirective]
 })
 export class IncidentModuleModule { }

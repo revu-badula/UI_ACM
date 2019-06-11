@@ -21,11 +21,11 @@
     <form #formName="ngForm" enctype="multipart/form-data">
       <fieldset [disabled]="showEditButton">
         <div class="form-row">
-          <div class="form-group col-md-6" *ngIf="!showEditButton">
+          <div class="form-group col-md-6" *ngIf="!showEditButton" matAutocompleteOrigin #origin="matAutocompleteOrigin">
             <label class="fam">Reported By<span class="asterisk">*</span></label>
-            <mat-form-field>
-              <input type="text" matInput name="seaUser"
-                (keyup)="getData1($event.target.value)" [(ngModel)]="search" required [matAutocomplete]="autoGroup">
+            <!-- <mat-form-field> -->
+              <input type="text" matInput name="seaUser" class="form-control"
+                (keyup)="getData1($event.target.value)" [matAutocompleteConnectedTo]="origin" [(ngModel)]="search" required [matAutocomplete]="autoGroup">
               <mat-autocomplete #autoGroup="matAutocomplete">
                 <mat-optgroup *ngFor="let group of dummy">
                   <mat-option [value]="group.lastName">
@@ -33,7 +33,7 @@
                   </mat-option>
                 </mat-optgroup>
               </mat-autocomplete>
-            </mat-form-field>
+            <!-- </mat-form-field> -->
           </div>
           <div class="form-group col-md-6" *ngIf="showEditButton">
             <label class="fam">Reported By<span class="asterisk">*</span></label>

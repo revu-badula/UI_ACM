@@ -23,6 +23,7 @@ export class IncidentcloseComponent implements OnInit,AfterViewInit {
   public imBusinessRiskDTO: IMBusinessRiskDTO;
   public incidentManagementDTO: IncidentManagementDTO;
   public subDate: any;
+  public businessDTOs:any;
   config: any = {
     height: 250,
     width: 1080,
@@ -68,6 +69,8 @@ export class IncidentcloseComponent implements OnInit,AfterViewInit {
     
     if(this.info.test !== undefined && this.info.test !== null){
       this.imBusinessRiskDTO.incidentManagementId = this.info.test.incidentId;
+      this.businessDTOs = this.info.test.closeOutDTOs;
+
       }
       else{
         this.router.navigate(['/incident/info']);

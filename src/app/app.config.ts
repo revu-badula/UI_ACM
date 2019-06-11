@@ -157,6 +157,7 @@ export const APP_CONFIG = {
   saveIMRCA: apiBaseUrl + 'saveIMRCA',
   saveIMResolution: apiBaseUrl + 'saveIMResolution',
   saveIMCloseOut: apiBaseUrl + 'saveIMCloseOut',
+  saveIMBIA: apiBaseUrl + 'saveIMBIA',
 }
 
 

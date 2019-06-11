@@ -39,6 +39,7 @@ export class DeviceComponent implements OnInit {
   public details: boolean = false;
   public serverEnvs: any;
   renDate: any;
+  public newPH:any;
   config = {
     placeholder: '',
     tabsize: 2,
@@ -273,9 +274,18 @@ export class DeviceComponent implements OnInit {
       this.modalService.open(this.content, ngbModalOptions);
     }, error => {
       this.loading = false;
+      this.device.serverContactDTOs=[];
       console.log(error);
     });
 
+  }
+
+
+  getNewPhoneNumber(value:any)
+  {
+    console.log(value);
+    if(value !== undefined && value !== null && value.length == 14)
+    this.serverContact1.phoneNumber=value.replace(/\D/g, '');
   }
 
 
@@ -339,9 +349,3 @@ export class DeviceComponent implements OnInit {
 
 
 }
- /*let d = new Date(this.solution.certDt);
-   this.selectDate = {
-      year: d.getFullYear(),
-     month: d.getMonth() + 1,
-     day: d.getDate()
-   }*/

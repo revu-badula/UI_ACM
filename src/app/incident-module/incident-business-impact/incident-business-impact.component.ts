@@ -24,6 +24,7 @@ export class IncidentBusinessImpactComponent implements OnInit {
   public imBusinessRiskDTO: IMBusinessRiskDTO;
   public incidentManagementDTO: IncidentManagementDTO;
   public subDate: any;
+  public businessDTOs:any;
   config: any = {
     height: 250,
     width: 1080,
@@ -69,6 +70,8 @@ export class IncidentBusinessImpactComponent implements OnInit {
     
     if(this.info.test !== undefined && this.info.test !== null){
       this.imBusinessRiskDTO.incidentManagementId = this.info.test.incidentId;
+      this.businessDTOs = this.info.test.businessImpactAnalysisDTOs;
+
       }
       else{
         this.router.navigate(['/incident/info']);
@@ -104,7 +107,7 @@ export class IncidentBusinessImpactComponent implements OnInit {
 
   saveBusinessRisk() {
     this.loading = true;
-    let url = APP_CONFIG.saveIMCloseOut;
+    let url = APP_CONFIG.saveIMBIA;
     this.httpClient.post(url, this.imBusinessRiskDTO)
       .subscribe((data: any) => {
         this.loading = false;

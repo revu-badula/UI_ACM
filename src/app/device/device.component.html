@@ -26,68 +26,68 @@
     <h3 class="pageTitle">Devices</h3>
   </div>
   <form (ngSubmit)="submitDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
-  	<div id="form1"  *ngIf="!details">
-  		  <div class="form-row">
-		      <div class="col-md-6">
-		
-		        <!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
-		        <div class="card"
-		          style="width: 18rem;height:14em;cursor: pointer;margin-left: 42%;margin-right: auto;display: block;">
-		          <div class="card-body" (click)="details = true">
-		            <div class="card-heading">
-		              <h5 class="card-title">Production Server</h5>
-		            </div>
-		            <hr>
-		            <div class="row">
-		              <div class="col-sm-3">
-		                <i class="fa fa-users fa-3x" style="color:cadetblue"></i>
-		              </div>
-		              <div class="col-sm-9 text">
-		                Click here to create Production Server.
-		                <!-- <hr id="lineSpace"> -->
-		
-		              </div>
-		            </div>
-		
-		          </div>
-		        </div>
-		      </div>
-		      <!-- <div class="col-md-4" style="margin-left: -11%;
+    <div id="form1" *ngIf="!details">
+      <div class="form-row">
+        <div class="col-md-6">
+
+          <!-- <input type="radio" (click)="getValue('true')" value="true" name="report"> -->
+          <div class="card"
+            style="width: 18rem;height:14em;cursor: pointer;margin-left: 42%;margin-right: auto;display: block;">
+            <div class="card-body" (click)="details = true">
+              <div class="card-heading">
+                <h5 class="card-title">Production Server</h5>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <i class="fa fa-users fa-3x" style="color:cadetblue"></i>
+                </div>
+                <div class="col-sm-9 text">
+                  Click here to create Production Server.
+                  <!-- <hr id="lineSpace"> -->
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-4" style="margin-left: -11%;
 		        margin-top: -0.8vh;">
 		          Resource Report
 		        </div> -->
-		
-		
-		      <div class="col-md-6">
-		        <!-- <input type="radio" (click)="getValue('false')" value="false" name="report"> -->
-		        <div class="card"
-		          style="width: 18rem;height:14em;cursor: pointer;margin-left: auto;margin-right: 42%;display: block;">
-		          <div class="card-body" (click)="details = true">
-		            <div class="card-heading">
-		              <h5 class="card-title">Non-Production Server</h5>
-		            </div>
-		            <hr>
-		            <div class="row">
-		              <div class="col-sm-3">
-		                <i class="fa fa-desktop fa-3x" style="color:brown"></i>
-		              </div>
-		              <div class="col-sm-9 text">
-		               Click here to create non production server.
-		
-		                <!-- <hr id="lineSpace"> -->
-		
-		              </div>
-		            </div>
-		
-		          </div>
-		        </div>
-		      </div>
-		      <!-- <div class="col-md-4" style="margin-left: -11%;
+
+
+        <div class="col-md-6">
+          <!-- <input type="radio" (click)="getValue('false')" value="false" name="report"> -->
+          <div class="card"
+            style="width: 18rem;height:14em;cursor: pointer;margin-left: auto;margin-right: 42%;display: block;">
+            <div class="card-body" (click)="details = true">
+              <div class="card-heading">
+                <h5 class="card-title">Non-Production Server</h5>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <i class="fa fa-desktop fa-3x" style="color:brown"></i>
+                </div>
+                <div class="col-sm-9 text">
+                  Click here to create non production server.
+
+                  <!-- <hr id="lineSpace"> -->
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-4" style="margin-left: -11%;
 		        margin-top: -0.8vh;">
 		          overall Report
 		        </div> -->
-		    </div>
-  	</div>
+      </div>
+    </div>
     <div id="form1" *ngIf="details">
       <div class="disclaimer"><span style="float:left">Please use this screen to add/ view
           devices</span>&nbsp;&nbsp;&nbsp;
@@ -130,8 +130,8 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Environment<font color="red">*</font></label>
-            <select  [(ngModel)]="device.serverEnvId" style="width:50%;" class="form-control" ngModel  required name="serverEnvName"
-              (change)="device.serverEnvId=$event.target.value">
+            <select [(ngModel)]="device.serverEnvId" style="width:50%;" class="form-control" ngModel required
+              name="serverEnvName" (change)="device.serverEnvId=$event.target.value">
               <option *ngFor=" let serverEnv of serverEnvs" value="{{ serverEnv.serverEnvId }}">{{ serverEnv.name}}
               </option>
             </select>
@@ -210,10 +210,18 @@
             </div>
           </div>
           <div class="form-group col-md-6">
-            <label for="phone">Phone Number<font color=red>*</font></label>
-            <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx"
-              (keydown)="getPhoneNumber1($event,$event.target.value)" [ngModel]="serverContact1.phoneNumber" required
-              maxlength="12" minlength="12" (change)="getNumber1($event.target.value)" onlyInteger>
+            <div class="form-row">
+              <label for="phone">Phone Number<span class="asterisk">*</span></label>
+              <input type="tel" id="tel" class="form-control" ngModel name="phoneNumb"
+                [ngModel]="newPH" required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" maxlength="14"
+                minlength="14" #spn="ngModel" [phoneMask]="editForm.value.phoneNumb"
+                [phoneControl]="editForm.controls['phoneNumb']" (change)="getNewPhoneNumber($event.target.value)">
+            </div>
+            <div class="form-row">
+              <div class="help-block" style="color:red;padding-left:43%;" *ngIf="spn.dirty && spn.errors?.pattern">
+                invalid Phone Number
+              </div>
+            </div>
 
           </div>
 
@@ -396,13 +404,13 @@
 
 
       </div>
-      	<button routerLink="/devicetab" style="margin-left: 10%;" type="button" class="showList btn btn-outline-dark">Show
-    List</button>
-  <div style="margin-right:5%">
-    <button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!editForm.valid">Submit</button>
-    <button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
-  </div>
+      <button routerLink="/devicetab" style="margin-left: 10%;" type="button" class="showList btn btn-outline-dark">Show
+        List</button>
+      <div style="margin-right:5%">
+        <button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!editForm.valid">Submit</button>
+        <button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
+      </div>
     </div>
   </form>
-  
+
 </div>

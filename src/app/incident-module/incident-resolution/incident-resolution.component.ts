@@ -22,6 +22,7 @@ export class IncidentResolutionComponent implements OnInit {
   public test1:any;
   public loading:boolean;
   public imResolutionDTO:IMResolutionDTO;
+  public businessDTOs:any;
   config: any = {
     height: 250,
     width: 1080,
@@ -78,6 +79,7 @@ export class IncidentResolutionComponent implements OnInit {
     //     this.loading = false;
     if(this.info.test !== undefined && this.info.test !== null){
       this.imResolutionDTO.incidentManagementId = this.info.test.incidentId;
+      this.businessDTOs = this.info.test.resolutionDTOs;
       }
       else{
         this.router.navigate(['/incident/info']);
