@@ -283,7 +283,6 @@ export class DeviceComponent implements OnInit {
 
   getNewPhoneNumber(value:any)
   {
-    console.log(value);
     if(value !== undefined && value !== null && value.length == 14)
     this.serverContact1.phoneNumber=value.replace(/\D/g, '');
   }
