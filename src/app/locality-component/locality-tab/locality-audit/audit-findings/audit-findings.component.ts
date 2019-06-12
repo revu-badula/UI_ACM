@@ -27,6 +27,9 @@ export class AuditFindingsComponent implements OnInit {
   public showEdit:boolean = false;
   public loading:boolean = false;
   public info:string ="";
+  public updatedBy:any;
+  public mainData: any;
+  public updatedTime: any;
   //public showEdit:boolean=true;
   constructor( private _apiservice: ApiserviceService, private utilService: UtilService,
     private  http: Http,private router: Router, private modalService: NgbModal, private dialogService: DialogService) { 
@@ -42,6 +45,13 @@ export class AuditFindingsComponent implements OnInit {
     this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
+        this.mainData = data.applicationViewDTO.acronym;
+        this.updatedBy =data.applicationViewDTO.updatedBy;
+        let d = new Date(data.applicationViewDTO.updatedTime);
+        let day = d.getDate();
+        let month = d.getMonth() + 1;
+        let year = d.getFullYear();
+        this.updatedTime = month + "/" + day + "/" + year;
         this.appAudit.applicationID = data.applicationViewDTO.applicationId;
         this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
         this.showOnPageLoad();

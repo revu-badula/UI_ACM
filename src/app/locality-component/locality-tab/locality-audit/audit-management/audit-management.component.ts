@@ -32,6 +32,9 @@ export class AuditManagementComponent implements OnInit {
   public showEdit:boolean=false;
   public showForm:boolean = true;
   public loading:boolean = false;
+  public updatedBy:any;
+  public mainData: any;
+  public updatedTime: any;
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'
   };
@@ -52,6 +55,13 @@ export class AuditManagementComponent implements OnInit {
     this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading=false;
+        this.mainData = data.applicationViewDTO.acronym;
+        this.updatedBy =data.applicationViewDTO.updatedBy;
+        let d = new Date(data.applicationViewDTO.updatedTime);
+        let day = d.getDate();
+        let month = d.getMonth() + 1;
+        let year = d.getFullYear();
+        this.updatedTime = month + "/" + day + "/" + year;
         this.appAudit.applicationID = data.applicationViewDTO.applicationId;
         this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
         this.showOnPageLoad();

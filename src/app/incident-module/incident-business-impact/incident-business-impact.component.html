@@ -3,11 +3,10 @@
 </div>
 
 <div class="plus" style="float:right">
-  <i *ngIf="showEditButton" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
-    (click)="editClick()"></i>
+  <i *ngIf="showEditButton" class="fa fa-edit" data-delay="0" style="font-size: 24px;" (click)="editClick()"></i>
 </div>
 
-<form #formName="ngForm" id="myForm"  enctype="multipart/form-data">
+<form #formName="ngForm" id="myForm" enctype="multipart/form-data">
 
   <div id="formSame">
     <div class="disclaimer"><span>Please use this screen to add information.</span>&nbsp;&nbsp;&nbsp;
@@ -22,21 +21,22 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label class="fam">Submitted By<span class="asterisk">*</span></label>
-            <input type="text" name="submittedBy" [(ngModel)]="imBusinessRiskDTO.submittedBy" class="form-control" required>
+            <input type="text" name="submittedBy" [(ngModel)]="imBusinessRiskDTO.submittedBy" class="form-control"
+              required>
           </div>
           <div class="form-group col-md-6">
             <label class="fam">Submitted On<span class="asterisk">*</span></label>
-            <my-date-picker ngModel class="inputState1" name="submittedOn"
-            (dateChanged)="getRenDate($event)" required></my-date-picker>
+            <my-date-picker ngModel class="inputState1" name="submittedOn" (dateChanged)="getRenDate($event)" required>
+            </my-date-picker>
           </div>
         </div>
         <div class="form-row">
           <span class="fam" style="font-weight: bold;">Summary</span>
           <div class="form-group col-md-12">
-            <tinymce  name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="showEditButton" disabled=true
+            <tinymce name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="showEditButton" disabled=true
               [config]="config">
             </tinymce>
-            <tinymce  name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="!showEditButton" [config]="config">
+            <tinymce name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="!showEditButton" [config]="config">
             </tinymce>
             remaining {{50000 -len}}
 
@@ -44,42 +44,40 @@
         </div>
 
         <div class="form-row">
-            <div class="col-md-12">
-  
-                <table id="mytaskTable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th style="width: 35%;">Summary</th>
-                            <th>SubmittedBy</th>
-                            <th>Submitted On</th>
-          
-          
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let data of businessDTOs">
-                            <td><span [innerHTML]="data.summary"></span></td>
-                            <td>{{data.submittedBy}}</td>
-                            <td>{{data.submittedOn | filter}}</td>
-          
-                          </tr>
-                     
-               
-                
-                
-                
-                    </tbody>
-                  </table>
-                  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
-                 
-                
-            </div>
-  
+          <div class="col-md-12">
+
+            <table id="mytaskTable" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 35%;">Summary</th>
+                  <th>SubmittedBy</th>
+                  <th>Submitted On</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of businessDTOs">
+                  <td><span [innerHTML]="data.summary"></span></td>
+                  <td>{{data.submittedBy}}</td>
+                  <td>{{data.submittedOn | filter}}</td>
+
+                </tr>
+
+
+
+
+
+              </tbody>
+            </table>
+            <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+
+
           </div>
 
-       
+        </div>
 
-      
+
+
+
       </div>
 
 

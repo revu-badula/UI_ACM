@@ -30,6 +30,9 @@ export class AuditActionComponent implements OnInit {
   public endDate: any;
   public users:any;
   public info: string = "";
+  public updatedBy:any;
+  public mainData: any;
+  public updatedTime: any;
   public loading: boolean = false;
   public showEdit: boolean = false;
   myDatePickerOptions: IMyDpOptions = {
@@ -57,6 +60,13 @@ export class AuditActionComponent implements OnInit {
     this._apiservice.viewApplication(sessionStorage.getItem('localityName'))
       .subscribe((data: any) => {
         this.loading = false;
+        this.mainData = data.applicationViewDTO.acronym;
+        this.updatedBy =data.applicationViewDTO.updatedBy;
+        let d = new Date(data.applicationViewDTO.updatedTime);
+        let day = d.getDate();
+        let month = d.getMonth() + 1;
+        let year = d.getFullYear();
+        this.updatedTime = month + "/" + day + "/" + year;
         this.appAudit.applicationID = data.applicationViewDTO.applicationId;
         this.appAuditDTOs = data.applicationViewDTO.appAuditDTOs;
         this.showOnPageLoad();

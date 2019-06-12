@@ -32,6 +32,9 @@ export class AuditRecomendationsComponent implements OnInit {
   public showEdit:boolean=false;
   public showForm:boolean = true;
   public loading:boolean = false;
+  public updatedBy:any;
+  public mainData: any;
+  public updatedTime: any;
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'
   };
