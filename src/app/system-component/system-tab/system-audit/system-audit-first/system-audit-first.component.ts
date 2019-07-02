@@ -1,20 +1,20 @@
-import { Component, OnInit, ViewChild, ElementRef, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, TemplateRef, ViewChildren, QueryList } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ApiserviceService } from '../../../../apiservice.service';
-import { IMyDate, IMyDpOptions } from 'mydatepicker';
+import { IMyDpOptions } from 'mydatepicker';
 import { AppAudit, Policy } from '../../../../data.model.auditDTO';
 import { UtilService } from '../../../../util.service';
-import { Http, HttpModule, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { APP_CONFIG } from '../../../../app.config';
 import { HttpClient } from "@angular/common/http";
-import { SystemFilterPipeDate } from '../../../system-date-filter';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Cookie } from 'ng2-cookies';
-import { FormsModule, NgForm, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { DialogService } from '../../../../dialog.service';
+import { NgbdSortableHeader, SortEvent } from '../../../../sort';
 declare var swal: any; ''
 
 
@@ -25,6 +25,7 @@ declare var swal: any; ''
 
 })
 export class SystemAuditFirstComponent implements OnInit {
+  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   @ViewChild('fileInput') inputEl: ElementRef;
   @ViewChild('content1') content: TemplateRef<any>;
   @ViewChild('myForm') myForm: FormGroup;
@@ -42,6 +43,15 @@ export class SystemAuditFirstComponent implements OnInit {
   showInitial: boolean = false;
   public info: any
   public showEditMode: boolean = false;
+  public showAbove89: boolean = false;
+  public showAbove74: boolean = false;
+  public showAbove50: boolean = false;
+  public openList: boolean = false;
+  public closeList: boolean = false;
+  public evNotList: boolean = false;
+  public showPagination: boolean = false;
+
+  public totalAudits: any;
   public appAuditId: any;
   myDatePickerOptions: IMyDpOptions = {
     disableUntil: { year: 0, month: 0, day: 0 },
@@ -310,7 +320,7 @@ export class SystemAuditFirstComponent implements OnInit {
   }
 
 
-  getNextDate(value:any) {
+  getNextDate(value: any) {
 
     if (value === 'Choose...' || value === "") {
 
@@ -638,7 +648,179 @@ export class SystemAuditFirstComponent implements OnInit {
 
 
   }
+  show89() {
+    this.showAbove89 = true;
+    this.showAbove74 = false;
+    this.showAbove50 = false;
+    this.openList = false;
+    this.closeList = false;
+    this.evNotList = false;
+    this.totalAudits = this.appAudit.auditsAbove89.length;
+    this.showPagination = true;
+  }
+
+  show74() {
+    this.showAbove89 = false;
+    this.showAbove74 = true;
+    this.showAbove50 = false;
+    this.openList = false;
+    this.closeList = false;
+    this.evNotList = false;
+    this.totalAudits = this.appAudit.auditsAbove74.length;
+    this.showPagination = true;
+  }
+
+  show50() {
+    this.showAbove89 = false;
+    this.showAbove74 = false;
+    this.showAbove50 = true;
+    this.openList = false;
+    this.closeList = false;
+    this.evNotList = false;
+    this.totalAudits = this.appAudit.auditsAbove50.length;
+    this.showPagination = true;
+  }
 
 
+  showOpen() {
+    this.showAbove89 = false;
+    this.showAbove74 = false;
+    this.showAbove50 = false;
+    this.openList = true;
+    this.closeList = false;
+    this.evNotList = false;
+    this.totalAudits = this.appAudit.openAuditPolicies.length;
+    this.showPagination = true;
+  }
 
+  showClose() {
+    this.showAbove89 = false;
+    this.showAbove74 = false;
+    this.showAbove50 = true;
+    this.openList = false;
+    this.closeList = true;
+    this.evNotList = false;
+    this.totalAudits = this.appAudit.closedAuditPolicies.length;
+    this.showPagination = true;
+  }
+
+  showEvidenceNotSubmittedCount() {
+    this.showAbove89 = false;
+    this.showAbove74 = false;
+    this.showAbove50 = true;
+    this.openList = false;
+    this.closeList = false;
+    this.evNotList = true;
+    this.totalAudits = this.appAudit.evnAuditPolicies.length;
+    this.showPagination = true;
+  }
+
+  // get50Sort({ column, direction }: SortEvent) {
+  //   if (this.appAudit.auditsAbove50 !== undefined && this.appAudit.auditsAbove50 !== null && this.appAudit.auditsAbove50.length > 0)
+  //     this.headers.forEach(header => {
+  //       if (header.sortable !== column) {
+  //         header.direction = '';
+  //       }
+  //       else if (header.sortable === column && direction !== '') {
+  //         this.appAudit.auditsAbove50 = this.toSorting(this.appAudit.auditsAbove50, column, direction);
+
+  //       }
+  //     });
+  // }
+  getSort({ column, direction }: SortEvent) {
+    if (this.appAudit.auditsAbove50 !== undefined && this.appAudit.auditsAbove50 !== null && this.appAudit.auditsAbove50.length > 0)
+      this.headers.forEach(header => {
+        if (header.sortable !== column) {
+          header.direction = '';
+        }
+        else if (header.sortable === column && direction !== '') {
+          this.appAudit.auditsAbove50 = this.toSorting(this.appAudit.auditsAbove50, column, direction);
+
+        }
+      });
+  }
+ 
+
+  get74Sort({ column, direction }: SortEvent) {
+    if (this.appAudit.auditsAbove74 !== undefined && this.appAudit.auditsAbove74 !== null && this.appAudit.auditsAbove74.length > 0)
+      this.headers.forEach(header => {
+        if (header.sortable !== column) {
+          header.direction = '';
+        }
+        else if (header.sortable === column && direction !== '') {
+          this.appAudit.auditsAbove74 = this.toSorting(this.appAudit.auditsAbove74, column, direction);
+
+        }
+      });
+  }
+
+  get89Sort({ column, direction }: SortEvent) {
+    if (this.appAudit.auditsAbove89 !== undefined && this.appAudit.auditsAbove89 !== null && this.appAudit.auditsAbove89.length > 0)
+      this.headers.forEach(header => {
+        if (header.sortable !== column) {
+          header.direction = '';
+        }
+        else if (header.sortable === column && direction !== '') {
+          this.appAudit.auditsAbove89 = this.toSorting(this.appAudit.auditsAbove89, column, direction);
+
+        }
+      });
+  }
+  getOpenSort({ column, direction }: SortEvent)
+  {
+    if (this.appAudit.openAuditPolicies !== undefined && this.appAudit.openAuditPolicies !== null && this.appAudit.openAuditPolicies.length > 0)
+    this.headers.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = '';
+      }
+      else if (header.sortable === column && direction !== '') {
+        this.appAudit.openAuditPolicies = this.toSorting(this.appAudit.openAuditPolicies, column, direction);
+
+      }
+    });
+  }
+
+  getEVSort({ column, direction }: SortEvent)
+  {
+    if (this.appAudit.evnAuditPolicies !== undefined && this.appAudit.evnAuditPolicies !== null && this.appAudit.evnAuditPolicies.length > 0)
+    this.headers.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = '';
+      }
+      else if (header.sortable === column && direction !== '') {
+        this.appAudit.evnAuditPolicies = this.toSorting(this.appAudit.evnAuditPolicies, column, direction);
+
+      }
+    });
+  }
+
+  getCloseSort({ column, direction }: SortEvent)
+  {
+    if (this.appAudit.closedAuditPolicies !== undefined && this.appAudit.closedAuditPolicies !== null && this.appAudit.closedAuditPolicies.length > 0)
+    this.headers.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = '';
+      }
+      else if (header.sortable === column && direction !== '') {
+        this.appAudit.closedAuditPolicies = this.toSorting(this.appAudit.closedAuditPolicies, column, direction);
+
+      }
+    });
+  }
+
+
+  toSorting(countries: any[], column: string, direction: string): any[] {
+    if (direction === '') {
+      return countries;
+    } else {
+      return [...countries].sort((a, b) => {
+        const res = this.compare(a[column], b[column]);
+        return direction === 'asc' ? res : -res;
+      });
+    }
+  }
+
+  compare(v1: any, v2: any) {
+    return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
+  }
 }

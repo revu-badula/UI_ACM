@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChildren,QueryList } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { APP_CONFIG } from 'app/app.config';
-import { NgbdSortableHeader, SortEvent } from '../sort';
+import { APP_CONFIG } from '../../app.config';
+import { NgbdSortableHeader, SortEvent } from '../../sort';
 @Component({
   selector: 'app-incidentstart',
   templateUrl: './incidentstart.component.html',

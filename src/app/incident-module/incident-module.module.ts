@@ -30,7 +30,7 @@ import { PhoneMaskDirective } from './phone-mask';
 import { MatInputModule, MatAutocompleteModule } from '@angular/material';
 import { DecimalPipe } from '@angular/common';
 import { IncidentstartComponent } from './incidentstart/incidentstart.component';
-import { NgbdSortableHeader } from './sort';
+import { NgbdSortableHeader } from '../sort';
 import { NewBusinessImpactComponetComponent } from './new-business-impact-componet/new-business-impact-componet.component';
 import { IncidentBusinessImpactComponent } from './incident-business-impact/incident-business-impact.component';
 import { MissionService } from './incident-service';
@@ -70,6 +70,6 @@ import { FilterPipe } from '../convertDate.pipe';
   declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent,
     IncidentcloseComponent, PhoneMaskDirective, FilterPipe, IncidentstartComponent, NgbdSortableHeader, NewBusinessImpactComponetComponent, IncidentBusinessImpactComponent],
   providers: [DecimalPipe, DatePipe, MissionService],
-  exports: [FilterPipe,PhoneMaskDirective]
+  exports: [FilterPipe,PhoneMaskDirective,NgbdSortableHeader]
 })
 export class IncidentModuleModule { }

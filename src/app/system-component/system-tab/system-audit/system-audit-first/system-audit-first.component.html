@@ -176,46 +176,268 @@
           </div>
 
           <div class="form-row">
-              <table class="table table-striped table-hover table-bordere">
-                  <th>Open</th>
-                  <th>Close</th>
-                  <th>Evidences not submitted</th>
-                  <th>> 90</th>
-                  <th>75-89 </th>
-                  <th>< 74 </th>
-                  <th>Audit Findings</th>
+            <table class="table table-striped table-hover table-bordere">
+              <th>Open</th>
+              <th>Close</th>
+              <th>Evidences not submitted</th>
+              <th>> 90</th>
+              <th>75-89 </th>
+              <th>
+                < 74 </th> <th>Audit Findings
+              </th>
 
-                  <tbody>
-                    <tr>
-                      <td>
-                          {{appAudit.openCount}}
-                      </td>
-                      <td>
-                          {{appAudit.closeCount}}
-                      </td>
-                      <td>
-                          {{appAudit.evidenceNotSubmittedCount}}
-                      </td>
-                      <td style="color:green">
-                          {{appAudit.scoreAbove89Count}}
-                      </td>
-                      <td style="color:orange">
-                          {{appAudit.scoreAbove74Count}}
-                      </td>
-                      <td style="color:tomato">
-                          {{appAudit.scoreAbove50Count}}
-                      </td>
+              <tbody>
+                <tr>
+                  <td>
+                    <a (click)="showOpen()">
+                      {{appAudit.openCount}} </a>
+                  </td>
+                  <td>
+                    <a (click)="showClose()">
+                      {{appAudit.closeCount}} </a>
+                  </td>
+                  <td>
+                    <a (click)="showEvidenceNotSubmittedCount()">
+                      {{appAudit.evidenceNotSubmittedCount}} </a>
+                  </td>
+                  <td style="color:green">
+                    <a (click)="show89()">
+                      {{appAudit.scoreAbove89Count}} </a>
+                  </td>
+                  <td style="color:orange">
+                    <a (click)="show74()">
+                      {{appAudit.scoreAbove74Count}} </a>
+                  </td>
+                  <td style="color:tomato">
+                    <a (click)="show50()">
+                      {{appAudit.scoreAbove50Count}} </a>
+                  </td>
 
-                      <td>
-                          {{appAudit.auditFindingsCount}}
-                      </td>
+                  <td>
+                    {{appAudit.auditFindingsCount}}
+                  </td>
 
-                    </tr>
-                  </tbody>
+                </tr>
+              </tbody>
 
-              </table>
+            </table>
 
           </div>
+
+          <br>
+          <table class="table table-bordered" *ngIf="showAbove89">
+            <thead>
+              <tr>
+                <th sortable="controlNumber" (sort)="get89Sort($event)">Control Number</th>
+
+                <th sortable="familyName" (sort)="get89Sort($event)">Family Name</th>
+
+                <th sortable="policyName" (sort)="get89Sort($event)">Policy</th>
+
+                <th sortable="priority" (sort)="get89Sort($event)">Priority</th>
+
+                <th sortable="netScoreN" (sort)="get89Sort($event)">Score</th>
+
+                <th sortable="status" (sort)="get89Sort($event)">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let policy of appAudit.auditsAbove89 | paginate: { itemsPerPage: 10, currentPage: p,totalItems: totalAudits}">
+
+                <td>
+                  <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a>
+                </td>
+                <td>{{ policy.familyName }}</td>
+                <td>{{ policy.policyName }}</td>
+                <td>{{ policy.priority }}</td>
+                <td>{{policy.netScoreN}}</td>
+
+
+
+
+                <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+              </tr>
+            </tbody>
+          </table>
+
+           <table class="table table-bordered" *ngIf="showAbove74">
+            <thead>
+              <tr>
+
+                <th sortable="controlNumber" (sort)="get74Sort($event)">Control Number</th>
+
+                <th sortable="familyName" (sort)="get74Sort($event)">Family Name</th>
+
+                <th sortable="policyName" (sort)="get74Sort($event)">Policy</th>
+
+                <th sortable="priority" (sort)="get74Sort($event)">Priority</th>
+
+                <th sortable="netScoreN" (sort)="get74Sort($event)">Score</th>
+
+                <th sortable="status" (sort)="get74Sort($event)">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let policy of appAudit.auditsAbove74 | paginate: { itemsPerPage: 10, currentPage: p,totalItems: totalAudits }">
+
+                <td>
+                  <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a>
+                </td>
+                <td>{{ policy.familyName }}</td>
+                <td>{{ policy.policyName }}</td>
+                <td>{{ policy.priority }}</td>
+                <td>{{policy.netScoreN}}</td>
+
+
+
+
+                <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered" *ngIf="showAbove50">
+            <thead>
+              <tr>
+                <th sortable="controlNumber" (sort)="getSort($event)">Control Number</th>
+                <th sortable="familyName" (sort)="getSort($event)">Family Name</th>
+                <th sortable="policyName" (sort)="getSort($event)">Policy</th>
+                <th sortable="priority" (sort)="getSort($event)">Priority</th>
+                <th sortable="netScoreN" (sort)="getSort($event)">Score</th>
+                <th sortable="status" (sort)="getSort($event)">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let policy of appAudit.auditsAbove50 | paginate: { itemsPerPage: 10, currentPage: p,totalItems: totalAudits }">
+
+                <td>
+                  <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a>
+                </td>
+                <td>{{ policy.familyName }}</td>
+                <td>{{ policy.policyName }}</td>
+                <td>{{ policy.priority }}</td>
+                <td>{{policy.netScoreN}}</td>
+
+
+
+
+                <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered" *ngIf="evNotList">
+          <thead>
+            <tr>
+              <th sortable="controlNumber" (sort)="getEVSort($event)">Control Number</th>
+              <th sortable="familyName" (sort)="getEVSort($event)">Family Name</th>
+              <th sortable="policyName" (sort)="getEVSort($event)">Policy</th>
+              <th sortable="priority" (sort)="getEVSort($event)">Priority</th>
+              <th sortable="netScoreN" (sort)="getEVSort($event)">Score</th>
+              <th sortable="status" (sort)="getEVSort($event)">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let policy of appAudit.evnAuditPolicies | paginate: { itemsPerPage: 10, currentPage: p,totalItems: totalAudits }">
+  
+              <td>
+                <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a>
+              </td>
+               <td>{{ policy.familyName }}</td>
+              <td>{{ policy.policyName }}</td>
+              <td>{{ policy.priority }}</td>
+              <td>{{policy.netScoreN}}</td>
+            
+            
+  
+  
+              <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
+           <table class="table table-bordered" *ngIf="openList">
+          <thead>
+            <tr>
+              <th sortable="controlNumber" (sort)="getOpenSort($event)">Control Number</th>
+              <th sortable="familyName" (sort)="getOpenSort($event)">Family Name</th>
+              <th sortable="policyName" (sort)="getOpenSort($event)">Policy</th>
+              <th sortable="priority" (sort)="getOpenSort($event)">Priority</th>
+              <th sortable="netScoreN" (sort)="getOpenSort($event)">Score</th>
+              <th sortable="status" (sort)="getOpenSort($event)">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let policy of appAudit.openAuditPolicies | paginate: { itemsPerPage: 10, currentPage: p,totalItems: totalAudits }">
+  
+              <td>
+                <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a>
+              </td>
+               <td>{{ policy.familyName }}</td>
+              <td>{{ policy.policyName }}</td>
+              <td>{{ policy.priority }}</td>
+              <td>{{policy.netScoreN}}</td>
+            
+            
+  
+  
+              <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
+           <table class="table table-bordered" *ngIf="closeList">
+          <thead>
+            <tr>
+              <th sortable="controlNumber" (sort)="getCloseSort($event)">Control Number</th>
+              <th sortable="familyName" (sort)="getCloseSort($event)">Family Name</th>
+              <th sortable="policyName" (sort)="getCloseSort($event)">Policy</th>
+              <th sortable="priority" (sort)="getCloseSort($event)">Priority</th>
+              <th sortable="netScoreN" (sort)="getCloseSort($event)">Score</th>
+              <th sortable="status" (sort)="getCloseSort($event)">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let policy of appAudit.closedAuditPolicies | paginate: { itemsPerPage: 10, currentPage: p,totalItems: totalAudits }">
+  
+              <td>
+                <a routerLink="/accessCntrl/{{ policy.appAuditPolicyId }}" style="cursor:pointer;color:blue;">{{
+                policy.controlNumber
+                }}</a>
+              </td>
+               <td>{{ policy.familyName }}</td>
+              <td>{{ policy.policyName }}</td>
+              <td>{{ policy.priority }}</td>
+              <td>{{policy.netScoreN}}</td>
+            
+            
+  
+  
+              <td><i [ngClass]="{'primary':policy.status === 'true',
+              'secondary':policy.status === 'false'}" class="fa fa-check-circle"></i></td>
+            </tr>
+          </tbody>
+        </table>
+
+          <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
         </div>
       </fieldset>
 

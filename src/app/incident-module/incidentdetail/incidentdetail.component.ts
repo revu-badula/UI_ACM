@@ -175,8 +175,8 @@ export class IncidentdetailComponent implements OnInit {
   }
 
   matches(user: any, term: string, pipe: PipeTransform) {
-    return user.firstName.toLowerCase().includes(term)
-      || user.lastName.toLowerCase().includes(term);
+    return user.firstName.toLowerCase().includes(term.toLowerCase())
+      || user.lastName.toLowerCase().includes(term.toLowerCase());
   }
 
   fillData(value: any) {

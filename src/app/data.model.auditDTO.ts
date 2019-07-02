@@ -54,6 +54,14 @@ export class AppAudit {
   public scoreAbove74Count: number;
   public scoreAbove50Count: number;
 
+  public auditsAbove89: any[] = [];
+  public auditsAbove74: any[] = [];
+  public auditsAbove50: any[] = [];
+  public closedAuditPolicies: any[]=[];
+  public openAuditPolicies: any[] = [];
+  public evnAuditPolicies: any[] = [];
+
+
 }
 
 export class Policy {

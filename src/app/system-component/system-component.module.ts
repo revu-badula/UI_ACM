@@ -44,7 +44,7 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 import { SystemAssessDowntabsComponent } from './system-tab/system-assessment/system-assess-downtabs/system-assess-downtabs.component';
 import { LocalityComponentRoutingModule } from '../app.routing';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SystemAssessFindComponent } from './system-tab/system-assessment/system-assess-find/system-assess-find.component';
 import { SystemAssessActionComponent } from './system-tab/system-assessment/system-assess-action/system-assess-action.component';
 import { SystemAssessAttachmentsComponent } from './system-tab/system-assessment/system-assess-attachments/system-assess-attachments.component';
@@ -79,6 +79,7 @@ import { SystemrmfbudgetComponent } from './system-tab/systemrmf/systemrmfbudget
 import { SystemrmfattachmentsComponent } from './system-tab/systemrmf/systemrmfattachments/systemrmfattachments.component';
 import { SystemrmflessonslearnedComponent } from './system-tab/systemrmf/systemrmflessonslearned/systemrmflessonslearned.component';
 import { DatePipe } from '@angular/common';
+import { IncidentModuleModule } from 'app/incident-module/incident-module.module';
 
 @NgModule({
   imports: [
@@ -93,27 +94,27 @@ import { DatePipe } from '@angular/common';
     NgxCurrencyModule,
     LocalityComponentModule,
     NgSelectModule,
-   // SystemComponentRoutingModule,
-   LocalityComponentRoutingModule,
+    LocalityComponentRoutingModule,
+    IncidentModuleModule,
     MyDatePickerModule,
     LoadingModule.forRoot({
       animationType: ANIMATION_TYPES.rotatingPlane,
-      backdropBackgroundColour: 'rgba(0,0,0,0.5)', 
+      backdropBackgroundColour: 'rgba(0,0,0,0.5)',
       backdropBorderRadius: '4px',
-      primaryColour: '#fff', 
-      secondaryColour: '#fff', 
+      primaryColour: '#fff',
+      secondaryColour: '#fff',
       tertiaryColour: '#fff',
-      fullScreenBackdrop:true
-  }),
- 
-  NgxPaginationModule,
-  NgxTinymceModule.forRoot({
-    //baseURL: './assets/tinymce/',
-  })
+      fullScreenBackdrop: true
+    }),
+
+    NgxPaginationModule,
+    NgxTinymceModule.forRoot({
+      //baseURL: './assets/tinymce/',
+    })
   ],
-  declarations: [SystemAddComponentComponent, SystemTabComponent,SystemComponentComponent, SystemDetailsComponent, SystemSolutionsComponent, SystemSolutionsLinkComponent, SystemSolutionstablelinkComponent, SystemBusinessComponent, SystemAuditComponent, SystemAuditDetailsComponent, SystemAuditFindingsComponent, SystemAuditRecomendationsComponent, SystemLegalComponent, SystemAuditManagementComponent, SystemSecurityComponent, SystemAuditActionComponent, SystemAuditBusinessriskComponent, SystemAuditSecurityriskComponent, 
-  SystemAuditBudgetComponent, SystemAuditAttachmentsComponent, SystemAssessmentComponent, 
-  SystemTechnicalComponent,SystemFilterPipeDate, SystemFilterAuditName,SystemAuditFirstComponent, SystemAuditDetailsTab, SystemAuditLessonsComponent, SystemAssessDetailsComponent, SystemAssessTabComponent,SystemAuditDetailsTab1, SystemLegalformComponent, SystemLegalmainComponent,KeysPipe, SystemAssessDowntabsComponent, SystemAssessFindComponent, SystemAssessActionComponent, SystemAssessAttachmentsComponent, SystemAssessBudgetComponent, SystemAssessBusinessComponent, SystemAssessLessonsComponent, SystemAssessRecomendComponent, SystemAssessSecurityComponent, SystemAssessManagementComponent, SystemassesscontrolComponent, SystemassesslandingComponent, SystemauditlandingComponent, SystemauditcontrolComponent, SystemrmfComponent, SystemrmflandingComponent, SystemrmftabComponent, SystemrmffirstComponent, SystemrmfprocessComponent, SystemrmfprepareComponent, SystemrmftaskComponent, SystemrmffindingComponent, SystemrmfrecommendationsComponent, SystemrmfmanagementresponseComponent, SystemrmfactionplanComponent, SystemrmfbusinessriskComponent, SystemrmfsecurityriskComponent, SystemrmfbudgetComponent, SystemrmfattachmentsComponent, SystemrmflessonslearnedComponent],
-  providers:[DatePipe]
+  declarations: [SystemAddComponentComponent, SystemTabComponent, SystemComponentComponent, SystemDetailsComponent, SystemSolutionsComponent, SystemSolutionsLinkComponent, SystemSolutionstablelinkComponent, SystemBusinessComponent, SystemAuditComponent, SystemAuditDetailsComponent, SystemAuditFindingsComponent, SystemAuditRecomendationsComponent, SystemLegalComponent, SystemAuditManagementComponent, SystemSecurityComponent, SystemAuditActionComponent, SystemAuditBusinessriskComponent, SystemAuditSecurityriskComponent,
+    SystemAuditBudgetComponent, SystemAuditAttachmentsComponent, SystemAssessmentComponent,
+    SystemTechnicalComponent, SystemFilterPipeDate,SystemFilterAuditName, SystemAuditFirstComponent, SystemAuditDetailsTab, SystemAuditLessonsComponent, SystemAssessDetailsComponent, SystemAssessTabComponent, SystemAuditDetailsTab1, SystemLegalformComponent, SystemLegalmainComponent, KeysPipe, SystemAssessDowntabsComponent, SystemAssessFindComponent, SystemAssessActionComponent, SystemAssessAttachmentsComponent, SystemAssessBudgetComponent, SystemAssessBusinessComponent, SystemAssessLessonsComponent, SystemAssessRecomendComponent, SystemAssessSecurityComponent, SystemAssessManagementComponent, SystemassesscontrolComponent, SystemassesslandingComponent, SystemauditlandingComponent, SystemauditcontrolComponent, SystemrmfComponent, SystemrmflandingComponent, SystemrmftabComponent, SystemrmffirstComponent, SystemrmfprocessComponent, SystemrmfprepareComponent, SystemrmftaskComponent, SystemrmffindingComponent, SystemrmfrecommendationsComponent, SystemrmfmanagementresponseComponent, SystemrmfactionplanComponent, SystemrmfbusinessriskComponent, SystemrmfsecurityriskComponent, SystemrmfbudgetComponent, SystemrmfattachmentsComponent, SystemrmflessonslearnedComponent],
+  providers: [DatePipe]
 })
-export class SystemComponentModule {}
+export class SystemComponentModule { }
