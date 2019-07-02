@@ -5,6 +5,7 @@ import { APP_CONFIG } from '../app.config';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../util.service';
+import { ApiserviceService } from '../apiservice.service';
 import { Observable } from 'rxjs';
 import * as Highcharts from 'highcharts';
 import ExportingModule from 'highcharts/modules/heatmap';
@@ -16,12 +17,26 @@ ExportingModule(Highcharts);
 })
 export class GraphComponent implements OnInit {
 
+  AuditAssessment: any;
+  auditGram: any;
+  assessmentGram: any;
+  auditRiskLevels: any;
 
+  ngOnInit() {
+    this.getData5();
+    this.getMonthOfAuditAssessment();
+
+  }
 
   public lineChartDataSystems1: ChartDataSets<any> = [
-    { data: ['4', '2', '10', '5', '4', '6', '8', '1', '9', '2', '11', '7'], label: 'Audit' },
-    { data: ['3', '5', '1', '4', '2', '9', '3', '8', '13', '8', '15', '2'], label: 'Assessment' },
+
+    { data: [7,3,2,0,6,1,0,0,0,0,0,0], label: 'Audit' },
+    { data: [2,4,1,0,5,2,0,0,0,0,0,0], label: 'Assessment' },
+
   ];
+
+
+
   public lineChartLabelsSystems1: Array<any> = ['January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September', 'october', 'November', 'December'];
   public chartOption12 = {
@@ -560,40 +575,40 @@ export class GraphComponent implements OnInit {
       marker: {
         symbol: 'circle',
         lineColor: '#00008B',
-        fillColor:'#00008B'
+        fillColor: '#00008B'
       }
     },
     {
       name: 'Operations',
       lineColor: '#A52A2A',
-      color:'#A52A2A',
+      color: '#A52A2A',
       data: [4, 9, 3, 4, 8, 1, 2, 12, 3, 9, 8, 2],
       marker: {
         symbol: 'circle',
         lineColor: '#A52A2A',
-        fillColor:'#A52A2A'
+        fillColor: '#A52A2A'
       }
     },
     {
       name: 'Security',
       lineColor: '#DC143C',
-      color:'#DC143C',
+      color: '#DC143C',
       data: [3, 7, 6, 2, 5, 11, 2, 1, 3, 7, 2, 4],
       marker: {
         symbol: 'circle',
         lineColor: '#DC143C',
-        fillColor:'#DC143C'
+        fillColor: '#DC143C'
       }
     },
     {
       name: 'Financial',
       lineColor: '#006400',
-      color:'#006400',
+      color: '#006400',
       data: [5, 2, 9, 6, 3, 1, 6, 11, 2, 8, 12, 6],
       marker: {
         symbol: 'circle',
         lineColor: '#006400',
-        fillColor:'#006400'
+        fillColor: '#006400'
       }
     }]
   };
@@ -3196,8 +3211,9 @@ export class GraphComponent implements OnInit {
   public showHover: boolean;
   @ViewChild('emailView') emailView: ElementRef;
   public myNotifications = [{ "createdOn": "2019-06 - 03", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2989, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2919", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2981, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2978, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2975, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2713, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2712, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2709, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2699, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2697, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2694, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2690, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2683, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2648, "sentBy": 0, "to": 0, "subject": "System Access Termination Requested", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2644, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2612, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2611, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2609, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Jacob Blake" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2602, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 22", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2600, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2563, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2561, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2559, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2546, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2545, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2542, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2533, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2508, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2481, "sentBy": 0, "to": 0, "subject": "Employee Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2472, "sentBy": 0, "to": 0, "subject": "Employee Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2456, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2440", "unRead": false, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2443, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2440", "unRead": false, "sentFrom": "Mike Cary" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2436, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2434, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2432, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2430, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2428, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2425, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2423, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }];
+
   constructor(private httpClient: HttpClient, private router: Router,
-    private utilService: UtilService, private modalService: NgbModal) {
+    private utilService: UtilService, private modalService: NgbModal, private _apiservice: ApiserviceService, ) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     UtilService.signlegal = false;
@@ -3206,11 +3222,11 @@ export class GraphComponent implements OnInit {
     UtilService.signsystem = false;
   }
 
-  ngOnInit() {
-    this.getData5();
-    //this.getData4();
-    //this.getData6();
-  }
+
+
+
+
+
 
 
   getColor() {
@@ -3520,6 +3536,34 @@ export class GraphComponent implements OnInit {
       });
   }
 
+  getMonthOfAuditAssessment() {
+    this._apiservice.getMonthOfAuditAssessment()
+      .subscribe((data: any) => {
+        this.AuditAssessment = data;
+        // console.log(this.AuditAssessment);
+        this.auditGram = this.AuditAssessment[0];
+        this.assessmentGram = this.AuditAssessment[1];
+        // this.lineChartDataSystems1.data[0]=this.auditGram;
+        // this.lineChartDataSystems1.data[1]=this.assessmentGram;
+        // for(let i=0 ;i <this.auditGram.length; i++){
+        //   this.lineChartDataSystems1.data[0].push(this.auditGram[i]);
+        
+        console.log(this.auditGram);
+
+      }, error => console.log(error));
+
+  }
+
+  getAllAuditRiskLevels(){
+    this._apiservice.getAllAuditRiskLevels()
+    .subscribe((data: any) => {
+      this.auditRiskLevels = data;
+      console.log(this.auditGram);
+
+    }, error => console.log(error));
+
+}
+
 
   getNotification() {
     let ngbModalOptions: NgbModalOptions = {
@@ -3529,10 +3573,6 @@ export class GraphComponent implements OnInit {
     this.modalService.open(this.emailView, ngbModalOptions);
 
   }
-
-
-
-
 
 
 }

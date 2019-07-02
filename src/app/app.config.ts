@@ -158,6 +158,9 @@ export const APP_CONFIG = {
   saveIMResolution: apiBaseUrl + 'saveIMResolution',
   saveIMCloseOut: apiBaseUrl + 'saveIMCloseOut',
   saveIMBIA: apiBaseUrl + 'saveIMBIA',
+  getMonthOfAuditAssessment: apiBaseUrl +'getMonthOfAuditAssessment',
+  getAllAuditRiskLevels : apiBaseUrl +'getAllAuditRiskLevels',
+  
 }
 
 

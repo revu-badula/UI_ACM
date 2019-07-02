@@ -114,6 +114,19 @@ export class ApiserviceService {
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
+  getMonthOfAuditAssessment(){
+    let url = APP_CONFIG.getMonthOfAuditAssessment;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+    
+  }
+
+  getAllAuditRiskLevels(){
+    let url = APP_CONFIG.getAllAuditRiskLevels;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+    
+  }
 
   addSolutions(body: any) {
     let url = APP_CONFIG.addSolutions;
