@@ -115,6 +115,7 @@ import { MyTaskComponent } from './my-task/my-task.component';
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { DatePipe } from '@angular/common';
+import { ITPMComponent } from './itpm/itpm.component';
 
 @NgModule({
   declarations: [
@@ -196,7 +197,8 @@ import { DatePipe } from '@angular/common';
     RmsoverviewComponent,
     TaskdetailsComponent,
     DeviceentryComponent,
-    MyTaskComponent
+    MyTaskComponent,
+    ITPMComponent
   ],
 
   imports: [
