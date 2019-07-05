@@ -21,6 +21,7 @@ export class GraphComponent implements OnInit {
   auditGram: any;
   assessmentGram: any;
   auditRiskLevels: any;
+  public loader: boolean = false;
 
   ngOnInit() {
     this.getData5();
@@ -30,7 +31,7 @@ export class GraphComponent implements OnInit {
 
   public lineChartDataSystems1: ChartDataSets<any> = [
 
-    { data: [7,3,2,0,6,1,0,0,0,0,0,0], label: 'Audit' },
+    { data: [2,4,1,0,5,2,0,0,0,0,0,0], label: 'Audit' },
     { data: [2,4,1,0,5,2,0,0,0,0,0,0], label: 'Assessment' },
 
   ];
@@ -3539,16 +3540,18 @@ export class GraphComponent implements OnInit {
   getMonthOfAuditAssessment() {
     this._apiservice.getMonthOfAuditAssessment()
       .subscribe((data: any) => {
+        this.loading = true;
         this.AuditAssessment = data;
         // console.log(this.AuditAssessment);
         this.auditGram = this.AuditAssessment[0];
         this.assessmentGram = this.AuditAssessment[1];
-        // this.lineChartDataSystems1.data[0]=this.auditGram;
-        // this.lineChartDataSystems1.data[1]=this.assessmentGram;
-        // for(let i=0 ;i <this.auditGram.length; i++){
-        //   this.lineChartDataSystems1.data[0].push(this.auditGram[i]);
-        
-        console.log(this.auditGram);
+        this.lineChartDataSystems1.data[0]=this.auditGram;
+        this.lineChartDataSystems1.data[1]=this.assessmentGram;
+        for(let i=0 ;i <this.auditGram.length; i++){
+          this.lineChartDataSystems1.data[0].push(this.auditGram[i]);
+          this.loading = false;;
+      }
+        console.log(this.lineChartDataSystems1);
 
       }, error => console.log(error));
 

@@ -201,6 +201,7 @@ import { NewBusinessImpactComponetComponent } from './incident-module/new-busine
 import { IncidentBusinessImpactComponent } from './incident-module/incident-business-impact/incident-business-impact.component';
 import { MyTaskComponent } from './my-task/my-task.component';
 import { ITPMComponent }  from './itpm/itpm.component';
+import {ItAuditComponent} from './itpm/it-audit/it-audit.component';
 
 const appRoutes: Routes = [
 
@@ -243,6 +244,7 @@ const appRoutes: Routes = [
   { path: 'newPolicy', component: NewpolicyComponent, canActivate: [AuthGuard] },
   { path: 'deviceEntry', component: DeviceentryComponent, canActivate: [AuthGuard] },
   { path: 'mytasks', component: MyTaskComponent, canActivate: [AuthGuard] },
+  {path: 'itAudit' , component: ItAuditComponent},
 
   {
     path: 'callback', component: CallbackComponent, canActivate: [CallGuard]

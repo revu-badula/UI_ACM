@@ -116,6 +116,7 @@ import { NgxSummernoteModule } from 'ngx-summernote';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { DatePipe } from '@angular/common';
 import { ITPMComponent } from './itpm/itpm.component';
+import { ItAuditComponent } from './itpm/it-audit/it-audit.component';
 
 @NgModule({
   declarations: [
@@ -198,7 +199,8 @@ import { ITPMComponent } from './itpm/itpm.component';
     TaskdetailsComponent,
     DeviceentryComponent,
     MyTaskComponent,
-    ITPMComponent
+    ITPMComponent,
+    ItAuditComponent
   ],
 
   imports: [

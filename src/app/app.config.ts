@@ -160,6 +160,7 @@ export const APP_CONFIG = {
   saveIMBIA: apiBaseUrl + 'saveIMBIA',
   getMonthOfAuditAssessment: apiBaseUrl +'getMonthOfAuditAssessment',
   getAllAuditRiskLevels : apiBaseUrl +'getAllAuditRiskLevels',
+  getAuditsBasedOnScore :apiBaseUrl + 'getAuditsBasedOnScore',
   
 }
 

@@ -531,4 +531,12 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
+  getAuditsBasedOnScore(id :any){
+    let url = APP_CONFIG.getAuditsBasedOnScore;
+    return this._httpService.get(url + '?' + 'riskLevel' + '=' + id)
+      .map(res => <Response>res.json());
+  }
+
+  }
+
 }
