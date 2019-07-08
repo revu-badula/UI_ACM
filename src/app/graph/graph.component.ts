@@ -3545,12 +3545,14 @@ export class GraphComponent implements OnInit {
         this.AuditAssessment = data;
         this.auditGram = this.AuditAssessment[0];
         this.assessmentGram = this.AuditAssessment[1];
-        for (let i = 0; i < this.auditGram.length; i++) {
-          this.lineChartDataSystems1[0].data.push(this.auditGram[i]);
-        }
-        for (let i = 0; i < this.assessmentGram.length; i++) {
-          this.lineChartDataSystems1[1].data.push(this.assessmentGram[i]);
-        }
+        // for (let i = 0; i < this.auditGram.length; i++) {
+        //   this.lineChartDataSystems1[0].data.push(this.auditGram[i]);
+        // }
+        this.lineChartDataSystems1[0].data=this.auditGram;
+        this.lineChartDataSystems1[1].data=this.assessmentGram;
+        // for (let i = 0; i < this.assessmentGram.length; i++) {
+        //   this.lineChartDataSystems1[1].data.push(this.assessmentGram[i]);
+        // }
         this.showAudAss = true;
 
       }, error => {
