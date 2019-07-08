@@ -162,6 +162,7 @@ export const APP_CONFIG = {
   getAllAuditRiskLevels : apiBaseUrl +'getAllAuditRiskLevels',
   getAuditsBasedOnScore :apiBaseUrl + 'getAuditsBasedOnScore',
   getSystemsHealthCountURL: apiBaseUrl + 'getSystemHealthCounts',
+  getAssessmentsBasedOnScore: apiBaseUrl + 'getAssessmentsBasedOnScore',
   
 }
 

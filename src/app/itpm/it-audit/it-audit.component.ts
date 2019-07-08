@@ -28,17 +28,21 @@ export class ItAuditComponent implements OnInit {
   public updt: boolean = false;
   public p: number = 1;
   public showPagination: boolean = true;
+  public mainData: any;
+  public showType:boolean;
   @ViewChild('content') content: TemplateRef<any>;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private _apiservice: ApiserviceService,
     private modalService: NgbModal, private utilService: UtilService, private httpClient: HttpClient) {
     this.activatedRoute.params.subscribe(params => {
       let type = params['id'];
-      this.getAuditsBasedOnScore(type);
+      this.mainData = params['type'];
+      this.getAuditsBasedOnScore(type,this.mainData);
     });
     sessionStorage.removeItem("systemName");
     sessionStorage.removeItem("systemActive");
     sessionStorage.removeItem("disabled");
     sessionStorage.removeItem("systemAppAuditId");
+    sessionStorage.removeItem("sysassesId");
 
   }
 
@@ -46,9 +50,17 @@ export class ItAuditComponent implements OnInit {
 
   }
 
-  getAuditsBasedOnScore(id: any) {
+  getAuditsBasedOnScore(id: any,type:any) {
     this.loading = true;
-    let url = APP_CONFIG.getAuditsBasedOnScore;
+    let url:any;
+    if(type === "Audits"){
+    url = APP_CONFIG.getAuditsBasedOnScore;
+    }
+    else if(type === "Assessments")
+    {
+      this.showType=true;
+      url = APP_CONFIG.getAssessmentsBasedOnScore;
+    }
     this.httpClient.get(url + "?riskLevel=" + id)
       .subscribe((data: any) => {
         this.loading = false;
@@ -64,12 +76,22 @@ export class ItAuditComponent implements OnInit {
       });
   }
 
-  goTo(value:any) {
+  goTo(value: any) {
+    if(this.mainData === "Audits"){
     sessionStorage.setItem("systemName", value.appAcronym);
     sessionStorage.setItem("systemActive", "true");
     sessionStorage.setItem("disabled", "false");
     sessionStorage.setItem("systemAppAuditId", value.appAuditId);
-    this.router.navigate(['/system/tab2/Audit/Tab/first'])
+    this.router.navigate(['/system/tab2/Audit/Tab/first']);
+    }
+    else if(this.mainData === "Assessments")
+    {
+    sessionStorage.setItem("systemName", value.appAcronym);
+    sessionStorage.setItem("systemActive", "true");
+    sessionStorage.setItem("sysassesId", value.assessmentId);
+    sessionStorage.setItem("disabled", "false");
+    this.router.navigate(['/system/tab2/assessment/Tabs2/first2']);
+    }
   }
 
 

@@ -17,11 +17,12 @@ ExportingModule(Highcharts);
 })
 export class GraphComponent implements OnInit {
 
-  AuditAssessment: any;
-  auditGram: any;
-  assessmentGram: any;
-  auditRiskLevels: any;
-  public loader: boolean = false;
+  public AuditAssessment: any;
+  public auditGram: any;
+  public assessmentGram: any;
+  public auditRiskLevels: any;
+  public loading: boolean;
+  public showAudAss: boolean;
 
   ngOnInit() {
     this.getData5();
@@ -31,8 +32,8 @@ export class GraphComponent implements OnInit {
 
   public lineChartDataSystems1: ChartDataSets<any> = [
 
-    { data: [2,4,1,0,5,2,0,0,0,0,0,0], label: 'Audit' },
-    { data: [2,4,1,0,5,2,0,0,0,0,0,0], label: 'Assessment' },
+    { data: [], label: 'Audit' },
+    { data: [], label: 'Assessment' },
 
   ];
 
@@ -678,7 +679,6 @@ export class GraphComponent implements OnInit {
 
 
   public chart: Chart;
-  public loading: boolean;
   public pieChartLabels: string[] = ['Low', 'Medium', 'High'];
   public pieChartData: number[] = [3, 2, 5];
   public pieChartOptions = {
@@ -3538,34 +3538,37 @@ export class GraphComponent implements OnInit {
   }
 
   getMonthOfAuditAssessment() {
+    this.loading = true;
     this._apiservice.getMonthOfAuditAssessment()
       .subscribe((data: any) => {
-        this.loading = true;
+        this.loading = false;
         this.AuditAssessment = data;
-        // console.log(this.AuditAssessment);
         this.auditGram = this.AuditAssessment[0];
         this.assessmentGram = this.AuditAssessment[1];
-        this.lineChartDataSystems1.data[0]=this.auditGram;
-        this.lineChartDataSystems1.data[1]=this.assessmentGram;
-        for(let i=0 ;i <this.auditGram.length; i++){
-          this.lineChartDataSystems1.data[0].push(this.auditGram[i]);
-          this.loading = false;;
-      }
-        console.log(this.lineChartDataSystems1);
+        for (let i = 0; i < this.auditGram.length; i++) {
+          this.lineChartDataSystems1[0].data.push(this.auditGram[i]);
+        }
+        for (let i = 0; i < this.assessmentGram.length; i++) {
+          this.lineChartDataSystems1[1].data.push(this.assessmentGram[i]);
+        }
+        this.showAudAss = true;
+
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+
+  }
+
+  getAllAuditRiskLevels() {
+    this._apiservice.getAllAuditRiskLevels()
+      .subscribe((data: any) => {
+        this.auditRiskLevels = data;
+        console.log(this.auditGram);
 
       }, error => console.log(error));
 
   }
-
-  getAllAuditRiskLevels(){
-    this._apiservice.getAllAuditRiskLevels()
-    .subscribe((data: any) => {
-      this.auditRiskLevels = data;
-      console.log(this.auditGram);
-
-    }, error => console.log(error));
-
-}
 
 
   getNotification() {

@@ -1,32 +1,26 @@
+<app-navigation-component></app-navigation-component>
+
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
 <div>
-  <h3 class="pageTitle">Audits</h3>
+  <h3 class="pageTitle">{{mainData}}</h3>
   <hr>
 </div>
-<div class="plus">
-  <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right; font-size: 24px;" (click)="createSystem()"></i>
-</div>
-
 <form class="forms">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">Audit Name</th>
-
-        <th scope="col">Audit Type
-        </th>
-
+        <th scope="col" *ngIf="!showType">Audit Name</th>
+        <th scope="col" *ngIf="showType">Assessment Name</th>
+        <th scope="col" *ngIf="!showType">Audit Type</th>
         <th scope="col">Application Name
         </th>
-
-        <th scope="col">Audit Date</th>
-
-
-        <th scope="col">Next Audit Date
-        </th>
+        <th scope="col" *ngIf="!showType">Audit Date</th>
+        <th scope="col" *ngIf="showType">Assessment Date</th>
+        <th scope="col" *ngIf="!showType">Next Audit Date</th>
+        <th scope="col" *ngIf="showType">Next Assessment Date</th>
         <th scope="col">
           Updated By
         </th>
@@ -46,29 +40,41 @@
     <tbody>
       <tr *ngFor="let auditDTO of auditDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
         <td>
-          <a (click)="goTo(auditDTO)" style="cursor:pointer;color:blue;">{{
+          <a *ngIf="!showType" (click)="goTo(auditDTO)" style="cursor:pointer;color:blue;">{{
                 auditDTO.auditName }}<br><span style="font-size: 11px;">(Improve score or Reduce risk)</span></a>
+
+          <a *ngIf="showType" (click)="goTo(auditDTO)" style="cursor:pointer;color:blue;">{{
+                    auditDTO.name }}<br><span style="font-size: 11px;">(Improve score or Reduce risk)</span></a>
         </td>
-        <td>
+        <td *ngIf="!showType">
           {{auditDTO.auditType}}
         </td>
 
         <td>
           {{auditDTO.appAcronym}}
         </td>
-        <td>
+        <td *ngIf="!showType">
           {{auditDTO.auditDate | filterDate | date:'MM/dd/yyyy'}}
         </td>
+        <td *ngIf="showType">
+            {{auditDTO.assessmentDt | filterDate | date:'MM/dd/yyyy'}}
+          </td>
 
-        <td>
+        <td *ngIf="!showType">
           {{auditDTO.nextAuditDate | filterDate | date:'MM/dd/yyyy'}}
         </td>
+        <td *ngIf="showType">
+            {{auditDTO.nextAssessmentDt | filterDate | date:'MM/dd/yyyy'}}
+          </td>
         <td>
           {{auditDTO.updatedBy}}
         </td>
-        <td>
-          {{auditDTO.updatedTs | filterDate | date:'MM/dd/yyyy' }}
+        <td *ngIf="!showType">
+          {{auditDTO.upadateTs | filterDate | date:'MM/dd/yyyy' }}
         </td>
+        <td *ngIf="showType">
+            {{auditDTO.updatedTs | filterDate | date:'MM/dd/yyyy' }}
+          </td>
         <td>
           {{auditDTO.overallRiskLevel }}
         </td>

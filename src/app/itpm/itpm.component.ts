@@ -14,18 +14,21 @@ ExportingModule(Highcharts);
 })
 export class ITPMComponent implements OnInit {
 
-  constructor(private router: Router, private _apiservice: ApiserviceService) { }
-
   public redData: any = [];
   public yellowData: any = [];
   public greenData: any = [];
+  public showGraph: boolean;
+  public loading: boolean;
+  constructor(private router: Router, private _apiservice: ApiserviceService) { }
   ngOnInit() {
     this.getData();
   }
 
   getData() {
+    this.loading = true;
     this._apiservice.getSystemsHealthCount()
       .subscribe((data: any) => {
+        this.loading = false;
         this.redData.push(data.auditHigh);
         this.redData.push(data.assessmentHigh);
         this.redData.push(data.infraStructureHigh);
@@ -43,12 +46,12 @@ export class ITPMComponent implements OnInit {
         this.greenData.push(data.testingLow);
         this.greenData.push(data.incidentLow);
 
-        this.lineChartDataSystems15 = [{ data: this.redData, label: 'High' },
-        { data: this.yellowData, label: 'Medium' },
-        { data: this.greenData, label: 'Low' },
-        ]
-
+        this.lineChartDataSystems15[0].data = this.redData;
+        this.lineChartDataSystems15[1].data = this.yellowData;
+        this.lineChartDataSystems15[2].data = this.greenData;
+        this.showGraph = true;
       }, error => {
+        this.loading = false;
         console.log(error);
       });
   }
@@ -66,8 +69,8 @@ export class ITPMComponent implements OnInit {
       }
       let position = points.indexOf(pointSelected);
       let label = legends[position].text
-      //console.log(this.lineChartLabelsSystems15[val]);
-      this.router.navigate(['itpmAudit' + "/" + label]);
+      let xValue = this.lineChartLabelsSystems15[val];
+      this.router.navigate(['itpmAudit' + "/" + label + "/" + xValue]);
     }
 
 
@@ -77,9 +80,9 @@ export class ITPMComponent implements OnInit {
 
 
   public lineChartDataSystems15: ChartDataSets<any> = [
-    { data: ['4', '2', '10', '5', '4', '6', '8', '1', '9', '2', '11', '7'], label: 'High' },
-    { data: ['7', '1', '6', '2', '8', '3', '4', '3', '8', '2', '1', '6'], label: 'Medium' },
-    { data: ['2', '3', '1', '5', '6', '9', '2', '2', '5', '3', '7', '2'], label: 'Low' }
+    { data: [], label: 'High' },
+    { data: [], label: 'Medium' },
+    { data: [], label: 'Low' }
   ];
   public lineChartLabelsSystems15: Array<any> = ['Audits', 'Assessments', 'InfraStructure', 'Testing', 'Incidents'];
   public chartOption15 = {

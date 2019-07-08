@@ -795,7 +795,7 @@ const appRoutes: Routes = [
   { path: 'incidentStart', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: 'incidentStart/:type', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: 'itpm', component: ITPMComponent, canActivate: [AuthGuard] },
-  { path: 'itpmAudit/:id', component: ItAuditComponent },
+  { path: 'itpmAudit/:id/:type', component: ItAuditComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({
