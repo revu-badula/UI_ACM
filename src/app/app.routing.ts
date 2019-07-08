@@ -200,8 +200,8 @@ import { IncidentstartComponent } from './incident-module/incidentstart/incident
 import { NewBusinessImpactComponetComponent } from './incident-module/new-business-impact-componet/new-business-impact-componet.component';
 import { IncidentBusinessImpactComponent } from './incident-module/incident-business-impact/incident-business-impact.component';
 import { MyTaskComponent } from './my-task/my-task.component';
-import { ITPMComponent }  from './itpm/itpm.component';
-import {ItAuditComponent} from './itpm/it-audit/it-audit.component';
+import { ITPMComponent } from './itpm/itpm.component';
+import { ItAuditComponent } from './itpm/it-audit/it-audit.component';
 
 const appRoutes: Routes = [
 
@@ -244,7 +244,6 @@ const appRoutes: Routes = [
   { path: 'newPolicy', component: NewpolicyComponent, canActivate: [AuthGuard] },
   { path: 'deviceEntry', component: DeviceentryComponent, canActivate: [AuthGuard] },
   { path: 'mytasks', component: MyTaskComponent, canActivate: [AuthGuard] },
-  {path: 'itAudit' , component: ItAuditComponent},
 
   {
     path: 'callback', component: CallbackComponent, canActivate: [CallGuard]
@@ -796,6 +795,7 @@ const appRoutes: Routes = [
   { path: 'incidentStart', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: 'incidentStart/:type', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: 'itpm', component: ITPMComponent, canActivate: [AuthGuard] },
+  { path: 'itpmAudit/:id', component: ItAuditComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({

@@ -2,9 +2,10 @@
 import { Component, OnInit, ViewChild, ElementRef, TemplateRef, } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ApiserviceService } from '../../apiservice.service';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../../util.service';
-import { AppAudit } from 'app/data.model.auditDTO';
+import { HttpClient } from '@angular/common/http';
+import { APP_CONFIG } from 'app/app.config';
 
 @Component({
   selector: 'app-it-audit',
@@ -14,7 +15,7 @@ import { AppAudit } from 'app/data.model.auditDTO';
 })
 export class ItAuditComponent implements OnInit {
 
- 
+
   public Audit: any;
   public acronyms: any;
   public auditDate: any;
@@ -23,14 +24,21 @@ export class ItAuditComponent implements OnInit {
   public desc: boolean = false;
   public auditDt: boolean = false;
   public nextAuditDt: boolean = false;
-  public updtBy:boolean=false;
-  public updt:boolean=false;
+  public updtBy: boolean = false;
+  public updt: boolean = false;
   public p: number = 1;
-  public showPagination:boolean=true;
+  public showPagination: boolean = true;
   @ViewChild('content') content: TemplateRef<any>;
-  constructor(private router: Router, private _apiservice: ApiserviceService, private modalService: NgbModal, private utilService: UtilService) {
-    sessionStorage.removeItem('AuditmName');
-    sessionStorage.removeItem('AuditActive');
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private _apiservice: ApiserviceService,
+    private modalService: NgbModal, private utilService: UtilService, private httpClient: HttpClient) {
+    this.activatedRoute.params.subscribe(params => {
+      let type = params['id'];
+      this.getAuditsBasedOnScore(type);
+    });
+    sessionStorage.removeItem("systemName");
+    sessionStorage.removeItem("systemActive");
+    sessionStorage.removeItem("disabled");
+    sessionStorage.removeItem("systemAppAuditId");
 
   }
 
@@ -38,22 +46,30 @@ export class ItAuditComponent implements OnInit {
 
   }
 
-  getAuditsBasedOnScore(id:any){
+  getAuditsBasedOnScore(id: any) {
     this.loading = true;
-    this._apiservice.getAuditsBasedOnScore(id)
+    let url = APP_CONFIG.getAuditsBasedOnScore;
+    this.httpClient.get(url + "?riskLevel=" + id)
       .subscribe((data: any) => {
         this.loading = false;
-        if (data.length === 0) {
-          this.auditDTOs = [];
-          this.showPagination = false;
+        if (data) {
+          this.auditDTOs = data;
         }
         else {
-          this.auditDTOs = data;
+          this.auditDTOs = [];
         }
       }, error => {
         this.loading = false;
         console.log(error);
       });
+  }
+
+  goTo(value:any) {
+    sessionStorage.setItem("systemName", value.auditName);
+    sessionStorage.setItem("systemActive", "true");
+    sessionStorage.setItem("disabled", "false");
+    sessionStorage.setItem("systemAppAuditId", value.appAuditId);
+    this.router.navigate(['/system/tab2/Audit/Tab/first'])
   }
 
 

@@ -3,9 +3,9 @@
 </div>
 
 <div>
-    <h3 class="pageTitle">Audits</h3>
-    <hr>
-  </div>
+  <h3 class="pageTitle">Audits</h3>
+  <hr>
+</div>
 <div class="plus">
   <i class="fa fa-plus-square-o" aria-hidden="true" style="float:right; font-size: 24px;" (click)="createSystem()"></i>
 </div>
@@ -14,50 +14,47 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col" (click)="handleSort('acronym')">Audit Name
-          <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
+        <th scope="col">Audit Name</th>
 
-          <th scope="col" (click)="handleSort('acronym')">Audit Type
-            <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
+        <th scope="col">Audit Type
+        </th>
 
-            <th scope="col" (click)="handleSort('acronym')">Application Name
-              <i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i class="fa fa-arrow-up testColor" *ngIf="desc"></i></th>
+        <th scope="col">Application Name
+        </th>
 
-        <th scope="col" (click)="handleSort1('businessOwnerNameDoe')">Audit Date
-          <i class="fa fa-arrow-down testColor" *ngIf="!businessOwner"></i> <i class="fa fa-arrow-up testColor" *ngIf="businessOwner"></i></th>
+        <th scope="col">Audit Date</th>
 
 
-        <th scope="col" (click)="handleSort2('systemOwnerNameDoe')">Next Audit Date
-          <i class="fa fa-arrow-down testColor" *ngIf="!systemOwner"></i> <i class="fa fa-arrow-up testColor" *ngIf="systemOwner"></i></th>
-          <th scope="col" (click)="handleSort3('updatedBy')">
-              Updated By<i class="fa fa-arrow-down testColor" *ngIf="!updtBy"></i> <i class="fa fa-arrow-up testColor" *ngIf="updtBy"></i>
-            </th>
-          <th scope="col" (click)="handleSort4('updatedTs')">
-            Updated Date<i class="fa fa-arrow-down testColor" *ngIf="!updt"></i> <i class="fa fa-arrow-up testColor" *ngIf="updt"></i>
-          </th>
-          <th scope="col" (click)="handleSort4('updatedTs')">
-            Risk Level<i class="fa fa-arrow-down testColor" *ngIf="!updt"></i> <i class="fa fa-arrow-up testColor" *ngIf="updt"></i>
-          </th>
+        <th scope="col">Next Audit Date
+        </th>
+        <th scope="col">
+          Updated By
+        </th>
+        <th scope="col">
+          Updated Date
+        </th>
+        <th scope="col">
+          Risk Level
+        </th>
 
-          <th scope="col" (click)="handleSort4('updatedTs')">
-            Status<i class="fa fa-arrow-down testColor" *ngIf="!updt"></i> <i class="fa fa-arrow-up testColor" *ngIf="updt"></i>
-          </th>
+        <th scope="col">
+          Status
+        </th>
 
       </tr>
     </thead>
     <tbody>
-
       <tr *ngFor="let auditDTO of auditDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
         <td>
-          <a class="anchor"  (click)="viewApplication(auditDTO.auditType)">{{auditDTO.auditName}}</a>
+          <a (click)="goTo(auditDTO)" style="cursor:pointer;color:blue;">{{
+                auditDTO.auditName }}<br><span style="font-size: 11px;">(Improve score or Reduce risk)</span></a>
         </td>
-
         <td>
           {{auditDTO.auditType}}
         </td>
 
         <td>
-          {{auditDTO.appAcronym}}
+          {{auditDTO.auditName}}
         </td>
         <td>
           {{auditDTO.auditDate | filterDate | date:'MM/dd/yyyy'}}
@@ -83,7 +80,7 @@
 
     </tbody>
   </table>
-  <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
   <br>
 
 
