@@ -66,6 +66,7 @@ export class ITPMComponent implements OnInit {
       }
       let position = points.indexOf(pointSelected);
       let label = legends[position].text
+      //console.log(this.lineChartLabelsSystems15[val]);
       this.router.navigate(['itpmAudit' + "/" + label]);
     }
 

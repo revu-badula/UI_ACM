@@ -1,6 +1,6 @@
 
-import { Component, OnInit, ViewChild, ElementRef, TemplateRef, } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Component, OnInit, ViewChild, TemplateRef, } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from '../../apiservice.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UtilService } from '../../util.service';
@@ -65,7 +65,7 @@ export class ItAuditComponent implements OnInit {
   }
 
   goTo(value:any) {
-    sessionStorage.setItem("systemName", value.auditName);
+    sessionStorage.setItem("systemName", value.appAcronym);
     sessionStorage.setItem("systemActive", "true");
     sessionStorage.setItem("disabled", "false");
     sessionStorage.setItem("systemAppAuditId", value.appAuditId);
