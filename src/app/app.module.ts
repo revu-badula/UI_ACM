@@ -117,6 +117,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { DatePipe } from '@angular/common';
 import { ITPMComponent } from './itpm/itpm.component';
 import { ItAuditComponent } from './itpm/it-audit/it-audit.component';
+import { ItIncidentComponent } from './itpm/it-incident/it-incident.component';
 
 @NgModule({
   declarations: [
@@ -200,7 +201,8 @@ import { ItAuditComponent } from './itpm/it-audit/it-audit.component';
     DeviceentryComponent,
     MyTaskComponent,
     ITPMComponent,
-    ItAuditComponent
+    ItAuditComponent,
+    ItIncidentComponent
   ],
 
   imports: [

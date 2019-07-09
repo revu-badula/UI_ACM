@@ -202,6 +202,7 @@ import { IncidentBusinessImpactComponent } from './incident-module/incident-busi
 import { MyTaskComponent } from './my-task/my-task.component';
 import { ITPMComponent } from './itpm/itpm.component';
 import { ItAuditComponent } from './itpm/it-audit/it-audit.component';
+import {ItIncidentComponent} from './itpm/it-incident/it-incident.component'; 
 
 const appRoutes: Routes = [
 
@@ -796,6 +797,7 @@ const appRoutes: Routes = [
   { path: 'incidentStart/:type', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: 'itpm', component: ITPMComponent, canActivate: [AuthGuard] },
   { path: 'itpmAudit/:id/:type', component: ItAuditComponent },
+  { path: 'itpmIncident/:id', component: ItIncidentComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({
