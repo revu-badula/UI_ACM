@@ -19,9 +19,57 @@ export class ITPMComponent implements OnInit {
   public greenData: any = [];
   public showGraph: boolean;
   public loading: boolean;
+  public pendingApplications: any;
+    public p: number = 1;
+    public showPagination:boolean=true;
+public systemsHealth : any;
   constructor(private router: Router, private _apiservice: ApiserviceService) { }
   ngOnInit() {
     this.getData();
+    this.getSystemHealth();
+    this.getPendingApplications();
+  }
+  
+  
+  getPendingApplications() {
+      this.loading = true;
+      this._apiservice.getPendingApplications()
+        .subscribe((data: any) => {
+          this.loading = false;
+          if (data.length === 0) {
+            this.pendingApplications = [];
+            this.showPagination = false;
+          }
+          else {
+            this.pendingApplications = data;
+          }
+        }, error => {
+          this.loading = false;
+          console.log(error);
+        });
+
+    }
+  
+  getSystemHealth()
+  {
+
+      this.loading = true;
+      this._apiservice.getSystemsHealth()
+        .subscribe((data: any) => {
+          this.loading = false;
+          if (data.length === 0) {
+            this.systemsHealth = [];
+            this.showPagination = false;
+          }
+          else {
+            this.systemsHealth = data;
+          }
+        }, error => {
+          this.loading = false;
+          console.log(error);
+        });
+
+    
   }
 
   getData() {
@@ -70,7 +118,6 @@ export class ITPMComponent implements OnInit {
       let position = points.indexOf(pointSelected);
       let label = legends[position].text
       let xValue = this.lineChartLabelsSystems15[val];
-      
       this.router.navigate(['itpmAudit' + "/" + label + "/" + xValue]);
     }
 

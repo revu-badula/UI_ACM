@@ -114,18 +114,18 @@ export class ApiserviceService {
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
-  getMonthOfAuditAssessment() {
+  getMonthOfAuditAssessment(){
     let url = APP_CONFIG.getMonthOfAuditAssessment;
     return this._httpService.get(url)
       .map(res => <Response>res.json());
-
+    
   }
 
-  getAllAuditRiskLevels() {
+  getAllAuditRiskLevels(){
     let url = APP_CONFIG.getAllAuditRiskLevels;
     return this._httpService.get(url)
       .map(res => <Response>res.json());
-
+    
   }
 
   addSolutions(body: any) {
@@ -406,6 +406,16 @@ export class ApiserviceService {
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
+  
+  getSystemsHealth() {
+      return this._httpService.get(APP_CONFIG.getSystemsHealthURL)
+        .map(res => <Response>res.json());
+    }
+  
+  getSystemsHealthCount() {
+      return this._httpService.get(APP_CONFIG.getSystemsHealthCountURL)
+        .map(res => <Response>res.json());
+    }
 
 
   getLocalityForView() {
@@ -473,7 +483,7 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
-  getPoliciesByFam(value: any) {
+  getPoliciesByFam(value:any) {
     let url = APP_CONFIG.getPoliciesByFamId;
     return this._httpService.get(url + '?' + 'policiesByFamId' + '=' + value)
       .map(res => <Response>res.json())
@@ -530,20 +540,11 @@ export class ApiserviceService {
     return this._httpService.get(url)
       .map(res => <Response>res.json());
   }
-
-  getAuditsBasedOnScore(id: any) {
-    let url = APP_CONFIG.getAuditsBasedOnScore;
-    return this._httpService.get(url + '?' + 'riskLevel' + '=' + id)
-      .map(res => <Response>res.json());
-  }
-  getSystemsHealthCount() {
-
-    return this._httpService.get(APP_CONFIG.getSystemsHealthCountURL)
-
-      .map(res => <Response>res.json());
-
-  }
-
-
+  
+  getAuditsBasedOnScore(id :any){
+      let url = APP_CONFIG.getAuditsBasedOnScore;
+      return this._httpService.get(url + '?' + 'riskLevel' + '=' + id)
+        .map(res => <Response>res.json());
+    }
 
 }

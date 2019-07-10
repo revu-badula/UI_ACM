@@ -84,6 +84,7 @@ export const APP_CONFIG = {
   getLocalityAcronyms: apiBaseUrl + 'getLocalityAcrnonyms',
   getLocalityTotal: apiBaseUrl + 'getLocalityTotal',
   getPendingApplications: apiBaseUrl + 'getPendingApplications',
+  getSystemsHealthURL: apiBaseUrl + 'getSystemHealth',
   getLocalityForView: apiBaseUrl + 'getLocalityForView',
   getAllMOUs: apiBaseUrl + 'getAllMOUs',
   getSolOnTypeForReports: apiBaseUrl + 'getSolOnTypeForReports',
@@ -163,7 +164,7 @@ export const APP_CONFIG = {
   getAuditsBasedOnScore :apiBaseUrl + 'getAuditsBasedOnScore',
   getSystemsHealthCountURL: apiBaseUrl + 'getSystemHealthCounts',
   getAssessmentsBasedOnScore: apiBaseUrl + 'getAssessmentsBasedOnScore',
-  getIncidentsOnSeverity : apiBaseUrl +'getIncidentsOnSeverity',
+  getIncidentsOnSeverity :apiBaseUrl +'getIncidentsOnSeverity',
   
 }
 
