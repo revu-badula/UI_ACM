@@ -20,6 +20,9 @@ export class ITPMComponent implements OnInit {
   public showGraph: boolean;
   public loading: boolean;
   public pendingApplications: any;
+  public totalHigh: any;
+  public totalLow:any;
+  public totalModerate:any;
     public p: number = 1;
     public showPagination:boolean=true;
 public systemsHealth : any;
@@ -87,7 +90,9 @@ public systemsHealth : any;
         this.yellowData.push(0);
         this.yellowData.push(0);
         this.yellowData.push(data.incidentModerate);
-
+        this.totalHigh=data.totalHigh;
+        this.totalLow=data.totalLow;
+        this.totalModerate=data.totalModerate;
         this.greenData.push(data.auditLow);
         this.greenData.push(data.assessmentLow);
         this.greenData.push(data.infraStructureLow);

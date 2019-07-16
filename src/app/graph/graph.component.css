@@ -876,14 +876,14 @@
   
   .categoryGrid{
     
-    background-color:URL(/src/assets/img/greyjpg.jpg); 
-   
-    padding: 2%;
+    background-color:lightgrey;
+    margin: 25px;
    }
   
   
   .wrap {
-    width: 100%;
+    width:99.5%;
+    height: 99.5%;;
   
   }
   

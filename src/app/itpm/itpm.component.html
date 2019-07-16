@@ -6,8 +6,12 @@
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <div class="main-panel">
+<div id="form3">
+<div class="categoryGrid">
+	<div class="clearfix wrap">
 
-	<div id="form2">
+
+
                     
 		<mat-sidenav-container class="example-sidenav-container" style="min-height: 100%;background-color: inherit;">
 		
@@ -19,16 +23,16 @@
                           Overall System Health
                         </div>
                         <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                          <span class="dot redDot">4</span>
+                          <span class="dot redDot">{{totalHigh}}</span>
                           <p style="text-align: center;">High</p>
                         </div>
                         <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                          <span class="dot orangeDot">20</span>
+                          <span class="dot orangeDot">{{totalModerate}}</span>
                           <p style="text-align: center;">Moderate</p>
                         </div>
                         
                          <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                          <span class="dot greenDot">20</span>
+                          <span class="dot greenDot">{{totalLow}}</span>
                           <p style="text-align: center;">Low</p>
                         </div>
                         
@@ -88,7 +92,7 @@
 
 						<div class="testITpm">
 							<div class="entryTitle">List of All Systems</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero quod consequuntur quibusdam, enim expedita sed quia nesciunt incidunt accusamus necessitatibus modi adipisci officia libero accusantium esse hic, obcaecati, ullam, laboriosam!</p>
+						
 			
 						<form class="forms">
 							<table class="table table-bordered">
@@ -150,4 +154,6 @@
 
 		</mat-sidenav-container>
 	</div>
+</div>
+</div>
 </div>
