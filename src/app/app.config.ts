@@ -165,6 +165,12 @@ export const APP_CONFIG = {
   getSystemsHealthCountURL: apiBaseUrl + 'getSystemHealthCounts',
   getAssessmentsBasedOnScore: apiBaseUrl + 'getAssessmentsBasedOnScore',
   getIncidentsOnSeverity :apiBaseUrl +'getIncidentsOnSeverity',
+  getServerDetails:apiBaseUrl + 'getServerDetails',
+  getInfraDetails: apiBaseUrl + 'getInfraDetails',
+  getGraphAssessmentsCounts: apiBaseUrl + 'getGraphAssessmentsCounts',
+  getGraphAuditCounts: apiBaseUrl + 'getGraphAuditCounts',
+  getInfraNumbers :apiBaseUrl +'getInfraNumbers',
+
   
 }
 

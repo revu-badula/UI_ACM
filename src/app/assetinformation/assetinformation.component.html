@@ -1,0 +1,341 @@
+
+<!-- <app-loadercomponent></app-loadercomponent> -->
+<div>
+  <div class="save-edit" style="float: right;" *ngIf="showBtt">
+    <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+      data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
+  </div>
+  <form (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
+    <div id="form1">
+      <div class="disclaimer"><span style="float:left">Please use this screen to update device
+          information</span>&nbsp;&nbsp;&nbsp;
+        <span style="float:right">
+          <font color=red>*</font> marked fields are mandatory
+        </span> </div>
+      <fieldset [disabled]='showForm'>
+        <div class="infoBox">
+          <div class="form-row headerOfBox">
+            <h4>Device Information</h4>
+          </div>
+          <div class=" form-row">
+            <div class="form-group col-md-6">
+              <label for="hostName">Host Name<font color="red">*</font></label>
+              <input type="text" class="form-control" [(ngModel)]="device.hostName" ngModel name="host" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="systemTag">System Tag<font color="red">*</font></label>
+              <input type="text" class="form-control" [(ngModel)]="device.systemTag" ngModel name="system" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+
+              <label for="inputState"> Updated By</label>
+              <input type="text" class="form-control" id="lastName" value="{{device.updatedBy}}" readonly="readonly">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName"> Updated Date</label>
+              <input type="text" class="form-control" id="lastName" value="{{device.updatedTs | filterDate}}"
+                readonly="readonly">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="responsibleDivision/unitName">Responsible Division/Unit Name<font color="red">*</font></label>
+              <input type="text" class="form-control" [(ngModel)]="serverContact.divisionName" ngModel name="division"
+                required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="responsibleDivision/unitName">Type of Server<font color="red">*</font></label>
+              <input type="text" class="form-control" [(ngModel)]="device.serverTypeName" ngModel name="serverName"
+                readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Environment<font color="red">*</font></label>
+              <input *ngIf="showForm" type="text" class="form-control" [(ngModel)]="device.serverEnvName" readonly
+                name="serverEnvName">
+              <select  *ngIf="!showForm" [(ngModel)]="device.serverEnvId" style="width:50%;" class="form-control" ngModel  required name="serverEnvName"
+                (change)="device.serverEnvId=$event.target.value">
+                <option *ngFor=" let serverEnv of serverEnvs" value="{{ serverEnv.serverEnvId }}">{{ serverEnv.name}}
+                </option>
+              </select>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <div class="infoBox">
+          <div class="form-row headerOfBox">
+            <h4>Primary Contact</h4>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="firstName">First Name<font color="red">*</font></label>
+              <input type="text" class="form-control" [(ngModel)]="serverContact.firstName" ngModel name="firstname"
+                required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Last Name<font color="red">*</font></label>
+              <input type="text" class="form-control" [(ngModel)]="serverContact.lastName" ngModel name="lastname"
+                required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6" [class.has-error]="email.invalid && email.touched">
+              <label for="email">Email ID<font color="red">*</font></label>
+              <input type="email" class="form-control" [email]="serverContact.emailId!==''" name="email"
+                [(ngModel)]="serverContact.emailId" #email="ngModel" required><br><br>
+              <div style="color:red;padding-left: 43%;" *ngIf="email.errors?.required && email.touched">
+                Email is required
+              </div>
+              <div style="color:red;padding-left: 43%;" *ngIf="email.errors?.email && email.touched">
+                Email is invalid
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="phone">Phone Number<font color="red">*</font></label>
+              <input type="tel" class="form-control" ngModel name="phoneNumber" placeholder="xxx-xxx-xxxx"
+                (keydown)="getPhoneNumber($event,$event.target.value)" [ngModel]="serverContact.phoneNumber" required
+                maxlength="12" minlength="12" (change)="getNumber($event.target.value)" onlyInteger>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="infoBox">
+          <div class="form-row headerOfBox">
+            <h5>Secondary Contact</h5>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="firstName">First Name<font color="red">*</font></label>
+              <input type="text" class="form-control" [(ngModel)]="serverContact1.firstName" ngModel name="fnum"
+                required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Last Name<font color="red">*</font></label>
+              <input type="text" class="form-control" [(ngModel)]="serverContact1.lastName" ngModel name="lnum"
+                required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="email">Email ID<font color="red">*</font></label>
+              <input type="email" class="form-control" [(ngModel)]="serverContact1.emailId" ngModel name="email1"
+                id="email1" #email1="ngModel" [email]="serverContact1.emailId!==''" required><br><br>
+              <div style="color:red;padding-left: 43%;" *ngIf="email1.errors?.required && email1.touched">
+                Email is required
+              </div>
+              <div style="color:red;padding-left: 43%;" *ngIf="email1.errors?.email && email1.dirty">
+                Email is invalid
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="phone">Phone Number<font color="red">*</font></label>
+              <input type="tel" class="form-control" ngModel name="phoneNumb" placeholder="xxx-xxx-xxxx"
+                (keydown)="getPhoneNumber1($event,$event.target.value)" [ngModel]="serverContact1.phoneNumber" required
+                maxlength="12" minlength="12" (change)="getNumber1($event.target.value)" onlyInteger>
+            </div>
+          </div>
+        </div>
+
+        <div class="infoBox">
+          <div class="form-row headerOfBox">
+            <h5>Licensed Information</h5>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="licenceStartDate">License Start Date</label>
+
+              <my-date-picker class="inputState1" name="sname" placeholder="mm/dd/yyyy" [(ngModel)]="startDate"
+                (dateChanged)="getStartDate($event)" [disabled]="showForm"></my-date-picker>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="licenseEndDate">License End Date</label>
+
+              <my-date-picker name="myname" class="inputState1" placeholder="mm/dd/yyyy" [(ngModel)]="endDate"
+                (dateChanged)="getEndDate($event)" [disabled]="showForm"></my-date-picker>
+
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="licenceRenewalDate">License Renewal Date<font color="red">*</font></label>
+
+              <my-date-picker name="lrenew" class="inputState1" placeholder="mm/dd/yyyy" [(ngModel)]="renDate"
+                (dateChanged)="getRenDate($event)" [disabled]="showForm"></my-date-picker>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="vendorName">Vendor Name</label>
+
+              <input type="text" class="form-control" id="vendorName" name="'vname'" [(ngModel)]="device.vendorName">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="productName">Product Name<font color="red">*</font></label>
+              <input type="text" class="form-control" id="productName" ngModel name="product"
+                [(ngModel)]="device.productName" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="costField">Cost Field<font color="red">*</font></label>
+              <!-- <div class="dollar"><input type="number" class="form-control" [(ngModel)]="serverContact.cost" ngModel name="cost"
+                    required></div> -->
+              <div class="input-group col-md-6" style="margin-top: -11px;">
+
+                <div class="input-group-prepend">
+                  <span class="input-group-text dol">$</span>
+                </div>
+                <input type="text" style="margin-top: 10px;" class="form-control"
+                  aria-label="Amount (to the nearest dollar)" [(ngModel)]="serverContact.cost" ngModel name="cost"
+                  required currencyMask
+                  [options]="{ prefix:'', thousands:',', decimal:'.',align:'left',allowNegative:false,nullable:true}">
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="infoBox">
+          <div class="form-row headerOfBox">
+            <h4>Configuration</h4>
+          </div>
+          <div class=" form-row">
+            <div class="form-group col-md-6">
+              <label for="hardware">Hardware</label>
+              <input type="text" class="form-control" id="hardware" [(ngModel)]="device.hardware" name="hardware">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="updateLevel">Control Name</label>
+              <input type="text" class="form-control" name="controlName" [(ngModel)]="device.controlName"
+                id="updateLevel">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="clockFrequency">Clock Frequency</label>
+              <input type="text" class="form-control" id="clockFrequency" [(ngModel)]="device.clockFrequency"
+                name="clock">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="memory">Memory</label>
+              <input type="text" class="form-control" id="memory" [(ngModel)]="device.memorySize" name="memory">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="diskSpace">Disk Space</label>
+              <input type="text" class="form-control" id="diskSpace" [(ngModel)]="device.localDiskSpace" name="space">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cpuCount">CPU Count</label>
+              <input type="text" class="form-control" id="cpuCount" [(ngModel)]="device.cpuCount" name="cpu">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="physicalCpuCount">Physical CPU Count</label>
+              <input type="text" class="form-control" id="physicalCpuCount" [(ngModel)]="device.physicalCpuCount"
+                name="physical">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="logicalCpuCount">Logical CPU Count</label>
+              <input type="text" class="form-control" id="logicalCpuCount" [(ngModel)]="device.logicalCpuCount"
+                name="logical">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="ipAddress">IP Address</label>
+              <input type="text" class="form-control" id="ipAddress" [(ngModel)]="device.ipAddress" name="ipaddress">
+            </div>
+          </div>
+        </div>
+
+        <div class="infoBox">
+          <div class="form-row headerOfBox">
+            <h4>Operating System</h4>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="operatingSystem">Operating System</label>
+              <input type="text" class="form-control" name="operatingSystem" [(ngModel)]="device.operatingSystem"
+                id="operatingSystem">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="version">Version</label>
+              <input type="text" class="form-control" id="version" [(ngModel)]="device.osVersion" name="osversion">
+            </div>
+          </div>
+        </div>
+
+        <div class="infoBox">
+          <div class="form-row headerOfBox">
+            <h4>Database Server</h4>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="db/AppServerName">DB/APP Server Name</label>
+              <input type="text" class="form-control" id="db/AppServerName" [(ngModel)]="device.dbServer"
+                name="dbserver">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="serverName">Server Name</label>
+              <input type="text" class="form-control" id="serverName" [(ngModel)]="device.serverName" name="servername">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="version">Version</label>
+              <input type="text" class="form-control" id="version" [(ngModel)]="device.dbVersion" name="dbversion">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="sizeGb">Size GB</label>
+              <input type="text" class="form-control" id="sizeGb" [(ngModel)]="device.sizeGb" name="sizegb">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="archiveLogMode">Archive Log Mode</label>
+              <input type="text" class="form-control" id="archiveLogMode" [(ngModel)]="device.archiveLogMode"
+                name="db_version">
+            </div>
+          </div>
+        </div>
+
+        <div class="infoBox">
+          <div class="form-row headerOfBox">
+            <h4>Purpose</h4>
+          </div>
+          <div class="form-row">
+            <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm"
+              name="purpose" [(ngModel)]="device.purpose" maxlength="50000" #purpose="ngModel"> </textarea>
+            <!--<div style="float:right">{{50000 - purpose.value.length}} characters left </div> -->
+            <br>
+            <div *ngIf="purpose.errors?.maxlength" style="float:right">
+              <span style="color:tomato"> Exceeded the character limit. </span>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+    </div>
+  </form>
+  <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark" style="margin-left:5%;">Show
+    List</button>
+  <div style="margin-right:5%;">
+    <button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!editForm.valid"
+      *ngIf="isLol">Submit</button>
+    <button type="cancel" routerLink="/devicetab" class="cancel btn btn-primary">Cancel</button>
+  </div>
+</div>

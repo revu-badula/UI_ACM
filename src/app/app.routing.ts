@@ -205,6 +205,9 @@ import { ItAuditComponent } from './itpm/it-audit/it-audit.component';
 import {ItIncidentComponent} from './itpm/it-incident/it-incident.component'; 
 import { NewsidebarComponent } from './newsidebar/newsidebar.component';
 import { NewitpmComponent } from './newitpm/newitpm.component';
+import { AuditsComponent } from './audits/audits.component';
+import { AssessmentsComponent } from './assessments/assessments.component';
+import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 
 const appRoutes: Routes = [
 
@@ -800,7 +803,10 @@ const appRoutes: Routes = [
   { path: 'itpm', component: ITPMComponent, canActivate: [AuthGuard] },
   { path: 'itpmAudit/:id/:type', component: ItAuditComponent },
   { path: 'itpmIncident/:id', component: ItIncidentComponent },
-  { path: 'newside', component: NewitpmComponent},
+  { path: 'newItpm', component: NewitpmComponent},
+  { path: 'newAudit', component: AuditsComponent },
+  { path: 'newAssessment', component: AssessmentsComponent },
+  { path: 'newInfrastructure', component: InfrastructureComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({

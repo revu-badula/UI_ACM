@@ -121,6 +121,13 @@ import { ItIncidentComponent } from './itpm/it-incident/it-incident.component';
 import { NewsidebarComponent } from './newsidebar/newsidebar.component';
 import { NewtogglebarComponent } from './newtogglebar/newtogglebar.component';
 import { NewitpmComponent } from './newitpm/newitpm.component';
+import { AssetDetailComponent } from './asset-detail/asset-detail.component';
+import { AssetinformationComponent } from './assetinformation/assetinformation.component';
+import { InfradetailsComponent } from './infradetails/infradetails.component';
+import { IncidentdetailsComponent } from './incidentdetails/incidentdetails.component';
+import { InfrastructureComponent } from './infrastructure/infrastructure.component';
+import { AssessmentsComponent } from './assessments/assessments.component';
+import { AuditsComponent } from './audits/audits.component';
 
 @NgModule({
   declarations: [
@@ -208,7 +215,14 @@ import { NewitpmComponent } from './newitpm/newitpm.component';
     ItIncidentComponent,
     NewsidebarComponent,
     NewtogglebarComponent,
-    NewitpmComponent
+    NewitpmComponent,
+    AssetDetailComponent,
+    AssetinformationComponent,
+    InfradetailsComponent,
+    IncidentdetailsComponent,
+    AuditsComponent,
+    AssessmentsComponent,
+    InfrastructureComponent
   ],
 
   imports: [

@@ -87,3 +87,47 @@ export class CertDocDTO {
   section: string;
   activeFlag: any;
 }
+export class infrastructureDashboardDTO {
+  appServers: number;
+    dBServers: number;
+  otherServers: number;
+  expired: number;
+    notExpired: number;
+    highIncident : number;
+  mediumIncident : number;
+  lowIncident : number;
+  vendorNumbers:any;
+  
+  
+}
+
+export class inciDashboardDTO {
+  criticalHighInci: number;
+  criticalMediumInci: number;
+  criticalLowInci: number;
+  openIncident: number;
+  closedIncident: number;
+    highIncident : number;
+  mediumIncident : number;
+  lowIncident : number;
+  businessesImpacted:number;
+  systemsImpacted:number;
+  typesOfIncident:any;
+}
+
+export class systemDashboardDTO{
+  systemToAudit:any;
+  sysName:any;
+  auditHigh:any;
+  auditMed:any;
+  auditLow:any;
+  assessHigh:any;
+  assessMed:any;
+  assessLow:any;
+  incidentHigh:any;
+  incidentMed:any;
+  incidentLow:any;
+  infraHigh:any;
+  infraMed:any;
+  infraLow:any;
+}
