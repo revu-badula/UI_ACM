@@ -119,8 +119,6 @@ import { DatePipe } from '@angular/common';
 import { ITPMComponent } from './itpm/itpm.component';
 import { ItAuditComponent } from './itpm/it-audit/it-audit.component';
 import { ItIncidentComponent } from './itpm/it-incident/it-incident.component';
-import { NewsidebarComponent } from './newsidebar/newsidebar.component';
-import { NewtogglebarComponent } from './newtogglebar/newtogglebar.component';
 import { NewitpmComponent } from './newitpm/newitpm.component';
 import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 import { AssetinformationComponent } from './assetinformation/assetinformation.component';
@@ -215,8 +213,6 @@ import { SystemdetailsComponent } from './systemdetails/systemdetails.component'
     ITPMComponent,
     ItAuditComponent,
     ItIncidentComponent,
-    NewsidebarComponent,
-    NewtogglebarComponent,
     NewitpmComponent,
     AssetDetailComponent,
     AssetinformationComponent,

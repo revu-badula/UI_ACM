@@ -35,6 +35,8 @@ import { NewBusinessImpactComponetComponent } from './new-business-impact-compon
 import { IncidentBusinessImpactComponent } from './incident-business-impact/incident-business-impact.component';
 import { MissionService } from './incident-service';
 import { FilterPipe } from '../convertDate.pipe';
+import { NewsidebarComponent } from '../newsidebar/newsidebar.component';
+import { NewtogglebarComponent } from '../newtogglebar/newtogglebar.component';
 @NgModule({
   imports: [
     MatInputModule,
@@ -68,8 +70,8 @@ import { FilterPipe } from '../convertDate.pipe';
     })
   ],
   declarations: [IncidentinfoComponent, IncidentdetailComponent, IncidentclassificationComponent, IncidentImpactComponent, IncidentAssignmentComponent, IncidentResolutionComponent, IncidentBusinessComponent, IncidentTechnicalComponent, IncidentcapComponent,
-    IncidentcloseComponent, PhoneMaskDirective, FilterPipe, IncidentstartComponent, NgbdSortableHeader, NewBusinessImpactComponetComponent, IncidentBusinessImpactComponent],
+    IncidentcloseComponent, PhoneMaskDirective,NewtogglebarComponent,NewsidebarComponent, FilterPipe, IncidentstartComponent, NgbdSortableHeader, NewBusinessImpactComponetComponent, IncidentBusinessImpactComponent],
   providers: [DecimalPipe, DatePipe, MissionService],
-  exports: [FilterPipe,PhoneMaskDirective,NgbdSortableHeader]
+  exports: [FilterPipe,PhoneMaskDirective,NgbdSortableHeader, NewsidebarComponent, NewtogglebarComponent]
 })
 export class IncidentModuleModule { }
