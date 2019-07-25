@@ -1,0 +1,225 @@
+<app-navigation-component></app-navigation-component>
+<div class="sidebar" data-color="danger" data-background-color="white">
+  <app-newsidebar></app-newsidebar>
+</div>
+
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div class="newmainpanel">
+  <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+    <div class="categoryGrid">
+      <div class="clearfix wrap">
+        <div>
+          <h2 class="headerFix">Incidents</h2>
+        </div>
+        <mat-sidenav-container class="example-sidenav-container" style="min-height: 100%;background-color: inherit;">
+          <mat-sidenav-content>
+            <mat-grid-list cols="10" rowHeight="100px">
+              <mat-grid-tile [colspan]="10" [rowspan]="1">
+
+                <div class="newtestITpm">
+                  <div class="entryTitle">Overview </div>
+                  <p class="definationText">This defines all the Incidents.</p>
+
+
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-sidenav-content>
+          <mat-sidenav-content>
+            <mat-grid-list cols="10" rowHeight="100px">
+              <mat-grid-tile [colspan]="5" [rowspan]="2">
+                <div class="newtestITpm">
+                  <div class="entryTitle">
+                    Severity Level
+                  </div>
+                  <p>critcality</p>
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot redDot">{{criticalHighInci}}</span>
+                    <p style="text-align: center;">High</p>
+                  </div>
+
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot orangeDot">{{criticalMediumInci}}</span>
+                    <p style="text-align: center;">Medium</p>
+                  </div>
+
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot greenDot">{{criticalLowInci}}</span>
+                    <p style="text-align: center;">Low</p>
+                  </div>
+
+
+
+                </div>
+
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="5" [rowspan]="2">
+                <div class="newtestITpm">
+                  <div class="entryTitle">
+                    Status
+                  </div>
+                  <p>Renewal required for different assets are displayed in red.</p>
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot redDot">{{openIncident}}</span>
+                    <p style="text-align: center;">Open</p>
+                  </div>
+
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+
+                  </div>
+
+
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot greenDot">{{closedIncident}}</span>
+                    <p style="text-align: center;">Closed</p>
+                  </div>
+
+                </div>
+
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-sidenav-content>
+          <mat-sidenav-content>
+            <mat-grid-list cols="10" rowHeight="100px">
+              <mat-grid-tile [colspan]="5" [rowspan]="2">
+
+                <div class="newtestITpm">
+                  <div class="entryTitle"> Type of Incidents </div>
+
+
+                  <div class="col-md-12" *ngIf="showGraph">
+                    <div style="display: block; width: 100%; height:9rem; background-color: #fff;">
+                      <canvas baseChart [datasets]="lineChartDataAudits" [labels]="lineChartLabelsAudits"
+                        chartType="bar" [legend]="true" (chartClick)="chartClicked($event)"
+                        [options]="chartOptionAudits" [colors]="chartColorsAudits"></canvas>
+                    </div>
+
+
+                  </div>
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="5" [rowspan]="2">
+                <div class="newtestITpm">
+                  <div class="entryTitle">
+                    Average Time
+                  </div>
+                  <p>Average Time to close the incidents</p>
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot redDot">{{4}}</span>
+                    <p>Days</p>
+
+                  </div>
+
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot orangeDot">{{5}}</span>
+                    <p>Days</p>
+                  </div>
+
+
+
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot greenDot">{{6}}</span>
+                    <p>Days</p>
+                  </div>
+
+                </div>
+
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-sidenav-content>
+          <mat-sidenav-content>
+            <mat-grid-list cols="10" rowHeight="100px">
+
+              <mat-grid-tile [colspan]="5" [rowspan]="2">
+                <div class="newtestITpm">
+                  <div class="entryTitle">
+                    Impacted Assets
+                  </div>
+                  <p>Renewal required for different assets are displayed in red.</p>
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot redDot">{{highIncidents}}</span>
+
+                  </div>
+
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot orangeDot">{{mediumIncidents}}</span>
+
+                  </div>
+
+
+                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                    <span class="dot greenDot">{{lowIncidents}}</span>
+
+                  </div>
+
+                </div>
+
+              </mat-grid-tile>
+
+
+              <mat-grid-tile [colspan]="5" [rowspan]="2">
+                <div class="newtestITpm">
+                  <div class="entryTitle">Overall Open</div>
+                  <div class="card-body">
+
+                    <div class="row">
+                      <div class="col-md-3 pull-left" (click)="getPolicyGrpData('open')">
+                        <span class="adsquare adsquarecolor">{{systemsImpacted}}</span>
+                        <p style="text-align: center;">Systems Impacted</p>
+                      </div>
+                      <div class="col-md-2 pull-left"></div>
+                      <div class="col-md-3 pull-left" (click)="getPolicyGrpData('close')">
+                        <span class="adsquare adsquarecolor">{{businessesImpacted}}</span>
+                        <p style="text-align: center;">Businesses Impacted</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="10" [rowspan]="6">
+                <div class="newtestITpm">
+                  <div class="entryTitle">Incidents</div>
+                  <div class="incidentPlus">
+                    <i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 24px;"
+                      (click)="createSystem()"></i>
+                  </div>
+                  <br><br>
+                  <table class="policyTable">
+                    <thead>
+                      <tr>
+                        <th sortable="shortDescription" (sort)="getSort($event)">Name</th>
+                        <th sortable="reportedBy" (sort)="getSort($event)">Reported By</th>
+                        <th sortable="serverity" (sort)="getSort($event)">Severity</th>
+                        <th sortable="status" (sort)="getSort($event)">Staus</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let incident of incidents | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <td><a class="incidentLink"
+                            (click)="viewApplication(incident.incidentId)">{{incident.shortDescription}}</a></td>
+                        <td>{{incident.reportedBy}}</td>
+                        <td>{{incident.severity}}</td>
+                        <td>{{incident.status}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+
+
+              </mat-grid-tile>
+
+
+
+
+            </mat-grid-list>
+          </mat-sidenav-content>
+
+        </mat-sidenav-container>
+      </div>
+    </div>
+  </div>
+</div>

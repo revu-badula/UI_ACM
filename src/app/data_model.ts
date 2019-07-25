@@ -2,7 +2,6 @@
  * New typescript file
  */
 
-import { IMyDate } from 'mydatepicker';
 
 export class Solution {
   solutionId: number;
@@ -89,16 +88,17 @@ export class CertDocDTO {
 }
 export class infrastructureDashboardDTO {
   appServers: number;
-    dBServers: number;
+  dBServers: number;
   otherServers: number;
   expired: number;
-    notExpired: number;
-    highIncident : number;
-  mediumIncident : number;
-  lowIncident : number;
-  vendorNumbers:any;
-  
-  
+  notExpired: number;
+  highIncident: number;
+  mediumIncident: number;
+  lowIncident: number;
+  vendorNumbers: any;
+  typesOfIncident: any;
+
+
 }
 
 export class inciDashboardDTO {
@@ -107,27 +107,27 @@ export class inciDashboardDTO {
   criticalLowInci: number;
   openIncident: number;
   closedIncident: number;
-    highIncident : number;
-  mediumIncident : number;
-  lowIncident : number;
-  businessesImpacted:number;
-  systemsImpacted:number;
-  typesOfIncident:any;
+  highIncident: number;
+  mediumIncident: number;
+  lowIncident: number;
+  businessesImpacted: number;
+  systemsImpacted: number;
+  typesOfIncident: any;
 }
 
-export class systemDashboardDTO{
-  systemToAudit:any;
-  sysName:any;
-  auditHigh:any;
-  auditMed:any;
-  auditLow:any;
-  assessHigh:any;
-  assessMed:any;
-  assessLow:any;
-  incidentHigh:any;
-  incidentMed:any;
-  incidentLow:any;
-  infraHigh:any;
-  infraMed:any;
-  infraLow:any;
+export class systemDashboardDTO {
+  systemToAudit: any;
+  sysName: any;
+  auditHigh: any;
+  auditMed: any;
+  auditLow: any;
+  assessHigh: any;
+  assessMed: any;
+  assessLow: any;
+  incidentHigh: any;
+  incidentMed: any;
+  incidentLow: any;
+  infraHigh: any;
+  infraMed: any;
+  infraLow: any;
 }

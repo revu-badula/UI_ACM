@@ -1,0 +1,108 @@
+ <app-navigation-component></app-navigation-component>
+<div class="sidebar" data-color="danger" data-background-color="white">
+  <app-newsidebar></app-newsidebar>
+</div>
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<div class="newmainpanel">
+  <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+    <div class="categoryGrid">
+      <div class="clearfix wrap">
+        <div>
+          <h2 class="headerFix">System Details</h2>
+        </div>
+        <mat-sidenav-container class="example-sidenav-container" style="min-height: 100%;background-color: inherit;">
+
+          <mat-sidenav-content>
+            <mat-grid-list cols="10" rowHeight="100px">
+              <mat-grid-tile [colspan]="10" [rowspan]="1">
+
+                <div class="newtestITpm">
+                  <div class="entryTitle">Overview </div>
+                  <p class="definationText">This defines all the Information Technology Portfolio Manager.</p>
+
+
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="10" [rowspan]="4">
+
+                <div class="newtestITpm">
+                  <div class="entryTitle"><span style="float: left"> System Health:</span>
+                    <span style="float:right">
+                        <input type="checkbox" [(ngModel)]="theHigh"  data-md-icheck (change)="toggleVisibilityH($event)"/>High &nbsp; 
+                        <input type="checkbox" [(ngModel)]="theMed"  data-md-icheck (change)="toggleVisibilityM($event)"/>Medium &nbsp; 
+                        <input type="checkbox" [(ngModel)]="theLow"  data-md-icheck (change)="toggleVisibilityL($event)"/>Low 
+                  </span>
+                  </div>
+                  <p>Place holder for bar chart</p>
+
+                  <div class="col-md-12" *ngIf="showGraph">
+                    <div style="display: block; width: 100%; height: 18rem; background-color: #fff;">
+                      <canvas baseChart [datasets]="lineChartDataSystems15" [labels]="lineChartLabelsSystems15"
+                        chartType="bar" [legend]="true" (chartClick)="chartClicked($event)" [options]="chartOption15"
+                        [colors]="chartColorsSystems15"></canvas>
+                    </div>
+
+
+                  </div>
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="10" [rowspan]="4">
+                <div class="newtestITpm">
+                  <div class="entryTitle">List of All Systems</div>
+
+
+                  <form class="forms">
+                    <table class="policyTable">
+                      <thead>
+                        <tr>
+                          <th scope="col" sortable="acronym" (sort)="getSort($event)">System Name
+
+                          </th>
+
+                          <th scope="col" sortable="businessOwnerNameDoe" (sort)="getSort($event)">System Owner
+                          </th>
+
+
+                          <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">Audit
+                          </th>
+                          <th scope="col" sortable="updatedBy" (sort)="getSort($event)">Assessment
+                          </th>
+                          <th scope="col" sortable="updatedTs" (sort)="getSort($event)">Incident
+                          </th>
+                          <th scope="col" sortable="updatedTs" (sort)="getSort($event)">Testing
+                          </th>
+                          <th scope="col" sortable="updatedTs" (sort)="getSort($event)">Infrastructure
+                            </th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                       <tr>
+                         <td style="color: blue;cursor: pointer;" routerLink="/audit">Test</td>
+                         <td>Test</td>
+                         <td>Test</td>
+                         <td>Test</td>
+                         <td>Test</td>
+                         <td>Test</td>
+                         <td>Test</td>
+                       </tr>
+
+                      </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                  </form>
+
+
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-sidenav-content>
+        </mat-sidenav-container>
+      </div>
+    </div>
+  </div>
+</div>

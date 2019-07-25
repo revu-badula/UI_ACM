@@ -170,7 +170,7 @@ export const APP_CONFIG = {
   getGraphAssessmentsCounts: apiBaseUrl + 'getGraphAssessmentsCounts',
   getGraphAuditCounts: apiBaseUrl + 'getGraphAuditCounts',
   getInfraNumbers :apiBaseUrl +'getInfraNumbers',
-
+  getInciNumbers: apiBaseUrl +'getInciNumbers',
   
 }
 

@@ -1,3 +1,4 @@
+import { IncidentsComponent } from './incidents/incidents.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -128,6 +129,7 @@ import { IncidentdetailsComponent } from './incidentdetails/incidentdetails.comp
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { AssessmentsComponent } from './assessments/assessments.component';
 import { AuditsComponent } from './audits/audits.component';
+import { SystemdetailsComponent } from './systemdetails/systemdetails.component';
 
 @NgModule({
   declarations: [
@@ -222,7 +224,9 @@ import { AuditsComponent } from './audits/audits.component';
     IncidentdetailsComponent,
     AuditsComponent,
     AssessmentsComponent,
-    InfrastructureComponent
+    InfrastructureComponent,
+    IncidentsComponent,
+    SystemdetailsComponent
   ],
 
   imports: [
