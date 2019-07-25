@@ -1,8 +1,15 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
-import { Chart, ChartDataSets } from 'chart.js';
+import { Component, OnInit, ViewChildren, QueryList, ViewChild } from '@angular/core';
+
+import {Chart, ChartDataSets  } from 'chart.js';
 import { Router } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 import { NgbdSortableHeader, SortEvent } from '../sort';
+import { systemDashboardDTO } from '../data_model';
+import {SimpleChanges} from '@angular/core';
+import { BaseChartDirective } from 'ng2-charts/ng2-charts';
+import {ChangeDetectorRef} from '@angular/core';
+import { UtilService } from '../util.service';
+import { APP_CONFIG } from '../app.config';
 import { AlertService } from '../alert.service';
 
 @Component({
@@ -12,6 +19,7 @@ import { AlertService } from '../alert.service';
 })
 export class SystemdetailsComponent implements OnInit {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+  @ViewChild(BaseChartDirective) chart1: BaseChartDirective;
   public redData: any = [];
   public yellowData: any = [];
   public greenData: any = [];
@@ -24,18 +32,22 @@ export class SystemdetailsComponent implements OnInit {
   public p: number = 1;
   public showPagination: boolean = true;
   public systemsHealth: any;
-  public theHigh: boolean = false;
-  public theMed: boolean = false;
-  public theLow: boolean = false;
+  public theHigh: boolean = UtilService.theHigh;
+  public theMed: boolean = UtilService.theMed;
+  public theLow: boolean = UtilService.theLow;
+  public systemDashboardDTO : systemDashboardDTO;
 
-  constructor(public sideNavService: AlertService, private _apiservice: ApiserviceService, private router: Router, ) { }
+  constructor( private _apiservice: ApiserviceService, private router: Router,private cd : ChangeDetectorRef, private utilservice: UtilService, public sideNavService : AlertService) { }
 
   ngOnInit() {
-
-
     this.getSystemHealth();
     this.getPendingApplications();
+    this.getSystemNumbers();
+    this.getData();
   }
+
+
+
 
   getPendingApplications() {
     this.loading = true;
@@ -55,6 +67,28 @@ export class SystemdetailsComponent implements OnInit {
       });
 
   }
+
+  getSystemNumbers(){
+    this.loading = true;
+    this._apiservice.getSystemNumber()
+    .subscribe((data :any) =>  {
+      this.loading = false;
+      if (data.length === 0) {
+        this.systemsHealth = [];
+        this.showPagination = false;
+      }
+      else {
+        this.systemDashboardDTO = data;
+      }
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
+
+}
+
+
+  
 
   getSystemHealth() {
 
@@ -80,19 +114,25 @@ export class SystemdetailsComponent implements OnInit {
   toggleVisibilityH(e){
 
     this.theHigh= e.target.checked;
+    console.log("high "+this.theHigh);
     this.getData();
+    this.cd.detectChanges();
   }
 
   toggleVisibilityM(e){
 
     this.theMed= e.target.checked;
+    console.log("med "+this.theMed);
     this.getData();
+    this.cd.detectChanges();
   }
 
   toggleVisibilityL(e){
  
     this.theLow= e.target.checked;
+    console.log("Low "+this.theLow);
     this.getData();
+    this.cd.detectChanges();
   }
 
   getData() {
@@ -115,25 +155,31 @@ export class SystemdetailsComponent implements OnInit {
         this.greenData.push(data.infraStructureLow);
         this.greenData.push(data.testingLow);
         this.greenData.push(data.incidentLow);
+
+        this.lineChartDataSystems15[0].data = null;
+        this.lineChartDataSystems15[1].data = null;
+        this.lineChartDataSystems15[2].data = null;
        
         this.showGraph = false;
         if (this.theHigh) {
           this.lineChartDataSystems15[0].data = this.redData;
+          console.log("red "+this.redData);
         }
 
 
          if (this.theMed) {
+          console.log("yellow "+this.yellowData);
           this.lineChartDataSystems15[1].data = this.yellowData;
          
         }
 
          if (this.theLow) {
+          console.log("green "+this.greenData);
           this.lineChartDataSystems15[2].data = this.greenData;
         }
 
-        this.lineChartDataSystems15.update(1000);
-
-
+        this.chartOption15.animation
+        this.cd.detectChanges();
         this.totalHigh = data.totalHigh;
         this.totalLow = data.totalLow;
         this.totalModerate = data.totalModerate;
@@ -159,14 +205,23 @@ export class SystemdetailsComponent implements OnInit {
       let position = points.indexOf(pointSelected);
       let label = legends[position].text
       let xValue = this.lineChartLabelsSystems15[val];
-      this.router.navigate(['/audit' + "/" + label + "/" + xValue]);
-      //this.router.navigate(['/audit']);
+      if(xValue === 'Audits'){
+        this.router.navigate(['/audit' + "/" + label + "/" + xValue]);
+        }
+        if(xValue === 'Assessments')
+        {
+          this.router.navigate(['/assessment']);
+        }
+  
+        if(xValue === 'Incidents')
+        {
+          this.router.navigate(['/incidents']);
+        }
+
+      }
+    
     }
 
-
-
-
-  }
 
 
   public lineChartDataSystems15: ChartDataSets<any> = [
@@ -200,6 +255,7 @@ export class SystemdetailsComponent implements OnInit {
             var data = dataset.data[index];
             if (data > 0) {
               ctx.fillText(data, bar._model.x, bar._model.y - 5);
+             
             }
           });
         });
@@ -208,14 +264,7 @@ export class SystemdetailsComponent implements OnInit {
     scales: {
       yAxes: [
         {
-          // id: 'Audits',
-          // scaleLabel: {
-          //   display: true,
-          //   labelString: 'Audits',
-          //   fontColor: '#000',
-          //   fontWeight: 'bold',
-          //   fontSize: '20'
-          // },
+     
           ticks: {
             beginAtZero: true,
           },
@@ -225,14 +274,7 @@ export class SystemdetailsComponent implements OnInit {
       xAxes: [
 
         {
-          // id: 'Upcoming Audits for Systems',
-          // scaleLabel: {
-          //   //display: true,
-          //   // labelString: 'Upcoming Audits for Systems',
-          //   fontColor: '#000',
-          //   fontWeight:'bold',
-          //   fontSize:5
-          // },
+       
           barThickness: 25,
           display: true,
           gridLines: {

@@ -1,4 +1,4 @@
- <app-navigation-component></app-navigation-component>
+<app-navigation-component></app-navigation-component>
 <div class="sidebar" data-color="danger" data-background-color="white">
   <app-newsidebar></app-newsidebar>
 </div>
@@ -30,16 +30,16 @@
                 <div class="newtestITpm">
                   <div class="entryTitle"><span style="float: left"> System Health:</span>
                     <span style="float:right">
-                        <input type="checkbox" [(ngModel)]="theHigh"  data-md-icheck (change)="toggleVisibilityH($event)"/>High &nbsp; 
-                        <input type="checkbox" [(ngModel)]="theMed"  data-md-icheck (change)="toggleVisibilityM($event)"/>Medium &nbsp; 
-                        <input type="checkbox" [(ngModel)]="theLow"  data-md-icheck (change)="toggleVisibilityL($event)"/>Low 
+                        <input type="checkbox"  class="checkboxes" [(ngModel)]="theHigh"  data-md-icheck (change)="toggleVisibilityH($event)"/>High &nbsp; 
+                        <input type="checkbox" class="checkboxes" [(ngModel)]="theMed"  data-md-icheck (change)="toggleVisibilityM($event)"/>Medium &nbsp; 
+                        <input type="checkbox" class="checkboxes" [(ngModel)]="theLow"  data-md-icheck (change)="toggleVisibilityL($event)"/>Low 
                   </span>
                   </div>
-                  <p>Place holder for bar chart</p>
+                
 
                   <div class="col-md-12" *ngIf="showGraph">
                     <div style="display: block; width: 100%; height: 18rem; background-color: #fff;">
-                      <canvas baseChart [datasets]="lineChartDataSystems15" [labels]="lineChartLabelsSystems15"
+                      <canvas baseChart #chart1 [datasets]="lineChartDataSystems15" [labels]="lineChartLabelsSystems15"
                         chartType="bar" [legend]="true" (chartClick)="chartClicked($event)" [options]="chartOption15"
                         [colors]="chartColorsSystems15"></canvas>
                     </div>
@@ -53,17 +53,13 @@
                   <div class="entryTitle">List of All Systems</div>
 
 
-                  <form class="forms">
+                  <form >
                     <table class="policyTable">
                       <thead>
                         <tr>
                           <th scope="col" sortable="acronym" (sort)="getSort($event)">System Name
 
                           </th>
-
-                          <th scope="col" sortable="businessOwnerNameDoe" (sort)="getSort($event)">System Owner
-                          </th>
-
 
                           <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">Audit
                           </th>
@@ -80,12 +76,25 @@
                       </thead>
                       <tbody>
 
-                       <tr>
-                         <td style="color: blue;cursor: pointer;" routerLink="/audit">Test</td>
-                         <td>Test</td>
-                         <td>Test</td>
-                         <td>Test</td>
-                         <td>Test</td>
+                       <tr 
+                       *ngFor="let systemDashboard of systemDashboardDTO | paginate: { itemsPerPage: 10, currentPage: p }">
+                         <td style="color: blue;cursor: pointer;">{{systemDashboard.sysName}}</td>
+                         <td>
+                           <span style="color:maroon">{{systemDashboard.auditHigh}}</span> &nbsp;
+                           <span style="color:orange">{{systemDashboard.auditMed}}</span> &nbsp;
+                           <span style="color:green">{{systemDashboard.auditLow}}</span> &nbsp;
+                        </td>
+                        <td>
+                            <span style="color:maroon">{{systemDashboard.assessHigh}}</span> &nbsp;
+                            <span style="color:orange">{{systemDashboard.assessMed}}</span> &nbsp;
+                            <span style="color:green">{{systemDashboard.assessLow}}</span> &nbsp;
+                         </td>
+                         <td>
+                            <span style="color:maroon">{{systemDashboard.incidentHigh}}</span> &nbsp;
+                            <span style="color:orange">{{systemDashboard.incidentMed}}</span> &nbsp;
+                            <span style="color:green">{{systemDashboard.incidentLow}}</span> &nbsp;
+                         </td>
+                         
                          <td>Test</td>
                          <td>Test</td>
                        </tr>

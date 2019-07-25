@@ -34,16 +34,16 @@
                           Overall System Health
                         </div>
                         <p>This will display the overall health of the systems.</p>
-                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/systemDetails">
+                        <div class="col-md-4 pull-left" style="outline: none;"(click)="getHigh()"  routerLink="/newSystemDetails">
                           <span class="dot redDot">{{totalHigh}}</span>
                           <p style="text-align: center;">High</p>
                         </div>
-                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                        <div class="col-md-4 pull-left" style="outline: none;" (click)="getMed()"  routerLink="/newSystemDetails">
                           <span class="dot orangeDot">{{totalModerate}}</span>
                           <p style="text-align: center;">Moderate</p>
                         </div>
                         
-                         <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                         <div class="col-md-4 pull-left" style="outline: none;" (click)="getLow()" routerLink="/newSystemDetails">
                           <span class="dot greenDot">{{totalLow}}</span>
                           <p style="text-align: center;">Low</p>
                         </div>

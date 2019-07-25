@@ -25,6 +25,13 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
   }
 
+  getSystemNumber(){
+    let url = APP_CONFIG.getSystemNumber;
+    return this._httpService.get(url)
+      .map(res => <Response>res.json());
+    
+  }
+
   getDatabases() {
     let url = APP_CONFIG.getDatabases;
     return this._httpService.get(url)
@@ -266,6 +273,9 @@ export class ApiserviceService {
 
 
   }
+
+
+  
 
   assignReviewers(data: any) {
     let url = APP_CONFIG.assignReviewers;
