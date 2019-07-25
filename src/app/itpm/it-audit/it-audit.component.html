@@ -3,7 +3,19 @@
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
+<div class="navigate newSticky">
 
+  <div class="form-options">
+    <div class="home-back">
+      <a href="javascript:void(0)" (click)="backClicked()">
+        <fa class="left-icons left-icon icons" data-toggle="tooltip" data-placement="right" title="Back"
+          data-animation="true" data-delay="0" [name]="'arrow-left'"></fa>
+      </a>
+    </div>
+
+
+  </div>
+</div>
 <div>
   <h3 class="pageTitle">{{mainData}}</h3>
   <hr>
@@ -12,26 +24,26 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col" *ngIf="!showType">Audit Name</th>
-        <th scope="col" *ngIf="showType">Assessment Name</th>
-        <th scope="col" *ngIf="!showType">Audit Type</th>
-        <th scope="col">Application Name
+        <th scope="col" sortable="auditName" (sort)="getSort($event)" *ngIf="!showType">Audit Name</th>
+        <th scope="col" sortable="name" (sort)="getSort($event)" *ngIf="showType">Assessment Name</th>
+        <th scope="col" sortable="auditType" (sort)="getSort($event)" *ngIf="!showType">Audit Type</th>
+        <th scope="col" sortable="appAcronym" (sort)="getSort($event)">Application Name
         </th>
-        <th scope="col" *ngIf="!showType">Audit Date</th>
-        <th scope="col" *ngIf="showType">Assessment Date</th>
-        <th scope="col" *ngIf="!showType">Next Audit Date</th>
-        <th scope="col" *ngIf="showType">Next Assessment Date</th>
-        <th scope="col">
+        <th scope="col" sortable="auditDate" (sort)="getSort($event)" *ngIf="!showType">Audit Date</th>
+        <th scope="col" sortable="assessmentDt" (sort)="getSort($event)" *ngIf="showType">Assessment Date</th>
+        <th scope="col" sortable="nextAuditDate" (sort)="getSort($event)" *ngIf="!showType">Next Audit Date</th>
+        <th scope="col" sortable="nextAssessmentDt" (sort)="getSort($event)" *ngIf="showType">Next Assessment Date</th>
+        <th scope="col" sortable="updatedBy" (sort)="getSort($event)">
           Updated By
         </th>
-        <th scope="col">
+        <th scope="col" sortable="updatedTs" (sort)="getSort($event)">
           Updated Date
         </th>
-        <th scope="col">
+        <th scope="col" sortable="overallRiskLevel" (sort)="getSort($event)">
           Risk Level
         </th>
 
-        <th scope="col">
+        <th scope="col" sortable="status" (sort)="getSort($event)">
           Status
         </th>
 
@@ -57,15 +69,15 @@
           {{auditDTO.auditDate | filterDate | date:'MM/dd/yyyy'}}
         </td>
         <td *ngIf="showType">
-            {{auditDTO.assessmentDt | filterDate | date:'MM/dd/yyyy'}}
-          </td>
+          {{auditDTO.assessmentDt | filterDate | date:'MM/dd/yyyy'}}
+        </td>
 
         <td *ngIf="!showType">
           {{auditDTO.nextAuditDate | filterDate | date:'MM/dd/yyyy'}}
         </td>
         <td *ngIf="showType">
-            {{auditDTO.nextAssessmentDt | filterDate | date:'MM/dd/yyyy'}}
-          </td>
+          {{auditDTO.nextAssessmentDt | filterDate | date:'MM/dd/yyyy'}}
+        </td>
         <td>
           {{auditDTO.updatedBy}}
         </td>
@@ -73,8 +85,8 @@
           {{auditDTO.upadateTs | filterDate | date:'MM/dd/yyyy' }}
         </td>
         <td *ngIf="showType">
-            {{auditDTO.updatedTs | filterDate | date:'MM/dd/yyyy' }}
-          </td>
+          {{auditDTO.updatedTs | filterDate | date:'MM/dd/yyyy' }}
+        </td>
         <td>
           {{auditDTO.overallRiskLevel }}
         </td>

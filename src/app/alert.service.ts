@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class AlertService {
+    public hideSideNav: boolean = false;
     private subject = new Subject<any>();
     private childData = new Subject<any>();
     private childData2 = new Subject<any>();
@@ -53,5 +54,10 @@ export class AlertService {
     getChildData(): Observable<any> {
         return this.childData.asObservable();
     }
+
+
+    toggleSideNav(): void {
+        this.hideSideNav = !this.hideSideNav;
+      }
   
 }

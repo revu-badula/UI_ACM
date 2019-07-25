@@ -118,6 +118,9 @@ import { DatePipe } from '@angular/common';
 import { ITPMComponent } from './itpm/itpm.component';
 import { ItAuditComponent } from './itpm/it-audit/it-audit.component';
 import { ItIncidentComponent } from './itpm/it-incident/it-incident.component';
+import { NewsidebarComponent } from './newsidebar/newsidebar.component';
+import { NewtogglebarComponent } from './newtogglebar/newtogglebar.component';
+import { NewitpmComponent } from './newitpm/newitpm.component';
 
 @NgModule({
   declarations: [
@@ -202,7 +205,10 @@ import { ItIncidentComponent } from './itpm/it-incident/it-incident.component';
     MyTaskComponent,
     ITPMComponent,
     ItAuditComponent,
-    ItIncidentComponent
+    ItIncidentComponent,
+    NewsidebarComponent,
+    NewtogglebarComponent,
+    NewitpmComponent
   ],
 
   imports: [

@@ -40,19 +40,19 @@ export class ItIncidentComponent implements OnInit {
  
   }
 
-  getIncidents(id:any) {
-    this.loading = true;
-    let url = APP_CONFIG.getIncidentsOnSeverity;
-    this.httpClient.get(url+ "?severity=" + id)
-      .subscribe((data: any) => {
-        this.loading = false;
-        this.incidents = data;
-      }, error => {
-        this.loading = false;
-        console.log(error);
-      });
+  // getIncidents(id:any) {
+  //   this.loading = true;
+  //   let url = APP_CONFIG.getIncidentsOnSeverity;
+  //   this.httpClient.get(url+ "?severity=" + id)
+  //     .subscribe((data: any) => {
+  //       this.loading = false;
+  //       this.incidents = data;
+  //     }, error => {
+  //       this.loading = false;
+  //       console.log(error);
+  //     });
 
-  }
+  // }
 
   viewApplication(incidentId: any) {
     if(!this.show){

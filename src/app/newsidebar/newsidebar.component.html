@@ -1,0 +1,178 @@
+<div class="sidebar-wrapper" [ngClass]="{'d-none': sideNavService.hideSideNav }">
+  <app-newtogglebar></app-newtogglebar>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/rms/rmsSrt">
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>Risk Management Framework</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/resImpactAnalysis">
+                <i class="fa fa-tasks fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>Business Impact Analysis</p>
+            </a>
+        </li>
+        
+           <li class="nav-item">
+            <a class="nav-link" routerLink="/policy">
+                <i class="fa fa-tasks fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>Policies</p>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/system/map">
+                <i class="fa fa-cogs fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>IT Portfolio Manager</p>
+            </a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/itpm">
+                <i class="fa fa-cogs fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>ITPM</p>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/infrastructure">
+                <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>Infrastructure Manager</p>
+            </a>
+  
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/audit">
+                <i class="fa fa-suitcase fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>Audit</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/assessment">
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>Assessmemt</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/locality/map">
+                <i class="fa fa-map-marker" aria-hidden="true" style="color: black;"></i>
+                Locations
+            </a>
+  
+        </li>
+  
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/reports">
+                <i class="fa fa-area-chart fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>Reports</p>
+            </a>
+        </li>
+  
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/incidents">
+                <i class="fa fa-area-chart fa-3x" aria-hidden="true" style="color: black;"></i>
+                <p>Incident Management</p>
+            </a>
+        </li>
+  
+    </ul>
+  </div>
+  
+  <div class="sidebar-wrapper-icon" [ngClass]="{'d-none': !sideNavService.hideSideNav }">
+  <app-newtogglebar></app-newtogglebar>
+    <ul class="nav">
+       
+         <li class="nav-item">
+            <a class="nav-link" routerLink="/rms/rmsSrt">
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/resImpactAnalysis">
+                <i class="fa fa-tasks fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#adminMenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-file-text fa-3x" aria-hidden="true" style="color: black;"></i>
+                <!-- Policies -->
+            </a>
+          
+        </li>
+  
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/system/map">
+                <i class="fa fa-cogs fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/itpm">
+                <i class="fa fa-cogs fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/deviceEntry">
+                <i class="fa fa-laptop fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+  
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="getOpen()">
+                <i class="fa fa-suitcase fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="getOpen()">
+                <i class="fa fa-check-square-o fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" routerLink="/locality/map">
+                <i class="fa fa-map-marker" aria-hidden="true" style="color: black;"></i>
+                Locations
+            </a>
+  
+        </li>
+        <li class="nav-item">
+            <a href="#adminMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-user" aria-hidden="true" style="color: black;"></i>
+                Certified Vendors
+            </a>
+            <ul class="collapse list-unstyled" id="adminMenu">
+                <li>
+                    <a routerLink="/vendors">Create</a>
+                </li>
+                <li>
+                    <a class="" routerLink="/vendorsView">View/Edit</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="#adminMenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-paper-plane fa-3x" aria-hidden="true" style="color: black;"></i>
+                Certified Solutions
+            </a>
+            <ul class="collapse list-unstyled" id="adminMenu1">
+                <li>
+                    <a routerLink="/solutions">Create</a>
+                </li>
+                <li>
+                    <a class="" routerLink="/solutionsView">View/Edit</a>
+                </li>
+            </ul>
+        </li> -->
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/reports">
+                <i class="fa fa-area-chart fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+        </li>
+  
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/incidentStart">
+                <i class="fa fa-area-chart fa-3x" aria-hidden="true" style="color: black;"></i>
+            </a>
+        </li>
+        
+    </ul>
+  </div>
