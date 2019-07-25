@@ -118,6 +118,7 @@ chartClicked(value: any) {
     let val: any = value.active[0]._index;
     //console.log(val);
     var points = [];
+    
     var pointSelected = value.active[0]._chart.tooltip._model.caretX;
     var legends = value.active[0]._chart.legend.legendItems;
     for (var i = 0; i < value.active.length; ++i) {
