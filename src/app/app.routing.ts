@@ -1,3 +1,4 @@
+import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 import { SystemDetailsComponent } from './system-component/system-tab/system-details/system-details.component';
 import { SystemComponentComponent } from './system-component/system-component.component';
 import { SystemTabComponent } from './system-component/system-tab/system-tab.component';
@@ -210,6 +211,7 @@ import { AssessmentsComponent } from './assessments/assessments.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { IncidentsComponent } from './incidents/incidents.component';
 import { SystemdetailsComponent } from './systemdetails/systemdetails.component';
+import { InfradetailsComponent } from './infradetails/infradetails.component';
 
 const appRoutes: Routes = [
 
@@ -807,10 +809,13 @@ const appRoutes: Routes = [
   { path: 'itpmIncident/:id', component: ItIncidentComponent },
   { path: 'newItpm', component: NewitpmComponent },
   { path: 'newAudit', component: AuditsComponent },
+  { path: 'newAudit/:id/:type', component: AuditsComponent },
   { path: 'newAssessment', component: AssessmentsComponent },
   { path: 'newInfrastructure', component: InfrastructureComponent },
   { path: 'newIncidents', component: IncidentsComponent },
   { path: 'newSystemDetails', component: SystemdetailsComponent},
+  { path: 'infraDetails/:type', component: InfradetailsComponent },
+  { path: 'assetDetails/:id', component: AssetDetailComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 @NgModule({

@@ -1,101 +1,103 @@
 <div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  </div>
+<!-- <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
 <div class="plus" style="float:right">
   <i *ngIf="showEditButton" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
     (click)="editClick()"></i>
-</div>
+</div> -->
 
-<form #formName="ngForm"  enctype="multipart/form-data">
-
-  <div id="formSame">
-    <div class="disclaimer"><span>Please use this screen to add information.</span>&nbsp;&nbsp;&nbsp;
+<!-- <div class="disclaimer"><span>Please use this screen to add information.</span>&nbsp;&nbsp;&nbsp;
       <span style="float:right">
         <font color=red>*</font> marked fields are mandatory
-      </span> </div>
-    <fieldset [disabled]="showEditButton">
-      <div class="infoBox">
-        <div class="form-row headerOfBox">
-          <h4>General Information</h4>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label class="fam">Submitted By<span class="asterisk">*</span></label>
-            <input type="text" name="submittedBy" [(ngModel)]="imBusinessRiskDTO.submittedBy" class="form-control">
-          </div>
-          <div class="form-group col-md-6">
-            <label class="fam">Submitted On<span class="asterisk">*</span></label>
-            <my-date-picker ngModel class="inputState1" name="submittedOn"
-            (dateChanged)="getRenDate($event)" required></my-date-picker>
-          </div>
-        </div>
-        <div class="form-row">
-          <span class="fam" style="font-weight: bold;">Summary</span>
-          <div class="form-group col-md-12">
-            <tinymce  name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="showEditButton" disabled=true
-              [config]="config">
-            </tinymce>
-            <tinymce  name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="!showEditButton" [config]="config">
-            </tinymce>
-            remaining {{50000 -len}}
-
-          </div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-md-12">
-  
-                <table id="mytaskTable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th style="width: 35%;">Summary</th>
-                            <th>SubmittedBy</th>
-                            <th>Submitted On</th>
-          
-          
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let data of businessDTOs">
-                            <td><span [innerHTML]="data.summary"></span></td>
-                            <td>{{data.submittedBy}}</td>
-                            <td>{{data.submittedOn | filter}}</td>
-          
-                          </tr>
-                     
-               
-                
-                
-                
-                    </tbody>
-                  </table>
-                  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
-                 
-                
+      </span> </div> -->
+      <div class="newTestBox">
+          <div class="plus" style="float:right">
+              <i *ngIf="showEditButton" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
+                (click)="editClick()"></i>
             </div>
-  
-          </div>
-
-
-
+        <form #formName="ngForm" enctype="multipart/form-data">
+          <fieldset [disabled]="showEditButton">
+      
+            <div class="headerOfBox">
+              <h4>General Information</h4>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <label class="newLabel">Submitted By<span class="asterisk">*</span></label>
+                <input type="text" name="submittedBy" [(ngModel)]="imBusinessRiskDTO.submittedBy" class="form-control">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="newLabel">Submitted On<span class="asterisk">*</span></label>
+                <my-date-picker ngModel class="newInputIncident" name="submittedOn" (dateChanged)="getRenDate($event)" required>
+                </my-date-picker>
+              </div>
+            </div>
+            <div class="form-row">
+              <span  style="font-weight: bold;">Summary</span>
+              <div class="form-group col-md-12">
+                <tinymce name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="showEditButton" disabled=true
+                  [config]="config">
+                </tinymce>
+                <tinymce name="impact" [(ngModel)]="imBusinessRiskDTO.summary" *ngIf="!showEditButton" [config]="config">
+                </tinymce>
+                <div style="text-align: left;">remaining {{50000 -len}}</div>
+      
+              </div>
+            </div>
+      
+            <div class="form-row">
+              <div class="col-md-12">
+      
+                <table class="policyTable">
+                  <thead>
+                    <tr>
+                      <th>Summary</th>
+                      <th>SubmittedBy</th>
+                      <th>Submitted On</th>
+      
+      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of businessDTOs">
+                      <td><span [innerHTML]="data.summary"></span></td>
+                      <td>{{data.submittedBy}}</td>
+                      <td>{{data.submittedOn | filter}}</td>
+      
+                    </tr>
+      
+      
+      
+      
+      
+                  </tbody>
+                </table>
+                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+      
+      
+              </div>
+      
+            </div>
+      
+          </fieldset>
+        </form>
+      
       
       </div>
-
-
-    </fieldset>
-  
-    <div class="d-flex justify-content-between p-2">
-      <button type="button" class="cancel btn btn-primary" (click)="backClicked()">
-        Cancel
-      </button>
-      <button type="button" class="cancel btn btn-primary" (click)="saveBusinessRisk()" [disabled]="!formName.valid">
-        Submit
-      </button>
-
-    </div>
-
-  </div>
-
-
-</form>
+      
+      
+      
+      
+      <div class="d-flex justify-content-between p-2">
+        <button type="button" class="cancel btn btn-primary" (click)="backClicked()">
+          Cancel
+        </button>
+        <button type="button" class="cancel btn btn-primary" (click)="saveBusinessRisk()" [disabled]="!formName.valid">
+          Submit
+        </button>
+      
+      </div>

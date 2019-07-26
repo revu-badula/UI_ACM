@@ -66,12 +66,12 @@
               <mat-grid-tile [colspan]="5" [rowspan]="2">
                 <div class="newtestITpm">
                   <div class="entryTitle">
-                    Renewal Status
+                    License Renewal Status
                   </div>
                   <p>Renewal required for different assets are displayed in red.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot redDot">{{expired}}</span>
-                    <!-- <p style="text-align: center;">App Servers</p> -->
+                    <p style="text-align: center;">Expired</p>
                   </div>
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
@@ -81,7 +81,7 @@
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot greenDot">{{notExpired}}</span>
-                    <!-- <p style="text-align: center;">All Others</p> -->
+                    <p style="text-align: center;">Non-Expired</p>
                   </div>
 
                 </div>
