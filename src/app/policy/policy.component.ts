@@ -63,8 +63,13 @@ export class PolicyComponent implements OnInit {
       yAxes: [
         {
           ticks: {
-            min: 0,
-            stepSize: 1,
+            beginAtZero: true,
+            userCallback: function(label, index, labels) {
+              if (Math.floor(label) === label) {
+                return label;
+              }
+            
+            }, 
 
           },
           display: true

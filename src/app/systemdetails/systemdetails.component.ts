@@ -164,7 +164,6 @@ export class SystemdetailsComponent implements OnInit {
   toggleVisibilityH(e){
 
     this.theHigh= e.target.checked;
-    console.log("high "+this.theHigh);
     this.getData();
     this.cd.detectChanges();
   }
@@ -172,7 +171,6 @@ export class SystemdetailsComponent implements OnInit {
   toggleVisibilityM(e){
 
     this.theMed= e.target.checked;
-    console.log("med "+this.theMed);
     this.getData();
     this.cd.detectChanges();
   }
@@ -180,7 +178,6 @@ export class SystemdetailsComponent implements OnInit {
   toggleVisibilityL(e){
  
     this.theLow= e.target.checked;
-    console.log("Low "+this.theLow);
     this.getData();
     this.cd.detectChanges();
   }
@@ -213,18 +210,15 @@ export class SystemdetailsComponent implements OnInit {
         this.showGraph = false;
         if (this.theHigh) {
           this.lineChartDataSystems15[0].data = this.redData;
-          console.log("red "+this.redData);
         }
 
 
          if (this.theMed) {
-          console.log("yellow "+this.yellowData);
           this.lineChartDataSystems15[1].data = this.yellowData;
          
         }
 
          if (this.theLow) {
-          console.log("green "+this.greenData);
           this.lineChartDataSystems15[2].data = this.greenData;
         }
 
@@ -242,27 +236,20 @@ export class SystemdetailsComponent implements OnInit {
 
 
   chartClicked(value: any) {
-    console.log(value);
     if (value.active.length > 0) {
       let val: any = value.active[0]._index;
-      console.log("val "+val);
       var points = [];
       var pointSelected = value.active[0]._chart.tooltip._model.caretX;
-
-      console.log("pointSlected "+pointSelected);
       var legends = value.active[0]._chart.legend.legendItems;
-      console.log("legends "+ value.active[0]._index.legend);
       for (var i = 0; i < value.active.length; ++i) {
         points.push(value.active[i]._model.x);
       }
 
       let position = points.indexOf(pointSelected);
-      console.log("position "+position);
       let label = legends[position].text
       let xValue = this.lineChartLabelsSystems15[val];
      
         this.getSystemNumbersOnClick(xValue , label)
-        console.log("label"+label);
 
       }
     
@@ -327,6 +314,12 @@ export class SystemdetailsComponent implements OnInit {
           },
           ticks: {
             beginAtZero: true,
+            userCallback: function(label, index, labels) {
+              if (Math.floor(label) === label) {
+                return label;
+              }
+            
+            }, 
           },
           display: true
         }

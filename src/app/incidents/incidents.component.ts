@@ -71,6 +71,12 @@ export class IncidentsComponent implements OnInit {
         {
           ticks: {
             beginAtZero: true,
+            userCallback: function(label, index, labels) {
+              if (Math.floor(label) === label) {
+                return label;
+              }
+            
+            }, 
           },
           display: true
         }
