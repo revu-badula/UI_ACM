@@ -31,6 +31,13 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
     
   }
+
+  getSystemNumberOnClick(type : any , level : any){
+    let url = APP_CONFIG.getSystemNumber;
+    return this._httpService.get(url + '/' +type + '/' + level)
+      .map(res => <Response>res.json());
+    
+  }
   getDatabases() {
     let url = APP_CONFIG.getDatabases;
     return this._httpService.get(url)

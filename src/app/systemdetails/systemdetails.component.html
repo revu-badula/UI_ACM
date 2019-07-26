@@ -20,8 +20,8 @@
 
                 <div class="newtestITpm">
                   <div class="entryTitle">Overview </div>
-                  <p class="definationText">System details drill down further and gives individual count of risk level from each assessment, audit, testing result,current incident and the infrastructure.</p>
-                  Here critical moderate and normal risk level or severity is individually displayed.
+                  <p class="definationText">System details drill down further and gives individual count of risk level from each assessment, audit, testing result,current incident and the infrastructure.
+                  Here critical moderate and normal risk level or severity is individually displayed.</p>
 
                 </div>
               </mat-grid-tile>
@@ -79,17 +79,17 @@
                        <tr 
                        *ngFor="let systemDashboard of systemDashboardDTO | paginate: { itemsPerPage: 10, currentPage: p }">
                          <td  (click)="goTo(systemDashboard)" style="cursor:pointer;color:blue;">{{systemDashboard.sysName}}</td>
-                         <td (click)="goToAudit(systemDashboard)">
+                         <td (click)="goToAudit(systemDashboard)" style="cursor:pointer">
                            <span style="color:maroon">{{systemDashboard.auditHigh}}</span> &nbsp;
                            <span style="color:orange">{{systemDashboard.auditMed}}</span> &nbsp;
                            <span style="color:green">{{systemDashboard.auditLow}}</span> &nbsp;
                         </td>
-                        <td (click)="goToAssessment(systemDashboard)">
+                        <td (click)="goToAssessment(systemDashboard)" style="cursor:pointer">
                             <span style="color:maroon">{{systemDashboard.assessHigh}}</span> &nbsp;
                             <span style="color:orange">{{systemDashboard.assessMed}}</span> &nbsp;
                             <span style="color:green">{{systemDashboard.assessLow}}</span> &nbsp;
                          </td>
-                         <td (click)="goToIncident(systemDashboard)">
+                         <td (click)="goToIncident(systemDashboard)" style="cursor:pointer">
                             <span style="color:maroon">{{systemDashboard.incidentHigh}}</span> &nbsp;
                             <span style="color:orange">{{systemDashboard.incidentMed}}</span> &nbsp;
                             <span style="color:green">{{systemDashboard.incidentLow}}</span> &nbsp;

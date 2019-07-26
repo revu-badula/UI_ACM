@@ -71,6 +71,15 @@ export class SystemdetailsComponent implements OnInit {
     }
 
 
+    goToIncident(incidentId: any) {
+    
+      sessionStorage.setItem('incidentName', incidentId);
+      this.router.navigate(['/incident/info']);
+     
+     
+    }
+
+
   getPendingApplications() {
     this.loading = true;
     this._apiservice.getPendingApplications()
@@ -93,6 +102,25 @@ export class SystemdetailsComponent implements OnInit {
   getSystemNumbers(){
     this.loading = true;
     this._apiservice.getSystemNumber()
+    .subscribe((data :any) =>  {
+      this.loading = false;
+      if (data.length === 0) {
+        this.systemsHealth = [];
+        this.showPagination = false;
+      }
+      else {
+        this.systemDashboardDTO = data;
+      }
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
+
+}
+
+  getSystemNumbersOnClick(type : any , level: any){
+    this.loading = true;
+    this._apiservice.getSystemNumberOnClick(type , level)
     .subscribe((data :any) =>  {
       this.loading = false;
       if (data.length === 0) {
@@ -178,9 +206,9 @@ export class SystemdetailsComponent implements OnInit {
         this.greenData.push(data.testingLow);
         this.greenData.push(data.incidentLow);
 
-        this.lineChartDataSystems15[0].data = null;
-        this.lineChartDataSystems15[1].data = null;
-        this.lineChartDataSystems15[2].data = null;
+        this.lineChartDataSystems15[0].data = [0,0, 0,0,0];
+        this.lineChartDataSystems15[1].data = [0,0,0,0,0];
+        this.lineChartDataSystems15[2].data = [0,0, 0,0,0];
        
         this.showGraph = false;
         if (this.theHigh) {
@@ -214,31 +242,27 @@ export class SystemdetailsComponent implements OnInit {
 
 
   chartClicked(value: any) {
-    //console.log(value);
+    console.log(value);
     if (value.active.length > 0) {
       let val: any = value.active[0]._index;
-      //console.log(val);
+      console.log("val "+val);
       var points = [];
       var pointSelected = value.active[0]._chart.tooltip._model.caretX;
+
+      console.log("pointSlected "+pointSelected);
       var legends = value.active[0]._chart.legend.legendItems;
+      console.log("legends "+ value.active[0]._index.legend);
       for (var i = 0; i < value.active.length; ++i) {
         points.push(value.active[i]._model.x);
       }
+
       let position = points.indexOf(pointSelected);
+      console.log("position "+position);
       let label = legends[position].text
       let xValue = this.lineChartLabelsSystems15[val];
-      if(xValue === 'Audits'){
-        this.router.navigate(['/newAudit' + "/" + label + "/" + xValue]);
-        }
-        if(xValue === 'Assessments')
-        {
-          this.router.navigate(['/newAssessment']);
-        }
-  
-        if(xValue === 'Incidents')
-        {
-          this.router.navigate(['/newIncidents']);
-        }
+     
+        this.getSystemNumbersOnClick(xValue , label)
+        console.log("label"+label);
 
       }
     
@@ -257,7 +281,7 @@ export class SystemdetailsComponent implements OnInit {
     { data: [], label: 'Medium' },
     { data: [], label: 'Low' }
   ];
-  public lineChartLabelsSystems15: Array<any> = ['Audits', 'Assessments', 'InfraStructure', 'Testing', 'Incidents'];
+  public lineChartLabelsSystems15: Array<any> = ['Audits', 'Assessments', 'Infrastructure', 'Testing', 'Incidents'];
   public chartOption15 = {
     responsive: true,
     maintainAspectRatio: false,
@@ -281,9 +305,10 @@ export class SystemdetailsComponent implements OnInit {
           var meta = chartInstance.controller.getDatasetMeta(i);
           meta.data.forEach((bar: any, index: any) => {
             var data = dataset.data[index];
+
             if (data > 0) {
               ctx.fillText(data, bar._model.x, bar._model.y - 5);
-             
+           
             }
           });
         });

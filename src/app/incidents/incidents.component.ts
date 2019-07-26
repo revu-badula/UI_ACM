@@ -136,6 +136,10 @@ export class IncidentsComponent implements OnInit {
   
   }
 
+  goToSystemDetails(){
+    this.router.navigate(['/newSystemDetails']);
+  }
+
   getInciNumbers(){
     let url = APP_CONFIG.getInciNumbers
       this.httpClient.get(url)

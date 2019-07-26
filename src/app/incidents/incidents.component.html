@@ -161,12 +161,12 @@
 
               <mat-grid-tile [colspan]="5" [rowspan]="2">
                 <div class="newtestITpm">
-                  <div class="entryTitle">Impacted Analysis </div>
+                  <div class="entryTitle">Impact Analysis </div>
                   <div class="card-body">
 
                     <div class="row">
                       <div class="col-md-3 pull-left" (click)="getPolicyGrpData('open')">
-                        <span class="adsquare adsquarecolor">{{systemsImpacted}}</span>
+                        <span class="adsquare adsquarecolor" (click)="goToSystemDetails()" style="cursor: pointer">{{systemsImpacted}}</span>
                         <p style="text-align: center;">Systems Impacted</p>
                       </div>
                       <div class="col-md-2 pull-left"></div>
