@@ -128,7 +128,7 @@ chartClicked(value: any) {
     let label = legends[position].text
     let xValue = this.lineChartLabelsSystems15[val];
     if(xValue === 'Audits'){
-    this.router.navigate(['/itpmAudit' + "/" + label + "/" + xValue]);
+    this.router.navigate(['/newAudit' + "/" + label + "/" + xValue]);
     }
     if(xValue === 'Assessments')
     {
@@ -137,7 +137,7 @@ chartClicked(value: any) {
 
     if(xValue === 'Incidents')
     {
-      this.router.navigate(['/incidentStart']);
+      this.router.navigate(['/newIncidents']);
     }
  
   }
@@ -239,7 +239,7 @@ public chartOption15 = {
 
 public chartColorsSystems15: Array<any> = [
   { // second color
-    backgroundColor: '#FF7F50',
+    backgroundColor: '#800000',
     borderColor: 'rgba(225,10,24,0.2)',
     pointBackgroundColor: 'rgba(225,10,24,0.2)',
     pointBorderColor: '#fff',

@@ -1,29 +1,29 @@
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
-<div class="plus" style="float:right;position:absolute;right: 2%;">
+<!-- <div class="plus" style="float:right;position:absolute;right: 2%;">
   <i *ngIf="showEditButton && editMode" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
     (click)="editClick()"></i>
 </div>
 
-
-
-<div id="formSame">
   <div class="disclaimer"><span>Please use this screen to add locality information.</span>&nbsp;&nbsp;&nbsp;
     <span style="float:right">
       <font color=red>*</font> marked fields are mandatory
-    </span> </div>
+    </span> </div> -->
 
-  <div class="infoBox">
-    <div class="form-row headerOfBox">
+  <div class="newTestBox">
+    <div class="headerOfBox">
       <h4>General Information</h4>
+    </div>
+    <div class="plus" style="float:right;position:absolute;right: 2%;">
+      <i *ngIf="showEditButton && editMode" class="fa fa-edit" data-delay="0" style="font-size: 24px;"
+        (click)="editClick()"></i>
     </div>
     <form #formName="ngForm" enctype="multipart/form-data">
       <fieldset [disabled]="showEditButton">
         <div class="form-row">
-          <div class="form-group col-md-6" *ngIf="!showEditButton" matAutocompleteOrigin #origin="matAutocompleteOrigin">
-            <label class="fam">Reported By<span class="asterisk">*</span></label>
-            <!-- <mat-form-field> -->
+          <div class="col-md-6" *ngIf="!showEditButton" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+            <label class="newLabel">Reported By<span class="asterisk">*</span></label>
               <input type="text" matInput name="seaUser" class="form-control"
                 (keyup)="getData1($event.target.value)" [matAutocompleteConnectedTo]="origin" [(ngModel)]="search" required [matAutocomplete]="autoGroup">
               <mat-autocomplete #autoGroup="matAutocomplete">
@@ -33,20 +33,19 @@
                   </mat-option>
                 </mat-optgroup>
               </mat-autocomplete>
-            <!-- </mat-form-field> -->
           </div>
-          <div class="form-group col-md-6" *ngIf="showEditButton">
-            <label class="fam">Reported By<span class="asterisk">*</span></label>
+          <div class="col-md-6" *ngIf="showEditButton">
+            <label class="newLabel">Reported By<span class="asterisk">*</span></label>
             <input type="text" name="reportedBy" readonly [(ngModel)]="incidentManagementDTO.reportedBy"
               class="form-control">
           </div>
 
         </div>
       </fieldset>
-
+      <br>
       <div class="form-row" *ngIf="!showEditButton">
-        <div class="form-group col-md-6">
-          <label class="fam">Email<span class="asterisk">*</span></label>
+        <div class="col-md-6">
+          <label class="newLabel">Email<span class="asterisk">*</span></label>
           <input type="text" [(ngModel)]="test1" class="form-control" name="emailId" #email1="ngModel"
             pattern="^[a-zA-Z0-9._%'+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" readonly>
           <span *ngIf="email1.errors">
@@ -54,24 +53,25 @@
           </span>
         </div>
         <div class="form-group col-md-6">
-          <label class="fam">Phone<span class="asterisk">*</span></label>
+          <label class="newLabel">Phone<span class="asterisk">*</span></label>
           <input type="text" name="phone" class="form-control" pattern="^\(\d{3}\)\s\d{3}-\d{4}$" readonly>
         </div>
       </div>
 
       <fieldset [disabled]="showEditButton">
         <div class="form-row">
-          <div class="form-group col-md-12">
-            <label class="fam">Short Description<span class="asterisk">*</span></label>
+          <div class="col-md-12">
+            <label class="newLabel">Short Description<span class="asterisk">*</span></label>
             <input type="text" name="shortdes" [(ngModel)]="incidentManagementDTO.shortDescription" class="form-control"
               style="width: 72% !important;">
           </div>
         </div>
+        <br>
       </fieldset>
       <fieldset [disabled]="showEditButton">
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label class="fam">Type of incident<span class="asterisk">*</span></label>
+          <div class="col-md-6">
+            <label class="newLabel">Type of incident<span class="asterisk">*</span></label>
            <select class="form-control" name="typeOfIncident" [(ngModel)]="incidentManagementDTO.typeOfIncident"
               (change)="incidentManagementDTO.typeOfIncident = $event.target.value">
               <option value="">Choose...</option>
@@ -83,7 +83,7 @@
           </div>
 
           <div class="form-group col-md-6">
-            <label class="fam">Severity<span class="asterisk">*</span></label>
+            <label class="newLabel">Severity<span class="asterisk">*</span></label>
             <select class="form-control" name="severity" [(ngModel)]="incidentManagementDTO.severity"
               (change)="incidentManagementDTO.severity = $event.target.value">
               <option value="">Choose...</option>
@@ -98,8 +98,8 @@
       <fieldset [disabled]="showEditButton">
         <div class="form-row">
 
-          <div class="form-group col-md-6">
-            <label class="fam">Business unit<span class="asterisk">*</span></label>
+          <div class="col-md-6">
+            <label class="newLabel">Business unit<span class="asterisk">*</span></label>
             <select class="form-control" name="businessImpact" [(ngModel)]="incidentManagementDTO.businessImpact"
               (change)="incidentManagementDTO.businessImpact = $event.target.value">
               <option value="">Choose...</option>
@@ -109,6 +109,7 @@
                <option value="Member Services">Member Services</option>
                 <option value="Provider Services">Provider Services</option>
             </select>
+            <br>
           </div>
 
 
@@ -118,8 +119,8 @@
         <div class="form-row">
 
 
-          <div class="form-group col-md-6">
-            <label class="fam">Status<span class="asterisk">*</span></label>
+          <div class="col-md-6">
+            <label class="newLabel">Status<span class="asterisk">*</span></label>
             <select class="form-control" name="status" [(ngModel)]="incidentManagementDTO.status"
               (change)="incidentManagementDTO.status = $event.target.value">
               <option value="">Choose...</option>
@@ -131,7 +132,7 @@
             </select>
           </div>
           <div class="col-md-6">
-            <label class="fam">Progress<span class="asterisk">*</span></label>
+            <label class="newLabel">Progress<span class="asterisk">*</span></label>
             <select class="form-control" name="incidentProgressId" [(ngModel)]="incidentManagementDTO.status"
              (change)="incidentManagementDTO.incidentProgressId = $event.target.value">
               <option value="1">Created</option>
@@ -154,14 +155,15 @@
           <tinymce name="description" [(ngModel)]="incidentManagementDTO.longDescription" *ngIf="!showEditButton"
             [config]="config">
           </tinymce>
+          <div style="text-align: left;">
           remaining {{50000 -len}}
-
+            </div>
         </div>
       </div>
 
       <div class="form-row" *ngIf="!showEditButton">
-        <div class="form-group col-md-6">
-          <label class="fam">Systems<span class="asterisk">*</span></label>
+        <div class="col-md-6">
+          <label class="newLabel">Systems<span class="asterisk">*</span></label>
           <select class="form-control" name="serversys" (change)="getApplication($event.target.value)">
             <option value="">Choose...</option>
             <ng-container>
@@ -169,10 +171,11 @@
                 {{system.acronym}}</option>
             </ng-container>
           </select>
+          <br>
         </div>
       </div>
       <div class="form-row">
-        <table class="table table-bordered">
+        <table class="policyTable">
           <thead>
             <tr>
               <th>System Name
@@ -213,19 +216,20 @@
 
       </div>
       <div class="form-row" *ngIf="!showEditButton">
-        <div class="form-group col-md-6">
-          <label class="fam">Servers<span class="asterisk">*</span></label>
+        <div class="col-md-6">
+          <label class="newLabel">Servers<span class="asterisk">*</span></label>
           <select class="form-control" name="sysserver" (change)="getServer($event.target.value)">
             <option value="">Choose...</option>
             <ng-container>
               <option *ngFor="let server of servers" value="{{server.databaseId}}">{{server.hostName}}</option>
             </ng-container>
           </select>
+          <br>
         </div>
       </div>
       <div class="form-row">
 
-        <table class="table table-bordered" style="text-align: center">
+        <table class="policyTable">
           <thead>
             <tr>
               <th>Host Name</th>
@@ -273,5 +277,3 @@
     </button>
 
   </div>
-
-</div>

@@ -28,7 +28,7 @@ export class IncidentinfoComponent implements OnInit {
   public showText: boolean = false;
   public showBIA: boolean;
   public test:any;
-  constructor(private _location: Location, private idleTimeoutSvc: IdleTimeoutService, private dialogService: DialogService,
+  constructor(public sideNavService: AlertService,private _location: Location, private idleTimeoutSvc: IdleTimeoutService, private dialogService: DialogService,
     private navbar: NavigationComponentComponent,
     private router: Router, private alertService: AlertService, private missionService: MissionService) { }
 
