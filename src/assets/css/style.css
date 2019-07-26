@@ -2122,4 +2122,5 @@ a .material-icons {
 #anchor{
   color: blue;
   cursor: pointer;
+  outline: none;
 }

@@ -48,7 +48,7 @@
         <tbody>
 
           <tr   *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-            <td style="color: blue;cursor: pointer;" routerLink="/spolicy/saccesscontrol/{{policy.policyId}}">{{policy.controlNumber}}</td>
+            <td style="color: blue;cursor: pointer;" routerLink="/firstpolicy/newaccesscontrol/{{policy.policyId}}">{{policy.controlNumber}}</td>
             <td>{{policy.familyName}}</td>
             <td>{{policy.policyName}}</td>
             <td>{{policy.priority}}</td>

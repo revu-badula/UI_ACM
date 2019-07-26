@@ -840,6 +840,10 @@ const appRoutes: Routes = [
           {
               path:'families',
               component: PolicyfamiliesComponent
+          },
+          {
+            path:'newaccesscontrol/:id',
+            component: ControlNameComponent
           }
 
       ]

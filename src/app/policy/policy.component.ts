@@ -27,6 +27,7 @@ export class PolicyComponent implements OnInit {
   public showTable: boolean;
   public lineChartPoliciesLables: Array<any> = [];
   public p: number = 1;
+  public loading:boolean;
   public lineChartPolicies: Array<any> = [{ data: [], label: 'Data' }];
   public chartOption1 = {
     responsive: true,
@@ -129,8 +130,10 @@ export class PolicyComponent implements OnInit {
   }
 
   getData() {
+    this.loading=true;
     this._apiservice.getPolicyCount(2019)
       .subscribe((data: any) => {
+        this.loading=false;
         this.openCount = data.openCount;
         this.closeCount = data.closeCount;
         this.policyOpenCount = data.policyOpenCount;
@@ -144,6 +147,7 @@ export class PolicyComponent implements OnInit {
         }
         this.showAllSystem = true;
       }, error => {
+        this.loading=false;
         console.log(error);
       });
   }
@@ -192,26 +196,32 @@ export class PolicyComponent implements OnInit {
 
   getPolicyGrpData(value: any) {
     this.policies = [];
+    this.loading=true;
     this._apiservice.policyGrpOnstatus(value)
       .subscribe((data: any) => {
         this.policyGrps = data;
         this.showPolicyGrp = true;
         this.showPolicies = false;
         this.showTable = true;
+        this.loading=false;
       }, error => {
+        this.loading=false;
         console.log(error);
       });
   }
 
   getPolicyData(value: any) {
     this.policyGrps = [];
+    this.loading=true;
     this._apiservice.getPolicyAssignment(value)
       .subscribe((data: any) => {
         this.policies = data;
         this.showPolicyGrp = false;
         this.showPolicies = true;
         this.showTable = true;
+        this.loading=false;
       }, error => {
+        this.loading=false;
         console.log(error);
       });
   }
@@ -219,11 +229,10 @@ export class PolicyComponent implements OnInit {
   getTable1() {
     this.showTable = !this.showTable;
   }
-  
-  loadPolicies(id:any)
-  {
-      sessionStorage.setItem("policyGrpId",id);
-      this.router.navigate(['/firstpolicy/details']);
+
+  loadPolicies(id: any) {
+    sessionStorage.setItem("policyGrpId", id);
+    this.router.navigate(['/firstpolicy/details']);
   }
 
 }

@@ -129,6 +129,7 @@ import { AssessmentsComponent } from './assessments/assessments.component';
 import { AuditsComponent } from './audits/audits.component';
 import { SystemdetailsComponent } from './systemdetails/systemdetails.component';
 import { PolicyModule } from './policy/policy.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -250,6 +251,7 @@ import { PolicyModule } from './policy/policy.module';
     ReactiveFormsModule,
     NgxPaginationModule,
     ChartsModule,
+    RouterModule,
     PolicyModule,
     MatGridListModule,
     MatSidenavModule,
