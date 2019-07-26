@@ -20,19 +20,19 @@
 
                 <div class="newtestITpm">
                   <div class="entryTitle">Overview </div>
-                  <p class="definationText">This defines all the Information Technology Portfolio Manager.</p>
-
+                  <p class="definationText">System details drill down further and gives individual count of risk level from each assessment, audit, testing result,current incident and the infrastructure.</p>
+                  Here critical moderate and normal risk level or severity is individually displayed.
 
                 </div>
               </mat-grid-tile>
               <mat-grid-tile [colspan]="10" [rowspan]="4">
 
                 <div class="newtestITpm">
-                  <div class="entryTitle"><span style="float: left"> System Health:</span>
+                  <div class="entryTitle"><span style="float: left">System Count of Risk Levels </span>
                     <span style="float:right">
-                        <input type="checkbox"  class="checkboxes" [(ngModel)]="theHigh"  data-md-icheck (change)="toggleVisibilityH($event)"/>High &nbsp; 
-                        <input type="checkbox" class="checkboxes" [(ngModel)]="theMed"  data-md-icheck (change)="toggleVisibilityM($event)"/>Medium &nbsp; 
-                        <input type="checkbox" class="checkboxes" [(ngModel)]="theLow"  data-md-icheck (change)="toggleVisibilityL($event)"/>Low 
+                        <input type="checkbox"  class="checkboxes" [(ngModel)]="theHigh"  data-md-icheck (change)="toggleVisibilityH($event)"/>Critical &nbsp; 
+                        <input type="checkbox" class="checkboxes" [(ngModel)]="theMed"  data-md-icheck (change)="toggleVisibilityM($event)"/>Moderate &nbsp; 
+                        <input type="checkbox" class="checkboxes" [(ngModel)]="theLow"  data-md-icheck (change)="toggleVisibilityL($event)"/>Normal
                   </span>
                   </div>
                 
@@ -50,7 +50,7 @@
               </mat-grid-tile>
               <mat-grid-tile [colspan]="10" [rowspan]="6">
                 <div class="newtestITpm">
-                  <div class="entryTitle">List of All Systems</div>
+                  <div class="entryTitle">Systems</div>
 
 
                   <form >
@@ -78,25 +78,25 @@
 
                        <tr 
                        *ngFor="let systemDashboard of systemDashboardDTO | paginate: { itemsPerPage: 10, currentPage: p }">
-                         <td style="color: blue;cursor: pointer;">{{systemDashboard.sysName}}</td>
-                         <td>
+                         <td  (click)="goTo(systemDashboard)" style="cursor:pointer;color:blue;">{{systemDashboard.sysName}}</td>
+                         <td (click)="goToAudit(systemDashboard)">
                            <span style="color:maroon">{{systemDashboard.auditHigh}}</span> &nbsp;
                            <span style="color:orange">{{systemDashboard.auditMed}}</span> &nbsp;
                            <span style="color:green">{{systemDashboard.auditLow}}</span> &nbsp;
                         </td>
-                        <td>
+                        <td (click)="goToAssessment(systemDashboard)">
                             <span style="color:maroon">{{systemDashboard.assessHigh}}</span> &nbsp;
                             <span style="color:orange">{{systemDashboard.assessMed}}</span> &nbsp;
                             <span style="color:green">{{systemDashboard.assessLow}}</span> &nbsp;
                          </td>
-                         <td>
+                         <td (click)="goToIncident(systemDashboard)">
                             <span style="color:maroon">{{systemDashboard.incidentHigh}}</span> &nbsp;
                             <span style="color:orange">{{systemDashboard.incidentMed}}</span> &nbsp;
                             <span style="color:green">{{systemDashboard.incidentLow}}</span> &nbsp;
                          </td>
                          
-                         <td>Test</td>
-                         <td>Test</td>
+                         <td>NA</td>
+                         <td>NA</td>
                        </tr>
 
                       </tbody>

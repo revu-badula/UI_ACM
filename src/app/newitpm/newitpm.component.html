@@ -19,7 +19,10 @@
     
                         <div class="newtestITpm">
                             <div class="entryTitle">Overview </div>
-                                  <p class="definationText">This defines all the Information Technology Portfolio Manager.</p>
+                                  <p class="definationText"> Information Technology Portfolio Manager (ITPM) gives an overview of System health and factors affecting it.
+                                      ITPM takes into consideration factors like assessments, audits, testing results,current incidents if any and the infrastructure on which the system is based on.
+                                    System is considered critical if it fails in any of the factors or the severity level is high.
+                                  </p>
                       
                           
                         </div>
@@ -33,7 +36,7 @@
                         <div class="entryTitle">
                           Overall System Health
                         </div>
-                        <p>This will display the overall health of the systems.</p>
+                        
                         <div class="col-md-4 pull-left" style="outline: none;"(click)="getHigh()"  routerLink="/newSystemDetails">
                           <span class="dot redDot">{{totalHigh}}</span>
                           <p style="text-align: center;">Critical</p>
@@ -45,7 +48,7 @@
                         
                          <div class="col-md-4 pull-left" style="outline: none;" (click)="getLow()" routerLink="/newSystemDetails">
                           <span class="dot greenDot">{{totalLow}}</span>
-                          <p style="text-align: center;">Good</p>
+                          <p style="text-align: center;">Normal</p>
                         </div>
                         
                       </div>
@@ -54,14 +57,13 @@
                     <mat-grid-tile [colspan]="5" [rowspan]="2">
                     <div class="newtestITpm">
                     <div class="entryTitle">
-                          Definition
+                          Description
                         </div>
-                            <p>More charts can be displayed here.</p>
-                             <ul  style="text-align: left;">
-                                <li style="color:red">The Great Gatsby</li>
-                                <li style="color:orange">The Grapes of Wrath</li>
-                                <li style="color:green">Ulysses</li>
-                              </ul>
+                            <p style="text-align: left">The Over all system health on left indicates the number of systems that need attention based on the overall health.
+                                Any of the 5 factors namely assessments, audits, testing results,current incidents and the infrastructure if fails or is critical will collapse the system into the critical bucket.
+                                While the below bar graph gives the assessment of individual factors affecting number of systems.
+                            </p>
+                             
                         </div>
                     </mat-grid-tile>
                     </mat-grid-list>
@@ -71,8 +73,8 @@
                     <mat-grid-tile [colspan]="10" [rowspan]="4">
 
                         <div class="newtestITpm">
-                            <div class="entryTitle">Systems Risk Levels </div>
-                                  <p>Place holder for bar chart</p>
+                            <div class="entryTitle">System Count of Risk Levels </div>
+                                <br>
                       
                             <div class="col-md-12" *ngIf="showGraph">
                                 <div style="display: block; width: 100%; height: 18rem; background-color: #fff;">
@@ -90,10 +92,10 @@
                 </mat-sidenav-content>
                 <mat-sidenav-content>
                 <mat-grid-list cols="10" rowHeight="100px">
-                    <mat-grid-tile [colspan]="10" [rowspan]="8">
+                    <mat-grid-tile [colspan]="10" [rowspan]="6">
 
                         <div class="newtestITpm">
-                            <div class="entryTitle">List of All Systems</div>
+                            <div class="entryTitle">Systems</div>
                         
             
                         <form class="forms">
@@ -126,7 +128,7 @@
                                     <tr
                                         *ngFor="let pendingApplication of pendingApplications | paginate: { itemsPerPage: 10, currentPage: p }">
                                         <td><a class="anchor"
-                                            (click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
+                                            (click)="goTo(pendingApplication)" style="cursor:pointer;color:blue;">{{pendingApplication.acronym}}</a>
                                         </td>
                                         <td>{{pendingApplication.businessOwnerNameDoe}}</td>
             

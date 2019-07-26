@@ -37,7 +37,14 @@ export class SystemdetailsComponent implements OnInit {
   public theLow: boolean = UtilService.theLow;
   public systemDashboardDTO : systemDashboardDTO;
 
-  constructor( private _apiservice: ApiserviceService, private router: Router,private cd : ChangeDetectorRef, private utilservice: UtilService, public sideNavService : AlertService) { }
+  constructor( private _apiservice: ApiserviceService, private router: Router,private cd : ChangeDetectorRef, private utilservice: UtilService, public sideNavService : AlertService) {
+
+    sessionStorage.removeItem("systemName");
+    sessionStorage.removeItem("systemActive");
+    sessionStorage.removeItem("disabled");
+    sessionStorage.removeItem("systemAppAuditId");
+    sessionStorage.removeItem("sysassesId");
+   }
 
   ngOnInit() {
     this.getSystemHealth();
@@ -46,7 +53,22 @@ export class SystemdetailsComponent implements OnInit {
     this.getData();
   }
 
+  goToAudit(value: any) {
+ 
+      sessionStorage.setItem("systemName", value.sysName);
+      sessionStorage.setItem("systemActive", "true");
+      sessionStorage.setItem("disabled", "false");
+      this.router.navigate(['/system/tab2/Audit/sysauditoverview']);
+    }
 
+
+    goToAssessment(value: any) {
+ 
+      sessionStorage.setItem("systemName", value.sysName);
+      sessionStorage.setItem("systemActive", "true");
+      sessionStorage.setItem("disabled", "false");
+      this.router.navigate(['/system/tab2/assessment/sysassessoverview']);
+    }
 
 
   getPendingApplications() {
@@ -206,20 +228,26 @@ export class SystemdetailsComponent implements OnInit {
       let label = legends[position].text
       let xValue = this.lineChartLabelsSystems15[val];
       if(xValue === 'Audits'){
-        this.router.navigate(['/audit' + "/" + label + "/" + xValue]);
+        this.router.navigate(['/newAudit' + "/" + label + "/" + xValue]);
         }
         if(xValue === 'Assessments')
         {
-          this.router.navigate(['/assessment']);
+          this.router.navigate(['/newAssessment']);
         }
   
         if(xValue === 'Incidents')
         {
-          this.router.navigate(['/incidents']);
+          this.router.navigate(['/newIncidents']);
         }
 
       }
     
+    }
+
+    goTo(value:any){
+      sessionStorage.setItem("systemName", value.sysName);
+    
+      this.router.navigate(['/system/tab2/info']);
     }
 
 
@@ -264,7 +292,14 @@ export class SystemdetailsComponent implements OnInit {
     scales: {
       yAxes: [
         {
-     
+          id: 'Audits',
+          scaleLabel: {
+            display: true,
+            labelString: 'Systems',
+            fontColor: '#000',
+            fontWeight: 'bold',
+            fontSize: '12'
+          },
           ticks: {
             beginAtZero: true,
           },
@@ -302,7 +337,7 @@ export class SystemdetailsComponent implements OnInit {
 
   public chartColorsSystems15: Array<any> = [
     { // second color
-      backgroundColor: '#FF7F50',
+      backgroundColor: '#800000',
       borderColor: 'rgba(225,10,24,0.2)',
       pointBackgroundColor: 'rgba(225,10,24,0.2)',
       pointBorderColor: '#fff',
@@ -318,7 +353,7 @@ export class SystemdetailsComponent implements OnInit {
       pointHoverBorderColor: 'rgba(225,10,24,0.2)'
     },
     { // second color
-      backgroundColor: '#008B8B',
+      backgroundColor: '#008000',
       borderColor: 'rgba(225,10,24,0.2)',
       pointBackgroundColor: 'rgba(225,10,24,0.2)',
       pointBorderColor: '#fff',

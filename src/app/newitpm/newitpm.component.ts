@@ -30,7 +30,12 @@ export class NewitpmComponent implements OnInit {
   public showPagination: boolean = true;
   public systemsHealth : any;
 
-constructor( private _apiservice: ApiserviceService,private router: Router,private utilservice: UtilService, public sideNavService : AlertService) { }
+constructor( private _apiservice: ApiserviceService,private router: Router,private utilservice: UtilService, public sideNavService : AlertService) {
+  sessionStorage.removeItem("systemName");
+
+}
+
+
 
 ngOnInit() {
     this.getData();
@@ -112,6 +117,12 @@ getData() {
     });
 }
 
+goTo(value:any){
+  sessionStorage.setItem("systemName", value.acronym);
+
+  this.router.navigate(['/system/tab2/info']);
+}
+
 chartClicked(value: any) {
   //console.log(value);
   if (value.active.length > 0) {
@@ -127,18 +138,23 @@ chartClicked(value: any) {
     let position = points.indexOf(pointSelected);
     let label = legends[position].text
     let xValue = this.lineChartLabelsSystems15[val];
-    if(xValue === 'Audits'){
-    this.router.navigate(['/newAudit' + "/" + label + "/" + xValue]);
+    if(label==='Critical'){
+      UtilService.theHigh = true;
+      UtilService.theMed = false;
+      UtilService.theLow = false;
     }
-    if(xValue === 'Assessments')
-    {
-      this.router.navigate(['/newAssessment']);
+    if(label==='Moderate'){
+      UtilService.theHigh = false;
+      UtilService.theMed = true;
+      UtilService.theLow = false;
+    }
+    if(label==='Normal'){
+      UtilService.theHigh = false;
+      UtilService.theMed = false;
+      UtilService.theLow = true;
     }
 
-    if(xValue === 'Incidents')
-    {
-      this.router.navigate(['/newIncidents']);
-    }
+    this.router.navigate(['/newSystemDetails']);
  
   }
 
@@ -149,9 +165,9 @@ chartClicked(value: any) {
 
 
 public lineChartDataSystems15: ChartDataSets<any> = [
-  { data: [], label: 'High' },
-  { data: [], label: 'Medium' },
-  { data: [], label: 'Low' }
+  { data: [], label: 'Critical' },
+  { data: [], label: 'Moderate' },
+  { data: [], label: 'Normal' }
 ];
 public lineChartLabelsSystems15: Array<any> = ['Audits', 'Assessments', 'InfraStructure', 'Testing', 'Incidents'];
 public chartOption15 = {
@@ -187,14 +203,14 @@ public chartOption15 = {
   scales: {
     yAxes: [
       {
-        // id: 'Audits',
-        // scaleLabel: {
-        //   display: true,
-        //   labelString: 'Audits',
-        //   fontColor: '#000',
-        //   fontWeight: 'bold',
-        //   fontSize: '20'
-        // },
+        id: 'Audits',
+        scaleLabel: {
+          display: true,
+          labelString: 'Systems',
+          fontColor: '#000',
+          fontWeight: 'bold',
+          fontSize: '12'
+        },
         ticks: {
           beginAtZero: true,
         },
@@ -255,7 +271,7 @@ public chartColorsSystems15: Array<any> = [
     pointHoverBorderColor: 'rgba(225,10,24,0.2)'
   },
   { // second color
-    backgroundColor: '#008B8B',
+    backgroundColor: '#008000',
     borderColor: 'rgba(225,10,24,0.2)',
     pointBackgroundColor: 'rgba(225,10,24,0.2)',
     pointBorderColor: '#fff',
