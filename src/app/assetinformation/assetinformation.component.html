@@ -1,20 +1,21 @@
-
 <!-- <app-loadercomponent></app-loadercomponent> -->
 <div>
-  <div class="save-edit" style="float: right;" *ngIf="showBtt">
-    <fa class="edit-icon icons" data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
-      data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
-  </div>
+
   <form (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
-    <div>
+    <div style="margin-top: 5%;">
       <div class="disclaimer"><span style="float:left">Please use this screen to update device
           information</span>&nbsp;&nbsp;&nbsp;
         <span style="float:right">
           <font color=red>*</font> marked fields are mandatory
         </span> </div>
+
+        <div class="save-edit" style="position: absolute;right: 1%;" *ngIf="showBtt">
+          <fa data-toggle="tooltip" data-placement="right" title="Save" data-animation="true"
+            data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
+        </div>
       <fieldset [disabled]='showForm'>
         <div class="newTestBox">
-          <div class="form-row headerOfBox">
+          <div class="form-row headerOfBox" style="margin-top: 2%;">
             <h4>Device Information</h4>
           </div>
           <div class=" form-row">
@@ -57,8 +58,8 @@
               <label>Environment<font color="red">*</font></label>
               <input *ngIf="showForm" type="text" class="form-control" [(ngModel)]="device.serverEnvName" readonly
                 name="serverEnvName">
-              <select  *ngIf="!showForm" [(ngModel)]="device.serverEnvId" style="width:50%;" class="form-control" ngModel  required name="serverEnvName"
-                (change)="device.serverEnvId=$event.target.value">
+              <select *ngIf="!showForm" [(ngModel)]="device.serverEnvId" style="width:50%;" class="form-control" ngModel
+                required name="serverEnvName" (change)="device.serverEnvId=$event.target.value">
                 <option *ngFor=" let serverEnv of serverEnvs" value="{{ serverEnv.serverEnvId }}">{{ serverEnv.name}}
                 </option>
               </select>
@@ -321,8 +322,8 @@
             <!-- <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm"
               name="purpose" [(ngModel)]="device.purpose" maxlength="50000" #purpose="ngModel"> </textarea> -->
             <!--<div style="float:right">{{50000 - purpose.value.length}} characters left </div> -->
-            <tinymce name="purpose" [(ngModel)]="device.purpose" [config]="config"></tinymce>
-            
+            <tinymce name="purpose" style="width:100%;" [(ngModel)]="device.purpose" [config]="config"></tinymce>
+
           </div>
         </div>
       </fieldset>

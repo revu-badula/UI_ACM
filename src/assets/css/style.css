@@ -2124,3 +2124,9 @@ a .material-icons {
   cursor: pointer;
   outline: none;
 }
+.policyGreen{
+  color:green;
+}
+.policyRed{
+  color:red;
+}

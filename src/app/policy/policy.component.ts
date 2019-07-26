@@ -199,6 +199,7 @@ export class PolicyComponent implements OnInit {
   getPolicyGrpData(value: any) {
     this.policies = [];
     this.loading=true;
+    this.policyGrps = [];
     this._apiservice.policyGrpOnstatus(value)
       .subscribe((data: any) => {
         this.policyGrps = data;
@@ -214,6 +215,7 @@ export class PolicyComponent implements OnInit {
 
   getPolicyData(value: any) {
     this.policyGrps = [];
+    this.policies = [];
     this.loading=true;
     this._apiservice.getPolicyAssignment(value)
       .subscribe((data: any) => {

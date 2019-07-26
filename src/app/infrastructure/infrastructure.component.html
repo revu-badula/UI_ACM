@@ -68,7 +68,6 @@
                   <div class="entryTitle">
                     License Renewal Status
                   </div>
-                  <p>Renewal required for different assets are displayed in red.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot redDot">{{infraDashboardDTO.expired}}</span>
                     <p style="text-align: center;">Expired</p>
@@ -111,24 +110,18 @@
               <mat-grid-tile [colspan]="5" [rowspan]="2">
                 <div class="newtestITpm">
                   <div class="entryTitle">
-                    Compliance check
+                    Version Status
                   </div>
-                  <p>Total Assests related to all systems.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">0</span>
-
+                    <span class="adsquare adsquarecolor">0</span>
+					 <p style="text-align: center;">Out-of-Version</p>
                   </div>
-
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-
-                  </div>
-
-
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">0</span>
-
+							 <span class="adsquare adsquarecolor">0</span>
+					 <p style="text-align: center;">In-Version</p>
                   </div>
+                
 
                 </div>
 
@@ -140,22 +133,21 @@
               <mat-grid-tile [colspan]="5" [rowspan]="2">
                 <div class="newtestITpm">
                   <div class="entryTitle">
-                    Testing results
+                    Testing Results
                   </div>
-                  <p>Total Assests related to all systems.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot redDot">0</span>
-
+					<p style="text-align: center;">Failed</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                 <!--  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot orangeDot">0</span>
 
-                  </div>
+                  </div> -->
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot greenDot">0</span>
-
+ 						<p style="text-align: center;">Passed</p>
                   </div>
 
                   <!-- <div class="stacked-bar-graph">
@@ -170,9 +162,8 @@
               <mat-grid-tile [colspan]="5" [rowspan]="2">
                 <div class="newtestITpm">
                   <div class="entryTitle">
-                    Impacted assets due to open incidents
+                    Impacted Assets Due To Open Incidents
                   </div>
-                  <p>Renewal required for different assets are displayed in red.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot redDot">{{infraDashboardDTO.highIncident}}</span>
 
