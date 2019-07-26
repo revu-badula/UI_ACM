@@ -22,10 +22,10 @@ export class PolicyParentComponent implements OnInit {
 
   ngOnInit() {
    
-    this.subscription = this.policyService.policyState.subscribe((state: any) => {
-      console.log("state"+ state);
-        this.showNav = state.show;
-      });
+    // this.subscription = this.policyService.policyState.subscribe((state: any) => {
+    //   console.log("state"+ state);
+    //     this.showNav = state.show;
+    //   });
   }
 
   getFamilies() {
@@ -37,7 +37,7 @@ export class PolicyParentComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 
 

@@ -6,14 +6,14 @@
       data-delay="0" [name]="'edit'" (click)="editorGroup()"></fa>
   </div>
   <form (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
-    <div id="form1">
+    <div>
       <div class="disclaimer"><span style="float:left">Please use this screen to update device
           information</span>&nbsp;&nbsp;&nbsp;
         <span style="float:right">
           <font color=red>*</font> marked fields are mandatory
         </span> </div>
       <fieldset [disabled]='showForm'>
-        <div class="infoBox">
+        <div class="newTestBox">
           <div class="form-row headerOfBox">
             <h4>Device Information</h4>
           </div>
@@ -70,7 +70,7 @@
 
         </div>
 
-        <div class="infoBox">
+        <div class="newTestBox">
           <div class="form-row headerOfBox">
             <h4>Primary Contact</h4>
           </div>
@@ -109,7 +109,7 @@
 
         </div>
 
-        <div class="infoBox">
+        <div class="newTestBox">
           <div class="form-row headerOfBox">
             <h5>Secondary Contact</h5>
           </div>
@@ -146,7 +146,7 @@
           </div>
         </div>
 
-        <div class="infoBox">
+        <div class="newTestBox">
           <div class="form-row headerOfBox">
             <h5>Licensed Information</h5>
           </div>
@@ -205,7 +205,7 @@
           </div>
         </div>
 
-        <div class="infoBox">
+        <div class="newTestBox">
           <div class="form-row headerOfBox">
             <h4>Configuration</h4>
           </div>
@@ -261,7 +261,7 @@
           </div>
         </div>
 
-        <div class="infoBox">
+        <div class="newTestBox">
           <div class="form-row headerOfBox">
             <h4>Operating System</h4>
           </div>
@@ -278,7 +278,7 @@
           </div>
         </div>
 
-        <div class="infoBox">
+        <div class="newTestBox">
           <div class="form-row headerOfBox">
             <h4>Database Server</h4>
           </div>
@@ -313,26 +313,24 @@
           </div>
         </div>
 
-        <div class="infoBox">
+        <div class="newTestBox">
           <div class="form-row headerOfBox">
             <h4>Purpose</h4>
           </div>
           <div class="form-row">
-            <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm"
-              name="purpose" [(ngModel)]="device.purpose" maxlength="50000" #purpose="ngModel"> </textarea>
+            <!-- <textarea cols="156" rows="7" id="patches" [ngxSummernote]="config" [ngxSummernoteDisabled]="showForm"
+              name="purpose" [(ngModel)]="device.purpose" maxlength="50000" #purpose="ngModel"> </textarea> -->
             <!--<div style="float:right">{{50000 - purpose.value.length}} characters left </div> -->
-            <br>
-            <div *ngIf="purpose.errors?.maxlength" style="float:right">
-              <span style="color:tomato"> Exceeded the character limit. </span>
-            </div>
+            <tinymce name="purpose" [(ngModel)]="device.purpose" [config]="config"></tinymce>
+            
           </div>
         </div>
       </fieldset>
 
     </div>
   </form>
-  <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark" style="margin-left:5%;">Show
-    List</button>
+  <!-- <button routerLink="/devicetab" type="button" class="showList btn btn-outline-dark" style="margin-left:5%;">Show
+    List</button> -->
   <div style="margin-right:5%;">
     <button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!editForm.valid"
       *ngIf="isLol">Submit</button>

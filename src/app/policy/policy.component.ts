@@ -123,7 +123,9 @@ export class PolicyComponent implements OnInit {
 
 
   constructor(private _apiservice: ApiserviceService,
-    public sideNavService: AlertService, private router: Router, private pipe: DecimalPipe) { }
+    public sideNavService: AlertService, private router: Router, private pipe: DecimalPipe) {
+      sessionStorage.removeItem('policiesFamId');
+     }
 
   ngOnInit() {
     this.getData();

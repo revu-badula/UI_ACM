@@ -49,6 +49,7 @@ export class PolicydetailsComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.policyService.show();
+    sessionStorage.removeItem('policiesFamId');
     this.config.init_instance_callback = (editor: any) => {
       editor.on('keyup', () => {
         this.getData(editor);

@@ -71,7 +71,7 @@
                                             <tr
                                                 *ngFor="let policyGrp of policies | paginate: { itemsPerPage: 10, currentPage: p }">
 
-                                                <td><a class="anchor"
+                                                <td><a id="anchor"
                                                     (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
                                                 </td>
                                                 <td>{{policyGrp.auditTypeName}}</td>

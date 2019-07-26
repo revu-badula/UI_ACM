@@ -27,6 +27,16 @@ export class AssetinformationComponent implements OnInit {
   public startDate: any;
   public showBtt: boolean = true;
   renDate: any;
+  config: any = {
+    height: 250,
+    width:1180,
+    theme: 'modern',
+    plugins: 'textcolor wordcount colorpicker textpattern link',
+    toolbar: 'bold italic strikethrough forecolor backcolor fontsizeselect | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+    branding: false,
+    menubar:true,
+    statusbar:false
+  };
   public endDate: any;
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'yyyy-mm-dd'

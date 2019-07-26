@@ -25,6 +25,7 @@ export class PolicyStartComponent implements OnInit {
     private activatedRoute: ActivatedRoute, private router: Router,
     private httpClient: HttpClient, private policyService: policyService) {
     this.policyService.hide();
+    sessionStorage.removeItem('policiesFamId');
     this.activatedRoute.params.subscribe(params => {
       this.policyType = params['id'];
 

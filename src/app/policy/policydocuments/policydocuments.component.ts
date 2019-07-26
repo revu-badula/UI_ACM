@@ -8,7 +8,10 @@ import { AlertService } from 'app/alert.service';
 })
 export class PolicydocumentsComponent implements OnInit {
 
-  constructor(public sideNavService: AlertService) { }
+  constructor(public sideNavService: AlertService) {
+    sessionStorage.removeItem('policiesFamId');
+
+   }
 
   ngOnInit() {
   }

@@ -9,6 +9,7 @@ import { AlertService } from '../../alert.service';
 export class PolicyreviewComponent implements OnInit {
 
   constructor(public sideNavService: AlertService) { 
+    sessionStorage.removeItem('policiesFamId');
 
   }
   ngOnInit() {

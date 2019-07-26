@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PolicyapplicationComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    sessionStorage.removeItem('policiesFamId');
+
+  }
 
   ngOnInit() {
   }
