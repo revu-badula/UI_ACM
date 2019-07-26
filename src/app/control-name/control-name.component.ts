@@ -16,6 +16,7 @@ import { Cookie } from 'ng2-cookies';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { AppAuditPolicyDTO } from 'app/appauditpolicydto';
+import { AlertService } from '../alert.service';
 @Component({
   selector: 'app-control-name',
   templateUrl: './control-name.component.html',
@@ -76,7 +77,7 @@ export class ControlNameComponent implements OnInit {
     fontNames: ['Helvetica', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Roboto', 'Times'],
 
   };
-  constructor(private _location: Location, private activatedRoute: ActivatedRoute,
+  constructor(public sideNavService: AlertService,private _location: Location, private activatedRoute: ActivatedRoute,
     private _apiservice: ApiserviceService,
     private http: Http, private modalService: NgbModal,
     private utilService: UtilService, private router: Router, private dialogService: DialogService

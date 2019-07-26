@@ -1,0 +1,64 @@
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<div class="newTestBox">
+
+  <form class="forms">
+    <div class="form-row">
+      <div class="col-md-6">
+        <label class="newLabel"><b>Definitive Source</b><span class="asterisk">*</span></label>
+        <select class="form-control" style="width:50%;" name="definiteSource" [(ngModel)]="auditTypeId" required
+          (change)="selectFamily($event.target.value)">
+          <option value="">Choose...</option>
+          <option *ngFor="let family of famlilies" value="{{ family.policyFamilyID }}">
+            {{ family.familyName }}</option>
+        </select>
+      </div>
+
+
+    </div>
+    <br>
+    <div class="form-row">
+
+      <table class="policyTable">
+        <thead>
+          <tr>
+            <th scope="col" sortable="acronym" (sort)="getSort($event)">Policy Name
+
+            </th>
+
+            <th scope="col" sortable="businessOwnerNameDoe" (sort)="getSort($event)">
+              Family Name
+            </th>
+
+
+            <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">
+              POlicy Name
+            </th>
+            <th scope="col" sortable="updatedBy" (sort)="getSort($event)">Priority
+            </th>
+            <th scope="col" sortable="updatedTs" (sort)="getSort($event)">Weightage
+            </th>
+            <th scope="col" sortable="updatedTs" (sort)="getSort($event)">Status
+            </th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr   *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td style="color: blue;cursor: pointer;" routerLink="/spolicy/saccesscontrol/{{policy.policyId}}">{{policy.controlNumber}}</td>
+            <td>{{policy.familyName}}</td>
+            <td>{{policy.policyName}}</td>
+            <td>{{policy.priority}}</td>
+            <td>{{policy.weightageN}}</td>
+            <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </form>
+</div>

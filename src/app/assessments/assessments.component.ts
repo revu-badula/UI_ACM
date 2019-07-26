@@ -88,7 +88,7 @@ export class AssessmentsComponent implements OnInit {
   };
 
   public chartColorsAsses: Array<any> = [
-    { 
+    {
       backgroundColor: '#FF7F50',
       borderColor: 'rgba(225,10,24,0.2)',
       pointBackgroundColor: 'rgba(225,10,24,0.2)',
@@ -99,47 +99,75 @@ export class AssessmentsComponent implements OnInit {
 
 
   ];
-  
+
   public loading: boolean;
   public auditCountDTo: AuditCountDTO;
   public showGraph: boolean;
-
-  constructor(public sideNavService : AlertService,
-    private httpClient: HttpClient,private router: Router) { 
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-      this.auditCountDTo = new AuditCountDTO();
+  public assessmentDTOs: any;
+  constructor(public sideNavService: AlertService,
+    private httpClient: HttpClient, private router: Router) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    this.auditCountDTo = new AuditCountDTO();
+    sessionStorage.removeItem("systemActive");
+    sessionStorage.removeItem("systemName");
   }
 
   ngOnInit() {
-      this.getData();
+    this.getData();
   }
 
   getData() {
-      this.loading = true;
-      let url = APP_CONFIG.getGraphAssessmentsCounts;
-      this.httpClient.get(url)
-        .subscribe((data: any) => {
-          this.loading = false;
-          this.auditCountDTo = data;
-          if (this.auditCountDTo.appAuditReports !== undefined && this.auditCountDTo.appAuditReports !== null && this.auditCountDTo.appAuditReports.length > 0) {
-            for (let i = 0; i < this.auditCountDTo.appAuditReports.length; i++) {
-              this.lineChartLabelsAsses.push(this.auditCountDTo.appAuditReports[i].acronym);
-              this.lineChartDataAsses[0].data.push(this.auditCountDTo.appAuditReports[i].count);
-            }
+    this.loading = true;
+    let url = APP_CONFIG.getGraphAssessmentsCounts;
+    this.httpClient.get(url)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.auditCountDTo = data;
+        this.assessmentDTOs = data.assessmentDTOs;
+        if (this.auditCountDTo.appAuditReports !== undefined && this.auditCountDTo.appAuditReports !== null && this.auditCountDTo.appAuditReports.length > 0) {
+          for (let i = 0; i < this.auditCountDTo.appAuditReports.length; i++) {
+            this.lineChartLabelsAsses.push(this.auditCountDTo.appAuditReports[i].acronym);
+            this.lineChartDataAsses[0].data.push(this.auditCountDTo.appAuditReports[i].count);
           }
-          this.showGraph=true;
-        }, error => {
-          this.loading = false;
-          console.log(error);
-        })
+        }
+        this.showGraph = true;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
+  }
+
+  chartClicked(value: any) {
+    if (value.active.length > 0) {
+      sessionStorage.setItem("systemName", value.active[0]._model.label);
+      sessionStorage.setItem("systemActive", "true");
+      this.router.navigate(['/system/tab2/assessment/sysassessoverview']);
     }
+  }
 
-    chartClicked(value: any) {
+  goTo(value: any) {
+    sessionStorage.setItem("systemName", value.appAcronym);
+    sessionStorage.setItem("systemActive", "true");
+    sessionStorage.setItem("sysassesId", value.assessmentId);
+    sessionStorage.setItem("disabled", "false");
+    this.router.navigate(['/system/tab2/assessment/Tabs2/first2']);
+  }
 
-    }
+  getLevelData(level: any) {
+    this.assessmentDTOs = [];
+    this.loading = true;
+    let url = APP_CONFIG.getGraphAssessments + "/" + level;
+    this.httpClient.get(url)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.assessmentDTOs = data;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
 
-  
+  }
 
 
 }

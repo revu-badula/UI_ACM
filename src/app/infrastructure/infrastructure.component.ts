@@ -4,8 +4,6 @@ import { Chart, ChartDataSets } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
 import { RouterModule } from '@angular/router';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ApiserviceService } from '../apiservice.service';
 import { infrastructureDashboardDTO } from '../data_model';
 
 @Component({
@@ -21,21 +19,14 @@ import { infrastructureDashboardDTO } from '../data_model';
 export class InfrastructureComponent implements OnInit {
 
   public loading : boolean;
-  public appServers: any;
-  public dBServers :any;
-  public otherServers:any;
-  public expired:any;
-  public notExpired:any;
-  public highIncidents: any;
-  public mediumIncidents :any;
-  public lowIncidents: any;
   public vendorNumbers:any;
   public infraDashboardDTO: infrastructureDashboardDTO;
+  public assetTotal:any;
 
 
 
  public lineChartDataAudits: ChartDataSets<any> = [
-    { data: [], label: '' }
+    { data: [], label: 'Vendors' }
   ];
   public lineChartLabelsAudits: Array<any> = [];
   public chartOptionAudits = {
@@ -138,29 +129,19 @@ export class InfrastructureComponent implements OnInit {
   }
 
   getInfraNumbers(){
-    let url = APP_CONFIG.getInfraNumbers
+    let url = APP_CONFIG.getInfraNumbers;
+    this.loading=true;
       this.httpClient.get(url)
         .subscribe((data: any) => {
           this.loading = false;
           this.showGraph=false;
           this.infraDashboardDTO = data;
-          this.appServers = this.infraDashboardDTO.appServers;
-          this.dBServers = this.infraDashboardDTO.dBServers;
-          this.otherServers = this.infraDashboardDTO.otherServers;
-          this.expired = this.infraDashboardDTO.expired;
-          this.notExpired= this.infraDashboardDTO.notExpired;
-          this.highIncidents = this.infraDashboardDTO.highIncident;
-          this.mediumIncidents = this.infraDashboardDTO.mediumIncident;
-          this.lowIncidents = this.infraDashboardDTO.lowIncident;
+          this.assetTotal = this.infraDashboardDTO.appServers+this.infraDashboardDTO.dBServers + this.infraDashboardDTO.otherServers;
           this.vendorNumbers = this.infraDashboardDTO.vendorNumbers;
-
-          // if (this.infraDashboardDTO.vendorNumbers !== undefined && this.infraDashboardDTO.vendorNumbers !== null && this.infraDashboardDTO.vendorNumbers.length > 0) {
             for(var i in this.vendorNumbers){
               this.lineChartLabelsAudits.push(i);
               this.lineChartDataAudits[0].data.push(this.vendorNumbers[i]);
             }
-          
-
           this.showGraph=true;
         }, error => {
           this.loading = false;

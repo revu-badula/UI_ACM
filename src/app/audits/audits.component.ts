@@ -16,7 +16,7 @@ export class AuditsComponent implements OnInit {
     { data: [], label: 'Audits' }
   ];
   public lineChartLabelsAudits: Array<any> = [];
-  public appAudits : any;
+  public appAudits: any;
   public chartOptionAudits = {
     responsive: true,
     maintainAspectRatio: false,
@@ -106,6 +106,8 @@ export class AuditsComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.auditCountDTo = new AuditCountDTO();
+    sessionStorage.removeItem("systemActive");
+    sessionStorage.removeItem("systemName");
   }
 
   ngOnInit() {
@@ -127,7 +129,7 @@ export class AuditsComponent implements OnInit {
             this.lineChartDataAudits[0].data.push(this.auditCountDTo.appAuditReports[i].count);
           }
         }
-        this.showGraph=true;
+        this.showGraph = true;
       }, error => {
         this.loading = false;
         console.log(error);
@@ -135,6 +137,33 @@ export class AuditsComponent implements OnInit {
   }
 
   chartClicked(value: any) {
+    if (value.active.length > 0) {
+      sessionStorage.setItem("systemName", value.active[0]._model.label);
+      sessionStorage.setItem("systemActive", "true");
+      this.router.navigate(['/system/tab2/Audit/sysauditoverview']);
+    }
+
+  }
+
+  goTo(value: any) {
+    sessionStorage.setItem("systemName", value.appAcronym);
+    sessionStorage.setItem("systemActive", "true");
+    sessionStorage.setItem("disabled", "false");
+    sessionStorage.setItem("systemAppAuditId", value.appAuditId);
+    this.router.navigate(['/system/tab2/Audit/Tab/first']);
+  }
+  getLevelData(level: any) {
+    this.appAudits = [];
+    this.loading = true;
+    let url = APP_CONFIG.getGraphAudit + "/" + level;
+    this.httpClient.get(url)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.appAudits = data;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
 
   }
 

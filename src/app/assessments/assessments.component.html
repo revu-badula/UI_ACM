@@ -31,16 +31,16 @@
                                         Overall System Health
                                     </div>
                                     <p>This will display the overall health of the systems.</p>
-                                    <div class="col-md-4 pull-left" style="outline: none;">
+                                    <div class="col-md-4 pull-left" (click) = "getLevelData('High')" style="outline: none;">
                                         <span class="dot redDot">{{auditCountDTo.auditHigh}}</span>
                                         <p style="text-align: center;">High</p>
                                     </div>
-                                    <div class="col-md-4 pull-left" style="outline: none;">
+                                    <div class="col-md-4 pull-left" (click) = "getLevelData('Medium')" style="outline: none;">
                                         <span class="dot orangeDot">{{auditCountDTo.auditModerate}}</span>
                                         <p style="text-align: center;">Moderate</p>
                                     </div>
 
-                                    <div class="col-md-4 pull-left" style="outline: none;">
+                                    <div class="col-md-4 pull-left" (click) = "getLevelData('Low')" style="outline: none;">
                                         <span class="dot greenDot">{{auditCountDTo.auditLow}}</span>
                                         <p style="text-align: center;">Low</p>
                                     </div>
@@ -55,11 +55,11 @@
                                     </div>
                                     <p>More charts can be displayed here.</p>
                                     <div class="auditIcons">
-                                        <div class="col-md-3 pull-left" style="outline: none;">
+                                        <div class="col-md-3 pull-left" (click) = "getLevelData('Open')" style="outline: none;">
                                             <span class="dot redDot">{{auditCountDTo.openAudit}}</span>
                                             <p style="text-align: center;">Open</p>
                                         </div>
-                                        <div class="col-md-3 pull-left" style="outline: none;">
+                                        <div class="col-md-3 pull-left" (click) = "getLevelData('Close')" style="outline: none;">
                                             <span class="dot greenDot">{{auditCountDTo.closeAudit}}</span>
                                             <p style="text-align: center;">Close</p>
                                         </div>
@@ -97,53 +97,48 @@
                     </mat-sidenav-content>
                     <mat-sidenav-content>
                         <mat-grid-list cols="10" rowHeight="100px">
-                            <mat-grid-tile [colspan]="10" [rowspan]="5">
+                            <mat-grid-tile [colspan]="10" [rowspan]="6">
 
                                 <div class="newtestITpm">
                                     <div class="entryTitle">List of All Assessments</div>
 
 
                                     <form class="forms">
-                                        <table class="table table-bordered">
-                                            <thead>
+                                    <table class="policyTable">
+                                         <thead>
                                                 <tr>
-                                                    <th scope="col">System Name
+                                                    <th scope="col">Assessment Name
                                                     </th>
 
-                                                    <th scope="col">Business
-                                                        Owner
+                                                    <th scope="col">System Acronym
                                                     </th>
 
 
-                                                    <th scope="col">System
-                                                        Owner
+                                                    <th scope="col">Overall Risk
                                                     </th>
-                                                    <th scope="col">Updated
-                                                        By
+                                                    <th scope="col">Status
                                                     </th>
-                                                    <th scope="col">Updated
-                                                        Date
-                                                    </th>
+                                                    <th scope="col">Created Date</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 <tr
-                                                    *ngFor="let pendingApplication of pendingApplications | paginate: { itemsPerPage: 10, currentPage: p }">
-                                                    <td><a class="anchor"
-                                                            (click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
+                                                    *ngFor="let assessmentDTO of assessmentDTOs | paginate: { itemsPerPage: 10, currentPage: p }">
+                                                    <td><a id="anchor"
+                                                            (click)="goTo(assessmentDTO)">{{assessmentDTO.name}}</a>
                                                     </td>
-                                                    <td>{{pendingApplication.businessOwnerNameDoe}}</td>
 
-                                                    <td>{{pendingApplication.systemOwnerNameDoe}}</td>
-                                                    <td>{{pendingApplication.updatedBy}}</td>
-                                                    <td>{{pendingApplication.updatedTs | filterDate |
-                                            date:'MM/dd/yyyy' }}</td>
+                                                    <td>{{assessmentDTO.appAcronym}}</td>
+                                                    <td>{{assessmentDTO.overallRiskLevel}}</td>
+                                                    <td>{{assessmentDTO.status}}</td>
+                                             <td>{{assessmentDTO.createdTs | filterDate |date:'MM/dd/yyyy' }}</td>
                                                 </tr>
 
                                             </tbody>
                                         </table>
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
                                     </form>
 

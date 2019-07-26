@@ -1,8 +1,3 @@
-/**
- * New typescript file
- */
-
-
 export class Solution {
   solutionId: number;
   certDt: any;

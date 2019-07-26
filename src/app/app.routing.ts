@@ -1,9 +1,6 @@
-import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 import { SystemDetailsComponent } from './system-component/system-tab/system-details/system-details.component';
 import { SystemComponentComponent } from './system-component/system-component.component';
 import { SystemTabComponent } from './system-component/system-tab/system-tab.component';
-import { SystemSolutionsComponent } from './system-component/system-tab/system-solutions/system-solutions.component';
-import { SystemSolutionsLinkComponent } from './system-component/system-tab/system-solutions/system-solutions-link/system-solutions-link.component';
 import { SystemSolutionstablelinkComponent } from './system-component/system-tab/system-solutionstablelink/system-solutionstablelink.component';
 import { SystemBusinessComponent } from './system-component/system-tab/system-business/system-business.component';
 import { SystemAssessmentComponent } from './system-component/system-tab/system-assessment/system-assessment.component';
@@ -18,7 +15,6 @@ import { SystemAuditBusinessriskComponent } from './system-component/system-tab/
 import { SystemAuditSecurityriskComponent } from './system-component/system-tab/system-audit/system-audit-securityrisk/system-audit-securityrisk.component';
 import { SystemAuditDetailsTab } from './system-component/system-tab/system-audit/system-audit-details/system-audit-details-tab/system-audit-details-tab.component';
 import { SystemAuditLessonsComponent } from './system-component/system-tab/system-audit/system-audit-lessons/system-audit-lessons.component';
-
 import { SystemAuditBudgetComponent } from './system-component/system-tab/system-audit/system-audit-budget/system-audit-budget.component';
 import { SystemAuditAttachmentsComponent } from './system-component/system-tab/system-audit/system-audit-attachments/system-audit-attachments.component';
 import { SystemLegalComponent } from './system-component/system-tab/system-legal/system-legal.component';
@@ -27,18 +23,14 @@ import { SystemViewComponentComponent } from './system-view-component/system-vie
 import { SystemAddComponentComponent } from "./system-component/system-add-component/system-add-component.component";
 import { SystemAuditFirstComponent } from './system-component/system-tab/system-audit/system-audit-first/system-audit-first.component';
 import { LocalityDetailsComponent } from './locality-component/locality-tab/locality-details/locality-details.component';
-
 import { WorkflowGuard } from './router-guard';
 import { NgModule } from '@angular/core';
-
 import { LocalityComponentComponent } from './locality-component/locality-component.component';
 import { SystemAssessTabComponent } from './system-component/system-tab/system-assessment/system-assess-details/system-assess-tab/system-assess-tab.component';
 import { SystemAssessDetailsComponent } from './system-component/system-tab/system-assessment/system-assess-details/system-assess-details.component';
 import { SystemLegalformComponent } from './system-component/system-tab/system-legal/system-legalform/system-legalform.component';
 import { SystemLegalmainComponent } from './system-component/system-tab/system-legal/system-legalmain/system-legalmain.component';
-
 import { LocalityTabComponent } from './locality-component/locality-tab/locality-tab.component';
-
 import { LocalitySolutionsComponent } from './locality-component/locality-tab/locality-solutions/locality-solutions.component';
 import { LocalitySolutionsLinkComponent } from './locality-component/locality-tab/locality-solutions/locality-solutions-link/locality-solutions-link.component';
 import { LocalitySolutionstablelinkComponent } from './locality-component/locality-tab/locality-solutionstablelink/locality-solutionstablelink.component';
@@ -211,6 +203,15 @@ import { AssessmentsComponent } from './assessments/assessments.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { IncidentsComponent } from './incidents/incidents.component';
 import { SystemdetailsComponent } from './systemdetails/systemdetails.component';
+import { PolicyStartComponent } from './policy/policy-start/policy-start.component';
+import { PolicydetailsComponent } from './policy/policydetails/policydetails.component';
+import { PolicyreviewComponent } from './policy/policyreview/policyreview.component';
+import { PolicydocumentsComponent } from './policy/policydocuments/policydocuments.component';
+import { PolicyapplicationComponent } from './policy/policyapplication/policyapplication.component';
+import { PolicyfamiliesComponent } from './policy/policyfamilies/policyfamilies.component';
+import { PolicyComponent } from './policy/policy.component';
+import { PolicyParentComponent } from './policy/policy-parent/policy-parent.component';
+import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 import { InfradetailsComponent } from './infradetails/infradetails.component';
 
 const appRoutes: Routes = [
@@ -228,7 +229,7 @@ const appRoutes: Routes = [
   { path: 'accessControlDetails/:id', component: AccesscontroldetailsComponent, canActivate: [AuthGuard] },
   { path: 'accessCntrl/:id', component: AccesscontrolComponent, canActivate: [AuthGuard] },
   { path: 'accessUpdate/:id', component: AuditpolicyupdateComponent, canActivate: [AuthGuard] },
-  { path: 'policy', component: PolicyComponentComponent, canActivate: [AuthGuard] },
+  //{ path: 'policy', component: PolicyComponentComponent, canActivate: [AuthGuard] },
   { path: 'policyreviewview/:id', component: PolicyreviewViewComponent, canActivate: [AuthGuard] },
   { path: 'policyAdd', component: PolicyAddComponent, canActivate: [AuthGuard] },
   { path: 'deviceInventory', component: DeviceComponent, canActivate: [AuthGuard] },
@@ -816,7 +817,36 @@ const appRoutes: Routes = [
   { path: 'newSystemDetails', component: SystemdetailsComponent},
   { path: 'infraDetails/:type', component: InfradetailsComponent },
   { path: 'assetDetails/:id', component: AssetDetailComponent },
+  {
+      path: 'firstpolicy', component: PolicyParentComponent, children: [
+          { path: 'main/:id', component: PolicyStartComponent },
+          {
+              path: 'details',
+              component: PolicydetailsComponent
+          },
+
+          {
+              path: 'review',
+              component: PolicyreviewComponent
+          },
+          {
+              path: 'documents',
+              component: PolicydocumentsComponent
+          },
+          {
+              path: 'application',
+              component: PolicyapplicationComponent
+          },
+          {
+              path:'families',
+              component: PolicyfamiliesComponent
+          }
+
+      ]
+  },
+  { path: 'policy', component: PolicyComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
+ 
 ];
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes, { useHash: false })],

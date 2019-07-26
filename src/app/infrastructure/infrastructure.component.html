@@ -31,27 +31,27 @@
               <mat-grid-tile [colspan]="5" [rowspan]="2">
                 <div class="newtestITpm">
                   <div class="entryTitle">
-                    Total Assests
+                    Total Assests ({{assetTotal}})
                   </div>
                  
                   <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;" routerLink="/infraDetails/Application Server">
                     <span class="dot redDot" style="display: none;">{{appServers}}</span>
                     <i class="fa fa-server" aria-hidden="true" style="font-size: 94px;color: coral;"></i>
-                    <p style="text-align: center;">App Servers</p>
+                    <p style="text-align: center;">App Servers ({{infraDashboardDTO.appServers}})</p>
                   </div>
                   <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;" routerLink="/infraDetails/Database Server">
                     <span class="dot orangeDot" style="display: none;">{{dBServers}}</span>
                     <i class="fa fa-database" aria-hidden="true" style="
     font-size: 95px;color: cadetblue;
 "></i>
-                    <p style="text-align: center;">DB Servers</p>
+                    <p style="text-align: center;">DB Servers ({{infraDashboardDTO.dBServers}})</p>
                   </div>
 
                   <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;" routerLink="/infraDetails/Others">
                     <span class="dot greenDot" style="display: none;">{{otherServers}}</span>
                     <i class="fa fa-desktop" aria-hidden="true" style="font-size:95px;color: yellowgreen;"></i>
 
-                    <p style="text-align: center;">All Others</p>
+                    <p style="text-align: center;">All Others ({{infraDashboardDTO.otherServers}})</p>
                   </div>
 
                   <!-- <div class="stacked-bar-graph">
@@ -70,7 +70,7 @@
                   </div>
                   <p>Renewal required for different assets are displayed in red.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{expired}}</span>
+                    <span class="dot redDot">{{infraDashboardDTO.expired}}</span>
                     <p style="text-align: center;">Expired</p>
                   </div>
 
@@ -80,7 +80,7 @@
 
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{notExpired}}</span>
+                    <span class="dot greenDot">{{infraDashboardDTO.notExpired}}</span>
                     <p style="text-align: center;">Non-Expired</p>
                   </div>
 
@@ -115,7 +115,7 @@
                   </div>
                   <p>Total Assests related to all systems.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{4}}</span>
+                    <span class="dot redDot">0</span>
 
                   </div>
 
@@ -126,7 +126,7 @@
 
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{3}}</span>
+                    <span class="dot greenDot">0</span>
 
                   </div>
 
@@ -144,17 +144,17 @@
                   </div>
                   <p>Total Assests related to all systems.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{appServers}}</span>
+                    <span class="dot redDot">0</span>
 
                   </div>
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot orangeDot">{{dBServers}}</span>
+                    <span class="dot orangeDot">0</span>
 
                   </div>
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{otherServers}}</span>
+                    <span class="dot greenDot">0</span>
 
                   </div>
 
@@ -174,18 +174,18 @@
                   </div>
                   <p>Renewal required for different assets are displayed in red.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{highIncidents}}</span>
+                    <span class="dot redDot">{{infraDashboardDTO.highIncident}}</span>
 
                   </div>
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot orangeDot">{{mediumIncidents}}</span>
+                    <span class="dot orangeDot">{{infraDashboardDTO.mediumIncident}}</span>
 
                   </div>
 
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{lowIncidents}}</span>
+                    <span class="dot greenDot">{{infraDashboardDTO.lowIncident}}</span>
 
                   </div>
 

@@ -31,7 +31,6 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
     
   }
-
   getDatabases() {
     let url = APP_CONFIG.getDatabases;
     return this._httpService.get(url)
@@ -273,9 +272,6 @@ export class ApiserviceService {
 
 
   }
-
-
-  
 
   assignReviewers(data: any) {
     let url = APP_CONFIG.assignReviewers;
@@ -557,4 +553,25 @@ export class ApiserviceService {
         .map(res => <Response>res.json());
     }
 
+  getPolicyCount(year:any)
+  {
+      let url = APP_CONFIG.getPolicyCounts;
+      return this._httpService.get(url + '/' +year)
+      .map(res => <Response>res.json());
+  }
+  
+  policyGrpOnstatus(value:any)
+  {
+      let url = APP_CONFIG.policyGrpOnstatus;
+      return this._httpService.get(url + '/' +value)
+      .map(res => <Response>res.json());
+  }
+  
+  getPolicyAssignment(value:any)
+  {
+      let url = APP_CONFIG.getPolicyAssignment;
+      return this._httpService.get(url + '/' +value)
+      .map(res => <Response>res.json());
+  }
+  
 }

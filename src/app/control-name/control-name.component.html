@@ -1,7 +1,9 @@
 <div class="my-container">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
-<app-navigation-component></app-navigation-component>
+   <div class="sidebar" data-color="danger" data-background-color="white">
+    <app-newsidebar></app-newsidebar>
+</div>
 <!-- <div class="navigate sticky-top" [ngStyle]="{'backgroundColor': getColor(), 'opacity': getOpacity()}"
     style="padding-top: 1vw;">
 

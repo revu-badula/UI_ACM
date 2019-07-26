@@ -65,7 +65,7 @@ import { DevicetabComponent } from './devicetab/devicetab.component';
 import { IdleTimeoutService } from './idleTimeOutService';
 import { DialogComponent } from './dialog.service';
 import { CustomCurrencyPipe } from './currency-pipe';
-import { CurrencyPipe, APP_BASE_HREF} from '@angular/common';
+import { CurrencyPipe, APP_BASE_HREF } from '@angular/common';
 import { ReportLegalComponent } from './reports/report-legal/report-legal.component';
 import { ReportSolutionsComponent } from './reports/report-solutions/report-solutions.component';
 import { ReportVendorComponent } from './reports/report-vendor/report-vendor.component';
@@ -89,7 +89,7 @@ import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { PolicyreviewViewComponent } from './policyreview-view/policyreview-view.component';
 import { AccesscontroldetailsComponent } from './accesscontroldetails/accesscontroldetails.component';
 import { NgxTinymceModule } from 'ngx-tinymce';
-import { ChartsModule} from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 import { GraphComponent } from './graph/graph.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SampleQuestionComponent } from './sample-question/sample-question.component';
@@ -128,6 +128,7 @@ import { InfrastructureComponent } from './infrastructure/infrastructure.compone
 import { AssessmentsComponent } from './assessments/assessments.component';
 import { AuditsComponent } from './audits/audits.component';
 import { SystemdetailsComponent } from './systemdetails/systemdetails.component';
+import { PolicyModule } from './policy/policy.module';
 
 @NgModule({
   declarations: [
@@ -222,7 +223,8 @@ import { SystemdetailsComponent } from './systemdetails/systemdetails.component'
     AssessmentsComponent,
     InfrastructureComponent,
     IncidentsComponent,
-    SystemdetailsComponent
+    SystemdetailsComponent,
+
   ],
 
   imports: [
@@ -248,6 +250,7 @@ import { SystemdetailsComponent } from './systemdetails/systemdetails.component'
     ReactiveFormsModule,
     NgxPaginationModule,
     ChartsModule,
+    PolicyModule,
     MatGridListModule,
     MatSidenavModule,
     NgbModule.forRoot(),
@@ -266,8 +269,8 @@ import { SystemdetailsComponent } from './systemdetails/systemdetails.component'
   entryComponents: [
     DialogBoxComponent, DialogComponent
   ],
-  providers: [RegisterService, UtilService,{provide:APP_BASE_HREF, useValue:'/Integra/'}, ApiserviceService, AlertService, OktaAuthService,
-    AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe,DatePipe],
+  providers: [RegisterService, UtilService, { provide: APP_BASE_HREF, useValue: '/Integra/' }, ApiserviceService, AlertService, OktaAuthService,
+    AuthenticationService, CanDeactivateGuard, DialogService, IdleTimeoutService, CurrencyPipe, DatePipe],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

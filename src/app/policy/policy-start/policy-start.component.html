@@ -1,0 +1,93 @@
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<!-- <div class="main-panel">
+    <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+        <div class="categoryGrid">
+            <div class="clearfix wrap"> -->
+                <!-- <div>
+                    <h2 class="headerFix">{{policyType}}</h2>
+                </div> -->
+                <div class="newTestBox">
+                    <!-- <div class="headerOfBox">
+                        <h4>Overview</h4>
+                    </div> -->
+                    <form class="forms">
+                        <div class="form-row">
+                            <div class="col-md-6" *ngIf="policyType == 'NIST'">
+                                    <label class="newLabel"><b>Definitive Source</b><span class="asterisk">*</span></label>
+                                    <input type="text" class="form-control" name="definiteSource" value={{policyType}} readonly>
+                            </div>
+                            <div class="col-md-6" *ngIf="policyType !== 'NIST'">
+                                <label class="newLabel"><b>Definitive Source</b><span class="asterisk">*</span></label>
+                                <select class="form-control" style="width:50%;" name="definiteSource"
+                                    [(ngModel)]="auditTypeId" required (change)="selectDefinitive($event.target.value)">
+                                    <option value="">Choose...</option>
+                                    <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">
+                                        {{ auditType.auditTypeName }}</option>
+                                </select>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <label class="newLabel"><b>Type/Policy</b><span class="asterisk">*</span></label>
+                                <select class="form-control" style="width:50%;" name="type" required
+                                    [(ngModel)]="policyGrpId" (change)="selectType($event.target.value)">
+                                    <option value="">Choose...</option>
+                                    <option *ngFor="let policyType of  policyTypes"
+                                        value="{{ policyType.policyGrpId }}">{{ policyType.policyGrpName
+                                        }}</option>
+                                </select>
+                            </div> -->
+
+                        </div>
+                        <br>
+                        <div class="form-row">
+
+                            <table class="policyTable">
+                                        <thead>
+                                            <tr>
+
+                                                <th scope="col" sortable="auditTypeName" (sort)="getSort($event)">Policy
+                                                    Name
+                                                </th>
+												
+												 <th scope="col" sortable="policyGrpId" (sort)="getSort($event)">Source
+
+                                                </th>
+
+                                                <th scope="col" sortable="owner" (sort)="getSort($event)">
+                                                    Policy Owner
+                                                </th>
+                                                <th scope="col" sortable="reviewDate" (sort)="getSort($event)">Next
+                                                    Audit
+                                                    Date
+                                                </th>
+                                                <th scope="col" sortable="status" (sort)="getSort($event)">Status
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr
+                                                *ngFor="let policyGrp of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+
+                                                <td><a class="anchor"
+                                                    (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
+                                                </td>
+                                                <td>{{policyGrp.auditTypeName}}</td>
+                                                <td>{{policyGrp.owner}}</td>
+                                                <td>{{policyGrp.reviewDate}}</td>
+                                                <td>{{policyGrp.status}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+
+                    </form>
+                </div>
+
+            <!-- </div>
+        </div>
+    </div>
+</div> -->

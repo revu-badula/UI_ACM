@@ -1,0 +1,75 @@
+<!-- <app-loadercomponent></app-loadercomponent> -->
+<!-- <div class="main-panel">
+    <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+        <div class="categoryGrid">
+            <div class="clearfix wrap"> -->
+                <!-- <div>
+                    <h2 class="headerFix">Policy Review</h2>
+                </div> -->
+                <!-- <div>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">Information</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" id="Compliance-tab" data-toggle="tab" href="#Compliance" role="tab"
+                                          aria-controls="Compliance" aria-selected="false">Families</a>
+                                      </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                    aria-controls="profile" aria-selected="false">Review</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="Testing-tab" data-toggle="tab" href="#Testing" role="tab"
+                                    aria-controls="Testing" aria-selected="false">Documents</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="Compliance-tab" data-toggle="tab" href="#Compliance" role="tab"
+                                    aria-controls="Compliance" aria-selected="false">Systems</a>
+                                </li>
+                                
+                              </ul>
+                </div> -->
+                <div class="newTestBox">
+
+                    <!-- <div class="headerOfBox">
+                        <h4>Policy Reviewers</h4>
+                    </div> -->
+
+                    <div class="policy-edit" style="padding-bottom: 1%;">
+                        <fa (click)="changeButton()" *ngIf="plus" class="edit-icon icons" data-toggle="tooltip"
+                            data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'">
+                        </fa>
+                        <fa (click)="showPopup(content)" *ngIf="!plus" class="plus-icon" [name]="'plus'"></fa>
+                    </div>
+                    <table class="policyTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Policy Name</th>
+                                <th scope="col">Assigned To</th>
+                                <th scope="col">Assigned On</th>
+                                <th scope="col">Due Date</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tableData of policyData | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td (click)="displayReviewDetails(tableData.policyReview)"
+                                    style="cursor:pointer;color:blue;">{{
+                                        tableData.policyGrpName }}</td>
+                                <td>{{ tableData.assignedTo }}</td>
+                                <td>{{ tableData.createdTs }}</td>
+                                <td>{{ tableData.dueDate }}</td>
+                                <td>{{ tableData.status }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+                </div>
+
+            <!-- </div>
+
+        </div>
+    </div>
+</div> -->

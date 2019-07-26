@@ -1,0 +1,328 @@
+<app-navigation-component></app-navigation-component>
+<div class="sidebar" data-color="danger" data-background-color="white">
+    <app-newsidebar></app-newsidebar>
+</div>
+<!-- <app-loadercomponent></app-loadercomponent> -->
+<div class="newmainpanel">
+    <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+        <div class="categoryGrid">
+            <div class="clearfix wrap">
+                <div>
+                    <h2 class="headerFix">Policy</h2>
+                </div>
+                <mat-sidenav-container class="example-sidenav-container"
+                    style="min-height: 100%;background-color: inherit;">
+
+                    <mat-sidenav-content>
+                        <mat-grid-list cols="10" rowHeight="100px">
+                            <mat-grid-tile [colspan]="10" [rowspan]="1">
+                                <div class="newtestITpm" style="height: auto;">
+                                    <div class="entryTitle" style="display: none;">
+                                        Definition
+                                    </div>
+                                    <div style="text-align: left;">
+                                        This screen allows you add, edit and view policies. The policies are organized
+                                        under two categories: - NIST and All others. The NIST National Institute for
+                                        Standards and Technology has 800 publications and All others has state, local
+                                        or organization level policies. Both options allow you create policy by using
+                                        NIST or other out of the box templates.
+
+
+                                    </div>
+                                </div>
+
+                            </mat-grid-tile>
+                            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                                <div class="newtestITpm">
+                                    <div class="card" style="width: 99%;height:88%;">
+                                        <div class="card-body">
+                                            <div class="card-heading">
+                                                <h5 class="card-title" style="font-size: 25px;">NIST</h5>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-md-6" style="outline: none;cursor: pointer;" routerLink="/firstpolicy/main/NIST">
+                                                    <i class="fa fa-files-o" aria-hidden="true" style="
+                                                        font-size: 70px;
+                                                        color:yellowgreen;
+                                                    "></i>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    Please click to add/ edit/ view NIST policies.
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </mat-grid-tile>
+                            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                                <div class="newtestITpm">
+
+                                    <div class="card" style="width: 99%;height:88%;">
+                                        <div class="card-body">
+                                            <div class="card-heading">
+                                                <h5 class="card-title" style="font-size: 25px;">All
+                                                    Others</h5>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-md-6" style="outline: none;cursor: pointer;" routerLink="/firstpolicy/main/Others">
+                                                    <i class="fa fa-files-o" aria-hidden="true" style="
+                                                                font-size: 70px;
+                                                                color: cadetblue;
+                                                            "></i>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    Please click to add/ edit/ view your State, Local and Organization
+                                                    policies.
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile [colspan]="3" [rowspan]="2">
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">Overall Open</div>
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-md-3 pull-left" (click)="getPolicyGrpData('open')">
+                                                <span class="adsquare adsquarecolor">{{openCount}}</span>
+                                                <p style="text-align: center;">Open</p>
+                                            </div>
+                                            <div class="col-md-2 pull-left"></div>
+                                            <div class="col-md-3 pull-left" (click)="getPolicyGrpData('close')">
+                                                <span class="adsquare adsquarecolor">{{closeCount}}</span>
+                                                <p style="text-align: center;">Close</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </mat-grid-tile>
+
+                            <mat-grid-tile [colspan]="4" [rowspan]="2">
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">Upcoming Re-certification of Policies</div>
+                                    <div class="card" style="width: 99%;height:88%;">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div style="display: block; width: 100%; height: 9rem; background-color: #fff;"
+                                                        *ngIf="showAllSystem">
+                                                        <canvas baseChart [datasets]="lineChartPolicies"
+                                                            [labels]="lineChartPoliciesLables" chartType="bar"
+                                                            [legend]="false" (chartClick)="chartClickedSystems($event)"
+                                                            [options]="chartOption1"
+                                                            [colors]="chartColorsSystems"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-grid-tile>
+
+
+                            <mat-grid-tile [colspan]="3" [rowspan]="2">
+
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">Assignment</div>
+                                    <div class="card" style="width: 99%;height:88%;">
+                                        <div class="card-body">
+
+                                            <div class="row">
+
+                                                <div class="col-md-3 pull-left" (click)="getPolicyData('open')">
+                                                    <span class="adsquare adsquarecolor">{{policyOpenCount}}</span>
+                                                    <p style="text-align: center;">Open</p>
+                                                </div>
+                                                <div class="col-md-2 pull-left">
+
+                                                </div>
+                                                <div class="col-md-3 pull-left" (click)="getPolicyData('close')">
+                                                    <span class="adsquare adsquarecolor">{{policyuCloseCount}}</span>
+                                                    <p style="text-align: center;">Close</p>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile [colspan]="10" [rowspan]="1" *ngIf="!showTable">
+                                <div class="newtestITpm">
+                                    <i class="fa fa-plus" style="position: absolute;right:1%;" (click)="getTable1()"
+                                        aria-hidden="true"></i>
+                                </div>
+
+                            </mat-grid-tile>
+                            <mat-grid-tile [colspan]="10" [rowspan]="6" *ngIf="showTable">
+                                <div class="newtestITpm" *ngIf="showPolicies">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="getTable1()" style="
+                                    position: absolute;
+                                    right: 1%;
+                                "></i>
+                                    <div class="form-group form-inline">
+                                        Search on Table: <input class="ml-2"
+                                            style="width: 20% !important;outline: none;" type="text" name="searchTerm"
+                                            [(ngModel)]="searchTerm" (keyup)="getData1($event.target.value)" />
+                                    </div>
+                                    <table class="policyTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" sortable="policyId" (sort)="getSort($event)">Policy Src
+
+                                                </th>
+
+                                                <th scope="col" sortable="familyName" (sort)="getSort($event)">Family
+                                                    Name</th>
+
+
+                                                <th scope="col" sortable="policyGrpName" (sort)="getSort($event)">
+                                                    Policy Name
+                                                </th>
+                                                <th scope="col" sortable="assignedTo" (sort)="getSort($event)">Assigned
+                                                    To
+                                                </th>
+                                                <th scope="col" sortable="assignedBy" (sort)="getSort($event)">Assigned
+                                                    By
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr
+                                                *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+
+                                                <td><a class="anchor"
+                                                        routerLink="/spolicy/saccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
+                                                </td>
+                                                <td>{{policy.familyName}}</td>
+                                                <td>{{policy.policyGrpName}}</td>
+                                                <td>{{policy.assignedTo}}</td>
+                                                <td>{{policy.assignedBy}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                </div>
+
+                                <div class="newtestITpm" *ngIf="showPolicyGrp">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="getTable1()" style="
+                                        position: absolute;
+                                        right: 1%;
+                                    "></i>
+                                    <div class="form-group form-inline">
+                                        Search on Table: <input class="ml-2"
+                                            style="width: 20% !important;outline: none;" type="text" name="searchTerm"
+                                            [(ngModel)]="searchTerm" (keyup)="getData1($event.target.value)" />
+                                    </div>
+                                    <table class="policyTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" sortable="policyGrpId" (sort)="getSort($event)">Source
+
+                                                </th>
+
+                                                <th scope="col" sortable="auditTypeName" (sort)="getSort($event)">Policy
+                                                    Name
+                                                </th>
+
+
+                                                <th scope="col" sortable="owner" (sort)="getSort($event)">
+                                                    Policy Owner
+                                                </th>
+                                                <th scope="col" sortable="reviewDate" (sort)="getSort($event)">Next
+                                                    Audit
+                                                    Date
+                                                </th>
+                                                <th scope="col" sortable="status" (sort)="getSort($event)">Status
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr
+                                                *ngFor="let policyGrp of policyGrps | paginate: { itemsPerPage: 10, currentPage: p }">
+
+                                                <td><a class="anchor"
+                                                    (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
+                                                </td>
+                                                <td>{{policyGrp.auditTypeName}}</td>
+                                                <td>{{policyGrp.owner}}</td>
+                                                <td>{{policyGrp.reviewDate}}</td>
+                                                <td>{{policyGrp.status}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                </div>
+                            </mat-grid-tile>
+                            <!-- <mat-grid-tile [colspan]="5" [rowspan]="2">
+
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">Upcoming Policies</div>
+                                    <div class="card" style="width: 99%;height:88%;">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div style="display: block; width: 100%; height: 9rem; background-color: #fff;"
+                                                        *ngIf="showAllSystem">
+                                                        <canvas baseChart [datasets]="lineChartPolicies"
+                                                            [labels]="lineChartPoliciesLables" chartType="bar"
+                                                            [legend]="false" (chartClick)="chartClickedSystems($event)"
+                                                            [options]="chartOption1"
+                                                            [colors]="chartColorsSystems"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-grid-tile> -->
+                            <!-- <mat-grid-tile [colspan]="5" [rowspan]="2">
+                                <div class="newtestITpm">
+                                    <div class="card" style="width: 99%;height:88%;">
+                                        <div class="card-body">
+                                            <div class="card-heading">
+                                                <h5 class="card-title" style="background-color: antiquewhite;">NONE</h5>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-grid-tile> -->
+                        </mat-grid-list>
+
+                    </mat-sidenav-content>
+
+                </mat-sidenav-container>
+            </div>
+        </div>
+    </div>
+</div>

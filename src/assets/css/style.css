@@ -2119,3 +2119,7 @@ a .material-icons {
   color: #fff;
 
 }
+#anchor{
+  color: blue;
+  cursor: pointer;
+}

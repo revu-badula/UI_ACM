@@ -10,7 +10,7 @@
     <div class="categoryGrid">
       <div class="clearfix wrap">
         <div>
-          <h2 class="headerFix">Infrastructure Details</h2>
+          <h2 class="headerFix">Infrastructure Details - {{serverType=='Database Server'?'Databases':serverType=='Application Server'?'Applications':'All Others'}}</h2>
         </div>
         <mat-sidenav-container class="example-sidenav-container" style="min-height: 100%;background-color: inherit;">
           <mat-sidenav-content>
@@ -71,7 +71,7 @@
                   </div>
                   <p>Renewal required for different assets are displayed in red.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{expired}}</span>
+                    <span class="dot redDot">{{infraStructureDTO.renewalCount}}</span>
                     <!-- <p style="text-align: center;">App Servers</p> -->
                   </div>
 
@@ -81,7 +81,7 @@
 
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{notExpired}}</span>
+                    <span class="dot greenDot">{{infraStructureDTO.renewalExpiredCount}}</span>
                     <!-- <p style="text-align: center;">All Others</p> -->
                   </div>
 
@@ -112,18 +112,11 @@
                   </div>
                   <p>Total Assests related to all systems.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{highComplianceCheck}}</span>
+                    <span class="dot redDot">{{infraStructureDTO.highComplianceCheck}}</span>
 
                   </div>
-
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-
-                  </div>
-
-
-
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{lowComplianceCheck}}</span>
+                    <span class="dot greenDot">{{infraStructureDTO.lowComplianceCheck}}</span>
 
                   </div>
 
@@ -137,17 +130,17 @@
                   </div>
                   <p>Total Assests related to all systems.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{highTestResults}}</span>
+                    <span class="dot redDot">{{infraStructureDTO.highTestResultsCount}}</span>
 
                   </div>
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot orangeDot">{{medTestResults}}</span>
+                    <span class="dot orangeDot">{{infraStructureDTO.medTestResultsCount}}</span>
 
                   </div>
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{lowTestResults}}</span>
+                    <span class="dot greenDot">{{infraStructureDTO.lowTestResultsCount}}</span>
 
                   </div>
 
@@ -167,18 +160,18 @@
                   </div>
                   <p>Renewal required for different assets are displayed in red.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{highIncidents}}</span>
+                    <span class="dot redDot">{{infraStructureDTO.highIncidentsCount}}</span>
 
                   </div>
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot orangeDot">{{mediumIncidents}}</span>
+                    <span class="dot orangeDot">{{infraStructureDTO.medIncidentsCount}}</span>
 
                   </div>
 
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{lowIncidents}}</span>
+                    <span class="dot greenDot">{{infraStructureDTO.lowIncidentsCount}}</span>
 
                   </div>
 
@@ -216,14 +209,14 @@
                     </thead>
                     <tbody>
                       <tr
-                        *ngFor="let infraStructure of infraStructures | paginate: { itemsPerPage: 10, currentPage: p }">
+                        *ngFor="let infraStructure of infraStructureDTO.servers | paginate: { itemsPerPage: 10, currentPage: p }">
 
                         <td><a class="anchor"
                             routerLink="/assetDetails/{{infraStructure.databaseId}}">{{infraStructure.hostName}}</a>
                         </td>
                         <td>{{infraStructure.vendorName}}</td>
-                        <td>{{infraStructure.licenseEndDt}}</td>
-                        <td>{{infraStructure.licenseRenewDt}}</td>
+                        <td>{{infraStructure.licenseEndDt | filter}}</td>
+                        <td>{{infraStructure.licenseRenewDt | filter}}</td>
                       </tr>
 
                     </tbody>

@@ -11,7 +11,7 @@
     <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
         <div class="categoryGrid">
             <div class="clearfix wrap">
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs" *ngIf="!showBIA">
                     <li class="nav-item">
                         <a class="nav-link" routerLinkActive="active" routerLink="/incident/info">
                             <fa class="help" [name]="'info-circle'"></fa>&nbsp;Information
@@ -65,62 +65,69 @@
 
 
                 </ul>
+                <ul class="nav nav-tabs" *ngIf="showBIA">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" routerLink="/newBusinessImpact/info">
+                            <fa class="help" [name]="'info-circle'"></fa>&nbsp;Information
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLink="/newBusinessImpact/technical"
+                            routerLinkActive="active">
+                            <fa class="help" [name]="'book'"></fa>&nbsp;Business Risk
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'"
+                            routerLink="/newBusinessImpact/classification" routerLinkActive="active">
+                            <fa class="help" [name]="'paper-plane'"></fa>&nbsp;Financial Risk
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/newBusinessImpact/impact">
+                            <fa class="help" [name]="'gavel'"></fa>&nbsp;Security Risk
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/newBusinessImpact/assignment">
+                            <fa class="help" [name]="'book'"></fa>&nbsp;RCA
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/newBusinessImpact/resolution">
+                            <fa class="help" [name]="'check-circle'"></fa>&nbsp;Resolution
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/newBusinessImpact/cap">
+                            <fa class="help" [name]="'check-circle'"></fa>&nbsp;CAP
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/newBusinessImpact/close">
+                            <fa class="help" [name]="'check-circle'"></fa>&nbsp;Closeout Summary
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/newBusinessImpact/businessImpact">
+                            <fa class="help" [name]="'check-circle'"></fa>&nbsp;Business Impact Analysis
+                        </a>
+                    </li>
+
+
+                </ul>
                 <router-outlet></router-outlet>
 
-                <ul class="nav nav-tabs" *ngIf="showBIA">
-                        <li class="nav-item" style="margin-left: -42px;">
-                            <a class="nav-link" id="navtab" routerLinkActive="active" routerLink="/newBusinessImpact/info">
-                                <fa class="help" [name]="'info-circle'"></fa>&nbsp;Information
-                            </a>
-                        </li>
-            
-                      
-                        <li class="nav-item">
-                            <a [ngClass]="showText?'nav-link disabled':'nav-link'"  routerLink="/newBusinessImpact/technical"
-                                routerLinkActive="active">
-                                <fa class="help" [name]="'book'"></fa>&nbsp;Business Risk
-                            </a>
-                        </li>
-            
-                        <li class="nav-item">
-                            <a [ngClass]="showText?'nav-link disabled':'nav-link'"  routerLink="/newBusinessImpact/classification"
-                                routerLinkActive="active">
-                                <fa class="help" [name]="'paper-plane'"></fa>&nbsp;Financial Risk
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/newBusinessImpact/impact">
-                                <fa class="help" [name]="'gavel'"></fa>&nbsp;Security Risk
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/newBusinessImpact/assignment">
-                                <fa class="help" [name]="'book'"></fa>&nbsp;RCA
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/newBusinessImpact/resolution">
-                                <fa class="help" [name]="'check-circle'"></fa>&nbsp;Resolution
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/newBusinessImpact/cap">
-                                <fa class="help" [name]="'check-circle'"></fa>&nbsp;CAP
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/newBusinessImpact/close">
-                                <fa class="help" [name]="'check-circle'"></fa>&nbsp;Closeout Summary
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active" routerLink="/newBusinessImpact/businessImpact">
-                                <fa class="help" [name]="'check-circle'"></fa>&nbsp;Business Impact Analysis
-                            </a>
-                        </li>
-            
-            
-                    </ul>
+
             </div>
         </div>
     </div>

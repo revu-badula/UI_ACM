@@ -1,0 +1,299 @@
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<!-- <div class="main-panel">
+    <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+        <div class="categoryGrid">
+            <div class="clearfix wrap"> -->
+                <!-- <div>
+                    <h2 class="headerFix">Policy Details</h2>
+                </div> -->
+                <!-- <div>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">Information</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" id="Compliance-tab" data-toggle="tab" href="#Compliance" role="tab"
+                                          aria-controls="Compliance" aria-selected="false">Families</a>
+                                      </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                    aria-controls="profile" aria-selected="false" routerLink="/firstpolicy/review">Review</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="Testing-tab" data-toggle="tab" href="#Testing" role="tab"
+                                    aria-controls="Testing" aria-selected="false">Documents</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="Compliance-tab" data-toggle="tab" href="#Compliance" role="tab"
+                                    aria-controls="Compliance" aria-selected="false">Systems</a>
+                                </li>
+                                
+                              </ul>
+                </div> -->
+                <div class="policy-edit" style="padding-top: 2%;
+                margin-bottom: -1%;">
+                    <fa (click)="downloadFile(policyDropDownId)" *ngIf="plus && showDownload" [name]="'download'"
+                        class="download-icon icons"></fa>
+                    <fa class="edit-icon icons" (click)="changeButton()" *ngIf="plus" data-toggle="tooltip"
+                        data-placement="right" title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
+                    <fa (click)="open(content)" *ngIf="!plus" [name]="'upload'" class="upload-icon icons"></fa>
+                    <a routerLink="/policyAdd">
+                        <fa *ngIf="!plus" [name]="'plus'" class="plus-icon icons"></fa>
+                    </a>
+                    <a *ngIf="myForm.valid">
+                        <fa *ngIf="!plus" (click)="updatePolicyGrp()" class="save-icon icons" [name]="'save'"></fa>
+                    </a>
+                    <fa (click)="close()" *ngIf="!plus" class="close-icon icons" [name]="'times-circle'"></fa>
+                </div>
+                <div class="newTestBox">
+                    <div class="headerOfBox">
+                        <h4>Policies</h4>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label class="newLabel">Definitive Source</label>
+                            <input type="text" class="form-control" [(ngModel)]="policyGrpData.definitiveSource"
+                                name="definitiveSource" readonly>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="newLabel">Type/Policy</label>
+                            <input type="text" class="form-control" [(ngModel)]="policyGrpData.policyGrpName"
+                                name="type" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label class="newLabel">Updated By</label>
+                            <input type="text" class="form-control" readonly [(ngModel)]="policyGrpData.updatedBy"
+                                name="updatedBy">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="newLabel">Updated Date</label>
+                            <input type="text" name="updatedAt" class="form-control" [ngModel]="updatedAt" readonly>
+                        </div>
+                    </div>
+
+                </div>
+
+                <form (ngSubmit)="updatePolicyGrp()" #myForm="ngForm">
+
+                    <fieldset [disabled]='showForm'>
+
+                        <div class="newTestBox">
+                            <div class="headerOfBox">Information</div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label class="newLabel">Last Review Date<span class="asterisk">*</span></label>
+                                    <my-date-picker name="lastReviewDate" class="newInput" [(ngModel)]="lastReviewDate" ngModel
+                                        required></my-date-picker>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="newLabel">Next Review Date<span class="asterisk">*</span></label>
+                                    <my-date-picker name="nextReviewDate" class="newInput" [(ngModel)]="nextReviewDate" ngModel
+                                        required></my-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label class="newLabel">Owner<span class="asterisk">*</span></label>
+                                    <select type="text" class="form-control" [(ngModel)]="policyDisplay.owner"
+                                        (change)="policyDisplay.owner = $event.target.value" name="policyOwner"
+                                        required>
+                                        <option value="" selected>Choose...</option>
+                                        <option *ngFor="let getUser of  users"
+                                            value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+                                                    getUser.firstName}} {{getUser.lastName }} </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="newLabel">Policy Review Term<span class="asterisk">*</span></label>
+                                    <input type="text" class="form-control" *ngIf="showForm"
+                                        [(ngModel)]="policyDisplay.policyReviewTerm" name="reviewTerm" readonly>
+                                    <select class="form-control" *ngIf="!showForm"
+                                        [(ngModel)]="policyDisplay.policyReviewTerm" name="reviewTerm"
+                                        (change)="displayReview($event.target.value)" required>
+                                        <option *ngFor="let review of policyReviewTerm" value="{{review.reviewTerm}}">
+                                            {{review.reviewTerm}}</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label class="newLabel">Status<span class="asterisk">*</span></label>
+                                    <input type="text" class="form-control"
+                                        [ngModel]="policyDisplay.status | subControlPipe" name="policyStatus"
+                                        *ngIf="showForm" readonly>
+                                    <select class="form-control" name="selectstatus" [(ngModel)]="policyDisplay.status"
+                                        id="priority" (change)="policyDisplay.status = $event.target.value"
+                                        *ngIf="!showForm" required>
+                                        <option value="true">Open</option>
+                                        <option value="false">Close</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="newTestBox">
+                            <div class="headerOfBox">
+                                <h4>Description</h4>
+                            </div>
+                            <tinymce name="description" *ngIf="showForm" disabled=true
+                                [(ngModel)]="policyDisplay.description" [config]="config"></tinymce>
+                            <tinymce name="description" *ngIf="!showForm" [(ngModel)]="policyDisplay.description"
+                                [config]="config">
+                            </tinymce>
+                            <div style="text-align: left;">remaining {{50000 -len}}</div>
+                        </div>
+                        
+                    </fieldset>
+
+                </form>
+
+            <!-- </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+
+<!--<div class="form1" style="margin: 4vh 5% 0% 0%;">
+        <div class="policy-edit" style="padding-top: 2%;
+    margin-bottom: -1%;">
+            <fa (click)="downloadFile(policyDropDownId)" *ngIf="plus && showDownload" [name]="'download'"
+                class="download-icon icons"></fa>
+            <fa class="edit-icon icons" (click)="changeButton()" *ngIf="plus" data-toggle="tooltip" data-placement="right"
+                title="Save" data-animation="true" data-delay="0" [name]="'edit'"></fa>
+            <fa (click)="open(content)" *ngIf="!plus" [name]="'upload'" class="upload-icon icons"></fa>
+            <a routerLink="/policyAdd">
+                <fa *ngIf="!plus" [name]="'plus'" class="plus-icon icons"></fa>
+            </a>
+            <a *ngIf="myForm.valid">
+                <fa *ngIf="!plus" (click)="updatePolicyGrp()" class="save-icon icons" [name]="'save'"></fa>
+            </a>
+            <fa (click)="close()" *ngIf="!plus" class="close-icon icons" [name]="'times-circle'"></fa>
+        </div>
+    
+        <div class="infoBox">
+            <div class="headerOfBox">
+                <h4>Policies</h4>
+            </div>
+            <div class="description">
+                <div class="model-solution-row form-row">
+    
+                    <div class="form-group col-md-6">
+                        <label class="fam">Definitive Source</label>
+                        <input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.definitiveSource"
+                            [name]="'definitive_source'" readonly>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="fam">Type/Policy</label>
+                        <input type="text" class="form-control" id="inputState" [(ngModel)]="policyGrpData.policyGrpName"
+                            [name]="'type_policy'" readonly>
+                    </div>
+                    <div class="version form-group col-md-6">
+                        <label class="fam">Updated By</label>
+                        <input type="text" class="edit-disable form-control" id="inputState" readonly
+                            [(ngModel)]="policyGrpData.updatedBy" [name]="'updated_by'">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="fam">Updated Date</label>
+                        <input type="text" name="updatedAt" id="inputState" [ngModel]="updatedAt" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <form (ngSubmit)="updatePolicyGrp()" #myForm="ngForm">
+    
+            <fieldset [disabled]='showForm'>
+    
+                <div class="infoBox">
+                    <div class="headerOfBox">Information</div>
+                    <div class="model-solution-row form-row">
+                        <div class="model form-group col-md-6">
+                            <label class="fam">Last Review Date<span class="asterisk">*</span></label>
+                            <my-date-picker name="myname" class="inputState1" [(ngModel)]="lastReviewDate" ngModel
+                                [selDate]="displayLastReviewDate" required></my-date-picker>
+                        </div>
+                        <div class="version form-group col-md-6">
+                            <label class="fam">Next Review Date<span class="asterisk">*</span></label>
+                            <my-date-picker name="myname" class="inputState1" [(ngModel)]="nextReviewDate" ngModel
+                                [selDate]="displayNextReviewDate" required></my-date-picker>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="fam">Owner<span class="asterisk">*</span></label>
+                            <select type="text" class="edit-disable form-control" [(ngModel)]="policyDisplay.owner"
+                                (change)="policyDisplay.owner = $event.target.value" [name]="'policy_owner'" required>
+                                <option value="" selected>Choose...</option>
+                                <option *ngFor="let getUser of  users" value="{{ getUser.firstName}} {{getUser.lastName }}">{{
+                                        getUser.firstName}} {{getUser.lastName }} </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="fam">Policy Review Term<span class="asterisk">*</span></label>
+                            <input type="text" id="inputState" class="edit-disable form-control" *ngIf="showForm"
+                                [(ngModel)]="policyDisplay.policyReviewTerm" [name]="'review_term'" readonly>
+                            <select class="form-control" style="width:50%;" id="priority" *ngIf="!showForm"
+                                [(ngModel)]="policyDisplay.policyReviewTerm" [name]="'review_term'"
+                                (change)="displayReview($event.target.value)" required>
+                                <option *ngFor="let review of policyReviewTerm" value="{{review.reviewTerm}}">
+                                    {{review.reviewTerm}}</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="fam">Status<span class="asterisk">*</span></label>
+                            <input type="text" id="inputState" class="form-control"
+                                [ngModel]="policyDisplay.status | subControlPipe" [name]="'policy_status'" *ngIf="showForm"
+                                readonly>
+                            <select class="form-control" style="width:50%;" name="selectstatus"
+                                [(ngModel)]="policyDisplay.status" id="priority"
+                                (change)="policyDisplay.status = $event.target.value" *ngIf="!showForm" required>
+                                <option value="true">Open</option>
+                                <option value="false">Close</option>
+                            </select>
+                        </div>
+    
+                    </div>
+    
+    
+                </div>
+                <div class="infoBox" style="width: 80%">
+                    <div class="headerOfBox">
+                        <h4>Description</h4>
+                    </div>
+                    <tinymce name="description" *ngIf="showForm" disabled=true [(ngModel)]="policyDisplay.description"
+                        [config]="config"></tinymce>
+                    <tinymce name="description" *ngIf="!showForm" [(ngModel)]="policyDisplay.description" [config]="config">
+                    </tinymce>
+                    remaining {{50000 -len}}
+                </div>
+            </fieldset>
+    
+        </form>
+    
+    
+    
+    
+
+    </div>  -->

@@ -1,0 +1,75 @@
+<!-- <app-loadercomponent></app-loadercomponent> -->
+<!-- <div class="main-panel">
+  <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+    <div class="categoryGrid">
+      <div class="clearfix wrap"> -->
+<!-- <div>
+          <h2 class="headerFix">Documents</h2>
+        </div> -->
+<!-- <div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true">Information</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" id="Compliance-tab" data-toggle="tab" href="#Compliance" role="tab"
+                              aria-controls="Compliance" aria-selected="false">Families</a>
+                          </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="false">Review</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="Testing-tab" data-toggle="tab" href="#Testing" role="tab"
+                        aria-controls="Testing" aria-selected="false">Documents</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="Compliance-tab" data-toggle="tab" href="#Compliance" role="tab"
+                        aria-controls="Compliance" aria-selected="false">Systems</a>
+                    </li>
+                    
+                  </ul>
+    </div> -->
+<div class="newTestBox">
+  <!-- <div class="headerOfBox">
+            <h4>Documents</h4>
+          </div> -->
+  <br>
+  <form (ngSubmit)="submitDocument()" id="myForm">
+    <div class="form-row">
+      <table class="policyTable">
+        <tr>
+          <th>File Name</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td>Test</td>
+          <td>Test</td>
+        </tr>
+        <!-- <tr *ngFor=" let policyDocument of policyDocumentsDTO let i = index">
+
+                    <td *ngIf="policyDocument.activeFlag" style="cursor: pointer; color: blue;"
+                      (click)="getPolicyDocumentAttch(policyDocument.policyDocId)">{{policyDocument.documentName}}</td>
+                    <td *ngIf="policyDocument.activeFlag && !plus" (click)="deleteFile(policyDocument.policyDocId,i)"
+                      style="cursor: pointer;"><i class=" fa fa-trash" aria-hidden="true"
+                        style="font-size: 24px;color: black;"></i></td>
+
+
+                  </tr> -->
+      </table>
+
+    </div>
+    <div class="d-flex justify-content-between p-2">
+      <button type="button" style="visibility: hidden;" class="newBtn submit btn btn-outline-dark">Submit</button>
+      <button type="button" class="newBtn submit btn btn-outline-dark">Submit</button>
+
+
+    </div>
+  </form>
+</div>
+<!-- </div>
+
+    </div>
+  </div>
+</div> -->
