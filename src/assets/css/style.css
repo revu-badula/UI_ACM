@@ -1307,7 +1307,7 @@ input {
   top: 38px;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 272px;
+  width: 200px;
   background-color: #fff;
 }
 
@@ -1340,7 +1340,7 @@ input {
   top: 38px;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 50px;
+  width: 73px;
   background-color: #fff;
 }
 
@@ -1390,9 +1390,7 @@ input {
 }
 
 .sidebar .nav {
-  margin-top: 20px;
   display: block;
-  margin-left: 13px;
 }
 
 .sidebar[data-color="danger"] li.active>a {
@@ -1416,7 +1414,7 @@ input {
   padding-right: 10px;
   text-transform: capitalize;
   font-size: 13px;
-  padding: 10px 0px;
+  padding: 4px 0px;
 }
 
 .nav-link {
@@ -1452,9 +1450,8 @@ input {
 }
 
 .sidebar .nav i {
-  font-size: 24px;
+ font-size: 13px;
   float: left;
-  margin-right: 15px;
   line-height: 23px;
   width: 30px;
   text-align: center;
@@ -1910,7 +1907,7 @@ a .material-icons {
   position: relative;
   float: right;
   background: lightgrey;
-  width: calc(100% - 12.5rem);
+  width: calc(100% - 14rem);
   transition: 0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
 .wrap {
