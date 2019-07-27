@@ -38,6 +38,21 @@ export class ApiserviceService {
       .map(res => <Response>res.json());
     
   }
+
+
+  getAllIncidentsOnClick(type : any , status : any){
+    let url = APP_CONFIG.getAllIncidents;
+    return this._httpService.get(url + '/' +type + '/' + status)
+      .map(res => <Response>res.json());
+    
+  }
+
+  getAllIncidentsOnType(type : any ){
+    let url = APP_CONFIG.getAllIncidentsOnType;
+    return this._httpService.get(url + '/' +type )
+      .map(res => <Response>res.json());
+    
+  }
   getDatabases() {
     let url = APP_CONFIG.getDatabases;
     return this._httpService.get(url)

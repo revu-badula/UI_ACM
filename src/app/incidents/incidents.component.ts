@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { infrastructureDashboardDTO, inciDashboardDTO } from '../data_model';
 import { NgbdSortableHeader, SortEvent } from '../sort';
 import { AlertService } from '../alert.service';
+import { ApiserviceService } from '../apiservice.service';
 
 @Component({
   selector: 'app-incidents',
@@ -125,7 +126,7 @@ export class IncidentsComponent implements OnInit {
   ];
 
   public showGraph: boolean;
-  constructor(public sideNavService: AlertService, private httpClient: HttpClient, private router: Router) {
+  constructor(private _apiservice: ApiserviceService,public sideNavService: AlertService, private httpClient: HttpClient, private router: Router) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.inciDashboardDTO = new inciDashboardDTO();
@@ -195,12 +196,56 @@ export class IncidentsComponent implements OnInit {
   }
   chartClicked(value: any) {
 
+     if (value.active.length > 0) {
+      let val: any = value.active[0]._index;
+      var points = [];
+      var pointSelected = value.active[0]._chart.tooltip._model.caretX;
+      var legends = value.active[0]._chart.legend.legendItems;
+      for (var i = 0; i < value.active.length; ++i) {
+        points.push(value.active[i]._model.x);
+      }
+
+      let position = points.indexOf(pointSelected);
+      let label = legends[position].text
+      let xValue = this.lineChartLabelsAudits[val];
+
+      this.getAllIncidentsOnType(xValue)
+
   }
+}
 
   getIncidents() {
     this.loading = true;
     let url = APP_CONFIG.getAllIncidents;
     this.httpClient.get(url)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.incidents = data;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+
+  }
+
+  
+  getIncidentsOnClick(type: any, status: any) {
+    this.loading = true;
+    this._apiservice.getAllIncidentsOnClick(type, status)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.incidents = data;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+
+  }
+
+
+  getAllIncidentsOnType(types: any) {
+    this.loading = true;
+    this._apiservice.getAllIncidentsOnType(types)
       .subscribe((data: any) => {
         this.loading = false;
         this.incidents = data;
@@ -257,6 +302,26 @@ export class IncidentsComponent implements OnInit {
 
   compare(v1: any, v2: any) {
     return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
+  }
+
+  getOpen(){
+    this.getIncidentsOnClick('status', 'open');
+  }
+
+  getClose(){
+    this.getIncidentsOnClick('status', 'close');
+  }
+
+  getSeverityLow(){
+    this.getIncidentsOnClick('severity', 'low');
+  }
+
+  getSeverityMedium(){
+    this.getIncidentsOnClick('severity', 'Medium');
+  }
+
+  getSeverityHigh(){
+    this.getIncidentsOnClick('severity', 'High');
   }
 
 

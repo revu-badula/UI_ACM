@@ -35,18 +35,18 @@
                     Severity Level
                   </div>
                   <p>critcality</p>
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{criticalHighInci}}</span>
+                  <div class="col-md-4 pull-left" style="outline: none;">
+                    <span class="dot redDot" (click)="getSeverityHigh()">{{criticalHighInci}}</span>
                     <p style="text-align: center;">High</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot orangeDot">{{criticalMediumInci}}</span>
+                  <div class="col-md-4 pull-left" style="outline: none;" >
+                    <span class="dot orangeDot" (click)="getSeverityMedium()">{{criticalMediumInci}}</span>
                     <p style="text-align: center;">Medium</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{criticalLowInci}}</span>
+                  <div class="col-md-4 pull-left" style="outline: none;" >
+                    <span class="dot greenDot" (click)="getSeverityLow()">{{criticalLowInci}}</span>
                     <p style="text-align: center;">Low</p>
                   </div>
 
@@ -61,18 +61,18 @@
                     Status
                   </div>
                   <p>Renewal required for different assets are displayed in red.</p>
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">{{openIncident}}</span>
+                  <div class="col-md-4 pull-left" style="outline: none;" >
+                    <span class="dot redDot" (click)="getOpen()">{{openIncident}}</span>
                     <p style="text-align: center;">Open</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  <div class="col-md-4 pull-left" style="outline: none;" >
 
                   </div>
 
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">{{closedIncident}}</span>
+                  <div class="col-md-4 pull-left" style="outline: none;" >
+                    <span class="dot greenDot" (click)="getClose()">{{closedIncident}}</span>
                     <p style="text-align: center;">Closed</p>
                   </div>
 
@@ -193,7 +193,8 @@
                         <th sortable="shortDescription" (sort)="getSort($event)">Name</th>
                         <th sortable="reportedBy" (sort)="getSort($event)">Reported By</th>
                         <th sortable="serverity" (sort)="getSort($event)">Severity</th>
-                        <th sortable="status" (sort)="getSort($event)">Staus</th>
+                        <th sortable="status" (sort)="getSort($event)">Status</th>
+                        <th sortable="typeOfIncident" (sort)="getSort($event)">Type Of Incident</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -203,6 +204,7 @@
                         <td>{{incident.reportedBy}}</td>
                         <td>{{incident.severity}}</td>
                         <td>{{incident.status}}</td>
+                        <td>{{incident.typeOfIncident}}</td>
                       </tr>
                     </tbody>
                   </table>

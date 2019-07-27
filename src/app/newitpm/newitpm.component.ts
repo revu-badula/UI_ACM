@@ -138,17 +138,17 @@ chartClicked(value: any) {
     let position = points.indexOf(pointSelected);
     let label = legends[position].text
     let xValue = this.lineChartLabelsSystems15[val];
-    if(label==='Critical'){
+    if(label==='High'){
       UtilService.theHigh = true;
       UtilService.theMed = false;
       UtilService.theLow = false;
     }
-    if(label==='Moderate'){
+    if(label==='Medium'){
       UtilService.theHigh = false;
       UtilService.theMed = true;
       UtilService.theLow = false;
     }
-    if(label==='Normal'){
+    if(label==='Low'){
       UtilService.theHigh = false;
       UtilService.theMed = false;
       UtilService.theLow = true;

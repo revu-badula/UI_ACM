@@ -179,6 +179,7 @@ export const APP_CONFIG = {
   getSystemNumber: apiBaseUrl +'getSystemNumbers',
   getGraphAudit:apiBaseUrl +'getGraphAudit', 
   getGraphAssessments:apiBaseUrl +'getGraphAssessments', 
+  getAllIncidentsOnType:apiBaseUrl+'getAllIncidentsOnType',
 }
 
 
