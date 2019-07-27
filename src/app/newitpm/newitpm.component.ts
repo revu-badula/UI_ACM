@@ -165,9 +165,9 @@ chartClicked(value: any) {
 
 
 public lineChartDataSystems15: ChartDataSets<any> = [
-  { data: [], label: 'Critical' },
-  { data: [], label: 'Moderate' },
-  { data: [], label: 'Normal' }
+  { data: [], label: 'High' },
+  { data: [], label: 'Medium' },
+  { data: [], label: 'Low' }
 ];
 public lineChartLabelsSystems15: Array<any> = ['Audits', 'Assessments', 'InfraStructure', 'Testing', 'Incidents'];
 public chartOption15 = {

@@ -1340,7 +1340,7 @@ input {
   top: 38px;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 73px;
+  width:2.4rem;
   background-color: #fff;
 }
 
@@ -1453,7 +1453,7 @@ input {
  font-size: 13px;
   float: left;
   line-height: 23px;
-  width: 30px;
+  width: 23px;
   text-align: center;
   color: #a9afbb;
 }
