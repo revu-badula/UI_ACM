@@ -213,6 +213,12 @@ public chartOption15 = {
         },
         ticks: {
           beginAtZero: true,
+          userCallback: function(label, index, labels) {
+            if (Math.floor(label) === label) {
+              return label;
+            }
+          
+          }, 
         },
         display: true
       }

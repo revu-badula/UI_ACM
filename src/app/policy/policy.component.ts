@@ -63,8 +63,13 @@ export class PolicyComponent implements OnInit {
       yAxes: [
         {
           ticks: {
-            min: 0,
-            stepSize: 1,
+            beginAtZero: true,
+            userCallback: function(label, index, labels) {
+              if (Math.floor(label) === label) {
+                return label;
+              }
+            
+            }, 
 
           },
           display: true
@@ -199,6 +204,7 @@ export class PolicyComponent implements OnInit {
   getPolicyGrpData(value: any) {
     this.policies = [];
     this.loading=true;
+    this.policyGrps = [];
     this._apiservice.policyGrpOnstatus(value)
       .subscribe((data: any) => {
         this.policyGrps = data;
@@ -214,6 +220,7 @@ export class PolicyComponent implements OnInit {
 
   getPolicyData(value: any) {
     this.policyGrps = [];
+    this.policies = [];
     this.loading=true;
     this._apiservice.getPolicyAssignment(value)
       .subscribe((data: any) => {

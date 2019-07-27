@@ -16,6 +16,8 @@ export class AssetDetailComponent implements OnInit {
   public incidents: any;
   public loading:boolean;
   constructor(public sideNavService: AlertService, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     this.activatedRoute.params.subscribe(params => {
       this.deviceId = params['id'];
 

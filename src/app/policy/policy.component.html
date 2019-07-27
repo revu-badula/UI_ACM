@@ -2,9 +2,7 @@
 <div class="sidebar" data-color="danger" data-background-color="white">
     <app-newsidebar></app-newsidebar>
 </div>
-<div class="my-container">
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-  </div>
+<!-- <app-loadercomponent></app-loadercomponent> -->
 <div class="newmainpanel">
     <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
         <div class="categoryGrid">
@@ -43,14 +41,14 @@
                                             </div>
                                             <hr />
                                             <div class="row">
-                                                <div class="col-md-6" style="outline: none;cursor: pointer;" routerLink="/firstpolicy/main/NIST">
+                                                <div class="col-md-2" style="outline: none;cursor: pointer;" routerLink="/firstpolicy/main/NIST">
                                                     <i class="fa fa-files-o" aria-hidden="true" style="
                                                         font-size: 70px;
                                                         color:yellowgreen;
                                                     "></i>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    Please click to add/ edit/ view NIST policies.
+                                                <div class="col-md-10" style="text-align: left;">
+                                                    This includes NIST publications such as 800-53, 800-37 and others. Pease click on icon to add/ view/ edit.
                                                 </div>
 
 
@@ -73,16 +71,14 @@
                                             </div>
                                             <hr />
                                             <div class="row">
-                                                <div class="col-md-6" style="outline: none;cursor: pointer;" routerLink="/firstpolicy/main/Others">
+                                                <div class="col-md-2" style="outline: none;cursor: pointer;" routerLink="/firstpolicy/main/Others">
                                                     <i class="fa fa-files-o" aria-hidden="true" style="
                                                                 font-size: 70px;
                                                                 color: cadetblue;
                                                             "></i>
                                                 </div>
-                                                <div class="col-md-6">
-
-                                                    Please click to add/ edit/ view your State, Local and Organization
-                                                    policies.
+                                                <div class="col-md-10" style="text-align: left;">
+														This includes local, state and your organization policies such as COV 501, COV 525 etc. Pease click on icon to add/ view/ edit.
                                                 </div>
 
 
@@ -97,7 +93,7 @@
 
                             <mat-grid-tile [colspan]="3" [rowspan]="2">
                                 <div class="newtestITpm">
-                                    <div class="entryTitle">Overall Open</div>
+                                    <div class="entryTitle">Overall Policies Status</div>
                                     <div class="card-body">
 
                                         <div class="row">
@@ -142,7 +138,7 @@
                             <mat-grid-tile [colspan]="3" [rowspan]="2">
 
                                 <div class="newtestITpm">
-                                    <div class="entryTitle">Assignment</div>
+                                    <div class="entryTitle">Status of Controls</div>
                                     <div class="card" style="width: 99%;height:88%;">
                                         <div class="card-body">
 
@@ -174,7 +170,7 @@
                                 </div>
 
                             </mat-grid-tile>
-                            <mat-grid-tile [colspan]="10" [rowspan]="6" *ngIf="showTable">
+                            <mat-grid-tile [colspan]="10" [rowspan]="8" *ngIf="showTable">
                                 <div class="newtestITpm" *ngIf="showPolicies">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="getTable1()" style="
                                     position: absolute;
@@ -213,7 +209,7 @@
                                             <tr
                                                 *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
 
-                                                <td><a class="anchor"
+                                                <td><a id="anchor"
                                                         routerLink="/spolicy/saccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
                                                 </td>
                                                 <td>{{policy.familyName}}</td>
@@ -271,14 +267,17 @@
                                                 <td>{{policyGrp.auditTypeName}}</td>
                                                 <td>{{policyGrp.owner}}</td>
                                                 <td>{{policyGrp.reviewDate}}</td>
-                                                <td>{{policyGrp.status}}</td>
+                                                <td *ngIf="policyGrp.status === 'true'"><i class='fa fa-check-circle-o policyGreen' aria-hidden="true"></i></td>
+                                                <td *ngIf="policyGrp.status === 'false'">
+                                                    <i class='fa fa-times-circle-o policyRed' aria-hidden="true"></i>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <pagination-controls (pageChange)="p = $event"></pagination-controls>
                                 </div>
                             </mat-grid-tile>
-
+                            
                         </mat-grid-list>
 
                     </mat-sidenav-content>

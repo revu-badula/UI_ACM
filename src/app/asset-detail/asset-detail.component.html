@@ -56,69 +56,73 @@
             <app-assetinformation [deviceId]="deviceId"></app-assetinformation>
           </div>
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <table class="policyTable">
-              <thead>
-                <tr>
-                  <th scope="col" sortable="acronym" (sort)="getSort($event)">Name
+            <div class="col-md-12">
+              <table class="policyTable">
+                <thead>
+                  <tr>
+                    <th scope="col" sortable="acronym" (sort)="getSort($event)">Name
 
-                  </th>
+                    </th>
 
-                  <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">
-                    Severity
-                  </th>
-                  <th scope="col" sortable="updatedBy" (sort)="getSort($event)">Reported By
-                  </th>
-                  <th scope="col" sortable="updatedTs" (sort)="getSort($event)">Created On
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let incident of incidents | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">
+                      Severity
+                    </th>
+                    <th scope="col" sortable="updatedBy" (sort)="getSort($event)">Reported By
+                    </th>
+                    <th scope="col" sortable="updatedTs" (sort)="getSort($event)">Created On
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let incident of incidents | paginate: { itemsPerPage: 10, currentPage: p }">
 
-                  <td><a class="anchor"
-                      routerLink="/assetDetails/{{incident.incidentId}}">{{incident.shortDescription}}</a>
-                  </td>
-                  <td>{{incident.severity}}</td>
-                  <td>{{incident.reportedBy}}</td>
-                  <td>{{incident.createdOn}}</td>
-                </tr>
-              </tbody>
+                    <td><a class="anchor"
+                        routerLink="/assetDetails/{{incident.incidentId}}">{{incident.shortDescription}}</a>
+                    </td>
+                    <td>{{incident.severity}}</td>
+                    <td>{{incident.reportedBy}}</td>
+                    <td>{{incident.createdOn}}</td>
+                  </tr>
+                </tbody>
 
-            </table>
+              </table>
+            </div>
 
           </div>
           <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Testing</div>
           <div class="tab-pane fade" id="Compliance" role="tabpanel" aria-labelledby="Compliance-tab">Compliance</div>
           <div class="tab-pane fade" id="Dependent" role="tabpanel" aria-labelledby="Dependent-tab">
-            <table class="policyTable">
-              <thead>
-                <tr>
-                  <th scope="col" sortable="acronym" (sort)="getSort($event)">Acronym
+            <div class="col-md-12">
+              <table class="policyTable">
+                <thead>
+                  <tr>
+                    <th scope="col" sortable="acronym" (sort)="getSort($event)">Acronym
 
-                  </th>
+                    </th>
 
-                  <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">
-                    Sensitivity
-                  </th>
-                  <th scope="col" sortable="updatedBy" (sort)="getSort($event)">Business Owner
-                  </th>
-                  <th scope="col" sortable="updatedTs" (sort)="getSort($event)">System Owner
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">
+                      Sensitivity
+                    </th>
+                    <th scope="col" sortable="updatedBy" (sort)="getSort($event)">Business Owner
+                    </th>
+                    <th scope="col" sortable="updatedTs" (sort)="getSort($event)">System Owner
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }">
 
-                  <td><a class="anchor"
-                      routerLink="/assetDetails/{{application.applicationId}}">{{application.acronym}}</a>
-                  </td>
-                  <td>{{application.systemSensitivityStr}}</td>
-                  <td>{{application.businessOwnerName}}</td>
-                  <td>{{application.systemOwnerName}}</td>
-                </tr>
-              </tbody>
+                    <td><a class="anchor"
+                        routerLink="/assetDetails/{{application.applicationId}}">{{application.acronym}}</a>
+                    </td>
+                    <td>{{application.systemSensitivityStr}}</td>
+                    <td>{{application.businessOwnerName}}</td>
+                    <td>{{application.systemOwnerName}}</td>
+                  </tr>
+                </tbody>
 
-            </table>
+              </table>
+            </div>
           </div>
         </div>
 
