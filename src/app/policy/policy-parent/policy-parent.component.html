@@ -127,7 +127,7 @@
   <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
     <div class="categoryGrid">
       <div class="clearfix wrap">
-        <ul class="nav nav-tabs" id="myTab" role="tablist" >
+        <ul class="nav nav-tabs" id="myTab" role="tablist" *ngIf="showNav">
           <li class="nav-item">
             <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
               aria-selected="true" routerLink="/firstpolicy/details" routerLinkActive="active">Information</a>

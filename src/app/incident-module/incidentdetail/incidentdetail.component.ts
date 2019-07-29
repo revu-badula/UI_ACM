@@ -22,6 +22,7 @@ export class IncidentdetailComponent implements OnInit {
   public showEditButton: boolean;
   public test: any;
   public test1: any;
+  public Repphone:any;
   public loading: boolean = false;
   public systems: any;
   public servers: any;
@@ -184,6 +185,7 @@ export class IncidentdetailComponent implements OnInit {
       for (let i = 0; i < this.dummy.length; i++) {
         if ((this.dummy[i].firstName+" "+this.dummy[i].lastName) === value) {
           this.test1 = this.dummy[i].emailId;
+          this.Repphone = this.dummy[i].phoneNumber;
           this.incidentManagementDTO.reportedBy = this.dummy[i].firstName + " " + this.dummy[i].lastName;
           this.incidentManagementDTO.userId = this.dummy[i].userId;
         }

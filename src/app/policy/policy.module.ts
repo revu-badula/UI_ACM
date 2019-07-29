@@ -12,7 +12,6 @@ import { ChartsModule } from 'ng2-charts';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { MatGridListModule, MatSidenavModule } from '@angular/material';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { PolicyRoutingModule } from './policy-routing';
 import { PolicyStartComponent } from './policy-start/policy-start.component';
 import { PolicydetailsComponent } from './policydetails/policydetails.component';
 import { SubControlPipe } from './status';
@@ -34,6 +33,7 @@ import { PolicyComponent } from './policy.component';
     HttpClientModule,
     FormsModule,
     HighchartsChartModule,
+    LocalityComponentRoutingModule,
     NgxCurrencyModule,
     NgxSummernoteModule,
     IncidentModuleModule,

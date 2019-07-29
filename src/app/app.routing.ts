@@ -819,7 +819,10 @@ const appRoutes: Routes = [
   { path: 'assetDetails/:id', component: AssetDetailComponent, canActivate: [AuthGuard] },
   {
     path: 'firstpolicy', component: PolicyParentComponent, children: [
-      { path: 'main/:id', component: PolicyStartComponent },
+      {
+        path: 'main/:id',
+        component: PolicyStartComponent
+      },
       {
         path: 'details',
         component: PolicydetailsComponent

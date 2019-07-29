@@ -231,6 +231,22 @@
                       </div>
 
                     </mat-grid-tile>
+                    <mat-grid-tile [colspan]="10" [rowspan]="3">
+                      <div class="newtestITpm">
+                        <div class="entryTitle">
+                          Upcoming Audits and Assessments
+                        </div>
+                        <div class="col-md-12" *ngIf="showAudAss">
+                          <div style="display: block;width:100%; height:15rem;background-color:#fff;">
+                            <canvas baseChart [datasets]="lineChartDataSystems1" [labels]="lineChartLabelsSystems1"
+                              chartType="bar" [legend]="true" (chartClick)="chartClickedSystems1($event)"
+                              [options]="chartOption12" [colors]="chartColorsSystems1"></canvas>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </mat-grid-tile>
 
 
                     <mat-grid-tile [colspan]="5" [rowspan]="2">
@@ -335,6 +351,19 @@
                       </div> -->
                     </mat-grid-tile>
 
+                    <mat-grid-tile [colspan]="10" [rowspan]="4"  style="min-width: 100%;">
+                      <div class="newtestITpm">
+                        <div class="entryTitle">
+                          Incident Reports
+                        </div>
+                        <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions123"
+                          style="width: 100%; height: 300px; display: block;">
+                        </highcharts-chart>
+
+                      </div>
+                    </mat-grid-tile>
+
+
                     <mat-grid-tile [colspan]="5" [rowspan]="2">
                       <div class="newtestITpm">
                         <div class="entryTitle">
@@ -345,19 +374,19 @@
                           <span class="dot redDot">{{criticalHighInci}}</span>
                           <p style="text-align: center;">High</p>
                         </div>
-      
+
                         <div class="col-md-4 pull-left" routerLink="/newIncidents" style="outline: none;">
                           <span class="dot orangeDot">{{criticalMediumInci}}</span>
                           <p style="text-align: center;">Medium</p>
                         </div>
-      
+
                         <div class="col-md-4 pull-left" routerLink="/newIncidents" style="outline: none;">
                           <span class="dot greenDot">{{criticalLowInci}}</span>
                           <p style="text-align: center;">Low</p>
                         </div>
-      
-      
-      
+
+
+
                       </div>
                       <!-- <div class="testMat">
                         <div class="entryTitle">
@@ -399,20 +428,20 @@
                         <br>
                         <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newIncidents">
                           <span class="dot redDot">{{highIncidents}}</span>
-      
+
                         </div>
-      
+
                         <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newIncidents">
                           <span class="dot orangeDot">{{mediumIncidents}}</span>
-      
+
                         </div>
-      
-      
+
+
                         <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newIncidents">
                           <span class="dot greenDot">{{lowIncidents}}</span>
-      
+
                         </div>
-      
+
                       </div>
                       <!-- <div class="testMat">
                         <div class="entryTitle">
@@ -447,26 +476,26 @@
                     </mat-grid-tile>
 
 
-                     <mat-grid-tile [colspan]="5" [rowspan]="2">
+                    <mat-grid-tile [colspan]="5" [rowspan]="2">
                       <div class="newtestITpm">
                         <div class="entryTitle">
-                            Audit Risk Level
+                          Audit Risk Level
                         </div>
                         <div class="col-md-4 pull-left" routerLink="/newAudit" style="outline: none;">
-                            <span class="dot redDot">{{auditCountDTo.auditHigh}}</span>
-                            <p style="text-align: center;">High</p>
+                          <span class="dot redDot">{{auditCountDTo.auditHigh}}</span>
+                          <p style="text-align: center;">High</p>
                         </div>
                         <div class="col-md-4 pull-left" routerLink="/newAudit" style="outline: none;">
-                            <span class="dot orangeDot">{{auditCountDTo.auditModerate}}</span>
-                            <p style="text-align: center;">Moderate</p>
+                          <span class="dot orangeDot">{{auditCountDTo.auditModerate}}</span>
+                          <p style="text-align: center;">Moderate</p>
                         </div>
 
                         <div class="col-md-4 pull-left" routerLink="/newAudit" style="outline: none;">
-                            <span class="dot greenDot">{{auditCountDTo.auditLow}}</span>
-                            <p style="text-align: center;">Low</p>
+                          <span class="dot greenDot">{{auditCountDTo.auditLow}}</span>
+                          <p style="text-align: center;">Low</p>
                         </div>
 
-                    </div>
+                      </div>
                       <!-- <div class="testMat">
                         <div class="entryTitle">
                           Incident Reports
@@ -478,28 +507,28 @@
                         </highcharts-chart>
 
                       </div> -->
-                    </mat-grid-tile> 
+                    </mat-grid-tile>
 
-                     <mat-grid-tile [colspan]="5" [rowspan]="2">
+                    <mat-grid-tile [colspan]="5" [rowspan]="2">
                       <div class="newtestITpm">
                         <div class="entryTitle">
-                            Assessment Risk Level
+                          Assessment Risk Level
                         </div>
                         <div class="col-md-4 pull-left" routerLink="/newAssessment" style="outline: none;">
-                            <span class="dot redDot">{{auditCountDTo1.auditHigh}}</span>
-                            <p style="text-align: center;">High</p>
+                          <span class="dot redDot">{{auditCountDTo1.auditHigh}}</span>
+                          <p style="text-align: center;">High</p>
                         </div>
                         <div class="col-md-4 pull-left" routerLink="/newAssessment" style="outline: none;">
-                            <span class="dot orangeDot">{{auditCountDTo1.auditModerate}}</span>
-                            <p style="text-align: center;">Moderate</p>
+                          <span class="dot orangeDot">{{auditCountDTo1.auditModerate}}</span>
+                          <p style="text-align: center;">Moderate</p>
                         </div>
 
                         <div class="col-md-4 pull-left" routerLink="/newAssessment" style="outline: none;">
-                            <span class="dot greenDot">{{auditCountDTo1.auditLow}}</span>
-                            <p style="text-align: center;">Low</p>
+                          <span class="dot greenDot">{{auditCountDTo1.auditLow}}</span>
+                          <p style="text-align: center;">Low</p>
                         </div>
 
-                    </div>
+                      </div>
                       <!-- <div class="testMat">
                         <div class="entryTitle">
                           Vulnerability Scan Report
@@ -510,7 +539,7 @@
                         </highcharts-chart>
 
                       </div> -->
-                    </mat-grid-tile> 
+                    </mat-grid-tile>
 
                     <!-- <mat-grid-tile [colspan]="10" [rowspan]="3">
 

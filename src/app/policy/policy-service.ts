@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject }    from 'rxjs/Subject';
-@Injectable({
-    providedIn: 'root'
-  })
+import { Subject }    from 'rxjs';
+@Injectable()
 export class policyService {
     private policySubject = new Subject<any>();
     policyState = this.policySubject.asObservable();

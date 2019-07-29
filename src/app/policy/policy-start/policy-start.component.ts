@@ -20,7 +20,7 @@ export class PolicyStartComponent implements OnInit {
   public auditTypeId: any;
   public policyGrpId: number;
   public policyType: any;
-  public policies:any;
+  public policies: any;
   constructor(public sideNavService: AlertService,
     private activatedRoute: ActivatedRoute, private router: Router,
     private httpClient: HttpClient, private policyService: policyService) {
@@ -33,27 +33,25 @@ export class PolicyStartComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.policyType === "Others")
-        this.showDropdown();
-    else
-        {
-            this.getNistData();
-        }
+    if (this.policyType === "Others")
+      this.showDropdown();
+    else {
+      this.getNistData();
+    }
 
   }
-getNistData()
-{
+  getNistData() {
     this.loading = true;
     let url = APP_CONFIG.getNISTPolicies;
     this.httpClient.get(url)
       .subscribe((data: any) => {
         this.loading = false;
-        this.policies  = data;
+        this.policies = data;
       }, error => {
         this.loading = false;
         console.log(error);
       });
-}
+  }
   selectType(policy: any) {
     if (policy === 'Choose...' || policy === "") {
     }
@@ -89,19 +87,18 @@ getNistData()
       this.httpClient.get(url + '?' + 'auditTypeId' + '=' + auditID)
         .subscribe((data: any) => {
           this.loading = false;
-          this.policies  = data;
+          this.policies = data;
         }, error => {
           this.loading = false;
           console.log(error)
         });
     }
   }
-  
-  loadPolicies(id:any)
-  {
-      sessionStorage.setItem("policyGrpId",id);
-      this.router.navigate(['/firstpolicy/details']);
+
+  loadPolicies(id: any) {
+    sessionStorage.setItem("policyGrpId", id);
+    this.router.navigate(['/firstpolicy/details']);
   }
-  
+
 
 }
