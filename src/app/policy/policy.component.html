@@ -4,7 +4,7 @@
 </div>
 <div class="my-container">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-  </div>
+</div>
 <!-- <app-loadercomponent></app-loadercomponent> -->
 <div class="newmainpanel">
     <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
@@ -19,11 +19,11 @@
                     <mat-sidenav-content>
                         <mat-grid-list cols="10" rowHeight="100px">
                             <mat-grid-tile [colspan]="10" [rowspan]="1">
-                                <div class="newtestITpm" style="font-size: 13px;">
-                                    <div class="entryTitle" style="display: none;">
-                                        Definition
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">
+                                        Overview
                                     </div>
-                                    <div style="text-align: left;">
+                                    <p class="definationText" style="font-size: 13px;">
                                         This screen allows you add, edit and view policies. The policies are organized
                                         under two categories: - NIST and All others. The NIST National Institute for
                                         Standards and Technology has 800 publications and All others has state, local
@@ -31,7 +31,7 @@
                                         NIST or other out of the box templates.
 
 
-                                    </div>
+                                    </p>
                                 </div>
 
                             </mat-grid-tile>
@@ -44,14 +44,16 @@
                                             </div>
                                             <hr />
                                             <div class="row">
-                                                <div class="col-md-2" style="outline: none;cursor: pointer;" routerLink="/firstpolicy/main/NIST">
+                                                <div class="col-md-2" style="outline: none;cursor: pointer;"
+                                                    routerLink="/firstpolicy/main/NIST">
                                                     <i class="fa fa-files-o" aria-hidden="true" style="
                                                         font-size: 70px;
                                                         color:yellowgreen;
                                                     "></i>
                                                 </div>
                                                 <div class="col-md-10" style="text-align: left;">
-                                                    This includes NIST publications such as 800-53, 800-37 and others. Pease click on icon to add/ view/ edit.
+                                                    This includes NIST publications such as 800-53, 800-37 and others.
+                                                    Pease click on icon to add/ view/ edit.
                                                 </div>
 
 
@@ -74,14 +76,16 @@
                                             </div>
                                             <hr />
                                             <div class="row">
-                                                <div class="col-md-2" style="outline: none;cursor: pointer;" routerLink="/firstpolicy/main/Others">
+                                                <div class="col-md-2" style="outline: none;cursor: pointer;"
+                                                    routerLink="/firstpolicy/main/Others">
                                                     <i class="fa fa-files-o" aria-hidden="true" style="
                                                                 font-size: 70px;
                                                                 color: cadetblue;
                                                             "></i>
                                                 </div>
                                                 <div class="col-md-10" style="text-align: left;">
-														This includes local, state and your organization policies such as COV 501, COV 525 etc. Pease click on icon to add/ view/ edit.
+                                                    This includes local, state and your organization policies such as
+                                                    COV 501, COV 525 etc. Pease click on icon to add/ view/ edit.
                                                 </div>
 
 
@@ -264,12 +268,14 @@
                                                 *ngFor="let policyGrp of policyGrps | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
 
                                                 <td><a id="anchor"
-                                                    (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
+                                                        (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
                                                 </td>
                                                 <td>{{policyGrp.auditTypeName}}</td>
                                                 <td>{{policyGrp.owner}}</td>
                                                 <td>{{policyGrp.reviewDate | filter}}</td>
-                                                <td *ngIf="policyGrp.status === 'true'"><i class='fa fa-check-circle-o policyGreen' aria-hidden="true"></i></td>
+                                                <td *ngIf="policyGrp.status === 'true'"><i
+                                                        class='fa fa-check-circle-o policyGreen' aria-hidden="true"></i>
+                                                </td>
                                                 <td *ngIf="policyGrp.status === 'false'">
                                                     <i class='fa fa-times-circle-o policyRed' aria-hidden="true"></i>
                                                 </td>
@@ -279,7 +285,7 @@
                                     <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
                                 </div>
                             </mat-grid-tile>
-                            
+
                         </mat-grid-list>
 
                     </mat-sidenav-content>
