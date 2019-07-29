@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 import * as Highcharts from 'highcharts';
 import ExportingModule from 'highcharts/modules/heatmap';
 import { AlertService } from '../alert.service';
-
+import { infrastructureDashboardDTO, inciDashboardDTO } from '../data_model';
+import { AuditCountDTO } from '../auditcountmodel';
 ExportingModule(Highcharts);
 @Component({
   selector: 'app-graph',
@@ -25,7 +26,20 @@ export class GraphComponent implements OnInit {
   public auditRiskLevels: any;
   public loading: boolean;
   public showAudAss: boolean;
-
+  public totalHigh: any;
+  public totalLow: any;
+  public totalModerate: any;
+  public inciDashboardDTO: inciDashboardDTO;
+  public infraDashboardDTO: infrastructureDashboardDTO;
+  public assetTotal: any;
+  public auditCountDTo: AuditCountDTO;
+  public auditCountDTo1: AuditCountDTO;
+  public criticalHighInci: any;
+  public criticalMediumInci: any;
+  public criticalLowInci: any;
+  public highIncidents: any;
+  public mediumIncidents: any;
+  public lowIncidents: any;
   ngOnInit() {
     this.getData5();
     this.getMonthOfAuditAssessment();
@@ -3215,14 +3229,22 @@ export class GraphComponent implements OnInit {
   @ViewChild('emailView') emailView: ElementRef;
   public myNotifications = [{ "createdOn": "2019-06 - 03", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2989, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2919", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2981, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2978, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 30", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2975, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2713, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2712, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 29", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2709, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2699, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2697, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2694, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2690, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2683, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2648, "sentBy": 0, "to": 0, "subject": "System Access Termination Requested", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 28", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2644, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2612, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2611, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2609, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Jacob Blake" }, { "createdOn": "2019 - 05 - 23", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2602, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2258", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 22", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2600, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2563, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2561, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2559, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2546, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2545, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2538", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2542, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 21", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2533, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": true, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2508, "sentBy": 0, "to": 0, "subject": "New Onboard Request", "unRead": false, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2481, "sentBy": 0, "to": 0, "subject": "Employee Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2472, "sentBy": 0, "to": 0, "subject": "Employee Onboard Request", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2456, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2440", "unRead": false, "sentFrom": "Vineeth Gadde" }, { "createdOn": "2019 - 05 - 20", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2443, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2440", "unRead": false, "sentFrom": "Mike Cary" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2436, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2434, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2432, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2430, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": false, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2428, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2425, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }, { "createdOn": "2019 - 05 - 17", "createdBy": 0, "updatedBy": 0, "receivedEmailId": 2423, "sentBy": 0, "to": 0, "subject": "Requested - Ticket ID 2401", "unRead": true, "sentFrom": "Sunny Singh" }];
 
-  constructor(private httpClient: HttpClient, private router: Router,public sideNavService : AlertService,
-    private utilService: UtilService, private modalService: NgbModal, private _apiservice: ApiserviceService, ) {
+  constructor(private httpClient: HttpClient, private router: Router,
+    public sideNavService: AlertService,
+    private utilService: UtilService, private modalService: NgbModal,
+    private _apiservice: ApiserviceService, ) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     UtilService.signlegal = false;
     UtilService.pass = false;
     UtilService.pending = false;
     UtilService.signsystem = false;
+    this.infraDashboardDTO = new infrastructureDashboardDTO();
+    this.inciDashboardDTO = new inciDashboardDTO();
+    this.auditCountDTo = new AuditCountDTO();
+    this.auditCountDTo1 = new AuditCountDTO();
+
+
   }
 
 
@@ -3402,11 +3424,21 @@ export class GraphComponent implements OnInit {
     this.loading = true;
     let url = APP_CONFIG.getAllTotals;
     let url1 = APP_CONFIG.getLocalityGraphDetails;
+    let url2 = APP_CONFIG.getSystemsHealthCountURL;
+    let url3 = APP_CONFIG.getInfraNumbers;
+    let url4 = APP_CONFIG.getInciNumbers;
+    let url5 = APP_CONFIG.getGraphAuditCounts;
+    let url6 = APP_CONFIG.getGraphAssessmentsCounts;
     let d = new Date();
     let year = d.getFullYear();
     Observable.forkJoin(
       this.httpClient.get(url),
-      this.httpClient.get(url1 + "?" + "yearNumber=" + year)
+      this.httpClient.get(url1 + "?" + "yearNumber=" + year),
+      this.httpClient.get(url2),
+      this.httpClient.get(url3),
+      this.httpClient.get(url4),
+      this.httpClient.get(url5),
+      this.httpClient.get(url6)
     ).subscribe((data: any) => {
       this.loading = false;
       let dat = data[0];
@@ -3416,7 +3448,20 @@ export class GraphComponent implements OnInit {
       let reData = data[1].recertificationCountDTO.pastDateCount;
       let reDataF = data[1].recertificationCountDTO.futureDateCount;
       this.pieChartData7.push(reData, reDataF);
-
+      this.totalHigh = data[2].totalHigh;
+      this.totalLow = data[2].totalLow;
+      this.totalModerate = data[2].totalModerate;
+      this.infraDashboardDTO = data[3];
+      this.assetTotal = this.infraDashboardDTO.appServers + this.infraDashboardDTO.dBServers + this.infraDashboardDTO.otherServers;
+      this.highIncidents = this.infraDashboardDTO.highIncident;
+      this.mediumIncidents = this.infraDashboardDTO.mediumIncident;
+      this.lowIncidents = this.infraDashboardDTO.lowIncident;
+      this.inciDashboardDTO = data[4];
+      this.criticalHighInci = this.inciDashboardDTO.criticalHighInci;
+      this.criticalMediumInci = this.inciDashboardDTO.criticalMediumInci;
+      this.criticalLowInci = this.inciDashboardDTO.criticalLowInci;
+      this.auditCountDTo = data[5];
+      this.auditCountDTo1 = data[6];
       // let data1 = [
       //   {
       //     "signedLocalities": 3
@@ -3497,8 +3542,6 @@ export class GraphComponent implements OnInit {
       label: 'test',
       data: [10, 12, 2, 51, 31, 21, 24, 35, 66, 77, 11, 28]
     });
-
-    console.log(this.barChartData);
     this.showBar = true;
   }
 
@@ -3550,8 +3593,8 @@ export class GraphComponent implements OnInit {
         // for (let i = 0; i < this.auditGram.length; i++) {
         //   this.lineChartDataSystems1[0].data.push(this.auditGram[i]);
         // }
-        this.lineChartDataSystems1[0].data=this.auditGram;
-        this.lineChartDataSystems1[1].data=this.assessmentGram;
+        this.lineChartDataSystems1[0].data = this.auditGram;
+        this.lineChartDataSystems1[1].data = this.assessmentGram;
         // for (let i = 0; i < this.assessmentGram.length; i++) {
         //   this.lineChartDataSystems1[1].data.push(this.assessmentGram[i]);
         // }

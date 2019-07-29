@@ -2,10 +2,7 @@
 import { AlertService } from 'app/alert.service';
 import { Component, OnInit , ViewChildren,QueryList } from '@angular/core';
 import { Chart, ChartDataSets } from 'chart.js';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { APP_CONFIG } from '../app.config';
-import { AuditCountDTO } from '../auditcountmodel';
 import { NgbdSortableHeader, SortEvent } from '../sort';
 import { UtilService } from '../util.service';
 import { ApiserviceService } from '../apiservice.service';

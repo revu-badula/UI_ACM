@@ -15,26 +15,26 @@ import { ApiserviceService } from '../apiservice.service';
 })
 export class IncidentsComponent implements OnInit {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
-  public loading : boolean;
+  public loading: boolean;
   public criticalHighInci: any;
-  public criticalMediumInci :any;
-  public criticalLowInci:any;
-  public openIncident:any;
-  public closedIncident:any;
-  public highIncidents:any;
-  public mediumIncidents:any;
-  public lowIncidents:any;
-  public businessesImpacted:any;
-  public systemsImpacted:any;
+  public criticalMediumInci: any;
+  public criticalLowInci: any;
+  public openIncident: any;
+  public closedIncident: any;
+  public highIncidents: any;
+  public mediumIncidents: any;
+  public lowIncidents: any;
+  public businessesImpacted: any;
+  public systemsImpacted: any;
   public inciDashboardDTO: inciDashboardDTO;
   public infraDashboardDTO: infrastructureDashboardDTO;
-  public typesOfIncident:any;
+  public typesOfIncident: any;
   public incidents: any;
-  public show:boolean;
-  public p:number=1;
+  public show: boolean;
+  public p: number = 1;
 
- public lineChartDataAudits: ChartDataSets<any> = [
-    { data: [] }
+  public lineChartDataAudits: ChartDataSets<any> = [
+    { data: [], label: 'Incidents' }
   ];
   public lineChartLabelsAudits: Array<any> = [];
   public chartOptionAudits = {
@@ -72,12 +72,12 @@ export class IncidentsComponent implements OnInit {
         {
           ticks: {
             beginAtZero: true,
-            userCallback: function(label, index, labels) {
+            userCallback: function (label, index, labels) {
               if (Math.floor(label) === label) {
                 return label;
               }
-            
-            }, 
+
+            },
           },
           display: true
         }
@@ -126,7 +126,7 @@ export class IncidentsComponent implements OnInit {
   ];
 
   public showGraph: boolean;
-  constructor(private _apiservice: ApiserviceService,public sideNavService: AlertService, private httpClient: HttpClient, private router: Router) {
+  constructor(private _apiservice: ApiserviceService, public sideNavService: AlertService, private httpClient: HttpClient, private router: Router) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     this.inciDashboardDTO = new inciDashboardDTO();
@@ -140,63 +140,61 @@ export class IncidentsComponent implements OnInit {
     this.getInfraNumbers();
     this.getIncidents();
 
-  
+
   }
 
-  goToSystemDetails(){
+  goToSystemDetails() {
     this.router.navigate(['/newSystemDetails']);
   }
 
-  getInciNumbers(){
+  getInciNumbers() {
     let url = APP_CONFIG.getInciNumbers
-      this.httpClient.get(url)
-        .subscribe((data: any) => {
-          this.loading = false;
-          this.showGraph=false;
-          this.inciDashboardDTO = data;
-          this.criticalHighInci = this.inciDashboardDTO.criticalHighInci;
-          this.criticalMediumInci = this.inciDashboardDTO.criticalMediumInci;
-          this.criticalLowInci= this.inciDashboardDTO.criticalLowInci;
-          this.openIncident = this.inciDashboardDTO.openIncident;
-          this.closedIncident= this.inciDashboardDTO.closedIncident;
-          this.businessesImpacted=this.inciDashboardDTO.businessesImpacted;
-          this.systemsImpacted = this.inciDashboardDTO.systemsImpacted;
-          this.typesOfIncident = this.inciDashboardDTO.typesOfIncident;
-          for(var i in this.typesOfIncident){
-            this.lineChartLabelsAudits.push(i);
-            this.lineChartDataAudits[0].data.push(this.typesOfIncident[i]);
-            console.log(i);
-            console.log(this.typesOfIncident[i]);
-          }
-          this.showGraph=true;
-         
-        }, error => {
-          this.loading = false;;
-          console.log(error);
-        });
+    this.httpClient.get(url)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.showGraph = false;
+        this.inciDashboardDTO = data;
+        this.criticalHighInci = this.inciDashboardDTO.criticalHighInci;
+        this.criticalMediumInci = this.inciDashboardDTO.criticalMediumInci;
+        this.criticalLowInci = this.inciDashboardDTO.criticalLowInci;
+        this.openIncident = this.inciDashboardDTO.openIncident;
+        this.closedIncident = this.inciDashboardDTO.closedIncident;
+        this.businessesImpacted = this.inciDashboardDTO.businessesImpacted;
+        this.systemsImpacted = this.inciDashboardDTO.systemsImpacted;
+        this.typesOfIncident = this.inciDashboardDTO.typesOfIncident;
+        for (var i in this.typesOfIncident) {
+          this.lineChartLabelsAudits.push(i);
+          this.lineChartDataAudits[0].data.push(this.typesOfIncident[i]);
+        }
+        this.showGraph = true;
+
+      }, error => {
+        this.loading = false;;
+        console.log(error);
+      });
   }
 
 
-  getInfraNumbers(){
+  getInfraNumbers() {
     let url = APP_CONFIG.getInfraNumbers
-      this.httpClient.get(url)
-        .subscribe((data: any) => {
-          this.loading = false;
-        
-          this.infraDashboardDTO = data;
-          
-          this.highIncidents = this.infraDashboardDTO.highIncident;
-          this.mediumIncidents = this.infraDashboardDTO.mediumIncident;
-          this.lowIncidents = this.infraDashboardDTO.lowIncident;
-      
-        }, error => {
-          this.loading = false;;
-          console.log(error);
-        });
+    this.httpClient.get(url)
+      .subscribe((data: any) => {
+        this.loading = false;
+
+        this.infraDashboardDTO = data;
+
+        this.highIncidents = this.infraDashboardDTO.highIncident;
+        this.mediumIncidents = this.infraDashboardDTO.mediumIncident;
+        this.lowIncidents = this.infraDashboardDTO.lowIncident;
+
+      }, error => {
+        this.loading = false;;
+        console.log(error);
+      });
   }
   chartClicked(value: any) {
 
-     if (value.active.length > 0) {
+    if (value.active.length > 0) {
       let val: any = value.active[0]._index;
       var points = [];
       var pointSelected = value.active[0]._chart.tooltip._model.caretX;
@@ -211,8 +209,8 @@ export class IncidentsComponent implements OnInit {
 
       this.getAllIncidentsOnType(xValue)
 
+    }
   }
-}
 
   getIncidents() {
     this.loading = true;
@@ -228,7 +226,7 @@ export class IncidentsComponent implements OnInit {
 
   }
 
-  
+
   getIncidentsOnClick(type: any, status: any) {
     this.loading = true;
     this._apiservice.getAllIncidentsOnClick(type, status)
@@ -257,35 +255,35 @@ export class IncidentsComponent implements OnInit {
   }
 
   viewApplication(incidentId: any) {
-    if(!this.show){
-    sessionStorage.setItem('incidentName', incidentId);
-    this.router.navigate(['/incident/info']);
+    if (!this.show) {
+      sessionStorage.setItem('incidentName', incidentId);
+      this.router.navigate(['/incident/info']);
     }
-    else{
+    else {
       sessionStorage.setItem('incidentName', incidentId);
       this.router.navigate(['/newBusinessImpact/info'])
     }
   }
 
   createSystem() {
-    if(!this.show)
-    this.router.navigate(['/incident/info']);
-    else{
+    if (!this.show)
+      this.router.navigate(['/incident/info']);
+    else {
       this.router.navigate(['/newBusinessImpact/info']);
     }
   }
 
   getSort({ column, direction }: SortEvent) {
-    if(this.incidents !== undefined && this.incidents !==null && this.incidents.length >0)
-    this.headers.forEach(header => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-      else if(header.sortable === column && direction !== '') {
-        this.incidents = this.toSorting(this.incidents, column, direction);
-        
-      }
-    });
+    if (this.incidents !== undefined && this.incidents !== null && this.incidents.length > 0)
+      this.headers.forEach(header => {
+        if (header.sortable !== column) {
+          header.direction = '';
+        }
+        else if (header.sortable === column && direction !== '') {
+          this.incidents = this.toSorting(this.incidents, column, direction);
+
+        }
+      });
   }
 
 
@@ -304,23 +302,23 @@ export class IncidentsComponent implements OnInit {
     return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
   }
 
-  getOpen(){
+  getOpen() {
     this.getIncidentsOnClick('status', 'open');
   }
 
-  getClose(){
+  getClose() {
     this.getIncidentsOnClick('status', 'close');
   }
 
-  getSeverityLow(){
+  getSeverityLow() {
     this.getIncidentsOnClick('severity', 'low');
   }
 
-  getSeverityMedium(){
+  getSeverityMedium() {
     this.getIncidentsOnClick('severity', 'Medium');
   }
 
-  getSeverityHigh(){
+  getSeverityHigh() {
     this.getIncidentsOnClick('severity', 'High');
   }
 

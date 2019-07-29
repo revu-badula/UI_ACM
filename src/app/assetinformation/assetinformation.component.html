@@ -1,4 +1,18 @@
 <!-- <app-loadercomponent></app-loadercomponent> -->
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Info</h4>
+  </div>
+  <div class="modal-body">
+    <p>Device has been Updated</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark confbtn" (click)="c()">Close</button>
+  </div>
+</ng-template>
 <div>
 
   <form (ngSubmit)="updateDevice()" id="myForm" enctype="multipart/form-data" #editForm="ngForm">
@@ -335,6 +349,6 @@
   <div style="margin-right:5%;">
     <button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!editForm.valid"
       *ngIf="isLol">Submit</button>
-    <button type="cancel" routerLink="/devicetab" class="cancel btn btn-primary">Cancel</button>
+    <button type="cancel" (click)="backClicked()" class="cancel btn btn-primary">Cancel</button>
   </div>
 </div>

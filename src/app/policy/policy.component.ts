@@ -27,7 +27,15 @@ export class PolicyComponent implements OnInit {
   public showTable: boolean;
   public lineChartPoliciesLables: Array<any> = [];
   public p: number = 1;
-  public loading:boolean;
+  public pageSize: number = 10;
+  public dummyData: any;
+  public total: number = 0;
+  public p2: number = 1;
+  public pageSize2: number = 10;
+  public dummyData2: any;
+  public total2: number = 0;
+  public searchTerm2: any;
+  public loading: boolean;
   public lineChartPolicies: Array<any> = [{ data: [], label: 'Data' }];
   public chartOption1 = {
     responsive: true,
@@ -64,12 +72,12 @@ export class PolicyComponent implements OnInit {
         {
           ticks: {
             beginAtZero: true,
-            userCallback: function(label, index, labels) {
+            userCallback: function (label, index, labels) {
               if (Math.floor(label) === label) {
                 return label;
               }
-            
-            }, 
+
+            },
 
           },
           display: true
@@ -129,18 +137,18 @@ export class PolicyComponent implements OnInit {
 
   constructor(private _apiservice: ApiserviceService,
     public sideNavService: AlertService, private router: Router, private pipe: DecimalPipe) {
-      sessionStorage.removeItem('policiesFamId');
-     }
+    sessionStorage.removeItem('policiesFamId');
+  }
 
   ngOnInit() {
     this.getData();
   }
 
   getData() {
-    this.loading=true;
+    this.loading = true;
     this._apiservice.getPolicyCount(2019)
       .subscribe((data: any) => {
-        this.loading=false;
+        this.loading = false;
         this.openCount = data.openCount;
         this.closeCount = data.closeCount;
         this.policyOpenCount = data.policyOpenCount;
@@ -154,7 +162,7 @@ export class PolicyComponent implements OnInit {
         }
         this.showAllSystem = true;
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
   }
@@ -192,28 +200,69 @@ export class PolicyComponent implements OnInit {
     return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
   }
   getData1(value: any) {
-    // this.dummyData = this.searchResults.filter((country: any) => this.matches(country, value, this.pipe));
-    // this.total = this.dummyData.length;
+    this.policyGrps = this.dummyData.filter((country: any) => this.matches(country, value, this.pipe));
+    this.total = this.policyGrps.length;
+  }
+  getData2(value: any) {
+    this.policies = this.dummyData2.filter((country: any) => this.matches2(country, value, this.pipe));
+    this.total2 = this.policies.length;
+  }
+  pageChanged(value: any) {
+    if (this.searchTerm !== undefined && this.searchTerm !== null && this.searchTerm !== "") {
+      this.p = value;
+      let data = this.dummyData.filter((country: any) => this.matches(country, this.searchTerm, this.pipe));
+      this.policyGrps = data.slice((value - 1) * this.pageSize, (value - 1) * this.pageSize + this.pageSize);
+
+    }
+    else {
+      this.p = value;
+      this.policyGrps = this.dummyData.slice((value - 1) * this.pageSize, (value - 1) * this.pageSize + this.pageSize);
+    }
+  }
+  pageChanged2(value: any) {
+    if (this.searchTerm2 !== undefined && this.searchTerm2 !== null && this.searchTerm2 !== "") {
+      this.p2 = value;
+      let data = this.dummyData2.filter((country: any) => this.matches2(country, this.searchTerm2, this.pipe));
+      this.policies = data.slice((value - 1) * this.pageSize2, (value - 1) * this.pageSize2 + this.pageSize2);
+
+    }
+    else {
+      this.p2 = value;
+      this.policies = this.dummyData2.slice((value - 1) * this.pageSize2, (value - 1) * this.pageSize2 + this.pageSize2);
+    }
   }
 
   matches(country: any, term: string, pipe: PipeTransform) {
-    return country.firstName.toLowerCase().includes(term.toLowerCase())
-      || country.lastName.toLowerCase().includes(term.toLowerCase());
+    return country.policyGrpName.toLowerCase().includes(term.toLowerCase())
+      || country.auditTypeName.toLowerCase().includes(term.toLowerCase());
+  }
+  matches2(country: any, term: string, pipe: PipeTransform) {
+    return country.controlNumber.toLowerCase().includes(term.toLowerCase())
+      || country.familyName.toLowerCase().includes(term.toLowerCase())
+      || country.policyGrpName.toLowerCase().includes(term.toLowerCase());
   }
 
   getPolicyGrpData(value: any) {
     this.policies = [];
-    this.loading=true;
+    this.dummyData = [];
+    this.dummyData2 = [];
+    this.searchTerm=null;
+    this.searchTerm2=null;
+    this.loading = true;
     this.policyGrps = [];
     this._apiservice.policyGrpOnstatus(value)
       .subscribe((data: any) => {
         this.policyGrps = data;
+        if (this.policyGrps !== undefined && this.policyGrps !== null && this.policyGrps.length > 0) {
+          this.dummyData = this.policyGrps.slice(0, this.policyGrps.length);
+          this.total = this.dummyData.length;
+        }
         this.showPolicyGrp = true;
         this.showPolicies = false;
         this.showTable = true;
-        this.loading=false;
+        this.loading = false;
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
   }
@@ -221,16 +270,24 @@ export class PolicyComponent implements OnInit {
   getPolicyData(value: any) {
     this.policyGrps = [];
     this.policies = [];
-    this.loading=true;
+    this.dummyData = [];
+    this.dummyData2 = [];
+    this.searchTerm=null;
+    this.searchTerm2=null;
+    this.loading = true;
     this._apiservice.getPolicyAssignment(value)
       .subscribe((data: any) => {
         this.policies = data;
+        if (this.policies !== undefined && this.policies !== null && this.policies.length > 0) {
+          this.dummyData2 = this.policies.slice(0, this.policies.length);
+          this.total2 = this.dummyData2.length;
+        }
         this.showPolicyGrp = false;
         this.showPolicies = true;
         this.showTable = true;
-        this.loading=false;
+        this.loading = false;
       }, error => {
-        this.loading=false;
+        this.loading = false;
         console.log(error);
       });
   }

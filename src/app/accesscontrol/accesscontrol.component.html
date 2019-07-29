@@ -74,12 +74,12 @@
                         <div class="form-group col-md-6">
                             <label for="controlNumber">Control Number<span class="asterisk">*</span></label>
                             <input type="text" class="form-control" id="controlNumber" ngModel name="controlNumber"
-                                [(ngModel)]="appPolicy.controlNumber" [name]="'control_number'" required>
+                                [(ngModel)]="policyAccess.controlNumber" [name]="'control_number'" required readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="controlName">Control Name<span class="asterisk">*</span></label>
                             <input type="text" class="form-control" id="controlName" ngModel name="controlName"
-                                [(ngModel)]="appPolicy.controlName" [name]="'class_type'" required>
+                                [(ngModel)]="policyAccess.controlName" [name]="'class_type'" required readonly>
                         </div>
                     </div>
 

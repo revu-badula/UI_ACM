@@ -76,8 +76,11 @@
                                                 </td>
                                                 <td>{{policyGrp.auditTypeName}}</td>
                                                 <td>{{policyGrp.owner}}</td>
-                                                <td>{{policyGrp.reviewDate}}</td>
-                                                <td>{{policyGrp.status}}</td>
+                                                <td>{{policyGrp.reviewDate | filter}}</td>
+                                                <td *ngIf="policyGrp.status === 'true'"><i class='fa fa-check-circle-o policyGreen' aria-hidden="true"></i></td>
+                                                <td *ngIf="policyGrp.status === 'false'">
+                                                    <i class='fa fa-times-circle-o policyRed' aria-hidden="true"></i>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

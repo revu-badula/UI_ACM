@@ -2,9 +2,10 @@
 <ng-template #emailView let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Email Notifications</h4>
-    <button type="button" style="line-height: 0.1;opacity: 2.2;outline: none;" class="close" aria-label="Close" (click)="c()">
+    <button type="button" style="line-height: 0.1;opacity: 2.2;outline: none;" class="close" aria-label="Close"
+      (click)="c()">
       <span aria-hidden="true" style="color: #fff;outline: none;">&times;</span>
-  </button>
+    </button>
   </div>
   <div class="modal-body">
     <form>
@@ -37,18 +38,18 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <div>
-<div class="sidebar" data-color="danger" data-background-color="white">
+  <div class="sidebar" data-color="danger" data-background-color="white">
     <app-newsidebar></app-newsidebar>
-</div>
+  </div>
   <div class="newmainpanel">
 
-    <div id="form2">
+    <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
 
-      <div class="categoryGrid">
+      <div class="categoryGrid" style="margin: 0 !important;">
         <div class="clearfix wrap">
-      
-    
-     
+
+
+
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
@@ -232,9 +233,9 @@
                     </mat-grid-tile>
 
 
-                    <mat-grid-tile [colspan]="10" [rowspan]="2">
+                    <mat-grid-tile [colspan]="5" [rowspan]="2">
 
-                      <div class="testMat">
+                      <!-- <div class="testMat">
                         <div class="entryTitle">
                           Upcoming Audits and Assessments
                         </div>
@@ -247,23 +248,67 @@
 
 
                         </div>
+                      </div> -->
+
+                      <div class="newtestITpm">
+                        <div class="entryTitle">
+                          Overall System Health
+                        </div>
+
+                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newItpm">
+                          <span class="dot redDot">{{totalHigh}}</span>
+                          <p style="text-align: center;">Critical</p>
+                        </div>
+                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newItpm">
+                          <span class="dot orangeDot">{{totalModerate}}</span>
+                          <p style="text-align: center;">Moderate</p>
+                        </div>
+
+                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newItpm">
+                          <span class="dot greenDot">{{totalLow}}</span>
+                          <p style="text-align: center;">Normal</p>
+                        </div>
+
                       </div>
                     </mat-grid-tile>
-                    <mat-grid-tile [colspan]="4" [rowspan]="2">
+                    <mat-grid-tile [colspan]="5" [rowspan]="2">
+                      <div class="newtestITpm">
+                        <div class="entryTitle">
+                          Total Assests ({{assetTotal}})
+                        </div>
 
-                      <div class="testMat">
+                        <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                          routerLink="/newInfrastructure">
+                          <span class="dot redDot" style="display: none;">{{appServers}}</span>
+                          <i class="fa fa-server" aria-hidden="true" style="font-size: 94px;color: coral;"></i>
+                          <p style="text-align: center;">App Servers ({{infraDashboardDTO.appServers}})</p>
+                        </div>
+                        <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                          routerLink="/newInfrastructure">
+                          <span class="dot orangeDot" style="display: none;">{{dBServers}}</span>
+                          <i class="fa fa-database" aria-hidden="true" style="
+          font-size: 95px;color: cadetblue;
+      "></i>
+                          <p style="text-align: center;">DB Servers ({{infraDashboardDTO.dBServers}})</p>
+                        </div>
+
+                        <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                          routerLink="/newInfrastructure">
+                          <span class="dot greenDot" style="display: none;">{{otherServers}}</span>
+                          <i class="fa fa-desktop" aria-hidden="true" style="font-size:95px;color: yellowgreen;"></i>
+
+                          <p style="text-align: center;">All Others ({{infraDashboardDTO.otherServers}})</p>
+                        </div>
+
+
+                      </div>
+
+                      <!-- <div class="testMat">
                         <div class="entryTitle">
                           Control Status
                         </div>
                         <table class="testTable" style="width: 98%;margin-left: 4px;border: none;height: 85%;">
-                          <!-- <thead>
-                              <tr>
-                                <th>Name</th>
-                                <th>Reported By</th>
-                                <th>Severity</th>
-                                <th>Staus</th>
-                              </tr>
-                            </thead> -->
+                          
                           <tbody>
                           
                             <tr>
@@ -287,24 +332,39 @@
                           </tbody>
                         </table>
 
-                      </div>
+                      </div> -->
                     </mat-grid-tile>
 
-                    <mat-grid-tile [colspan]="3" [rowspan]="2">
-
-                      <div class="testMat">
+                    <mat-grid-tile [colspan]="5" [rowspan]="2">
+                      <div class="newtestITpm">
+                        <div class="entryTitle">
+                          Severity Level
+                        </div>
+                        <p>critcality</p>
+                        <div class="col-md-4 pull-left" routerLink="/newIncidents" style="outline: none;">
+                          <span class="dot redDot">{{criticalHighInci}}</span>
+                          <p style="text-align: center;">High</p>
+                        </div>
+      
+                        <div class="col-md-4 pull-left" routerLink="/newIncidents" style="outline: none;">
+                          <span class="dot orangeDot">{{criticalMediumInci}}</span>
+                          <p style="text-align: center;">Medium</p>
+                        </div>
+      
+                        <div class="col-md-4 pull-left" routerLink="/newIncidents" style="outline: none;">
+                          <span class="dot greenDot">{{criticalLowInci}}</span>
+                          <p style="text-align: center;">Low</p>
+                        </div>
+      
+      
+      
+                      </div>
+                      <!-- <div class="testMat">
                         <div class="entryTitle">
                           Assessment
                         </div>
                         <table class="testTable" style="width: 96%;margin-left: 4px;border: none;height: 85%;">
-                          <!-- <thead>
-                              <tr>
-                                <th>Name</th>
-                                <th>Reported By</th>
-                                <th>Severity</th>
-                                <th>Staus</th>
-                              </tr>
-                            </thead> -->
+                         
                           <tbody>
 
                             <tr>
@@ -328,24 +388,38 @@
                           </tbody>
                         </table>
 
-                      </div>
+                      </div> -->
                     </mat-grid-tile>
 
-                    <mat-grid-tile [colspan]="3" [rowspan]="2">
-
-                      <div class="testMat">
+                    <mat-grid-tile [colspan]="5" [rowspan]="2">
+                      <div class="newtestITpm">
+                        <div class="entryTitle">
+                          Impacted Assets
+                        </div>
+                        <br>
+                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newIncidents">
+                          <span class="dot redDot">{{highIncidents}}</span>
+      
+                        </div>
+      
+                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newIncidents">
+                          <span class="dot orangeDot">{{mediumIncidents}}</span>
+      
+                        </div>
+      
+      
+                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/newIncidents">
+                          <span class="dot greenDot">{{lowIncidents}}</span>
+      
+                        </div>
+      
+                      </div>
+                      <!-- <div class="testMat">
                         <div class="entryTitle">
                           Audit
                         </div>
                         <table class="testTable" style="width: 96%;margin-left: 4px;border: none;height: 85%;">
-                          <!-- <thead>
-                              <tr>
-                                <th>Name</th>
-                                <th>Reported By</th>
-                                <th>Severity</th>
-                                <th>Staus</th>
-                              </tr>
-                            </thead> -->
+                         
                           <tbody>
 
                             <tr>
@@ -369,27 +443,64 @@
                           </tbody>
                         </table>
 
-                      </div>
+                      </div> -->
                     </mat-grid-tile>
 
 
-                    <mat-grid-tile [colspan]="10" [rowspan]="4" style="min-width: 100%;">
+                     <mat-grid-tile [colspan]="5" [rowspan]="2">
+                      <div class="newtestITpm">
+                        <div class="entryTitle">
+                            Audit Risk Level
+                        </div>
+                        <div class="col-md-4 pull-left" routerLink="/newAudit" style="outline: none;">
+                            <span class="dot redDot">{{auditCountDTo.auditHigh}}</span>
+                            <p style="text-align: center;">High</p>
+                        </div>
+                        <div class="col-md-4 pull-left" routerLink="/newAudit" style="outline: none;">
+                            <span class="dot orangeDot">{{auditCountDTo.auditModerate}}</span>
+                            <p style="text-align: center;">Moderate</p>
+                        </div>
 
-                      <div class="testMat">
+                        <div class="col-md-4 pull-left" routerLink="/newAudit" style="outline: none;">
+                            <span class="dot greenDot">{{auditCountDTo.auditLow}}</span>
+                            <p style="text-align: center;">Low</p>
+                        </div>
+
+                    </div>
+                      <!-- <div class="testMat">
                         <div class="entryTitle">
                           Incident Reports
                         </div>
+                        style="min-width: 100%;"
 
                         <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions123"
                           style="width: 100%; height: 300px; display: block;">
                         </highcharts-chart>
 
-                      </div>
-                    </mat-grid-tile>
+                      </div> -->
+                    </mat-grid-tile> 
 
-                    <mat-grid-tile [colspan]="10" [rowspan]="4" style="min-width: 100%;">
+                     <mat-grid-tile [colspan]="5" [rowspan]="2">
+                      <div class="newtestITpm">
+                        <div class="entryTitle">
+                            Assessment Risk Level
+                        </div>
+                        <div class="col-md-4 pull-left" routerLink="/newAssessment" style="outline: none;">
+                            <span class="dot redDot">{{auditCountDTo1.auditHigh}}</span>
+                            <p style="text-align: center;">High</p>
+                        </div>
+                        <div class="col-md-4 pull-left" routerLink="/newAssessment" style="outline: none;">
+                            <span class="dot orangeDot">{{auditCountDTo1.auditModerate}}</span>
+                            <p style="text-align: center;">Moderate</p>
+                        </div>
 
-                      <div class="testMat">
+                        <div class="col-md-4 pull-left" routerLink="/newAssessment" style="outline: none;">
+                            <span class="dot greenDot">{{auditCountDTo1.auditLow}}</span>
+                            <p style="text-align: center;">Low</p>
+                        </div>
+
+                    </div>
+                      <!-- <div class="testMat">
                         <div class="entryTitle">
                           Vulnerability Scan Report
                         </div>
@@ -398,10 +509,10 @@
                           style="width: 100%; height: 300px; display: block;">
                         </highcharts-chart>
 
-                      </div>
-                    </mat-grid-tile>
+                      </div> -->
+                    </mat-grid-tile> 
 
-                    <mat-grid-tile [colspan]="10" [rowspan]="3">
+                    <!-- <mat-grid-tile [colspan]="10" [rowspan]="3">
 
                       <div class="testMat">
                         <div class="entryTitle">
@@ -417,10 +528,10 @@
 
                         </div>
                       </div>
-                    </mat-grid-tile>
+                    </mat-grid-tile> -->
 
 
-                    <mat-grid-tile [colspan]="5" [rowspan]="2">
+                    <!-- <mat-grid-tile [colspan]="5" [rowspan]="2">
                       <div class="testMat">
                         <div class="entryTitle">
                           Policies
@@ -434,25 +545,18 @@
                           </div>
                         </div>
                       </div>
-                    </mat-grid-tile>
+                    </mat-grid-tile> -->
 
-                    <mat-grid-tile [colspan]="5" [rowspan]="2">
+                    <!-- <mat-grid-tile [colspan]="5" [rowspan]="2">
 
                       <div class="testMat">
                         <div class="entryTitle">
                           Critical Families
                         </div>
                         <table class="testTable" style="width: 98%;margin-left: 4px;border: none;height: 85%;">
-                          <!-- <thead>
-                              <tr>
-                                <th>Name</th>
-                                <th>Reported By</th>
-                                <th>Severity</th>
-                                <th>Staus</th>
-                              </tr>
-                            </thead> -->
+                          
                           <tbody>
-                           
+
                             <tr>
                               <td style="background: orange !important;color: #fff;">High</td>
                               <td style="background: #fff !important;color: orange;">23</td>
@@ -476,7 +580,7 @@
                         </table>
 
                       </div>
-                    </mat-grid-tile>
+                    </mat-grid-tile> -->
 
 
 

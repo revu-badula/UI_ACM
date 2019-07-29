@@ -806,51 +806,51 @@ const appRoutes: Routes = [
   { path: 'incidentStart', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: 'incidentStart/:type', component: IncidentstartComponent, canActivate: [AuthGuard] },
   { path: 'itpm', component: ITPMComponent, canActivate: [AuthGuard] },
-  { path: 'itpmAudit/:id/:type', component: ItAuditComponent },
-  { path: 'itpmIncident/:id', component: ItIncidentComponent },
-  { path: 'newItpm', component: NewitpmComponent },
-  { path: 'newAudit', component: AuditsComponent },
-  { path: 'newAudit/:id/:type', component: AuditsComponent },
-  { path: 'newAssessment', component: AssessmentsComponent },
-  { path: 'newInfrastructure', component: InfrastructureComponent },
-  { path: 'newIncidents', component: IncidentsComponent },
-  { path: 'newSystemDetails', component: SystemdetailsComponent},
-  { path: 'infraDetails/:type', component: InfradetailsComponent },
-  { path: 'assetDetails/:id', component: AssetDetailComponent },
+  { path: 'itpmAudit/:id/:type', component: ItAuditComponent, canActivate: [AuthGuard] },
+  { path: 'itpmIncident/:id', component: ItIncidentComponent, canActivate: [AuthGuard] },
+  { path: 'newItpm', component: NewitpmComponent, canActivate: [AuthGuard] },
+  { path: 'newAudit', component: AuditsComponent, canActivate: [AuthGuard] },
+  { path: 'newAudit/:id/:type', component: AuditsComponent, canActivate: [AuthGuard] },
+  { path: 'newAssessment', component: AssessmentsComponent, canActivate: [AuthGuard] },
+  { path: 'newInfrastructure', component: InfrastructureComponent, canActivate: [AuthGuard] },
+  { path: 'newIncidents', component: IncidentsComponent, canActivate: [AuthGuard] },
+  { path: 'newSystemDetails', component: SystemdetailsComponent, canActivate: [AuthGuard] },
+  { path: 'infraDetails/:type', component: InfradetailsComponent, canActivate: [AuthGuard] },
+  { path: 'assetDetails/:id', component: AssetDetailComponent, canActivate: [AuthGuard] },
   {
-      path: 'firstpolicy', component: PolicyParentComponent, children: [
-          { path: 'main/:id', component: PolicyStartComponent },
-          {
-              path: 'details',
-              component: PolicydetailsComponent
-          },
+    path: 'firstpolicy', component: PolicyParentComponent, children: [
+      { path: 'main/:id', component: PolicyStartComponent },
+      {
+        path: 'details',
+        component: PolicydetailsComponent
+      },
 
-          {
-              path: 'review',
-              component: PolicyreviewComponent
-          },
-          {
-              path: 'documents',
-              component: PolicydocumentsComponent
-          },
-          {
-              path: 'application',
-              component: PolicyapplicationComponent
-          },
-          {
-              path:'families',
-              component: PolicyfamiliesComponent
-          },
-          {
-            path:'newaccesscontrol/:id',
-            component: ControlNameComponent
-          }
+      {
+        path: 'review',
+        component: PolicyreviewComponent
+      },
+      {
+        path: 'documents',
+        component: PolicydocumentsComponent
+      },
+      {
+        path: 'application',
+        component: PolicyapplicationComponent
+      },
+      {
+        path: 'families',
+        component: PolicyfamiliesComponent
+      },
+      {
+        path: 'newaccesscontrol/:id',
+        component: ControlNameComponent
+      }
 
-      ]
+    ], canActivate: [AuthGuard]
   },
-  { path: 'policy', component: PolicyComponent },
-  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
- 
+  { path: 'policy', component: PolicyComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [AuthGuard] },
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes, { useHash: false })],

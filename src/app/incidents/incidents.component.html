@@ -20,7 +20,14 @@
 
                 <div class="newtestITpm">
                   <div class="entryTitle">Overview </div>
-                  <p class="definationText">This defines all the Incidents.</p>
+                  <p class="definationText" style="font-size: 13px;">
+                    This screen allows you to manage incidents with full life cycle from inception to root cause
+                    analysis and then close out. It also provides details for impacted systems and related business
+                    units to impacted systems. Each incident includes the severity level and type of incidents in order
+                    to notify and take immediate actions by knowing who is responsible for impacted assets and systems.
+                    The business units also can be notified for any downtime or impact that may hinder business
+                    operations.
+                  </p>
 
 
                 </div>
@@ -40,12 +47,12 @@
                     <p style="text-align: center;">High</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" >
+                  <div class="col-md-4 pull-left" style="outline: none;">
                     <span class="dot orangeDot" (click)="getSeverityMedium()">{{criticalMediumInci}}</span>
                     <p style="text-align: center;">Medium</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" >
+                  <div class="col-md-4 pull-left" style="outline: none;">
                     <span class="dot greenDot" (click)="getSeverityLow()">{{criticalLowInci}}</span>
                     <p style="text-align: center;">Low</p>
                   </div>
@@ -60,18 +67,17 @@
                   <div class="entryTitle">
                     Status
                   </div>
-                  <p>Renewal required for different assets are displayed in red.</p>
-                  <div class="col-md-4 pull-left" style="outline: none;" >
+                  <div class="col-md-4 pull-left" style="outline: none;">
                     <span class="dot redDot" (click)="getOpen()">{{openIncident}}</span>
                     <p style="text-align: center;">Open</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" >
+                  <div class="col-md-4 pull-left" style="outline: none;">
 
                   </div>
 
 
-                  <div class="col-md-4 pull-left" style="outline: none;" >
+                  <div class="col-md-4 pull-left" style="outline: none;">
                     <span class="dot greenDot" (click)="getClose()">{{closedIncident}}</span>
                     <p style="text-align: center;">Closed</p>
                   </div>
@@ -105,7 +111,6 @@
                   <div class="entryTitle">
                     Average Time
                   </div>
-                  <p>Average Time to close the incidents</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot redDot">{{4}}</span>
                     <p>Days</p>
@@ -137,7 +142,6 @@
                   <div class="entryTitle">
                     Impacted Assets
                   </div>
-                  <p>Renewal required for different assets are displayed in red.</p>
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot redDot">{{highIncidents}}</span>
 
@@ -166,7 +170,8 @@
 
                     <div class="row">
                       <div class="col-md-3 pull-left" (click)="getPolicyGrpData('open')">
-                        <span class="adsquare adsquarecolor" (click)="goToSystemDetails()" style="cursor: pointer">{{systemsImpacted}}</span>
+                        <span class="adsquare adsquarecolor" (click)="goToSystemDetails()"
+                          style="cursor: pointer">{{systemsImpacted}}</span>
                         <p style="text-align: center;">Systems Impacted</p>
                       </div>
                       <div class="col-md-2 pull-left"></div>

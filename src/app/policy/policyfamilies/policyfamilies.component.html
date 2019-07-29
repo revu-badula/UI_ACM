@@ -24,7 +24,7 @@
       <table class="policyTable">
         <thead>
           <tr>
-            <th scope="col" sortable="acronym" (sort)="getSort($event)">Policy Name
+            <th scope="col" sortable="acronym" (sort)="getSort($event)">Control #
 
             </th>
 
@@ -48,12 +48,12 @@
         <tbody>
 
           <tr   *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
-            <td style="color: blue;cursor: pointer;" routerLink="/spolicy/saccesscontrol/{{policy.policyId}}">{{policy.controlNumber}}</td>
+            <td style="color: blue;cursor: pointer;" routerLink="/firstpolicy/newaccesscontrol/{{policy.policyId}}">{{policy.controlNumber}}</td>
             <td>{{policy.familyName}}</td>
             <td>{{policy.policyName}}</td>
             <td>{{policy.priority}}</td>
             <td>{{policy.weightageN}}</td>
-            <td><i [ngClass]=" policy.status ? 'primary' : 'secondary'" class="fa fa-check-circle"></i>
+            <td><i [ngClass]="policy.status? 'fa fa-check-circle policyGreen' : 'fa fa-times-circle policyRed'"></i>
           </tr>
 
         </tbody>

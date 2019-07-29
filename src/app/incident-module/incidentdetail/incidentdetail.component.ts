@@ -182,7 +182,7 @@ export class IncidentdetailComponent implements OnInit {
   fillData(value: any) {
     if (this.dummy !== undefined && this.dummy !== null && this.dummy.length > 0) {
       for (let i = 0; i < this.dummy.length; i++) {
-        if (this.dummy[i].lastName === value) {
+        if ((this.dummy[i].firstName+" "+this.dummy[i].lastName) === value) {
           this.test1 = this.dummy[i].emailId;
           this.incidentManagementDTO.reportedBy = this.dummy[i].firstName + " " + this.dummy[i].lastName;
           this.incidentManagementDTO.userId = this.dummy[i].userId;

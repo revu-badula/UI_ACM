@@ -1,6 +1,6 @@
 <app-navigation-component></app-navigation-component>
 <div class="sidebar" data-color="danger" data-background-color="white">
- <app-newsidebar></app-newsidebar>
+  <app-newsidebar></app-newsidebar>
 </div>
 <div class="my-container">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
@@ -19,7 +19,9 @@
 
                 <div class="newtestITpm">
                   <div class="entryTitle">Overview </div>
-                  <p class="definationText">This defines all the Infrastructure.</p>
+                  <p class="definationText">This screens displays the infrastructure details for your organization. This
+                    includes Application and Database server(s) and all other assets. Also, provides with the renewal
+                    status, testing, and version compliance check for assets.</p>
 
 
                 </div>
@@ -33,13 +35,15 @@
                   <div class="entryTitle">
                     Total Assests ({{assetTotal}})
                   </div>
-                 
-                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;" routerLink="/infraDetails/Application Server">
+
+                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                    routerLink="/infraDetails/Application Server">
                     <span class="dot redDot" style="display: none;">{{appServers}}</span>
                     <i class="fa fa-server" aria-hidden="true" style="font-size: 94px;color: coral;"></i>
                     <p style="text-align: center;">App Servers ({{infraDashboardDTO.appServers}})</p>
                   </div>
-                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;" routerLink="/infraDetails/Database Server">
+                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                    routerLink="/infraDetails/Database Server">
                     <span class="dot orangeDot" style="display: none;">{{dBServers}}</span>
                     <i class="fa fa-database" aria-hidden="true" style="
     font-size: 95px;color: cadetblue;
@@ -47,18 +51,14 @@
                     <p style="text-align: center;">DB Servers ({{infraDashboardDTO.dBServers}})</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;" routerLink="/infraDetails/Others">
+                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                    routerLink="/infraDetails/Others">
                     <span class="dot greenDot" style="display: none;">{{otherServers}}</span>
                     <i class="fa fa-desktop" aria-hidden="true" style="font-size:95px;color: yellowgreen;"></i>
 
                     <p style="text-align: center;">All Others ({{infraDashboardDTO.otherServers}})</p>
                   </div>
 
-                  <!-- <div class="stacked-bar-graph">
-                            <span style="width:20%" class="bar-1 barClass">20%</span>
-                            <span style="width:15%" class="bar-2 barClass" >15%</span>
-                            <span style="width:30%" class="bar-3 barClass">30%</span>
-                          </div> -->
 
                 </div>
 
@@ -80,7 +80,7 @@
 
                   <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot greenDot">{{infraDashboardDTO.notExpired}}</span>
-                    <p style="text-align: center;">Non-Expired</p>
+                    <p style="text-align: center;">Not-Expired</p>
                   </div>
 
                 </div>
@@ -112,16 +112,16 @@
                   <div class="entryTitle">
                     Version Status
                   </div>
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="adsquare adsquarecolor">0</span>
-					 <p style="text-align: center;">Out-of-Version</p>
+                  <div class="col-md-6 pull-left" style="outline: none;" (click)="showTable('outversion')">
+                    <span class="adsquare adsquarecolor">2</span>
+                    <p style="text-align: center;">Out-of-Version</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-							 <span class="adsquare adsquarecolor">0</span>
-					 <p style="text-align: center;">In-Version</p>
+                  <div class="col-md-6 pull-left" style="outline: none;" (click)="showTable('inversion')">
+                    <span class="adsquare adsquarecolor">3</span>
+                    <p style="text-align: center;">In-Version</p>
                   </div>
-                
+
 
                 </div>
 
@@ -135,19 +135,19 @@
                   <div class="entryTitle">
                     Testing Results
                   </div>
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot redDot">0</span>
-					<p style="text-align: center;">Failed</p>
+                  <div class="col-md-6 pull-left" style="outline: none;" (click)="showTable('fail')">
+                    <span class="dot redDot">2</span>
+                    <p style="text-align: center;">Failed</p>
                   </div>
 
-                 <!--  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  <!--  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
                     <span class="dot orangeDot">0</span>
 
                   </div> -->
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                    <span class="dot greenDot">0</span>
- 						<p style="text-align: center;">Passed</p>
+                  <div class="col-md-6 pull-left" style="outline: none;" (click)="showTable('pass')">
+                    <span class="dot greenDot">2</span>
+                    <p style="text-align: center;">Passed</p>
                   </div>
 
                   <!-- <div class="stacked-bar-graph">
@@ -183,6 +183,178 @@
                 </div>
 
               </mat-grid-tile>
+              <mat-grid-tile [colspan]="10" [rowspan]="6" *ngIf="inversion || outversion || pass || fail">
+
+                <div class="newtestITpm">
+                  <div *ngIf="inversion || outversion" class="entryTitle">Version Status</div>
+                  <div *ngIf="fail || pass" class="entryTitle">Testing Results</div>
+
+                  <form class="forms">
+                    <table class="policyTable" *ngIf="inversion">
+                      <thead>
+                        <tr>
+                          <th scope="col">Asset Name
+                          </th>
+
+                          <th scope="col">Deployed Version
+                          </th>
+
+
+                          <th scope="col">Current Version
+                          </th>
+                          <th scope="col">Primary Owner
+                          </th>
+                          <th scope="col">Vendor</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+                        <tr>
+                          <td id="anchor">ORACLESERV09379</td>
+                          <td>12g</td>
+                          <td>12g</td>
+                          <td>James Smith</td>
+                          <td>Oracle</td>
+                        </tr>
+
+                        <tr>
+                          <td id="anchor">JBOSS AS</td>
+                          <td>7.1</td>
+                          <td>7.1</td>
+                          <td>Maria Rodriguez</td>
+                          <td>JBoss</td>
+                        </tr>
+
+                        <tr>
+                          <td id="anchor">EAS09823AS</td>
+                          <td>10.0</td>
+                          <td>10.0</td>
+                          <td>James Smith</td>
+                          <td>Microsoft</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table class="policyTable" *ngIf="outversion">
+                      <thead>
+                        <tr>
+                          <th scope="col">Asset Name</th>
+
+                          <th scope="col">Deployed Version</th>
+
+
+                          <th scope="col">Current Version</th>
+                          <th scope="col">Primary Owner</th>
+                          <th scope="col">Vendor</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+                        <tr>
+                          <td id="anchor">ORACLESERV87379</td>
+                          <td>10.2.0.5</td>
+                          <td>12.1.0.2.0</td>
+                          <td>James Smith</td>
+                          <td>Oracle</td>
+                        </tr>
+
+                        <tr>
+                          <td id="anchor">EAS09823AS1</td>
+                          <td>9.3.11.42</td>
+                          <td>10.0.2.1</td>
+                          <td>James Smith</td>
+                          <td>Micrsoft</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+                    <table class="policyTable" *ngIf="pass">
+                      <thead>
+                        <tr>
+                          <th scope="col">Asset Name
+                          </th>
+
+                          <th scope="col">Current Scan Date
+                          </th>
+                          <th scope="col">Next Scan Date
+                          </th>
+                          <th scope="col">Vendor
+                          </th>
+                          <th scope="col">Status</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+                        <tr>
+                          <td id="anchor">ORACLESER87379</td>
+                          <td>10/14/2018</td>
+                          <td>10/14/2020</td>
+                          <td>COV VITA</td>
+                          <td>PASS</td>
+                        </tr>
+
+                        <tr>
+                          <td id="anchor">EAS05823AS1</td>
+                          <td>12/14/2016</td>
+                          <td>12/14/2020</td>
+                          <td>COV VITA</td>
+                          <td>PASS</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+                    <table class="policyTable" *ngIf="fail">
+                      <thead>
+                        <tr>
+                          <th scope="col">Asset Name
+                          </th>
+
+                          <th scope="col">Current Scan Date
+                          </th>
+                          <th scope="col">Next Scan Date
+                          </th>
+                          <th scope="col">Vendor
+                          </th>
+                          <th scope="col">Status</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+                        <tr>
+                          <td id="anchor">ORACLESR87379</td>
+                          <td>10/14/2018</td>
+                          <td>10/14/2020</td>
+                          <td>COV VITA</td>
+                          <td>FAIL</td>
+                        </tr>
+
+                        <tr>
+                          <td id="anchor">EA05823AS1</td>
+                          <td>12/14/2016</td>
+                          <td>12/14/2020</td>
+                          <td>COV VITA</td>
+                          <td>FAIL</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+                  </form>
+
+
+                </div>
+              </mat-grid-tile>
+
             </mat-grid-list>
           </mat-sidenav-content>
 

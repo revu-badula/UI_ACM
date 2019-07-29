@@ -11,21 +11,17 @@ import { infrastructureDashboardDTO } from '../data_model';
   templateUrl: './infrastructure.component.html',
   styleUrls: ['./infrastructure.component.css']
 })
-
-@NgModule({ 
-  imports: [RouterModule],
-  
-})
 export class InfrastructureComponent implements OnInit {
 
-  public loading : boolean;
-  public vendorNumbers:any;
+  public loading: boolean;
+  public vendorNumbers: any;
   public infraDashboardDTO: infrastructureDashboardDTO;
-  public assetTotal:any;
-
-
-
- public lineChartDataAudits: ChartDataSets<any> = [
+  public assetTotal: any;
+  public pass: any = false;
+  public fail: any = false;
+  public inversion: any = false;
+  public outversion: any = false;
+  public lineChartDataAudits: ChartDataSets<any> = [
     { data: [], label: 'Vendors' }
   ];
   public lineChartLabelsAudits: Array<any> = [];
@@ -64,12 +60,12 @@ export class InfrastructureComponent implements OnInit {
         {
           ticks: {
             beginAtZero: true,
-            userCallback: function(label, index, labels) {
+            userCallback: function (label, index, labels) {
               if (Math.floor(label) === label) {
                 return label;
               }
-            
-            }, 
+
+            },
           },
           display: true
         }
@@ -127,36 +123,66 @@ export class InfrastructureComponent implements OnInit {
 
 
 
- 
+
 
   ngOnInit() {
     this.getInfraNumbers();
-  
+
   }
 
-  getInfraNumbers(){
+  getInfraNumbers() {
     let url = APP_CONFIG.getInfraNumbers;
-    this.loading=true;
-      this.httpClient.get(url)
-        .subscribe((data: any) => {
-          this.loading = false;
-          this.showGraph=false;
-          this.infraDashboardDTO = data;
-          this.assetTotal = this.infraDashboardDTO.appServers+this.infraDashboardDTO.dBServers + this.infraDashboardDTO.otherServers;
-          this.vendorNumbers = this.infraDashboardDTO.vendorNumbers;
-            for(var i in this.vendorNumbers){
-              this.lineChartLabelsAudits.push(i);
-              this.lineChartDataAudits[0].data.push(this.vendorNumbers[i]);
-            }
-          this.showGraph=true;
-        }, error => {
-          this.loading = false;
-          console.log(error);
-        });
+    this.loading = true;
+    this.httpClient.get(url)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.showGraph = false;
+        this.infraDashboardDTO = data;
+        this.assetTotal = this.infraDashboardDTO.appServers + this.infraDashboardDTO.dBServers + this.infraDashboardDTO.otherServers;
+        this.vendorNumbers = this.infraDashboardDTO.vendorNumbers;
+        for (var i in this.vendorNumbers) {
+          this.lineChartLabelsAudits.push(i);
+          this.lineChartDataAudits[0].data.push(this.vendorNumbers[i]);
+        }
+        this.showGraph = true;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
   }
 
 
   chartClicked(value: any) {
+
+  }
+
+  showTable(value: any) {
+    if (value === 'pass') {
+      this.pass = true;
+      this.fail = false;
+      this.inversion = false;
+      this.outversion = false;
+    }
+    else if (value === 'fail') {
+      this.pass = false;
+      this.fail = true;
+      this.inversion = false;
+      this.outversion = false;
+    }
+
+    else if (value === 'inversion') {
+      this.pass = false;
+      this.fail = false;
+      this.inversion = true;
+      this.outversion = false;
+    }
+
+    else if (value === 'outversion') {
+      this.pass = false;
+      this.fail = false;
+      this.inversion = false;
+      this.outversion = true;
+    }
 
   }
 

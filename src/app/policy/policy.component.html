@@ -2,6 +2,9 @@
 <div class="sidebar" data-color="danger" data-background-color="white">
     <app-newsidebar></app-newsidebar>
 </div>
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  </div>
 <!-- <app-loadercomponent></app-loadercomponent> -->
 <div class="newmainpanel">
     <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
@@ -16,7 +19,7 @@
                     <mat-sidenav-content>
                         <mat-grid-list cols="10" rowHeight="100px">
                             <mat-grid-tile [colspan]="10" [rowspan]="1">
-                                <div class="newtestITpm" style="height: auto;">
+                                <div class="newtestITpm" style="font-size: 13px;">
                                     <div class="entryTitle" style="display: none;">
                                         Definition
                                     </div>
@@ -178,13 +181,13 @@
                                 "></i>
                                     <div class="form-group form-inline">
                                         Search on Table: <input class="ml-2"
-                                            style="width: 20% !important;outline: none;" type="text" name="searchTerm"
-                                            [(ngModel)]="searchTerm" (keyup)="getData1($event.target.value)" />
+                                            style="width: 20% !important;outline: none;" type="text" name="searchTerm2"
+                                            [(ngModel)]="searchTerm2" (keyup)="getData2($event.target.value)" />
                                     </div>
                                     <table class="policyTable">
                                         <thead>
                                             <tr>
-                                                <th scope="col" sortable="policyId" (sort)="getSort($event)">Policy Src
+                                                <th scope="col" sortable="policyId" (sort)="getSort($event)">Control #
 
                                                 </th>
 
@@ -198,8 +201,7 @@
                                                 <th scope="col" sortable="assignedTo" (sort)="getSort($event)">Assigned
                                                     To
                                                 </th>
-                                                <th scope="col" sortable="assignedBy" (sort)="getSort($event)">Assigned
-                                                    By
+                                                <th scope="col" sortable="assignedBy" (sort)="getSort($event)">Priority
                                                 </th>
 
                                             </tr>
@@ -207,19 +209,19 @@
                                         <tbody>
 
                                             <tr
-                                                *ngFor="let policy of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+                                                *ngFor="let policy of policies | paginate: { itemsPerPage: pageSize2, currentPage: p2, totalItems: total2 }">
 
                                                 <td><a id="anchor"
-                                                        routerLink="/spolicy/saccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
+                                                        routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
                                                 </td>
                                                 <td>{{policy.familyName}}</td>
                                                 <td>{{policy.policyGrpName}}</td>
                                                 <td>{{policy.assignedTo}}</td>
-                                                <td>{{policy.assignedBy}}</td>
+                                                <td>{{policy.priority}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    <pagination-controls (pageChange)="pageChanged2($event)"></pagination-controls>
                                 </div>
 
                                 <div class="newtestITpm" *ngIf="showPolicyGrp">
@@ -259,14 +261,14 @@
                                         <tbody>
 
                                             <tr
-                                                *ngFor="let policyGrp of policyGrps | paginate: { itemsPerPage: 10, currentPage: p }">
+                                                *ngFor="let policyGrp of policyGrps | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
 
                                                 <td><a id="anchor"
                                                     (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
                                                 </td>
                                                 <td>{{policyGrp.auditTypeName}}</td>
                                                 <td>{{policyGrp.owner}}</td>
-                                                <td>{{policyGrp.reviewDate}}</td>
+                                                <td>{{policyGrp.reviewDate | filter}}</td>
                                                 <td *ngIf="policyGrp.status === 'true'"><i class='fa fa-check-circle-o policyGreen' aria-hidden="true"></i></td>
                                                 <td *ngIf="policyGrp.status === 'false'">
                                                     <i class='fa fa-times-circle-o policyRed' aria-hidden="true"></i>
@@ -274,7 +276,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
                                 </div>
                             </mat-grid-tile>
                             
