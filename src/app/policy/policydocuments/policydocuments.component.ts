@@ -11,9 +11,11 @@ export class PolicydocumentsComponent implements OnInit {
   constructor(public sideNavService: AlertService) {
     sessionStorage.removeItem('policiesFamId');
 
-   }
+  }
 
   ngOnInit() {
+  }
+  submitDocument() {
   }
 
 }

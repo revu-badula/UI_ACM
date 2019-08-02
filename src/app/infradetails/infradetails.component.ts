@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
@@ -7,18 +7,23 @@ import { InfraStructureDTO } from 'app/review_DataModel';
 import { infrastructureDashboardDTO } from '../data_model';
 import { Observable } from 'rxjs';
 import { Chart, ChartDataSets } from 'chart.js';
+import { NgbdSortableHeader, SortEvent } from '../sort';
+
 @Component({
   selector: 'app-infradetails',
   templateUrl: './infradetails.component.html',
   styleUrls: ['./infradetails.component.css']
 })
 export class InfradetailsComponent implements OnInit {
+  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   public serverType: any;
   public expired: any;
   public notExpired: any;
   public highIncidents: any;
   public loading: boolean;
   public mediumIncidents: any;
+  public p: number = 1;
+  public searchTerm: any;
   public lowIncidents: any;
   public highTestResults: any;
   public medTestResults: any;
@@ -182,5 +187,37 @@ export class InfradetailsComponent implements OnInit {
       console.log(error);
     })
   }
+
+  getSort({ column, direction }: SortEvent) {
+    this.headers.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = '';
+      }
+      else if (header.sortable === column && direction !== '') {
+        //this.policies = this.toSorting(this.policies, column, direction);
+
+      }
+    });
+  }
+
+
+  toSorting(countries: any[], column: string, direction: string): any[] {
+    if (direction === '') {
+      return countries;
+    } else {
+      return [...countries].sort((a, b) => {
+        const res = this.compare(a[column], b[column]);
+        return direction === 'asc' ? res : -res;
+      });
+    }
+  }
+
+  compare(v1: any, v2: any) {
+    return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
+  }
+  getData1(value:any) {
+
+  }
+
 
 }

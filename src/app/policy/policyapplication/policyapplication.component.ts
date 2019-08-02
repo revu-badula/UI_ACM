@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PolicyapplicationComponent implements OnInit {
 
-  constructor() { 
+  public loading: boolean = false;
+  pendingApplications: any;
+  public showPagination: boolean = true;
+  public p: number = 1;
+  constructor() {
     sessionStorage.removeItem('policiesFamId');
 
   }

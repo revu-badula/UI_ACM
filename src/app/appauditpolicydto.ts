@@ -1,41 +1,42 @@
 
 export class AppAuditPolicyDTO {
 
-    appAuditPolicyId: any;
-    defaultVal: string;
-    status: string
-    createdBy: any;
-    createdTs: any;
-    updatedBy: any;
-    updatedTs: any;
-    policyId: number;
-    policyDTO: Policy;
-    description: string;
-    priority: string;
-    procedures: string;
-    guidelines: string;
-    assignedTo: string;
-    assignedBy: string;
+	appAuditPolicyId: any;
+	defaultVal: string;
+	status: string
+	createdBy: any;
+	createdTs: any;
+	updatedBy: any;
+	updatedTs: any;
+	policyId: number;
+	policyDTO: Policy;
+	description: string;
+	priority: string;
+	procedures: string;
+	guidelines: string;
+	assignedTo: string;
+	assignedBy: string;
 	startDate: any;
-	controlNumber:string;
-	 controlName:string;
-    endDate: any;
-    artifacts: string;
-    nonCov: string;
-    securityPlan: string;
-	appParentPolicyId:any;
-	appAuditPolicies:any=[];
-	policyDocumentsDTOs:any;
-	weightageN:any;
-    scoreN:any;
-	netScoreN:any;
-	auditFindings:any;
-	evidenceRequired:any;
+	controlNumber: string;
+	controlName: string;
+	endDate: any;
+	artifacts: string;
+	nonCov: string;
+	securityPlan: string;
+	appParentPolicyId: any;
+	appAuditPolicies: any = [];
+	policyDocumentsDTOs: any;
+	weightageN: any;
+	scoreN: any;
+	netScoreN: any;
+	auditFindings: any;
+	evidenceRequired: any;
 }
 
 export class Policy {
 	policyId: number;
 	controlNumber: string;
+	controlName: any;
 	policyName: string;
 	description: string;
 	policyVal: string;

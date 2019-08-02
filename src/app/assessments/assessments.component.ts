@@ -110,6 +110,7 @@ export class AssessmentsComponent implements OnInit {
   public auditCountDTo: AuditCountDTO;
   public showGraph: boolean;
   public assessmentDTOs: any;
+  public p:number=1;
   constructor(public sideNavService: AlertService,
     private httpClient: HttpClient, private router: Router) {
     document.body.scrollTop = 0;

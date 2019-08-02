@@ -3,53 +3,54 @@
 	<app-navbar></app-navbar>
 </div>
 <div class="my-container">
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+	<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <div class="main-panel">
-<div id="form3">
-<div class="categoryGrid">
-	<div class="clearfix wrap">
+	<div id="form3">
+		<div class="categoryGrid">
+			<div class="clearfix wrap">
 
 
 
-                    
-		<mat-sidenav-container class="example-sidenav-container" style="min-height: 100%;background-color: inherit;">
-		
-		    <mat-sidenav-content>
-                  <mat-grid-list cols="10" rowHeight="100px">
-                    <mat-grid-tile [colspan]="5" [rowspan]="2">
-                      <div class="testITpm">
-                        <div class="entryTitle">
-                          Overall System Health
-                        </div>
-                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                          <span class="dot redDot">{{totalHigh}}</span>
-                          <p style="text-align: center;">High</p>
-                        </div>
-                        <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                          <span class="dot orangeDot">{{totalModerate}}</span>
-                          <p style="text-align: center;">Moderate</p>
-                        </div>
-                        
-                         <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-                          <span class="dot greenDot">{{totalLow}}</span>
-                          <p style="text-align: center;">Low</p>
-                        </div>
-                        
-                      </div>
 
-                    </mat-grid-tile>
-                    <mat-grid-tile [colspan]="5" [rowspan]="2">
-                    <div class="testITpm">
-                    <div class="entryTitle">
-                          Definition
-                        </div>
-                        	 <ul  style="text-align: left;">
-						        <li style="color:red">The Great Gatsby</li>
-						        <li style="color:orange">The Grapes of Wrath</li>
-						        <li style="color:green">Ulysses</li>
-						      </ul>
-                    	<!-- <table class="table table-bordered">
+				<mat-sidenav-container class="example-sidenav-container"
+					style="min-height: 100%;background-color: inherit;">
+
+					<mat-sidenav-content>
+						<mat-grid-list cols="10" rowHeight="100px">
+							<mat-grid-tile [colspan]="5" [rowspan]="2">
+								<div class="testITpm">
+									<div class="entryTitle">
+										Overall System Health
+									</div>
+									<div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+										<span class="dot redDot">{{totalHigh}}</span>
+										<p style="text-align: center;">High</p>
+									</div>
+									<div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+										<span class="dot orangeDot">{{totalModerate}}</span>
+										<p style="text-align: center;">Moderate</p>
+									</div>
+
+									<div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+										<span class="dot greenDot">{{totalLow}}</span>
+										<p style="text-align: center;">Low</p>
+									</div>
+
+								</div>
+
+							</mat-grid-tile>
+							<mat-grid-tile [colspan]="5" [rowspan]="2">
+								<div class="testITpm">
+									<div class="entryTitle">
+										Definition
+									</div>
+									<ul style="text-align: left;">
+										<li style="color:red">The Great Gatsby</li>
+										<li style="color:orange">The Grapes of Wrath</li>
+										<li style="color:green">Ulysses</li>
+									</ul>
+									<!-- <table class="table table-bordered">
                     	<tbody>
                     	 <tr *ngFor="let systemHealth of systemsHealth | paginate: { itemsPerPage: 4, currentPage: p }">
 					        <td>
@@ -58,102 +59,100 @@
 					        </tr>
 					        </tbody>
                     	</table> -->
-                    	<!-- <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls> -->
-                    	</div>
-                    </mat-grid-tile>
-                    </mat-grid-list>
-                    </mat-sidenav-content>
-			<mat-sidenav-content>
-				<mat-grid-list cols="10" rowHeight="100px">
-					<mat-grid-tile [colspan]="10" [rowspan]="4">
-
-						<div class="testITpm">
-							<div class="entryTitle">System Health (Based on open risks for
-								each system)</div>
-								  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero quod consequuntur quibusdam, enim expedita sed quia nesciunt incidunt accusamus necessitatibus modi adipisci officia libero accusantium esse hic, obcaecati, ullam, laboriosam!</p>
-                      
-							<div class="col-md-12" *ngIf="showGraph">
-								<div style="display: block; width: 100%; height: 18rem; background-color: #fff;">
-									<canvas baseChart [datasets]="lineChartDataSystems15"
-										[labels]="lineChartLabelsSystems15" chartType="bar" [legend]="true"
-										(chartClick)="chartClicked($event)" [options]="chartOption15"
-										[colors]="chartColorsSystems15"></canvas>
+									<!-- <pagination-controls *ngIf="showPagination" (pageChange)="p = $event"></pagination-controls> -->
 								</div>
+							</mat-grid-tile>
+						</mat-grid-list>
+					</mat-sidenav-content>
+					<mat-sidenav-content>
+						<mat-grid-list cols="10" rowHeight="100px">
+							<mat-grid-tile [colspan]="10" [rowspan]="4">
+
+								<div class="testITpm">
+									<div class="entryTitle">System Health (Based on open risks for
+										each system)</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero quod consequuntur
+										quibusdam, enim expedita sed quia nesciunt incidunt accusamus necessitatibus
+										modi adipisci officia libero accusantium esse hic, obcaecati, ullam, laboriosam!
+									</p>
+
+									<div class="col-md-12" *ngIf="showGraph">
+										<div
+											style="display: block; width: 100%; height: 18rem; background-color: #fff;">
+											<canvas baseChart [datasets]="lineChartDataSystems15"
+												[labels]="lineChartLabelsSystems15" chartType="bar" [legend]="true"
+												(chartClick)="chartClicked($event)" [options]="chartOption15"
+												[colors]="chartColorsSystems15"></canvas>
+										</div>
 
 
-							</div>
-						</div>
-					</mat-grid-tile>
-				</mat-grid-list>
-				</mat-sidenav-content>
-				<mat-sidenav-content>
-				<mat-grid-list cols="10" rowHeight="100px">
-					<mat-grid-tile [colspan]="10" [rowspan]="5">
+									</div>
+								</div>
+							</mat-grid-tile>
+						</mat-grid-list>
+					</mat-sidenav-content>
+					<mat-sidenav-content>
+						<mat-grid-list cols="10" rowHeight="100px">
+							<mat-grid-tile [colspan]="10" [rowspan]="5">
 
-						<div class="testITpm">
-							<div class="entryTitle">List of All Systems</div>
-						
-			
-						<form class="forms">
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<th scope="col" (click)="handleSort('acronym')">System Name
-											<i class="fa fa-arrow-down testColor" *ngIf="!desc"></i> <i
-											class="fa fa-arrow-up testColor" *ngIf="desc"></i>
-										</th>
-			
-										<th scope="col" (click)="handleSort1('businessOwnerNameDoe')">Business
-											Owner <i class="fa fa-arrow-down testColor"
-											*ngIf="!businessOwner"></i> <i class="fa fa-arrow-up testColor"
-											*ngIf="businessOwner"></i>
-										</th>
-			
-			
-										<th scope="col" (click)="handleSort2('systemOwnerNameDoe')">System
-											Owner <i class="fa fa-arrow-down testColor" *ngIf="!systemOwner"></i>
-											<i class="fa fa-arrow-up testColor" *ngIf="systemOwner"></i>
-										</th>
-										<th scope="col" (click)="handleSort3('updatedBy')">Updated
-											By<i class="fa fa-arrow-down testColor" *ngIf="!updtBy"></i> <i
-											class="fa fa-arrow-up testColor" *ngIf="updtBy"></i>
-										</th>
-										<th scope="col" (click)="handleSort4('updatedTs')">Updated
-											Date<i class="fa fa-arrow-down testColor" *ngIf="!updt"></i> <i
-											class="fa fa-arrow-up testColor" *ngIf="updt"></i>
-										</th>
-			
-									</tr>
-								</thead>
-								<tbody>
-			
-									<tr
-										*ngFor="let pendingApplication of pendingApplications | paginate: { itemsPerPage: 10, currentPage: p }">
-										<td><a class="anchor"
-											(click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
-										</td>
-										<td>{{pendingApplication.businessOwnerNameDoe}}</td>
-			
-										<td>{{pendingApplication.systemOwnerNameDoe}}</td>
-										<td>{{pendingApplication.updatedBy}}</td>
-										<td>{{pendingApplication.updatedTs | filterDate |
+								<div class="testITpm">
+									<div class="entryTitle">List of All Systems</div>
+
+
+									<form class="forms">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th scope="col">System Name
+
+													</th>
+
+													<th scope="col">Business
+														Owner
+													</th>
+
+
+													<th scope="col">System
+														Owner
+													</th>
+													<th scope="col">Updated
+														By
+													</th>
+													<th scope="col">Updated
+														Date
+													</th>
+
+												</tr>
+											</thead>
+											<tbody>
+
+												<tr
+													*ngFor="let pendingApplication of pendingApplications | paginate: { itemsPerPage: 10, currentPage: p }">
+													<td><a class="anchor"
+															(click)="viewApplication(pendingApplication.acronym)">{{pendingApplication.acronym}}</a>
+													</td>
+													<td>{{pendingApplication.businessOwnerNameDoe}}</td>
+
+													<td>{{pendingApplication.systemOwnerNameDoe}}</td>
+													<td>{{pendingApplication.updatedBy}}</td>
+													<td>{{pendingApplication.updatedTs | filterDate |
 											date:'MM/dd/yyyy' }}</td>
-									</tr>
-			
-								</tbody>
-							</table>
-							
-						</form>
-			
-			
-					</div>
-					</mat-grid-tile>
-				</mat-grid-list>
-				
-			</mat-sidenav-content>
+												</tr>
 
-		</mat-sidenav-container>
+											</tbody>
+										</table>
+
+									</form>
+
+
+								</div>
+							</mat-grid-tile>
+						</mat-grid-list>
+
+					</mat-sidenav-content>
+
+				</mat-sidenav-container>
+			</div>
+		</div>
 	</div>
-</div>
-</div>
 </div>

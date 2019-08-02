@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren,QueryList } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
 import { policyService } from '../policy-service';
 import { AlertService } from '../../alert.service';
+import { NgbdSortableHeader, SortEvent } from '../../sort';
 
 @Component({
   selector: 'app-policy-start',
@@ -11,7 +12,7 @@ import { AlertService } from '../../alert.service';
   styleUrls: ['./policy-start.component.css']
 })
 export class PolicyStartComponent implements OnInit {
-
+  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   public policy: boolean;
   public loading: boolean = false;
   public auditTypes: any;
@@ -21,6 +22,7 @@ export class PolicyStartComponent implements OnInit {
   public policyGrpId: number;
   public policyType: any;
   public policies: any;
+  public p:number=1;
   constructor(public sideNavService: AlertService,
     private activatedRoute: ActivatedRoute, private router: Router,
     private httpClient: HttpClient, private policyService: policyService) {
@@ -98,6 +100,33 @@ export class PolicyStartComponent implements OnInit {
   loadPolicies(id: any) {
     sessionStorage.setItem("policyGrpId", id);
     this.router.navigate(['/firstpolicy/details']);
+  }
+  getSort({ column, direction }: SortEvent) {
+    this.headers.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = '';
+      }
+      else if (header.sortable === column && direction !== '') {
+        this.policies = this.toSorting(this.policies, column, direction);
+  
+      }
+    });
+  }
+  
+  
+  toSorting(countries: any[], column: string, direction: string): any[] {
+    if (direction === '') {
+      return countries;
+    } else {
+      return [...countries].sort((a, b) => {
+        const res = this.compare(a[column], b[column]);
+        return direction === 'asc' ? res : -res;
+      });
+    }
+  }
+  
+  compare(v1: any, v2: any) {
+    return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
   }
 
 

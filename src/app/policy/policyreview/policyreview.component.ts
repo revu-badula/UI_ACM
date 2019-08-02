@@ -8,7 +8,11 @@ import { AlertService } from '../../alert.service';
 })
 export class PolicyreviewComponent implements OnInit {
 
-  constructor(public sideNavService: AlertService) { 
+
+  public p: number = 1;
+  public plus: boolean = true;
+  public policyData: any;
+  constructor(public sideNavService: AlertService) {
     sessionStorage.removeItem('policiesFamId');
 
   }

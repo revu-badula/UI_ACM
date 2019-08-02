@@ -10,7 +10,9 @@
     <div class="categoryGrid">
       <div class="clearfix wrap">
         <div>
-          <h2 class="headerFix">Infrastructure Details - {{serverType=='Database Server'?'Databases':serverType=='Application Server'?'Applications':'All Others'}}</h2>
+          <h2 class="headerFix">Infrastructure Details -
+            {{serverType=='Database Server'?'Databases':serverType=='Application Server'?'Applications':'All Others'}}
+          </h2>
         </div>
         <mat-sidenav-container class="example-sidenav-container" style="min-height: 100%;background-color: inherit;">
           <mat-sidenav-content>
@@ -20,22 +22,22 @@
                   <div class="entryTitle">
                     Total Assests ({{assetTotal}})
                   </div>
-                 
-                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;" (click) = "getServerDetails('Application Server')">
-                    <span class="dot redDot" style="display: none;">{{appServers}}</span>
+
+                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                    (click)="getServerDetails('Application Server')">
                     <i class="fa fa-server" aria-hidden="true" style="font-size: 94px;color: coral;"></i>
                     <p style="text-align: center;">App Servers ({{infraDashboardDTO.appServers}})</p>
                   </div>
-                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"  (click) = "getServerDetails('Database Server')">
-                    <span class="dot orangeDot" style="display: none;">{{dBServers}}</span>
+                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                    (click)="getServerDetails('Database Server')">
                     <i class="fa fa-database" aria-hidden="true" style="
     font-size: 95px;color: cadetblue;
 "></i>
                     <p style="text-align: center;">DB Servers ({{infraDashboardDTO.dBServers}})</p>
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;" (click) = "getServerDetails('Others')">
-                    <span class="dot greenDot" style="display: none;">{{otherServers}}</span>
+                  <div class="col-md-4 pull-left" style="outline: none;cursor: pointer;"
+                    (click)="getServerDetails('Others')">
                     <i class="fa fa-desktop" aria-hidden="true" style="font-size:95px;color: yellowgreen;"></i>
 
                     <p style="text-align: center;">All Others ({{infraDashboardDTO.otherServers}})</p>

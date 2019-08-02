@@ -21,6 +21,9 @@ export class PolicydetailsComponent implements OnInit {
   public loading: boolean = false;
   public family: familyPOlicyDTO;
   public users: any;
+  public plus:boolean = true;
+  public p: number = 1;
+  public showForm: boolean = true;
   public families: any;
   public policies: any;
   public updatedAt: any;
@@ -142,4 +145,8 @@ export class PolicydetailsComponent implements OnInit {
     }
   };
 
+  updatePolicyGrp()
+  {
+
+  }
 }
