@@ -1,17 +1,198 @@
+<app-navigation-component></app-navigation-component>
+<div class="sidebar" data-color="danger" data-background-color="white">
+    <app-newsidebar></app-newsidebar>
+</div>
 <div class="my-container">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
-<!-- <div class="main-panel">
+
+<div >
     <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
-        <div class="categoryGrid">
-            <div class="clearfix wrap"> -->
-                <!-- <div>
-                    <h2 class="headerFix">{{policyType}}</h2>
-                </div> -->
-                <div class="newTestBox">
-                    <!-- <div class="headerOfBox">
-                        <h4>Overview</h4>
-                    </div> -->
+        <div >
+            <div>
+                <div>
+                    <h2 class="headerFix">NIST</h2>
+                </div>
+                <mat-sidenav-container class="example-sidenav-container"
+                    style="min-height: 100%;background-color: inherit;">
+
+                    <mat-sidenav-content>
+                        <mat-grid-list cols="10" rowHeight="100px">
+                            <mat-grid-tile [colspan]="10" [rowspan]="1">
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">
+                                        Overview
+                                    </div>
+                                    <p class="definationText" style="font-size: 13px;">
+                                        This screen allows you add, edit and view policies. The policies are organized
+                                        under two categories: - NIST and All others. The NIST National Institute for
+                                        Standards and Technology has 800 publications and All others has state, local
+                                        or organization level policies. Both options allow you create policy by using
+                                        NIST or other out of the box templates.
+
+
+                                    </p>
+                                </div>
+
+                            </mat-grid-tile>
+                            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">
+                                        Severity
+                                    </div>
+
+                                    <div class="col-md-4 pull-left" style="outline: none;" (click)="getHigh()"
+                                        routerLink="/newSystemDetails">
+                                        <span class="dot redDot">{{x}}</span>
+                                        <p style="text-align: center;">Critical</p>
+                                    </div>
+                                    <div class="col-md-4 pull-left" style="outline: none;" (click)="getMed()"
+                                        routerLink="/newSystemDetails">
+                                        <span class="dot orangeDot">{{y}</span>
+                                              <p style="text-align: center;">Moderate</p>
+                                            </div>
+                                            
+                                             <div class="col-md-4 pull-left" style="outline: none;" (click)="getLow()" routerLink="/newSystemDetails">
+                                              <span class="dot greenDot">{{z}</span>
+                                              <p style="text-align: center;">Normal</p>
+                                            </div>
+                                            
+                                 </div>
+
+                            </mat-grid-tile>
+                            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                                    <div class="newtestITpm">
+                                            <div class="entryTitle">
+                                              Priority
+                                            </div>
+                                            
+                                            <div class="col-md-4 pull-left" style="outline: none;"(click)="getHigh()"  routerLink="/newSystemDetails">
+                                              <span class="dot redDot">{{x}}</span>
+                                        <p style="text-align: center;">Critical</p>
+                                    </div>
+                                    <div class="col-md-4 pull-left" style="outline: none;" (click)="getMed()"
+                                        routerLink="/newSystemDetails">
+                                        <span class="dot orangeDot">{{y}</span>
+                                              <p style="text-align: center;">Moderate</p>
+                                            </div>
+                                            
+                                             <div class="col-md-4 pull-left" style="outline: none;" (click)="getLow()" routerLink="/newSystemDetails">
+                                              <span class="dot greenDot">{{z}</span>
+                                              <p style="text-align: center;">Normal</p>
+                                            </div>
+                                            
+                                          </div>
+                            </mat-grid-tile>
+
+                            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                                <div class="newtestITpm">
+                                    <div class="entryTitle"> Policies Status</div>
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-md-3 pull-left" (click)="getPolicyGrpData('open')">
+                                                <span class="adsquare adsquarecolor">{{openCount}}</span>
+                                        <p style="text-align: center;">Open</p>
+                                    </div>
+                                    <div class="col-md-2 pull-left"></div>
+                                    <div class="col-md-3 pull-left" (click)="getPolicyGrpData('close')">
+                                        <span class="adsquare adsquarecolor">{{closeCount}}</span>
+                                        <p style="text-align: center;">Close</p>
+                                    </div>
+                                </div>
+            </div>
+        </div>
+
+        </mat-grid-tile>
+
+  
+
+
+        <mat-grid-tile [colspan]="5" [rowspan]="2">
+
+            <div class="newtestITpm">
+                <div class="entryTitle">Status of Controls</div>
+                <div class="card" style="width: 99%;height:88%;">
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <div class="col-md-3 pull-left" (click)="getPolicyData('open')">
+                                <span class="adsquare adsquarecolor">{{policyOpenCount}}</span>
+                                <p style="text-align: center;">Open</p>
+                            </div>
+                            <div class="col-md-2 pull-left">
+
+                            </div>
+                            <div class="col-md-3 pull-left" (click)="getPolicyData('close')">
+                                <span class="adsquare adsquarecolor">{{policyuCloseCount}}</span>
+                                <p style="text-align: center;">Close</p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="5" [rowspan]="2">
+                <div class="newtestITpm">
+                        <div class="entryTitle">Manage Policies</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 pull-left" (click)="showRadio()">
+                                    <span class="adsquareRect adsquarecolorRect ">Create New</span>
+                                </div>
+                                <div class="col-md-2 pull-left"></div>
+                                <div class="col-md-3 pull-left">
+                                    <span class="adsquareRect adsquarecolorRect ">Manage Existing</span>
+                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                    <div class="newtestITpm">
+                    <div class="entryTitle">Create a new policy</div>
+                    <div class="card-body">
+                        <div class="row" *ngIf="createNewPolicy">
+                
+                        <div class="col-md-4">
+                            <div class="radio"  >
+                                <input id="radio-1" name="radio" type="radio">
+                                <label for="radio-1" class="radio-label">NIST</label>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                    <div class="radio"  >
+                                        <input id="radio-1" name="radio" type="radio">
+                                        <label for="radio-1" class="radio-label">COV</label>
+                                      </div>
+                                    </div>
+                         
+                            <div class="col-md-4">
+                              <div class="radio">
+                                <input id="radio-2" name="radio" type="radio">
+                                <label  for="radio-2" class="radio-label">Other</label>
+                                </div>
+                              </div>
+                            
+                        </div>
+                    </div>
+                </div>
+        
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="10" [rowspan]="2">
+                    <div class="newtestITpm">
+                    <div class="entryTitle">Choose a policy</div>
+                    <div class="card-body">
+              
                     <form class="forms">
                         <div class="form-row">
                             <div class="col-md-6" *ngIf="policyType == 'NIST'">
@@ -27,16 +208,7 @@
                                         {{ auditType.auditTypeName }}</option>
                                 </select>
                             </div>
-                            <!-- <div class="col-md-6">
-                                <label class="newLabel"><b>Type/Policy</b><span class="asterisk">*</span></label>
-                                <select class="form-control" style="width:50%;" name="type" required
-                                    [(ngModel)]="policyGrpId" (change)="selectType($event.target.value)">
-                                    <option value="">Choose...</option>
-                                    <option *ngFor="let policyType of  policyTypes"
-                                        value="{{ policyType.policyGrpId }}">{{ policyType.policyGrpName
-                                        }}</option>
-                                </select>
-                            </div> -->
+                
 
                         </div>
                         <br>
@@ -49,8 +221,8 @@
                                                 <th scope="col" sortable="auditTypeName" (sort)="getSort($event)">Policy
                                                     Name
                                                 </th>
-												
-												 <th scope="col" sortable="policyGrpId" (sort)="getSort($event)">Source
+                                                
+                                                 <th scope="col" sortable="policyGrpId" (sort)="getSort($event)">Source
 
                                                 </th>
 
@@ -88,9 +260,6 @@
                         </div>
 
                     </form>
-                </div>
-
-            <!-- </div>
-        </div>
-    </div>
-</div> -->
+         </div>
+         </div>
+         </mat-grid-tile>
