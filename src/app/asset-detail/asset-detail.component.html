@@ -60,7 +60,7 @@
               <table class="policyTable">
                 <thead>
                   <tr>
-                    <th scope="col" sortable="acronym" (sort)="getSort($event)">Name
+                    <th scope="col" sortable="acronym" (sort)="getSort($event)">Incident Name
 
                     </th>
 
@@ -76,16 +76,17 @@
                 <tbody>
                   <tr *ngFor="let incident of incidents | paginate: { itemsPerPage: 10, currentPage: p }">
 
-                    <td><a class="anchor"
-                        routerLink="/assetDetails/{{incident.incidentId}}">{{incident.shortDescription}}</a>
+                    <td><a id="anchor"
+                        (click)="goToIncident(incident)">{{incident.shortDescription}}</a>
                     </td>
                     <td>{{incident.severity}}</td>
                     <td>{{incident.reportedBy}}</td>
-                    <td>{{incident.createdOn}}</td>
+                    <td>{{incident.createdOn | filter}}</td>
                   </tr>
                 </tbody>
 
               </table>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
 
           </div>
@@ -96,7 +97,7 @@
               <table class="policyTable">
                 <thead>
                   <tr>
-                    <th scope="col" sortable="acronym" (sort)="getSort($event)">Acronym
+                    <th scope="col" sortable="acronym" (sort)="getSort($event)">System Name
 
                     </th>
 
@@ -112,8 +113,8 @@
                 <tbody>
                   <tr *ngFor="let application of applications | paginate: { itemsPerPage: 10, currentPage: p }">
 
-                    <td><a class="anchor"
-                        routerLink="/assetDetails/{{application.applicationId}}">{{application.acronym}}</a>
+                    <td><a id="anchor"
+                        (click)="goTo(application)">{{application.acronym}}</a>
                     </td>
                     <td>{{application.systemSensitivityStr}}</td>
                     <td>{{application.businessOwnerName}}</td>
@@ -122,6 +123,7 @@
                 </tbody>
 
               </table>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
           </div>
         </div>

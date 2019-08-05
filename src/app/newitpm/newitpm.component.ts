@@ -116,7 +116,6 @@ getData() {
 
 goTo(value:any){
   sessionStorage.setItem("systemName", value.acronym);
-
   this.router.navigate(['/system/tab2/info']);
 }
 

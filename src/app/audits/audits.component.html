@@ -23,7 +23,11 @@
                                         Overview
                                     </div>
                                     <p class="definationText" style="font-size: 13px;">
-                                        It is imperative to manage on-going and upcoming audits to keep systems and data safe. Also, to ensure controls are implemented as per policies, procedures and guidelines. This screen provides the status of all audits and for more details such as audit findings, plan of action & milestones, business and security risk etc. to proactively working on the any remediation process. 
+                                        It is imperative to manage on-going and upcoming audits to keep systems and data
+                                        safe. Also, to ensure controls are implemented as per policies, procedures and
+                                        guidelines. This screen provides the status of all audits and for more details
+                                        such as audit findings, plan of action & milestones, business and security risk
+                                        etc. to proactively working on the any remediation process.
                                     </p>
                                 </div>
 
@@ -33,16 +37,19 @@
                                     <div class="entryTitle">
                                         Audit Risk Level
                                     </div>
-                                    <div class="col-md-4 pull-left" (click) = "getLevelData('High')" style="outline: none;">
+                                    <div class="col-md-4 pull-left" (click)="getLevelData('High')"
+                                        style="outline: none;">
                                         <span class="dot redDot">{{auditCountDTo.auditHigh}}</span>
                                         <p style="text-align: center;">High</p>
                                     </div>
-                                    <div class="col-md-4 pull-left" (click) = "getLevelData('Medium')" style="outline: none;">
+                                    <div class="col-md-4 pull-left" (click)="getLevelData('Medium')"
+                                        style="outline: none;">
                                         <span class="dot orangeDot">{{auditCountDTo.auditModerate}}</span>
                                         <p style="text-align: center;">Moderate</p>
                                     </div>
 
-                                    <div class="col-md-4 pull-left" (click) = "getLevelData('Low')" style="outline: none;">
+                                    <div class="col-md-4 pull-left" (click)="getLevelData('Low')"
+                                        style="outline: none;">
                                         <span class="dot greenDot">{{auditCountDTo.auditLow}}</span>
                                         <p style="text-align: center;">Low</p>
                                     </div>
@@ -55,15 +62,15 @@
                                     <div class="entryTitle">
                                         Status
                                     </div>
-                                    <div class="auditIcons">
-                                        <div class="col-md-3 pull-left" (click) = "getLevelData('Open')" style="outline: none;">
-                                            <span class="adsquare adsquarecolor">{{auditCountDTo.openAudit}}</span>
-                                            <p style="text-align: center;">Open</p>
-                                        </div>
-                                        <div class="col-md-3 pull-left" (click) = "getLevelData('Close')" style="outline: none;">
-                                            <span class="adsquare adsquarecolor">{{auditCountDTo.closeAudit}}</span>
-                                            <p style="text-align: center;">Close</p>
-                                        </div>
+                                    <div class="col-md-6 pull-left" (click)="getLevelData('Open')"
+                                        style="outline: none;">
+                                        <span class="adsquare adsquarecolor">{{auditCountDTo.openAudit}}</span>
+                                        <p style="text-align: center;">Open</p>
+                                    </div>
+                                    <div class="col-md-6 pull-left" (click)="getLevelData('Close')"
+                                        style="outline: none;">
+                                        <span class="adsquare adsquarecolor">{{auditCountDTo.closeAudit}}</span>
+                                        <p style="text-align: center;">Close</p>
                                     </div>
                                 </div>
                             </mat-grid-tile>
@@ -98,7 +105,7 @@
                     </mat-sidenav-content>
                     <mat-sidenav-content>
                         <mat-grid-list cols="10" rowHeight="100px">
-                            <mat-grid-tile [colspan]="10" [rowspan]="6">
+                            <mat-grid-tile [colspan]="10" [rowspan]="7">
 
                                 <div class="newtestITpm">
                                     <div class="entryTitle">List of Audit(s)</div>
@@ -134,7 +141,7 @@
                                                     <td>{{appAudit.appAcronym}}</td>
                                                     <td>{{appAudit.overallRiskLevel}}</td>
                                                     <td>{{appAudit.status}}</td>
-                                             <td>{{appAudit.createdTs | filterDate |date:'MM/dd/yyyy' }}</td>
+                                                    <td>{{appAudit.createdTs | filterDate |date:'MM/dd/yyyy' }}</td>
                                                 </tr>
 
                                             </tbody>

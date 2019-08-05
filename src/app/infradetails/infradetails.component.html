@@ -17,7 +17,7 @@
         <mat-sidenav-container class="example-sidenav-container" style="min-height: 100%;background-color: inherit;">
           <mat-sidenav-content>
             <mat-grid-list cols="10" rowHeight="100px">
-              <mat-grid-tile [colspan]="5" [rowspan]="3">
+              <mat-grid-tile [colspan]="5" [rowspan]="2">
                 <div class="newtestITpm">
                   <div class="entryTitle">
                     Total Assests ({{assetTotal}})
@@ -51,9 +51,9 @@
 
                 </div>
               </mat-grid-tile>
-              <mat-grid-tile [colspan]="5" [rowspan]="3">
+              <mat-grid-tile [colspan]="5" [rowspan]="2">
 
-                <div class="newtestITpm">
+                <div class="newtestITpm" style="font-size: 13px;">
                   <p class="definationText">This screen shows you the following information for {{serverType}}:</p>
                   <ul style="text-align: left;">
                     <li>Renewal Status</li>
@@ -71,21 +71,13 @@
                 <div class="newtestITpm">
                   <div class="entryTitle">
                     Renewal Status
-                  </div>
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  </div><br>
+                  <div class="col-md-6 pull-left" style="outline: none;" (click)="getExpired('renew/1')">
                     <span class="dot redDot">{{infraStructureDTO.renewalCount}}</span>
-                    <!-- <p style="text-align: center;">App Servers</p> -->
                     <p style="text-align: center;">Expired</p>
                   </div>
-
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
-
-                  </div>
-
-
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  <div class="col-md-6 pull-left" style="outline: none;" (click)="getExpired('renew/0')">
                     <span class="dot greenDot">{{infraStructureDTO.renewalExpiredCount}}</span>
-                    <!-- <p style="text-align: center;">All Others</p> -->
                     <p style="text-align: center;">Not-Expired</p>
                   </div>
 
@@ -114,12 +106,12 @@
                   <div class="entryTitle">
                     Version Status
                   </div>
-                  <div class="col-md-6 pull-left" style="outline: none;" routerLink="/system/map">
+                  <div class="col-md-6 pull-left" style="outline: none;" (click)="getExpired('version/0')">
                     <span class="adsquare adsquarecolor">0</span>
                     <p style="text-align: center;">Out-of-Version</p>
                   </div>
 
-                  <div class="col-md-6 pull-left" style="outline: none;" routerLink="/system/map">
+                  <div class="col-md-6 pull-left" style="outline: none;" (click)="getExpired('version/1')">
                     <span class="adsquare adsquarecolor">0</span>
                     <p style="text-align: center;">In-Version</p>
                   </div>
@@ -132,18 +124,18 @@
                 <div class="newtestITpm">
                   <div class="entryTitle">
                     Testing results
-                  </div>
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  </div><br>
+                  <div class="col-md-4 pull-left" style="outline: none;" (click)="getExpired('testing/1')">
                     <span class="dot redDot">{{infraStructureDTO.highTestResultsCount}}</span>
 
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  <div class="col-md-4 pull-left" style="outline: none;" (click)="getExpired('testing/2')">
                     <span class="dot orangeDot">{{infraStructureDTO.medTestResultsCount}}</span>
 
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  <div class="col-md-4 pull-left" style="outline: none;" (click)="getExpired('testing/3')">
                     <span class="dot greenDot">{{infraStructureDTO.lowTestResultsCount}}</span>
 
                   </div>
@@ -161,19 +153,19 @@
                 <div class="newtestITpm">
                   <div class="entryTitle">
                     Impacted assets due to open incidents
-                  </div>
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  </div><br>
+                  <div class="col-md-4 pull-left" style="outline: none;" (click)="getExpired('incident/1',true)">
                     <span class="dot redDot">{{infraStructureDTO.highIncidentsCount}}</span>
 
                   </div>
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  <div class="col-md-4 pull-left" style="outline: none;" (click)="getExpired('incident/2',true)">
                     <span class="dot orangeDot">{{infraStructureDTO.medIncidentsCount}}</span>
 
                   </div>
 
 
-                  <div class="col-md-4 pull-left" style="outline: none;" routerLink="/system/map">
+                  <div class="col-md-4 pull-left" style="outline: none;" (click)="getExpired('incident/3',true)">
                     <span class="dot greenDot">{{infraStructureDTO.lowIncidentsCount}}</span>
 
                   </div>
@@ -193,10 +185,10 @@
                         <th scope="col" sortable="acronym" (sort)="getSort($event)">Asset Name
 
                         </th>
+                        <th scope="col" *ngIf="showFlag" sortable="shortDescription" (sort)="getSort($event)">
+                          Incident Name
+                        </th>
 
-                        <!--  <th scope="col" sortable="businessOwnerNameDoe"
-                                          (sort)="getSort($event)">Host Name
-                                      </th> -->
 
 
                         <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">
@@ -212,11 +204,13 @@
                     </thead>
                     <tbody>
                       <tr
-                        *ngFor="let infraStructure of infraStructureDTO.servers | paginate: { itemsPerPage: 10, currentPage: p }">
+                        *ngFor="let infraStructure of infraStructureDTO.servers | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
 
                         <td><a class="anchor"
                             routerLink="/assetDetails/{{infraStructure.databaseId}}">{{infraStructure.hostName}}</a>
                         </td>
+                        <td *ngIf="showFlag"><a id="anchor"
+                          (click)="getIncident(infraStructure.incidentId)">{{infraStructure.shortDescription}}</a></td>
                         <td>{{infraStructure.vendorName}}</td>
                         <td>{{infraStructure.primaryContact}}</td>
                         <td>{{infraStructure.licenseRenewDt | filter}}</td>
@@ -224,7 +218,7 @@
 
                     </tbody>
                   </table>
-                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
                 </div>
               </mat-grid-tile>
             </mat-grid-list>

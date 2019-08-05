@@ -3,156 +3,174 @@
     <app-newsidebar></app-newsidebar>
 </div>
 <div class="my-container">
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <div class="newmainpanel">
-<div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
-<div class="categoryGrid">
-    <div class="clearfix wrap">
-    <div>
-        <h2 class="headerFix">ITPM</h2>
-    </div>                    
-        <mat-sidenav-container class="example-sidenav-container" style="min-height: 100%;background-color: inherit;">
-            <mat-sidenav-content>
-                <mat-grid-list cols="10" rowHeight="100px">
-                    <mat-grid-tile [colspan]="10" [rowspan]="1">
-    
-                        <div class="newtestITpm">
-                            <div class="entryTitle">Overview </div>
-                                  <p class="definationText" style="font-size: 13px;"> Information Technology Portfolio Manager (ITPM) gives an overview of System health and factors affecting it.
-                                      ITPM takes into consideration factors like assessments, audits, testing results,current incidents if any and the infrastructure on which the system is based on.
-                                    System is considered critical if it fails in any of the factors or the severity level is high.
-                                  </p>
-                      
-                          
-                        </div>
-                    </mat-grid-tile>
-                </mat-grid-list>
-                </mat-sidenav-content>
-            <mat-sidenav-content>
-                  <mat-grid-list cols="10" rowHeight="100px">
-                    <mat-grid-tile [colspan]="5" [rowspan]="2">
-                      <div class="newtestITpm">
-                        <div class="entryTitle">
-                          Overall System Health
-                        </div>
-                        
-                        <div class="col-md-4 pull-left" style="outline: none;"(click)="getHigh()"  routerLink="/newSystemDetails">
-                          <span class="dot redDot">{{totalHigh}}</span>
-                          <p style="text-align: center;">Critical</p>
-                        </div>
-                        <div class="col-md-4 pull-left" style="outline: none;" (click)="getMed()"  routerLink="/newSystemDetails">
-                          <span class="dot orangeDot">{{totalModerate}}</span>
-                          <p style="text-align: center;">Moderate</p>
-                        </div>
-                        
-                         <div class="col-md-4 pull-left" style="outline: none;" (click)="getLow()" routerLink="/newSystemDetails">
-                          <span class="dot greenDot">{{totalLow}}</span>
-                          <p style="text-align: center;">Normal</p>
-                        </div>
-                        
-                      </div>
+    <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+        <div class="categoryGrid">
+            <div class="clearfix wrap">
+                <div>
+                    <h2 class="headerFix">ITPM</h2>
+                </div>
+                <mat-sidenav-container class="example-sidenav-container"
+                    style="min-height: 100%;background-color: inherit;">
+                    <mat-sidenav-content>
+                        <mat-grid-list cols="10" rowHeight="100px">
+                            <mat-grid-tile [colspan]="10" [rowspan]="1">
 
-                    </mat-grid-tile>
-                    <mat-grid-tile [colspan]="5" [rowspan]="2">
-                    <div class="newtestITpm">
-                    <div class="entryTitle">
-                          Description
-                        </div>
-                            <p style="text-align: left">The Over all system health on left indicates the number of systems that need attention based on the overall health.
-                                Any of the 5 factors namely assessments, audits, testing results,current incidents and the infrastructure if fails or is critical will collapse the system into the critical bucket.
-                                While the below bar graph gives the assessment of individual factors affecting number of systems.
-                            </p>
-                             
-                        </div>
-                    </mat-grid-tile>
-                    </mat-grid-list>
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">Overview </div>
+                                    <p class="definationText" style="font-size: 13px;"> Information Technology Portfolio
+                                        Manager (ITPM) gives an overview of System health and factors affecting it.
+                                        ITPM takes into consideration factors like assessments, audits, testing
+                                        results,current incidents if any and the infrastructure on which the system is
+                                        based on.
+                                        System is considered critical if it fails in any of the factors or the severity
+                                        level is high.
+                                    </p>
+
+
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
                     </mat-sidenav-content>
-            <mat-sidenav-content>
-                <mat-grid-list cols="10" rowHeight="100px">
-                    <mat-grid-tile [colspan]="10" [rowspan]="4">
+                    <mat-sidenav-content>
+                        <mat-grid-list cols="10" rowHeight="100px">
+                            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">
+                                        Overall System Health
+                                    </div>
 
-                        <div class="newtestITpm">
-                            <div class="entryTitle">System Count of Risks</div>
-                                <br>
-                      
-                            <div class="col-md-12" *ngIf="showGraph">
-                                <div style="display: block; width: 100%; height: 18rem; background-color: #fff;">
-                                    <canvas baseChart [datasets]="lineChartDataSystems15"
-                                        [labels]="lineChartLabelsSystems15" chartType="bar" [legend]="true"
-                                        (chartClick)="chartClicked($event)" [options]="chartOption15"
-                                        [colors]="chartColorsSystems15"></canvas>
+                                    <div class="col-md-4 pull-left" style="outline: none;" (click)="getHigh()"
+                                        routerLink="/newSystemDetails">
+                                        <span class="dot redDot">{{totalHigh}}</span>
+                                        <p style="text-align: center;">Critical</p>
+                                    </div>
+                                    <div class="col-md-4 pull-left" style="outline: none;" (click)="getMed()"
+                                        routerLink="/newSystemDetails">
+                                        <span class="dot orangeDot">{{totalModerate}}</span>
+                                        <p style="text-align: center;">Moderate</p>
+                                    </div>
+
+                                    <div class="col-md-4 pull-left" style="outline: none;" (click)="getLow()"
+                                        routerLink="/newSystemDetails">
+                                        <span class="dot greenDot">{{totalLow}}</span>
+                                        <p style="text-align: center;">Normal</p>
+                                    </div>
+
                                 </div>
 
+                            </mat-grid-tile>
+                            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">
+                                        Description
+                                    </div>
+                                    <p style="text-align: left">The Over all system health on left indicates the number
+                                        of systems that need attention based on the overall health.
+                                        Any of the 5 factors namely assessments, audits, testing results,current
+                                        incidents and the infrastructure if fails or is critical will collapse the
+                                        system into the critical bucket.
+                                        While the below bar graph gives the assessment of individual factors affecting
+                                        number of systems.
+                                    </p>
 
-                            </div>
-                        </div>
-                    </mat-grid-tile>
-                </mat-grid-list>
-                </mat-sidenav-content>
-                <mat-sidenav-content>
-                <mat-grid-list cols="10" rowHeight="100px">
-                    <mat-grid-tile [colspan]="10" [rowspan]="6">
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </mat-sidenav-content>
+                    <mat-sidenav-content>
+                        <mat-grid-list cols="10" rowHeight="100px">
+                            <mat-grid-tile [colspan]="10" [rowspan]="4">
 
-                        <div class="newtestITpm">
-                            <div class="entryTitle">Systems</div>
-                        
-            
-                        <form class="forms">
-                            <table class="policyTable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" sortable="acronym" (sort)="getSort($event)">System Name
-            
-                                        </th>
-            
-                                        <th scope="col" sortable="businessOwnerNameDoe" (sort)="getSort($event)">Business
-                                            Owner
-                                        </th>
-            
-            
-                                        <th scope="col" sortable="systemOwnerNameDoe" (sort)="getSort($event)">System
-                                            Owner
-                                        </th>
-                                        <th scope="col" sortable="updatedBy" (sort)="getSort($event)">Updated
-                                            By
-                                        </th>
-                                        <th scope="col" sortable="updatedTs" (sort)="getSort($event)">Updated
-                                            Date
-                                        </th>
-            
-                                    </tr>
-                                </thead>
-                                <tbody>
-            
-                                    <tr
-                                        *ngFor="let pendingApplication of pendingApplications | paginate: { itemsPerPage: 10, currentPage: p }">
-                                        <td><a class="anchor"
-                                            (click)="goTo(pendingApplication)" style="cursor:pointer;color:blue;">{{pendingApplication.acronym}}</a>
-                                        </td>
-                                        <td>{{pendingApplication.businessOwnerNameDoe}}</td>
-            
-                                        <td>{{pendingApplication.systemOwnerNameDoe}}</td>
-                                        <td>{{pendingApplication.updatedBy}}</td>
-                                        <td>{{pendingApplication.updatedTs | filterDate |
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">System Count of Risks</div>
+                                    <br>
+
+                                    <div class="col-md-12" *ngIf="showGraph">
+                                        <div
+                                            style="display: block; width: 100%; height: 18rem; background-color: #fff;">
+                                            <canvas baseChart [datasets]="lineChartDataSystems15"
+                                                [labels]="lineChartLabelsSystems15" chartType="bar" [legend]="true"
+                                                (chartClick)="chartClicked($event)" [options]="chartOption15"
+                                                [colors]="chartColorsSystems15"></canvas>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </mat-sidenav-content>
+                    <mat-sidenav-content>
+                        <mat-grid-list cols="10" rowHeight="100px">
+                            <mat-grid-tile [colspan]="10" [rowspan]="7">
+
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">Systems</div>
+
+
+                                    <form class="forms">
+                                        <table class="policyTable">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" sortable="acronym" (sort)="getSort($event)">System
+                                                        Name
+
+                                                    </th>
+
+                                                    <th scope="col" sortable="businessOwnerNameDoe"
+                                                        (sort)="getSort($event)">Business
+                                                        Owner
+                                                    </th>
+
+
+                                                    <th scope="col" sortable="systemOwnerNameDoe"
+                                                        (sort)="getSort($event)">System
+                                                        Owner
+                                                    </th>
+                                                    <th scope="col" sortable="updatedBy" (sort)="getSort($event)">
+                                                        Updated
+                                                        By
+                                                    </th>
+                                                    <th scope="col" sortable="updatedTs" (sort)="getSort($event)">
+                                                        Updated
+                                                        Date
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr
+                                                    *ngFor="let pendingApplication of pendingApplications | paginate: { itemsPerPage: 10, currentPage: p }">
+                                                    <td><a class="anchor" (click)="goTo(pendingApplication)"
+                                                            style="cursor:pointer;color:blue;">{{pendingApplication.acronym}}</a>
+                                                    </td>
+                                                    <td>{{pendingApplication.businessOwnerNameDoe}}</td>
+
+                                                    <td>{{pendingApplication.systemOwnerNameDoe}}</td>
+                                                    <td>{{pendingApplication.updatedBy}}</td>
+                                                    <td>{{pendingApplication.updatedTs | filterDate |
                                             date:'MM/dd/yyyy' }}</td>
-                                    </tr>
-            
-                                </tbody>
-                            </table>
-                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                            
-                        </form>
-            
-            
-                    </div>
-                    </mat-grid-tile>
-                </mat-grid-list>
-                
-            </mat-sidenav-content>
+                                                </tr>
 
-        </mat-sidenav-container>
+                                            </tbody>
+                                        </table>
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                                    </form>
+
+
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+
+                    </mat-sidenav-content>
+
+                </mat-sidenav-container>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 </div>

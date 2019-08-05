@@ -126,7 +126,7 @@ export class SystemAuditAttachmentsComponent implements OnInit {
 
     }
     else {
-      if (this.appAudit.appAuditFileDTOs === null) {
+      if (this.appAudit.appAuditFileDTOs === undefined || this.appAudit.appAuditFileDTOs === null) {
         this.givenfile = true;
         this.appAudit.appAuditFileDTOs = [];
         this.appAuditFileDTO = new AppAuditFileDTO();

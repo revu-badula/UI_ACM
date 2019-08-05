@@ -180,6 +180,8 @@ export const APP_CONFIG = {
   getGraphAudit:apiBaseUrl +'getGraphAudit', 
   getGraphAssessments:apiBaseUrl +'getGraphAssessments', 
   getAllIncidentsOnType:apiBaseUrl+'getAllIncidentsOnType',
+  getInfraData: apiBaseUrl + 'getInfraData',
+  getInfraOnVendor: apiBaseUrl + 'getInfraOnVendor',
 }
 
 

@@ -1806,7 +1806,7 @@ a .material-icons {
 .policyTable {
   width: 100%;
   background: #eee;
-  height: 33%;
+  /* height: 33%; */
 }
 
 .policyTable td, .policyTable th {
@@ -2058,7 +2058,7 @@ a .material-icons {
 .policyTable {
   width: 100%;
   background: #eee;
-  height: 33%;
+  /* height: 33%; */
 }
 
 .policyTable td, .policyTable th {

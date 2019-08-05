@@ -800,7 +800,8 @@ const appRoutes: Routes = [
       { path: 'business', component: IncidentBusinessComponent },
       { path: 'technical', component: IncidentTechnicalComponent },
       { path: 'cap', component: IncidentcapComponent },
-      { path: 'close', component: IncidentcloseComponent }
+      { path: 'close', component: IncidentcloseComponent },
+      { path: 'businessImpact', component: IncidentBusinessImpactComponent },
     ]
   },
   { path: 'incidentStart', component: IncidentstartComponent, canActivate: [AuthGuard] },

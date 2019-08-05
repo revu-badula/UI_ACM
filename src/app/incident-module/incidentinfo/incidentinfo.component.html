@@ -37,12 +37,7 @@
                             <fa class="help" [name]="'gavel'"></fa>&nbsp;Security Risk
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
-                            routerLink="/incident/assignment">
-                            <fa class="help" [name]="'book'"></fa>&nbsp;RCA
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
                             routerLink="/incident/resolution">
@@ -53,6 +48,18 @@
                         <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
                             routerLink="/incident/cap">
                             <fa class="help" [name]="'check-circle'"></fa>&nbsp;CAP
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/incident/businessImpact">
+                            <fa class="help" [name]="'check-circle'"></fa>&nbsp;Business Impact Analysis
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/incident/assignment">
+                            <fa class="help" [name]="'book'"></fa>&nbsp;RCA
                         </a>
                     </li>
                     <li class="nav-item">
@@ -92,12 +99,7 @@
                             <fa class="help" [name]="'gavel'"></fa>&nbsp;Security Risk
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
-                            routerLink="/newBusinessImpact/assignment">
-                            <fa class="help" [name]="'book'"></fa>&nbsp;RCA
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
                             routerLink="/newBusinessImpact/resolution">
@@ -112,16 +114,23 @@
                     </li>
                     <li class="nav-item">
                         <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
-                            routerLink="/newBusinessImpact/close">
-                            <fa class="help" [name]="'check-circle'"></fa>&nbsp;Closeout Summary
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
                             routerLink="/newBusinessImpact/businessImpact">
                             <fa class="help" [name]="'check-circle'"></fa>&nbsp;Business Impact Analysis
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/newBusinessImpact/assignment">
+                            <fa class="help" [name]="'book'"></fa>&nbsp;RCA
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngClass]="showText?'nav-link disabled':'nav-link'" routerLinkActive="active"
+                            routerLink="/newBusinessImpact/close">
+                            <fa class="help" [name]="'check-circle'"></fa>&nbsp;Closeout Summary
+                        </a>
+                    </li>
+
 
 
                 </ul>

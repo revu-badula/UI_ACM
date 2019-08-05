@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChildren, QueryList, PipeTransform } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../app.config';
 import { AlertService } from 'app/alert.service';
@@ -8,6 +8,7 @@ import { infrastructureDashboardDTO } from '../data_model';
 import { Observable } from 'rxjs';
 import { Chart, ChartDataSets } from 'chart.js';
 import { NgbdSortableHeader, SortEvent } from '../sort';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-infradetails',
@@ -24,7 +25,11 @@ export class InfradetailsComponent implements OnInit {
   public mediumIncidents: any;
   public p: number = 1;
   public searchTerm: any;
+  public pageSize: number = 10;
+  public total: number = 0;
   public lowIncidents: any;
+  public dummyData: any;
+  public showFlag: boolean;
   public highTestResults: any;
   public medTestResults: any;
   public lowTestResults: any;
@@ -36,6 +41,7 @@ export class InfradetailsComponent implements OnInit {
   public infraDashboardDTO: infrastructureDashboardDTO;
   public assetTotal: any;
   public infraStructureDTO: InfraStructureDTO;
+  //public infraStructureDTO1: InfraStructureDTO;
   public lineChartDataAudits: ChartDataSets<any> = [
     { data: [], label: 'Vendors' }
   ];
@@ -128,9 +134,10 @@ export class InfradetailsComponent implements OnInit {
   ];
 
   constructor(private activatedRoute: ActivatedRoute, public sideNavService: AlertService,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient, private pipe: DecimalPipe, private router: Router) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    sessionStorage.removeItem('incidentName');
     this.infraStructureDTO = new InfraStructureDTO();
     this.infraDashboardDTO = new infrastructureDashboardDTO();
   }
@@ -168,13 +175,17 @@ export class InfradetailsComponent implements OnInit {
     let url = APP_CONFIG.getInfraDetails + "/" + this.serverType;
     let url1 = APP_CONFIG.getInfraNumbers;
     this.loading = true;
+    this.dummyData = [];
+    this.showFlag = false;
     Observable.forkJoin(
       this.httpClient.get(url),
       this.httpClient.get(url1)
     ).subscribe((data: any) => {
       this.loading = false;
       this.infraStructureDTO = data[0];
+      this.dummyData = this.infraStructureDTO.servers.slice(0, this.infraStructureDTO.servers.length);
       this.infraDashboardDTO = data[1];
+      this.total = this.infraStructureDTO.servers.length;
       this.assetTotal = this.infraDashboardDTO.appServers + this.infraDashboardDTO.dBServers + this.infraDashboardDTO.otherServers;
       for (let i in this.infraDashboardDTO.vendorNumbers) {
         this.lineChartLabelsAudits.push(i);
@@ -194,7 +205,7 @@ export class InfradetailsComponent implements OnInit {
         header.direction = '';
       }
       else if (header.sortable === column && direction !== '') {
-        //this.policies = this.toSorting(this.policies, column, direction);
+        this.infraStructureDTO.servers = this.toSorting(this.infraStructureDTO.servers, column, direction);
 
       }
     });
@@ -215,7 +226,82 @@ export class InfradetailsComponent implements OnInit {
   compare(v1: any, v2: any) {
     return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
   }
-  getData1(value:any) {
+  getData1(value: any) {
+    this.infraStructureDTO.servers = this.dummyData.filter((country: any) => this.matches(country, value, this.pipe));
+    this.total = this.infraStructureDTO.servers.length;
+  }
+  matches(country: any, term: string, pipe: PipeTransform) {
+    return country.hostName.toLowerCase().includes(term.toLowerCase())
+      || country.primaryContact.toLowerCase().includes(term.toLowerCase());
+  }
+
+  pageChanged(value: any) {
+    if (this.searchTerm !== undefined && this.searchTerm !== null && this.searchTerm !== "") {
+      this.p = value;
+      let data = this.dummyData.filter((country: any) => this.matches(country, this.searchTerm, this.pipe));
+      this.infraStructureDTO.servers = data.slice((value - 1) * this.pageSize, (value - 1) * this.pageSize + this.pageSize);
+
+    }
+    else {
+      this.p = value;
+      this.infraStructureDTO.servers = this.dummyData.slice((value - 1) * this.pageSize, (value - 1) * this.pageSize + this.pageSize);
+    }
+  }
+
+  getExpired(value: any, showFlag: boolean = false) {
+    this.loading = true;
+    this.showFlag = showFlag;
+    this.dummyData = [];
+    let url = APP_CONFIG.getInfraData;
+    let mainurl: any;
+    if (this.serverType === 'Application Server') {
+      mainurl = url + "/app/" + value;
+    }
+    else if (this.serverType === 'Database Server') {
+      mainurl = url + "/db/" + value;
+    }
+    else if (this.serverType === 'Others') {
+      mainurl = url + "/others/" + value;
+    }
+
+    this.httpClient.get(mainurl)
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.infraStructureDTO.servers = [];
+        this.infraStructureDTO.servers = data;
+        this.dummyData = this.infraStructureDTO.servers.slice(0, this.infraStructureDTO.servers.length);
+        this.total = this.infraStructureDTO.servers.length;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      })
+  }
+
+  getIncident(id: any) {
+
+    sessionStorage.setItem('incidentName', id);
+    this.router.navigate(['/incident/info']);
+
+  }
+
+  chartClicked(value: any) {
+    this.showFlag=false;
+    if (value.active.length > 0) {
+      let vendor = value.active[0]._model.label;
+      let url = APP_CONFIG.getInfraOnVendor;
+      this.loading = true;
+      this.httpClient.get(url + "/" + vendor)
+        .subscribe((data: any) => {
+          this.loading = false;
+          this.infraStructureDTO.servers = [];
+          this.infraStructureDTO.servers = data;
+          this.dummyData = this.infraStructureDTO.servers.slice(0, this.infraStructureDTO.servers.length);
+          this.total = this.infraStructureDTO.servers.length;
+        }, error => {
+          this.loading = false;
+          console.log(error);
+        })
+    }
 
   }
 

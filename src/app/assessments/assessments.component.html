@@ -55,16 +55,15 @@
                                     <div class="entryTitle">
                                         Status
                                     </div>
-                                    <div class="auditIcons">
-                                        <div class="col-md-3 pull-left" (click) = "getLevelData('Open')" style="outline: none;">
+                                   
+                                        <div class="col-md-6 pull-left" (click) = "getLevelData('Open')" style="outline: none;">
                                             <span class="dot redDot">{{auditCountDTo.openAudit}}</span>
                                             <p style="text-align: center;">Open</p>
                                         </div>
-                                        <div class="col-md-3 pull-left" (click) = "getLevelData('Close')" style="outline: none;">
+                                        <div class="col-md-6 pull-left" (click) = "getLevelData('Close')" style="outline: none;">
                                             <span class="dot greenDot">{{auditCountDTo.closeAudit}}</span>
                                             <p style="text-align: center;">Close</p>
                                         </div>
-                                    </div>
                                 </div>
                             </mat-grid-tile>
                         </mat-grid-list>
