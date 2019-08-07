@@ -6,6 +6,7 @@ import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import { AuditType } from '../../data_modelAudit';
 import { Http, RequestOptions, Headers } from '@angular/http';
+import { AlertService } from 'app/alert.service';
 @Component({
   selector: 'app-policy-forms',
   templateUrl: './policy-forms.component.html',
@@ -20,7 +21,7 @@ export class PolicyFormsComponent implements OnInit {
   public audit: AuditType;
   public auditObj: any;
     @ViewChild('content') content:TemplateRef<any>;
-  constructor(private _apiservice: ApiserviceService, private fb: FormBuilder, private modalService: NgbModal, private router: Router, private  http: Http) { 
+  constructor(private _apiservice: ApiserviceService, private fb: FormBuilder, private modalService: NgbModal, private router: Router, private  http: Http, public sideNavService: AlertService,) { 
   
   this.createForm();
     this.audit = new AuditType();

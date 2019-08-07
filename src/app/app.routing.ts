@@ -213,6 +213,7 @@ import { PolicyComponent } from './policy/policy.component';
 import { PolicyParentComponent } from './policy/policy-parent/policy-parent.component';
 import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 import { InfradetailsComponent } from './infradetails/infradetails.component';
+import { AdminPolicyComponent } from './policy/admin-policy/admin-policy.component';
 
 const appRoutes: Routes = [
 
@@ -255,6 +256,8 @@ const appRoutes: Routes = [
   { path: 'newPolicy', component: NewpolicyComponent, canActivate: [AuthGuard] },
   { path: 'deviceEntry', component: DeviceentryComponent, canActivate: [AuthGuard] },
   { path: 'mytasks', component: MyTaskComponent, canActivate: [AuthGuard] },
+  {path: 'adminPolicy', component : AdminPolicyComponent, canActivate: [AuthGuard] },
+  {path: 'createPolicy', component : PolicyFormsComponent, canActivate: [AuthGuard] },
 
   {
     path: 'callback', component: CallbackComponent, canActivate: [CallGuard]

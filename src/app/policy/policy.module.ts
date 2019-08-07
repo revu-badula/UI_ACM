@@ -26,6 +26,8 @@ import { NavigationComponentModule } from '../navigation-component/navigation-co
 import { IncidentModuleModule } from '../incident-module/incident-module.module';
 import { policyService } from './policy-service';
 import { PolicyComponent } from './policy.component';
+import { PolicyDummyComponent } from './policy-dummy/policy-dummy.component';
+import { AdminPolicyComponent } from './admin-policy/admin-policy.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -69,6 +71,8 @@ import { PolicyComponent } from './policy.component';
     PolicyParentComponent,
     PolicyfamiliesComponent,
     PolicyComponent,
+    PolicyDummyComponent,
+    AdminPolicyComponent,
   ],
   providers:[policyService]
 })

@@ -1,3 +1,8 @@
+<div class="sidebar" data-color="danger" data-background-color="white">
+	<app-newsidebar></app-newsidebar>
+</div>
+
+
 <ng-template #content let-c="close" let-d="dismiss">
 	<div class="modal-header">
 		<h4 class="modal-title">Info</h4>
@@ -20,81 +25,105 @@
 		<form class="forms" #policyForm="ngForm">
 			<div class="form-row">
 				<div class="col-12">
-					<input class="form-control" type="text" required [(ngModel)]="audit.auditTypeName" [name]="'audit_type'">
+					<input class="form-control" type="text" required [(ngModel)]="audit.auditTypeName"
+						[name]="'audit_type'">
 				</div>
 			</div>
-		
+
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-dark" (click)="c()">Close</button>
-				<button type="submit" [disabled]="!policyForm.valid" class="btn btn-outline-dark" (click)="c();addAuditType()">Save</button>
+				<button type="submit" [disabled]="!policyForm.valid" class="btn btn-outline-dark"
+					(click)="c();addAuditType()">Save</button>
 			</div>
 		</form>
 	</div>
 </ng-template>
 <div>
-		<div>
-				<h3 class="pageTitle">Policies</h3>
-				<hr/>
-			</div>
-	<div id="form1">
-			<div class="disclaimer"><span style="float:left">Please use this screen to add policy information.</span>&nbsp;&nbsp;&nbsp;
-				<span style="float:right">
-					<font color=red>*</font> marked fields are mandatory
-				</span> </div>
-			
-		<div class="infoBox">
-			<div class="headerOfBox">
-				<h4>Overview</h4>
-			</div>
-			<form>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="policyEntity"><b>Policy Entity</b></label><span>
-							<fa style="font-size: 1.5em;" class="plus-icon" (click)="display(policyEntity)" [name]="'plus'"></fa>
-						</span>
-						<select class="form-control" id="inputState" required (change)="policy($event.target.value)">
-							<option selected>Choose...</option>
-							<option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">{{ auditType.auditTypeName }}</option>
-						</select>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="infoBox">
-			<div class="headerOfBox">
-				<h4>Overview</h4>
-			</div>
-			<form [formGroup]="policyGroupForm" id="myForm" (ngSubmit)="createPolicyGroup(policyGroupForm.value)">
-				<div class="policy-add">
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="policyName"><b>Policy Name</b><span class="asterisk">*</span>
-							</label>
-							<input type="text" class="display form-control" id="inputState" formControlName="policyName" required>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label class="hosting-notes" for="policyDescription"><b>Policy Description</b><span class="asterisk">*</span>
-							</label>
-							</div>
-						</div>
-						<div class="form-row">
-							
-							<textarea cols="100" style="margin-top:1vw;" rows="7" id="policyDescription" required formControlName="policyDescription" maxlength="50000" name="policyDescription"> </textarea>
-					
-						
-					</div>
-				</div>
-			</form>
-			<div class="buttons">
-
-				<button type="submit" class="submit btn btn-primary" form="myForm" [disabled]="!policyGroupForm.valid">Submit</button>
-				<button type="cancel" class="cancel btn btn-primary" routerLink="/dashboard">Cancel</button>
-			</div>
-
-		</div>
-
+	<div class="my-container">
+		<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 	</div>
+	<!-- <app-loadercomponent></app-loadercomponent> -->
+	<div class="newmainpanel">
+		<div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+			<div>
+				<div class="clearfix wrap">
+					<div>
+						<h2 class="headerFix">Create Policy</h2>
+					</div>
 
+					<mat-sidenav-container class="example-sidenav-container"
+						style="min-height: 100%;background-color: inherit;">
+
+						<mat-sidenav-content>
+							<mat-grid-list cols="10">
+								<mat-grid-tile [colspan]="10" [rowspan]="4">
+									<div class="newtestITpm">
+										<div class="entryTitle">
+											Overview
+										</div>
+										<form>
+											<div class="form-row">
+												<div class="form-group col-md-6">
+													<label for="policyEntity"><b>Policy Entity</b></label><span>
+														<fa style="font-size: 1.5em;" class="plus-icon"
+															(click)="display(policyEntity)" [name]="'plus'"></fa>
+													</span>
+													<select class="form-control" id="inputState" required
+														(change)="policy($event.target.value)">
+														<option selected>Choose...</option>
+														<option *ngFor="let auditType of auditTypes"
+															value="{{ auditType.auditTypeId }}">
+															{{ auditType.auditTypeName }}</option>
+													</select>
+												</div>
+											</div>
+										</form>
+								
+								
+									<form [formGroup]="policyGroupForm" id="myForm"
+										(ngSubmit)="createPolicyGroup(policyGroupForm.value)">
+										<div class="policy-add">
+											<div class="form-row">
+												<div class="form-group col-md-6">
+													<label for="policyName"><b>Policy Name</b><span
+															class="asterisk">*</span>
+													</label>
+													<input type="text" class="display form-control" id="inputState"
+														formControlName="policyName" required>
+												</div>
+											</div>
+											<div class="form-row">
+												<div class="form-group col-md-6">
+													<label class="hosting-notes" for="policyDescription"><b>Policy
+															Description</b><span class="asterisk">*</span>
+													</label>
+												</div>
+											</div>
+											<div class="form-row">
+
+												<textarea cols="100" style="margin-top:1vw;" rows="7"
+													id="policyDescription" required formControlName="policyDescription"
+													maxlength="50000" name="policyDescription"> </textarea>
+
+
+											</div>
+										</div>
+									</form>
+									<div class="buttons">
+
+										<button type="submit" class="submit btn btn-primary" form="myForm"
+											[disabled]="!policyGroupForm.valid">Submit</button>
+										<button type="cancel" class="cancel btn btn-primary"
+											routerLink="/dashboard">Cancel</button>
+									</div>
+								</div>
+								</mat-grid-tile>
+							</mat-grid-list>
+						</mat-sidenav-content>
+					</mat-sidenav-container>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+

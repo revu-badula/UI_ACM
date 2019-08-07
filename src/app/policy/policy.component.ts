@@ -1,10 +1,19 @@
-import { Component, OnInit, ViewChildren, QueryList, PipeTransform } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChildren, QueryList, PipeTransform, ViewChild, ElementRef, TemplateRef, ChangeDetectorRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 import { Chart } from 'chart.js';
 import { NgbdSortableHeader, SortEvent } from '../sort';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 import { AlertService } from '../alert.service';
+import { PolicyDocumentsDTO } from 'app/data.model.assessmentDTO';
+import { PolicyGrp } from 'app/data_modelPolicy';
+import { Policy } from './data_model_policy';
+import { APP_CONFIG } from 'app/app.config';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UtilService } from 'app/util.service';
+import { Http } from '@angular/http';
+import { Cookie } from 'ng2-cookies';
+import { DialogService } from 'app/dialog.service';
 
 @Component({
   selector: 'app-policy',
@@ -13,6 +22,15 @@ import { AlertService } from '../alert.service';
 })
 export class PolicyComponent implements OnInit {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+  @ViewChild('fileInput') inputEl: ElementRef;
+  @ViewChild('content1') content1: TemplateRef<any>;
+  policyDisplay: PolicyGrp;
+  policies: Policy[];
+  policyGrpData: PolicyGrp;
+  policyFileobj: any;
+  files: File[] = [];
+  public showFamily: boolean = true;
+  policyDocumentDTO: PolicyDocumentsDTO[];
   public openCount: any;
   public closeCount: any;
   public searchTerm: any;
@@ -21,7 +39,7 @@ export class PolicyComponent implements OnInit {
   public showAllSystem: boolean;
   public policyMonthReports: any = [];
   public policyGrps: any = [];
-  public policies: any = [];
+  public policyDocumentsSubmit: PolicyGrp;
   public showPolicyGrp: boolean = false;
   public showPolicies: boolean = false;
   public showTable: boolean;
@@ -136,7 +154,12 @@ export class PolicyComponent implements OnInit {
 
 
   constructor(private _apiservice: ApiserviceService,
-    public sideNavService: AlertService, private router: Router, private pipe: DecimalPipe) {
+    public sideNavService: AlertService, private pipe: DecimalPipe,
+    private modalService: NgbModal, private http: Http,
+    private utilservice: UtilService, private activatedRoute: ActivatedRoute,
+     private router: Router, private dialogService: DialogService,
+      public datepipe: DatePipe,private ref: ChangeDetectorRef
+    ) {
     sessionStorage.removeItem('policiesFamId');
   }
 
@@ -161,6 +184,29 @@ export class PolicyComponent implements OnInit {
           }
         }
         this.showAllSystem = true;
+      }, error => {
+        this.loading = false;
+        console.log(error);
+      });
+  }
+
+
+  uploadPolicyFile() {
+    let url = APP_CONFIG.uploadPolicyFile;
+    var policyDocumentsData = new FormData();
+    for (let i = 0; i < this.files.length; i++) {
+      policyDocumentsData.append('file', this.files[i]);
+    }
+    this.policyDocumentsSubmit.policyGrpId = UtilService.policyGrpId;
+    this.policyDocumentsSubmit.createdBy = Cookie.get("userName");
+    this.policyDocumentsSubmit.updatedBy = Cookie.get("userName");
+    policyDocumentsData.append('policy', JSON.stringify(this.policyDocumentsSubmit));
+    this.loading = true;
+    this.http.post(url, policyDocumentsData)
+      .map(res => res.json())
+      .subscribe((data: any) => {
+        this.loading = false;
+        this.policies = data.policyDTOs;
       }, error => {
         this.loading = false;
         console.log(error);

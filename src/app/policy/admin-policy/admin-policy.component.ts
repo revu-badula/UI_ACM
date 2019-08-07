@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren,QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren,QueryList} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG } from '../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,12 +7,12 @@ import { AlertService } from '../../alert.service';
 import { NgbdSortableHeader, SortEvent } from '../../sort';
 
 @Component({
-  selector: 'app-policy-start',
-  templateUrl: './policy-start.component.html',
-  styleUrls: ['./policy-start.component.css']
+  selector: 'app-admin-policy',
+  templateUrl: './admin-policy.component.html',
+  styleUrls: ['./admin-policy.component.css']
 })
-export class PolicyStartComponent implements OnInit {
-  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+export class AdminPolicyComponent implements OnInit {
+
   public policy: boolean;
   public loading: boolean = false;
   public auditTypes: any;
@@ -102,17 +102,7 @@ export class PolicyStartComponent implements OnInit {
     sessionStorage.setItem("policyGrpId", id);
     this.router.navigate(['/firstpolicy/details']);
   }
-  getSort({ column, direction }: SortEvent) {
-    this.headers.forEach(header => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-      else if (header.sortable === column && direction !== '') {
-        this.policies = this.toSorting(this.policies, column, direction);
   
-      }
-    });
-  }
   
   
   toSorting(countries: any[], column: string, direction: string): any[] {
@@ -129,6 +119,7 @@ export class PolicyStartComponent implements OnInit {
   compare(v1: any, v2: any) {
     return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
   }
+
 
 
 }

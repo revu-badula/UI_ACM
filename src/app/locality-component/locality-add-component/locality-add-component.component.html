@@ -2,137 +2,351 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 <ng-template #content let-c="close" let-d="dismiss">
-<div class="modal-header">
-  <h4 class="modal-title">Info</h4>
-</div>
-<div class="modal-body">
-  <p>{{locality}} does not exist.Do you want to create it?</p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="c();redirect('no')">No</button>
-  <button type="button" class="btn btn-outline-dark" (click)="c();redirect('yes')">Yes</button>
-</div>
+  <div class="modal-header">
+    <h4 class="modal-title">Info</h4>
+  </div>
+  <div class="modal-body">
+    <p>{{locality}} does not exist.Do you want to create it?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c();redirect('no')">No</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c();redirect('yes')">Yes</button>
+  </div>
 </ng-template>
 
-<p class="lab1" for="modelSolution" style="position: relative;top:26px;"><b> &nbsp; Please Select Your Locality</b><span class="asterisk">*</span></p>
+<p class="lab1" for="modelSolution" style="position: relative;top:26px;"><b> &nbsp; Please Select Your Areas</b><span
+    class="asterisk">*</span></p>
 <div class="container1">
-  <div id="first">
-<form class="former">
-<img src="assets/img/VA-county-edited.png" usemap="#image-map">
+  <div class="former">
 
-<map name="image-map">
-  <area target="" alt="Pittsylvania" title="Pittsylvania" coords="443,341,486,407" shape="rect" (click)="fetchLocality('Pittsylvania')">
- <area target="" alt="Halifax" title="Halifax" (click)="fetchLocality('Halifax')" coords="492,342,533,407" shape="rect">
- <area target="" alt="Mecklenburg" title="Mecklenburg" (click)="fetchLocality('Mecklenburg')" coords="539,370,609,407" shape="rect">
- <area target="" alt="Campbell" title="Campbell" (click)="fetchLocality('Campbell')" coords="495,317,23" shape="circle">
- <area target="" alt="Brunswick" title="Brunswick" (click)="fetchLocality('Brunswick')"coords="612,352,647,397" shape="rect">
- <area target="" alt="Lunenburg" title="Lunenburg" (click)="fetchLocality('Lunenburg')" coords="568,338,608,367" shape="rect">
- <area target="" alt="Charlotte" title="Charlotte" (click)="fetchLocality('Charlotte')" coords="527,320,561,365" shape="rect">
- <area target="_blank" alt="Appomattox" title="Appomattox" (click)="fetchLocality('Appomattox')"coords="525,294,18" shape="circle">
- <area target="" alt="Prince Edward" title="Prince Edward" (click)="fetchLocality('Prince Edward')" coords="547,302,585,327" shape="rect">
- <area target="" alt="Lee" title="Lee" (click)="fetchLocality('Lee')" coords="16,364,89,400" shape="rect">
- <area target="" alt="Scott" title="Scott" (click)="fetchLocality('Scott')" coords="90,363,148,401" shape="rect">
- <area target="" alt="Washington" title="Washington" (click)="fetchLocality('Washington')" coords="154,369,219,400" shape="rect">
- <area target="" alt="Russell" title="Russell" (click)="fetchLocality('Russell')" coords="149,339,207,367" shape="rect">
- <area target="" alt="Wise" title="Wise" (click)="fetchLocality('Wise')" coords="115,346,27" shape="circle">
- <area target="" alt="Dickenson" title="Dickenson" (click)="fetchLocality('Dickenson')" coords="147,327,21" shape="circle">
- <area target="" alt="Buchanan" title="Buchanan" (click)="fetchLocality('Buchanan')" coords="183,302,27" shape="circle">
- <area target="" alt="Smyth" title="Smyth" (click)="fetchLocality('Smyth')" coords="212,351,260,382" shape="rect">
- <area target="" alt="Grayson" title="Grayson" (click)="fetchLocality('Grayson')" coords="221,381,305,403" shape="rect">
- <area target="" alt="Carroll" title="Carroll" (click)="fetchLocality('Carroll')" coords="299,370,338,403" shape="rect">
- <area target="" alt="Wythe" title="Wythe" (click)="fetchLocality('Wytheville')" coords="263,340,309,367" shape="rect">
- <area target="" alt="Pulaski" title="Pulaski" (click)="fetchLocality('Pulaski')" coords="322,340,21" shape="circle">
- <area target="" alt="Tazewell" title="Tazewell" (click)="fetchLocality('Tazewell')" coords="199,310,257,347" shape="rect">
- <area target="" alt="Bland" title="Bland" (click)="fetchLocality('Bland')" coords="262,312,298,338" shape="rect">
- <area target="" alt="Floyd" title="Floyd" (click)="fetchLocality('Floyd')" coords="334,370,380,345" shape="rect">
- <area target="" alt="Franklin" title="Franklin" (click)="fetchLocality('Franklin')" coords="383,329,440,368" shape="rect">
- <area target="" alt="Montgomery" title="Montgomery" (click)="fetchLocality('Montgomery')" coords="334,304,377,334" shape="rect">
- <area target="" alt="Giles" title="Giles" (click)="fetchLocality('Giles')" coords="345,304,295,290" shape="rect">
- <area target="" alt="Bedford" title="Bedford" (click)="fetchLocality('Bedford')" coords="449,306,27" shape="circle">
- <area target="" alt="Craig" title="Craig" (click)="fetchLocality('Craig')" coords="339,261,392,290" shape="rect">
- <area target="" alt="Alleghany" title="Alleghany" (click)="fetchLocality('Alleghany')" coords="351,217,409,252" shape="rect">
- <area target="" alt="Bath" title="Bath" (click)="fetchLocality('Bath')" coords="397,175,447,217" shape="rect">
- <area target="" alt="Highland" title="Highland" (click)="fetchLocality('Highland')" coords="416,130,461,173" shape="rect">
- <area target="" alt="Augusta" title="Augusta" (click)="fetchLocality('Augusta')" coords="465,155,520,213" shape="rect">
- <area target="" alt="Rockingham" title="Rockingham" (click)="fetchLocality('Rockingham')" coords="483,107,548,166" shape="rect">
- <area target="" alt="Shenandoah" title="Shenandoah" (click)="fetchLocality('Shenandoah')" coords="515,54,573,103" shape="rect">
- <area target="" alt="Fredericksburg" title="Fredericksburg" (click)="fetchLocality('Fredericksburg')" coords="558,15,606,54" shape="rect">
- <area target="" alt="Page" title="Page" (click)="fetchLocality('Page')" coords="546,101,573,134" shape="rect">
- <area target="" alt="Loudoun" title="Loudoun" (click)="fetchLocality('Loudoun')" coords="636,24,673,76" shape="rect">
- <area target="" alt="Warren" title="Warren" (click)="fetchLocality('Warren')" coords="577,60,605,92" shape="rect">
- <area target="" alt="Culpeper" title="Culpeper" (click)="fetchLocality('Culpeper')" coords="597,115,639,156" shape="rect">
- <area target="" alt="Rappahannock" title="Rappahannock" (click)="fetchLocality('Rappahannock')" coords="581,96,612,125" shape="rect">
- <area target="" alt="Stafford" title="Stafford" (click)="fetchLocality('Stafford')" coords="657,127,686,167" shape="rect">
- <area target="" alt="Fairfax" title="Fairfax" (click)="fetchLocality('Fairfax')" coords="678,92,721,121" shape="rect">
- <area target="" alt="Arlington" title="Arlington" (click)="fetchLocality('Arlington')" coords="698,67,726,87" shape="rect">
- <area target="" alt="Amherst" title="Amherst" (click)="fetchLocality('Amherst')" coords="455,243,515,278" shape="rect">
- <area target="" alt="Rockbridge" title="Rockbridge" (click)="fetchLocality('Rockbridge')" coords="434,210,481,256" shape="rect">
- <area target="" alt="Botetourt" title="Botetourt" (click)="fetchLocality('Botetourt')" coords="398,255,449,278" shape="rect">
- <area target="" alt="Roanoke" title="Roanoke" (click)="fetchLocality('Roanoke')" coords="374,293,415,321" shape="rect">
- <area target="" alt="Greensville" title="Greensville" (click)="fetchLocality('Greensville')" coords="650,366,676,407" shape="rect">
- <area target="" alt="Southampton" title="Southampton" (click)="fetchLocality('Southampton')" coords="680,371,726,407" shape="rect">
- <area target="" alt="Sussex" title="Sussex" (click)="fetchLocality('Sussex')" coords="667,341,723,366" shape="rect">
- <area target="" alt="Nottoway" title="Nottoway" (click)="fetchLocality('Nottoway')" coords="595,308,627,347" shape="rect">
- <area target="" alt="Isle of Wight" title="Isle of Wight" (click)="fetchLocality('IsleOfWight')" coords="736,343,779,380" shape="rect">
- <area target="" alt="Nelson" title="Nelson" (click)="fetchLocality('Nelson')" coords="494,217,534,246" shape="rect">
- <area target="" alt="Dinwiddie" title="Dinwiddie" (click)="fetchLocality('Dinwiddie')" coords="650,332,24" shape="circle">
- <area target="" alt="Albemarle" title="Albemarle" (click)="fetchLocality('Albemarle')" coords="526,171,573,221" shape="rect">
- <area target="" alt="Frederick" title="Frederick" (click)="fetchLocality('Frederick')" coords="605,36,629,62" shape="rect">
- <area target="" alt="Buckingham" title="Buckingham" (click)="fetchLocality('Buckingham')" coords="556,265,28" shape="circle">
- <area target="" alt="Fluvanna" title="Fluvanna" (click)="fetchLocality('Fluvanna')" coords="571,213,600,241" shape="rect">
- <area target="" alt="Madison" title="Madison" (click)="fetchLocality('Madison')" coords="574,133,600,166" shape="rect">
- <area target="" alt="Greene" title="Greene" (click)="fetchLocality('Greene')" coords="551,151,578,175" shape="rect">
- <area target="" alt="Chesterfield" title="Chesterfield" (click)="fetchLocality('Chesterfield')" coords="635,280,671,305" shape="rect">
- <area target="" alt="Cumberland" title="Cumberland" (click)="fetchLocality('Cumberland')" coords="580,243,600,283" shape="rect">
- <area target="" alt="Orange" title="Orange" (click)="fetchLocality('Orange')" coords="594,158,632,186" shape="rect">
- <area target="" alt="Louisa" title="Louisa" (click)="fetchLocality('Loiusa')" coords="587,190,639,229" shape="rect">
- <area target="" alt="Prince William" title="Prince William" (click)="fetchLocality('Prince William')" coords="641,82,677,125" shape="rect">
- <area target="" alt="Caroline" title="Caroline" (click)="fetchLocality('Caroline')" coords="659,181,701,224" shape="rect">
- <area target="" alt="Goochland" title="Goochland" (click)="fetchLocality('Goochland')" coords="604,228,649,261" shape="rect">
- <area target="" alt="Powhatan" title="Powhatan" (click)="fetchLocality('Powhatan')" coords="602,266,640,279" shape="rect">
- <area target="" alt="Hanover" title="Hanover" (click)="fetchLocality('Hanover')" coords="652,222,696,262" shape="rect">
- <area target="" alt="Henrico" title="Henrico" (click)="fetchLocality('Henrico')" coords="673,270,699,290" shape="rect">
- <area target="" alt="Richmond" title="Richmond" (click)="fetchLocality('Richmond')" coords="667,265,15" shape="circle">
- <area target="" alt="Prince George" title="Prince George" (click)="fetchLocality('Prince George')" coords="678,302,713,328" shape="rect">
- <area target="" alt="King William" title="King William" (click)="fetchLocality('KingWilliam')" coords="697,224,719,261" shape="rect">
- <area target="" alt="King and Queen" title="King and Queen" (click)="fetchLocality('KingQueen')" coords="724,233,759,276" shape="rect">
- <area target="" alt="Essex" title="Essex" (click)="fetchLocality('Essex')" coords="709,186,740,228" shape="rect">
- <area target="" alt="Northampton" title="Northampton" (click)="fetchLocality('Northampton')" coords="825,275,870,324" shape="rect">
- <area target="" alt="Accomack" title="Accomack" (click)="fetchLocality('Accomack')" coords="848,203,901,273" shape="rect">
- <area target="" alt="James City" title="James City" (click)="fetchLocality('James City')" coords="729,288,756,314" shape="rect">
- <area target="" alt="Surry" title="Surry" (click)="fetchLocality('Surry')" coords="719,317,750,339" shape="rect">
- <area target="" alt="King George" title="King George" (click)="fetchLocality('KingGeorge')" coords="692,153,716,180" shape="rect">
- <area target="" alt="Amelia" title="Amelia" (click)="fetchLocality('Amelia')" coords="587,280,635,310" shape="rect">
- <area target="" alt="Westmoreland" title="Westmoreland" (click)="fetchLocality('Westmoreland')" coords="718,164,767,203" shape="rect">
- <area target="" alt="Northumberland" title="Northumberland" (click)="fetchLocality('Northumberland')" coords="768,180,813,235" shape="rect">
- <area target="" alt="York" title="York" (click)="fetchLocality('York')" coords="761,288,786,340" shape="rect">
- <area target="" alt="Richmond" title="Richmond" (click)="fetchLocality('Richmond')" coords="735,190,771,233" shape="rect">
- <area target="" alt="Lancaster" title="Lancaster" (click)="fetchLocality('Lancaster')" coords="766,235,795,255" shape="rect">
- <area target="" alt="Mathews" title="Mathews" (click)="fetchLocality('Mathews')" coords="778,268,802,294" shape="rect">
- <area target="" alt="Spotsylvania" title="Spotsylvania" (click)="fetchLocality('Spotsylvania')" coords="626,155,676,201" shape="rect">
- <area target="" alt="Suffolk" title="Suffolk" (click)="fetchLocality('Suffolk')" coords="730,368,782,407" shape="rect">
- <area target="" alt="Chesapeake" title="Chesapeake" (click)="fetchLocality('Chesapeake')" coords="782,376,814,407" shape="rect">
- <area target="" alt="Virginia Beach" title="Virginia Beach" (click)="fetchLocality('VirginiaBeach')" coords="809,352,849,405" shape="rect">
-</map>
-</form>
-</div>
-<div id="second">
-<form class="former">
- <div class="page-description">
-       
-    </div>
-   
     <div class="form-row">
-       
-            <select #locInput class="form-control1" (change)="selectLocal($event.target.value)" style="width: 100%">
-          <option selected>Choose a locality</option>
-          <option  *ngFor="let county of counties">
-          {{county.county_name}}
-          </option> 
-        </select>
-        
-
+      <select class="form-control1" [(ngModel)]="selectNav">
+        <option selected>Please choose county or district</option>
+        <option value="County">County</option>
+        <option value="District">District</option>
+      </select>
     </div>
-</form>
-</div>
+  </div>
+
+  <div id="first" *ngIf="selectNav==='County'">
+    <form class="former">
+      <div>
+        <img src="assets/img/VA-county-edited.png" usemap="#image-map">
+
+        <map name="image-map">
+          <area target="" alt="Pittsylvania" title="Pittsylvania" coords="443,341,486,407" shape="rect"
+            (click)="fetchLocality('Pittsylvania')">
+          <area target="" alt="Halifax" title="Halifax" (click)="fetchLocality('Halifax')" coords="492,342,533,407"
+            shape="rect">
+          <area target="" alt="Mecklenburg" title="Mecklenburg" (click)="fetchLocality('Mecklenburg')"
+            coords="539,370,609,407" shape="rect">
+          <area target="" alt="Campbell" title="Campbell" (click)="fetchLocality('Campbell')" coords="495,317,23"
+            shape="circle">
+          <area target="" alt="Brunswick" title="Brunswick" (click)="fetchLocality('Brunswick')"
+            coords="612,352,647,397" shape="rect">
+          <area target="" alt="Lunenburg" title="Lunenburg" (click)="fetchLocality('Lunenburg')"
+            coords="568,338,608,367" shape="rect">
+          <area target="" alt="Charlotte" title="Charlotte" (click)="fetchLocality('Charlotte')"
+            coords="527,320,561,365" shape="rect">
+          <area target="_blank" alt="Appomattox" title="Appomattox" (click)="fetchLocality('Appomattox')"
+            coords="525,294,18" shape="circle">
+          <area target="" alt="Prince Edward" title="Prince Edward" (click)="fetchLocality('Prince Edward')"
+            coords="547,302,585,327" shape="rect">
+          <area target="" alt="Lee" title="Lee" (click)="fetchLocality('Lee')" coords="16,364,89,400" shape="rect">
+          <area target="" alt="Scott" title="Scott" (click)="fetchLocality('Scott')" coords="90,363,148,401"
+            shape="rect">
+          <area target="" alt="Washington" title="Washington" (click)="fetchLocality('Washington')"
+            coords="154,369,219,400" shape="rect">
+          <area target="" alt="Russell" title="Russell" (click)="fetchLocality('Russell')" coords="149,339,207,367"
+            shape="rect">
+          <area target="" alt="Wise" title="Wise" (click)="fetchLocality('Wise')" coords="115,346,27" shape="circle">
+          <area target="" alt="Dickenson" title="Dickenson" (click)="fetchLocality('Dickenson')" coords="147,327,21"
+            shape="circle">
+          <area target="" alt="Buchanan" title="Buchanan" (click)="fetchLocality('Buchanan')" coords="183,302,27"
+            shape="circle">
+          <area target="" alt="Smyth" title="Smyth" (click)="fetchLocality('Smyth')" coords="212,351,260,382"
+            shape="rect">
+          <area target="" alt="Grayson" title="Grayson" (click)="fetchLocality('Grayson')" coords="221,381,305,403"
+            shape="rect">
+          <area target="" alt="Carroll" title="Carroll" (click)="fetchLocality('Carroll')" coords="299,370,338,403"
+            shape="rect">
+          <area target="" alt="Wythe" title="Wythe" (click)="fetchLocality('Wytheville')" coords="263,340,309,367"
+            shape="rect">
+          <area target="" alt="Pulaski" title="Pulaski" (click)="fetchLocality('Pulaski')" coords="322,340,21"
+            shape="circle">
+          <area target="" alt="Tazewell" title="Tazewell" (click)="fetchLocality('Tazewell')" coords="199,310,257,347"
+            shape="rect">
+          <area target="" alt="Bland" title="Bland" (click)="fetchLocality('Bland')" coords="262,312,298,338"
+            shape="rect">
+          <area target="" alt="Floyd" title="Floyd" (click)="fetchLocality('Floyd')" coords="334,370,380,345"
+            shape="rect">
+          <area target="" alt="Franklin" title="Franklin" (click)="fetchLocality('Franklin')" coords="383,329,440,368"
+            shape="rect">
+          <area target="" alt="Montgomery" title="Montgomery" (click)="fetchLocality('Montgomery')"
+            coords="334,304,377,334" shape="rect">
+          <area target="" alt="Giles" title="Giles" (click)="fetchLocality('Giles')" coords="345,304,295,290"
+            shape="rect">
+          <area target="" alt="Bedford" title="Bedford" (click)="fetchLocality('Bedford')" coords="449,306,27"
+            shape="circle">
+          <area target="" alt="Craig" title="Craig" (click)="fetchLocality('Craig')" coords="339,261,392,290"
+            shape="rect">
+          <area target="" alt="Alleghany" title="Alleghany" (click)="fetchLocality('Alleghany')"
+            coords="351,217,409,252" shape="rect">
+          <area target="" alt="Bath" title="Bath" (click)="fetchLocality('Bath')" coords="397,175,447,217" shape="rect">
+          <area target="" alt="Highland" title="Highland" (click)="fetchLocality('Highland')" coords="416,130,461,173"
+            shape="rect">
+          <area target="" alt="Augusta" title="Augusta" (click)="fetchLocality('Augusta')" coords="465,155,520,213"
+            shape="rect">
+          <area target="" alt="Rockingham" title="Rockingham" (click)="fetchLocality('Rockingham')"
+            coords="483,107,548,166" shape="rect">
+          <area target="" alt="Shenandoah" title="Shenandoah" (click)="fetchLocality('Shenandoah')"
+            coords="515,54,573,103" shape="rect">
+          <area target="" alt="Fredericksburg" title="Fredericksburg" (click)="fetchLocality('Fredericksburg')"
+            coords="558,15,606,54" shape="rect">
+          <area target="" alt="Page" title="Page" (click)="fetchLocality('Page')" coords="546,101,573,134" shape="rect">
+          <area target="" alt="Loudoun" title="Loudoun" (click)="fetchLocality('Loudoun')" coords="636,24,673,76"
+            shape="rect">
+          <area target="" alt="Warren" title="Warren" (click)="fetchLocality('Warren')" coords="577,60,605,92"
+            shape="rect">
+          <area target="" alt="Culpeper" title="Culpeper" (click)="fetchLocality('Culpeper')" coords="597,115,639,156"
+            shape="rect">
+          <area target="" alt="Rappahannock" title="Rappahannock" (click)="fetchLocality('Rappahannock')"
+            coords="581,96,612,125" shape="rect">
+          <area target="" alt="Stafford" title="Stafford" (click)="fetchLocality('Stafford')" coords="657,127,686,167"
+            shape="rect">
+          <area target="" alt="Fairfax" title="Fairfax" (click)="fetchLocality('Fairfax')" coords="678,92,721,121"
+            shape="rect">
+          <area target="" alt="Arlington" title="Arlington" (click)="fetchLocality('Arlington')" coords="698,67,726,87"
+            shape="rect">
+          <area target="" alt="Amherst" title="Amherst" (click)="fetchLocality('Amherst')" coords="455,243,515,278"
+            shape="rect">
+          <area target="" alt="Rockbridge" title="Rockbridge" (click)="fetchLocality('Rockbridge')"
+            coords="434,210,481,256" shape="rect">
+          <area target="" alt="Botetourt" title="Botetourt" (click)="fetchLocality('Botetourt')"
+            coords="398,255,449,278" shape="rect">
+          <area target="" alt="Roanoke" title="Roanoke" (click)="fetchLocality('Roanoke')" coords="374,293,415,321"
+            shape="rect">
+          <area target="" alt="Greensville" title="Greensville" (click)="fetchLocality('Greensville')"
+            coords="650,366,676,407" shape="rect">
+          <area target="" alt="Southampton" title="Southampton" (click)="fetchLocality('Southampton')"
+            coords="680,371,726,407" shape="rect">
+          <area target="" alt="Sussex" title="Sussex" (click)="fetchLocality('Sussex')" coords="667,341,723,366"
+            shape="rect">
+          <area target="" alt="Nottoway" title="Nottoway" (click)="fetchLocality('Nottoway')" coords="595,308,627,347"
+            shape="rect">
+          <area target="" alt="Isle of Wight" title="Isle of Wight" (click)="fetchLocality('IsleOfWight')"
+            coords="736,343,779,380" shape="rect">
+          <area target="" alt="Nelson" title="Nelson" (click)="fetchLocality('Nelson')" coords="494,217,534,246"
+            shape="rect">
+          <area target="" alt="Dinwiddie" title="Dinwiddie" (click)="fetchLocality('Dinwiddie')" coords="650,332,24"
+            shape="circle">
+          <area target="" alt="Albemarle" title="Albemarle" (click)="fetchLocality('Albemarle')"
+            coords="526,171,573,221" shape="rect">
+          <area target="" alt="Frederick" title="Frederick" (click)="fetchLocality('Frederick')" coords="605,36,629,62"
+            shape="rect">
+          <area target="" alt="Buckingham" title="Buckingham" (click)="fetchLocality('Buckingham')" coords="556,265,28"
+            shape="circle">
+          <area target="" alt="Fluvanna" title="Fluvanna" (click)="fetchLocality('Fluvanna')" coords="571,213,600,241"
+            shape="rect">
+          <area target="" alt="Madison" title="Madison" (click)="fetchLocality('Madison')" coords="574,133,600,166"
+            shape="rect">
+          <area target="" alt="Greene" title="Greene" (click)="fetchLocality('Greene')" coords="551,151,578,175"
+            shape="rect">
+          <area target="" alt="Chesterfield" title="Chesterfield" (click)="fetchLocality('Chesterfield')"
+            coords="635,280,671,305" shape="rect">
+          <area target="" alt="Cumberland" title="Cumberland" (click)="fetchLocality('Cumberland')"
+            coords="580,243,600,283" shape="rect">
+          <area target="" alt="Orange" title="Orange" (click)="fetchLocality('Orange')" coords="594,158,632,186"
+            shape="rect">
+          <area target="" alt="Louisa" title="Louisa" (click)="fetchLocality('Loiusa')" coords="587,190,639,229"
+            shape="rect">
+          <area target="" alt="Prince William" title="Prince William" (click)="fetchLocality('Prince William')"
+            coords="641,82,677,125" shape="rect">
+          <area target="" alt="Caroline" title="Caroline" (click)="fetchLocality('Caroline')" coords="659,181,701,224"
+            shape="rect">
+          <area target="" alt="Goochland" title="Goochland" (click)="fetchLocality('Goochland')"
+            coords="604,228,649,261" shape="rect">
+          <area target="" alt="Powhatan" title="Powhatan" (click)="fetchLocality('Powhatan')" coords="602,266,640,279"
+            shape="rect">
+          <area target="" alt="Hanover" title="Hanover" (click)="fetchLocality('Hanover')" coords="652,222,696,262"
+            shape="rect">
+          <area target="" alt="Henrico" title="Henrico" (click)="fetchLocality('Henrico')" coords="673,270,699,290"
+            shape="rect">
+          <area target="" alt="Richmond" title="Richmond" (click)="fetchLocality('Richmond')" coords="667,265,15"
+            shape="circle">
+          <area target="" alt="Prince George" title="Prince George" (click)="fetchLocality('Prince George')"
+            coords="678,302,713,328" shape="rect">
+          <area target="" alt="King William" title="King William" (click)="fetchLocality('KingWilliam')"
+            coords="697,224,719,261" shape="rect">
+          <area target="" alt="King and Queen" title="King and Queen" (click)="fetchLocality('KingQueen')"
+            coords="724,233,759,276" shape="rect">
+          <area target="" alt="Essex" title="Essex" (click)="fetchLocality('Essex')" coords="709,186,740,228"
+            shape="rect">
+          <area target="" alt="Northampton" title="Northampton" (click)="fetchLocality('Northampton')"
+            coords="825,275,870,324" shape="rect">
+          <area target="" alt="Accomack" title="Accomack" (click)="fetchLocality('Accomack')" coords="848,203,901,273"
+            shape="rect">
+          <area target="" alt="James City" title="James City" (click)="fetchLocality('James City')"
+            coords="729,288,756,314" shape="rect">
+          <area target="" alt="Surry" title="Surry" (click)="fetchLocality('Surry')" coords="719,317,750,339"
+            shape="rect">
+          <area target="" alt="King George" title="King George" (click)="fetchLocality('KingGeorge')"
+            coords="692,153,716,180" shape="rect">
+          <area target="" alt="Amelia" title="Amelia" (click)="fetchLocality('Amelia')" coords="587,280,635,310"
+            shape="rect">
+          <area target="" alt="Westmoreland" title="Westmoreland" (click)="fetchLocality('Westmoreland')"
+            coords="718,164,767,203" shape="rect">
+          <area target="" alt="Northumberland" title="Northumberland" (click)="fetchLocality('Northumberland')"
+            coords="768,180,813,235" shape="rect">
+          <area target="" alt="York" title="York" (click)="fetchLocality('York')" coords="761,288,786,340" shape="rect">
+          <area target="" alt="Richmond" title="Richmond" (click)="fetchLocality('Richmond')" coords="735,190,771,233"
+            shape="rect">
+          <area target="" alt="Lancaster" title="Lancaster" (click)="fetchLocality('Lancaster')"
+            coords="766,235,795,255" shape="rect">
+          <area target="" alt="Mathews" title="Mathews" (click)="fetchLocality('Mathews')" coords="778,268,802,294"
+            shape="rect">
+          <area target="" alt="Spotsylvania" title="Spotsylvania" (click)="fetchLocality('Spotsylvania')"
+            coords="626,155,676,201" shape="rect">
+          <area target="" alt="Suffolk" title="Suffolk" (click)="fetchLocality('Suffolk')" coords="730,368,782,407"
+            shape="rect">
+          <area target="" alt="Chesapeake" title="Chesapeake" (click)="fetchLocality('Chesapeake')"
+            coords="782,376,814,407" shape="rect">
+          <area target="" alt="Virginia Beach" title="Virginia Beach" (click)="fetchLocality('VirginiaBeach')"
+            coords="809,352,849,405" shape="rect">
+        </map>
+
+      </div>
+    </form>
+  </div>
+  <div id="first" *ngIf="selectNav==='District'">
+    <form class="former">
+      <img src="http://www.vdh.virginia.gov/content/uploads/2017/05/mappy2.gif" alt="District Map of Virginia"
+        usemap="#Map" width="600" height="339" border="0">
+      <map id="Map" name="Map">
+        <area target="_blank" alt="Lord Fairfax Health District" coords="348,60,390,86" shape="rect"
+          href="http://www.vdh.virginia.gov/lord-fairfax/">
+        <area target="_blank" alt="Roanoke City Health District" coords="169,180,215,205" shape="rect"
+          href="http://www.vdh.virginia.gov/roanoke/">
+        <area target="_blank" alt="Central Shenandoah Health District" coords="264,139,334,164" shape="rect"
+          href="http://www.vdh.virginia.gov/central-shenandoah/">
+        <area target="_blank" alt="Alleghany Health District" coords="235,200,286,220" shape="rect"
+          href="http://www.vdh.virginia.gov/alleghany/">
+        <area target="_blank" alt="New River Health District" coords="201,229,234,258" shape="rect"
+          href="http://www.vdh.virginia.gov/new-river/">
+        <area target="_blank" alt="Mount Rogers Health District" coords="149,261,192,289" shape="rect"
+          href="http://www.vdh.virginia.gov/mount-rogers/">
+        <area  target="_blank"alt="Cumberland Plateau Health District" coords="86,241,153,258" shape="rect"
+          href="http://www.vdh.virginia.gov/cumberland-plateau/">
+        <area  target="_blank" alt="Lenowisco Health District" coords="30,276,93,294" shape="rect"
+          href="http://www.vdh.virginia.gov/lenowisco/">
+        <area  target="_blank" alt="space" coords="223,248" shape="poly" href="http://www.vdh.virginia.gov/LHD/index.htm#">
+        <area alt="West Piedmont Health District" coords="245,258,272,258,278,283,223,285" shape="poly"
+          href="http://www.vdh.virginia.gov/west-piedmont/">
+        <area target="_blank"  alt="Danville Health District" coords="250,301,317,329" shape="rect"
+          href="http://www.vdh.virginia.gov/pittsylvania-danville/">
+        <area  target="_blank"alt="Central Virginia Health District" coords="288,210,332,239" shape="rect"
+          href="http://www.vdh.virginia.gov/central-virginia/">
+        <area  target="_blank" alt="space" coords="346,214" shape="poly" href="http://www.vdh.virginia.gov/LHD/index.htm#">
+        <area alt="space" coords="409,235" shape="poly" href="http://www.vdh.virginia.gov/LHD/index.htm#">
+        <area alt="Richmond Health District" coords="402,299,457,316" shape="rect"
+          href="http://www.vdh.virginia.gov/richmond-city/" target="_self">
+        <area alt="Loudoun Health District" coords="394,58,445,75" shape="rect" href="http://www.loudoun.gov/health"
+          target="_blank">
+        <area alt="Chesterfield Health District" coords="348,314,413,329" shape="rect"
+          href="http://www.vdh.virginia.gov/chesterfield/">
+        <area alt="Southside Health District" coords="331,280,390,302" shape="rect"
+          href="http://www.vdh.virginia.gov/Southside/">
+        <area alt="Piedmont Health District" coords="351,222,408,244" shape="rect"
+          href="http://www.vdh.virginia.gov/piedmont/">
+        <area alt="Thomas Jefferson Health District" coords="337,154,394,185" shape="rect"
+          href="http://www.vdh.virginia.gov/thomas-jefferson/">
+        <area alt="Rappahannock Rapidan Health District" coords="360,108,428,133" shape="rect"
+          href="http://www.vdh.virginia.gov/rappahannock-rapidan/">
+        <area alt="Fairfax Health District" coords="448,109,427,85,436,74,445,75,449,76,449,86,459,96" shape="poly"
+          href="http://www.fairfaxcounty.gov/hd/">
+        <area alt="Fairfax Health District" coords="493,39,535,57" shape="rect" href="http://www.fairfaxcounty.gov/hd/">
+        <area alt="Rappahannock Health District" coords="507,121,584,138" shape="rect"
+          href="http://www.vdh.virginia.gov/Rappahannock/">
+        <area alt="Chickahominy Health District" coords="498,140,568,153" shape="rect"
+          href="http://www.vdh.virginia.gov/Chickahominy/">
+        <area alt="Henrico Health District" coords="529,153,571,168" shape="rect"
+          href="http://www.co.henrico.va.us/health/">
+        <area alt="Arlington Health District" coords="504,57,553,71" shape="rect"
+          href="http://www.arlingtonva.us/departments/HumanServices/HumanServicesMain.aspx">
+        <area alt="Alexandria Health District" coords="502,72,560,86" shape="rect" href="http://www.alexhealth.org/">
+        <area alt="Prince William Health District" coords="460,107,500,134" shape="rect"
+          href="http://www.vdh.virginia.gov/prince-william/">
+        <area alt="Three Rivers Health District" coords="446,168,486,195" shape="rect"
+          href="http://www.vdh.virginia.gov/three-rivers/">
+        <area alt="Eastern Shore Health District" coords="529,194,574,223" shape="rect"
+          href="http://www.vdh.virginia.gov/eastern-shore/">
+        <area alt="Crater Health District" coords="431,240,469,260" shape="rect"
+          href="http://www.vdh.virginia.gov/crater/">
+        <area alt="Western Tidewater Health District" coords="446,269,501,297" shape="rect"
+          href="http://www.vdh.virginia.gov/western-tidewater/">
+        <area alt="Chesapeake Health District" coords="483,299,550,318" shape="rect"
+          href="http://www.vdh.virginia.gov/chesapeake/">
+        <area alt="Portsmouth Health District" coords="543,269,603,283" shape="rect"
+          href="http://www.vdh.virginia.gov/portsmouth/">
+        <area alt="Norfolk Health District" coords="556,257,594,269" shape="rect"
+          href="http://www.norfolk.gov/pub_health/">
+        <area alt="Hampton Health District" coords="530,245,576,258" shape="rect"
+          href="http://www.vdh.virginia.gov/hampton/">
+        <area alt="Virginia Beach Health District" coords="555,296,598,325" shape="rect"
+          href="http://www.vdh.virginia.gov/virginia-beach/">
+        <area alt="Peninsula Health District" coords="555,231,605,246" shape="rect"
+          href="http://www.vdh.virginia.gov/peninsula/">
+        <area alt="Danville Health District" coords="290,252,286,259,273,304,305,302,317,254,302,245" shape="poly"
+          href="http://www.vdh.virginia.gov/pittsylvania-danville/">
+        <area coords="297,281,303,275" shape="poly" href="http://www.vdh.virginia.gov/LHD/index.htm#">
+        <area alt="Roanoke City Health District" coords="247,245,240,230,262,224,267,241,260,244" shape="poly"
+          href="http://www.vdh.virginia.gov/roanoke/">
+        <area alt="Chesterfield Health District" coords="411,231,386,210,397,197,421,209,428,219,444,225,428,235"
+          shape="poly" href="http://www.vdh.virginia.gov/chesterfield/">
+        <area alt="Rappahannock Health District"
+          coords="437,183,418,164,436,144,445,143,444,148,454,151,449,161,453,166" shape="poly"
+          href="http://www.vdh.virginia.gov/Rappahannock/">
+        <area alt="Alexandria Health District" coords="460,93,454,87,461,87,465,92" shape="poly"
+          href="http://www.alexhealth.org/">
+        <area alt="Arlington Health District" coords="455,87,449,81,457,77,461,85" shape="poly"
+          href="http://www.arlingtonva.us/departments/HumanServices/HumanServicesMain.aspx">
+        <area alt="Prince William Health District" coords="441,118,427,109,411,85,416,78,446,107" shape="poly"
+          href="http://www.vdh.virginia.gov/prince-william/">
+        <area alt="Chesapeake Health District" coords="499,300,500,276,506,277,515,277,526,285,524,302" shape="poly"
+          href="http://www.vdh.virginia.gov/chesapeake/">
+        <area alt="Portsmouth Health District" coords="506,275,507,264,502,265,502,277" shape="poly"
+          href="http://www.vdh.virginia.gov/portsmouth/">
+        <area alt="Norfolk Health District" coords="513,275,521,270,513,260,508,261" shape="poly"
+          href="http://www.norfolk.gov/pub_health/">
+        <area alt="Virginia Beach Health District" coords="526,298,525,283,515,277,521,267,529,267,539,297" shape="poly"
+          href="http://www.vdh.virginia.gov/virginia-beach/">
+        <area alt="Hampton Health District" coords="504,260,503,249,510,248,511,258" shape="poly"
+          href="http://www.vdh.virginia.gov/hampton/">
+        <area alt="Peninsula Health District" coords="500,248,484,234,479,226,486,224,505,237" shape="poly"
+          href="http://www.vdh.virginia.gov/peninsula/">
+        <area coords="445,224,434,209" shape="poly" href="http://www.vdh.virginia.gov/LHD/index.htm#">
+        <area alt="Henrico Health District" coords="444,223,434,218,431,207,420,205,419,194,426,193,447,210"
+          shape="poly" href="http://www.co.henrico.va.us/health/">
+        <area alt="Chickahominy Health District" coords="443,207,426,193,406,189,414,165,436,183,450,199" shape="poly"
+          href="http://www.vdh.virginia.gov/Chickahominy/">
+        <area alt="Richmond Health District" coords="430,220,419,207,429,207,432,215" shape="poly"
+          href="http://www.vdh.virginia.gov/richmond-city/" target="_self"></map>
+    </form>
+  </div>
+  <div id="second">
+    <form class="former">
+
+      <div class="form-row">
+
+        <select #locInput class="form-control1" (change)="selectLocal($event.target.value)" style="width: 100%">
+          <option selected>Choose a locality</option>
+          <option *ngFor="let county of counties">
+            {{county.county_name}}
+          </option>
+        </select>
+
+
+      </div>
+    </form>
+  </div>
 </div>

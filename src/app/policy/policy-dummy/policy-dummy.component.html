@@ -1,14 +1,17 @@
-<app-navigation-component></app-navigation-component> 
+<app-navigation-component></app-navigation-component>
+<div class="sidebar" data-color="danger" data-background-color="white">
+    <app-newsidebar></app-newsidebar>
+</div>
 <div class="my-container">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
-<div >
+<div class="newmainpanel">
     <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
-        <div >
-            <div>
+        <div class="categoryGrid">
+            <div class="clearfix wrap">
                 <div>
-                    <h2 class="headerFix">NIST</h2>
+                    <h2 class="headerFix">Policy</h2>
                 </div>
                 <mat-sidenav-container class="example-sidenav-container"
                     style="min-height: 100%;background-color: inherit;">
@@ -81,9 +84,9 @@
                                           </div>
                             </mat-grid-tile>
 
-                            <mat-grid-tile [colspan]="5" [rowspan]="2">
+                            <mat-grid-tile [colspan]="3" [rowspan]="2">
                                 <div class="newtestITpm">
-                                    <div class="entryTitle"> Policies Status</div>
+                                    <div class="entryTitle">Overall Policies Status</div>
                                     <div class="card-body">
 
                                         <div class="row">
@@ -102,10 +105,28 @@
 
         </mat-grid-tile>
 
-  
+        <mat-grid-tile [colspan]="4" [rowspan]="2">
+            <div class="newtestITpm">
+                <div class="entryTitle">Upcoming Re-certification of Policies</div>
+                <div class="card" style="width: 99%;height:88%;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="display: block; width: 100%; height: 9rem; background-color: #fff;"
+                                    *ngIf="showAllSystem">
+                                    <canvas baseChart [datasets]="lineChartPolicies" [labels]="lineChartPoliciesLables"
+                                        chartType="bar" [legend]="false" (chartClick)="chartClickedSystems($event)"
+                                        [options]="chartOption1" [colors]="chartColorsSystems"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-grid-tile>
 
 
-        <mat-grid-tile [colspan]="5" [rowspan]="2">
+        <mat-grid-tile [colspan]="3" [rowspan]="2">
 
             <div class="newtestITpm">
                 <div class="entryTitle">Status of Controls</div>
@@ -154,7 +175,7 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]="5" [rowspan]="2">
                     <div class="newtestITpm">
-                    <div class="entryTitle">Create a new policy</div>
+                    <div class="entryTitle">Choose a policy</div>
                     <div class="card-body">
                         <div class="row" *ngIf="createNewPolicy">
                 
@@ -164,13 +185,12 @@
                                 <label for="radio-1" class="radio-label">NIST</label>
                               </div>
                             </div>
-
                             <div class="col-md-4">
-                                    <div class="radio"  >
-                                        <input id="radio-1" name="radio" type="radio">
-                                        <label for="radio-1" class="radio-label">COV</label>
-                                      </div>
-                                    </div>
+                                <div class="radio"  >
+                                    <input id="radio-3" name="radio" type="radio">
+                                    <label for="radio-3" class="radio-label">COV</label>
+                                  </div>
+                                </div>
                          
                             <div class="col-md-4">
                               <div class="radio">
@@ -185,78 +205,126 @@
         
             </mat-grid-tile>
 
-            <mat-grid-tile [colspan]="10" [rowspan]="2">
-                    <div class="newtestITpm">
-                    <div class="entryTitle">Choose a policy</div>
-                    <div class="card-body">
-              
-                    <form class="forms">
-                        <div class="form-row">
-                            <div class="col-md-6" *ngIf="policyType == 'NIST'">
-                                    <label class="newLabel"><b>Definitive Source</b><span class="asterisk">*</span></label>
-                                    <input type="text" class="form-control" name="definiteSource" value={{policyType}} readonly>
-                            </div>
-                            <div class="col-md-6" *ngIf="policyType !== 'NIST'">
-                                <label class="newLabel"><b>Definitive Source</b><span class="asterisk">*</span></label>
-                                <select class="form-control" style="width:50%;" name="definiteSource"
-                                    [(ngModel)]="auditTypeId" required (change)="selectDefinitive($event.target.value)">
-                                    <option value="">Choose...</option>
-                                    <option *ngFor="let auditType of auditTypes" value="{{ auditType.auditTypeId }}">
-                                        {{ auditType.auditTypeName }}</option>
-                                </select>
-                            </div>
-                
 
-                        </div>
-                        <br>
-                        <div class="form-row">
 
-                            <table class="policyTable">
-                                        <thead>
-                                            <tr>
+        <mat-grid-tile [colspan]="10" [rowspan]="1" *ngIf="!showTable">
+            <div class="newtestITpm">
+                <i class="fa fa-plus" style="position: absolute;right:1%;" (click)="getTable1()" aria-hidden="true"></i>
+            </div>
 
-                                                <th scope="col" sortable="auditTypeName" (sort)="getSort($event)">Policy
-                                                    Name
-                                                </th>
-                                                
-                                                 <th scope="col" sortable="policyGrpId" (sort)="getSort($event)">Source
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="10" [rowspan]="8" *ngIf="showTable">
+            <div class="newtestITpm" *ngIf="showPolicies">
+                <i class="fa fa-minus" aria-hidden="true" (click)="getTable1()" style="
+                                    position: absolute;
+                                    right: 1%;
+                                "></i>
+                <div class="form-group form-inline">
+                    Search on Table: <input class="ml-2" style="width: 20% !important;outline: none;" type="text"
+                        name="searchTerm2" [(ngModel)]="searchTerm2" (keyup)="getData2($event.target.value)" />
+                </div>
+                <table class="policyTable">
+                    <thead>
+                        <tr>
+                            <th scope="col" sortable="policyId" (sort)="getSort($event)">Control #
 
-                                                </th>
+                            </th>
 
-                                                <th scope="col" sortable="owner" (sort)="getSort($event)">
-                                                    Policy Owner
-                                                </th>
-                                                <th scope="col" sortable="reviewDate" (sort)="getSort($event)">Next
-                                                    Audit
-                                                    Date
-                                                </th>
-                                                <th scope="col" sortable="status" (sort)="getSort($event)">Status
-                                                </th>
+                            <th scope="col" sortable="familyName" (sort)="getSort($event)">Family
+                                Name</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
 
-                                            <tr
-                                                *ngFor="let policyGrp of policies | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <th scope="col" sortable="policyGrpName" (sort)="getSort($event)">
+                                Policy Name
+                            </th>
+                            <th scope="col" sortable="assignedTo" (sort)="getSort($event)">Assigned
+                                To
+                            </th>
+                            <th scope="col" sortable="assignedBy" (sort)="getSort($event)">Priority
+                            </th>
 
-                                                <td><a id="anchor"
-                                                    (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
-                                                </td>
-                                                <td>{{policyGrp.auditTypeName}}</td>
-                                                <td>{{policyGrp.owner}}</td>
-                                                <td>{{policyGrp.reviewDate | filter}}</td>
-                                                <td *ngIf="policyGrp.status === 'true'"><i class='fa fa-check-circle-o policyGreen' aria-hidden="true"></i></td>
-                                                <td *ngIf="policyGrp.status === 'false'">
-                                                    <i class='fa fa-times-circle-o policyRed' aria-hidden="true"></i>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                        </div>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    </form>
-         </div>
-         </div>
-         </mat-grid-tile>
+                        <tr
+                            *ngFor="let policy of policies | paginate: { itemsPerPage: pageSize2, currentPage: p2, totalItems: total2 }">
+
+                            <td><a id="anchor"
+                                    routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
+                            </td>
+                            <td>{{policy.familyName}}</td>
+                            <td>{{policy.policyGrpName}}</td>
+                            <td>{{policy.assignedTo}}</td>
+                            <td>{{policy.priority}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="pageChanged2($event)"></pagination-controls>
+            </div>
+
+            <div class="newtestITpm" *ngIf="showPolicyGrp">
+                <i class="fa fa-minus" aria-hidden="true" (click)="getTable1()" style="
+                                        position: absolute;
+                                        right: 1%;
+                                    "></i>
+                <div class="form-group form-inline">
+                    Search on Table: <input class="ml-2" style="width: 20% !important;outline: none;" type="text"
+                        name="searchTerm" [(ngModel)]="searchTerm" (keyup)="getData1($event.target.value)" />
+                </div>
+                <table class="policyTable">
+                    <thead>
+                        <tr>
+                            <th scope="col" sortable="policyGrpId" (sort)="getSort($event)">Source
+
+                            </th>
+
+                            <th scope="col" sortable="auditTypeName" (sort)="getSort($event)">Policy
+                                Name
+                            </th>
+
+
+                            <th scope="col" sortable="owner" (sort)="getSort($event)">
+                                Policy Owner
+                            </th>
+                            <th scope="col" sortable="reviewDate" (sort)="getSort($event)">Review
+                                Date
+                            </th>
+                            <th scope="col" sortable="status" (sort)="getSort($event)">Status
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr
+                            *ngFor="let policyGrp of policyGrps | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+
+                            <td><a id="anchor"
+                                    (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
+                            </td>
+                            <td>{{policyGrp.auditTypeName}}</td>
+                            <td>{{policyGrp.owner}}</td>
+                            <td>{{policyGrp.reviewDate | filter}}</td>
+                            <td *ngIf="policyGrp.status === 'true'"><i class='fa fa-check-circle-o policyGreen'
+                                    aria-hidden="true"></i>
+                            </td>
+                            <td *ngIf="policyGrp.status === 'false'">
+                                <i class='fa fa-times-circle-o policyRed' aria-hidden="true"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            </div>
+        </mat-grid-tile>
+
+        </mat-grid-list>
+
+        </mat-sidenav-content>
+
+        </mat-sidenav-container>
+    </div>
+</div>
+</div>
+</div>

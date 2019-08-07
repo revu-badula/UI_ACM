@@ -1,0 +1,240 @@
+<app-navigation-component></app-navigation-component>
+<div class="sidebar" data-color="danger" data-background-color="white">
+    <app-newsidebar></app-newsidebar>
+</div>
+
+
+
+
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<div class="newmainpanel">
+    <div [ngClass]="!sideNavService.hideSideNav?'contentWidthMain':'contentWidth'">
+        <div class="categoryGrid">
+            <div class="clearfix wrap">
+                <div>
+                    <h2 class="headerFix">Admin</h2>
+                </div>
+                <mat-sidenav-container class="example-sidenav-container"
+                    style="min-height: 100%;background-color: inherit;">
+
+                    <mat-sidenav-content>
+                        <mat-grid-list cols="10" rowHeight="100px">
+                            <mat-grid-tile [colspan]="8" [rowspan]="1">
+                                <div class="newtestITpm">
+                                    <div class="entryTitle">
+                                        Overview
+                                    </div>
+                                    <p class="definationText" style="font-size: 13px;">
+                                        This screen allows you add, edit and view policies. The policies are organized
+                                        under two categories: - NIST and All others. The NIST National Institute for
+                                        Standards and Technology has 800 publications and All others has state, local
+                                        or organization level policies. Both options allow you create policy by using
+                                        NIST or other out of the box templates.
+                                    </p>
+                                </div>
+
+                            </mat-grid-tile>
+
+                            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                                <div class="newtestITpm">
+                                    <button class="adsquareRect1 adsquarecolorRect" routerLink="/createPolicy"> Create New</button>
+                                </div>
+                            </mat-grid-tile>
+
+                           
+                          
+                            <mat-grid-tile [colspan]="10" [rowspan]="8">
+                                <div class="newtestITpm">
+                                   
+                                          <div class="entryTitle">
+                                              Active Policies
+                                          </div>
+                                    <div class="form-group form-inline">
+                                        Search on Table: <input class="ml-2"
+                                            style="width: 20% !important;outline: none;" type="text" name="searchTerm2"
+                                            [(ngModel)]="searchTerm2" (keyup)="getData2($event.target.value)" />
+                                    </div>
+                                    <table class="policyTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" sortable="policyId" (sort)="getSort($event)">Definative Source
+
+                                                </th>
+
+                                                <th scope="col" sortable="familyName" (sort)="getSort($event)">Policy Name
+                                                    Name</th>
+
+
+                                                <th scope="col" sortable="policyGrpName" (sort)="getSort($event)">
+                                                    Review Date
+                                                </th>
+                                                <th scope="col" sortable="assignedTo" (sort)="getSort($event)">Assigned
+                                                    To
+                                                </th>
+                                                <th scope="col" sortable="assignedBy" (sort)="getSort($event)">Priority
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr
+                                                *ngFor="let policy of policies | paginate: { itemsPerPage: pageSize2, currentPage: p2, totalItems: total2 }">
+
+                                                <!-- <td><a id="anchor"
+                                                        routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
+                                                </td>
+                                                <td>{{policy.familyName}}</td>
+                                                <td>{{policy.policyGrpName}}</td>
+                                                <td>{{policy.assignedTo}}</td>
+                                                <td>{{policy.priority}}</td> -->
+
+                                                <td><a id="anchor"
+                                                  routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">Soch</a>
+                                          </td>
+                                          <td> <a id="anchor"
+                                            routerLink="/firstpolicy/details">Soch-500</a></td>
+                                          <td>10/23/1990</td>
+                                          <td>Sushrut Khirwadkar</td>
+                                          <td>Low</td> 
+                                            </tr>
+                                            <tr
+                                            *ngFor="let policy of policies | paginate: { itemsPerPage: pageSize2, currentPage: p2, totalItems: total2 }">
+
+                                            <!-- <td><a id="anchor"
+                                                    routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
+                                            </td>
+                                            <td>{{policy.familyName}}</td>
+                                            <td>{{policy.policyGrpName}}</td>
+                                            <td>{{policy.assignedTo}}</td>
+                                            <td>{{policy.priority}}</td> -->
+
+                                            <td><a id="anchor"
+                                              routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">Soch</a>
+                                      </td>
+                                      <td> <a id="anchor"
+                                        routerLink="/firstpolicy/details">Soch-500</a></td>
+                                      <td>10/23/1990</td>
+                                      <td>Sushrut Khirwadkar</td>
+                                      <td>Low</td> 
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <pagination-controls (pageChange)="pageChanged2($event)"></pagination-controls>
+                                </div>
+                                </mat-grid-tile>
+                                <mat-grid-tile [colspan]="10" [rowspan]="8">
+                                <div class="newtestITpm" >
+                                  
+
+<div class="entryTitle">
+   Archives
+</div>
+                                    <div class="form-group form-inline">
+                                        Search on Table: <input class="ml-2"
+                                            style="width: 20% !important;outline: none;" type="text" name="searchTerm"
+                                            [(ngModel)]="searchTerm" (keyup)="getData1($event.target.value)" />
+                                    </div>
+                                    <table class="policyTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" sortable="policyGrpId" (sort)="getSort($event)">Source
+
+                                                </th>
+
+                                                <th scope="col" sortable="auditTypeName" (sort)="getSort($event)">Policy
+                                                    Name
+                                                </th>
+
+
+                                                <th scope="col" sortable="owner" (sort)="getSort($event)">
+                                                    Policy Owner
+                                                </th>
+                                                <th scope="col" sortable="reviewDate" (sort)="getSort($event)">Next
+                                                    Audit
+                                                    Date
+                                                </th>
+                                                <th scope="col" sortable="status" (sort)="getSort($event)">Status
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <!-- <tr
+                                                *ngFor="let policyGrp of policyGrps | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+
+                                                <td><a id="anchor"
+                                                        (click)="loadPolicies(policyGrp.policyGrpId)">{{policyGrp.policyGrpName}}</a>
+                                                </td>
+                                                <td>{{policyGrp.auditTypeName}}</td>
+                                                <td>{{policyGrp.owner}}</td>
+                                                <td>{{policyGrp.reviewDate | filter}}</td>
+                                                <td *ngIf="policyGrp.status === 'true'"><i
+                                                        class='fa fa-check-circle-o policyGreen' aria-hidden="true"></i>
+                                                </td>
+                                                <td *ngIf="policyGrp.status === 'false'">
+                                                    <i class='fa fa-times-circle-o policyRed' aria-hidden="true"></i>
+                                                </td>
+                                            </tr> -->
+
+                                            <tr
+                                            *ngFor="let policy of policies | paginate: { itemsPerPage: pageSize2, currentPage: p2, totalItems: total2 }">
+
+                                            <!-- <td><a id="anchor"
+                                                    routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
+                                            </td>
+                                            <td>{{policy.familyName}}</td>
+                                            <td>{{policy.policyGrpName}}</td>
+                                            <td>{{policy.assignedTo}}</td>
+                                            <td>{{policy.priority}}</td> -->
+
+                                            <td><a id="anchor"
+                                              routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">Soch</a>
+                                      </td>
+                                      <td> <a id="anchor"
+                                        routerLink="/firstpolicy/details">Soch-500</a></td>
+                                      <td>10/23/1990</td>
+                                      <td>Sushrut Khirwadkar</td>
+                                      <td>Low</td> 
+                                        </tr>
+
+                                        <tr
+                                        *ngFor="let policy of policies | paginate: { itemsPerPage: pageSize2, currentPage: p2, totalItems: total2 }">
+
+                                        <!-- <td><a id="anchor"
+                                                routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">{{policy.controlNumber}}</a>
+                                        </td>
+                                        <td>{{policy.familyName}}</td>
+                                        <td>{{policy.policyGrpName}}</td>
+                                        <td>{{policy.assignedTo}}</td>
+                                        <td>{{policy.priority}}</td> -->
+
+                                        <td><a id="anchor"
+                                          routerLink="/firstpolicy/newaccesscontrol//{{policy.policyId}}">Soch</a>
+                                  </td>
+                                  <td> <a id="anchor"
+                                    routerLink="/firstpolicy/details">Soch-500</a></td>
+                                  <td>10/23/1990</td>
+                                  <td>Sushrut Khirwadkar</td>
+                                  <td>Low</td> 
+                                    </tr>
+                                        </tbody>
+                                    </table>
+                                    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                                </div>
+                            </mat-grid-tile>
+
+
+                        </mat-grid-list>
+
+                    </mat-sidenav-content>
+
+                </mat-sidenav-container>
+            </div>
+        </div>
+    </div>
+</div>
