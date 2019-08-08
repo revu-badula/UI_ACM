@@ -22,6 +22,7 @@ export class AdminPolicyComponent implements OnInit {
   public policyGrpId: number;
   public policyType: any;
   public policies: any;
+  public allPolicies: any;
   public p:number=1;
   constructor(public sideNavService: AlertService,
     private activatedRoute: ActivatedRoute, private router: Router,
@@ -40,6 +41,8 @@ export class AdminPolicyComponent implements OnInit {
     else {
       this.getNistData();
     }
+
+    this.getAllPolicies();
 
   }
   getNistData() {
@@ -75,8 +78,19 @@ export class AdminPolicyComponent implements OnInit {
         this.loading = false;
         console.log(error);
       });
+  }
 
-
+  getAllPolicies(){
+    this.loading = true;
+    let url = APP_CONFIG.getAllPolicies;
+    this.httpClient.get(url)
+    .subscribe((data: any) => {
+      this.loading = false;
+      this.allPolicies = data;
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
   }
 
   selectDefinitive(auditID: any) {

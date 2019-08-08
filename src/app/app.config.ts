@@ -182,6 +182,7 @@ export const APP_CONFIG = {
   getAllIncidentsOnType:apiBaseUrl+'getAllIncidentsOnType',
   getInfraData: apiBaseUrl + 'getInfraData',
   getInfraOnVendor: apiBaseUrl + 'getInfraOnVendor',
+  getAllPolicies :apiBaseUrl +'getAllPolicies'
 }
 
 

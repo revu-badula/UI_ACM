@@ -15,7 +15,7 @@
 
                     <mat-sidenav-content>
                         <mat-grid-list cols="10" rowHeight="100px">
-                            <mat-grid-tile [colspan]="10" [rowspan]="1">
+                            <mat-grid-tile [colspan]="8" [rowspan]="1">
                                 <div class="newtestITpm">
                                     <div class="entryTitle">
                                         Overview
@@ -31,6 +31,13 @@
                                     </p>
                                 </div>
 
+                            </mat-grid-tile>
+
+
+                            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                                <div class="newtestITpm">
+                                    <button class="adsquareRect1 adsquarecolorRect" routerLink="/createPolicy"> Manage</button>
+                                </div>
                             </mat-grid-tile>
                             <mat-grid-tile [colspan]="5" [rowspan]="2">
                                 <div class="newtestITpm">
@@ -134,57 +141,7 @@
             </div>
         </mat-grid-tile>
 
-        <mat-grid-tile [colspan]="5" [rowspan]="2">
-                <div class="newtestITpm">
-                        <div class="entryTitle">Manage Policies</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 pull-left" (click)="showRadio()">
-                                    <span class="adsquareRect adsquarecolorRect ">Create New</span>
-                                </div>
-                                <div class="col-md-2 pull-left"></div>
-                                <div class="col-md-3 pull-left">
-                                    <span class="adsquareRect adsquarecolorRect ">Manage Existing</span>
-                        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="5" [rowspan]="2">
-                    <div class="newtestITpm">
-                    <div class="entryTitle">Create a new policy</div>
-                    <div class="card-body">
-                        <div class="row" *ngIf="createNewPolicy">
-                
-                        <div class="col-md-4">
-                            <div class="radio"  >
-                                <input id="radio-1" name="radio" type="radio">
-                                <label for="radio-1" class="radio-label">NIST</label>
-                              </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                    <div class="radio"  >
-                                        <input id="radio-1" name="radio" type="radio">
-                                        <label for="radio-1" class="radio-label">COV</label>
-                                      </div>
-                                    </div>
-                         
-                            <div class="col-md-4">
-                              <div class="radio">
-                                <input id="radio-2" name="radio" type="radio">
-                                <label  for="radio-2" class="radio-label">Other</label>
-                                </div>
-                              </div>
-                            
-                        </div>
-                    </div>
-                </div>
-        
-            </mat-grid-tile>
-
+       
             <mat-grid-tile [colspan]="10" [rowspan]="2">
                     <div class="newtestITpm">
                     <div class="entryTitle">Choose a policy</div>
