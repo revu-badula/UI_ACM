@@ -75,6 +75,8 @@
                                                 </th>
                                                 <th scope="col" sortable="assignedBy" (sort)="getSort($event)">Review Term
                                                 </th>
+                                                <th scope="col" sortable="assignedBy" (sort)="getSort($event)">Archive
+                                                </th>
 
                                             </tr>
                                         </thead>
@@ -152,6 +154,7 @@
                                                 <td *ngIf="policyGrp.status === 'false'">
                                                     <i class='fa fa-times-circle-o policyRed' aria-hidden="true"></i>
                                                 </td>
+                                                <td><i class="fa fa-archive" aria-hidden="true"></i></td>
                                             </tr>
 
                             
