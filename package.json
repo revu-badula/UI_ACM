@@ -39,7 +39,7 @@
     "highcharts-angular": "^2.4.0",
     "font-awesome": "^4.7.0",
     "hoek": "^5.0.3",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "moment": "^2.22.2",
     "mydatepicker": "^2.6.3",
     "ng-click-outside": "^4.0.0",
